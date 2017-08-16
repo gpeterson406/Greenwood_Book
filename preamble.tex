@@ -1,0 +1,75 @@
+\usepackage{booktabs}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{amsbsy}
+\usepackage[normalem]{ulem}
+\usepackage{cancel}
+\usepackage[svgnames]{xcolor}
+\usepackage{framed}
+%\colorlet{shadecolor}{Silver} Probably too dark...
+\colorlet{shadecolor}{WhiteSmoke}
+\colorlet{framecolor}{Silver}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{url}
+\usepackage{makeidx}
+
+\newgeometry{inner=1.25in,outer=0.75in,top=1in,bottom=1in}
+
+\definecolor{purple}{RGB}{76,0,153}
+
+% % make code-output smaller
+% \DefineVerbatimEnvironment{Highlighting}{Verbatim}{fontsize=\tiny,commandchars=\\\{\}}
+% 
+
+% make console-output smaller:
+%  \makeatletter
+% \def\verbatim{\small\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
+% \makeatother
+
+%\setlength{\parindent}{0pt} % Default is 0pt. Use \indent to indent targeted paragraphs
+
+%Making my own indent command
+\renewcommand{\indent}{\hspace{15pt}}
+
+%\setlength{\parskip}{0pt}
+
+
+\setlength{\OuterFrameSep}{0pt}
+\setlength{\FrameRule}{1.5pt}
+\makeatletter
+\def\preto{\@verbatim}{\topsep=-10pt \partopsep=-10pt }
+\makeatother
+
+% Adjust verbatim shade environments
+
+\renewenvironment{Shaded}{%
+\setlength{\FrameRule}{1.5pt}
+\def\FrameCommand{\fboxrule=\FrameRule\fboxsep=5pt 
+                  \fcolorbox{framecolor}{shadecolor}}%
+\MakeFramed {\FrameRestore}}%
+{\endMakeFramed}
+
+
+
+%Change third level of itemize to an open circle instead of an asterisk
+\renewcommand{\labelitemiii}{$\circ$}
+
+%Change fourth level of itemize to an dash instead of an asterisk
+\renewcommand{\labelitemiv}{\textendash}
+
+\newcommand{\BD}{\boldsymbol{\Delta}}
+
+\renewcommand*{\maketitle}{%
+\begin{titlepage}
+\includegraphics{titlepage.pdf}
+\end{titlepage}
+}
+
+% Uncomment below to make an index (only for pdf version).
+% You will also need to add appendix.tex to the _output.yml file after 
+% after_body:
+% Will also need to figure out how to make the bookmark jump to the Index
+% and not the Bibliography in the pdf file
+%\makeindex

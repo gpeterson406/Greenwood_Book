@@ -980,6 +980,8 @@ tests and estimates for *Dose* and *Delivery method*.
 
 3. **Calculate the test statistic for the interaction test.**
 
+    \vspace{11pt}
+    
     ```{r}
     TG2 <- lm(len~supp*dosef, data=ToothGrowth)
     Anova(TG2) 
@@ -1022,12 +1024,14 @@ the interaction model for an interpretation of the form and pattern of the
 interaction. If the interaction were unimportant, then the hypotheses and
 results should focus on the additive model results, especially the estimated
 model coefficients. To see why we don't spend much time with the estimated
-model coefficients in an interaction model, the model summary for this model is
+model coefficients in an interaction model, the coefficients for this model is
 provided:
 
+
 ```{r}
-summary(TG2)
+summary(TG2)$coefficients
 ```
+
 
 \indent There are two $\omega_{jk}\text{'s}$ in the results, related to modifying the 
 estimates for doses of 1 (-0.68) and 2
@@ -1275,7 +1279,6 @@ plot(debt1)
         * The QQ-Plot in Figure \@ref(fig:Figure4-14) does not suggest 
         a problem with this assumption. 
 
-\newpage
 
 3. **Calculate the test statistic for the two main effect tests.**
 

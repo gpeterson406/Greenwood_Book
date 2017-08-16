@@ -477,9 +477,9 @@ quantiles</code></pre></div>
 <span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
 <span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</code></pre></div>
 <div class="figure"><span id="fig:Figure6-10"></span>
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-10-1.png" alt="Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for 95% bootstrap confidence interval." width="960" />
+<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-10-1.png" alt="Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval." width="960" />
 <p class="caption">
-Figure 6.10: Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for 95% bootstrap confidence interval.
+Figure 6.10: Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval.
 </p>
 </div>
 <p>These results tell us that the bootstrap 95% CI is from 0.75 to 0.95 – we are 95% confident that the true correlation between <em>Beers</em> and <em>BAC</em> in all OSU students like those that volunteered for this study is between 0.75 and 0.95. Note that there are no units on the correlation coefficient or in this interpretation of it.</p>
@@ -529,9 +529,9 @@ Figure 6.11: Scatterplot of tree heights (m) vs tree diameters (cm).
 ## 2.5%  0.752252 0.025
 ## 97.5% 0.827492 0.975</code></pre>
 <div class="figure"><span id="fig:Figure6-12"></span>
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-12-1.png" alt="Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for 95% confidence interval (dashed lines)." width="960" />
+<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-12-1.png" alt="Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines)." width="960" />
 <p class="caption">
-Figure 6.12: Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for 95% confidence interval (dashed lines).
+Figure 6.12: Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines).
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">cor</span>(dbh.cm<span class="op">~</span>height.m, <span class="dt">data=</span>ufc); Tobs
@@ -590,7 +590,7 @@ Figure 6.13: Scatterplot with estimated regression line for the <em>Beers</em> a
 <ul>
 <li><p><span class="math inline">\(y_i\)</span> is the observed response for the <span class="math inline">\(i^{th}\)</span> observation,</p></li>
 <li><p><span class="math inline">\(x_i\)</span> is the observed value of the explanatory variable for the <span class="math inline">\(i^{th}\)</span> observation,</p></li>
-<li><p><span class="math inline">\(\beta_0 + \beta_1x_i\)</span> is the true mean function evaluated at <span class="math inline">\(x_i\)</span></p></li>
+<li><p><span class="math inline">\(\beta_0 + \beta_1x_i\)</span> is the true mean function evaluated at <span class="math inline">\(x_i\)</span>,</p></li>
 <li><p><span class="math inline">\(\beta_0\)</span> is the true (or population) y-intercept,</p></li>
 <li><p><span class="math inline">\(\beta_1\)</span> is the true (or population) slope coefficient, and</p></li>
 <li><p>the deviations, <span class="math inline">\(\varepsilon_i\)</span>, are assumed to be independent and normally distributed with mean 0 and standard deviation <span class="math inline">\(\sigma\)</span> or, more compactly, <span class="math inline">\(\varepsilon_i \sim N(0,\sigma^2)\)</span>.</p></li>
@@ -700,9 +700,9 @@ Your final score is 13143.99
 Thanks for playing!</code></pre>
 
 <div class="figure"><span id="fig:Figure6-17"></span>
-<img src="chapter6_files/image063.png" alt="Results of running FindRegLine() where the user (Greenwood) didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line."  />
+<img src="chapter6_files/image063.png" alt="Results of running FindRegLine() where I didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line."  />
 <p class="caption">
-Figure 6.17: Results of running <code>FindRegLine()</code> where the user (Greenwood) didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line.
+Figure 6.17: Results of running <code>FindRegLine()</code> where I didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line.
 </p>
 </div>
 <p>It ends up that the least squares criterion does not require a search across coefficients or trial and error – there are some “simple” equations available for calculating the estimates of the y-intercept and slope:</p>
@@ -767,7 +767,7 @@ Figure 6.18: Scatterplot of log-hectares burned versus temperature with estimate
 Figure 6.19: Three scatterplots with the same estimated regression line.
 </p>
 </div>
-<p>*R<sup>2</sup>** is calculated using the sums of squares we encountered in the ANOVA methods. We once again have some total amount of variability that is attributed to the variation based on the model fit, here we call it <span class="math inline">\(\text{SS}_\text{regression}\)</span>, and the residual variability, still <span class="math inline">\(\text{SS}_\text{error}=\Sigma(y-\hat{y})^2\)</span>. The <span class="math inline">\(\text{SS}_\text{regression}\)</span> is most easily calculated as <span class="math inline">\(\text{SS}_\text{regression} = \text{SS}_\text{Total} - \text{SS}_\text{error}\)</span>, the difference between the total variability and the variability not explained by the model under consideration. Using these quantities, we calculate the portion of the total variability that the model explains as</p>
+<p>The <strong>R<sup>2</sup></strong> is calculated using the sums of squares we encountered in the ANOVA methods. We once again have some total amount of variability that is attributed to the variation based on the model fit, here we call it <span class="math inline">\(\text{SS}_\text{regression}\)</span>, and the residual variability, still <span class="math inline">\(\text{SS}_\text{error}=\Sigma(y-\hat{y})^2\)</span>. The <span class="math inline">\(\text{SS}_\text{regression}\)</span> is most easily calculated as <span class="math inline">\(\text{SS}_\text{regression} = \text{SS}_\text{Total} - \text{SS}_\text{error}\)</span>, the difference between the total variability and the variability not explained by the model under consideration. Using these quantities, we calculate the portion of the total variability that the model explains as</p>
 <p><span class="math display">\[\boldsymbol{R^2}=\frac{\text{SS}_\text{regression}}{\text{SS}_\text{Total}}
 =1 - \frac{\text{SS}_\text{error}}{\text{SS}_\text{Total}}.\]</span></p>
 <p>It also ends up that the coefficient of determination for models with one predictor is the correlation coefficient (<strong><em>r</em></strong>) squared (<span class="math inline">\(\boldsymbol{R^2} = \boldsymbol{r^2}\)</span>). So we can quickly find coefficients of determination if we know correlations in simple linear regression models. In the real <em>Beers</em> and <em>BAC</em> data, <strong><em>r</em></strong>=0.8943. So <span class="math inline">\(\boldsymbol{R^2} = 0.79998\)</span> or approximately 0.80. So 80% of the variation in <em>BAC</em> is explained by <em>Beer</em> consumption. That leaves 20% of the variation in the responses to be unexplained by our model. In this case much of the unexplained variation is likely attributable to differences in physical characteristics (that were not measured) but the statistical model places that unexplained variation into the category of “random errors”. We don’t actually have to find <strong><em>r</em></strong> to get coefficients of determination – the result is part of the regular summary of a regression model that we have not discussed. We repeat the full <code>lm</code> model summary below – note that a number is reported for the “<code>Multiple R-squared</code>” in the second to last line of the output. It is reported as a proportion and it is your choice whether you want to report and interpret it as a proportion or percentage, just make that clear in how you discuss it.</p>

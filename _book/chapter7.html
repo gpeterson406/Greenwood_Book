@@ -1115,7 +1115,7 @@ t^*_{n-2}}\textbf{SE}_{\boldsymbol{\hat{\mu}_{\nu}}}.\]</span></p>
 <pre><code>## [1] 0.0000000 0.3448276 0.6896552 1.0344828 1.3793103 1.7241379</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(beerf,<span class="dv">6</span>)</code></pre></div>
 <pre><code>## [1]  8.275862  8.620690  8.965517  9.310345  9.655172 10.000000</code></pre>
-<p>Now we can call the <code>predict</code> function at all these values stored in <code>beerf</code> to get the CIs for all these <em>Beers</em> values:</p>
+<p>Now we can call the <code>predict</code> function at the values stored in <code>beerf</code> to get the CIs across that range of <em>Beers</em> values:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BBCI &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(<span class="kw">predict</span>(m1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Beers=</span>beerf),
                            <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>))
 <span class="kw">head</span>(BBCI)</code></pre></div>

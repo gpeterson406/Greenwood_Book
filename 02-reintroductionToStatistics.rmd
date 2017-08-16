@@ -771,9 +771,12 @@ that the ``Years`` are held in the same place while the group labels are shuffle
 set.seed(1234)
 ```
 
+\newpage
+
 ```{r}
 Perm1 <- with(MockJury2, tibble(Years, Attr, PermutedAttr=shuffle(Attr)))
-data.frame(Perm1) #To force the tibble to print out all rows in data set - not used often
+#To force the tibble to print out all rows in data set - not used often
+data.frame(Perm1) 
 ```
 
 If you count up the number of subjects in each group by counting the number 
@@ -809,6 +812,8 @@ original difference in the sample means of the two groups was 1.84 years
 that estimate the parameters for the true means of the two groups. In the 
 permuted data set, the difference in the means is 1.15 years in the opposite 
 direction (Average had a higher mean than Unattractive in the permuted data). 
+
+\newpage
 
 ```{r}
 mean(Years~PermutedAttr, data=Perm1)
@@ -1498,7 +1503,6 @@ null, then we need to revisit the method of data collection and design of the
 study to discuss scope of inference. Can we discuss causality (due to RA) and/or 
 make inferences to a larger group than those in the sample (due to RS)? 
 
-\newpage
 
 \indent To perform a hypothesis test, there are some steps to remember to 
 complete to make sure you have thought through all the aspects of the results. 
@@ -1943,6 +1947,8 @@ using the permutation results for the grade data:
 
     * $T=2.69$ from the previous R output. 
 
+\newpage
+
 4. Find the p-value
 
     * p-value=`r perm_pval` from the permutation distribution results. 
@@ -2091,6 +2097,8 @@ mean sentences for the *Average* and *Unattractive* picture groups. The
 bootstrapping code is very similar to the permutation code except that we apply
 the ``resample`` function to the entire data set as opposed to the ``shuffle``
 function that was applied only to the explanatory variable. 
+
+\newpage
 
 ```{r}
 Tobs <- diffmean(Years~Attr, data=MockJury2); Tobs
@@ -2371,6 +2379,8 @@ sp
 
 The margin of error is:
 
+\newpage
+
 ```{r}
 qt(0.975, df=77)*sp*sqrt(1/37+1/42)
 ```
@@ -2489,7 +2499,6 @@ parameters are characteristics of populations (which we rarely know). And that
 our inferences are limited to the population that we randomly sampled from, if 
 we randomly sampled. 
 
-\newpage
 
 ## Chapter summary {#section2-10}
 
@@ -2540,7 +2549,7 @@ data=`r colFmt("DATASETNAME","red")`, conf.level=0.95)**
     * Provides two-sample t-test test statistic, df, p-value, and 95% 
     confidence interval. 
     
-* **2*pt(abs(`r colFmt("Tobs","red")`), df=`r colFmt("DF","red")`, lower.tail=F)**
+* **2``*``pt(abs(`r colFmt("Tobs","red")`), df=`r colFmt("DF","red")`, lower.tail=F)**
 
     * Finds the two-sided test p-value for an observed 2-sample t-test 
     statistic of ``Tobs``. 

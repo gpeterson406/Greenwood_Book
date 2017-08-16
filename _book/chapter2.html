@@ -639,21 +639,84 @@ Figure 2.7: Illustration of the assumed situations under the null (left) and a s
 <p>In statistical inference, null hypotheses (and their implied models) are set up as “straw men” with every interest in rejecting them even though we assume they are true to be able to assess the evidence <span class="math inline">\(\underline{\text{against them}}\)</span>. Consider the original study design here, the pictures were randomly assigned to the subjects. If the null hypothesis were true, then we would have no difference in the population means of the groups. And this would apply if we had done a different random assignment of the pictures to the subjects. So let’s try this: assume that the null hypothesis is true and randomly re-assign the treatments (pictures) to the observations that were obtained. In other words, keep the sentences (<em>Years</em>) the same and shuffle the group labels randomly. The technical term for this is doing a <strong><em>permutation</em></strong> (a random shuffling of a grouping variable relative to the observed responses). If the null is true and the means in the two groups are the same, then we should be able to re-shuffle the groups to the observed sentences (<em>Years</em>) and get results similar to those we actually observed. If the null is false and the means are really different in the two groups, then what we observed should differ from what we get under other random permutations. The differences between the two groups should be more noticeable in the observed data set than in (most) of the shuffled data sets. It helps to see an example of a permutation of the labels to understand what this means here.</p>
 <p>In the <code>mosaic</code> package, the <code>shuffle</code> function allows us to easily perform a permutation<a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a>. Just one time, we can explore what a permutation of the treatment labels could look like in the <code>PermutedAttr</code> variable below. Note that the <code>Years</code> are held in the same place while the group labels are shuffled.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Perm1 &lt;-<span class="st"> </span><span class="kw">with</span>(MockJury2, <span class="kw">tibble</span>(Years, Attr, <span class="dt">PermutedAttr=</span><span class="kw">shuffle</span>(Attr)))
-Perm1</code></pre></div>
-<pre><code>## # A tibble: 75 x 3
-##    Years         Attr PermutedAttr
-##    &lt;int&gt;       &lt;fctr&gt;       &lt;fctr&gt;
-##  1     1 Unattractive Unattractive
-##  2     4 Unattractive      Average
-##  3     3 Unattractive      Average
-##  4     2 Unattractive      Average
-##  5     8 Unattractive      Average
-##  6     8 Unattractive      Average
-##  7     1 Unattractive Unattractive
-##  8     1 Unattractive Unattractive
-##  9     5 Unattractive      Average
+<span class="co">#To force the tibble to print out all rows in data set - not used often</span>
+<span class="kw">data.frame</span>(Perm1) </code></pre></div>
+<pre><code>##    Years         Attr PermutedAttr
+## 1      1 Unattractive Unattractive
+## 2      4 Unattractive      Average
+## 3      3 Unattractive      Average
+## 4      2 Unattractive      Average
+## 5      8 Unattractive      Average
+## 6      8 Unattractive      Average
+## 7      1 Unattractive Unattractive
+## 8      1 Unattractive Unattractive
+## 9      5 Unattractive      Average
 ## 10     7 Unattractive Unattractive
-## # ... with 65 more rows</code></pre>
+## 11     1 Unattractive      Average
+## 12     5 Unattractive Unattractive
+## 13     2 Unattractive Unattractive
+## 14    12 Unattractive      Average
+## 15    10 Unattractive      Average
+## 16     1 Unattractive      Average
+## 17     6 Unattractive Unattractive
+## 18     2 Unattractive      Average
+## 19     5 Unattractive Unattractive
+## 20    12 Unattractive Unattractive
+## 21     6 Unattractive      Average
+## 22     3 Unattractive      Average
+## 23     8 Unattractive      Average
+## 24     4 Unattractive Unattractive
+## 25    10 Unattractive Unattractive
+## 26    10 Unattractive      Average
+## 27    15 Unattractive Unattractive
+## 28    15 Unattractive      Average
+## 29     3 Unattractive      Average
+## 30     3 Unattractive      Average
+## 31     3 Unattractive Unattractive
+## 32    11 Unattractive      Average
+## 33    12 Unattractive      Average
+## 34     2 Unattractive Unattractive
+## 35     1 Unattractive Unattractive
+## 36     1 Unattractive Unattractive
+## 37    12 Unattractive      Average
+## 38     5      Average Unattractive
+## 39     5      Average Unattractive
+## 40     4      Average Unattractive
+## 41     3      Average Unattractive
+## 42     6      Average      Average
+## 43     4      Average      Average
+## 44     9      Average      Average
+## 45     8      Average Unattractive
+## 46     3      Average      Average
+## 47     2      Average Unattractive
+## 48    10      Average      Average
+## 49     1      Average Unattractive
+## 50     1      Average Unattractive
+## 51     3      Average Unattractive
+## 52     1      Average      Average
+## 53     3      Average      Average
+## 54     5      Average      Average
+## 55     8      Average Unattractive
+## 56     3      Average      Average
+## 57     1      Average      Average
+## 58     1      Average Unattractive
+## 59     1      Average      Average
+## 60     2      Average      Average
+## 61     2      Average Unattractive
+## 62     1      Average      Average
+## 63     1      Average Unattractive
+## 64     2      Average Unattractive
+## 65     3      Average Unattractive
+## 66     4      Average Unattractive
+## 67     5      Average      Average
+## 68     3      Average Unattractive
+## 69     3      Average      Average
+## 70     3      Average      Average
+## 71     2      Average Unattractive
+## 72     7      Average Unattractive
+## 73     6      Average Unattractive
+## 74    12      Average Unattractive
+## 75     8      Average      Average</code></pre>
 <p>If you count up the number of subjects in each group by counting the number of times each label (Average, Unattractive) occurs, it is the same in both the <code>Attr</code> and <code>PermutedAttr</code> columns. Permutations involve randomly re-ordering the values of a variable – here the <code>Attr</code> group labels – without changing the content of the variable. This result can also be generated using what is called <strong><em>sampling without replacement</em></strong>: sequentially select <span class="math inline">\(n\)</span> labels from the original variable (<em>Attr</em>), removing each observed label and making sure that each of the original <code>Attr</code> labels is selected once and only once. The new, randomly selected order of selected labels provides the permuted labels. Stepping through the process helps to understand how it works: after the initial random sample of one label, there would <span class="math inline">\(n - 1\)</span> choices possible; on the <span class="math inline">\(n^{th}\)</span> selection, there would only be one label remaining to select. This makes sure that all original labels are re-used but that the order is random. Sampling without replacement is like picking names out of a hat, one-at-a-time, and not putting the names back in after they are selected. It is an exhaustive process for all the original observations. <strong><em>Sampling with replacement</em></strong>, in contrast, involves sampling from the specified list with each observation having an equal chance of selection for each sampled observation – in other words, observations can be selected more than once. This is like picking <span class="math inline">\(n\)</span> names out of a hat that contains <span class="math inline">\(n\)</span> names, except that every time a name is selected, it goes back into the hat – we’ll use this technique in Section <a href="chapter2.html#section2-8">2.8</a> to do what is called <strong><em>bootstrapping</em></strong>. Both sampling mechanisms can be used to generate inferences but each has particular situations where they are most useful. For hypothesis testing, we will use permutations (sampling without replacement) as its mechanism most closely matches the null hypotheses we will be testing.</p>
 <p>The comparison of the beanplots for the real data set and permuted version of the labels is what is really interesting (Figure <a href="chapter2.html#fig:Figure2-8">2.8</a>). The original difference in the sample means of the two groups was 1.84 years (<em>Unattractive</em> minus <em>Average</em>). The sample means are the <strong><em>statistics</em></strong> that estimate the parameters for the true means of the two groups. In the permuted data set, the difference in the means is 1.15 years in the opposite direction (Average had a higher mean than Unattractive in the permuted data).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(Years<span class="op">~</span>PermutedAttr, <span class="dt">data=</span>Perm1)</code></pre></div>

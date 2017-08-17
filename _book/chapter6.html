@@ -426,6 +426,7 @@ Figure 6.7: Scatterplot of athlete’s height and hematocrit by sex of athletes.
 Figure 6.8: Scatterplot of athlete’s body fat and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
 </p>
 </div>
+
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">scatterplot</span>(Hc<span class="op">~</span>Bfat<span class="op">|</span>Sex, <span class="dt">data=</span>aisR2, <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">21</span>), <span class="dt">reg.line=</span>F, <span class="dt">smoother=</span>F,
             <span class="dt">boxplots=</span><span class="st">&quot;xy&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Scatterplot of Body Fat vs Hematocrit by Sex&quot;</span>)</code></pre></div>
 <p>One final exploration for these data involves the <em>body fat </em>and <em>height</em> relationship displayed in Figure <a href="chapter6.html#fig:Figure6-9">6.9</a>. This relationship shows an even greater disparity between overall and subgroup results. The overall relationship is characterized as a weak negative relationship <span class="math inline">\((\boldsymbol{r}=-0.20)\)</span> that is not clearly linear or nonlinear. The subgroup relationships are both clearly positive with a stronger relationship for men that might also be nonlinear (for the linear relationships <span class="math inline">\(\boldsymbol{r}=0.45\)</span> for women and <span class="math inline">\(\boldsymbol{r}=0.20\)</span> for men). Especially for female athletes, those that are taller seem to have higher body fat percentages. This might be related to the types of sports they compete in – that would be another categorical variable we could incorporate… Both groups also seem to demonstrate slightly more variability in <em>Body Fat</em> associated with taller athletes (each sort of “fans out”).</p>
@@ -455,7 +456,6 @@ Figure 6.9: Scatterplot of athlete’s body fat and height by sex.
 <p>We used bootstrapping briefly in Chapter <a href="chapter2.html#chapter2">2</a> to generate nonparametric confidence intervals based on the middle 95% of the bootstrapped version of the statistic. Remember that bootstrapping involves sampling <em>with replacement</em> from the data set and creates a distribution centered near the statistic from the real data set. This also mimics sampling under the alternative as opposed to sampling under the null as in our permutation approaches. Bootstrapping is particularly useful for making confidence intervals where the distribution of the statistic may not follow a named distribution. This is the case for the correlation coefficient which we will see shortly.</p>
 <p>The correlation is an interesting summary but it is also an estimator of a population parameter called <span class="math inline">\(\rho\)</span> (the symbol rho), which is the <strong><em>population correlation coefficient</em></strong>. When <span class="math inline">\(\rho = 1\)</span>, we have a perfect positive linear relationship in the population; when <span class="math inline">\(\rho=-1\)</span>, there is a perfect negative linear relationship in the population; and when <span class="math inline">\(\rho=0\)</span>, there is no linear relationship in the population. Therefore, to test if there is a linear relationship between two quantitative variables, we use the null hypothesis <span class="math inline">\(H_0: \rho=0\)</span> (tests if the true correlation, <span class="math inline">\(\rho\)</span>, is 0 – no linear relationship). The alternative hypothesis is that there is some (positive or negative) relationship between the variables in the population, <span class="math inline">\(H_A: \rho \ne 0\)</span>. The distribution of the Pearson correlation coefficient can be complicated in some situations, so we will use bootstrapping methods to generate confidence intervals for <span class="math inline">\(\rho\)</span> based on repeated random samples with replacement from the original data set. If the confidence contains 0, then we would fail to reject the null hypothesis since 0 is in the interval of our likely values for <span class="math inline">\(\rho\)</span>. If the confidence interval does not contain 0, then we can reject the null hypothesis. Along with its use in testing, it is also interesting to be able to generate a confidence interval for <span class="math inline">\(\rho\)</span>.</p>
 <p>The <em>beers</em> and <em>BAC</em> example seemed to provide a strong relationship with <span class="math inline">\(\boldsymbol{r}=0.89\)</span>. As correlations approach -1 or 1, the sampling distribution becomes more and more skewed. This certainly shows up in the bootstrap distribution that the following code produces (Figure <a href="chapter6.html#fig:Figure6-10">6.10</a>). Remember that bootstrapping utilizes the <code>resample</code> function applied to the data set to create new realizations of the data set by re-sampling with replacement from those observations. The bold vertical line in Figure <a href="chapter6.html#fig:Figure6-10">6.10</a> corresponds to the estimated correlation <span class="math inline">\(\boldsymbol{r}=0.89\)</span> and the distribution contains a noticeable left skew with a few much smaller <span class="math inline">\(T^*\text{&#39;s}\)</span> possible in bootstrap samples. The <span class="math inline">\(C\%\)</span> confidence interval is found based on the middle <span class="math inline">\(C\%\)</span> of the distribution or by finding the values that put <span class="math inline">\((100-C)/2\)</span> into each tail of the distribution with the <code>qdata</code> function.</p>
-
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">cor</span>(BAC<span class="op">~</span>Beers, <span class="dt">data=</span>BB); Tobs</code></pre></div>
 <pre><code>## [1] 0.8943381</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
@@ -464,20 +464,27 @@ Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="
 <span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
   Tstar[b] &lt;-<span class="st"> </span><span class="kw">cor</span>(BAC<span class="op">~</span>Beers, <span class="dt">data=</span><span class="kw">resample</span>(BB))
 }
-quantiles &lt;-<span class="st"> </span><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>)) <span class="co">#95% Confidence Interval</span>
-quantiles</code></pre></div>
+quantiles &lt;-<span class="st"> </span><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>)) <span class="co">#95% Confidence Interval</span></code></pre></div>
+
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quantiles</code></pre></div>
 <pre><code>##        quantile     p
 ## 2.5%  0.7531517 0.025
 ## 97.5% 0.9524785 0.975</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">550</span>))
 <span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
-<span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
-
-<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)
-<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
 <span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</code></pre></div>
 <div class="figure"><span id="fig:Figure6-10"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-10-1.png" alt="Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval." width="960" />
+<p class="caption">
+Figure 6.10: Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</code></pre></div>
+<div class="figure"><span id="fig:Figure6-10"></span>
+<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-10-2.png" alt="Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval." width="960" />
 <p class="caption">
 Figure 6.10: Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval.
 </p>
@@ -506,7 +513,6 @@ Figure 6.11: Scatterplot of tree heights (m) vs tree diameters (cm).
 </p>
 </div>
 <p>Of particular interest is an observation with a diameter around 58 cm and a height of less than 5 m. Observing a tree with a diameter around 60 cm is not unusual in the data set, but none of the other trees with this diameter had heights under 15 m. It ends up that the likely outlier is in observation number 168 and because it is so unusual it likely corresponds to either a damaged tree or a recording error.</p>
-
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ufc[<span class="dv">168</span>,]</code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##    plot  tree species dbh.cm height.m
@@ -771,6 +777,7 @@ Figure 6.19: Three scatterplots with the same estimated regression line.
 <p><span class="math display">\[\boldsymbol{R^2}=\frac{\text{SS}_\text{regression}}{\text{SS}_\text{Total}}
 =1 - \frac{\text{SS}_\text{error}}{\text{SS}_\text{Total}}.\]</span></p>
 <p>It also ends up that the coefficient of determination for models with one predictor is the correlation coefficient (<strong><em>r</em></strong>) squared (<span class="math inline">\(\boldsymbol{R^2} = \boldsymbol{r^2}\)</span>). So we can quickly find coefficients of determination if we know correlations in simple linear regression models. In the real <em>Beers</em> and <em>BAC</em> data, <strong><em>r</em></strong>=0.8943. So <span class="math inline">\(\boldsymbol{R^2} = 0.79998\)</span> or approximately 0.80. So 80% of the variation in <em>BAC</em> is explained by <em>Beer</em> consumption. That leaves 20% of the variation in the responses to be unexplained by our model. In this case much of the unexplained variation is likely attributable to differences in physical characteristics (that were not measured) but the statistical model places that unexplained variation into the category of “random errors”. We don’t actually have to find <strong><em>r</em></strong> to get coefficients of determination – the result is part of the regular summary of a regression model that we have not discussed. We repeat the full <code>lm</code> model summary below – note that a number is reported for the “<code>Multiple R-squared</code>” in the second to last line of the output. It is reported as a proportion and it is your choice whether you want to report and interpret it as a proportion or percentage, just make that clear in how you discuss it.</p>
+
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(BAC<span class="op">~</span>Beers, <span class="dt">data=</span>BB)
 <span class="kw">summary</span>(m1)</code></pre></div>
 <pre><code>## 
@@ -823,7 +830,6 @@ SSregression<span class="op">/</span>SStotal</code></pre></div>
 ## Residual standard error: 1.476 on 21 degrees of freedom
 ## Multiple R-squared:  0.6619, Adjusted R-squared:  0.6458 
 ## F-statistic: 41.12 on 1 and 21 DF,  p-value: 2.347e-06</code></pre>
-
 <p>For the model for female Australian athletes that used <em>Body fat</em> to explain <em>Hematocrit</em>, the estimated regression model was <span class="math inline">\(\widehat{\text{Hc}}_i = 42.014 - 0.085\cdot\text{BodyFat}_i\)</span> and <span class="math inline">\(\boldsymbol{r} = -0.168\)</span>. The coefficient of determination is <span class="math inline">\(\boldsymbol{R^2} = (-0.168)^2 = 0.0282\)</span>. So <em>body fat</em> explains 2.8% of the variation in <em>Hematocrit</em> in these women. That is not a very good regression model with over 97% of the variation in <em>Hematocrit</em> unexplained by this model. The scatterplot showed a fairly weak relationship but this provides numerical and interpretable information that drives that point home.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Hc<span class="op">~</span>Bfat, <span class="dt">data=</span>aisR2[aisR2<span class="op">$</span>Sex<span class="op">==</span><span class="dv">1</span>,]) <span class="co">#Results for Females</span>
@@ -945,9 +951,6 @@ Figure 6.21: Plots exploring the impacts of moving a single additional observati
 Figure 6.22: Full suite of diagnostics plots for <em>Beer</em> vs <em>BAC</em> data.
 </p>
 </div></li>
-</ul>
-
-<ul>
 <li><p>Linearity, constant variance from Residuals vs Fitted:</p>
 <ul>
 <li>We previously have identified a potentially influential outlier point in these data. Consulting the Residuals vs Fitted plot in Figure <a href="chapter6.html#fig:Figure6-22">6.22</a>, if you trust that influential point, shows some curvature with a pattern of decreasing residuals as a function of the fitted values and then an increase at the right. Or, if you do not trust that highest BAC observation, then there is a mostly linear relationship with an outlier identified. We would probably suggest that it is an outlier, should be removed from the analysis, and inferences constrained to the region of beer consumption from 1 to 8 beers since we don’t know what might happen at higher values.</li>

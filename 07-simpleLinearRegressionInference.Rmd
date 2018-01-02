@@ -1297,7 +1297,7 @@ different combinations of log-transformations.
 ```{r Figure7-16,fig.cap="(ref:fig7-16)",echo=F,fig.height=5,fig.width=10}
 require(car)
 data(UN)
-UN<-as.tibble(UN)
+UN<-as.tibble(car::UN) #Needed to find the correct UN data set from car
 par(mfrow=c(2,2))
 plot(infant.mortality~gdp,data=UN,pch=16,col="coral",xlab="GDP",ylab="Infant deaths/1000 births",main="(a) Infant Mortality vs GDP")
 

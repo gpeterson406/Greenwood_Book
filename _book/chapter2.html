@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>A Second Semester Statistics Course with R</title>
   <meta name="description" content="A Second Semester Statistics Course with R">
-  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="A Second Semester Statistics Course with R" />
   <meta property="og:type" content="book" />
@@ -243,15 +243,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The last, but probably most important, aspect of data is the context of the measurement. The “who, what, when, and where” of the collection of the observations is critical to the sort of conclusions we can make based on the results. The information on the study design provides information required to assess the scope of inference of the study. Generally, remember to think about the research questions the researchers were trying to answer and whether their study actually would answer those questions. There are no formulas to help us sort some of these things out, just critical thinking about the context of the measurements.</p>
 <p>To make this concrete, consider the data collected from a study <span class="citation">(Plaster <a href="#ref-Plaster1989">1989</a>)</span> to investigate whether perceived physical attractiveness had an impact on the sentences or perceived seriousness of a crime that male jurors might give to female defendants. The researchers showed the participants in the study (men who volunteered from a prison) pictures of one of three young women. Each picture had previously been decided to be either beautiful, average, or unattractive by the researchers. Each “juror” was randomly assigned to one of three levels of this factor (which is a categorical <em>predictor</em> or <em>explanatory</em> variable) and then each participant rated their picture on a variety of traits such as how warm or sincere the woman appeared. Finally, they were told the women had committed a crime (also randomly assigned to either be told she committed a burglary or a swindle) and were asked to rate the seriousness of the crime and provide a suggested length of sentence. We will bypass some aspects of their research and just focus on differences in the sentence suggested among the three pictures. To get a sense of these data, let’s consider the first and last parts of the data set:</p>
 
-<table style="width:97%;">
+<table style="width:100%;">
 <caption><span id="tab:Table2-1">Table 2.1: </span> First 5 and last 7 rows of the Mock Jury data set.</caption>
 <colgroup>
 <col width="13%" />
+<col width="16%" />
+<col width="14%" />
+<col width="10%" />
 <col width="13%" />
-<col width="12%" />
-<col width="11%" />
-<col width="13%" />
-<col width="19%" />
+<col width="18%" />
 <col width="12%" />
 </colgroup>
 <thead>
@@ -386,7 +386,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tbody>
 </table>
 <p>When working with data, we should always start with summarizing the sample size. We will use <strong><em>n</em></strong> for the number of subjects in the sample and denote the population size (if available) with <strong><em>N</em></strong>. Here, the sample size is <strong><em>n=114</em></strong>. In this situation, we do not have a random sample from a population (these were volunteers from the population of prisoners at the particular prison) so we cannot make inferences from our sample to a larger group. But we can assess whether there is a <strong><em>causal effect</em></strong><a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a>: if sufficient evidence is found to conclude that there is some difference in the responses across the treated groups, we can attribute those differences to the treatments applied, since the groups should be same otherwise due to the pictures being randomly assigned to the “jurors”. The story of the data set – that it was collected on prisoners – becomes pretty important in thinking about the ramifications of any results. Are male prisoners different from the population of college males or all residents of a state such as Montana? If so, then we should not assume that the detected differences, if detected, would also exist in some other group of male subjects. The lack of a random sample makes it impossible to assume that this set of prisoners might be like other prisoners. So there are definite limitations to the inferences in the following results. But it is still interesting to see if the pictures caused a difference in the suggested mean sentences, even though the inferences are limited to this group of prisoners. If this had been an observational study (suppose that the prisoners could select one of the three pictures), then we would have to avoid any of the “causal” language that we can consider here because the pictures were not randomly assigned to the subjects. Without random assignment, the explanatory variable of picture choice could be <strong><em>confounded</em></strong> with another characteristic of prisoners that was related to which picture they selected and the rating they provided. Confounding is not the only reason to avoid causal statements with non-random assignment but the inability to separate the effect of other variables (measured or unmeasured) from the differences we are observing means that our inferences in these situations need to be carefully stated to avoid implying causal effects.</p>
-<p>Instead of loading this data set into R using the “Import Dataset” functionality, we can load an R package that contains the data, making for easy access to this data set. The package called <code>heplots</code> <span class="citation">(Fox and Friendly <a href="#ref-R-heplots">2016</a>)</span> contains a data set called <code>MockJury</code> that contains the results of the study. We also rely on the R package called <code>mosaic</code> <span class="citation">(Pruim, Kaplan, and Horton <a href="#ref-R-mosaic">2016</a><a href="#ref-R-mosaic">a</a>)</span> that was introduced previously. First (but only once), you need to install both packages, which can be done either using the Packages tab in the lower right panel of RStudio or using the <code>install.packages</code> function with quotes around the package name:</p>
+<p>Instead of loading this data set into R using the “Import Dataset” functionality, we can load an R package that contains the data, making for easy access to this data set. The package called <code>heplots</code> <span class="citation">(Fox and Friendly <a href="#ref-R-heplots">2017</a>)</span> contains a data set called <code>MockJury</code> that contains the results of the study. We also rely on the R package called <code>mosaic</code> <span class="citation">(Pruim, Kaplan, and Horton <a href="#ref-R-mosaic">2017</a>)</span> that was introduced previously. First (but only once), you need to install both packages, which can be done either using the Packages tab in the lower right panel of RStudio or using the <code>install.packages</code> function with quotes around the package name:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;heplots&quot;</span>)</code></pre></div>
 <p>After making sure that both packages are installed, we use the <code>require</code> function around the package name (no quotes now!) to load the package, something that you need to do any time you want to use features of a package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(heplots)
@@ -868,7 +868,7 @@ Figure 2.11: Histogram and density curve of values of test statistic for 1,000 p
 <p>Earlier, we decided that the p-value provided moderate evidence against the null hypothesis and that we should reject the null. In this course, you will often be allowed to use your own judgment about an appropriate significance level in a particular situation (in other words, if we forget to tell you an <span class="math inline">\(\alpha\)</span> -level, you can still make a decision based on how strong you feel the evidence was against the null based on the p-value). Remembering that the p-value is the probability you would observe a result like you did (or more extreme), assuming the null hypothesis is true; this tells you that the smaller the p-value is, the more evidence you have against the null. Figure <a href="chapter2.html#fig:FigurePValStr">2.12</a> provides a diagram of some suggestions for the graded p-value interpretation that you can use. The next section provides a more formal review of the hypothesis testing infrastructure, terminology, and some of things that can happen when testing hypotheses. P-values have been (validly) criticized for the inability of studies to be reproduced, for the bias in publications to only include studies that have small p-values, and for the lack of thought that often accompanies using a fixed significance level. To alleviate some of these criticisms, we recommend reporting the strength of evidence of the result based on the p-value and also reporting and discussing the size of the estimated results (with a measure of precision of the estimated difference).</p>
 
 <div class="figure"><span id="fig:FigurePValStr"></span>
-<img src="chapter2_files/pvalueStrengths.png" alt="Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values."  />
+<img src="chapter2_files/pvalueStrengths.png" alt="Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values." width="800" />
 <p class="caption">
 Figure 2.12: Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values.
 </p>
@@ -886,9 +886,9 @@ Figure 2.12: Graphic suggesting potential interpretations of strength of evidenc
 <table>
 <caption><span id="tab:Table2-2">Table 2.2: </span> Scope of inference summary.</caption>
 <colgroup>
-<col width="29%" />
+<col width="30%" />
 <col width="34%" />
-<col width="35%" />
+<col width="34%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -965,9 +965,9 @@ the treatment.</td>
 <table>
 <caption><span id="tab:Table2-3">Table 2.3: </span> Table of decisions and truth scenarios in a hypothesis testing situation. But we never know the truth in a real situation.</caption>
 <colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
+<col width="35%" />
+<col width="32%" />
+<col width="32%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1035,16 +1035,11 @@ the treatment.</td>
 <p>where <span class="math inline">\(s_1^2\)</span> and <span class="math inline">\(s_2^2\)</span> are the sample variances for the two groups, <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes for the two groups, and the <strong><em>pooled sample standard deviation</em></strong>,</p>
 <p><span class="math display">\[s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}.\]</span></p>
 <p>The <span class="math inline">\(t\)</span>-statistic keeps the important comparison between the means in the numerator that we used before and standardizes (re-scales) that difference so that <span class="math inline">\(t\)</span> will follow a <span class="math inline">\(t\)</span>-distribution (a parametric “named” distribution) if certain assumptions are met. But first we should see if standardizing the difference in the means had an impact on our permutation test results. Instead of using the <code>diffmean</code> function, we will use the <code>t.test</code> function (see its full use below) and have it calculate the formula for <span class="math inline">\(t\)</span> for us. The R code “<code>$statistic</code>” is basically a way of extracting just the number we want to use for <span class="math inline">\(T\)</span> from a larger set of output the <code>t.test</code> function wants to provide you. We will see below that <code>t.test</code> switches the order of the difference (now it is <em>Average</em> - <em>Unattractive</em>) – always carefully check for the direction of the difference in the results. Since we are doing a two-sided test, the code resembles the permutation test code in Section <a href="chapter2.html#section2-4">2.4</a> with the new <span class="math inline">\(t\)</span>-statistic replacing the difference in the sample means that we used before.</p>
-<p>The permutation distribution in Figure <a href="chapter2.html#fig:Figure2-12">2.13</a> looks similar to the previous results with slightly different x-axis scaling. The observed <span class="math inline">\(t\)</span>-statistic was <span class="math inline">\(-2.17\)</span> and the proportion of permuted results that were as or more extreme than the observed result was 0.031. This difference is due to a different set of random permutations being selected. If you run permutation code, you will often get slightly different results each time you run it. If you are uncomfortable with the variation in the results, you can run more than <span class="math inline">\(B=\)</span> 1,000 permutations (say 10,000) and the variability in the resulting p-values will be reduced further. Usually this uncertainty will not cause any substantive problems – but do not be surprised if your results vary from a colleagues if you are both analyzing the same data set or if you re-run your permutation code.</p>
+<p>The permutation distribution in Figure <a href="#fig:Figure2-12"><strong>??</strong></a> looks similar to the previous results with slightly different x-axis scaling. The observed <span class="math inline">\(t\)</span>-statistic was <span class="math inline">\(-2.17\)</span> and the proportion of permuted results that were as or more extreme than the observed result was 0.031. This difference is due to a different set of random permutations being selected. If you run permutation code, you will often get slightly different results each time you run it. If you are uncomfortable with the variation in the results, you can run more than <span class="math inline">\(B=\)</span> 1,000 permutations (say 10,000) and the variability in the resulting p-values will be reduced further. Usually this uncertainty will not cause any substantive problems – but do not be surprised if your results vary from a colleagues if you are both analyzing the same data set or if you re-run your permutation code.</p>
 
-<div class="figure"><span id="fig:Figure2-12"></span>
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-12-1.png" alt="Permutation distribution of the \(t\)-statistic." width="960" />
-<p class="caption">
-Figure 2.13: Permutation distribution of the <span class="math inline">\(t\)</span>-statistic.
-</p>
-</div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">t.test</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury2, <span class="dt">var.equal=</span>T)<span class="op">$</span>statistic
-Tobs</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">t.test</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury2, <span class="dt">var.equal=</span>T)<span class="op">$</span>statistic</code></pre></div>
+<pre><code>## Years ~ Attr</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs</code></pre></div>
 <pre><code>##        t 
 ## -2.17023</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)
@@ -1063,12 +1058,13 @@ Tobs</code></pre></div>
 <div class="figure"><span id="fig:Figure2-13"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-13-1.png" alt="Plots of \(t\) distributions with 2, 10, and 20 degrees of freedom and a normal distribution (dashed line). Note how the \(t\) distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the \(t\) distribution almost matches a standard normal curve." width="480" />
 <p class="caption">
-Figure 2.14: Plots of <span class="math inline">\(t\)</span> distributions with 2, 10, and 20 degrees of freedom and a normal distribution (dashed line). Note how the <span class="math inline">\(t\)</span> distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the <span class="math inline">\(t\)</span> distribution <em>almost</em> matches a standard normal curve.
+Figure 2.13: Plots of <span class="math inline">\(t\)</span> distributions with 2, 10, and 20 degrees of freedom and a normal distribution (dashed line). Note how the <span class="math inline">\(t\)</span> distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the <span class="math inline">\(t\)</span> distribution <em>almost</em> matches a standard normal curve.
 </p>
 </div>
-<p>If the assumptions for the equal variance <span class="math inline">\(t\)</span>-test are met and the null hypothesis is true, then the sampling distribution of the test statistic should follow a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n_1+n_2-2\)</span> degrees of freedom. The <strong><em>t-distribution</em></strong> is a bell-shaped curve that is more spread out for smaller values of degrees of freedom as shown in Figure <a href="chapter2.html#fig:Figure2-13">2.14</a>. The <span class="math inline">\(t\)</span>-distribution looks more and more like a <strong><em>standard normal distribution</em></strong> (<span class="math inline">\(N(0,1)\)</span>) as the degrees of freedom increase.</p>
+<p>If the assumptions for the equal variance <span class="math inline">\(t\)</span>-test are met and the null hypothesis is true, then the sampling distribution of the test statistic should follow a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n_1+n_2-2\)</span> degrees of freedom. The <strong><em>t-distribution</em></strong> is a bell-shaped curve that is more spread out for smaller values of degrees of freedom as shown in Figure <a href="chapter2.html#fig:Figure2-13">2.13</a>. The <span class="math inline">\(t\)</span>-distribution looks more and more like a <strong><em>standard normal distribution</em></strong> (<span class="math inline">\(N(0,1)\)</span>) as the degrees of freedom increase.</p>
 <p>To get the p-value for the parametric <span class="math inline">\(t\)</span>-test, we need to calculate the test statistic and <span class="math inline">\(df\)</span>, then look up the areas in the tails of the <span class="math inline">\(t\)</span>-distribution relative to the observed <span class="math inline">\(t\)</span>-statistic. We’ll learn how to use R to do this below, but for now we will allow the <code>t.test</code> function to take care of this. The <code>t.test</code> function uses our formula notation (<code>Years~Attr</code>) and then <code>data=...</code> as we saw before for making plots. To get the equal-variance test result, the <code>var.equal=T</code> option needs to be turned on. Then <code>t.test</code> provides us with lots of useful output. The three results we’ve been discussing are available in the output below – the test statistic value (-2.17), <span class="math inline">\(df=73\)</span>, and the p-value, from the <span class="math inline">\(t\)</span>-distribution with 73 degrees of freedom, of 0.033.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Years <span class="op">~</span><span class="st"> </span>Attr, <span class="dt">data=</span>MockJury2, <span class="dt">var.equal=</span>T)</code></pre></div>
+<pre><code>## Years ~ Attr</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1080,12 +1076,12 @@ Figure 2.14: Plots of <span class="math inline">\(t\)</span> distributions with 
 ## sample estimates:
 ##      mean in group Average mean in group Unattractive 
 ##                   3.973684                   5.810811</code></pre>
-<p>So the parametric <span class="math inline">\(t\)</span>-test gives a p-value of 0.033 from a test statistic of -2.1702. The negative sign on the test statistic occurred because the function took <em>Average</em> - <em>Unattractive</em> which is the opposite direction as <code>diffmean</code>. The p-value is very similar to the two permutation results found before. The reason for this similarity is that the permutation distribution looks an awful like a <span class="math inline">\(t\)</span>-distribution with 73 degrees of freedom. Figure <a href="chapter2.html#fig:Figure2-14">2.15</a> shows how similar the two distributions happened to be here.</p>
+<p>So the parametric <span class="math inline">\(t\)</span>-test gives a p-value of 0.033 from a test statistic of -2.1702. The negative sign on the test statistic occurred because the function took <em>Average</em> - <em>Unattractive</em> which is the opposite direction as <code>diffmean</code>. The p-value is very similar to the two permutation results found before. The reason for this similarity is that the permutation distribution looks an awful like a <span class="math inline">\(t\)</span>-distribution with 73 degrees of freedom. Figure <a href="chapter2.html#fig:Figure2-14">2.14</a> shows how similar the two distributions happened to be here.</p>
 
 <div class="figure"><span id="fig:Figure2-14"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-14-1.png" alt="Plot of permutation and \(t\) distribution with \(df=73\). Note the close match in the two distributions, especially in the tails of the distributions where we are obtaining the p-values." width="576" />
 <p class="caption">
-Figure 2.15: Plot of permutation and <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(df=73\)</span>. Note the close match in the two distributions, especially in the tails of the distributions where we are obtaining the p-values.
+Figure 2.14: Plot of permutation and <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(df=73\)</span>. Note the close match in the two distributions, especially in the tails of the distributions where we are obtaining the p-values.
 </p>
 </div>
 <p>In your previous statistics course, you might have used an applet or a table to find p-values such as what was provided in the previous R output. When not directly provided in the output of a function, R can be used to look up p-values<a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a> from named distributions such as the <span class="math inline">\(t\)</span>-distribution. In this case, the distribution of the test statistic under the null hypothesis is a <span class="math inline">\(t(73)\)</span> or a <span class="math inline">\(t\)</span> with 73 degrees of freedom. The <code>pt</code> function is used to get p-values from the <span class="math inline">\(t\)</span>-distribution in the same manner that <code>pdata</code> could help us to find p-values from the permutation distribution. We need to provide the <code>df=...</code> and specify the tail of the distribution of interest using the <code>lower.tail</code> option along with the cutoff of interest. If we want the area to the left of -2.17:</p>
@@ -1112,7 +1108,7 @@ Figure 2.15: Plot of permutation and <span class="math inline">\(t\)</span> dist
 </div>
 <div id="section2-7" class="section level2">
 <h2><span class="header-section-number">2.7</span> Second example of permutation tests</h2>
-<p>In every chapter, the first example, used to motivate and explain the methods, is followed with a “worked” example where we focus just on the results. In a previous semester, some of the STAT 217 students (<strong><em>n</em></strong>=79) provided information on their <em>Sex</em>, <em>Age</em>, and current cumulative <em>GPA</em>. We might be interested in whether Males and Females had different average GPAs. First, we can take a look at the difference in the responses by groups based on the output and as displayed in Figure <a href="chapter2.html#fig:Figure2-15">2.16</a>.</p>
+<p>In every chapter, the first example, used to motivate and explain the methods, is followed with a “worked” example where we focus just on the results. In a previous semester, some of the STAT 217 students (<strong><em>n</em></strong>=79) provided information on their <em>Sex</em>, <em>Age</em>, and current cumulative <em>GPA</em>. We might be interested in whether Males and Females had different average GPAs. First, we can take a look at the difference in the responses by groups based on the output and as displayed in Figure <a href="chapter2.html#fig:Figure2-15">2.15</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s217 &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/s217.csv&quot;</span>)
 <span class="kw">require</span>(mosaic)
 <span class="kw">require</span>(beanplot)
@@ -1127,7 +1123,7 @@ Figure 2.15: Plot of permutation and <span class="math inline">\(t\)</span> dist
 <div class="figure"><span id="fig:Figure2-15"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-15-1.png" alt="Side-by-side boxplot and beanplot of GPAs of STAT 217 students by sex." width="480" />
 <p class="caption">
-Figure 2.16: Side-by-side boxplot and beanplot of GPAs of STAT 217 students by sex.
+Figure 2.15: Side-by-side boxplot and beanplot of GPAs of STAT 217 students by sex.
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217)
@@ -1138,6 +1134,7 @@ Figure 2.16: Side-by-side boxplot and beanplot of GPAs of STAT 217 students by s
 ## -0.2498069</code></pre>
 <p>First, we can try the parametric approach:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217, <span class="dt">var.equal=</span>T)</code></pre></div>
+<pre><code>## GPA ~ Sex</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1160,7 +1157,7 @@ Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="
 <div class="figure"><span id="fig:Figure2-16"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-16-1.png" alt="Histogram and density curve of permutation distribution of test statistic for STAT 217 GPAs." width="960" />
 <p class="caption">
-Figure 2.17: Histogram and density curve of permutation distribution of test statistic for STAT 217 GPAs.
+Figure 2.16: Histogram and density curve of permutation distribution of test statistic for STAT 217 GPAs.
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)
@@ -1227,12 +1224,12 @@ Figure 2.17: Histogram and density curve of permutation distribution of test sta
 ##  1  1  1  1  4  1  1  1  1  3  1  1  1  1  3  2  2  1  1  1  2  1  2  1  2 
 ## 37 38 40 42 46 48 50 51 52 56 58 59 61 62 63 66 67 68 69 72 73 74 75 
 ##  1  2  1  1  1  2  4  1  1  1  3  2  1  1  1  1  1  1  2  3  1  4  2</code></pre>
-<p>We can use the two results to get an idea of distribution of results in terms of number of times observations might be re-sampled when sampling with replacement and the variation in those results, as shown in Figure <a href="chapter2.html#fig:Figure2-17">2.18</a>. We could also derive the expected counts for each number of times of re-sampling when we start with all observations having an equal chance and sampling with replacement but this isn’t important for using bootstrapping methods.</p>
+<p>We can use the two results to get an idea of distribution of results in terms of number of times observations might be re-sampled when sampling with replacement and the variation in those results, as shown in Figure <a href="chapter2.html#fig:Figure2-17">2.17</a>. We could also derive the expected counts for each number of times of re-sampling when we start with all observations having an equal chance and sampling with replacement but this isn’t important for using bootstrapping methods.</p>
 
 <div class="figure"><span id="fig:Figure2-17"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-17-1.png" alt="Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples." width="480" />
 <p class="caption">
-Figure 2.18: Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples.
+Figure 2.17: Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples.
 </p>
 </div>
 <p>The main point of this exploration was to see that each run of the <code>resample</code> function provides a new version of the data set. Repeating this <span class="math inline">\(B\)</span> times using another <code>for</code> loop, we will track our quantity of interest, say <span class="math inline">\(T\)</span>, in all these new “data sets” and call those results <span class="math inline">\(T^*\)</span>. The distribution of the bootstrapped <span class="math inline">\(T^*\)</span> statistics will tell us about the range of results to expect for the statistic and the middle __% of the <span class="math inline">\(T^*\)</span>’s provides a <strong><em>bootstrap confidence interval</em></strong><a href="#fn32" class="footnoteRef" id="fnref32"><sup>32</sup></a> for the true parameter – here the <em>difference in the two population means</em>.</p>
@@ -1255,15 +1252,15 @@ Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="
 <div class="figure"><span id="fig:Figure2-18"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-18-1.png" alt="Histogram and density curve of bootstrap distributions of difference in sample mean Years with vertical line for the observed difference in the means of 1.84 years." width="960" />
 <p class="caption">
-Figure 2.19: Histogram and density curve of bootstrap distributions of difference in sample mean <code>Years</code> with vertical line for the observed difference in the means of 1.84 years.
+Figure 2.18: Histogram and density curve of bootstrap distributions of difference in sample mean <code>Years</code> with vertical line for the observed difference in the means of 1.84 years.
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)
 <span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
 <span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
-<p>In this situation, the observed difference in the mean sentences is 1.84 years (<em>Unattractive</em> - <em>Average</em>), which is the vertical line in Figure <a href="chapter2.html#fig:Figure2-18">2.19</a>. The bootstrap distribution shows the results for the difference in the sample means when fake data sets are re-constructed by sampling from the original data set with replacement. The bootstrap distribution is approximately centered at the observed value (difference in the sample means) and is relatively symmetric.</p>
-<p>The permutation distribution in the same situation (Figure <a href="chapter2.html#fig:Figure2-12">2.13</a>) had a similar shape but was centered at 0. Permutations create sampling distributions based on assuming the null hypothesis is true, which is useful for hypothesis testing. Bootstrapping creates distributions centered at the observed result, which is the sampling distribution “under the alternative” or when no null hypothesis is assumed; bootstrap distributions are useful for generating confidence intervals for the true parameter values.</p>
+<p>In this situation, the observed difference in the mean sentences is 1.84 years (<em>Unattractive</em> - <em>Average</em>), which is the vertical line in Figure <a href="chapter2.html#fig:Figure2-18">2.18</a>. The bootstrap distribution shows the results for the difference in the sample means when fake data sets are re-constructed by sampling from the original data set with replacement. The bootstrap distribution is approximately centered at the observed value (difference in the sample means) and is relatively symmetric.</p>
+<p>The permutation distribution in the same situation (Figure <a href="#fig:Figure2-12"><strong>??</strong></a>) had a similar shape but was centered at 0. Permutations create sampling distributions based on assuming the null hypothesis is true, which is useful for hypothesis testing. Bootstrapping creates distributions centered at the observed result, which is the sampling distribution “under the alternative” or when no null hypothesis is assumed; bootstrap distributions are useful for generating confidence intervals for the true parameter values.</p>
 <p>To create a 95% bootstrap confidence interval for the difference in the true mean sentences (<span class="math inline">\(\mu_\text{Unattr}-\mu_\text{Avg}\)</span>), select the middle 95% of results from the bootstrap distribution. Specifically, find the 2.5<sup>th</sup> percentile and the 97.5<sup>th</sup> percentile (values that put 2.5 and 97.5% of the results to the left) in the bootstrap distribution, which leaves 95% in the middle for the confidence interval. To find percentiles in a distribution in R, functions are of the form <code>q[Name of distribution]</code>, with the function <code>qt</code> extracting percentiles from a <span class="math inline">\(t\)</span>-distribution (examples below). From the bootstrap results, use the <code>qdata</code> function on the <code>Tstar</code> results that contain the bootstrap distribution of the statistic of interest.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qdata</span>(Tstar, <span class="fl">0.025</span>)</code></pre></div>
 <pre><code>##         p  quantile 
@@ -1277,12 +1274,12 @@ quantiles</code></pre></div>
 <pre><code>##        quantile     p
 ## 2.5%  0.2414232 0.025
 ## 97.5% 3.5215278 0.975</code></pre>
-<p>Figure <a href="chapter2.html#fig:Figure2-19">2.20</a> displays those same percentiles on the bootstrap distribution residing in <code>Tstar</code>.</p>
+<p>Figure <a href="chapter2.html#fig:Figure2-19">2.19</a> displays those same percentiles on the bootstrap distribution residing in <code>Tstar</code>.</p>
 
 <div class="figure"><span id="fig:Figure2-19"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-19-1.png" alt="Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (vertical lines)." width="960" />
 <p class="caption">
-Figure 2.20: Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (vertical lines).
+Figure 2.19: Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (vertical lines).
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)
@@ -1293,6 +1290,7 @@ Figure 2.20: Histogram and density curve of bootstrap distribution with 95% boot
 <p>The general summary is that we can use confidence intervals to test hypotheses by assessing whether the reference value under the null hypothesis is in the confidence interval (FTR <span class="math inline">\(H_0\)</span>) or outside the confidence interval (Reject <span class="math inline">\(H_0\)</span>). P-values are more informative about hypotheses (measure of evidence against the null hypothesis) but confidence intervals are more informative about the size of differences, so both offer useful information and, as shown here, can provide consistent conclusions about hypotheses.</p>
 <p>As in the previous situation, we also want to consider the parametric approach for comparison purposes and to have that method available, especially to help us understand some methods where we will only consider parametric inferences in later chapters. The parametric confidence interval is called the <strong><em>equal variance, two-sample t confidence interval</em></strong> and additionally assumes that the populations being sampled from are normally distributed. It leads to using a <span class="math inline">\(t\)</span>-distribution to form the interval. The output from the <code>t.test</code> function provides the parametric 95% confidence interval calculated for you:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury2, <span class="dt">var.equal=</span>T)</code></pre></div>
+<pre><code>## Years ~ Attr</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1307,12 +1305,12 @@ Figure 2.20: Histogram and density curve of bootstrap distribution with 95% boot
 <p>The <code>t.test</code> function again switched the order of the groups and provides slightly different end-points than our bootstrap confidence interval (both are made at the 95% confidence level though), which was slightly narrower. Both intervals have the same interpretation, only the methods for calculating the intervals and the assumptions differ. Specifically, the bootstrap interval can tolerate different distribution shapes other than normal and still provide intervals that work well<a href="#fn33" class="footnoteRef" id="fnref33"><sup>33</sup></a>. The other assumptions are all the same as for the hypothesis test, where we continue to assume that we have independent observations with equal variances for the two groups.</p>
 <p>The formula that <code>t.test</code> is using to calculate the parametric <strong><em>equal variance two-sample t confidence interval</em></strong> is:</p>
 <p><span class="math display">\[\bar{x}_1 - \bar{x}_2 \mp t^*_{df}s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}\]</span></p>
-<p>In this situation, the <em>df</em> is again <span class="math inline">\(n_1+n_2-2\)</span> and <span class="math inline">\(s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}\)</span>. The <span class="math inline">\(t^*_{df}\)</span> is a multiplier that comes from finding the percentile from the <span class="math inline">\(t\)</span>-distribution that puts <span class="math inline">\(C\)</span>% in the middle of the distribution with <span class="math inline">\(C\)</span> being the confidence level. It is important to note that this <span class="math inline">\(t^*\)</span> has nothing to do with the previous test statistic <span class="math inline">\(t\)</span>. It is confusing and many of you will, at some point, happily take the result from a test statistic calculation and use it for a multiplier in a <span class="math inline">\(t\)</span>-based confidence interval. Figure <a href="chapter2.html#fig:Figure2-20">2.21</a> shows the <span class="math inline">\(t\)</span>-distribution with 73 degrees of freedom and the cut-offs that put 95% of the area in the middle.</p>
+<p>In this situation, the <em>df</em> is again <span class="math inline">\(n_1+n_2-2\)</span> and <span class="math inline">\(s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}\)</span>. The <span class="math inline">\(t^*_{df}\)</span> is a multiplier that comes from finding the percentile from the <span class="math inline">\(t\)</span>-distribution that puts <span class="math inline">\(C\)</span>% in the middle of the distribution with <span class="math inline">\(C\)</span> being the confidence level. It is important to note that this <span class="math inline">\(t^*\)</span> has nothing to do with the previous test statistic <span class="math inline">\(t\)</span>. It is confusing and many of you will, at some point, happily take the result from a test statistic calculation and use it for a multiplier in a <span class="math inline">\(t\)</span>-based confidence interval. Figure <a href="chapter2.html#fig:Figure2-20">2.20</a> shows the <span class="math inline">\(t\)</span>-distribution with 73 degrees of freedom and the cut-offs that put 95% of the area in the middle.</p>
 
 <div class="figure"><span id="fig:Figure2-20"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-20-1.png" alt="Plot of \(t(73)\) with cut-offs for putting 95% of distribution in the middle." width="480" />
 <p class="caption">
-Figure 2.21: Plot of <span class="math inline">\(t(73)\)</span> with cut-offs for putting 95% of distribution in the middle.
+Figure 2.20: Plot of <span class="math inline">\(t(73)\)</span> with cut-offs for putting 95% of distribution in the middle.
 </p>
 </div>
 <p>For 95% confidence intervals, the multiplier is going to be close to 2 and anything else is a sign of a mistake. We can use R to get the multipliers for confidence intervals using the <code>qt</code> function in a similar fashion to how <code>qdata</code> was used in the bootstrap results, except that this new value must be used in the previous confidence interval formula. This function produces values for requested percentiles, so if we want to put 95% in the middle, we place 2.5% in each tail of the distribution and need to request the 97.5<sup>th</sup> percentile. Because the <span class="math inline">\(t\)</span>-distribution is always symmetric around 0, we merely need to look up the value for the 97.5<sup>th</sup> percentile and know that the multiplier for the 2.5<sup>th</sup> percentile is just <span class="math inline">\(-t^*\)</span>. The <span class="math inline">\(t^*\)</span> multiplier to form the confidence interval is 1.993 for a 95% confidence interval when the <span class="math inline">\(df=73\)</span> based on the results from <code>qt</code>:</p>
@@ -1361,6 +1359,7 @@ sp</code></pre></div>
 <pre><code>## [1] 0.0646018 0.4341982</code></pre>
 <p>So we are 95% confident that the difference in the true mean GPAs between females and males (females minus males) is between 0.065 and 0.434 GPA points. We get a similar<a href="#fn35" class="footnoteRef" id="fnref35"><sup>35</sup></a> result from the <code>t.test</code> output:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex,<span class="dt">data=</span>s217,<span class="dt">var.equal=</span>T)</code></pre></div>
+<pre><code>## GPA ~ Sex</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1378,6 +1377,7 @@ sp</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.995</span>, <span class="dt">df=</span><span class="dv">77</span>) <span class="co">#For 99% confidence and 77 df</span></code></pre></div>
 <pre><code>## [1] 2.641198</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217, <span class="dt">var.equal=</span>T, <span class="dt">conf.level=</span><span class="fl">0.90</span>)</code></pre></div>
+<pre><code>## GPA ~ Sex</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1390,6 +1390,7 @@ sp</code></pre></div>
 ## mean in group F mean in group M 
 ##        3.338378        3.088571</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217, <span class="dt">var.equal=</span>T, <span class="dt">conf.level=</span><span class="fl">0.99</span>)</code></pre></div>
+<pre><code>## GPA ~ Sex</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1408,7 +1409,7 @@ sp</code></pre></div>
 <li><p>What about increasing the sample size – should that increase or decrease the width of the interval?</p></li>
 </ol>
 <p>All the general results you learned before about impacts to widths of CIs hold in this situation whether we are considering the parametric or bootstrap methods…</p>
-<p>To finish this example, we will generate the comparable bootstrap 90% confidence interval using the bootstrap distribution in Figure <a href="chapter2.html#fig:Figure2-21">2.22</a>.</p>
+<p>To finish this example, we will generate the comparable bootstrap 90% confidence interval using the bootstrap distribution in Figure <a href="chapter2.html#fig:Figure2-21">2.21</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">diffmean</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217); Tobs</code></pre></div>
 <pre><code>##   diffmean 
 ## -0.2498069</code></pre>
@@ -1428,12 +1429,12 @@ quantiles</code></pre></div>
 <pre><code>##        quantile    p
 ## 5%  -0.40322729 0.05
 ## 95% -0.09521925 0.95</code></pre>
-<p>The output tells us that the 90% confidence interval is from -0.393 to -0.094 GPA points. The bootstrap distribution with the observed difference in the sample means and these cut-offs is displayed in Figure <a href="chapter2.html#fig:Figure2-21">2.22</a> using this code:</p>
+<p>The output tells us that the 90% confidence interval is from -0.393 to -0.094 GPA points. The bootstrap distribution with the observed difference in the sample means and these cut-offs is displayed in Figure <a href="chapter2.html#fig:Figure2-21">2.21</a> using this code:</p>
 
 <div class="figure"><span id="fig:Figure2-21"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-21-1.png" alt="Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines)." width="960" />
 <p class="caption">
-Figure 2.22: Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines).
+Figure 2.21: Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines).
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
@@ -1520,7 +1521,7 @@ Tstar[b] <code>&lt;-</code> diffmean(<font color='red'>Y</font>~<font color='red
 </div>
 <div id="section2-12" class="section level2">
 <h2><span class="header-section-number">2.12</span> Practice problems</h2>
-<p>Load the <code>HELPrct</code> data set from the <code>mosaicData</code> package <span class="citation">(Pruim, Kaplan, and Horton <a href="#ref-R-mosaicData">2016</a><a href="#ref-R-mosaicData">b</a>)</span> (you need to install the <code>mosaicData</code> package once to be able to load it). The HELP study was a clinical trial for adult inpatients recruited from a detoxification unit. Patients with no primary care physician were randomly assigned to receive a multidisciplinary assessment and a brief motivational intervention or usual care and various outcomes were observed. Two of the variables in the data set are <code>sex</code>, a factor with levels <em>male</em> and <em>female</em> and <code>daysanysub</code> which is the time (in days) to first use of any substance post-detox. We are interested in the difference in mean number of days to first use of any substance post-detox between males and females. There are some missing responses and the following code will produce <code>favstats</code> with the missing values and then provide a data set that by applying the <code>na.omit</code> function removes any observations with missing values.</p>
+<p>Load the <code>HELPrct</code> data set from the <code>mosaicData</code> package <span class="citation">(Pruim, Kaplan, and Horton <a href="#ref-R-mosaicData">2016</a>)</span> (you need to install the <code>mosaicData</code> package once to be able to load it). The HELP study was a clinical trial for adult inpatients recruited from a detoxification unit. Patients with no primary care physician were randomly assigned to receive a multidisciplinary assessment and a brief motivational intervention or usual care and various outcomes were observed. Two of the variables in the data set are <code>sex</code>, a factor with levels <em>male</em> and <em>female</em> and <code>daysanysub</code> which is the time (in days) to first use of any substance post-detox. We are interested in the difference in mean number of days to first use of any substance post-detox between males and females. There are some missing responses and the following code will produce <code>favstats</code> with the missing values and then provide a data set that by applying the <code>na.omit</code> function removes any observations with missing values.</p>
 <pre><code>require(mosaicData)
 data(HELPrct)
 HELPrct2 &lt;- HELPrct[, c(&quot;daysanysub&quot;, &quot;sex&quot;)] #Just focus on two variables
@@ -1542,10 +1543,10 @@ favstats(daysanysub~sex, data=HELPrct3)</code></pre>
 <p>Plaster, M. E. 1989. “Inmates as Mock Jurors: The Effects of Physical Attractiveness Upon Juridic Decisions.” Master’s thesis, Greenville, NC: East Carolina University.</p>
 </div>
 <div id="ref-R-heplots">
-<p>Fox, John, and Michael Friendly. 2016. <em>Heplots: Visualizing Hypothesis Tests in Multivariate Linear Models</em>. <a href="https://CRAN.R-project.org/package=heplots" class="uri">https://CRAN.R-project.org/package=heplots</a>.</p>
+<p>Fox, John, and Michael Friendly. 2017. <em>Heplots: Visualizing Hypothesis Tests in Multivariate Linear Models</em>. <a href="https://CRAN.R-project.org/package=heplots" class="uri">https://CRAN.R-project.org/package=heplots</a>.</p>
 </div>
 <div id="ref-R-mosaic">
-<p>Pruim, Randall, Daniel T. Kaplan, and Nicholas J. Horton. 2016a. <em>Mosaic: Project Mosaic Statistics and Mathematics Teaching Utilities</em>. <a href="https://CRAN.R-project.org/package=mosaic" class="uri">https://CRAN.R-project.org/package=mosaic</a>.</p>
+<p>Pruim, Randall, Daniel T. Kaplan, and Nicholas J. Horton. 2017. <em>Mosaic: Project Mosaic Statistics and Mathematics Teaching Utilities</em>. <a href="https://CRAN.R-project.org/package=mosaic" class="uri">https://CRAN.R-project.org/package=mosaic</a>.</p>
 </div>
 <div id="ref-Kampstra2008">
 <p>Kampstra, Peter. 2008. “Beanplot: A Boxplot Alternative for Visual Comparison of Distributions.” <em>Journal of Statistical Software, Code Snippets</em> 28 (1): 1–9. <a href="http://www.jstatsoft.org/v28/c01/" class="uri">http://www.jstatsoft.org/v28/c01/</a>.</p>
@@ -1554,7 +1555,7 @@ favstats(daysanysub~sex, data=HELPrct3)</code></pre>
 <p>Kampstra, Peter. 2014. <em>Beanplot: Visualization via Beanplots (Like Boxplot/Stripchart/Violin Plot)</em>. <a href="https://CRAN.R-project.org/package=beanplot" class="uri">https://CRAN.R-project.org/package=beanplot</a>.</p>
 </div>
 <div id="ref-R-mosaicData">
-<p>Pruim, Randall, Daniel Kaplan, and Nicholas Horton. 2016b. <em>MosaicData: Project Mosaic Data Sets</em>. <a href="https://CRAN.R-project.org/package=mosaicData" class="uri">https://CRAN.R-project.org/package=mosaicData</a>.</p>
+<p>Pruim, Randall, Daniel Kaplan, and Nicholas Horton. 2016. <em>MosaicData: Project Mosaic Data Sets</em>. <a href="https://CRAN.R-project.org/package=mosaicData" class="uri">https://CRAN.R-project.org/package=mosaicData</a>.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -1605,7 +1606,7 @@ favstats(daysanysub~sex, data=HELPrct3)</code></pre>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -1626,7 +1627,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Greenwood_Book.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

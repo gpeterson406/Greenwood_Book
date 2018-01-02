@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>A Second Semester Statistics Course with R</title>
   <meta name="description" content="A Second Semester Statistics Course with R">
-  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="A Second Semester Statistics Course with R" />
   <meta property="og:type" content="book" />
@@ -253,7 +253,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>To make this clearer, suppose that in the <em>Beers</em> and <em>BAC</em> study that they had randomly assigned 20 students to consume each number of beers. We would expect some variation in the <em>BAC</em> for each group of 20 at each level of <em>Beers</em> but that each group of observations will be centered at the true mean <em>BAC</em> for each number of <em>Beers</em>. The regression model assumes that the <em>BAC</em> values are normally distributed around the mean for each <em>Beer</em> level, <span class="math inline">\(\text{BAC}_i \sim N(\beta_0 + \beta_1\text{ Beers}_i,\sigma^2)\)</span>, with the mean defined by the regression equation. We actually do not need to obtain more than one observation at each <span class="math inline">\(x\)</span> value to make this assumption or assess it, but the plots below show you what this could look like. The sketch in Figure <a href="chapter7.html#fig:Figure7-1">7.1</a> attempts to show the idea of normal distributions that are centered at the true regression line, all with the same shape and variance that is an assumption of the regression model. Figure <a href="chapter7.html#fig:Figure7-2">7.2</a> contains simulated realizations from a normal distribution of 20 subjects at each <em>Beer</em> level around the assumed true regression line with two different residual SEs of 0.02 and 0.06. The original BAC model has a residual SE of 0.02 but had many fewer observations at each <em>Beer</em> value.</p>
 
 <div class="figure"><span id="fig:Figure7-1"></span>
-<img src="chapter7_files/image029small.png" alt="Sketch of assumed normal distributions for the responses centered at the regression line."  />
+<img src="chapter7_files/image029small.png" alt="Sketch of assumed normal distributions for the responses centered at the regression line." width="109" />
 <p class="caption">
 Figure 7.1: Sketch of assumed normal distributions for the responses centered at the regression line.
 </p>
@@ -269,7 +269,7 @@ Figure 7.2: Simulated data for Beers and BAC assuming two different residual sta
 <p>In sampling from the population, we expect some amount of variability of each estimator around its true value. This variability leads to the potential variability in estimated regression lines (think of a suite of potential estimated regression lines that would be created by different random samples from the same population). Figure <a href="chapter7.html#fig:Figure7-3">7.3</a> contains the true regression line (bold, red) and realizations of the estimated regression line in simulated data based on results similar to the real data set. This variability due to random sampling is something that needs to be properly accounted for to use the <strong>single</strong> estimated regression line to make inferences about the true line and parameters based on the sample-based estimates. The next sections develop those inferential tools.</p>
 
 <div class="figure"><span id="fig:Figure7-3"></span>
-<img src="chapter7_files/image034.png" alt="Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set."  />
+<img src="chapter7_files/image034.png" alt="Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set." width="557" />
 <p class="caption">
 Figure 7.3: Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set.
 </p>
@@ -285,7 +285,7 @@ Figure 7.3: Variability in realized regression lines based on sampling variation
 <p>so we need to obtain the appropriate standard error for regression model coefficients and the degrees of freedom to define the <span class="math inline">\(t\)</span>-distribution to look up <span class="math inline">\(t^*\)</span>. We will find the <span class="math inline">\(\text{SE}_{b_0}\)</span> and <span class="math inline">\(\text{SE}_{b_1}\)</span> in the model summary. The degrees of freedom for the <span class="math inline">\(t\)</span>-distribution in simple linear regression are <span class="math inline">\(\mathbf{df=n-2}\)</span>. Putting this together, the confidence interval for the true y-intercept, <span class="math inline">\(\beta_0\)</span>, is <span class="math inline">\(\mathbf{b_0 \mp t^*_{n-2}}\textbf{SE}_{\mathbf{b_0}}\)</span> although this confidence interval is rarely of interest. The confidence interval that is almost always of interest is for the true slope coefficient, <span class="math inline">\(\beta_1\)</span>, that is <span class="math inline">\(\mathbf{b_1 \mp t^*_{n-2}}\textbf{SE}_{\mathbf{b_1}}\)</span>. The slope confidence interval is used to do two things: (1) inference for the amount of change in the mean of <span class="math inline">\(y\)</span> for a unit change in <span class="math inline">\(x\)</span> in the population and (2) to potentially do hypothesis testing by checking whether 0 is in the CI or not. The sketch in Figure <a href="chapter7.html#fig:Figure7-3b">7.4</a> illustrates the roles of the CI for the slope in terms of determining where the population slope coefficient might be – centered at the sample slope coefficient – our best guess for the true slope. This sketch informs an <strong><em>interpretation of the slope coefficient confidence interval</em></strong>:</p>
 
 <div class="figure"><span id="fig:Figure7-3b"></span>
-<img src="chapter7_files/image045.png" alt="Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in \(x\)."  />
+<img src="chapter7_files/image045.png" alt="Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in \(x\)." width="210" />
 <p class="caption">
 Figure 7.4: Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in <span class="math inline">\(x\)</span>.
 </p>
@@ -567,7 +567,7 @@ Figure 7.6: Diagnostic plots of the Bozeman yearly temperature simple linear reg
 ## (Intercept) -65.83068375 -28.87177785
 ## Year          0.04300681   0.06187746</code></pre>
 <p>Sometimes the scale of the x-variable makes interpretation a little difficult, so we can re-scale it to make it more interpretable. One option is to re-scale the variable and re-fit the regression model and the other (easier) option is to re-scale our interpretation. The idea here is that a 100-year change might be easier and more meaningful scale to interpret than a single year change. If we have a slope in the model of 0.052 (for a 1 year change), we can also say that a 100 year change in the mean is estimated to be 0.052*100 = 0.52<span class="math inline">\(^\circ F\)</span>. Similarly, the 95% CI for the population mean 100-year change would be from 0.43<span class="math inline">\(^\circ F\)</span> to 0.62<span class="math inline">\(^\circ F\)</span>. In 2007, the IPCC (Intergovernmental Panel on Climate Change; <a href="http://www.ipcc.ch/publications_and_data/ar4/wg1/en/tssts-3-1-1.html" class="uri">http://www.ipcc.ch/publications_and_data/ar4/wg1/en/tssts-3-1-1.html</a>) estimated the global temperature change from 1906 to 2005 to be 0.74<span class="math inline">\(^\circ C\)</span> per decade or, scaled up, 7.4<span class="math inline">\(^\circ C\)</span> per century (1.33<span class="math inline">\(^\circ F\)</span>). There are many reasons why our local temperature trend might differ, including that our analysis was of average maximum temperatures and the IPCC was considering the average temperature (which was not measured locally or in most places in a good way until digital instrumentation was installed) and that local trends are likely to vary around the global average change based on localized environmental conditions.</p>
-<p>One issue that arises in local studies of climate change is that researchers often consider these sorts of tests at many locations and on many response variables (if I did the maximum temperature, why not also do the same analysis of the minimum temperature time series as well? And if I did the analysis for Bozeman, what about Butte and Helena and…?). Remember our discussion of multiple testing issues in an ANOVA context when we compared lots of groups? This issue can arise when regression modeling is repeated in many similar data sets, say different sites or different response variables or both, in one study. <span class="citation">Moore, Harper, and Greenwood (<a href="#ref-Moore2007">2007</a>)</span> considered the impacts on the assessment of evidence of trends of earlier spring onset timing in the Mountain West when the number of tests across many sites is accounted for. We found that the evidence for time trends decreases substantially but does not disappear. In a related study, <span class="citation">Greenwood, Harper, and Moore (<a href="#ref-Greenwood2011">2011</a>)</span> found evidence for regional trends to earlier spring onset using more sophisticated statistical models. The main point here is to <strong>be careful when using simple statistical methods repeatedly if you are not accounting for the number of tests performed</strong><a href="#fn84" class="footnoteRef" id="fnref84"><sup>84</sup></a>.</p>
+<p>One issue that arises in local studies of climate change is that researchers often consider these sorts of tests at many locations and on many response variables (if I did the maximum temperature, why not also do the same analysis of the minimum temperature time series as well? And if I did the analysis for Bozeman, what about Butte and Helena and…?). Remember our discussion of multiple testing issues in an ANOVA context when we compared lots of groups? This issue can arise when regression modeling is repeated in many similar data sets, say different sites or different response variables or both, in one study. <span class="citation">J. N. Moore, Harper, and Greenwood (<a href="#ref-Moore2007">2007</a>)</span> considered the impacts on the assessment of evidence of trends of earlier spring onset timing in the Mountain West when the number of tests across many sites is accounted for. We found that the evidence for time trends decreases substantially but does not disappear. In a related study, <span class="citation">Greenwood, Harper, and Moore (<a href="#ref-Greenwood2011">2011</a>)</span> found evidence for regional trends to earlier spring onset using more sophisticated statistical models. The main point here is to <strong>be careful when using simple statistical methods repeatedly if you are not accounting for the number of tests performed</strong><a href="#fn84" class="footnoteRef" id="fnref84"><sup>84</sup></a>.</p>
 <p>Along with the confidence interval, we can also plot the estimated model (Figure <a href="chapter7.html#fig:Figure7-6">7.7</a>) using a term-plot from the <code>effects</code> package (Fox, 2003). This is the same function we used for visualizing results in the ANOVA models and in its basic application you just need <code>plot(allEffects(MODELNAME))</code> although we enhanced our version a little. In regression models, we get to see the regression line along with bounds for 95% confidence intervals for the mean at every value of <span class="math inline">\(x\)</span> that was observed (explained in the next section). Note that there is also a rugplot on the x-axis showing you where values of the explanatory variable were obtained, which is useful to understanding how much information is available for different aspects of the line. Here it provides gaps for missing years of observations as sort of broken teeth in a comb.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(effects)
@@ -737,8 +737,8 @@ temp3 &lt;-<span class="st"> </span><span class="kw">lm</span>(meanmaxC<span cla
 <caption><span id="tab:Table7-1">Table 7.1: </span> Ladder of powers of transformations that are often used in statistical modeling.</caption>
 <colgroup>
 <col width="13%" />
-<col width="32%" />
-<col width="53%" />
+<col width="34%" />
+<col width="52%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -843,7 +843,7 @@ Figure 7.16: Scatterplot of log(tree height) versus log(tree diameter).
 </p>
 </div>
 <p>Economists also like to use <span class="math inline">\(\log(y)\sim \log(x)\)</span> transformations. The log-log transformation tends to linearize certain relationships and has specific interpretations in terms of Economics theory. The log-log transformation shows up in many different disciplines as a way of obtaining a linear relationship on the log-log scale, but different fields discuss it differently. The following example shows a situation where transformations of both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are required and this double transformation seems to be quite successful in what looks like an initially hopeless situation for our linear modeling approach.</p>
-<p>Data were collected in 1988 on the rates of infant mortality (infant deaths per 1,000 live births) and gross domestic product (GDP) per capita (in 1998 US dollars) from <span class="math inline">\(n=207\)</span> countries. These data are available from the <code>car</code> package (<span class="citation">Fox and Weisberg (<a href="#ref-R-car">2016</a>)</span>, <span class="citation">Fox (<a href="#ref-Fox2003">2003</a>)</span>) in a data set called <code>UN</code>. The four panels in Figure <a href="chapter7.html#fig:Figure7-16">7.17</a> show the original relationship and the impacts of log-transforming one or both variables. The only scatterplot that could potentially be modeled using SLR is the lower right panel (d) that shows the relationship between <em>log(infant mortality)</em> and <em>log(GDP)</em>. In the next section, we will fit models to some of these relationships and use our diagnostic plots to help us assess “success” of the transformations.</p>
+<p>Data were collected in 1988 on the rates of infant mortality (infant deaths per 1,000 live births) and gross domestic product (GDP) per capita (in 1998 US dollars) from <span class="math inline">\(n=207\)</span> countries. These data are available from the <code>car</code> package (<span class="citation">Fox and Weisberg (<a href="#ref-R-car">2017</a>)</span>, <span class="citation">Fox (<a href="#ref-Fox2003">2003</a>)</span>) in a data set called <code>UN</code>. The four panels in Figure <a href="chapter7.html#fig:Figure7-16">7.17</a> show the original relationship and the impacts of log-transforming one or both variables. The only scatterplot that could potentially be modeled using SLR is the lower right panel (d) that shows the relationship between <em>log(infant mortality)</em> and <em>log(GDP)</em>. In the next section, we will fit models to some of these relationships and use our diagnostic plots to help us assess “success” of the transformations.</p>
 
 <div class="figure"><span id="fig:Figure7-16"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-16-1.png" alt="Scatterplots of Infant Mortality vs GDP under four different combinations of log-transformations." width="960" />
@@ -1276,7 +1276,7 @@ summary(tm1)</code></pre>
 <p>Greenwood, Mark C., Joel Harper, and Johnnie Moore. 2011. “An Application of Statistics in Climate Change: Detection of Nonlinear Changes in a Streamflow Timing Measure in the Columbia and Missouri Headwaters.” In <em>Handbook of the Philosophy of Science, Vol. 7: Statistics</em>, edited by P.S. Bandyopadhyay and M. Forster, 1117–42. Elsevier.</p>
 </div>
 <div id="ref-R-car">
-<p>Fox, John, and Sanford Weisberg. 2016. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car" class="uri">https://CRAN.R-project.org/package=car</a>.</p>
+<p>Fox, John, and Sanford Weisberg. 2017. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car" class="uri">https://CRAN.R-project.org/package=car</a>.</p>
 </div>
 <div id="ref-Fox2003">
 <p>Fox, John. 2003. “Effect Displays in R for Generalised Linear Models.” <em>Journal of Statistical Software</em> 8 (15): 1–27. <a href="http://www.jstatsoft.org/v08/i15/" class="uri">http://www.jstatsoft.org/v08/i15/</a>.</p>
@@ -1322,7 +1322,7 @@ summary(tm1)</code></pre>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -1343,7 +1343,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Greenwood_Book.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

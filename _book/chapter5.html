@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>A Second Semester Statistics Course with R</title>
   <meta name="description" content="A Second Semester Statistics Course with R">
-  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="A Second Semester Statistics Course with R" />
   <meta property="og:type" content="book" />
@@ -238,7 +238,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="section5-1" class="section level2">
 <h2><span class="header-section-number">5.1</span> Situation, contingency tables, and table plots</h2>
 <p>In this chapter, the focus shifts briefly from analyzing quantitative response variables to methods for handling categorical response variables. This is important because in some situations it is not possible to measure the response variable quantitatively. For example, we will analyze the results from a clinical trial where the results for the subjects were measured as one of three categories: <em>no improvement</em>, <em>some improvement</em>, and <em>marked improvement</em>. While that type of response could be treated as numerical, coded possibly as 1, 2, and 3, it would be difficult to assume that the responses such as those follow a normal distribution since they are <strong><em>discrete</em></strong> (not continuous, measured at whole number values only) and, more importantly, the difference between <em>no improvement</em> and <em>some improvement</em> is not necessarily the same as the difference between <em>some</em> and <em>marked improvement</em>. If it is treated numerically, then the differences between levels are assumed to be the same unless a different coding scheme is used (say 1, 2, and 5). It is better to treat these types of responses as being in one of the three categories and use statistical methods that don’t make unreasonable and arbitrary assumptions about what the numerical coding might mean. The study being performed here involved subjects randomly assigned to either a treatment or a placebo (control) group and we want to address research questions similar to those considered in Chapters <a href="chapter2.html#chapter2">2</a> and <a href="chapter3.html#chapter3">3</a> – assessing differences among two or more groups. With quantitative responses, the differences in the distributions are parameterized via the means of the groups and we used 2-sample mean or ANOVA hypotheses and tests. With categorical responses, the focus is on the probabilities of getting responses in each category and whether they differ among the groups.</p>
-<p>We start with some useful summary techniques, both numerical and graphical, applied to some examples of studies these methods can be used to analyze. Graphical techniques provide opportunities for assessing specific patterns in variables, relationships between variables, and for generally understanding the responses obtained. There are many different types of plots and each can enhance certain features of data. We will start with a “fun” display, called a <em>table plot</em>, to help us understand some aspects of the results from a double-blind randomized clinical trial investigating a treatment for rheumatoid arthritis that has the categorical response variable introduced previously. These data are available in the <code>Arthritis</code> data set available in the <code>vcd</code> package <span class="citation">(Meyer, Zeileis, and Hornik <a href="#ref-R-vcd">2016</a>)</span>. There were <span class="math inline">\(n=84\)</span> subjects, with some demographic information recorded along with the <code>Treatment</code> status (<em>Treated</em>, <em>Placebo</em>) and whether the patients’ arthritis symptoms <code>Improved</code> (with levels of <em>None</em>, <em>Some</em>, and <em>Marked</em>).</p>
+<p>We start with some useful summary techniques, both numerical and graphical, applied to some examples of studies these methods can be used to analyze. Graphical techniques provide opportunities for assessing specific patterns in variables, relationships between variables, and for generally understanding the responses obtained. There are many different types of plots and each can enhance certain features of data. We will start with a “fun” display, called a <em>table plot</em>, to help us understand some aspects of the results from a double-blind randomized clinical trial investigating a treatment for rheumatoid arthritis that has the categorical response variable introduced previously. These data are available in the <code>Arthritis</code> data set available in the <code>vcd</code> package <span class="citation">(D. Meyer, Zeileis, and Hornik <a href="#ref-R-vcd">2016</a>)</span>. There were <span class="math inline">\(n=84\)</span> subjects, with some demographic information recorded along with the <code>Treatment</code> status (<em>Treated</em>, <em>Placebo</em>) and whether the patients’ arthritis symptoms <code>Improved</code> (with levels of <em>None</em>, <em>Some</em>, and <em>Marked</em>).</p>
 <p>The <code>tableplot</code> function from the <code>tabplot</code> package <span class="citation">(Tennekes and de Jonge <a href="#ref-R-tabplot">2017</a>)</span> displays bars for each response in a row<a href="#fn61" class="footnoteRef" id="fnref61"><sup>61</sup></a> based on the category of responses or as a bar with the height corresponding the value of quantitative variables<a href="#fn62" class="footnoteRef" id="fnref62"><sup>62</sup></a>. It also plots a red cell if the observations were missing on a particular variable. The plot can be obtained simply as <code>tableplot(DATASETNAME)</code>. But when using <code>tableplot</code>, we may not want to display everything in the tibble and often just select some of the variables. We use <code>Treatment</code>, <code>Improved</code>, <code>Sex</code>, and <code>Age</code> in the <code>select=...</code> option with a <code>c()</code> and commas between the names of the variables we want to display as shown below. The first one in the list is also the one that the data are sorted based on.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(vcd)
@@ -370,7 +370,7 @@ Figure 5.2: Stacked bar chart of Arthritis data. The left bar is for the Placebo
 <p>In this chapter, we analyze data collected in two different fashions and modify the hypotheses to reflect the differences in the data collection processes, choosing either between what are called Homogeneity and Independence tests. The previous situation where levels of a treatment are randomly assigned to the subjects in a study describes the situation for what is called a <strong><em>Homogeneity Test</em></strong>. Homogeneity also applies when random samples are taken from each population of interest to generate the observations in each group of the explanatory variable based on the population groups. These sorts of situations resemble many of the examples from Chapter <a href="chapter3.html#chapter3">3</a> where treatments were assigned to subjects. The other situation considered is where a single sample is collected to represent a population and then a contingency table is formed based on responses on two categorical variables. When one sample is collected and analyzed using a contingency table, the appropriate analysis is called an <strong><em>Independence</em></strong> or <strong><em>Association test</em></strong>. In this situation, it is not necessary to have variables that are clearly classified as explanatory or response although it is certainly possible. Data that often align with Independence testing are collected using surveys of subjects randomly selected from a single, large population. An example, analyzed below, involves a survey of voters and whether their party affiliation is related to who they voted for – the republican, democrat, or other candidate. There is clearly an explanatory variable of the <em>Party affiliation</em> but a single large sample was taken from the population of all likely voters so the Independence test needs to be applied. Another example where Independence is appropriate involves a study of student cheating behavior. Again, a single sample was taken from the population of students at a university and this determines that it will be an Independence test. Students responded to questions about lying to get out of turning in a paper and/or taking an exam (<em>none</em>, <em>either</em>, or <em>both</em>) and copying on an exam and/or turning in a paper written by someone else (<em>neither</em>, <em>either</em>, or <em>both</em>). In this situation, it is not clear which variable is response or explanatory (which should explain the other) and it does not matter with the Independence testing framework. Figure <a href="chapter5.html#fig:Figure5-3">5.3</a> contains a diagram of the data collection processes and can help you to identify the appropriate analysis situation.</p>
 
 <div class="figure"><span id="fig:Figure5-3"></span>
-<img src="chapter5_files/image027.png" alt="Diagram of the scenarios involved in Homogeneity and Independence tests. Homogeneity testing involves R random samples or subjects assigned to R groups. Independence testing involves a single random sample and measurements on two categorical variables."  />
+<img src="chapter5_files/image027.png" alt="Diagram of the scenarios involved in Homogeneity and Independence tests. Homogeneity testing involves R random samples or subjects assigned to R groups. Independence testing involves a single random sample and measurements on two categorical variables." width="479" />
 <p class="caption">
 Figure 5.3: Diagram of the scenarios involved in Homogeneity and Independence tests. Homogeneity testing involves R random samples or subjects assigned to R groups. Independence testing involves a single random sample and measurements on two categorical variables.
 </p>
@@ -384,11 +384,11 @@ Figure 5.3: Diagram of the scenarios involved in Homogeneity and Independence te
 <table>
 <caption><span id="tab:Table5-2">Table 5.2: </span> Table of conditional proportions in the Homogeneity testing scenario.</caption>
 <colgroup>
-<col width="7%" />
+<col width="8%" />
 <col width="18%" />
 <col width="18%" />
 <col width="18%" />
-<col width="6%" />
+<col width="5%" />
 <col width="18%" />
 <col width="11%" />
 </colgroup>
@@ -575,13 +575,12 @@ Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true 
 </div>
 
 <table>
-<caption><span id="tab:Table5-3">Table 5.3: </span> Demonstration of calculation of expected cell counts for Arthritis data.</caption>
+<caption><span id="tab:Table5-3">Table 5.3: </span> Demonstration of calculation of expected cell counts for Arthritis data. (continued below)</caption>
 <colgroup>
-<col width="9%" />
-<col width="25%" />
-<col width="25%" />
-<col width="26%" />
-<col width="14%" />
+<col width="10%" />
+<col width="29%" />
+<col width="29%" />
+<col width="30%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -589,7 +588,6 @@ Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true 
 <th align="left"><strong>None</strong></th>
 <th align="left"><strong>Some</strong></th>
 <th align="left"><strong>Marked</strong></th>
-<th align="left"><strong>Totals</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -605,7 +603,6 @@ Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true 
 <span class="math inline">\(\boldsymbol{=\dfrac{43*28}{84}}\)</span><br />
 <span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{14.33}}}\)</span><br />
 </td>
-<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Placebo}\bullet}=43}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Treated</strong></td>
@@ -619,13 +616,32 @@ Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true 
 <span class="math inline">\(\boldsymbol{=\dfrac{41*28}{84}}\)</span><br />
 <span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{13.67}}}\)</span><br />
 </td>
-<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Treated}\bullet}=41}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>Totals</strong></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\bullet\text{None}}=42}\)</span></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\bullet\text{Some}}=14}\)</span></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\bullet\text{Marked}}=28}\)</span></td>
+</tr>
+</tbody>
+</table>
+<table style="width:62%;">
+<colgroup>
+<col width="62%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Totals</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Placebo}\bullet}=43}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Treated}\bullet}=41}\)</span></td>
+</tr>
+<tr class="odd">
 <td align="left"><span class="math inline">\(\boldsymbol{N=84}\)</span></td>
 </tr>
 </tbody>
@@ -1446,7 +1462,7 @@ tableplot(csd[,c(&quot;isare&quot;,&quot;careabout&quot;,&quot;thoughtabout&quot
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -1467,7 +1483,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Greenwood_Book.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

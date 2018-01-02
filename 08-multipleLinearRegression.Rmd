@@ -1231,15 +1231,14 @@ regression models that can result in common mistakes.
     ```{r eval=F}
     require(corrplot)
     par(mfrow=c(1,1), oma=c(0,0,1,0))
-    corrplot.mixed(cor(snotel2[-c(9,22),3:6]), col=c("black", "orange"))
+    corrplot.mixed(cor(snotel2[-c(9,22),3:6]), upper.col=c(1, "orange"),lower.col=c(1, "orange"))
     round(cor(snotel2[-c(9,22),3:6]),2)
     ```
     
     ```{r Figure8-12,fig.cap="Plot of correlation matrix in the snow depth data set with influential points removed",fig.width=6.5,echo=F}
     require(corrplot)
     par(mfrow=c(1,1), oma=c(0,0,1,0))
-    corrplot.mixed(cor(snotel2[-c(9,22),3:6]), col=c("black", "orange"),
-                   tl.cex=0.75)
+    corrplot.mixed(cor(snotel2[-c(9,22),3:6]), upper.col=c(1, "orange"),lower.col=c(1, "orange"), tl.cex=0.75)
     round(cor(snotel2[-c(9,22),3:6]),2)
     ```
     
@@ -3321,6 +3320,7 @@ most complex model that included four predictor variables used up 5 *model df*.
 ```{r warning=F,error=F}
 require(MuMIn)
 options(na.action = "na.fail") #Must run this code once to use dredge
+snotel2R<-snotel2[-c(9,22),]; m6 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2R)
 dredge(m6, rank="AIC",
        extra = c("R^2", adjRsq=function(x) summary(x)$adj.r.squared))
 ```

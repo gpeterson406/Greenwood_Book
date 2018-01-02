@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>A Second Semester Statistics Course with R</title>
   <meta name="description" content="A Second Semester Statistics Course with R">
-  <meta name="generator" content="bookdown 0.4 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="A Second Semester Statistics Course with R" />
   <meta property="og:type" content="book" />
@@ -366,8 +366,8 @@ Figure 4.5: Interaction plot of Scenario 5 where it appears that an interaction 
 <p>where each component is defined as in the interaction model. The difference between the interaction and additive models is setting all the <span class="math inline">\(\omega_{jk}\text{&#39;s}\)</span> to 0 that are present in the interaction model. When we set parameters to 0 in models it removes them from the model. Setting parameters to 0 is how we will develop our hypotheses to test for an interaction, by testing whether there is evidence enough to reject that all <span class="math inline">\(\omega_{jk}\text{&#39;s}=0\)</span>.</p>
 <p>The interaction test hypotheses are</p>
 <ul>
-<li><p><span class="math inline">\(H_0\)</span>: No interaction between A and B in population <span class="math inline">\(\Leftrightarrow\)</span> All <span class="math inline">\(\omega_{jk}\text{&#39;s}=0\)</span>.</p></li>
-<li><p><span class="math inline">\(H_A\)</span>: Interaction between A and B in population <span class="math inline">\(\Leftrightarrow\)</span> At least one <span class="math inline">\(\omega_{jk}\ne 0\)</span>.</p></li>
+<li><p><span class="math inline">\(H_0\)</span>: No interaction between A and B on response in population <span class="math inline">\(\Leftrightarrow\)</span> All <span class="math inline">\(\omega_{jk}\text{&#39;s}=0\)</span>.</p></li>
+<li><p><span class="math inline">\(H_A\)</span>: Interaction between A and B on reponse in population <span class="math inline">\(\Leftrightarrow\)</span> At least one <span class="math inline">\(\omega_{jk}\ne 0\)</span>.</p></li>
 </ul>
 <p>To perform this test, a new ANOVA <span class="math inline">\(F\)</span>-test is required (presented below) but there are also hypotheses relating to the main effects of A (<span class="math inline">\(\tau_j\text{&#39;s}\)</span>) and B (<span class="math inline">\(\gamma_k\text{&#39;s}\)</span>). If evidence is found to reject the null hypothesis that no interaction is present, then it is dangerous to ignore it and test for the main effects because important main effects can be masked by interactions (examples later). It is important to note that, by definition, <strong>both variables matter if an interaction is found to be important</strong> so the main effect tests may not be very interesting. If the interaction is found to be important based on the test and retained in the model, you should focus on the interaction model (also called the <strong><em>full model</em></strong>) in order to understand and describe the form of the interaction among the variables.</p>
 <p>If the interaction test does not return a small p-value and you decide that you do not have evidence to suggest that it is needed, it can be dropped from the model. In this situation, we would re-fit the model and focus on the results provided by the additive model – performing tests for the two additive main effects. For the first, but not last time, we encounter a model with more than one variable and more than one test of potential interest. In models with multiple variables at similar levels (here both are main effects), we are interested in the results for each variable given that the other variable is in the model. In many situations, including more than one variable in a model changes the results for the other variable even if those variables do not interact. The reason for this is more clear in Chapter <a href="chapter8.html#chapter8">8</a> and really only matters here if we have unbalanced designs, but we need to start adding a short modifier to our discussions of main effects – they are the results <em>conditional on</em> or <em>adjusting for</em> or, simply, <em>given</em>, the other variable(s) in the model. Specifically, the hypotheses for the two main effects are:</p>
@@ -393,7 +393,7 @@ Figure 4.5: Interaction plot of Scenario 5 where it appears that an interaction 
 <caption><span id="tab:Table4-1">Table 4.1: </span> Interaction Model ANOVA Table.</caption>
 <colgroup>
 <col width="18%" />
-<col width="20%" />
+<col width="19%" />
 <col width="22%" />
 <col width="24%" />
 <col width="14%" />
@@ -450,11 +450,11 @@ color='red'>Total</font></b></td>
 <table>
 <caption><span id="tab:Table4-2">Table 4.2: </span> Additive Model ANOVA Table.</caption>
 <colgroup>
+<col width="19%" />
 <col width="20%" />
-<col width="21%" />
 <col width="24%" />
-<col width="20%" />
-<col width="13%" />
+<col width="21%" />
+<col width="14%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -544,7 +544,7 @@ Figure 4.6: Plot of estimated results of interaction model for the paper towel p
 &amp; = 20.6544. \\
 \end{array}\]</span></p>
 <p>This shows that the sums of squares decomposition applies in these more complicated models as it did in the One-Way ANOVA. It also shows that if the interaction is removed from the model, that variability is lumped in with the other unexplained variability that goes in the <span class="math inline">\(\text{SS}_{\text{E}}\)</span> in any model.</p>
-<p>The fact that the sums of squares decomposition can be applied here is useful, except that there is a small issue with the main effect tests in the ANOVA table results that follow this decomposition when the design is not balanced. It ends up that the tests in a typical ANOVA table are only conditional on the tests higher up in the table. For example, in the additive model ANOVA table, the <code>Brand</code> test is not conditional on the <code>Drops</code> effect, but the <code>Drops</code> effect is conditional on the <code>Brand</code> effect. To fix this issue, we have to use another type of sums of squares, called <strong><em>Type II sums of squares</em></strong>. They will no longer always follow the rules of the sums of squares decomposition but they will test the desired hypotheses. Specifically, they provide each test conditional on any other terms at the same level of the model and match the hypotheses written out earlier in this section. To get the “correct” ANOVA results, the <code>car</code> (<span class="citation">Fox and Weisberg (<a href="#ref-R-car">2016</a>)</span>, <span class="citation">Fox and Weisberg (<a href="#ref-Fox2011">2011</a>)</span>) package is required. We use the <code>Anova</code> function on our linear models from here forward to get the “right” tests in our ANOVA tables<a href="#fn56" class="footnoteRef" id="fnref56"><sup>56</sup></a>. Note how the case-sensitive nature of R code shows up in the use of the capital-A <code>Anova</code> function instead of the <code>anova</code> function used previously. In this case, because the design was balanced, the results are the same using either function. Observational studies rarely generate balanced designs (some designed studies can result in unbalanced designs) so we will generally just use the Type II version of the sums of squares. The <code>Anova</code> results using the Type II sums of squares are slightly more conservative than the results from <code>anova</code>, which are called Type I sums of squares. The sums of squares decomposition no longer can be applied, but it is a small sacrifice to get each test after adjusting for all other variables<a href="#fn57" class="footnoteRef" id="fnref57"><sup>57</sup></a>.</p>
+<p>The fact that the sums of squares decomposition can be applied here is useful, except that there is a small issue with the main effect tests in the ANOVA table results that follow this decomposition when the design is not balanced. It ends up that the tests in a typical ANOVA table are only conditional on the tests higher up in the table. For example, in the additive model ANOVA table, the <code>Brand</code> test is not conditional on the <code>Drops</code> effect, but the <code>Drops</code> effect is conditional on the <code>Brand</code> effect. To fix this issue, we have to use another type of sums of squares, called <strong><em>Type II sums of squares</em></strong>. They will no longer always follow the rules of the sums of squares decomposition but they will test the desired hypotheses. Specifically, they provide each test conditional on any other terms at the same level of the model and match the hypotheses written out earlier in this section. To get the “correct” ANOVA results, the <code>car</code> (<span class="citation">Fox and Weisberg (<a href="#ref-R-car">2017</a>)</span>, <span class="citation">Fox and Weisberg (<a href="#ref-Fox2011">2011</a>)</span>) package is required. We use the <code>Anova</code> function on our linear models from here forward to get the “right” tests in our ANOVA tables<a href="#fn56" class="footnoteRef" id="fnref56"><sup>56</sup></a>. Note how the case-sensitive nature of R code shows up in the use of the capital-A <code>Anova</code> function instead of the <code>anova</code> function used previously. In this case, because the design was balanced, the results are the same using either function. Observational studies rarely generate balanced designs (some designed studies can result in unbalanced designs) so we will generally just use the Type II version of the sums of squares. The <code>Anova</code> results using the Type II sums of squares are slightly more conservative than the results from <code>anova</code>, which are called Type I sums of squares. The sums of squares decomposition no longer can be applied, but it is a small sacrifice to get each test after adjusting for all other variables<a href="#fn57" class="footnoteRef" id="fnref57"><sup>57</sup></a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(car)
 <span class="kw">Anova</span>(m2)</code></pre></div>
 <pre><code>## Anova Table (Type II tests)
@@ -859,11 +859,11 @@ Figure 4.15: Term-plots for the <code>prodebt</code> response additive model wit
 <p>In the model, the baseline group is for non-cigarette buyers (<code>cigbuy=0</code>) and income group 1 with <span class="math inline">\(\hat{\alpha}= 3.055\)</span> points. Regardless of the <code>cigbuy</code> level, the difference between income groups 2 and 1 is estimated to be <span class="math inline">\(\hat{\tau}_2=0.016\)</span>, an increase in the mean score of 0.016 points. Similarly, the difference between income groups 3 and 1 is <span class="math inline">\(\hat{\tau}_3=0.175\)</span> points, regardless of cigarette smoking status. The estimated difference between cigarette buyers and non-buyers was estimated as <span class="math inline">\(\hat{\gamma}_2=-0.106\)</span> points for any income group, remember that this variable had a moderately large p-value in this model. The additive model-based estimates for all six combinations can be found in Table <a href="chapter4.html#tab:Table4-3">4.3</a>.</p>
 
 
-<table style="width:100%;">
+<table>
 <caption><span id="tab:Table4-3">Table 4.3: </span> Calculations to construct the estimates for all combinations of variables for the <code>prodebt</code> additive model.</caption>
 <colgroup>
 <col width="14%" />
-<col width="14%" />
+<col width="13%" />
 <col width="17%" />
 <col width="17%" />
 <col width="17%" />
@@ -1089,7 +1089,7 @@ Figure 4.18: Term-plots for the additive model in paper towel data set with no r
 </div>
 <div id="section4-9" class="section level2">
 <h2><span class="header-section-number">4.9</span> Practice problems</h2>
-<p>To practice the Two-Way ANOVA, consider a data set on <span class="math inline">\(N=861\)</span> ACT Mathematics Usage Test scores from 1987. The test was given to a sample of high school seniors who met one of three profiles of high school mathematics course work: (a) Algebra I only; (b) two Algebra courses and Geometry; and (c) two Algebra courses, Geometry, Trigonometry, Advanced Mathematics, and Beginning Calculus. These data were generated from summary statistics for one particular form of the test as reported by <span class="citation">Doolittle and Welch (<a href="#ref-Doolittle1989">1989</a>)</span>. The source of this version of the data set is <span class="citation">Ramsey and Schafer (<a href="#ref-Ramsey2012">2012</a>)</span> and the <code>Sleuth2</code> package <span class="citation">(Ramsey et al. <a href="#ref-R-Sleuth2">2016</a>)</span>. First install and then load that package.</p>
+<p>To practice the Two-Way ANOVA, consider a data set on <span class="math inline">\(N=861\)</span> ACT Mathematics Usage Test scores from 1987. The test was given to a sample of high school seniors who met one of three profiles of high school mathematics course work: (a) Algebra I only; (b) two Algebra courses and Geometry; and (c) two Algebra courses, Geometry, Trigonometry, Advanced Mathematics, and Beginning Calculus. These data were generated from summary statistics for one particular form of the test as reported by <span class="citation">Doolittle and Welch (<a href="#ref-Doolittle1989">1989</a>)</span>. The source of this version of the data set is <span class="citation">F. Ramsey and Schafer (<a href="#ref-Ramsey2012">2012</a>)</span> and the <code>Sleuth2</code> package <span class="citation">(F. L. Ramsey et al. <a href="#ref-R-Sleuth2">2016</a>)</span>. First install and then load that package.</p>
 <pre><code>require(Sleuth2)
 require(mosaic)
 require(tibble)
@@ -1111,7 +1111,7 @@ favstats(Score ~ Sex+Background, data=math)</code></pre>
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-car">
-<p>Fox, John, and Sanford Weisberg. 2016. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car" class="uri">https://CRAN.R-project.org/package=car</a>.</p>
+<p>Fox, John, and Sanford Weisberg. 2017. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car" class="uri">https://CRAN.R-project.org/package=car</a>.</p>
 </div>
 <div id="ref-Fox2011">
 <p>Fox, John, and Sanford Weisberg. 2011. <em>An R-Companion to Applied Regression, Second Edition</em>. Thousand Oaks, CA: SAGE Publications. <a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Companion" class="uri">http://socserv.socsci.mcmaster.ca/jfox/Books/Companion</a>.</p>
@@ -1164,7 +1164,7 @@ favstats(Score ~ Sex+Background, data=math)</code></pre>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
@@ -1185,7 +1185,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Greenwood_Book.pdf"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

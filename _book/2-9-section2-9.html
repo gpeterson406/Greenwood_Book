@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="A Second Semester Statistics Course with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="A Second Semester Statistics Course with R">
+
+<title>A Second Semester Statistics Course with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Beanplots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Chapter summary</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Summary of important R code</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for Prisoner Rating data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and table plots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient (Optional section)</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomizing inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section2-9" class="section level2">
+<h2><span class="header-section-number">2.9</span> Bootstrap confidence intervals for difference in GPAs</h2>
+<p>We can now apply the new confidence interval methods on the STAT 217 grade data. This time we start with the parametric 95% confidence interval “by hand” in R and then use <code>t.test</code> to verify our result. The <code>favstats</code> output provides us with the required information to calculate the confidence interval:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">favstats</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217)</code></pre></div>
+<pre><code>##   Sex  min  Q1 median   Q3 max     mean        sd  n missing
+## 1   F 2.50 3.1  3.400 3.70   4 3.338378 0.4074549 37       0
+## 2   M 1.96 2.8  3.175 3.46   4 3.088571 0.4151789 42       0</code></pre>
+<p>The <span class="math inline">\(df\)</span> are <span class="math inline">\(37+42-2 = 77\)</span>. Using the SDs from the two groups and their sample sizes, we can calculate <span class="math inline">\(s_p\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sp &lt;-<span class="st"> </span><span class="kw">sqrt</span>(((<span class="dv">37</span><span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>(<span class="fl">0.4075</span><span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>(<span class="dv">42</span><span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>(<span class="fl">0.41518</span><span class="op">^</span><span class="dv">2</span>))<span class="op">/</span>(<span class="dv">37</span><span class="op">+</span><span class="dv">42</span><span class="op">-</span><span class="dv">2</span>))
+sp</code></pre></div>
+<pre><code>## [1] 0.4116072</code></pre>
+<p>The margin of error is:</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">77</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">37</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">42</span>)</code></pre></div>
+<pre><code>## [1] 0.1847982</code></pre>
+<p>All together, the 95% confidence interval is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">3.338</span><span class="op">-</span><span class="fl">3.0886</span><span class="op">+</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">77</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">37</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">42</span>)</code></pre></div>
+<pre><code>## [1] 0.0646018 0.4341982</code></pre>
+<p>So we are 95% confident that the difference in the true mean GPAs between females and males (females minus males) is between 0.065 and 0.434 GPA points. We get a similar<a href="#fn35" class="footnoteRef" id="fnref35"><sup>35</sup></a> result from the <code>t.test</code> output:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex,<span class="dt">data=</span>s217,<span class="dt">var.equal=</span>T)</code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  GPA by Sex
+## t = 2.6919, df = 77, p-value = 0.008713
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.06501838 0.43459552
+## sample estimates:
+## mean in group F mean in group M 
+##        3.338378        3.088571</code></pre>
+<p>Note that we can easily switch to 90% or 99% confidence intervals by simply changing the percentile in <code>qt</code> or changing the <code>conf.level</code> option in the <code>t.test</code> function. In the following two lines of code, we added octothorpes<a href="#fn36" class="footnoteRef" id="fnref36"><sup>36</sup></a>(#) and then some text after function calls to explain what is being calculated. In computer code, octothorpes provide a way of adding comments that tell the software (here R) to ignore any text after a “#” on a given line. In the color version of the text, comments are also clearly distinguished.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.95</span>, <span class="dt">df=</span><span class="dv">77</span>) <span class="co"># For 90% confidence and 77 df</span></code></pre></div>
+<pre><code>## [1] 1.664885</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.995</span>, <span class="dt">df=</span><span class="dv">77</span>) <span class="co">#For 99% confidence and 77 df</span></code></pre></div>
+<pre><code>## [1] 2.641198</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217, <span class="dt">var.equal=</span>T, <span class="dt">conf.level=</span><span class="fl">0.90</span>)</code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  GPA by Sex
+## t = 2.6919, df = 77, p-value = 0.008713
+## alternative hypothesis: true difference in means is not equal to 0
+## 90 percent confidence interval:
+##  0.09530553 0.40430837
+## sample estimates:
+## mean in group F mean in group M 
+##        3.338378        3.088571</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217, <span class="dt">var.equal=</span>T, <span class="dt">conf.level=</span><span class="fl">0.99</span>)</code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  GPA by Sex
+## t = 2.6919, df = 77, p-value = 0.008713
+## alternative hypothesis: true difference in means is not equal to 0
+## 99 percent confidence interval:
+##  0.004703598 0.494910301
+## sample estimates:
+## mean in group F mean in group M 
+##        3.338378        3.088571</code></pre>
+<p>As a review of some basic ideas with confidence intervals make sure you can answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the impact of increasing the confidence level in this situation?</p></li>
+<li><p>What happens to the width of the confidence interval if the size of the SE increases or decreases?</p></li>
+<li><p>What about increasing the sample size – should that increase or decrease the width of the interval?</p></li>
+</ol>
+<p>All the general results you learned before about impacts to widths of CIs hold in this situation whether we are considering the parametric or bootstrap methods…</p>
+<p>To finish this example, we will generate the comparable bootstrap 90% confidence interval using the bootstrap distribution in Figure <a href="2-9-section2-9.html#fig:Figure2-21">2.21</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">diffmean</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217); Tobs</code></pre></div>
+<pre><code>##   diffmean 
+## -0.2498069</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B &lt;-<span class="st"> </span><span class="dv">1000</span>
+Tstar &lt;-<span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)
+<span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
+  Tstar[b]&lt;-<span class="kw">diffmean</span>(GPA <span class="op">~</span><span class="st"> </span>Sex, <span class="dt">data=</span><span class="kw">resample</span>(s217))
+  }
+<span class="kw">qdata</span>(Tstar, <span class="fl">0.05</span>)</code></pre></div>
+<pre><code>##          p   quantile 
+##  0.0500000 -0.4032273</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qdata</span>(Tstar, <span class="fl">0.95</span>)</code></pre></div>
+<pre><code>##           p    quantile 
+##  0.95000000 -0.09521925</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quantiles &lt;-<span class="st"> </span><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>))
+quantiles</code></pre></div>
+<pre><code>##        quantile    p
+## 5%  -0.40322729 0.05
+## 95% -0.09521925 0.95</code></pre>
+<p>The output tells us that the 90% confidence interval is from -0.393 to -0.094 GPA points. The bootstrap distribution with the observed difference in the sample means and these cut-offs is displayed in Figure <a href="2-9-section2-9.html#fig:Figure2-21">2.21</a> using this code:</p>
+
+<div class="figure"><span id="fig:Figure2-21"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-21-1.png" alt="Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines)." width="960" />
+<p class="caption">
+Figure 2.21: Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines).
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">hist</span>(Tstar,<span class="dt">labels=</span>T)
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">lwd=</span><span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">2</span>)
+<span class="kw">plot</span>(<span class="kw">density</span>(Tstar),<span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">lwd=</span><span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">2</span>)</code></pre></div>
+<p>In the previous output, the parametric 90% confidence interval is from 0.095 to 0.404, suggesting similar results again from the two approaches once you account for the two different orders of differencing of the groups. Based on the bootstrap CI, we can say that we are 90% confident that the difference in the true mean GPAs for STAT 217 students is between -0.393 to -0.094 GPA points (male minus females). Because sex cannot be assigned to the subjects, we cannot infer that sex is causing this difference and because this was a voluntary response sample of STAT 217 students in a given semester, we cannot infer that a difference of this size would apply to all STAT 217 students or, certainly, students this semester.</p>
+<p>Throughout the text, pay attention to the distinctions between parameters and statistics, focusing on the differences between estimates based on the sample and inferences for the population of interest in the form of the parameters of interest. Remember that statistics are summaries of the sample information and parameters are characteristics of populations (which we rarely know). And that our inferences are limited to the population that we randomly sampled from, if we randomly sampled.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="35">
+<li id="fn35"><p>We rounded the means a little and that caused the small difference in results.<a href="2-9-section2-9.html#fnref35">↩</a></p></li>
+<li id="fn36"><p>You can correctly call octothorpes <em>number</em> symbols or, in the twitter verse, <em>hashtags</em>. For more on this symbol, see “<a href="http://blog.dictionary.com/octothorpe/" class="uri">http://blog.dictionary.com/octothorpe/</a>”. Even after reading this, I call them number symbols.<a href="2-9-section2-9.html#fnref36">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="2-8-section2-8.html"><button class="btn btn-default">Previous</button></a>
+<a href="2-10-section2-10.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

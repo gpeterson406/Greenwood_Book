@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="A Second Semester Statistics Course with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="A Second Semester Statistics Course with R">
+
+<title>A Second Semester Statistics Course with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Beanplots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Chapter summary</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Summary of important R code</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for Prisoner Rating data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and table plots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient (Optional section)</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomizing inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section2-3" class="section level2">
+<h2><span class="header-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</h2>
+<p>There appears to be some evidence that the <em>Unattractive</em> group is getting higher average lengths of sentences from the prisoner “jurors” than the <em>Average</em> group, but we want to make sure that the difference is real – that there is evidence to reject the assumption that the means are the same “in the population”. First, a <strong><em>null hypothesis</em></strong><a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a> which defines a <strong><em>null model</em></strong><a href="#fn20" class="footnoteRef" id="fnref20"><sup>20</sup></a> needs to be determined in terms of <strong><em>parameters</em></strong> (the true values in the population). The research question should help you determine the form of the hypotheses for the assumed population. In the 2 independent sample mean problem, the interest is in testing a null hypothesis of <span class="math inline">\(H_0: \mu_1 = \mu_2\)</span> versus the alternative hypothesis of <span class="math inline">\(H_A: \mu_1 \ne \mu_2\)</span>, where <span class="math inline">\(\mu_1\)</span> is the parameter for the true mean of the first group and <span class="math inline">\(\mu_2\)</span> is the parameter for the true mean of the second group. The alternative hypothesis involves assuming a statistical model for the <span class="math inline">\(i^{th}\ (i=1,\ldots,n_j)\)</span> response from the <span class="math inline">\(j^{th}\ (j=1,2)\)</span> group, <span class="math inline">\(\boldsymbol{y}_{ij}\)</span>, that involves modeling it as <span class="math inline">\(y_{ij} = \mu_j + \varepsilon_{ij}\)</span>, where we assume that <span class="math inline">\(\varepsilon_{ij} \sim N(0,\sigma^2)\)</span>. For the moment, focus on the models that either assume the means are the same (null) or different (alternative), which imply:</p>
+<ul>
+<li><p>Null Model: <span class="math inline">\(y_{ij} = \mu + \varepsilon_{ij}\)</span> There is <strong>no</strong> difference in <strong>true</strong> means for the two groups.</p></li>
+<li><p>Alternative Model: <span class="math inline">\(y_{ij} = \mu_j + \varepsilon_{ij}\)</span> There is <strong>a</strong> difference in <strong>true</strong> means for the two groups.</p></li>
+</ul>
+<p>Suppose we are considering the alternative model for the 4<sup>th</sup> observation (<span class="math inline">\(i=4\)</span>) from the second group (<span class="math inline">\(j=2\)</span>), then the model for this observation is <span class="math inline">\(y_{42} = \mu_2 +\varepsilon_{42}\)</span>, that defines the response as coming from the true mean for the second group plus a random error term for that observation, <span class="math inline">\(\varepsilon_{42}\)</span>. For, say, the 5<sup>th</sup> observation from the first group (<span class="math inline">\(j=1\)</span>), the model is <span class="math inline">\(y_{51} = \mu_1 +\varepsilon_{51}\)</span>. If we were working with the null model, the mean is always the same (<span class="math inline">\(\mu\)</span>) – the group specified does not change the mean we use for that observation.</p>
+<p>It can be helpful to think about the null and alternative models graphically. By assuming the null hypothesis is true (means are equal) and that the random errors around the mean follow a normal distribution, we assume that the truth is as displayed in the left panel of Figure <a href="2-3-section2-3.html#fig:Figure2-7">2.7</a> – two normal distributions with the same mean and variability. The alternative model allows the two groups to potentially have different means, such as those displayed in the right panel of Figure <a href="2-3-section2-3.html#fig:Figure2-7">2.7</a> where the second group has a larger mean. Note that in this scenario, we assume that the observations all came from the same distribution except that they had different means. Depending on the statistical procedure we are using, we basically are going to assume that the observations (<span class="math inline">\(y_{ij}\)</span>) either were generated as samples from the null or alternative model. You can imagine drawing observations at random from the pictured distributions. For hypothesis testing, the null model is assumed to be true and then the unusualness of the actual result is assessed relative to that assumption. In hypothesis testing, we have to decide if we have enough evidence to reject the assumption that the null model (or hypothesis) is true. If we reject the null hypothesis, then we would conclude that the other model considered (the alternative model) is more reasonable. The researchers obviously would have hoped to encounter some sort of noticeable difference in the sentences provided for the different pictures and have been able to find enough evidence to reject the null model where the groups “look the same”.</p>
+
+<div class="figure"><span id="fig:Figure2-7"></span>
+<img src="chapter2_files/image015.png" alt="Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis." width="480" />
+<p class="caption">
+Figure 2.7: Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.
+</p>
+</div>
+<p>In statistical inference, null hypotheses (and their implied models) are set up as “straw men” with every interest in rejecting them even though we assume they are true to be able to assess the evidence <span class="math inline">\(\underline{\text{against them}}\)</span>. Consider the original study design here, the pictures were randomly assigned to the subjects. If the null hypothesis were true, then we would have no difference in the population means of the groups. And this would apply if we had done a different random assignment of the pictures to the subjects. So let’s try this: assume that the null hypothesis is true and randomly re-assign the treatments (pictures) to the observations that were obtained. In other words, keep the sentences (<em>Years</em>) the same and shuffle the group labels randomly. The technical term for this is doing a <strong><em>permutation</em></strong> (a random shuffling of a grouping variable relative to the observed responses). If the null is true and the means in the two groups are the same, then we should be able to re-shuffle the groups to the observed sentences (<em>Years</em>) and get results similar to those we actually observed. If the null is false and the means are really different in the two groups, then what we observed should differ from what we get under other random permutations. The differences between the two groups should be more noticeable in the observed data set than in (most) of the shuffled data sets. It helps to see an example of a permutation of the labels to understand what this means here.</p>
+<p>In the <code>mosaic</code> package, the <code>shuffle</code> function allows us to easily perform a permutation<a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a>. Just one time, we can explore what a permutation of the treatment labels could look like in the <code>PermutedAttr</code> variable below. Note that the <code>Years</code> are held in the same place while the group labels are shuffled.</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Perm1 &lt;-<span class="st"> </span><span class="kw">with</span>(MockJury2, <span class="kw">tibble</span>(Years, Attr, <span class="dt">PermutedAttr=</span><span class="kw">shuffle</span>(Attr)))
+<span class="co">#To force the tibble to print out all rows in data set - not used often</span>
+<span class="kw">data.frame</span>(Perm1) </code></pre></div>
+<pre><code>##    Years         Attr PermutedAttr
+## 1      1 Unattractive Unattractive
+## 2      4 Unattractive      Average
+## 3      3 Unattractive      Average
+## 4      2 Unattractive      Average
+## 5      8 Unattractive      Average
+## 6      8 Unattractive      Average
+## 7      1 Unattractive Unattractive
+## 8      1 Unattractive Unattractive
+## 9      5 Unattractive      Average
+## 10     7 Unattractive Unattractive
+## 11     1 Unattractive      Average
+## 12     5 Unattractive Unattractive
+## 13     2 Unattractive Unattractive
+## 14    12 Unattractive      Average
+## 15    10 Unattractive      Average
+## 16     1 Unattractive      Average
+## 17     6 Unattractive Unattractive
+## 18     2 Unattractive      Average
+## 19     5 Unattractive Unattractive
+## 20    12 Unattractive Unattractive
+## 21     6 Unattractive      Average
+## 22     3 Unattractive      Average
+## 23     8 Unattractive      Average
+## 24     4 Unattractive Unattractive
+## 25    10 Unattractive Unattractive
+## 26    10 Unattractive      Average
+## 27    15 Unattractive Unattractive
+## 28    15 Unattractive      Average
+## 29     3 Unattractive      Average
+## 30     3 Unattractive      Average
+## 31     3 Unattractive Unattractive
+## 32    11 Unattractive      Average
+## 33    12 Unattractive      Average
+## 34     2 Unattractive Unattractive
+## 35     1 Unattractive Unattractive
+## 36     1 Unattractive Unattractive
+## 37    12 Unattractive      Average
+## 38     5      Average Unattractive
+## 39     5      Average Unattractive
+## 40     4      Average Unattractive
+## 41     3      Average Unattractive
+## 42     6      Average      Average
+## 43     4      Average      Average
+## 44     9      Average      Average
+## 45     8      Average Unattractive
+## 46     3      Average      Average
+## 47     2      Average Unattractive
+## 48    10      Average      Average
+## 49     1      Average Unattractive
+## 50     1      Average Unattractive
+## 51     3      Average Unattractive
+## 52     1      Average      Average
+## 53     3      Average      Average
+## 54     5      Average      Average
+## 55     8      Average Unattractive
+## 56     3      Average      Average
+## 57     1      Average      Average
+## 58     1      Average Unattractive
+## 59     1      Average      Average
+## 60     2      Average      Average
+## 61     2      Average Unattractive
+## 62     1      Average      Average
+## 63     1      Average Unattractive
+## 64     2      Average Unattractive
+## 65     3      Average Unattractive
+## 66     4      Average Unattractive
+## 67     5      Average      Average
+## 68     3      Average Unattractive
+## 69     3      Average      Average
+## 70     3      Average      Average
+## 71     2      Average Unattractive
+## 72     7      Average Unattractive
+## 73     6      Average Unattractive
+## 74    12      Average Unattractive
+## 75     8      Average      Average</code></pre>
+<p>If you count up the number of subjects in each group by counting the number of times each label (Average, Unattractive) occurs, it is the same in both the <code>Attr</code> and <code>PermutedAttr</code> columns. Permutations involve randomly re-ordering the values of a variable – here the <code>Attr</code> group labels – without changing the content of the variable. This result can also be generated using what is called <strong><em>sampling without replacement</em></strong>: sequentially select <span class="math inline">\(n\)</span> labels from the original variable (<em>Attr</em>), removing each observed label and making sure that each of the original <code>Attr</code> labels is selected once and only once. The new, randomly selected order of selected labels provides the permuted labels. Stepping through the process helps to understand how it works: after the initial random sample of one label, there would <span class="math inline">\(n - 1\)</span> choices possible; on the <span class="math inline">\(n^{th}\)</span> selection, there would only be one label remaining to select. This makes sure that all original labels are re-used but that the order is random. Sampling without replacement is like picking names out of a hat, one-at-a-time, and not putting the names back in after they are selected. It is an exhaustive process for all the original observations. <strong><em>Sampling with replacement</em></strong>, in contrast, involves sampling from the specified list with each observation having an equal chance of selection for each sampled observation – in other words, observations can be selected more than once. This is like picking <span class="math inline">\(n\)</span> names out of a hat that contains <span class="math inline">\(n\)</span> names, except that every time a name is selected, it goes back into the hat – we’ll use this technique in Section <a href="2-8-section2-8.html#section2-8">2.8</a> to do what is called <strong><em>bootstrapping</em></strong>. Both sampling mechanisms can be used to generate inferences but each has particular situations where they are most useful. For hypothesis testing, we will use permutations (sampling without replacement) as its mechanism most closely matches the null hypotheses we will be testing.</p>
+<p>The comparison of the beanplots for the real data set and permuted version of the labels is what is really interesting (Figure <a href="2-3-section2-3.html#fig:Figure2-8">2.8</a>). The original difference in the sample means of the two groups was 1.84 years (<em>Unattractive</em> minus <em>Average</em>). The sample means are the <strong><em>statistics</em></strong> that estimate the parameters for the true means of the two groups. In the permuted data set, the difference in the means is 1.15 years in the opposite direction (Average had a higher mean than Unattractive in the permuted data).</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(Years<span class="op">~</span>PermutedAttr, <span class="dt">data=</span>Perm1)</code></pre></div>
+<pre><code>##      Average Unattractive 
+##     5.447368     4.297297</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diffmean</span>(Years<span class="op">~</span>PermutedAttr, <span class="dt">data=</span>Perm1)</code></pre></div>
+<pre><code>##  diffmean 
+## -1.150071</code></pre>
+
+<div class="figure"><span id="fig:Figure2-8"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="Boxplots of Years responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set." width="672" />
+<p class="caption">
+Figure 2.8: Boxplots of Years responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set.
+</p>
+</div>
+<p>These results suggest that the observed difference was larger than what we got when we did a single permutation although it was only a little bit larger than a difference we could observe in permutations if we ignore the difference in directions. Conceptually, permuting observations between group labels is consistent with the null hypothesis – this is a technique to generate results that we might have gotten if the null hypothesis were true since the responses are the same in the two groups if the null is true. We just need to repeat the permutation process many times and track how unusual our observed result is relative to this distribution of potential responses if the null were true. If the observed differences are unusual relative to the results under permutations, then there is evidence against the null hypothesis, the null hypothesis should be rejected (Reject <span class="math inline">\(H_0\)</span>), and a conclusion should be made, in the direction of the alternative hypothesis, that there is evidence that the true means differ. If the observed differences are similar to (or at least not unusual relative to) what we get under random shuffling under the null model, we would have a tough time concluding that there is any real difference between the groups based on our observed data set.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="19">
+<li id="fn19"><p>The hypothesis of no difference that is typically generated in the hopes of being rejected in favor of the alternative hypothesis, which contains the sort of difference that is of interest in the application.<a href="2-3-section2-3.html#fnref19">↩</a></p></li>
+<li id="fn20"><p>The null model is the statistical model that is implied by the chosen null hypothesis. Here, a null hypothesis of no difference translates to having a model with the same mean for both groups.<a href="2-3-section2-3.html#fnref20">↩</a></p></li>
+<li id="fn21"><p>We’ll see the <code>shuffle</code> function in a more common usage below; while the code to generate <code>Perm1</code> is provided, it isn’t something to worry about right now.<a href="2-3-section2-3.html#fnref21">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="2-2-section2-2.html"><button class="btn btn-default">Previous</button></a>
+<a href="2-4-section2-4.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

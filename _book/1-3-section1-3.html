@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="A Second Semester Statistics Course with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="A Second Semester Statistics Course with R">
+
+<title>A Second Semester Statistics Course with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Beanplots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Chapter summary</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Summary of important R code</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for Prisoner Rating data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and table plots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient (Optional section)</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomizing inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section1-3" class="section level2">
+<h2><span class="header-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</h2>
+<p>For the following material, you will need to install and load the <code>mosaic</code> package <span class="citation">(Pruim, Kaplan, and Horton <a href="#ref-R-mosaic">2017</a>)</span>.</p>
+<pre><code>&gt; require(mosaic)</code></pre>
+<p>It provides a suite of enhanced functions to aid our initial explorations. With RStudio running, the <code>mosaic</code> package loaded, a place to write and save code, and the <code>treadmill</code> data set loaded, we can (finally!) start to summarize the results of the study. The <code>treadmill</code> object is what R calls a <strong><em>tibble</em></strong><a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a> and contains columns corresponding to each variable in the spreadsheet. Every function in R will involve specifying the variable(s) of interest and how you want to use them. To access a particular variable (column) in a tibble, you can use a $ between the name of the tibble and the name of the variable of interest, generically as <code>tibblename$variablename</code>. You can think of this as <em>tibblename’s variablename</em> where the <em>’s</em> is replaced by the dollar sign. To identify the <code>RunTime</code> variable here it would be <code>treadmill$RunTime</code>. In the command line it would look like:</p>
+<pre><code>&gt; treadmill$RunTime
+[1]  8.63  8.17  8.92  8.65 10.33  9.93 10.13 10.08  9.22  8.95 10.85  9.40 11.50 10.50
+[15] 10.60 10.25 10.00 11.17 10.47 11.95  9.63 10.07 11.08 11.63 11.12 11.37 10.95 13.08
+[29] 12.63 12.88 14.03</code></pre>
+<p>Just as in the previous section, we can generate summary statistics using functions like <code>mean</code> and <code>sd</code> by running them on a specific variable:</p>
+<pre><code>&gt; mean(treadmill$RunTime)
+[1] 10.58613
+&gt; sd(treadmill$RunTime)
+[1] 1.387414</code></pre>
+<p>And now we know that the average running time for 1.5 miles for the subjects in the study was 10.6 minutes with a standard deviation (SD) of 1.39 minutes. But you should remember that the mean and SD are only appropriate summaries if the distribution is roughly <strong><em>symmetric</em></strong> (both sides of the distribution are approximately the same shape and length). The <code>mosaic</code> package provides a useful function called <code>favstats</code> that provides the mean and SD as well as the <strong><em>5 number summary</em></strong>: the minimum (<code>min</code>), the first quartile (<code>Q1</code>, the 25<sup>th</sup> percentile), the median (50<sup>th</sup> percentile), the third quartile (<code>Q3</code>, the 75<sup>th</sup> percentile), and the maximum (<code>max</code>). It also provides the number of observations (<code>n</code>) which was 31, as noted above, and a count of whether any missing values were encountered (<code>missing</code>), which was 0 here since all subjects had measurements available on this variable.</p>
+<pre><code>&gt; favstats(treadmill$RunTime)
+  min   Q1 median    Q3   max     mean       sd  n missing
+ 8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0</code></pre>
+<p>We are starting to get somewhere with understanding that the runners were somewhat fit with worst runner covering 1.5 miles in 14 minutes (the equivalent of a 9.3 minute mile) and the best running at a 5.4 minute mile pace. The limited variation in the results suggests that the sample was obtained from a restricted group with somewhat common characteristics. When you explore the ages and weights of the subjects in the Practice Problems in Section <a href="1-6-section1-6.html#section1-6">1.6</a>, you will get even more information about how similar all the subjects in this study were. Researchers often publish numerical summaries of this sort of demographic information to help readers understand the subjects that they studied and that their results might apply to.</p>
+<p>A graphical display of these results will help us to assess the shape of the distribution of run times – including considering the potential for the presence of a <strong><em>skew</em></strong> (whether the right or left tail of the distribution is noticeably more spread out, with left skew meaning that the left tail is more spread out than the right tail) and <strong><em>outliers</em></strong> (unusual observations). A <strong><em>histogram</em></strong> is a good place to start. Histograms display connected bars with counts of observations defining the height of bars based on a set of bins of values of the quantitative variable. We will apply the <code>hist</code> function to the <code>RunTime</code> variable, which produces Figure <a href="1-3-section1-3.html#fig:Figure1-5">1.5</a>.</p>
+<pre><code>&gt; hist(treadmill$RunTime)</code></pre>
+
+<div class="figure"><span id="fig:Figure1-5"></span>
+<img src="01-preface_files/figure-html/Figure1-5-1.png" alt="Histogram of Run Times (minutes) of \(n\)=31 subjects in Treadmill study." width="480" />
+<p class="caption">
+Figure 1.5: Histogram of Run Times (minutes) of <span class="math inline">\(n\)</span>=31 subjects in Treadmill study.
+</p>
+</div>
+<p>You can save this plot by clicking on the <strong>Export</strong> button found above the plot, followed by <strong>Copy to Clipboard</strong> and clicking on the <strong>Copy Plot</strong> button. Then if you open your favorite word-processing program, you should be able to paste it into a document for writing reports that include the figures. You can see the first parts of this process in the screen grab in Figure <a href="1-3-section1-3.html#fig:Figure1-6">1.6</a>. You can also directly save the figures as separate files using <strong>Save as Image</strong> or <strong>Save as PDF</strong> and then insert them into your word processing documents.</p>
+
+<div class="figure"><span id="fig:Figure1-6"></span>
+<img src="chapter1_files/image010.png" alt="RStudio while in the process of copying the histogram." width="960" />
+<p class="caption">
+Figure 1.6: RStudio while in the process of copying the histogram.
+</p>
+</div>
+<p>The function <code>hist</code> defaults into providing a histogram on the <strong><em>frequency</em></strong> (count) scale. In most R functions, there are the default options that will occur if we don’t make any specific choices but we can override the default options if we desire. One option we can modify here is to add labels to the bars to be able to see exactly how many observations fell into each bar. Specifically, we can turn the <code>labels</code> option “on” by making it true (“T”) by adding <code>labels=T</code> to the previous call to the <code>hist</code> function, separated by a comma. Note that we will use the <code>=</code> sign only for changing options within functions.</p>
+<pre><code>&gt; hist(treadmill$RunTime, labels=T)</code></pre>
+
+<div class="figure"><span id="fig:Figure1-7"></span>
+<img src="01-preface_files/figure-html/Figure1-7-1.png" alt="Histogram of Run Times with counts in bars labeled." width="384" />
+<p class="caption">
+Figure 1.7: Histogram of Run Times with counts in bars labeled.
+</p>
+</div>
+<p>Based on this histogram, it does not appear that there any outliers in the responses since there are no bars that are separated from the other observations. However, the distribution does not look symmetric and there might be a skew to the distribution. Specifically, it appears to be <strong><em>skewed right</em></strong> (the right tail is longer than the left). But histograms can sometimes mask features of the data set by binning observations and it is hard to find the percentiles accurately from the plot.</p>
+<p>When assessing outliers and skew, the <strong><em>boxplot</em></strong> (or <em>Box and Whiskers</em> plot) can also be helpful (Figure <a href="1-3-section1-3.html#fig:Figure1-8">1.8</a>) to describe the shape of the distribution as it displays the 5-number summary and will also indicate observations that are “far” above the middle of the observations. R’s <code>boxplot</code> function uses the standard rule to indicate an observation as a <strong><em>potential outlier</em></strong> if it falls more than 1.5 times the <strong><em>IQR</em></strong> (Inter-Quartile Range, calculated as Q3 – Q1) below Q1 or above Q3. The potential outliers are plotted with circles and the <em>Whiskers</em> (lines that extend from Q1 and Q3 typically to the minimum and maximum) are shortened to only go as far as observations that are within <span class="math inline">\(1.5*\)</span>IQR of the upper and lower quartiles. The <em>box</em> part of the boxplot is a box that goes from Q1 to Q3 and the median is displayed as a line somewhere inside the box<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a>. Looking back at the summary statistics above, Q1=9.78 and Q3=11.27, providing an IQR of:</p>
+<pre><code>&gt; IQR &lt;- 11.27 - 9.78
+&gt; IQR
+[1] 1.49</code></pre>
+<p>One observation (the maximum value of 14.03) is indicated as a potential outlier based on this result by being larger than Q3 <span class="math inline">\(+1.5*\)</span>IQR, which was 13.505:</p>
+<pre><code>&gt; 11.27 + 1.5*IQR
+[1] 13.505</code></pre>
+<p>The boxplot also shows a slight indication of a right skew (skew towards larger values) with the distance from the minimum to the median being smaller than the distance from the median to the maximum. Additionally, the distance from Q1 to the median is smaller than the distance from the median to Q3. It is modest skew, but worth noting.</p>
+
+<div class="figure"><span id="fig:Figure1-8"></span>
+<img src="01-preface_files/figure-html/Figure1-8-1.png" alt="Boxplot of 1.5 mile Run Times." width="384" />
+<p class="caption">
+Figure 1.8: Boxplot of 1.5 mile Run Times.
+</p>
+</div>
+<pre><code>&gt; boxplot(treadmill$RunTime)</code></pre>
+<p>While the default boxplot is fine, it fails to provide good graphical labels, especially on the y-axis. Additionally, there is no title on the plot. The following code provides some enhancements to the plot by using the <code>ylab</code> and <code>main</code> options in the call to <code>boxplot</code>, with the results displayed in Figure <a href="1-3-section1-3.html#fig:Figure1-9">1.9</a>. When we add text to plots, it will be contained within quotes and be assigned into the options <code>ylab</code> (for y-axis) or <code>main</code> (for the title) here to put it into those locations.</p>
+
+<div class="figure"><span id="fig:Figure1-9"></span>
+<img src="01-preface_files/figure-html/Figure1-9-1.png" alt="Boxplot of Run Times with improved labels." width="384" />
+<p class="caption">
+Figure 1.9: Boxplot of Run Times with improved labels.
+</p>
+</div>
+<pre><code>&gt; boxplot(treadmill$RunTime, ylab=&quot;1.5 Mile Run Time (minutes)&quot;, 
+          main=&quot;Boxplot of the Run Times of n=31 participants&quot;)</code></pre>
+<p>Throughout the book, we will often use extra options to make figures that are easier for you to understand. There are often simpler versions of the functions that will suffice but the extra work to get better labeled figures is often worth it. I guess the point is that “a picture is worth a thousand words” but in data visualization, that is only true if the reader can understand what is being displayed. It is also important to think about the quality of the information that is being displayed, regardless of how pretty the graphic might be. So maybe it is better to say “a picture can be worth a thousand words” if it is well-labeled?</p>
+<p>All the previous results were created by running the R code and then copying the results from either the console or by copying the figure and then pasting the results into the typesetting program. There is another way to use RStudio where you can have it compile the results (both output and figures) directly into a document together with the code that generated it, using what is called R Markdown (<a href="http://shiny.rstudio.com/articles/rmarkdown.html" class="uri">http://shiny.rstudio.com/articles/rmarkdown.html</a>). It adds some additional setup complexity we want to avoid for now but is basically what we used to prepare this book. The main reason to mention this is that you will see a change in formatting of the R code and output from here forward as you will no longer see the command prompt (“&gt;”) with the code. The output will be flagged by having two “##”’s before it. For example, the summary statistics for the <em>RunTime</em> variable from <code>favstats</code> function would look like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">favstats</span>(treadmill<span class="op">$</span>RunTime)</code></pre></div>
+<pre><code>##   min   Q1 median    Q3   max     mean       sd  n missing
+##  8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0</code></pre>
+<p>Statisticians (and other scientists) are starting to use these methods because they provide what is called “Reproducible research” <span class="citation">(Gandrud <a href="#ref-Gandrud2015">2015</a>)</span> where all the code and output it produced are available in a single place. This allows different researchers to run and verify results or the original researchers to revisit their earlier work at a later date and recreate all their results exactly. Scientific publications are currently encouraging researchers to work in this way and may someday require it. In this book, we focus on the R code and show the results from running it, but you may want to consider exploring these alternative options. Ask your instructor to show you this way of working and see if you like it better than copying and pasting everything.</p>
+<p>Finally, when you are done with your work and attempt to exit out of RStudio, it will ask you to save your workspace. <strong><em>DO NOT DO THIS!</em></strong> It will just create a cluttered workspace and could even cause you to get incorrect results. If you save your R code (and edit it to only contain the parts of it that worked) via the script window, you can re-create any results by simply re-running that code. If you find that you have lots of “stuff” in your workspace because you accidentally saved your workspace, just run <code>rm(list = ls())</code>. It will delete all the data sets from your workspace.</p>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-mosaic">
+<p>Pruim, Randall, Daniel T. Kaplan, and Nicholas J. Horton. 2017. <em>Mosaic: Project Mosaic Statistics and Mathematics Teaching Utilities</em>. <a href="https://CRAN.R-project.org/package=mosaic" class="uri">https://CRAN.R-project.org/package=mosaic</a>.</p>
+</div>
+<div id="ref-Gandrud2015">
+<p>Gandrud, Christopher. 2015. <em>Reproducible Research with R and R Studio, Second Edition</em>. Chapman Hall, CRC.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="9">
+<li id="fn9"><p>Tibbles are R are objects that can contain both categorical and quantitative variables on your <span class="math inline">\(n\)</span> subjects with a name for each variable that is also the name of each column in a matrix. Each subject is a row of the data set. The name (supposedly) is due to the way <em>table</em> sounds in the accent of a particularly influential developer at RStudio who is from New Zealand.<a href="1-3-section1-3.html#fnref9">↩</a></p></li>
+<li id="fn10"><p>The median, quartiles and whiskers sometimes occur at the same values when there are many tied observations. If you can’t see all the components of the boxplot, produce the numerical summary to help you understand what happened.<a href="1-3-section1-3.html#fnref10">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="1-2-section1-2.html"><button class="btn btn-default">Previous</button></a>
+<a href="1-4-section1-4.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

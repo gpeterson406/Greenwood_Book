@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="A Second Semester Statistics Course with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="A Second Semester Statistics Course with R">
+
+<title>A Second Semester Statistics Course with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Beanplots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Chapter summary</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Summary of important R code</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for Prisoner Rating data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and table plots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient (Optional section)</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomizing inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section2-8" class="section level2">
+<h2><span class="header-section-number">2.8</span> Confidence intervals and bootstrapping</h2>
+<p>Randomly shuffling the treatments between the observations is like randomly sampling the treatments without replacement. In other words, we randomly sample one observation at a time from the treatments until we have <span class="math inline">\(n\)</span> observations. This provides us with a technique for testing hypotheses because it provides new splits of the observations into groups that are as interesting as what we observed if the null hypothesis is assumed true. In most situations, we also want to estimate parameters of interest and provide <strong><em>confidence intervals</em></strong> for those parameters (an interval where we are __% <strong><em>confident</em></strong> that the true parameter lies). As before, there are two options we will consider – a parametric and a nonparametric approach. The nonparametric approach will be using what is called <strong><em>bootstrapping</em></strong> and draws its name from “pull yourself up by your bootstraps” where you improve your situation based on your own efforts. In statistics, we make our situation or inferences better by re-using the observations we have by assuming that the sample represents the population. Since each observation represents other similar observations in the population that we didn’t get to measure, if we <strong><em>sample with replacement</em></strong> to generate a new data set of size <em>n</em> from our data set (also of size <em>n</em>) it mimics the process of taking repeated random samples of size <span class="math inline">\(n\)</span> from our population of interest. This process also ends up giving us useful sampling distributions of statistics even when our standard normality assumption is violated, similar to what we encountered in the permutation tests. Bootstrapping is especially useful in situations where we are interested in statistics other than the mean (say we want a confidence interval for a median or a standard deviation) or when we consider functions of more than one parameter and don’t want to derive the distribution of the statistic (say the difference in two medians). In this text, bootstrapping is used to provide more trustworthy inferences when some of our assumptions (especially normality) might be violated for our parametric procedure.</p>
+<p>To perform bootstrapping, we will use the <code>resample</code> function from the <code>mosaic</code> package. We can apply this function to a data set and get a new version of the data set by sampling new observations <em>with replacement</em> from the original one. The new, bootstrapped version of the data set (called <code>MockJury_BTS</code> below) contains a new variable called <code>orig.id</code> which is the number of the subject from the original data set. By summarizing how often each of these id’s occurred in a bootstrapped data set, we can see how the re-sampling works. The <code>table</code> function will count up how many times each observation was used in the bootstrap sample, providing a row with the id followed by a row with the count<a href="#fn30" class="footnoteRef" id="fnref30"><sup>30</sup></a>. In the first bootstrap sample shown, the 1<sup>st</sup>, 4<sup>th</sup>, and 10<sup>th</sup> observations were sampled one time each, the 5<sup>th</sup> observation was sampled three times, and the 7<sup>th</sup>, 8<sup>th</sup>, 9<sup>th</sup>, and many others were not sampled at all. Bootstrap sampling thus picks some observations multiple times and to do that it has to ignore some<a href="#fn31" class="footnoteRef" id="fnref31"><sup>31</sup></a> observations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MockJury_BTS &lt;-<span class="st"> </span><span class="kw">resample</span>(MockJury2)
+<span class="kw">table</span>(<span class="kw">as.numeric</span>(MockJury_BTS<span class="op">$</span>orig.id))</code></pre></div>
+<pre><code>## 
+##  1  2  3  4  5  6 10 11 12 14 15 17 18 19 20 22 24 26 29 30 32 35 36 37 39 
+##  1  2  2  1  3  2  1  2  1  1  3  1  2  1  2  1  2  1  2  2  2  2  1  2  2 
+## 40 42 43 44 45 46 47 48 49 55 58 59 60 61 69 70 71 72 74 75 
+##  2  1  1  4  2  2  1  2  1  2  1  1  2  2  2  2  2  1  1  1</code></pre>
+<p>Like in permutations, one randomization isn’t enough. A second bootstrap sample is also provided to help you get a sense of what bootstrap data sets contain. It did not select subject 7 but did select 6, 14, and 21 more than once. You can see other variations in the resulting re-sampling of subjects with the most sampled subjects 6 and 50 sampled four times. With <span class="math inline">\(n=75\)</span>, the the chance of selecting any observation for any slot in the new data set is <span class="math inline">\(1/75\)</span> and the expected or mean number of appearances we expect to see for an observation is the number of random draws times the probably of selection on each so <span class="math inline">\(75*1/75=1\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MockJury_BTS2 &lt;-<span class="st"> </span><span class="kw">resample</span>(MockJury2)
+<span class="kw">table</span>(<span class="kw">as.numeric</span>(MockJury_BTS2<span class="op">$</span>orig.id))</code></pre></div>
+<pre><code>## 
+##  1  2  3  5  6  8 11 12 13 14 15 18 19 20 21 23 24 26 27 28 29 31 32 34 36 
+##  1  1  1  1  4  1  1  1  1  3  1  1  1  1  3  2  2  1  1  1  2  1  2  1  2 
+## 37 38 40 42 46 48 50 51 52 56 58 59 61 62 63 66 67 68 69 72 73 74 75 
+##  1  2  1  1  1  2  4  1  1  1  3  2  1  1  1  1  1  1  2  3  1  4  2</code></pre>
+<p>We can use the two results to get an idea of distribution of results in terms of number of times observations might be re-sampled when sampling with replacement and the variation in those results, as shown in Figure <a href="2-8-section2-8.html#fig:Figure2-17">2.17</a>. We could also derive the expected counts for each number of times of re-sampling when we start with all observations having an equal chance and sampling with replacement but this isn’t important for using bootstrapping methods.</p>
+
+<div class="figure"><span id="fig:Figure2-17"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-17-1.png" alt="Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples." width="480" />
+<p class="caption">
+Figure 2.17: Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples.
+</p>
+</div>
+<p>The main point of this exploration was to see that each run of the <code>resample</code> function provides a new version of the data set. Repeating this <span class="math inline">\(B\)</span> times using another <code>for</code> loop, we will track our quantity of interest, say <span class="math inline">\(T\)</span>, in all these new “data sets” and call those results <span class="math inline">\(T^*\)</span>. The distribution of the bootstrapped <span class="math inline">\(T^*\)</span> statistics will tell us about the range of results to expect for the statistic and the middle __% of the <span class="math inline">\(T^*\)</span>’s provides a <strong><em>bootstrap confidence interval</em></strong><a href="#fn32" class="footnoteRef" id="fnref32"><sup>32</sup></a> for the true parameter – here the <em>difference in the two population means</em>.</p>
+<p>To make this concrete, we can revisit our previous examples, starting with the <code>MockJury2</code> data created before and our interest in comparing the mean sentences for the <em>Average</em> and <em>Unattractive</em> picture groups. The bootstrapping code is very similar to the permutation code except that we apply the <code>resample</code> function to the entire data set as opposed to the <code>shuffle</code> function that was applied only to the explanatory variable.</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">diffmean</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury2); Tobs</code></pre></div>
+<pre><code>## diffmean 
+## 1.837127</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B &lt;-<span class="st"> </span><span class="dv">1000</span>
+Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)
+<span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
+  Tstar[b] &lt;-<span class="st"> </span><span class="kw">diffmean</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span><span class="kw">resample</span>(MockJury2))
+  }
+<span class="kw">favstats</span>(Tstar)</code></pre></div>
+<pre><code>##         min       Q1   median       Q3      max     mean        sd    n
+##  -0.3627312 1.305773 1.833091 2.385281 4.988756 1.854428 0.8438987 1000
+##  missing
+##        0</code></pre>
+
+<div class="figure"><span id="fig:Figure2-18"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-18-1.png" alt="Histogram and density curve of bootstrap distributions of difference in sample mean Years with vertical line for the observed difference in the means of 1.84 years." width="960" />
+<p class="caption">
+Figure 2.18: Histogram and density curve of bootstrap distributions of difference in sample mean <code>Years</code> with vertical line for the observed difference in the means of 1.84 years.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<p>In this situation, the observed difference in the mean sentences is 1.84 years (<em>Unattractive</em> - <em>Average</em>), which is the vertical line in Figure <a href="2-8-section2-8.html#fig:Figure2-18">2.18</a>. The bootstrap distribution shows the results for the difference in the sample means when fake data sets are re-constructed by sampling from the original data set with replacement. The bootstrap distribution is approximately centered at the observed value (difference in the sample means) and is relatively symmetric.</p>
+<p>The permutation distribution in the same situation (Figure <a href="#fig:Figure2-12"><strong>??</strong></a>) had a similar shape but was centered at 0. Permutations create sampling distributions based on assuming the null hypothesis is true, which is useful for hypothesis testing. Bootstrapping creates distributions centered at the observed result, which is the sampling distribution “under the alternative” or when no null hypothesis is assumed; bootstrap distributions are useful for generating confidence intervals for the true parameter values.</p>
+<p>To create a 95% bootstrap confidence interval for the difference in the true mean sentences (<span class="math inline">\(\mu_\text{Unattr}-\mu_\text{Avg}\)</span>), select the middle 95% of results from the bootstrap distribution. Specifically, find the 2.5<sup>th</sup> percentile and the 97.5<sup>th</sup> percentile (values that put 2.5 and 97.5% of the results to the left) in the bootstrap distribution, which leaves 95% in the middle for the confidence interval. To find percentiles in a distribution in R, functions are of the form <code>q[Name of distribution]</code>, with the function <code>qt</code> extracting percentiles from a <span class="math inline">\(t\)</span>-distribution (examples below). From the bootstrap results, use the <code>qdata</code> function on the <code>Tstar</code> results that contain the bootstrap distribution of the statistic of interest.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qdata</span>(Tstar, <span class="fl">0.025</span>)</code></pre></div>
+<pre><code>##         p  quantile 
+## 0.0250000 0.2414232</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qdata</span>(Tstar, <span class="fl">0.975</span>)</code></pre></div>
+<pre><code>##        p quantile 
+## 0.975000 3.521528</code></pre>
+<p>These results tell us that the 2.5<sup>th</sup> percentile of the bootstrap distribution is at 0.24 years and the 97.5<sup>th</sup> percentile is at 3.52 years. We can combine these results to provide a 95% confidence for <span class="math inline">\(\mu_\text{Unattr}-\mu_\text{Avg}\)</span> that is between 0.24 and 3.52 years. We can interpret this as with any confidence interval, that we are 95% confident that the difference in the true mean suggested sentences (<em>Unattractive</em> minus <em>Average</em> groups) is between 0.24 and 3.52 years. We can also obtain both percentiles in one line of code using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quantiles &lt;-<span class="st"> </span><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))
+quantiles</code></pre></div>
+<pre><code>##        quantile     p
+## 2.5%  0.2414232 0.025
+## 97.5% 3.5215278 0.975</code></pre>
+<p>Figure <a href="2-8-section2-8.html#fig:Figure2-19">2.19</a> displays those same percentiles on the bootstrap distribution residing in <code>Tstar</code>.</p>
+
+<div class="figure"><span id="fig:Figure2-19"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-19-1.png" alt="Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (vertical lines)." width="960" />
+<p class="caption">
+Figure 2.19: Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (vertical lines).
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)
+<span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</code></pre></div>
+<p>Although confidence intervals can exist without referencing hypotheses, we can revisit our previous hypotheses and see what this confidence interval tells us about the test of <span class="math inline">\(H_0: \mu_\text{Unattr} = \mu_\text{Avg}\)</span>. This null hypothesis is equivalent to testing <span class="math inline">\(H_0: \mu_\text{Unattr} - \mu_\text{Avg} = 0\)</span>, that the difference in the true means is equal to 0 years. And the difference in the means was the scale for our confidence interval, which did not contain 0 years. We will call 0 an interesting <strong><em>reference value</em></strong> for the confidence interval, because here it is the value where the true means are equal to each other (have a difference of 0 years). In general, if our confidence interval does not contain 0, then it is saying that 0 is not one of our likely values for the difference in the true means. This implies that we should reject a claim that they are equal. This provides the same inferences for the hypotheses that we considered previously using both a parametric and permutation approach.</p>
+<p>The general summary is that we can use confidence intervals to test hypotheses by assessing whether the reference value under the null hypothesis is in the confidence interval (FTR <span class="math inline">\(H_0\)</span>) or outside the confidence interval (Reject <span class="math inline">\(H_0\)</span>). P-values are more informative about hypotheses (measure of evidence against the null hypothesis) but confidence intervals are more informative about the size of differences, so both offer useful information and, as shown here, can provide consistent conclusions about hypotheses.</p>
+<p>As in the previous situation, we also want to consider the parametric approach for comparison purposes and to have that method available, especially to help us understand some methods where we will only consider parametric inferences in later chapters. The parametric confidence interval is called the <strong><em>equal variance, two-sample t confidence interval</em></strong> and additionally assumes that the populations being sampled from are normally distributed. It leads to using a <span class="math inline">\(t\)</span>-distribution to form the interval. The output from the <code>t.test</code> function provides the parametric 95% confidence interval calculated for you:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury2, <span class="dt">var.equal=</span>T)</code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  Years by Attr
+## t = -2.1702, df = 73, p-value = 0.03324
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -3.5242237 -0.1500295
+## sample estimates:
+##      mean in group Average mean in group Unattractive 
+##                   3.973684                   5.810811</code></pre>
+<p>The <code>t.test</code> function again switched the order of the groups and provides slightly different end-points than our bootstrap confidence interval (both are made at the 95% confidence level though), which was slightly narrower. Both intervals have the same interpretation, only the methods for calculating the intervals and the assumptions differ. Specifically, the bootstrap interval can tolerate different distribution shapes other than normal and still provide intervals that work well<a href="#fn33" class="footnoteRef" id="fnref33"><sup>33</sup></a>. The other assumptions are all the same as for the hypothesis test, where we continue to assume that we have independent observations with equal variances for the two groups.</p>
+<p>The formula that <code>t.test</code> is using to calculate the parametric <strong><em>equal variance two-sample t confidence interval</em></strong> is:</p>
+<p><span class="math display">\[\bar{x}_1 - \bar{x}_2 \mp t^*_{df}s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}\]</span></p>
+<p>In this situation, the <em>df</em> is again <span class="math inline">\(n_1+n_2-2\)</span> and <span class="math inline">\(s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}\)</span>. The <span class="math inline">\(t^*_{df}\)</span> is a multiplier that comes from finding the percentile from the <span class="math inline">\(t\)</span>-distribution that puts <span class="math inline">\(C\)</span>% in the middle of the distribution with <span class="math inline">\(C\)</span> being the confidence level. It is important to note that this <span class="math inline">\(t^*\)</span> has nothing to do with the previous test statistic <span class="math inline">\(t\)</span>. It is confusing and many of you will, at some point, happily take the result from a test statistic calculation and use it for a multiplier in a <span class="math inline">\(t\)</span>-based confidence interval. Figure <a href="2-8-section2-8.html#fig:Figure2-20">2.20</a> shows the <span class="math inline">\(t\)</span>-distribution with 73 degrees of freedom and the cut-offs that put 95% of the area in the middle.</p>
+
+<div class="figure"><span id="fig:Figure2-20"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-20-1.png" alt="Plot of \(t(73)\) with cut-offs for putting 95% of distribution in the middle." width="480" />
+<p class="caption">
+Figure 2.20: Plot of <span class="math inline">\(t(73)\)</span> with cut-offs for putting 95% of distribution in the middle.
+</p>
+</div>
+<p>For 95% confidence intervals, the multiplier is going to be close to 2 and anything else is a sign of a mistake. We can use R to get the multipliers for confidence intervals using the <code>qt</code> function in a similar fashion to how <code>qdata</code> was used in the bootstrap results, except that this new value must be used in the previous confidence interval formula. This function produces values for requested percentiles, so if we want to put 95% in the middle, we place 2.5% in each tail of the distribution and need to request the 97.5<sup>th</sup> percentile. Because the <span class="math inline">\(t\)</span>-distribution is always symmetric around 0, we merely need to look up the value for the 97.5<sup>th</sup> percentile and know that the multiplier for the 2.5<sup>th</sup> percentile is just <span class="math inline">\(-t^*\)</span>. The <span class="math inline">\(t^*\)</span> multiplier to form the confidence interval is 1.993 for a 95% confidence interval when the <span class="math inline">\(df=73\)</span> based on the results from <code>qt</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">73</span>)</code></pre></div>
+<pre><code>## [1] 1.992997</code></pre>
+<p>Note that the 2.5<sup>th</sup> percentile is just the negative of this value due to symmetry and the real source of the minus in the minus/plus in the formula for the confidence interval.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dt">df=</span><span class="dv">73</span>)</code></pre></div>
+<pre><code>## [1] -1.992997</code></pre>
+<p>We can also re-write the confidence interval formula into a slightly more general form as</p>
+<p><span class="math display">\[\bar{x}_1 - \bar{x}_2 \mp t^*_{df}SE_{\bar{x}_1 - \bar{x}_2}\ \text{ OR }\ 
+\bar{x}_1 - \bar{x}_2 \mp ME\]</span></p>
+<p>where <span class="math inline">\(SE_{\bar{x}_1 - \bar{x}_2} = s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}\)</span> and <span class="math inline">\(ME = t^*_{df}SE_{\bar{x}_1 - \bar{x}_2}\)</span>. In some situations, researchers will report the <strong><em>standard error</em></strong> (SE) or <strong><em>margin of error</em></strong> (ME) as a method of quantifying the uncertainty in a statistic. The SE is an estimate of the standard deviation of the statistic (here <span class="math inline">\(\bar{x}_1 - \bar{x}_2\)</span>) and the ME is an estimate of the precision of a statistic that can be used to directly form a confidence interval. The ME depends on the choice of confidence level although 95% is almost always selected.</p>
+<p>To finish this example, R can be used to help you do calculations much like a calculator except with much more power “under the hood”. You have to make sure you are careful with using <code>( )</code> to group items and remember that the asterisk (*) is used for multiplication in R. We need the pertinent information which is available from the <code>favstats</code> output repeated below to calculate the confidence interval “by hand”<a href="#fn34" class="footnoteRef" id="fnref34"><sup>34</sup></a> using R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">favstats</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury2)</code></pre></div>
+<pre><code>##           Attr min Q1 median Q3 max     mean       sd  n missing
+## 1      Average   1  2      3  5  12 3.973684 2.823519 38       0
+## 2 Unattractive   1  2      5 10  15 5.810811 4.364235 37       0</code></pre>
+<p>Start with typing the following command to calculate <span class="math inline">\(s_p\)</span> and store it in a variable named <code>sp</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sp &lt;-<span class="st"> </span><span class="kw">sqrt</span>(((<span class="dv">38</span><span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>(<span class="fl">2.8235</span><span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>(<span class="dv">37</span><span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>(<span class="fl">4.364</span><span class="op">^</span><span class="dv">2</span>))<span class="op">/</span>(<span class="dv">38</span><span class="op">+</span><span class="dv">37</span><span class="op">-</span><span class="dv">2</span>))
+sp</code></pre></div>
+<pre><code>## [1] 3.665036</code></pre>
+<p>Then calculate the confidence interval that <code>t.test</code> provided using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">3.974</span><span class="op">-</span><span class="fl">5.811</span><span class="op">+</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">73</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">38</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">37</span>)</code></pre></div>
+<pre><code>## [1] -3.5240302 -0.1499698</code></pre>
+<p>The previous code uses <code>c(-1, 1)</code> times the margin of error to subtract and add the ME to the difference in the sample means (<span class="math inline">\(3.974-5.811\)</span>), which generates the lower and then upper bounds of the confidence interval. If desired, we can also use just the last portion of the previous calculation to find the margin of error, which is 1.69 here.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">73</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">38</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">37</span>)</code></pre></div>
+<pre><code>## [1] 1.68703</code></pre>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="30">
+<li id="fn30"><p>The <code>as.numeric</code> function is also used here. It really isn’t important but makes sure the output of <code>table</code> is sorted by observation number by first converting the <em>orig.id</em> variable into a numeric vector.<a href="2-8-section2-8.html#fnref30">↩</a></p></li>
+<li id="fn31"><p>In any bootstrap sample, about 1/3 of the observations are not used at all.<a href="2-8-section2-8.html#fnref31">↩</a></p></li>
+<li id="fn32"><p>There are actually many ways to use this information to make a confidence interval. We are using the simplest method that is called the “percentile” method.<a href="2-8-section2-8.html#fnref32">↩</a></p></li>
+<li id="fn33"><p>When hypothesis tests “work well” they have high power to detect differences while having Type I error rates that are close to what we choose <em>a priori</em>. When confidence intervals “work well”, they contain the true parameter value in repeated random samples at around the selected confidence level.<a href="2-8-section2-8.html#fnref33">↩</a></p></li>
+<li id="fn34"><p>We will often use this term to mean from the component summary information – not that you need to go back to the data set and calculate the means and standard deviations.<a href="2-8-section2-8.html#fnref34">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="2-7-section2-7.html"><button class="btn btn-default">Previous</button></a>
+<a href="2-9-section2-9.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

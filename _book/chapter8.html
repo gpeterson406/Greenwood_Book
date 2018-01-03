@@ -523,10 +523,10 @@ Figure 8.6: Diagnostic plots for model m4: <span class="math inline">\(\text{Sno
 <p>The two flagged points, observations 9 and 10 in the data set, are for the sites “Northeast Entrance” (to Yellowstone) and “Combination”. We can use the MLR equation to do some prediction for each observation and calculate residuals to see how far the model’s predictions are from the actual observed values for these sites. For the Northeast Entrance, the <em>Max.Temp</em> was 45, the <em>Min.Temp</em> was 28, and the <em>Elevation</em> was 7350 as you can see in this printout of just the two rows of the data set available by referencing rows 9 and 10 in the bracket from <code>snotel2</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">snotel2[<span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">10</span>),]</code></pre></div>
 <pre><code>## # A tibble: 2 x 6
-##      ID            Station Max.Temp Min.Temp Elevation Snow.Depth
-##   &lt;int&gt;              &lt;chr&gt;    &lt;int&gt;    &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
+##      ID Station            Max.Temp Min.Temp Elevation Snow.Depth
+##   &lt;int&gt; &lt;chr&gt;                 &lt;int&gt;    &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
 ## 1    18 Northeast Entrance       45       28      7350       11.2
-## 2    53        Combination       36       28      5600       14.0</code></pre>
+## 2    53 Combination              36       28      5600       14.0</code></pre>
 <p>The estimated <em>Snow Depth</em> for the <em>Northeast Entrance</em> site (observation 9) is found using the estimated model with</p>
 <p><span class="math display">\[\begin{array}{rl}
 \widehat{\text{SnowDepth}}_9 &amp;= -10.51 + 0.0123\cdot\text{Elevation}_9 -
@@ -634,8 +634,8 @@ Figure 8.9: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp
 <p>This worry-some observation is located in the 22<sup>nd</sup> row of the original data set:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">snotel2[<span class="dv">22</span>,]</code></pre></div>
 <pre><code>## # A tibble: 1 x 6
-##      ID          Station Max.Temp Min.Temp Elevation Snow.Depth
-##   &lt;int&gt;           &lt;fctr&gt;    &lt;int&gt;    &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
+##      ID Station          Max.Temp Min.Temp Elevation Snow.Depth
+##   &lt;int&gt; &lt;fctr&gt;              &lt;int&gt;    &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
 ## 1    36 Bloody [Redact.]       39       26      7550       27.2</code></pre>
 <p>With the removal of both the “Northeast Entrance” and “Bloody <span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>” sites, there are <span class="math inline">\(n=23\)</span> observations remaining. This model (<code>m6</code>) seems to contain residual diagnostics (Figure <a href="chapter8.html#fig:Figure8-8">8.9</a>) that are finally generally reasonable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])
@@ -703,16 +703,16 @@ newdata1</code></pre></div>
 <pre><code>## # A tibble: 30 x 3
 ##    Elevation Min.Temp Max.Temp
 ##        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-##  1  5000.000   27.826  36.3913
-##  2  5103.448   27.826  36.3913
-##  3  5206.897   27.826  36.3913
-##  4  5310.345   27.826  36.3913
-##  5  5413.793   27.826  36.3913
-##  6  5517.241   27.826  36.3913
-##  7  5620.690   27.826  36.3913
-##  8  5724.138   27.826  36.3913
-##  9  5827.586   27.826  36.3913
-## 10  5931.034   27.826  36.3913
+##  1      5000     27.8     36.4
+##  2      5103     27.8     36.4
+##  3      5207     27.8     36.4
+##  4      5310     27.8     36.4
+##  5      5414     27.8     36.4
+##  6      5517     27.8     36.4
+##  7      5621     27.8     36.4
+##  8      5724     27.8     36.4
+##  9      5828     27.8     36.4
+## 10      5931     27.8     36.4
 ## # ... with 20 more rows</code></pre>
 <p>The predicted snow depths along with 95% confidence intervals for the mean, holding temperatures at their means, are:</p>
 
@@ -1287,18 +1287,18 @@ satGPA<span class="op">$</span>SEXINDICATOR &lt;-<span class="st"> </span><span 
 <span class="co"># Explore first few observations</span>
 <span class="kw">head</span>(<span class="kw">tibble</span>(<span class="dt">SEX=</span>satGPA<span class="op">$</span>SEX, <span class="dt">SEXINDICATOR=</span>satGPA<span class="op">$</span>SEXINDICATOR), <span class="dv">10</span>) </code></pre></div>
 <pre><code>## # A tibble: 10 x 2
-##       SEX SEXINDICATOR
+##    SEX    SEXINDICATOR
 ##    &lt;fctr&gt;        &lt;dbl&gt;
-##  1   MALE            0
-##  2 FEMALE            1
-##  3 FEMALE            1
-##  4   MALE            0
-##  5   MALE            0
-##  6 FEMALE            1
-##  7   MALE            0
-##  8   MALE            0
-##  9 FEMALE            1
-## 10   MALE            0</code></pre>
+##  1 MALE           0   
+##  2 FEMALE         1.00
+##  3 FEMALE         1.00
+##  4 MALE           0   
+##  5 MALE           0   
+##  6 FEMALE         1.00
+##  7 MALE           0   
+##  8 MALE           0   
+##  9 FEMALE         1.00
+## 10 MALE           0</code></pre>
 <p>We can define the indicator variable more generally by calling it <span class="math inline">\(I_{\text{Female},i}\)</span> to denote that it is an indicator <span class="math inline">\((I)\)</span> that takes on a value of 1 for observations in the category <em>Female</em> and 0 otherwise (<em>Male</em>) – changing based on the observation (<span class="math inline">\(i\)</span>). Indicator variables, once created, are quantitative variables that take on values of 0 or 1 and we can put them directly into linear models with other <span class="math inline">\(x\text{&#39;s}\)</span> (quantitative or categorical). If we replace the categorical <code>SEX</code> variable with our quantitative <code>SEXINDICATOR</code> and re-fit the model, we get:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SATSex2 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATM<span class="op">+</span>SEXINDICATOR, <span class="dt">data=</span>satGPA)
 <span class="kw">summary</span>(SATSex2)</code></pre></div>
@@ -1387,18 +1387,18 @@ Figure 8.21: Term-plots for the estimated model for <span class="math inline">\(
 Headache &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(Headache)
 Headache</code></pre></div>
 <pre><code>## # A tibble: 98 x 6
-##       type treatment    u1   du1    u2   du2
-##     &lt;fctr&gt;    &lt;fctr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 Migrane        T3  2.34  5.30  5.80  8.52
-##  2 Migrane        T1  2.73  6.85  4.68  6.68
-##  3 Tension        T1  0.37  0.53  0.55  0.84
-##  4 Migrane        T3  7.50  9.12  5.70  7.88
-##  5 Migrane        T3  4.63  7.21  5.63  6.75
-##  6 Migrane        T3  3.60  7.30  4.83  7.32
-##  7 Migrane        T2  2.45  3.75  2.50  3.18
-##  8 Migrane        T1  2.31  3.25  2.00  3.30
-##  9 Migrane        T1  1.38  2.33  2.23  3.98
-## 10 Tension        T3  0.85  1.42  1.37  1.89
+##    type    treatment    u1   du1    u2   du2
+##    &lt;fctr&gt;  &lt;fctr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Migrane T3        2.34  5.30  5.80  8.52 
+##  2 Migrane T1        2.73  6.85  4.68  6.68 
+##  3 Tension T1        0.370 0.530 0.550 0.840
+##  4 Migrane T3        7.50  9.12  5.70  7.88 
+##  5 Migrane T3        4.63  7.21  5.63  6.75 
+##  6 Migrane T3        3.60  7.30  4.83  7.32 
+##  7 Migrane T2        2.45  3.75  2.50  3.18 
+##  8 Migrane T1        2.31  3.25  2.00  3.30 
+##  9 Migrane T1        1.38  2.33  2.23  3.98 
+## 10 Tension T3        0.850 1.42  1.37  1.89 
 ## # ... with 88 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">scatterplot</span>(du2<span class="op">~</span>du1<span class="op">|</span>treatment, <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>,
             <span class="dt">main=</span><span class="st">&quot;Plot of Maximum DB tolerances before and after treatment (by treatment)&quot;</span>,
@@ -2383,7 +2383,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Greenwood_Book.pdf", "Greenwood_Book.epub"],
 "toc": {
 "collapse": "subsection"
 }

@@ -563,23 +563,23 @@ MockJury<span class="op">$</span>NotBeautiful</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">tibble</span>(MockJury<span class="op">$</span>Attr, MockJury<span class="op">$</span>NotBeautiful))</code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   `MockJury$Attr` `MockJury$NotBeautiful`
-##            &lt;fctr&gt;                   &lt;lgl&gt;
-## 1       Beautiful                   FALSE
-## 2       Beautiful                   FALSE
-## 3       Beautiful                   FALSE
-## 4       Beautiful                   FALSE
-## 5       Beautiful                   FALSE
-## 6       Beautiful                   FALSE</code></pre>
+##   &lt;fctr&gt;          &lt;lgl&gt;                  
+## 1 Beautiful       F                      
+## 2 Beautiful       F                      
+## 3 Beautiful       F                      
+## 4 Beautiful       F                      
+## 5 Beautiful       F                      
+## 6 Beautiful       F</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(<span class="kw">tibble</span>(MockJury<span class="op">$</span>Attr, MockJury<span class="op">$</span>NotBeautiful))</code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   `MockJury$Attr` `MockJury$NotBeautiful`
-##            &lt;fctr&gt;                   &lt;lgl&gt;
-## 1         Average                    TRUE
-## 2         Average                    TRUE
-## 3         Average                    TRUE
-## 4         Average                    TRUE
-## 5         Average                    TRUE
-## 6         Average                    TRUE</code></pre>
+##   &lt;fctr&gt;          &lt;lgl&gt;                  
+## 1 Average         T                      
+## 2 Average         T                      
+## 3 Average         T                      
+## 4 Average         T                      
+## 5 Average         T                      
+## 6 Average         T</code></pre>
 <p>To get rid of one of the responses that are in one of the groups, we need to learn a little bit about data management in R. <strong><em>Brackets</em></strong> <code>([,])</code> are used to access and possibly modify the rows or columns in a tibble with entries before the comma operating on rows and entries after the comma on the columns. For example, if you want to see the results for the 5<sup>th</sup> subject, you can reference the 5<sup>th</sup> row of the tibble using <code>[5,]</code> after the tibble name:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MockJury[<span class="dv">5</span>,]</code></pre></div>
 <pre><code>##        Attr    Crime Years Serious exciting calm independent sincere warm
@@ -631,7 +631,7 @@ Figure 2.6: Boxplot and beanplot of the <em>Years</em> responses on the reduced 
 <p>It can be helpful to think about the null and alternative models graphically. By assuming the null hypothesis is true (means are equal) and that the random errors around the mean follow a normal distribution, we assume that the truth is as displayed in the left panel of Figure <a href="chapter2.html#fig:Figure2-7">2.7</a> – two normal distributions with the same mean and variability. The alternative model allows the two groups to potentially have different means, such as those displayed in the right panel of Figure <a href="chapter2.html#fig:Figure2-7">2.7</a> where the second group has a larger mean. Note that in this scenario, we assume that the observations all came from the same distribution except that they had different means. Depending on the statistical procedure we are using, we basically are going to assume that the observations (<span class="math inline">\(y_{ij}\)</span>) either were generated as samples from the null or alternative model. You can imagine drawing observations at random from the pictured distributions. For hypothesis testing, the null model is assumed to be true and then the unusualness of the actual result is assessed relative to that assumption. In hypothesis testing, we have to decide if we have enough evidence to reject the assumption that the null model (or hypothesis) is true. If we reject the null hypothesis, then we would conclude that the other model considered (the alternative model) is more reasonable. The researchers obviously would have hoped to encounter some sort of noticeable difference in the sentences provided for the different pictures and have been able to find enough evidence to reject the null model where the groups “look the same”.</p>
 
 <div class="figure"><span id="fig:Figure2-7"></span>
-<img src="chapter2_files/image015.png" alt="Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis."  />
+<img src="chapter2_files/image015.png" alt="Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis." width="480" />
 <p class="caption">
 Figure 2.7: Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.
 </p>
@@ -1037,9 +1037,8 @@ the treatment.</td>
 <p>The <span class="math inline">\(t\)</span>-statistic keeps the important comparison between the means in the numerator that we used before and standardizes (re-scales) that difference so that <span class="math inline">\(t\)</span> will follow a <span class="math inline">\(t\)</span>-distribution (a parametric “named” distribution) if certain assumptions are met. But first we should see if standardizing the difference in the means had an impact on our permutation test results. Instead of using the <code>diffmean</code> function, we will use the <code>t.test</code> function (see its full use below) and have it calculate the formula for <span class="math inline">\(t\)</span> for us. The R code “<code>$statistic</code>” is basically a way of extracting just the number we want to use for <span class="math inline">\(T\)</span> from a larger set of output the <code>t.test</code> function wants to provide you. We will see below that <code>t.test</code> switches the order of the difference (now it is <em>Average</em> - <em>Unattractive</em>) – always carefully check for the direction of the difference in the results. Since we are doing a two-sided test, the code resembles the permutation test code in Section <a href="chapter2.html#section2-4">2.4</a> with the new <span class="math inline">\(t\)</span>-statistic replacing the difference in the sample means that we used before.</p>
 <p>The permutation distribution in Figure <a href="#fig:Figure2-12"><strong>??</strong></a> looks similar to the previous results with slightly different x-axis scaling. The observed <span class="math inline">\(t\)</span>-statistic was <span class="math inline">\(-2.17\)</span> and the proportion of permuted results that were as or more extreme than the observed result was 0.031. This difference is due to a different set of random permutations being selected. If you run permutation code, you will often get slightly different results each time you run it. If you are uncomfortable with the variation in the results, you can run more than <span class="math inline">\(B=\)</span> 1,000 permutations (say 10,000) and the variability in the resulting p-values will be reduced further. Usually this uncertainty will not cause any substantive problems – but do not be surprised if your results vary from a colleagues if you are both analyzing the same data set or if you re-run your permutation code.</p>
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">t.test</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury2, <span class="dt">var.equal=</span>T)<span class="op">$</span>statistic</code></pre></div>
-<pre><code>## Years ~ Attr</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">t.test</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury2, <span class="dt">var.equal=</span>T)<span class="op">$</span>statistic
+Tobs</code></pre></div>
 <pre><code>##        t 
 ## -2.17023</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)
@@ -1064,7 +1063,6 @@ Figure 2.13: Plots of <span class="math inline">\(t\)</span> distributions with 
 <p>If the assumptions for the equal variance <span class="math inline">\(t\)</span>-test are met and the null hypothesis is true, then the sampling distribution of the test statistic should follow a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n_1+n_2-2\)</span> degrees of freedom. The <strong><em>t-distribution</em></strong> is a bell-shaped curve that is more spread out for smaller values of degrees of freedom as shown in Figure <a href="chapter2.html#fig:Figure2-13">2.13</a>. The <span class="math inline">\(t\)</span>-distribution looks more and more like a <strong><em>standard normal distribution</em></strong> (<span class="math inline">\(N(0,1)\)</span>) as the degrees of freedom increase.</p>
 <p>To get the p-value for the parametric <span class="math inline">\(t\)</span>-test, we need to calculate the test statistic and <span class="math inline">\(df\)</span>, then look up the areas in the tails of the <span class="math inline">\(t\)</span>-distribution relative to the observed <span class="math inline">\(t\)</span>-statistic. We’ll learn how to use R to do this below, but for now we will allow the <code>t.test</code> function to take care of this. The <code>t.test</code> function uses our formula notation (<code>Years~Attr</code>) and then <code>data=...</code> as we saw before for making plots. To get the equal-variance test result, the <code>var.equal=T</code> option needs to be turned on. Then <code>t.test</code> provides us with lots of useful output. The three results we’ve been discussing are available in the output below – the test statistic value (-2.17), <span class="math inline">\(df=73\)</span>, and the p-value, from the <span class="math inline">\(t\)</span>-distribution with 73 degrees of freedom, of 0.033.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Years <span class="op">~</span><span class="st"> </span>Attr, <span class="dt">data=</span>MockJury2, <span class="dt">var.equal=</span>T)</code></pre></div>
-<pre><code>## Years ~ Attr</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1134,7 +1132,6 @@ Figure 2.15: Side-by-side boxplot and beanplot of GPAs of STAT 217 students by s
 ## -0.2498069</code></pre>
 <p>First, we can try the parametric approach:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217, <span class="dt">var.equal=</span>T)</code></pre></div>
-<pre><code>## GPA ~ Sex</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1290,7 +1287,6 @@ Figure 2.19: Histogram and density curve of bootstrap distribution with 95% boot
 <p>The general summary is that we can use confidence intervals to test hypotheses by assessing whether the reference value under the null hypothesis is in the confidence interval (FTR <span class="math inline">\(H_0\)</span>) or outside the confidence interval (Reject <span class="math inline">\(H_0\)</span>). P-values are more informative about hypotheses (measure of evidence against the null hypothesis) but confidence intervals are more informative about the size of differences, so both offer useful information and, as shown here, can provide consistent conclusions about hypotheses.</p>
 <p>As in the previous situation, we also want to consider the parametric approach for comparison purposes and to have that method available, especially to help us understand some methods where we will only consider parametric inferences in later chapters. The parametric confidence interval is called the <strong><em>equal variance, two-sample t confidence interval</em></strong> and additionally assumes that the populations being sampled from are normally distributed. It leads to using a <span class="math inline">\(t\)</span>-distribution to form the interval. The output from the <code>t.test</code> function provides the parametric 95% confidence interval calculated for you:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury2, <span class="dt">var.equal=</span>T)</code></pre></div>
-<pre><code>## Years ~ Attr</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1359,7 +1355,6 @@ sp</code></pre></div>
 <pre><code>## [1] 0.0646018 0.4341982</code></pre>
 <p>So we are 95% confident that the difference in the true mean GPAs between females and males (females minus males) is between 0.065 and 0.434 GPA points. We get a similar<a href="#fn35" class="footnoteRef" id="fnref35"><sup>35</sup></a> result from the <code>t.test</code> output:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex,<span class="dt">data=</span>s217,<span class="dt">var.equal=</span>T)</code></pre></div>
-<pre><code>## GPA ~ Sex</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1377,7 +1372,6 @@ sp</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.995</span>, <span class="dt">df=</span><span class="dv">77</span>) <span class="co">#For 99% confidence and 77 df</span></code></pre></div>
 <pre><code>## [1] 2.641198</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217, <span class="dt">var.equal=</span>T, <span class="dt">conf.level=</span><span class="fl">0.90</span>)</code></pre></div>
-<pre><code>## GPA ~ Sex</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1390,7 +1384,6 @@ sp</code></pre></div>
 ## mean in group F mean in group M 
 ##        3.338378        3.088571</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217, <span class="dt">var.equal=</span>T, <span class="dt">conf.level=</span><span class="fl">0.99</span>)</code></pre></div>
-<pre><code>## GPA ~ Sex</code></pre>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -1627,7 +1620,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Greenwood_Book.pdf", "Greenwood_Book.epub"],
 "toc": {
 "collapse": "subsection"
 }

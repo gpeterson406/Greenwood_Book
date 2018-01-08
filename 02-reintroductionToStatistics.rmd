@@ -1591,14 +1591,17 @@ Usually this uncertainty will not cause any substantive problems -- but do not
 be surprised if your results vary from a colleagues if you are both analyzing 
 the same data set or if you re-run your permutation code. 
 
-(ref:fig2-12) Permutation distribution of the $t$-statistic.
-
-```{r Figure2-12, fig.cap="(ref:fig2-12)",echo=F,fig.width=10,fig.height=5,cache=T,include=F}
+```{r cache=T, include=F}
 Tobs <- t.test(Years~Attr, data=MockJury2, var.equal=T)$statistic
 Tstar <- matrix(NA, nrow=B)
 for (b in (1:B)){
   Tstar[b] <- t.test(Years~shuffle(Attr), data=MockJury2, var.equal=T)$statistic
 }
+```
+
+(ref:fig2-12) Permutation distribution of the $t$-statistic.
+
+```{r Figure2-12, fig.cap="(ref:fig2-12)",echo=F,fig.width=10,fig.height=5}
 par(mfrow=c(1,2))
 hist(Tstar, labels=T,ylim=c(0,250))
 abline(v=c(-1,1)*Tobs, lwd=2, col="red")
@@ -1655,7 +1658,7 @@ closer to the normal distribution as the degrees of freedom increase and at 20
 degrees of freedom, the $t$ distribution *almost* matches a standard normal 
 curve.
 
-```{r Figure2-13, echo=FALSE, fig.cap ="(ref:fig2-13)",fig.width=5,fig.height=4}
+```{r Figure2-13, echo=FALSE, fig.cap ="(ref:fig2-13)",fig.width=7,fig.height=4}
 xa<-seq(from=-7,to=7,length.out=300)
 par(mfrow=c(1,1))
 plot(xa,dt(xa,df=2),type="l",xlab="t-values",ylab="Density",lwd=4,ylim=c(0,0.39),main="Plot of three different t-distributions and the normal curve", cex.main=1)

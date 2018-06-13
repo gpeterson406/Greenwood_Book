@@ -238,15 +238,15 @@ img {
 <div id="section6-7" class="section level2">
 <h2><span class="header-section-number">6.7</span> Least Squares Estimation</h2>
 <p>The previous results used the <code>lm</code> function as a “black box” to generate the estimated coefficients. The lines produced probably look reasonable but you could imagine drawing other lines that might look equally plausible. Because we are interested in explaining variation in the response variable, we want a model that in some sense minimizes the residuals <span class="math inline">\((e_i=y_i-\hat{y}_i)\)</span> to find a model that explains the responses as well as possible – has <span class="math inline">\(y_i-\hat{y}_i\)</span> as small as possible. We can’t just add these up because it would always be 0 (remember why we use the variance to measure spread from introductory statistics?). We use a similar technique in regression, we find the regression line that minimizes the squared residuals <span class="math inline">\(e^2_i=(y_i-\hat{y}_i)^2\)</span> over all the observations, minimizing the <strong><em>Sum of Squared Residuals</em></strong><span class="math inline">\(\boldsymbol{=\Sigma e^2_i}\)</span>. Finding the estimated regression coefficients that minimize the sum of squared residuals is called <strong><em>least squares estimation</em></strong> and provides us a reasonable method for finding the “best” estimated regression line of all the possible choices.</p>
-<p>For the <em>Beers</em> vs <em>BAC</em> data, Figure <a href="6-7-section6-7.html#fig:Figure6-16">2.104</a> shows the result of a search for the optimal slope coefficient between values of 0 and 0.03. The plot shows how the sum of the squared residuals was minimized for the value that <code>lm</code> returned at 0.018. The main point of this is that if any other slope coefficient was tried, it did not do as good <strong>on the least squares criterion</strong> as the least squares estimates.</p>
+<p>For the <em>Beers</em> vs <em>BAC</em> data, Figure <a href="6-7-section6-7.html#fig:Figure6-16">2.105</a> shows the result of a search for the optimal slope coefficient between values of 0 and 0.03. The plot shows how the sum of the squared residuals was minimized for the value that <code>lm</code> returned at 0.018. The main point of this is that if any other slope coefficient was tried, it did not do as good <strong>on the least squares criterion</strong> as the least squares estimates.</p>
 
 <div class="figure"><span id="fig:Figure6-16"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-16-1.png" alt="Plot of sum of squared residuals vs possible slope coefficients for Beers vs BAC data, with vertical line for the least squares estimate that minimizes the sum of squared residuals." width="384" />
 <p class="caption">
-Figure 2.104: Plot of sum of squared residuals vs possible slope coefficients for <em>Beers</em> vs <em>BAC</em> data, with vertical line for the least squares estimate that minimizes the sum of squared residuals.
+Figure 2.105: Plot of sum of squared residuals vs possible slope coefficients for <em>Beers</em> vs <em>BAC</em> data, with vertical line for the least squares estimate that minimizes the sum of squared residuals.
 </p>
 </div>
-<p>Sometimes it is helpful to have a go at finding the estimates yourself. If you install and load the <code>tigerstats</code> <span class="citation">(R. Robinson and White <a href="#ref-R-tigerstats">2016</a>)</span> and <code>manipulate</code> <span class="citation">(Allaire <a href="#ref-R-manipulate">2014</a>)</span> packages in RStudio and then run <code>FindRegLine()</code>, you get a chance to try to find the optimal slope and intercept for a fake data set. Click on the “sprocket” icon in the upper left of the plot and you will see something like Figure <a href="6-7-section6-7.html#fig:Figure6-17">2.105</a>. This interaction can help you see how the residuals are being measuring in the y-direction and appreciate that <code>lm</code> takes care of this for us.</p>
+<p>Sometimes it is helpful to have a go at finding the estimates yourself. If you install and load the <code>tigerstats</code> <span class="citation">(R. Robinson and White <a href="#ref-R-tigerstats">2016</a>)</span> and <code>manipulate</code> <span class="citation">(Allaire <a href="#ref-R-manipulate">2014</a>)</span> packages in RStudio and then run <code>FindRegLine()</code>, you get a chance to try to find the optimal slope and intercept for a fake data set. Click on the “sprocket” icon in the upper left of the plot and you will see something like Figure <a href="6-7-section6-7.html#fig:Figure6-17">2.106</a>. This interaction can help you see how the residuals are being measuring in the y-direction and appreciate that <code>lm</code> takes care of this for us.</p>
 <pre><code>&gt; require(tigerstats)
 &gt; require(manipulate)
 &gt; FindRegLine()
@@ -260,7 +260,7 @@ Thanks for playing!</code></pre>
 <div class="figure"><span id="fig:Figure6-17"></span>
 <img src="chapter6_files/image063.png" alt="Results of running FindRegLine() where I didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line." width="440" />
 <p class="caption">
-Figure 2.105: Results of running <code>FindRegLine()</code> where I didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line.
+Figure 2.106: Results of running <code>FindRegLine()</code> where I didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line.
 </p>
 </div>
 <p>It ends up that the least squares criterion does not require a search across coefficients or trial and error – there are some “simple” equations available for calculating the estimates of the y-intercept and slope:</p>
@@ -309,7 +309,7 @@ Figure 2.105: Results of running <code>FindRegLine()</code> where I didn’t qui
 <div class="figure"><span id="fig:Figure6-18"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-18-1.png" alt="Scatterplot of log-hectares burned versus temperature with estimated regression line." width="576" />
 <p class="caption">
-Figure 2.106: Scatterplot of log-hectares burned versus temperature with estimated regression line.
+Figure 2.107: Scatterplot of log-hectares burned versus temperature with estimated regression line.
 </p>
 </div>
 </div>

@@ -244,7 +244,7 @@ img {
 ##   Placebo 21.5 7.166667 14.33333
 ##   Treated 20.5 6.833333 13.66667</code></pre>
 <p>In the Arthritis data set, the sample size was sufficiently large for the <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution to provide an accurate p-value since the smallest expected cell count is 6.833 (so all expected counts are larger than 5).</p>
-<p>The <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution is a right-skewed distribution that starts at 0 as shown in Figure <a href="5-6-section5-6.html#fig:Figure5-10">2.72</a>. Its shape changes as a function of its degrees of freedom. In the contingency table analyses, the <strong><em>degrees of freedom</em></strong> for the Chi-squared test are calculated as</p>
+<p>The <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution is a right-skewed distribution that starts at 0 as shown in Figure <a href="5-6-section5-6.html#fig:Figure5-10">2.73</a>. Its shape changes as a function of its degrees of freedom. In the contingency table analyses, the <strong><em>degrees of freedom</em></strong> for the Chi-squared test are calculated as</p>
 <p><span class="math display">\[\textbf{DF} \mathbf{=(R-1)*(C-1)} = (\text{number of rows }-1)*
 (\text{number of columns }-1).\]</span></p>
 <p>In the <span class="math inline">\(2 \times 3\)</span> table above, the <span class="math inline">\(\text{DF}=(2-1)*(3-1)=2\)</span> leading to a Chi-square distribution with 2 <em>df</em> for the distribution of <span class="math inline">\(X^2\)</span> under the null hypothesis. The p-value is based on the area to the right of the observed <span class="math inline">\(X^2\)</span> value of 13.055 and the <code>pchisq</code> function provides that area as 0.00146. Note that this is very similar to the permutation result found previously for these data.</p>
@@ -255,16 +255,16 @@ img {
 <div class="figure"><span id="fig:Figure5-10"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-10-1.png" alt="\(\boldsymbol{\chi^2}\)-distribution with two degrees of freedom with 13.1 indicated with a vertical line." width="480" />
 <p class="caption">
-Figure 2.72: <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with two degrees of freedom with 13.1 indicated with a vertical line.
+Figure 2.73: <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with two degrees of freedom with 13.1 indicated with a vertical line.
 </p>
 </div>
 <p>A small side note about sample sizes is warranted here. In contingency tables, especially those based on survey data, it is common to have large overall sample sizes (<span class="math inline">\(N\)</span>). With large sample sizes, it becomes easy to reject the null the hypothesis, even when the “distance” from the null is relatively minor and possibly unimportant. By this we mean that it might be possible to reject the null hypothesis even if the observed proportions are a small practical distance from the situation described in the null. After obtaining a small p-value, we need to consider whether we have obtained <strong><em>practical significance</em></strong> (or maybe better described as <strong><em>practical importance</em></strong>) to accompany our discussion of rejecting the null hypothesis. Whether a result is large enough to be of practical importance can only be judged by knowing something about the situation we are studying and by providing a good summary of our results to allow experts to assess the size and importance of the result. “Statistical significance” (what our tests address) is just a first step in any situation although many researchers are so happy to see small p-values that this is their last step.</p>
-<p>If we revisit our observed results, re-plotted in Figure <a href="5-6-section5-6.html#fig:Figure5-11">2.73</a> since Figure <a href="5-1-section5-1.html#fig:Figure5-2">2.64</a> is many pages earlier, knowing that we have strong evidence against the null hypothesis of no difference between <em>Placebo</em> and <em>Treated</em> groups, what can we say about the effectiveness of the arthritis medication? It seems that there is a real and important increase in the proportion of patients getting improvement (<em>Some</em> or <em>Marked</em>). If the differences “looked” smaller, even with a small p-value you might not recommend someone take the drug…</p>
+<p>If we revisit our observed results, re-plotted in Figure <a href="5-6-section5-6.html#fig:Figure5-11">2.74</a> since Figure <a href="5-1-section5-1.html#fig:Figure5-2">2.65</a> is many pages earlier, knowing that we have strong evidence against the null hypothesis of no difference between <em>Placebo</em> and <em>Treated</em> groups, what can we say about the effectiveness of the arthritis medication? It seems that there is a real and important increase in the proportion of patients getting improvement (<em>Some</em> or <em>Marked</em>). If the differences “looked” smaller, even with a small p-value you might not recommend someone take the drug…</p>
 
 <div class="figure"><span id="fig:Figure5-11"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-11-1.png" alt="Stacked bar chart of the Arthritis data comparing Treated and Placebo." width="480" />
 <p class="caption">
-Figure 2.73: Stacked bar chart of the Arthritis data comparing <em>Treated</em> and <em>Placebo</em>.
+Figure 2.74: Stacked bar chart of the Arthritis data comparing <em>Treated</em> and <em>Placebo</em>.
 </p>
 </div>
 </div>

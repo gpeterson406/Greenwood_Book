@@ -249,10 +249,10 @@ satGPA &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(satGPA)
 <div class="figure"><span id="fig:Figure8-13"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-13-1.png" alt="Scatterplot matrix of SAT and GPA data set." width="672" />
 <p class="caption">
-Figure 2.151: Scatterplot matrix of SAT and GPA data set.
+Figure 2.152: Scatterplot matrix of SAT and GPA data set.
 </p>
 </div>
-<p>There are positive relationships in Figure <a href="8-8-section8-8.html#fig:Figure8-13">2.151</a> among all the pre-college measures and the <em>college GPA</em> but none are above the moderate strength level. The <em>HSGPA</em> has a highest correlation with first year of college results but its correlation is not that strong. Maybe together in a model the SAT percentiles can also be useful… Also note that plot shows an odd <em>HSGPA</em> of 4.5 that probably should be removed<a href="#fn100" class="footnoteRef" id="fnref100"><sup>100</sup></a> if that variable is going to be used (<em>HSGPA</em> was not used in the following models so the observation remains in the data).</p>
+<p>There are positive relationships in Figure <a href="8-8-section8-8.html#fig:Figure8-13">2.152</a> among all the pre-college measures and the <em>college GPA</em> but none are above the moderate strength level. The <em>HSGPA</em> has a highest correlation with first year of college results but its correlation is not that strong. Maybe together in a model the SAT percentiles can also be useful… Also note that plot shows an odd <em>HSGPA</em> of 4.5 that probably should be removed<a href="#fn100" class="footnoteRef" id="fnref100"><sup>100</sup></a> if that variable is going to be used (<em>HSGPA</em> was not used in the following models so the observation remains in the data).</p>
 <p>In MLR, the modeling process is a bit more complex and often involves more than one model, so we will often avoid the 6+ steps in testing initially and try to generate a model we can use in that more specific process. In this case, the first model of interest using the two SAT percentiles,</p>
 <p><span class="math display">\[\text{FYGPA}_i = \beta_0 + \beta_{\text{SATV}}\text{SATV}_i 
 + \beta_{\text{SATM}}\text{SATM}_i +\varepsilon_i,\]</span></p>
@@ -284,7 +284,7 @@ Figure 2.151: Scatterplot matrix of SAT and GPA data set.
 <div class="figure"><span id="fig:Figure8-14"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-14-1.png" alt="Diagnostic plots for the \(\text{FYGPA}\sim\text{ SATV }+\text{ SATM}\) model." width="960" />
 <p class="caption">
-Figure 2.152: Diagnostic plots for the <span class="math inline">\(\text{FYGPA}\sim\text{ SATV }+\text{ SATM}\)</span> model.
+Figure 2.153: Diagnostic plots for the <span class="math inline">\(\text{FYGPA}\sim\text{ SATV }+\text{ SATM}\)</span> model.
 </p>
 </div>
 <ol style="list-style-type: decimal">
@@ -308,8 +308,8 @@ Figure 2.152: Diagnostic plots for the <span class="math inline">\(\text{FYGPA}\
 </ul></li>
 <li><p><strong>Linearity of relationships:</strong></p>
 <ul>
-<li><p>The initial scatterplots (Figure <a href="8-8-section8-8.html#fig:Figure8-13">2.151</a>) do not show any clear nonlinearities with each predictor used in this model.</p></li>
-<li><p>The Residuals vs Fitted and Scale-Location plots (Figure <a href="8-8-section8-8.html#fig:Figure8-14">2.152</a>) do not show much more than a football shape, which is our desired result.</p>
+<li><p>The initial scatterplots (Figure <a href="8-8-section8-8.html#fig:Figure8-13">2.152</a>) do not show any clear nonlinearities with each predictor used in this model.</p></li>
+<li><p>The Residuals vs Fitted and Scale-Location plots (Figure <a href="8-8-section8-8.html#fig:Figure8-14">2.153</a>) do not show much more than a football shape, which is our desired result.</p>
 <ul>
 <li>Together, there is no evidence of a violation of the linearity assumption.</li>
 </ul></li>
@@ -367,14 +367,14 @@ Figure 2.152: Diagnostic plots for the <span class="math inline">\(\text{FYGPA}\
 <p><span class="math display">\[\widehat{\text{FYGPA}}_i=0.00737+0.0254\cdot\text{SATV}_i
 +0.0224\cdot\text{SATM}_i\ .\]</span></p>
 <p>So for a 1 percent increase in the <em>SATV</em> percentile, we expect, on average, to get a 0.0254 point change in <em>GPA</em>, after controlling for <em>SATM</em> percentile. Similarly, for a 1 percent increase in the <em>SATM</em> percentile, we expect, on average, to get a 0.0224 point change in <em>GPA</em>, after controlling for <em>SATV</em> percentile. While this is a correct interpretation of the slope coefficients, it is often easier to assess “practical” importance of the results by considering how much change this implies over the range of observed predictor values.</p>
-<p>The term-plots (Figure <a href="8-8-section8-8.html#fig:Figure8-15">2.153</a>) provide a visualization of the “size” of the differences in the response variable explained by each predictor. The <em>SATV</em> term-plot shows that for the range of percentiles from around the 30<sup>th</sup> percentile to the 70<sup>th</sup> percentile, the mean first year <em>GPA</em> is predicted to go from approximately 1.9 to 3.0. That is a pretty wide range of differences in GPAs across the range of observed percentiles. This looks like a pretty interesting and important change in the mean first year GPA across that range of different SAT percentiles. Similarly, the <em>SATM</em> term-plot shows that the <em>SATM</em> percentiles were observed to range between around the 30<sup>th</sup> percentile and 70<sup>th</sup> percentile and predict mean GPAs between 1.95 and 2.8. It seems that the SAT Verbal percentiles produce slightly more impacts in the model, holding the other variable constant, but that both are important variables. The 95% confidence intervals for the means in both plots suggest that the results are fairly precisely estimated – there is little variability around the predicted means in each plot. This is mostly a function of the sample size as opposed to the model itself explaining most of the variation in the responses.</p>
+<p>The term-plots (Figure <a href="8-8-section8-8.html#fig:Figure8-15">2.154</a>) provide a visualization of the “size” of the differences in the response variable explained by each predictor. The <em>SATV</em> term-plot shows that for the range of percentiles from around the 30<sup>th</sup> percentile to the 70<sup>th</sup> percentile, the mean first year <em>GPA</em> is predicted to go from approximately 1.9 to 3.0. That is a pretty wide range of differences in GPAs across the range of observed percentiles. This looks like a pretty interesting and important change in the mean first year GPA across that range of different SAT percentiles. Similarly, the <em>SATM</em> term-plot shows that the <em>SATM</em> percentiles were observed to range between around the 30<sup>th</sup> percentile and 70<sup>th</sup> percentile and predict mean GPAs between 1.95 and 2.8. It seems that the SAT Verbal percentiles produce slightly more impacts in the model, holding the other variable constant, but that both are important variables. The 95% confidence intervals for the means in both plots suggest that the results are fairly precisely estimated – there is little variability around the predicted means in each plot. This is mostly a function of the sample size as opposed to the model itself explaining most of the variation in the responses.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(effects)
 <span class="kw">plot</span>(<span class="kw">allEffects</span>(gpa1))</code></pre></div>
 
 <div class="figure"><span id="fig:Figure8-15"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-15-1.png" alt="Term-plots for the \(\text{FYGPA}\sim\text{SATV} + \text{SATM}\) model." width="576" />
 <p class="caption">
-Figure 2.153: Term-plots for the <span class="math inline">\(\text{FYGPA}\sim\text{SATV} + \text{SATM}\)</span> model.
+Figure 2.154: Term-plots for the <span class="math inline">\(\text{FYGPA}\sim\text{SATV} + \text{SATM}\)</span> model.
 </p>
 </div>
 <p>These plots also inform the types of students attending this university and successfully completing the first year of school. This seems like a good, but maybe not great, institution with few students scoring over the 75<sup>th</sup> percentile on either SAT Verbal or Math (at least that ended up in this data set). This result makes questions about their sampling mechanism re-occur as to who this data set might actually be representative of…</p>
@@ -403,7 +403,7 @@ Figure 2.153: Term-plots for the <span class="math inline">\(\text{FYGPA}\sim\te
 <pre><code>##       fit       lwr      upr
 ## 1 2.11274 0.8145859 3.410894</code></pre>
 <p>For a student with <em>SATV</em>=30 and <em>SATM</em>=60, we are 95% sure that their first year GPA will be between 0.81 and 3.4 points. You can see that while we are very certain about the mean in this situation, there is a lot of uncertainty in the predictions for individual students. The PI is so wide as to almost not be useful.</p>
-<p>To support this difficulty in getting a precise prediction for a new student, review the original scatterplots: there is quite a bit of vertical variability in first year <em>GPA</em>s for each level of any of the predictors. The residual SE, <span class="math inline">\(\hat{\sigma}\)</span>, is also informative in this regard – remember that it is the standard deviation of the residuals around the regression line. It is 0.6582, so the SD of new observations around the line is 0.66 GPA points and that is pretty large on a GPA scale. Remember that if the residuals meet our assumptions and follow a normal distribution around the line, observations within 2 or 3 SDs of the mean would be expected which is a large range of GPA values. Figure <a href="8-8-section8-8.html#fig:Figure8-16">2.154</a> remakes both term-plots, holding the other predictor at its mean, and adds the 95% prediction intervals to show the difference in variability between estimating the mean and pinning down the value of a new observation. The R code is very messy and rarely needed, but hopefully this helps reinforce the differences in these two types of intervals – to make them in MLR, you have to fix all but one of the predictor variables and we usually do that by fixing the other variables at their means.</p>
+<p>To support this difficulty in getting a precise prediction for a new student, review the original scatterplots: there is quite a bit of vertical variability in first year <em>GPA</em>s for each level of any of the predictors. The residual SE, <span class="math inline">\(\hat{\sigma}\)</span>, is also informative in this regard – remember that it is the standard deviation of the residuals around the regression line. It is 0.6582, so the SD of new observations around the line is 0.66 GPA points and that is pretty large on a GPA scale. Remember that if the residuals meet our assumptions and follow a normal distribution around the line, observations within 2 or 3 SDs of the mean would be expected which is a large range of GPA values. Figure <a href="8-8-section8-8.html#fig:Figure8-16">2.155</a> remakes both term-plots, holding the other predictor at its mean, and adds the 95% prediction intervals to show the difference in variability between estimating the mean and pinning down the value of a new observation. The R code is very messy and rarely needed, but hopefully this helps reinforce the differences in these two types of intervals – to make them in MLR, you have to fix all but one of the predictor variables and we usually do that by fixing the other variables at their means.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Remake effects plots with 95% PIs</span>
 dv1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">24</span>,<span class="dt">to=</span><span class="dv">76</span>,<span class="dt">length.out=</span><span class="dv">50</span>), <span class="dt">SATM=</span><span class="kw">rep</span>(<span class="fl">54.4</span>,<span class="dv">50</span>))
@@ -435,7 +435,7 @@ pm1 &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(<span class=
 <div class="figure"><span id="fig:Figure8-16"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-16-1.png" alt="Term-plots for the \(\text{FYGPA}\sim\text{SATV} + \text{SATM}\) model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines)." width="960" />
 <p class="caption">
-Figure 2.154: Term-plots for the <span class="math inline">\(\text{FYGPA}\sim\text{SATV} + \text{SATM}\)</span> model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines).
+Figure 2.155: Term-plots for the <span class="math inline">\(\text{FYGPA}\sim\text{SATV} + \text{SATM}\)</span> model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines).
 </p>
 </div>
 

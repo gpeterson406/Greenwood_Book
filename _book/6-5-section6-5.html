@@ -237,7 +237,7 @@ img {
 <div class="col-sm-12">
 <div id="section6-5" class="section level2">
 <h2><span class="header-section-number">6.5</span> Are tree diameters related to tree heights?</h2>
-<p>In a study at the Upper Flat Creek study area in the University of Idaho Experimental Forest, a random sample of <span class="math inline">\(n=336\)</span> trees was selected from the forest, with measurements recorded on Douglas Fir, Grand Fir, Western Red Cedar, and Western Larch trees. The data set called <code>ufc</code> is available from the <code>spuRs</code> package <span class="citation">(Jones et al. <a href="#ref-R-spuRs">2014</a>)</span> and contains <code>dbh.cm</code> (tree diameter at 1.37 m from the ground, measured in cm) and <code>height.m</code> (tree height in meters). The relationship displayed in Figure <a href="6-5-section6-5.html#fig:Figure6-11">2.99</a> is positive, moderately strong with some curvature and increasing variability as the diameter increases. There do not appear to be groups in the data set but since this contains four different types of trees, we would want to revisit this plot by type of tree.</p>
+<p>In a study at the Upper Flat Creek study area in the University of Idaho Experimental Forest, a random sample of <span class="math inline">\(n=336\)</span> trees was selected from the forest, with measurements recorded on Douglas Fir, Grand Fir, Western Red Cedar, and Western Larch trees. The data set called <code>ufc</code> is available from the <code>spuRs</code> package <span class="citation">(Jones et al. <a href="#ref-R-spuRs">2014</a>)</span> and contains <code>dbh.cm</code> (tree diameter at 1.37 m from the ground, measured in cm) and <code>height.m</code> (tree height in meters). The relationship displayed in Figure <a href="6-5-section6-5.html#fig:Figure6-11">2.100</a> is positive, moderately strong with some curvature and increasing variability as the diameter increases. There do not appear to be groups in the data set but since this contains four different types of trees, we would want to revisit this plot by type of tree.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(spuRs) <span class="co">#install.packages(&quot;spuRs&quot;)</span>
 <span class="kw">data</span>(ufc)
@@ -246,7 +246,7 @@ ufc &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(ufc)
 <div class="figure"><span id="fig:Figure6-11"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-11-1.png" alt="Scatterplot of tree heights (m) vs tree diameters (cm)." width="576" />
 <p class="caption">
-Figure 2.99: Scatterplot of tree heights (m) vs tree diameters (cm).
+Figure 2.100: Scatterplot of tree heights (m) vs tree diameters (cm).
 </p>
 </div>
 <p>Of particular interest is an observation with a diameter around 58 cm and a height of less than 5 m. Observing a tree with a diameter around 60 cm is not unusual in the data set, but none of the other trees with this diameter had heights under 15 m. It ends up that the likely outlier is in observation number 168 and because it is so unusual it likely corresponds to either a damaged tree or a recording error.</p>
@@ -274,7 +274,7 @@ Figure 2.99: Scatterplot of tree heights (m) vs tree diameters (cm).
 <div class="figure"><span id="fig:Figure6-12"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-12-1.png" alt="Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines)." width="960" />
 <p class="caption">
-Figure 2.100: Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines).
+Figure 2.101: Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines).
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">cor</span>(dbh.cm<span class="op">~</span>height.m, <span class="dt">data=</span>ufc); Tobs

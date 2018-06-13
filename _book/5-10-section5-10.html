@@ -253,12 +253,12 @@ cheating<span class="op">$</span>GPA &lt;-<span class="st"> </span><span class="
 <div class="figure"><span id="fig:Figure5-18"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-18-1.png" alt="Table plot of initial cheating and lying data set." width="480" />
 <p class="caption">
-Figure 2.80: Table plot of initial cheating and lying data set.
+Figure 2.81: Table plot of initial cheating and lying data set.
 </p>
 </div>
-<p>We can explore some interesting questions about the relationships between these variables. The table plot in Figure <a href="5-10-section5-10.html#fig:Figure5-18">2.80</a> again helps us to get a general idea of the data set and to assess some complicated aspects of the relationships between variables. For example, the rates of different unethical behaviors seem to decrease with higher GPA students (but do not completely disappear!). This data set also has a few missing GPAs that we would want to carefully consider – which sorts of students might not be willing to reveal their GPAs? It ends up that these students did not <em>admit</em> to any of the unethical behaviors… Note that we used the <code>sort=GPA</code> option in the <code>tableplot</code> function to sort the responses based on <code>GPA</code> to see how <code>GPA</code> might relate to patterns of unethical behavior.</p>
+<p>We can explore some interesting questions about the relationships between these variables. The table plot in Figure <a href="5-10-section5-10.html#fig:Figure5-18">2.81</a> again helps us to get a general idea of the data set and to assess some complicated aspects of the relationships between variables. For example, the rates of different unethical behaviors seem to decrease with higher GPA students (but do not completely disappear!). This data set also has a few missing GPAs that we would want to carefully consider – which sorts of students might not be willing to reveal their GPAs? It ends up that these students did not <em>admit</em> to any of the unethical behaviors… Note that we used the <code>sort=GPA</code> option in the <code>tableplot</code> function to sort the responses based on <code>GPA</code> to see how <code>GPA</code> might relate to patterns of unethical behavior.</p>
 <p>While the relationship between GPA and presence/absence of the different behaviors is of interest, we want to explore the types of behaviors. It is possible to group the lying behaviors as being a different type (less extreme?) of unethical behavior than obtaining an exam prior to taking it, buying a paper, or copying someone else’s answers. We want to explore whether there is some sort of relationship between the lying and copying behaviors – are those that engage in one type of behavior more likely to do the other? Or are they independent of each other? This is a hard story to elicit from the previous plot because there are so many variables involved.</p>
-<p>To simplify the results, combining the two groups of variables into the four possible combinations on each has the potential to simplify the results – or at least allow exploration of additional research questions. In the table plot in Figure <a href="5-10-section5-10.html#fig:Figure5-19">2.81</a>, you can see the four categories for each, starting with no bad behavior of either type (which is fortunately the most popular response on both variables!). For each variable, there are students who admitted to one of the two violations and some that did both. The <code>liar</code> variable has categories of <em>None</em>, <em>ExamLie</em>, <em>PaperLie</em>, and <em>LieBoth</em>. The <code>copier</code> variable has categories of <em>None</em>, <em>PaperCheat</em>, <em>ExamCheat</em>, and <em>PaperExamCheat</em> (for doing both). The last category for <code>copier</code> (plotted as an orange color) seems to mostly occur at the top of the plot which is where the students who had lied to get out of things reside, so maybe there is a relationship between those two types of behaviors? On the other hand, for the students who have never lied, quite a few had cheated on exams. The contingency table can help us dig further into the hypotheses related to the Chi-square test of Independence that is appropriate in this situation.</p>
+<p>To simplify the results, combining the two groups of variables into the four possible combinations on each has the potential to simplify the results – or at least allow exploration of additional research questions. In the table plot in Figure <a href="5-10-section5-10.html#fig:Figure5-19">2.82</a>, you can see the four categories for each, starting with no bad behavior of either type (which is fortunately the most popular response on both variables!). For each variable, there are students who admitted to one of the two violations and some that did both. The <code>liar</code> variable has categories of <em>None</em>, <em>ExamLie</em>, <em>PaperLie</em>, and <em>LieBoth</em>. The <code>copier</code> variable has categories of <em>None</em>, <em>PaperCheat</em>, <em>ExamCheat</em>, and <em>PaperExamCheat</em> (for doing both). The last category for <code>copier</code> (plotted as an orange color) seems to mostly occur at the top of the plot which is where the students who had lied to get out of things reside, so maybe there is a relationship between those two types of behaviors? On the other hand, for the students who have never lied, quite a few had cheated on exams. The contingency table can help us dig further into the hypotheses related to the Chi-square test of Independence that is appropriate in this situation.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cheating<span class="op">$</span>liar &lt;-<span class="st"> </span><span class="kw">interaction</span>(cheating<span class="op">$</span>LIEEXAM, cheating<span class="op">$</span>LIEPAPER)
 <span class="kw">levels</span>(cheating<span class="op">$</span>liar) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;ExamLie&quot;</span>,<span class="st">&quot;PaperLie&quot;</span>,<span class="st">&quot;LieBoth&quot;</span>)
@@ -278,10 +278,10 @@ cheatlietable</code></pre></div>
 <div class="figure"><span id="fig:Figure5-19"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-19-1.png" alt="Table plot of new variables liar and copier that allow exploration of relationships between different types of lying and cheating behaviors." width="960" />
 <p class="caption">
-Figure 2.81: Table plot of new variables liar and copier that allow exploration of relationships between different types of lying and cheating behaviors.
+Figure 2.82: Table plot of new variables liar and copier that allow exploration of relationships between different types of lying and cheating behaviors.
 </p>
 </div>
-<p>Unfortunately for our statistic, there were very few responses in some combinations of categories even with <span class="math inline">\(N=319\)</span>. For example, there was only one response each in the combinations for students that copied on papers and lied to get out of exams, papers, and both. Some other categories were pretty small as well in the groups that only had one behavior present. To get a higher number of counts in the combinations, we combined the single behavior only levels into “<em>either</em>” categories and left the <em>none</em> and <em>both</em> categories for each variable. This creates two new variables called <code>liar2</code> and <code>copier2</code> (table plot in Figure <a href="5-10-section5-10.html#fig:Figure5-20">2.82</a>). The code to create these variables and make the plot is below.</p>
+<p>Unfortunately for our statistic, there were very few responses in some combinations of categories even with <span class="math inline">\(N=319\)</span>. For example, there was only one response each in the combinations for students that copied on papers and lied to get out of exams, papers, and both. Some other categories were pretty small as well in the groups that only had one behavior present. To get a higher number of counts in the combinations, we combined the single behavior only levels into “<em>either</em>” categories and left the <em>none</em> and <em>both</em> categories for each variable. This creates two new variables called <code>liar2</code> and <code>copier2</code> (table plot in Figure <a href="5-10-section5-10.html#fig:Figure5-20">2.83</a>). The code to create these variables and make the plot is below.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Collapse the middle categories of each variable</span>
 cheating<span class="op">$</span>liar2 &lt;-<span class="st"> </span>cheating<span class="op">$</span>liar
@@ -292,7 +292,7 @@ cheating<span class="op">$</span>copier2 &lt;-<span class="st"> </span>cheating<
 <div class="figure"><span id="fig:Figure5-20"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-20-1.png" alt="Table plot of lying and copying variables after combining categories." width="960" />
 <p class="caption">
-Figure 2.82: Table plot of lying and copying variables after combining categories.
+Figure 2.83: Table plot of lying and copying variables after combining categories.
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cheatlietable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>liar2<span class="op">+</span>copier2, <span class="dt">data=</span>cheating)
@@ -345,12 +345,12 @@ cheatlietable</code></pre></div>
 </ul></li>
 <li><p><strong>Find the p-value:</strong></p>
 <ul>
-<li>The parametric p-value is 0.0102 from the R output. This was based on a <span class="math inline">\(\chi^2\)</span>-distribution with <span class="math inline">\((3-1)*(3-1) = 4\)</span> degrees of freedom that is displayed in Figure <a href="5-10-section5-10.html#fig:Figure5-21">2.83</a>. Remember that this isn’t quite the right distribution for the test statistic since our expected cell count condition was violated.</li>
+<li>The parametric p-value is 0.0102 from the R output. This was based on a <span class="math inline">\(\chi^2\)</span>-distribution with <span class="math inline">\((3-1)*(3-1) = 4\)</span> degrees of freedom that is displayed in Figure <a href="5-10-section5-10.html#fig:Figure5-21">2.84</a>. Remember that this isn’t quite the right distribution for the test statistic since our expected cell count condition was violated.</li>
 </ul>
 <div class="figure"><span id="fig:Figure5-21"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-21-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 4 degrees of freedom." width="336" />
 <p class="caption">
-Figure 2.83: Plot of <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with 4 degrees of freedom.
+Figure 2.84: Plot of <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with 4 degrees of freedom.
 </p>
 </div>
 <ul>
@@ -382,11 +382,11 @@ Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="
 <div class="figure"><span id="fig:Figure5-22"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-22-1.png" alt="Plot of permutation distributions for cheat/lie results with observed value of 13.24 (bold, vertical line)." width="480" />
 <p class="caption">
-Figure 2.84: Plot of permutation distributions for cheat/lie results with observed value of 13.24 (bold, vertical line).
+Figure 2.85: Plot of permutation distributions for cheat/lie results with observed value of 13.24 (bold, vertical line).
 </p>
 </div>
 <ul>
-<li>There were 170 of <span class="math inline">\(B\)</span>=10,000 permuted data sets that produced as large or larger <span class="math inline">\(X^{2*}\text{&#39;s}\)</span> than the observed as displayed in Figure <a href="5-10-section5-10.html#fig:Figure5-22">2.84</a>, so we report that the p-value was 0.017 using the permutation approach, which was slightly larger than the result provided by the parametric method.</li>
+<li>There were 170 of <span class="math inline">\(B\)</span>=10,000 permuted data sets that produced as large or larger <span class="math inline">\(X^{2*}\text{&#39;s}\)</span> than the observed as displayed in Figure <a href="5-10-section5-10.html#fig:Figure5-22">2.85</a>, so we report that the p-value was 0.017 using the permutation approach, which was slightly larger than the result provided by the parametric method.</li>
 </ul></li>
 <li><p><strong>Make a decision:</strong></p>
 <ul>

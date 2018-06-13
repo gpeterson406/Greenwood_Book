@@ -237,7 +237,7 @@ img {
 <div class="col-sm-12">
 <div id="section8-3" class="section level2">
 <h2><span class="header-section-number">8.3</span> Interpretation of MLR terms</h2>
-<p>Since these results (finally) do not contain any highly influential points, we can formally discuss interpretations of the slope coefficients and how the term-plots (Figure <a href="8-2-section8-2.html#fig:Figure8-9">2.147</a>) aid our interpretations. Term-plots in MLR are constructed by holding all the other variables at their mean and generating predictions and 95% CIs for the mean response across the levels of observed values for each predictor variable. This idea also helps us to work towards interpretations of each term in an MLR model. For example, for <em>Elevation</em>, the term-plot starts at an elevation around 5000 feet and ends at an elevation around 8000 feet. To generate that line and CIs for the mean snow depth at different elevations, the MLR model of</p>
+<p>Since these results (finally) do not contain any highly influential points, we can formally discuss interpretations of the slope coefficients and how the term-plots (Figure <a href="8-2-section8-2.html#fig:Figure8-9">2.148</a>) aid our interpretations. Term-plots in MLR are constructed by holding all the other variables at their mean and generating predictions and 95% CIs for the mean response across the levels of observed values for each predictor variable. This idea also helps us to work towards interpretations of each term in an MLR model. For example, for <em>Elevation</em>, the term-plot starts at an elevation around 5000 feet and ends at an elevation around 8000 feet. To generate that line and CIs for the mean snow depth at different elevations, the MLR model of</p>
 <p><span class="math display">\[\widehat{\text{SnowDepth}}_i = -213.3 + 0.0269\cdot\text{Elevation}_i
 +0.984\cdot\text{MinTemp}_i +1.243\cdot\text{MaxTemp}_i\]</span></p>
 <p>is used, but we need to have “something” to put in for the two temperature variables to predict <em>Snow Depth</em> for different <em>Elevations</em>. The typical convention is to hold the “other” variables at their means to generate these plots. This tactic also provides a way of interpreting each slope coefficient. Specifically, we can interpret the <em>Elevation</em> slope as: For a 1 foot increase in <em>Elevation</em>, we expect the mean <em>Snow Depth</em> to increase by 0.0269 inches, holding the minimum and maximum temperatures constant. More generally, the <strong><em>slope interpretation in an MLR</em></strong> is:</p>
@@ -262,12 +262,12 @@ img {
 <li><p>For an elevation of 6000 at the average temperatures, we predict a mean snow depth of <span class="math inline">\(-140.69 + 0.0269*6000 = 20.71\)</span> inches.</p></li>
 <li><p>For an elevation of 8000 at the average temperatures, we predict a mean snow depth of <span class="math inline">\(-140.69 + 0.0269*8000 = 74.51\)</span> inches.</p></li>
 </ul>
-<p>We can plot this information (Figure <a href="8-3-section8-3.html#fig:Figure8-10">2.148</a>) using the <code>plot</code> function to show the points we calculated and the <code>lines</code> function to add a line that connects the dots. In the <code>plot</code> function, we used the <code>ylim=...</code> option to make the scaling on the y-axis match the previous term-plot’s scaling.</p>
+<p>We can plot this information (Figure <a href="8-3-section8-3.html#fig:Figure8-10">2.149</a>) using the <code>plot</code> function to show the points we calculated and the <code>lines</code> function to add a line that connects the dots. In the <code>plot</code> function, we used the <code>ylim=...</code> option to make the scaling on the y-axis match the previous term-plot’s scaling.</p>
 
 <div class="figure"><span id="fig:Figure8-10"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-10-1.png" alt="Term-plot for Elevation “by-hand”, holding temperature variables constant at their means." width="576" />
 <p class="caption">
-Figure 2.148: Term-plot for Elevation “by-hand”, holding temperature variables constant at their means.
+Figure 2.149: Term-plot for Elevation “by-hand”, holding temperature variables constant at their means.
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Making own effect plot:</span>

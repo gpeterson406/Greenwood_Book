@@ -574,13 +574,14 @@ Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true 
 </p>
 </div>
 
-<table>
-<caption><span id="tab:Table5-3">Table 5.3: </span> Demonstration of calculation of expected cell counts for Arthritis data. (continued below)</caption>
+<table style="width:100%;">
+<caption><span id="tab:Table5-3">Table 5.3: </span> Demonstration of calculation of expected cell counts for Arthritis data.</caption>
 <colgroup>
-<col width="10%" />
-<col width="29%" />
-<col width="29%" />
-<col width="30%" />
+<col width="8%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="14%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -588,6 +589,7 @@ Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true 
 <th align="left"><strong>None</strong></th>
 <th align="left"><strong>Some</strong></th>
 <th align="left"><strong>Marked</strong></th>
+<th align="left"><strong>Totals</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -603,6 +605,7 @@ Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true 
 <span class="math inline">\(\boldsymbol{=\dfrac{43*28}{84}}\)</span><br />
 <span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{14.33}}}\)</span><br />
 </td>
+<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Placebo}\bullet}=43}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Treated</strong></td>
@@ -616,36 +619,18 @@ Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true 
 <span class="math inline">\(\boldsymbol{=\dfrac{41*28}{84}}\)</span><br />
 <span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{13.67}}}\)</span><br />
 </td>
+<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Treated}\bullet}=41}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>Totals</strong></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\bullet\text{None}}=42}\)</span></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\bullet\text{Some}}=14}\)</span></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\bullet\text{Marked}}=28}\)</span></td>
-</tr>
-</tbody>
-</table>
-<table style="width:62%;">
-<colgroup>
-<col width="62%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left"><strong>Totals</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Placebo}\bullet}=43}\)</span></td>
-</tr>
-<tr class="even">
-<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Treated}\bullet}=41}\)</span></td>
-</tr>
-<tr class="odd">
 <td align="left"><span class="math inline">\(\boldsymbol{N=84}\)</span></td>
 </tr>
 </tbody>
 </table>
+
 <p>Of course, using R can help us avoid tedium like this… The main engine for results in this chapter is the <code>chisq.test</code> function. It operates on a table of counts that has been produced <strong>without row or column totals</strong>.</p>
 
 <p>For example, <code>Arthtable</code> below contains just the observed cell counts. Applying the <code>chisq.test</code> function to <code>Arthtable</code> provides a variety of useful output. For the moment, we are just going to extract the information in the “<code>expected</code>” attribute of the results from running this function (using <code>chisq.test()$expected)</code>. These are the expected cell counts which match the previous calculations except for some rounding in the hand-calculations.</p>

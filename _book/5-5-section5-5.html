@@ -241,7 +241,7 @@ img {
 <p><span class="math display">\[\boldsymbol{X^2 = \Sigma^{RC}_{i=1}\left(\frac{Observed_i-Expected_i}
 {\sqrt{Expected_i}}\right)^2},\]</span></p>
 <p>which is the sum over all (<span class="math inline">\(R\)</span> times <span class="math inline">\(C\)</span>) cells in the contingency table of the square of the difference between observed and expected cell counts divided by the square root of the expected cell count. To calculate this test statistic, it useful to start with a table of expected cell counts to go with our contingency table of observed counts. The expected cell counts are easiest to understand in the homogeneity situation but are calculated the same in either scenario.</p>
-<p>The idea underlying finding the <strong><em>expected cell counts</em></strong> is to find how many observations we would expect in category <span class="math inline">\(c\)</span> given the sample size in that group, <span class="math inline">\(\mathbf{n_{r\bullet}}\)</span>, if the null hypothesis is true. Under the null hypothesis across all <span class="math inline">\(R\)</span> groups the conditional probabilities in each response category must be the same. Consider Figure <a href="5-5-section5-5.html#fig:Figure5-7">2.69</a> where, under the null hypothesis, the probability of <em>None</em>, <em>Some</em>, and <em>Marked</em> are the same in both treatment groups. Specifically we have <span class="math inline">\(\text{Pr}(None)=0.5\)</span>, <span class="math inline">\(\text{Pr}(Some)=0.167\)</span>, and <span class="math inline">\(\text{Pr}(Marked)=0.333\)</span>. With <span class="math inline">\(\mathbf{n_{Placebo\bullet}}=43\)</span> and <span class="math inline">\(\text{Pr}(None)=0.50\)</span>, we would expect <span class="math inline">\(43*0.50=21.5\)</span> subjects to be found in the <em>Placebo, None</em> combination if the null hypothesis were true. Similarly, with <span class="math inline">\(\text{Pr}(Some)=0.167\)</span>, we would expect <span class="math inline">\(43*0.167=7.18\)</span> in the <em>Placebo, Some</em> cell. And for the <em>Treated</em> group with <span class="math inline">\(\mathbf{n_{Treated\bullet}}=41\)</span>, the expected count in the <em>Marked</em> improvement group would be <span class="math inline">\(41*0.333=13.65\)</span>. Those conditional probabilities came from aggregating across the rows because, under the null, the row (<em>Treatment</em>) should not matter. So, the conditional probability was actually calculated as <span class="math inline">\(\mathbf{n_{\bullet c}/N}\)</span> = total number of responses in category <span class="math inline">\(c\)</span> divided by the table total. Since each expected cell count was a conditional probability times the number of observations in the row, we can re-write the expected cell count formula for row <span class="math inline">\(r\)</span> and column <span class="math inline">\(c\)</span> as:</p>
+<p>The idea underlying finding the <strong><em>expected cell counts</em></strong> is to find how many observations we would expect in category <span class="math inline">\(c\)</span> given the sample size in that group, <span class="math inline">\(\mathbf{n_{r\bullet}}\)</span>, if the null hypothesis is true. Under the null hypothesis across all <span class="math inline">\(R\)</span> groups the conditional probabilities in each response category must be the same. Consider Figure <a href="5-5-section5-5.html#fig:Figure5-7">2.70</a> where, under the null hypothesis, the probability of <em>None</em>, <em>Some</em>, and <em>Marked</em> are the same in both treatment groups. Specifically we have <span class="math inline">\(\text{Pr}(None)=0.5\)</span>, <span class="math inline">\(\text{Pr}(Some)=0.167\)</span>, and <span class="math inline">\(\text{Pr}(Marked)=0.333\)</span>. With <span class="math inline">\(\mathbf{n_{Placebo\bullet}}=43\)</span> and <span class="math inline">\(\text{Pr}(None)=0.50\)</span>, we would expect <span class="math inline">\(43*0.50=21.5\)</span> subjects to be found in the <em>Placebo, None</em> combination if the null hypothesis were true. Similarly, with <span class="math inline">\(\text{Pr}(Some)=0.167\)</span>, we would expect <span class="math inline">\(43*0.167=7.18\)</span> in the <em>Placebo, Some</em> cell. And for the <em>Treated</em> group with <span class="math inline">\(\mathbf{n_{Treated\bullet}}=41\)</span>, the expected count in the <em>Marked</em> improvement group would be <span class="math inline">\(41*0.333=13.65\)</span>. Those conditional probabilities came from aggregating across the rows because, under the null, the row (<em>Treatment</em>) should not matter. So, the conditional probability was actually calculated as <span class="math inline">\(\mathbf{n_{\bullet c}/N}\)</span> = total number of responses in category <span class="math inline">\(c\)</span> divided by the table total. Since each expected cell count was a conditional probability times the number of observations in the row, we can re-write the expected cell count formula for row <span class="math inline">\(r\)</span> and column <span class="math inline">\(c\)</span> as:</p>
 <p><span class="math display">\[\mathbf{Expected\ cell\ count_{rc} = \frac{(n_{r\bullet}*n_{\bullet c})}{N}} = 
 \frac{(\text{row } r \text{ total }*\text{ column } c \text{ total})}
 {\text{table total}}.\]</span></p>
@@ -250,17 +250,18 @@ img {
 <div class="figure"><span id="fig:Figure5-7"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-7-1.png" alt="Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study." width="480" />
 <p class="caption">
-Figure 2.69: Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study.
+Figure 2.70: Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study.
 </p>
 </div>
 
-<table>
-<caption><span id="tab:Table5-3">Table 2.11: </span> Demonstration of calculation of expected cell counts for Arthritis data. (continued below)</caption>
+<table style="width:100%;">
+<caption><span id="tab:Table5-3">Table 2.11: </span> Demonstration of calculation of expected cell counts for Arthritis data.</caption>
 <colgroup>
-<col width="10%" />
-<col width="29%" />
-<col width="29%" />
-<col width="30%" />
+<col width="8%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="14%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -268,6 +269,7 @@ Figure 2.69: Stacked bar chart that could occur if the null hypothesis were true
 <th align="left"><strong>None</strong></th>
 <th align="left"><strong>Some</strong></th>
 <th align="left"><strong>Marked</strong></th>
+<th align="left"><strong>Totals</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -283,6 +285,7 @@ Figure 2.69: Stacked bar chart that could occur if the null hypothesis were true
 <span class="math inline">\(\boldsymbol{=\dfrac{43*28}{84}}\)</span><br />
 <span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{14.33}}}\)</span><br />
 </td>
+<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Placebo}\bullet}=43}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Treated</strong></td>
@@ -296,36 +299,18 @@ Figure 2.69: Stacked bar chart that could occur if the null hypothesis were true
 <span class="math inline">\(\boldsymbol{=\dfrac{41*28}{84}}\)</span><br />
 <span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{13.67}}}\)</span><br />
 </td>
+<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Treated}\bullet}=41}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>Totals</strong></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\bullet\text{None}}=42}\)</span></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\bullet\text{Some}}=14}\)</span></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\bullet\text{Marked}}=28}\)</span></td>
-</tr>
-</tbody>
-</table>
-<table style="width:62%;">
-<colgroup>
-<col width="62%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left"><strong>Totals</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Placebo}\bullet}=43}\)</span></td>
-</tr>
-<tr class="even">
-<td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Treated}\bullet}=41}\)</span></td>
-</tr>
-<tr class="odd">
 <td align="left"><span class="math inline">\(\boldsymbol{N=84}\)</span></td>
 </tr>
 </tbody>
 </table>
+
 <p>Of course, using R can help us avoid tedium like this… The main engine for results in this chapter is the <code>chisq.test</code> function. It operates on a table of counts that has been produced <strong>without row or column totals</strong>.</p>
 
 <p>For example, <code>Arthtable</code> below contains just the observed cell counts. Applying the <code>chisq.test</code> function to <code>Arthtable</code> provides a variety of useful output. For the moment, we are just going to extract the information in the “<code>expected</code>” attribute of the results from running this function (using <code>chisq.test()$expected)</code>. These are the expected cell counts which match the previous calculations except for some rounding in the hand-calculations.</p>
@@ -397,7 +382,7 @@ Arthtable</code></pre></div>
 ## data:  Arthtable
 ## X-squared = 13.055, df = 2, p-value = 0.001463</code></pre>
 <p>The <code>chisq.test</code> function reports a p-value by default. Before we discover how it got that result, we can rely on our permutation methods to obtain a distribution for the <span class="math inline">\(X^2\)</span> statistic under the null hypothesis. As in Chapters <a href="2-chapter2.html#chapter2">2</a> and <a href="3-chapter3.html#chapter3"><strong>??</strong></a>, this will allow us to find a p-value while relaxing one of our assumptions<a href="#fn66" class="footnoteRef" id="fnref66"><sup>66</sup></a>. In the One-WAY ANOVA in Chapter <a href="3-chapter3.html#chapter3"><strong>??</strong></a>, we permuted the grouping variable relative to the responses, mimicking the null hypothesis that the groups are the same and so we can shuffle them around if the null is true. That same technique is useful here. If we randomly permute the grouping variable used to form the rows in the contingency table relative to the responses in the other variable and track the possibilities available for the <span class="math inline">\(X^2\)</span> statistic under permutations, we can find the probability of getting a result as extreme as or more extreme than what we observed assuming the null is true, our p-value. The observed statistic is the <span class="math inline">\(X^2\)</span> calculated using the formula above. Like the <span class="math inline">\(F\)</span>-statistic, it ends up that only results in the right tail of this distribution are desirable for finding evidence against the null hypothesis because all the values have to be positive. You can see this by observing that values of the <span class="math inline">\(X^2\)</span> statistic close to 0 are generated when the observed values are close to the expected values and that sort of result should not be used to find evidence against the null. When the observed and expected values are “far apart”, then we should find evidence against the null. It is helpful to work through some examples to be able to understand how the <span class="math inline">\(X^2\)</span> statistic “measures” differences between observed and expected.</p>
-<p>To start, compare the previous observed <span class="math inline">\(X^2\)</span> of 13.055 to the sort of results we obtain in a single permutation of the treated/placebo labels – Figure <a href="5-5-section5-5.html#fig:Figure5-8">2.70</a> (top left panel) shows a permuted data set that produced <span class="math inline">\(X^{2*} = 0.62\)</span>. Visually, you can only see minimal differences between the treatment and placebo groups showing up in the stacked bar-chart. Three other permuted data sets are displayed in Figure <a href="5-5-section5-5.html#fig:Figure5-8">2.70</a> showing the variability in results in permutations but that none get close to showing the differences in the bars observed in the real data set.</p>
+<p>To start, compare the previous observed <span class="math inline">\(X^2\)</span> of 13.055 to the sort of results we obtain in a single permutation of the treated/placebo labels – Figure <a href="5-5-section5-5.html#fig:Figure5-8">2.71</a> (top left panel) shows a permuted data set that produced <span class="math inline">\(X^{2*} = 0.62\)</span>. Visually, you can only see minimal differences between the treatment and placebo groups showing up in the stacked bar-chart. Three other permuted data sets are displayed in Figure <a href="5-5-section5-5.html#fig:Figure5-8">2.71</a> showing the variability in results in permutations but that none get close to showing the differences in the bars observed in the real data set.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Arthperm &lt;-<span class="st"> </span>Arthritis
 Arthperm<span class="op">$</span>PermTreatment &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">shuffle</span>(Arthperm<span class="op">$</span>Treatment))</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Improved<span class="op">~</span>PermTreatment, <span class="dt">data=</span>Arthperm,
@@ -418,7 +403,7 @@ Arthpermtable</code></pre></div>
 <div class="figure"><span id="fig:Figure5-8"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-8-1.png" alt="Stacked bar charts of four permuted Arthritis data sets that produced \(X^2\) between 0.62 and 2.38." width="672" />
 <p class="caption">
-Figure 2.70: Stacked bar charts of four permuted Arthritis data sets that produced <span class="math inline">\(X^2\)</span> between 0.62 and 2.38.
+Figure 2.71: Stacked bar charts of four permuted Arthritis data sets that produced <span class="math inline">\(X^2\)</span> between 0.62 and 2.38.
 </p>
 </div>
 <p>To build the permutation-based null distribution for the <span class="math inline">\(X^2\)</span> statistic, we need to collect up the test statistics (<span class="math inline">\(X^{2*}\)</span>) in many of these permuted results. The code is similar to permutation tests in Chapters <a href="2-chapter2.html#chapter2">2</a> and <a href="3-chapter3.html#chapter3"><strong>??</strong></a> except that each permutation generates a new contingency table that is summarized and provided to <code>chisq.test</code> to analyze. We again extract the <code>$statistic</code>.</p>
@@ -444,7 +429,7 @@ Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="
 <div class="figure"><span id="fig:Figure5-9"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-9-1.png" alt="Permutation distribution for the \(X^2\) statistic for the Arthritis data with an observed \(X^2\) of 13.1 (bold, vertical line)." width="480" />
 <p class="caption">
-Figure 2.71: Permutation distribution for the <span class="math inline">\(X^2\)</span> statistic for the Arthritis data with an observed <span class="math inline">\(X^2\)</span> of 13.1 (bold, vertical line).
+Figure 2.72: Permutation distribution for the <span class="math inline">\(X^2\)</span> statistic for the Arthritis data with an observed <span class="math inline">\(X^2\)</span> of 13.1 (bold, vertical line).
 </p>
 </div>
 <p>For an observed <span class="math inline">\(X^2\)</span> statistic of 13.055, four out of 1,000 permutation results matched or exceeded this value (<code>pdata</code> returned a value of 0.004). This suggests that our observed result is quite extreme relative to the null hypothesis and provides strong evidence against it.</p>

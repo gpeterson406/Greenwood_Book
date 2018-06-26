@@ -2055,7 +2055,7 @@ summary(SATSex1)
 (ref:fig8-17) Plot of FYGPA vs SATV by Sex of students.
 
 ```{r Figure8-17,fig.cap="(ref:fig8-17)",echo=F}
-scatterplot(FYGPA~SATV|sex, lwd=3, data=satGPA, spread=F,
+scatterplot(FYGPA~SATV|SEX, lwd=3, data=satGPA, spread=F,
             smooth=F, main="Scatterplot of GPA vs SATV by Sex",
             cex.main=1)
 ```
@@ -2063,7 +2063,7 @@ scatterplot(FYGPA~SATV|sex, lwd=3, data=satGPA, spread=F,
 (ref:fig8-18) Plot of FYGPA vs SATM by Sex of students.
 
 ```{r Figure8-18,fig.cap="(ref:fig8-18)",echo=F}
-scatterplot(FYGPA~SATM|sex, lwd=3, data=satGPA, spread=F,
+scatterplot(FYGPA~SATM|SEX, lwd=3, data=satGPA, spread=F,
             smooth=F, main="Scatterplot of GPA vs SATM by Sex",
             cex.main=1)
 ```
@@ -2548,6 +2548,7 @@ group.
 ```{r Figure8-25,fig.cap="(ref:fig8-25)",echo=F}
 require(smdata)
 data("dyslexic3")
+dyslexic3$dys <- factor(dyslexic3$dys)
 scatterplot(score~ziq|dys, xlab="Standardized nonverbal IQ scores",
             ylab="Reading score", data=dyslexic3, smooth=F,
             main="Plot of IQ vs Reading by dyslexia status",
@@ -2558,6 +2559,7 @@ scatterplot(score~ziq|dys, xlab="Standardized nonverbal IQ scores",
 require(smdata)
 data("dyslexic3")
 dyslexic3 <- as.tibble(dyslexic3)
+dyslexic3$dys <- factor(dyslexic3$dys)
 scatterplot(score~ziq|dys, xlab="Standardized nonverbal IQ scores",
             ylab="Reading score", data=dyslexic3, smooth=F,
             main="Plot of IQ vs Reading by dyslexia status")

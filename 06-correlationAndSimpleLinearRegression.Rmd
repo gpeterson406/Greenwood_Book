@@ -525,7 +525,8 @@ Males were coded as 0s and females as 1s.
 ```{r Figure6-7,fig.cap="(ref:fig6-7)",echo=F}
 aisR2 <- ais[-c(56,166),c("Ht","Hc","Bfat","Sex")]
 require(car)
-scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), reg.line=F, smoother=F,
+aisR2$Sex <- factor(aisR2$Sex)
+scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
             boxplots="xy", main="Scatterplot of Height vs Hematocrit by Sex",
             cex.main=1)
 ```
@@ -533,6 +534,7 @@ scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), reg.line=F, smoother=F,
 ```{r eval=F}
 aisR2 <- ais[-c(56,166),c("Ht","Hc","Bfat","Sex")]
 require(car)
+aisR2$Sex <- as.factor(aisR2$Sex)
 scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), reg.line=F, smoother=F,
             boxplots="xy", main="Scatterplot of Height vs Hematocrit by Sex")
 ```

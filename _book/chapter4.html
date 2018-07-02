@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>A Second Semester Statistics Course with R</title>
   <meta name="description" content="A Second Semester Statistics Course with R">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="A Second Semester Statistics Course with R" />
   <meta property="og:type" content="book" />
@@ -544,7 +544,7 @@ Figure 4.6: Plot of estimated results of interaction model for the paper towel p
 &amp; = 20.6544. \\
 \end{array}\]</span></p>
 <p>This shows that the sums of squares decomposition applies in these more complicated models as it did in the One-Way ANOVA. It also shows that if the interaction is removed from the model, that variability is lumped in with the other unexplained variability that goes in the <span class="math inline">\(\text{SS}_{\text{E}}\)</span> in any model.</p>
-<p>The fact that the sums of squares decomposition can be applied here is useful, except that there is a small issue with the main effect tests in the ANOVA table results that follow this decomposition when the design is not balanced. It ends up that the tests in a typical ANOVA table are only conditional on the tests higher up in the table. For example, in the additive model ANOVA table, the <code>Brand</code> test is not conditional on the <code>Drops</code> effect, but the <code>Drops</code> effect is conditional on the <code>Brand</code> effect. To fix this issue, we have to use another type of sums of squares, called <strong><em>Type II sums of squares</em></strong>. They will no longer always follow the rules of the sums of squares decomposition but they will test the desired hypotheses. Specifically, they provide each test conditional on any other terms at the same level of the model and match the hypotheses written out earlier in this section. To get the “correct” ANOVA results, the <code>car</code> (<span class="citation">Fox and Weisberg (<a href="#ref-R-car">2017</a>)</span>, <span class="citation">Fox and Weisberg (<a href="#ref-Fox2011">2011</a>)</span>) package is required. We use the <code>Anova</code> function on our linear models from here forward to get the “right” tests in our ANOVA tables<a href="#fn56" class="footnoteRef" id="fnref56"><sup>56</sup></a>. Note how the case-sensitive nature of R code shows up in the use of the capital-A <code>Anova</code> function instead of the <code>anova</code> function used previously. In this case, because the design was balanced, the results are the same using either function. Observational studies rarely generate balanced designs (some designed studies can result in unbalanced designs) so we will generally just use the Type II version of the sums of squares. The <code>Anova</code> results using the Type II sums of squares are slightly more conservative than the results from <code>anova</code>, which are called Type I sums of squares. The sums of squares decomposition no longer can be applied, but it is a small sacrifice to get each test after adjusting for all other variables<a href="#fn57" class="footnoteRef" id="fnref57"><sup>57</sup></a>.</p>
+<p>The fact that the sums of squares decomposition can be applied here is useful, except that there is a small issue with the main effect tests in the ANOVA table results that follow this decomposition when the design is not balanced. It ends up that the tests in a typical ANOVA table are only conditional on the tests higher up in the table. For example, in the additive model ANOVA table, the <code>Brand</code> test is not conditional on the <code>Drops</code> effect, but the <code>Drops</code> effect is conditional on the <code>Brand</code> effect. To fix this issue, we have to use another type of sums of squares, called <strong><em>Type II sums of squares</em></strong>. They will no longer always follow the rules of the sums of squares decomposition but they will test the desired hypotheses. Specifically, they provide each test conditional on any other terms at the same level of the model and match the hypotheses written out earlier in this section. To get the “correct” ANOVA results, the <code>car</code> (<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-car">2018</a>)</span>, <span class="citation">Fox and Weisberg (<a href="#ref-Fox2011">2011</a>)</span>) package is required. We use the <code>Anova</code> function on our linear models from here forward to get the “right” tests in our ANOVA tables<a href="#fn56" class="footnoteRef" id="fnref56"><sup>56</sup></a>. Note how the case-sensitive nature of R code shows up in the use of the capital-A <code>Anova</code> function instead of the <code>anova</code> function used previously. In this case, because the design was balanced, the results are the same using either function. Observational studies rarely generate balanced designs (some designed studies can result in unbalanced designs) so we will generally just use the Type II version of the sums of squares. The <code>Anova</code> results using the Type II sums of squares are slightly more conservative than the results from <code>anova</code>, which are called Type I sums of squares. The sums of squares decomposition no longer can be applied, but it is a small sacrifice to get each test after adjusting for all other variables<a href="#fn57" class="footnoteRef" id="fnref57"><sup>57</sup></a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(car)
 <span class="kw">Anova</span>(m2)</code></pre></div>
 <pre><code>## Anova Table (Type II tests)
@@ -964,14 +964,14 @@ ptR<span class="op">$</span>dropsf &lt;-<span class="st"> </span><span class="kw
 ptR<span class="op">$</span>brand &lt;-<span class="st"> </span><span class="kw">factor</span>(ptR<span class="op">$</span>brand)
 ptR</code></pre></div>
 <pre><code>## # A tibble: 6 x 4
-##   brand  drops responses dropsf
-##   &lt;fctr&gt; &lt;int&gt;     &lt;dbl&gt; &lt;fctr&gt;
-## 1 B1        10     1.91  10    
-## 2 B2        10     3.05  10    
-## 3 B1        20     0.774 20    
-## 4 B2        20     2.84  20    
-## 5 B1        30     1.56  30    
-## 6 B2        30     0.547 30</code></pre>
+##   brand drops responses dropsf
+##   &lt;fct&gt; &lt;int&gt;     &lt;dbl&gt; &lt;fct&gt; 
+## 1 B1       10     1.91  10    
+## 2 B2       10     3.05  10    
+## 3 B1       20     0.774 20    
+## 4 B2       20     2.84  20    
+## 5 B1       30     1.56  30    
+## 6 B2       30     0.547 30</code></pre>
 <p>Upon first inspection the interaction plot in Figure <a href="chapter4.html#fig:Figure4-17">4.17</a> looks like there might be some interesting interactions present. But remember now that there is only a single observation at each combination of the brands and water levels so there is not much power to detect differences in this sort of situation and no replicates at any combinations of levels that allow estimation of SEs so no bands are produced in the plot.</p>
 
 <div class="figure"><span id="fig:Figure4-17"></span>
@@ -1089,7 +1089,7 @@ Figure 4.18: Term-plots for the additive model in paper towel data set with no r
 </div>
 <div id="section4-9" class="section level2">
 <h2><span class="header-section-number">4.9</span> Practice problems</h2>
-<p>To practice the Two-Way ANOVA, consider a data set on <span class="math inline">\(N=861\)</span> ACT Mathematics Usage Test scores from 1987. The test was given to a sample of high school seniors who met one of three profiles of high school mathematics course work: (a) Algebra I only; (b) two Algebra courses and Geometry; and (c) two Algebra courses, Geometry, Trigonometry, Advanced Mathematics, and Beginning Calculus. These data were generated from summary statistics for one particular form of the test as reported by <span class="citation">Doolittle and Welch (<a href="#ref-Doolittle1989">1989</a>)</span>. The source of this version of the data set is <span class="citation">F. Ramsey and Schafer (<a href="#ref-Ramsey2012">2012</a>)</span> and the <code>Sleuth2</code> package <span class="citation">(F. L. Ramsey et al. <a href="#ref-R-Sleuth2">2016</a>)</span>. First install and then load that package.</p>
+<p>To practice the Two-Way ANOVA, consider a data set on <span class="math inline">\(N=861\)</span> ACT Mathematics Usage Test scores from 1987. The test was given to a sample of high school seniors who met one of three profiles of high school mathematics course work: (a) Algebra I only; (b) two Algebra courses and Geometry; and (c) two Algebra courses, Geometry, Trigonometry, Advanced Mathematics, and Beginning Calculus. These data were generated from summary statistics for one particular form of the test as reported by <span class="citation">Doolittle and Welch (<a href="#ref-Doolittle1989">1989</a>)</span>. The source of this version of the data set is <span class="citation">Ramsey and Schafer (<a href="#ref-Ramsey2012">2012</a>)</span> and the <code>Sleuth2</code> package <span class="citation">(Ramsey et al. <a href="#ref-R-Sleuth2">2016</a>)</span>. First install and then load that package.</p>
 <pre><code>require(Sleuth2)
 require(mosaic)
 require(tibble)
@@ -1111,7 +1111,7 @@ favstats(Score ~ Sex+Background, data=math)</code></pre>
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-car">
-<p>Fox, John, and Sanford Weisberg. 2017. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car" class="uri">https://CRAN.R-project.org/package=car</a>.</p>
+<p>Fox, John, Sanford Weisberg, and Brad Price. 2018. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car" class="uri">https://CRAN.R-project.org/package=car</a>.</p>
 </div>
 <div id="ref-Fox2011">
 <p>Fox, John, and Sanford Weisberg. 2011. <em>An R-Companion to Applied Regression, Second Edition</em>. Thousand Oaks, CA: SAGE Publications. <a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Companion" class="uri">http://socserv.socsci.mcmaster.ca/jfox/Books/Companion</a>.</p>
@@ -1171,10 +1171,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -1198,9 +1199,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

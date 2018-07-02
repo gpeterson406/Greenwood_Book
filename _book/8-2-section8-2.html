@@ -360,7 +360,7 @@ Figure 2.144: Diagnostic plots for model m4: <span class="math inline">\(\text{S
 ##      ID Station            Max.Temp Min.Temp Elevation Snow.Depth
 ##   &lt;int&gt; &lt;chr&gt;                 &lt;int&gt;    &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
 ## 1    18 Northeast Entrance       45       28      7350       11.2
-## 2    53 Combination              36       28      5600       14.0</code></pre>
+## 2    53 Combination              36       28      5600       14</code></pre>
 <p>The estimated <em>Snow Depth</em> for the <em>Northeast Entrance</em> site (observation 9) is found using the estimated model with</p>
 <p><span class="math display">\[\begin{array}{rl}
 \widehat{\text{SnowDepth}}_9 &amp;= -10.51 + 0.0123\cdot\text{Elevation}_9 -
@@ -469,7 +469,7 @@ Figure 2.147: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Te
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">snotel2[<span class="dv">22</span>,]</code></pre></div>
 <pre><code>## # A tibble: 1 x 6
 ##      ID Station          Max.Temp Min.Temp Elevation Snow.Depth
-##   &lt;int&gt; &lt;fctr&gt;              &lt;int&gt;    &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
+##   &lt;int&gt; &lt;fct&gt;               &lt;int&gt;    &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
 ## 1    36 Bloody [Redact.]       39       26      7550       27.2</code></pre>
 <p>With the removal of both the “Northeast Entrance” and “Bloody <span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>” sites, there are <span class="math inline">\(n=23\)</span> observations remaining. This model (<code>m6</code>) seems to contain residual diagnostics (Figure <a href="8-2-section8-2.html#fig:Figure8-8">2.147</a>) that are finally generally reasonable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])

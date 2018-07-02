@@ -293,25 +293,25 @@ Figure 2.133: Plot of the observations and estimated SLR model (mortality~ log(G
 <li><p><strong><em>original scale interpretation of log(x) only model</em></strong>: for a doubling of <span class="math inline">\(x\)</span>, we expect a <span class="math inline">\(b_1\log(2)\)</span> change in the mean of <span class="math inline">\(y\)</span>. Note that both interpretations are for the mean of the <span class="math inline">\(y\text{&#39;s}\)</span> since we haven’t changed the <span class="math inline">\(y\sim\)</span> part of the model.</p></li>
 </ol>
 <p>While it is not a perfect model (no model is), let’s consider the model for <em>infant mortality</em> <span class="math inline">\(\sim\)</span> <em>log(GDP)</em> in order to practice the interpretation using this type of model. This model was estimated to be <span class="math inline">\(\widehat{\text{infantmortality}}=168.648-16.6\cdot\log(\text{GDP})\)</span>. The first (simplest) interpretation of the slope coefficient is: For a 1 log-dollar increase in GDP per capita, we expect infant mortality to change, on average, by -16.6 deaths/1000 births per log-dollar. The second interpretation is on the original GDP scale: For a doubling of GDP, we expect infant mortality to change, on average, by <span class="math inline">\(-16.6\log(2) = -11.51\)</span> deaths/1000 live births. Or, the mean infant mortality is reduced by 11.51 deaths per 1000 live births for each doubling of GDP. Both versions of the model are displayed in Figure <a href="7-6-section7-6.html#fig:Figure7-18">2.133</a> – one on the scale the SLR model was fit (panel a) and the other on the original x-scale (panel b) that matches these last interpretations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ID1 &lt;-<span class="st"> </span><span class="kw">lm</span>(infant.mortality<span class="op">~</span><span class="kw">log</span>(gdp), <span class="dt">data=</span>UN)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ID1 &lt;-<span class="st"> </span><span class="kw">lm</span>(infantMortality<span class="op">~</span><span class="kw">log</span>(ppgdp), <span class="dt">data=</span>UN)
 <span class="kw">summary</span>(ID1)</code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = infant.mortality ~ log(gdp), data = UN)
+## lm(formula = infantMortality ~ log(ppgdp), data = UN)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -62.668 -16.798  -0.452  11.064 117.374 
+## -38.239 -11.609  -2.829   8.122  82.183 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)  168.648      9.084   18.57   &lt;2e-16
-## log(gdp)     -16.597      1.180  -14.07   &lt;2e-16
+## (Intercept) 155.7698     7.2431   21.51   &lt;2e-16
+## log(ppgdp)  -14.8617     0.8468  -17.55   &lt;2e-16
 ## 
-## Residual standard error: 27.09 on 191 degrees of freedom
-##   (14 observations deleted due to missingness)
-## Multiple R-squared:  0.5089, Adjusted R-squared:  0.5063 
-## F-statistic: 197.9 on 1 and 191 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 18.14 on 191 degrees of freedom
+##   (20 observations deleted due to missingness)
+## Multiple R-squared:  0.6172, Adjusted R-squared:  0.6152 
+## F-statistic:   308 on 1 and 191 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">-</span><span class="fl">16.6</span><span class="op">*</span><span class="kw">log</span>(<span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] -11.50624</code></pre>
 <p>It appears that our model does not fit too well and that there might be some non-constant variance so we should check the diagnostic plots (available in Figure <a href="7-6-section7-6.html#fig:Figure7-19">2.134</a>) before we trust any of those previous interpretations.</p>
@@ -356,46 +356,46 @@ Figure 2.135: Plot of the observations and estimated SLR model log(mortality) <s
 
 <pre><code>## 
 ## Call:
-## lm(formula = log(infant.mortality) ~ log(gdp), data = UN)
+## lm(formula = log(infantMortality) ~ log(ppgdp), data = UN)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -2.25334 -0.39580 -0.05258  0.35598  2.11187 
+## -1.16789 -0.36738 -0.02351  0.24544  2.43503 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)  7.04520    0.19914   35.38   &lt;2e-16
-## log(gdp)    -0.49320    0.02586  -19.07   &lt;2e-16
+## (Intercept)  8.10377    0.21087   38.43   &lt;2e-16
+## log(ppgdp)  -0.61680    0.02465  -25.02   &lt;2e-16
 ## 
-## Residual standard error: 0.5938 on 191 degrees of freedom
-##   (14 observations deleted due to missingness)
-## Multiple R-squared:  0.6556, Adjusted R-squared:  0.6538 
-## F-statistic: 363.7 on 1 and 191 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 0.5281 on 191 degrees of freedom
+##   (20 observations deleted due to missingness)
+## Multiple R-squared:  0.7662, Adjusted R-squared:  0.765 
+## F-statistic: 625.9 on 1 and 191 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="figure"><span id="fig:Figure7-21"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-21-1.png" alt="Diagnostic plots for the log-log infant mortality model." width="960" />
 <p class="caption">
 Figure 2.136: Diagnostic plots for the log-log infant mortality model.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ID2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(infant.mortality)<span class="op">~</span><span class="kw">log</span>(gdp), <span class="dt">data=</span>UN)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ID2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(infantMortality)<span class="op">~</span><span class="kw">log</span>(ppgdp), <span class="dt">data=</span>UN)
 <span class="kw">summary</span>(ID2)</code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = log(infant.mortality) ~ log(gdp), data = UN)
+## lm(formula = log(infantMortality) ~ log(ppgdp), data = UN)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -2.25334 -0.39580 -0.05258  0.35598  2.11187 
+## -1.16789 -0.36738 -0.02351  0.24544  2.43503 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)  7.04520    0.19914   35.38   &lt;2e-16
-## log(gdp)    -0.49320    0.02586  -19.07   &lt;2e-16
+## (Intercept)  8.10377    0.21087   38.43   &lt;2e-16
+## log(ppgdp)  -0.61680    0.02465  -25.02   &lt;2e-16
 ## 
-## Residual standard error: 0.5938 on 191 degrees of freedom
-##   (14 observations deleted due to missingness)
-## Multiple R-squared:  0.6556, Adjusted R-squared:  0.6538 
-## F-statistic: 363.7 on 1 and 191 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 0.5281 on 191 degrees of freedom
+##   (20 observations deleted due to missingness)
+## Multiple R-squared:  0.7662, Adjusted R-squared:  0.765 
+## F-statistic: 625.9 on 1 and 191 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The estimated regression model is <span class="math inline">\(\log(\widehat{\text{infantmortality}})=7.0452-0.493\cdot\log(\text{GDP})\)</span>. The slope coefficient can be interpreted two ways.</p>
 <ol style="list-style-type: decimal">
 <li><p><strong><em>On the log-log scale:</em></strong> For a 1 log-dollar increase in <em>GDP</em>, we expect, on average, a change of <span class="math inline">\(-0.493\)</span> log(deaths/1000 live births) in <em>infant mortality</em>.</p></li>

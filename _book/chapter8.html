@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>A Second Semester Statistics Course with R</title>
   <meta name="description" content="A Second Semester Statistics Course with R">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="A Second Semester Statistics Course with R" />
   <meta property="og:type" content="book" />
@@ -526,7 +526,7 @@ Figure 8.6: Diagnostic plots for model m4: <span class="math inline">\(\text{Sno
 ##      ID Station            Max.Temp Min.Temp Elevation Snow.Depth
 ##   &lt;int&gt; &lt;chr&gt;                 &lt;int&gt;    &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
 ## 1    18 Northeast Entrance       45       28      7350       11.2
-## 2    53 Combination              36       28      5600       14.0</code></pre>
+## 2    53 Combination              36       28      5600       14</code></pre>
 <p>The estimated <em>Snow Depth</em> for the <em>Northeast Entrance</em> site (observation 9) is found using the estimated model with</p>
 <p><span class="math display">\[\begin{array}{rl}
 \widehat{\text{SnowDepth}}_9 &amp;= -10.51 + 0.0123\cdot\text{Elevation}_9 -
@@ -635,7 +635,7 @@ Figure 8.9: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">snotel2[<span class="dv">22</span>,]</code></pre></div>
 <pre><code>## # A tibble: 1 x 6
 ##      ID Station          Max.Temp Min.Temp Elevation Snow.Depth
-##   &lt;int&gt; &lt;fctr&gt;              &lt;int&gt;    &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
+##   &lt;int&gt; &lt;fct&gt;               &lt;int&gt;    &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
 ## 1    36 Bloody [Redact.]       39       26      7550       27.2</code></pre>
 <p>With the removal of both the “Northeast Entrance” and “Bloody <span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>” sites, there are <span class="math inline">\(n=23\)</span> observations remaining. This model (<code>m6</code>) seems to contain residual diagnostics (Figure <a href="chapter8.html#fig:Figure8-8">8.9</a>) that are finally generally reasonable.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])
@@ -703,16 +703,16 @@ newdata1</code></pre></div>
 <pre><code>## # A tibble: 30 x 3
 ##    Elevation Min.Temp Max.Temp
 ##        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-##  1      5000     27.8     36.4
-##  2      5103     27.8     36.4
-##  3      5207     27.8     36.4
-##  4      5310     27.8     36.4
-##  5      5414     27.8     36.4
-##  6      5517     27.8     36.4
-##  7      5621     27.8     36.4
-##  8      5724     27.8     36.4
-##  9      5828     27.8     36.4
-## 10      5931     27.8     36.4
+##  1     5000      27.8     36.4
+##  2     5103.     27.8     36.4
+##  3     5207.     27.8     36.4
+##  4     5310.     27.8     36.4
+##  5     5414.     27.8     36.4
+##  6     5517.     27.8     36.4
+##  7     5621.     27.8     36.4
+##  8     5724.     27.8     36.4
+##  9     5828.     27.8     36.4
+## 10     5931.     27.8     36.4
 ## # ... with 20 more rows</code></pre>
 <p>The predicted snow depths along with 95% confidence intervals for the mean, holding temperatures at their means, are:</p>
 
@@ -1288,17 +1288,17 @@ satGPA<span class="op">$</span>SEXINDICATOR &lt;-<span class="st"> </span><span 
 <span class="kw">head</span>(<span class="kw">tibble</span>(<span class="dt">SEX=</span>satGPA<span class="op">$</span>SEX, <span class="dt">SEXINDICATOR=</span>satGPA<span class="op">$</span>SEXINDICATOR), <span class="dv">10</span>) </code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##    SEX    SEXINDICATOR
-##    &lt;fctr&gt;        &lt;dbl&gt;
-##  1 MALE           0   
-##  2 FEMALE         1.00
-##  3 FEMALE         1.00
-##  4 MALE           0   
-##  5 MALE           0   
-##  6 FEMALE         1.00
-##  7 MALE           0   
-##  8 MALE           0   
-##  9 FEMALE         1.00
-## 10 MALE           0</code></pre>
+##    &lt;fct&gt;         &lt;dbl&gt;
+##  1 MALE              0
+##  2 FEMALE            1
+##  3 FEMALE            1
+##  4 MALE              0
+##  5 MALE              0
+##  6 FEMALE            1
+##  7 MALE              0
+##  8 MALE              0
+##  9 FEMALE            1
+## 10 MALE              0</code></pre>
 <p>We can define the indicator variable more generally by calling it <span class="math inline">\(I_{\text{Female},i}\)</span> to denote that it is an indicator <span class="math inline">\((I)\)</span> that takes on a value of 1 for observations in the category <em>Female</em> and 0 otherwise (<em>Male</em>) – changing based on the observation (<span class="math inline">\(i\)</span>). Indicator variables, once created, are quantitative variables that take on values of 0 or 1 and we can put them directly into linear models with other <span class="math inline">\(x\text{&#39;s}\)</span> (quantitative or categorical). If we replace the categorical <code>SEX</code> variable with our quantitative <code>SEXINDICATOR</code> and re-fit the model, we get:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SATSex2 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATM<span class="op">+</span>SEXINDICATOR, <span class="dt">data=</span>satGPA)
 <span class="kw">summary</span>(SATSex2)</code></pre></div>
@@ -1379,7 +1379,7 @@ Figure 8.21: Term-plots for the estimated model for <span class="math inline">\(
 </div>
 <div id="section8-10" class="section level2">
 <h2><span class="header-section-number">8.10</span> Additive MLR with more than two groups: Headache example</h2>
-<p>The same techniques can be extended to more than two groups. A study was conducted to explore sound tolerances using <span class="math inline">\(n=98\)</span> subjects with the data available in the <code>Headache</code> data set from the <code>heplots</code> package <span class="citation">(Fox and Friendly <a href="#ref-R-heplots">2017</a>)</span>. Each subject was initially exposed to a tone, stopping when the tone became definitely intolerable (<em>DU</em>) and that decibel level was recorded (variable called <code>du1</code>). Then the subjects were randomly assigned to one of four treatments: <em>T1</em> (Listened again to the tone at their initial <em>DU</em> level, for the same amount of time they were able to tolerate it before); <em>T2</em> (Same as <em>T1</em>, with one additional minute of exposure); <em>T3</em> (Same as <em>T2</em>, but the subjects were explicitly instructed to use the relaxation techniques); and <em>Control</em> (these subjects experienced no further exposure to the noise tone until the final sensitivity measures were taken). Then the <em>DU</em> was measured again (variable called <code>du2</code>). One would expect that there would be a relationship between the upper tolerance levels of the subjects before and after treatment. But maybe the treatments impact that relationship? We can use our indicator approach to see if the treatments provide a shift to higher tolerances after accounting for the relationship between the two measurements<a href="#fn107" class="footnoteRef" id="fnref107"><sup>107</sup></a>. The scatterplot of the results in Figure <a href="chapter8.html#fig:Figure8-21">8.22</a> shows some variation in the slopes and the intercepts for the groups although the variation in intercepts seems more prominent than differences in slopes.</p>
+<p>The same techniques can be extended to more than two groups. A study was conducted to explore sound tolerances using <span class="math inline">\(n=98\)</span> subjects with the data available in the <code>Headache</code> data set from the <code>heplots</code> package <span class="citation">(Fox and Friendly <a href="#ref-R-heplots">2018</a>)</span>. Each subject was initially exposed to a tone, stopping when the tone became definitely intolerable (<em>DU</em>) and that decibel level was recorded (variable called <code>du1</code>). Then the subjects were randomly assigned to one of four treatments: <em>T1</em> (Listened again to the tone at their initial <em>DU</em> level, for the same amount of time they were able to tolerate it before); <em>T2</em> (Same as <em>T1</em>, with one additional minute of exposure); <em>T3</em> (Same as <em>T2</em>, but the subjects were explicitly instructed to use the relaxation techniques); and <em>Control</em> (these subjects experienced no further exposure to the noise tone until the final sensitivity measures were taken). Then the <em>DU</em> was measured again (variable called <code>du2</code>). One would expect that there would be a relationship between the upper tolerance levels of the subjects before and after treatment. But maybe the treatments impact that relationship? We can use our indicator approach to see if the treatments provide a shift to higher tolerances after accounting for the relationship between the two measurements<a href="#fn107" class="footnoteRef" id="fnref107"><sup>107</sup></a>. The scatterplot of the results in Figure <a href="chapter8.html#fig:Figure8-21">8.22</a> shows some variation in the slopes and the intercepts for the groups although the variation in intercepts seems more prominent than differences in slopes.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(heplots)
 <span class="kw">data</span>(Headache)
@@ -1388,17 +1388,17 @@ Headache &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(Headach
 Headache</code></pre></div>
 <pre><code>## # A tibble: 98 x 6
 ##    type    treatment    u1   du1    u2   du2
-##    &lt;fctr&gt;  &lt;fctr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 Migrane T3        2.34  5.30  5.80  8.52 
-##  2 Migrane T1        2.73  6.85  4.68  6.68 
-##  3 Tension T1        0.370 0.530 0.550 0.840
-##  4 Migrane T3        7.50  9.12  5.70  7.88 
-##  5 Migrane T3        4.63  7.21  5.63  6.75 
-##  6 Migrane T3        3.60  7.30  4.83  7.32 
-##  7 Migrane T2        2.45  3.75  2.50  3.18 
-##  8 Migrane T1        2.31  3.25  2.00  3.30 
-##  9 Migrane T1        1.38  2.33  2.23  3.98 
-## 10 Tension T3        0.850 1.42  1.37  1.89 
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Migrane T3         2.34  5.3   5.8   8.52
+##  2 Migrane T1         2.73  6.85  4.68  6.68
+##  3 Tension T1         0.37  0.53  0.55  0.84
+##  4 Migrane T3         7.5   9.12  5.7   7.88
+##  5 Migrane T3         4.63  7.21  5.63  6.75
+##  6 Migrane T3         3.6   7.3   4.83  7.32
+##  7 Migrane T2         2.45  3.75  2.5   3.18
+##  8 Migrane T1         2.31  3.25  2     3.3 
+##  9 Migrane T1         1.38  2.33  2.23  3.98
+## 10 Tension T3         0.85  1.42  1.37  1.89
 ## # ... with 88 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">scatterplot</span>(du2<span class="op">~</span>du1<span class="op">|</span>treatment, <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>,
             <span class="dt">main=</span><span class="st">&quot;Plot of Maximum DB tolerances before and after treatment (by treatment)&quot;</span>,
@@ -1649,7 +1649,7 @@ Figure 8.25: Diagnostic plots for the additive decibel tolerance model.
 <div id="section8-11" class="section level2">
 <h2><span class="header-section-number">8.11</span> Different slopes and different intercepts</h2>
 <p>Sometimes researchers are specifically interested in whether the slopes vary across groups or the regression lines in the scatterplot for the different groups may not look parallel or it may just be hard to tell visually if there really is a difference in the slopes. Unless you are <strong>very sure</strong> that there is not an interaction between the grouping variable and the quantitative predictor, you should start by fitting a model containing an interaction and then see if you can drop it. It may be the case that you end up with the simpler additive model from the previous sections, but you don’t want to assume the same slope across groups unless you are absolutely sure that is the case. This should remind you a bit of the discussions of the additive and interaction models in the Two-way ANOVA material. The models, concerns, and techniques are very similar, but with the quantitative variable replacing one of the two categorical variables. As always, the scatterplot is a good first step to understanding whether we need the extra complexity that these models require.</p>
-<p>A new example provides motivation for the consideration of different slopes and intercepts. A study was performed to address whether the relationship between nonverbal IQs and reading accuracy differs between dyslexic and non-dyslexic students. Two groups of students were identified, one group of <em>dyslexic</em> students was identified first (19 students) and then a group of gender and age similar student matches were identified (25 students) for a total sample size of <span class="math inline">\(n=44\)</span>, provided in the <code>dyslexic3</code> data set from the <code>smdata</code> package <span class="citation">(Merkle and Smithson <a href="#ref-R-smdata">2013</a>)</span>. This type of study design is an attempt to “balance” the data from the two groups on some important characteristics to make the comparisons of the groups as fair as possible. The researchers attempted to balance the characteristics of the subjects in the two groups so that if they found different results for the two groups, they could attribute it to the main difference they used to create the groups – dyslexia or not. This design, <strong><em>case-control</em></strong> or <strong>case-comparison</strong> where each subject with a trait is matched to one or more subjects in the “control” group would hopefully reduce confounding from other factors and then allow stronger conclusions in situations where it is impossible to randomly assign treatments to subjects. We still would avoid using “causal” language but this design is about as good as you can get when you are unable to randomly assign levels to subjects.</p>
+<p>A new example provides motivation for the consideration of different slopes and intercepts. A study was performed to address whether the relationship between nonverbal IQs and reading accuracy differs between dyslexic and non-dyslexic students. Two groups of students were identified, one group of <em>dyslexic</em> students was identified first (19 students) and then a group of gender and age similar student matches were identified (25 students) for a total sample size of <span class="math inline">\(n=44\)</span>, provided in the <code>dyslexic3</code> data set from the <code>smdata</code> package <span class="citation">(Merkle and Smithson <a href="#ref-R-smdata">2018</a>)</span>. This type of study design is an attempt to “balance” the data from the two groups on some important characteristics to make the comparisons of the groups as fair as possible. The researchers attempted to balance the characteristics of the subjects in the two groups so that if they found different results for the two groups, they could attribute it to the main difference they used to create the groups – dyslexia or not. This design, <strong><em>case-control</em></strong> or <strong>case-comparison</strong> where each subject with a trait is matched to one or more subjects in the “control” group would hopefully reduce confounding from other factors and then allow stronger conclusions in situations where it is impossible to randomly assign treatments to subjects. We still would avoid using “causal” language but this design is about as good as you can get when you are unable to randomly assign levels to subjects.</p>
 <p>Using these data, we can explore the relationship between nonverbal IQ scores and reading accuracy, with reading accuracy measured as a proportion correct. The fact that there is an upper limit to the response variable attained by many students will cause complications below, but we can still learn something from our attempts to analyze these data using an MLR model. The scatterplot in Figure <a href="chapter8.html#fig:Figure8-25">8.26</a> seems to indicate some clear differences in the <em>IQ</em> vs <em>reading score</em> relationship between the <em>dys</em>=0 (non-dyslexic) and <em>dys</em>=1 (dyslexic) students. Note that the IQ is standardized to have mean 0 and standard deviation of 1 which means that a 1 unit change in IQ score is a 1 SD change and that the <em>y</em>-intercept (for <span class="math inline">\(x=0\)</span>) is right in the center of the plot and actually interesting<a href="#fn108" class="footnoteRef" id="fnref108"><sup>108</sup></a>.</p>
 
 <div class="figure"><span id="fig:Figure8-25"></span>
@@ -1661,6 +1661,7 @@ Figure 8.26: Scatterplot for reading score versus nonverbal IQ by dyslexia group
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(smdata)
 <span class="kw">data</span>(<span class="st">&quot;dyslexic3&quot;</span>)
 dyslexic3 &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(dyslexic3)
+dyslexic3<span class="op">$</span>dys &lt;-<span class="st"> </span><span class="kw">factor</span>(dyslexic3<span class="op">$</span>dys)
 <span class="kw">scatterplot</span>(score<span class="op">~</span>ziq<span class="op">|</span>dys, <span class="dt">xlab=</span><span class="st">&quot;Standardized nonverbal IQ scores&quot;</span>,
             <span class="dt">ylab=</span><span class="st">&quot;Reading score&quot;</span>, <span class="dt">data=</span>dyslexic3, <span class="dt">smooth=</span>F,
             <span class="dt">main=</span><span class="st">&quot;Plot of IQ vs Reading by dyslexia status&quot;</span>)</code></pre></div>
@@ -2002,7 +2003,7 @@ Figure 8.34: Diagram of models to consider in an interaction model.
 <li><p>Remember that the selected model is not the “true” model – it is only the best model <em>according to AIC</em> among the set of models <em>you provided</em>.</p></li>
 <li><p>Model assumptions need to be met to use AICs. They assume that the model is specified correctly up to possibly comparing different predictor variables. Perform diagnostic checks on your initial model and the top model.</p></li>
 </ul>
-<p>When working with AICs, there are two options. Fit the models of interest and then run the <code>AIC</code> function on each model. This can be tedious, especially when we have many possible models to consider. We can make it easy to fit all the potential candidate models that are implied by a complicated starting model by using the <code>dredge</code> function from the <code>MuMIn</code> package <span class="citation">(Barton <a href="#ref-R-MuMIn">2017</a>)</span>. The name (dredge) actually speaks to what <strong><em>fitting all possible models</em></strong> really engages – what is called <strong><em>data dredging</em></strong>. The term is meant to refer to considering way too many models for your data set, probably finding something good from the process, but maybe identifying something spurious since you looked at so many models. Note that if you take a hypothesis testing approach where you plan to remove any terms with large p-values in this same situation, you are really considering all possible models as well because you could have removed some or all model components. Methods that consider all possible models are probably best used in exploratory analyses where you do not know if any or all terms should be important. If you have more specific research questions, then you probably should try to focus on comparisons of models that help you directly answer those questions, either with AIC or p-value methods.</p>
+<p>When working with AICs, there are two options. Fit the models of interest and then run the <code>AIC</code> function on each model. This can be tedious, especially when we have many possible models to consider. We can make it easy to fit all the potential candidate models that are implied by a complicated starting model by using the <code>dredge</code> function from the <code>MuMIn</code> package <span class="citation">(Barton <a href="#ref-R-MuMIn">2018</a>)</span>. The name (dredge) actually speaks to what <strong><em>fitting all possible models</em></strong> really engages – what is called <strong><em>data dredging</em></strong>. The term is meant to refer to considering way too many models for your data set, probably finding something good from the process, but maybe identifying something spurious since you looked at so many models. Note that if you take a hypothesis testing approach where you plan to remove any terms with large p-values in this same situation, you are really considering all possible models as well because you could have removed some or all model components. Methods that consider all possible models are probably best used in exploratory analyses where you do not know if any or all terms should be important. If you have more specific research questions, then you probably should try to focus on comparisons of models that help you directly answer those questions, either with AIC or p-value methods.</p>
 <p>The <code>dredge</code> function provides an automated method of assessing all possible simpler models based on an initial (full) model. It generates a table of AIC results, <span class="math inline">\(\Delta\text{AICs}\)</span>, and also shows when various predictors are in or out of the model for all reduced models possible from an initial model. For quantitative predictors, the estimated slope is reported when that predictor is in the model. For categorical variables and interactions with them, it just puts a “+” in the table to let you know that the term is in the models. Note that you must run the <code>options(na.action = &quot;na.fail&quot;)</code> code to get <code>dredge</code> to work.</p>
 <p>To explore the AICs and compare their results to the adjusted <strong><em>R</em></strong><sup>2</sup> that we used before for model selection, we can revisit the <em>Snow Depth</em> data set with related results found in Section <a href="chapter8.html#section8-4">8.4</a> and Table <a href="chapter8.html#tab:Table8-1">8.1</a>. In that situation we were considering a “full” model that included <em>Elevation</em>, <em>Min.Temp</em>, and <em>Max.Temp</em> as potential predictor variables after removing two influential points. And we considered all possible reduced models from that “full”<a href="#fn117" class="footnoteRef" id="fnref117"><sup>117</sup></a> model. Note that the <code>dredge</code> output adds one more model that adjusted <strong><em>R</em></strong><sup>2</sup> can’t consider – the mean-only model that contains no predictor variables. In the following output it is the last model in the output (worst ranked on AIC). Including the mean-only model in these results helps us “prove” that there is support for having something in the model, but only if there is better support for other models than this simplest possible model.</p>
 <p>In reading <code>dredge</code> output<a href="#fn118" class="footnoteRef" id="fnref118"><sup>118</sup></a> as it is constructed here, the models are sorted by top to bottom AIC values (smallest AIC to largest). The column <code>delta</code> is for the <span class="math inline">\(\Delta\text{AICs}\)</span> and shows a 0 for the first row, which is the top-ranked AIC model. Here it is for the model with <em>Elevation</em> and <em>Max.Temp</em> but not including <em>Min.Temp</em>. This was also the top ranked model from adjusted <strong><em>R</em></strong><sup>2</sup>, which is reproduced in the <code>adjRsq</code> column. The <code>AIC</code> is calculated using the previous formula based on the <code>df</code> and <code>logLik</code> columns. The <code>df</code> is also a useful column for comparing models as it helps you see how complex each model is. For example, the top model used up 4 <em>model df</em> (three <span class="math inline">\(\beta\text{&#39;s}\)</span> and the residual error variance) and the most complex model that included four predictor variables used up 5 <em>model df</em>.</p>
@@ -2041,7 +2042,7 @@ snotel2R&lt;-snotel2[<span class="op">-</span><span class="kw">c</span>(<span cl
 </div>
 <div id="section8-14" class="section level2">
 <h2><span class="header-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</h2>
-<p>Researchers were interested in studying the effects of smoking by children on their lung development by measuring the forced expiratory volume (<em>FEV</em>, measured in Liters) in a representative sample of children (<span class="math inline">\(n=654\)</span>) between the ages of 3 and 19; this data set is available in the <code>FEV</code> data set in the <code>coneproj</code> package (<span class="citation">M. C. Meyer and Liao (<a href="#ref-R-coneproj">2017</a>)</span>, <span class="citation">Liao and Meyer (<a href="#ref-Liao2014">2014</a>)</span>). Measurements on the <em>age</em> (in years) and <em>height</em> (in inches) as well as the <em>sex</em> and <em>smoking status</em> of the children were made. We would expect both the <em>age</em> and <em>height</em> to have positive relationships with <em>FEV</em> (lung capacity) and that smoking might decrease the lung capacity but also that older children would be more likely to smoke. So the <em>height</em> and <em>age</em> might be <strong><em>confounded</em></strong> with smoking status and smoking might diminish lung development for older kids – resulting in a potential interaction between <em>age</em> and <em>smoking</em>. The <em>sex</em> of the child might also matter and should be considered or at least controlled for since the response is a size-based measure. This creates the potential for including up to four variables (<em>age</em>, <em>height</em>, <em>sex</em>, and <em>smoking status</em>) and possibly the interaction between <em>age</em> and <em>smoking status</em>. Initial explorations suggested that modeling the log-FEV would be more successful than trying to model the responses on the original scale. Figure <a href="chapter8.html#fig:Figure8-34">8.35</a> shows the suggestion of different slopes for the smokers than non-smokers and that there aren’t very many smokers under 9 years old in the data set.</p>
+<p>Researchers were interested in studying the effects of smoking by children on their lung development by measuring the forced expiratory volume (<em>FEV</em>, measured in Liters) in a representative sample of children (<span class="math inline">\(n=654\)</span>) between the ages of 3 and 19; this data set is available in the <code>FEV</code> data set in the <code>coneproj</code> package (<span class="citation">Meyer and Liao (<a href="#ref-R-coneproj">2018</a>)</span>, <span class="citation">Liao and Meyer (<a href="#ref-Liao2014">2014</a>)</span>). Measurements on the <em>age</em> (in years) and <em>height</em> (in inches) as well as the <em>sex</em> and <em>smoking status</em> of the children were made. We would expect both the <em>age</em> and <em>height</em> to have positive relationships with <em>FEV</em> (lung capacity) and that smoking might decrease the lung capacity but also that older children would be more likely to smoke. So the <em>height</em> and <em>age</em> might be <strong><em>confounded</em></strong> with smoking status and smoking might diminish lung development for older kids – resulting in a potential interaction between <em>age</em> and <em>smoking</em>. The <em>sex</em> of the child might also matter and should be considered or at least controlled for since the response is a size-based measure. This creates the potential for including up to four variables (<em>age</em>, <em>height</em>, <em>sex</em>, and <em>smoking status</em>) and possibly the interaction between <em>age</em> and <em>smoking status</em>. Initial explorations suggested that modeling the log-FEV would be more successful than trying to model the responses on the original scale. Figure <a href="chapter8.html#fig:Figure8-34">8.35</a> shows the suggestion of different slopes for the smokers than non-smokers and that there aren’t very many smokers under 9 years old in the data set.</p>
 <p>So we will start with a model that contains an <em>age</em> by <em>smoking</em> interaction and include <em>height</em> and <em>sex</em> as additive terms. We are not sure if any of these model components will be needed, so the simplest candidate model will be to remove all the predictors and just have a mean-only model (<code>FEV~1</code>). In between the mean-only and most complicated model are many different options where we can drop the interaction or drop the additive terms or drop the terms involved in the interaction if we don’t need the interaction.</p>
 
 <div class="figure"><span id="fig:Figure8-34"></span>
@@ -2290,10 +2291,10 @@ scatterplot(TreadMillOx~RunTime|Ageb, data=treadmill, smooth=F, lwd=2)</code></p
 <p>Diez, David M, Christopher D Barr, and Mine Cetinkaya-Rundel. 2017. <em>Openintro: Data Sets and Supplemental Functions from ’Openintro’ Textbooks</em>. <a href="https://CRAN.R-project.org/package=openintro" class="uri">https://CRAN.R-project.org/package=openintro</a>.</p>
 </div>
 <div id="ref-R-heplots">
-<p>Fox, John, and Michael Friendly. 2017. <em>Heplots: Visualizing Hypothesis Tests in Multivariate Linear Models</em>. <a href="https://CRAN.R-project.org/package=heplots" class="uri">https://CRAN.R-project.org/package=heplots</a>.</p>
+<p>Fox, John, and Michael Friendly. 2018. <em>Heplots: Visualizing Hypothesis Tests in Multivariate Linear Models</em>. <a href="https://CRAN.R-project.org/package=heplots" class="uri">https://CRAN.R-project.org/package=heplots</a>.</p>
 </div>
 <div id="ref-R-smdata">
-<p>Merkle, Ed, and Michael Smithson. 2013. <em>Smdata: Data to Accompany Smithson &amp; Merkle, 2013</em>. <a href="https://CRAN.R-project.org/package=smdata" class="uri">https://CRAN.R-project.org/package=smdata</a>.</p>
+<p>Merkle, Ed, and Michael Smithson. 2018. <em>Smdata: Data to Accompany Smithson &amp; Merkle, 2013</em>. <a href="https://CRAN.R-project.org/package=smdata" class="uri">https://CRAN.R-project.org/package=smdata</a>.</p>
 </div>
 <div id="ref-Akaike1974">
 <p>Akaike, Hirotugu. 1974. “A New Look at the Statistical Model Identification.” <em>IEEE Transactions on Automatic Control</em> 19: 716–23.</p>
@@ -2302,10 +2303,10 @@ scatterplot(TreadMillOx~RunTime|Ageb, data=treadmill, smooth=F, lwd=2)</code></p
 <p>Burnham, Kenneth P., and David R. Anderson. 2002. <em>Model Selection and Multimodel Inference</em>. NY: Springer.</p>
 </div>
 <div id="ref-R-MuMIn">
-<p>Barton, Kamil. 2017. <em>MuMIn: Multi-Model Inference</em>. <a href="https://CRAN.R-project.org/package=MuMIn" class="uri">https://CRAN.R-project.org/package=MuMIn</a>.</p>
+<p>Barton, Kamil. 2018. <em>MuMIn: Multi-Model Inference</em>. <a href="https://CRAN.R-project.org/package=MuMIn" class="uri">https://CRAN.R-project.org/package=MuMIn</a>.</p>
 </div>
 <div id="ref-R-coneproj">
-<p>Meyer, Mary C., and Xiyue Liao. 2017. <em>Coneproj: Primal or Dual Cone Projections with Routines for Constrained Regression</em>. <a href="https://CRAN.R-project.org/package=coneproj" class="uri">https://CRAN.R-project.org/package=coneproj</a>.</p>
+<p>Meyer, Mary C., and Xiyue Liao. 2018. <em>Coneproj: Primal or Dual Cone Projections with Routines for Constrained Regression</em>. <a href="https://CRAN.R-project.org/package=coneproj" class="uri">https://CRAN.R-project.org/package=coneproj</a>.</p>
 </div>
 <div id="ref-Liao2014">
 <p>Liao, Xiyue, and Mary C. Meyer. 2014. “Coneproj: An R Package for the Primal or Dual Cone Projections with Routines for Constrained Regression.” <em>Journal of Statistical Software</em> 61 (12): 1–22. <a href="http://www.jstatsoft.org/v61/i12/" class="uri">http://www.jstatsoft.org/v61/i12/</a>.</p>
@@ -2369,10 +2370,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -2396,9 +2398,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

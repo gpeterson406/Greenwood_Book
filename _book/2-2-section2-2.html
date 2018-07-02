@@ -284,23 +284,23 @@ MockJury<span class="op">$</span>NotBeautiful</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">tibble</span>(MockJury<span class="op">$</span>Attr, MockJury<span class="op">$</span>NotBeautiful))</code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   `MockJury$Attr` `MockJury$NotBeautiful`
-##   &lt;fctr&gt;          &lt;lgl&gt;                  
-## 1 Beautiful       F                      
-## 2 Beautiful       F                      
-## 3 Beautiful       F                      
-## 4 Beautiful       F                      
-## 5 Beautiful       F                      
-## 6 Beautiful       F</code></pre>
+##   &lt;fct&gt;           &lt;lgl&gt;                  
+## 1 Beautiful       FALSE                  
+## 2 Beautiful       FALSE                  
+## 3 Beautiful       FALSE                  
+## 4 Beautiful       FALSE                  
+## 5 Beautiful       FALSE                  
+## 6 Beautiful       FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(<span class="kw">tibble</span>(MockJury<span class="op">$</span>Attr, MockJury<span class="op">$</span>NotBeautiful))</code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   `MockJury$Attr` `MockJury$NotBeautiful`
-##   &lt;fctr&gt;          &lt;lgl&gt;                  
-## 1 Average         T                      
-## 2 Average         T                      
-## 3 Average         T                      
-## 4 Average         T                      
-## 5 Average         T                      
-## 6 Average         T</code></pre>
+##   &lt;fct&gt;           &lt;lgl&gt;                  
+## 1 Average         TRUE                   
+## 2 Average         TRUE                   
+## 3 Average         TRUE                   
+## 4 Average         TRUE                   
+## 5 Average         TRUE                   
+## 6 Average         TRUE</code></pre>
 <p>To get rid of one of the responses that are in one of the groups, we need to learn a little bit about data management in R. <strong><em>Brackets</em></strong> <code>([,])</code> are used to access and possibly modify the rows or columns in a tibble with entries before the comma operating on rows and entries after the comma on the columns. For example, if you want to see the results for the 5<sup>th</sup> subject, you can reference the 5<sup>th</sup> row of the tibble using <code>[5,]</code> after the tibble name:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MockJury[<span class="dv">5</span>,]</code></pre></div>
 <pre><code>##        Attr    Crime Years Serious exciting calm independent sincere warm

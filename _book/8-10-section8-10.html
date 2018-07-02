@@ -237,7 +237,7 @@ img {
 <div class="col-sm-12">
 <div id="section8-10" class="section level2">
 <h2><span class="header-section-number">8.10</span> Additive MLR with more than two groups: Headache example</h2>
-<p>The same techniques can be extended to more than two groups. A study was conducted to explore sound tolerances using <span class="math inline">\(n=98\)</span> subjects with the data available in the <code>Headache</code> data set from the <code>heplots</code> package <span class="citation">(Fox and Friendly <a href="#ref-R-heplots">2017</a>)</span>. Each subject was initially exposed to a tone, stopping when the tone became definitely intolerable (<em>DU</em>) and that decibel level was recorded (variable called <code>du1</code>). Then the subjects were randomly assigned to one of four treatments: <em>T1</em> (Listened again to the tone at their initial <em>DU</em> level, for the same amount of time they were able to tolerate it before); <em>T2</em> (Same as <em>T1</em>, with one additional minute of exposure); <em>T3</em> (Same as <em>T2</em>, but the subjects were explicitly instructed to use the relaxation techniques); and <em>Control</em> (these subjects experienced no further exposure to the noise tone until the final sensitivity measures were taken). Then the <em>DU</em> was measured again (variable called <code>du2</code>). One would expect that there would be a relationship between the upper tolerance levels of the subjects before and after treatment. But maybe the treatments impact that relationship? We can use our indicator approach to see if the treatments provide a shift to higher tolerances after accounting for the relationship between the two measurements<a href="#fn107" class="footnoteRef" id="fnref107"><sup>107</sup></a>. The scatterplot of the results in Figure <a href="8-10-section8-10.html#fig:Figure8-21">2.160</a> shows some variation in the slopes and the intercepts for the groups although the variation in intercepts seems more prominent than differences in slopes.</p>
+<p>The same techniques can be extended to more than two groups. A study was conducted to explore sound tolerances using <span class="math inline">\(n=98\)</span> subjects with the data available in the <code>Headache</code> data set from the <code>heplots</code> package <span class="citation">(Fox and Friendly <a href="#ref-R-heplots">2018</a>)</span>. Each subject was initially exposed to a tone, stopping when the tone became definitely intolerable (<em>DU</em>) and that decibel level was recorded (variable called <code>du1</code>). Then the subjects were randomly assigned to one of four treatments: <em>T1</em> (Listened again to the tone at their initial <em>DU</em> level, for the same amount of time they were able to tolerate it before); <em>T2</em> (Same as <em>T1</em>, with one additional minute of exposure); <em>T3</em> (Same as <em>T2</em>, but the subjects were explicitly instructed to use the relaxation techniques); and <em>Control</em> (these subjects experienced no further exposure to the noise tone until the final sensitivity measures were taken). Then the <em>DU</em> was measured again (variable called <code>du2</code>). One would expect that there would be a relationship between the upper tolerance levels of the subjects before and after treatment. But maybe the treatments impact that relationship? We can use our indicator approach to see if the treatments provide a shift to higher tolerances after accounting for the relationship between the two measurements<a href="#fn107" class="footnoteRef" id="fnref107"><sup>107</sup></a>. The scatterplot of the results in Figure <a href="8-10-section8-10.html#fig:Figure8-21">2.160</a> shows some variation in the slopes and the intercepts for the groups although the variation in intercepts seems more prominent than differences in slopes.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(heplots)
 <span class="kw">data</span>(Headache)
@@ -246,17 +246,17 @@ Headache &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(Headach
 Headache</code></pre></div>
 <pre><code>## # A tibble: 98 x 6
 ##    type    treatment    u1   du1    u2   du2
-##    &lt;fctr&gt;  &lt;fctr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 Migrane T3        2.34  5.30  5.80  8.52 
-##  2 Migrane T1        2.73  6.85  4.68  6.68 
-##  3 Tension T1        0.370 0.530 0.550 0.840
-##  4 Migrane T3        7.50  9.12  5.70  7.88 
-##  5 Migrane T3        4.63  7.21  5.63  6.75 
-##  6 Migrane T3        3.60  7.30  4.83  7.32 
-##  7 Migrane T2        2.45  3.75  2.50  3.18 
-##  8 Migrane T1        2.31  3.25  2.00  3.30 
-##  9 Migrane T1        1.38  2.33  2.23  3.98 
-## 10 Tension T3        0.850 1.42  1.37  1.89 
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Migrane T3         2.34  5.3   5.8   8.52
+##  2 Migrane T1         2.73  6.85  4.68  6.68
+##  3 Tension T1         0.37  0.53  0.55  0.84
+##  4 Migrane T3         7.5   9.12  5.7   7.88
+##  5 Migrane T3         4.63  7.21  5.63  6.75
+##  6 Migrane T3         3.6   7.3   4.83  7.32
+##  7 Migrane T2         2.45  3.75  2.5   3.18
+##  8 Migrane T1         2.31  3.25  2     3.3 
+##  9 Migrane T1         1.38  2.33  2.23  3.98
+## 10 Tension T3         0.85  1.42  1.37  1.89
 ## # ... with 88 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">scatterplot</span>(du2<span class="op">~</span>du1<span class="op">|</span>treatment, <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>,
             <span class="dt">main=</span><span class="st">&quot;Plot of Maximum DB tolerances before and after treatment (by treatment)&quot;</span>,
@@ -507,7 +507,7 @@ Figure 2.163: Diagnostic plots for the additive decibel tolerance model.
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-heplots">
-<p>Fox, John, and Michael Friendly. 2017. <em>Heplots: Visualizing Hypothesis Tests in Multivariate Linear Models</em>. <a href="https://CRAN.R-project.org/package=heplots" class="uri">https://CRAN.R-project.org/package=heplots</a>.</p>
+<p>Fox, John, and Michael Friendly. 2018. <em>Heplots: Visualizing Hypothesis Tests in Multivariate Linear Models</em>. <a href="https://CRAN.R-project.org/package=heplots" class="uri">https://CRAN.R-project.org/package=heplots</a>.</p>
 </div>
 </div>
 <div class="footnotes">

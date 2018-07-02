@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>A Second Semester Statistics Course with R</title>
   <meta name="description" content="A Second Semester Statistics Course with R">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="A Second Semester Statistics Course with R" />
   <meta property="og:type" content="book" />
@@ -326,7 +326,7 @@ mtfiresR &lt;-<span class="st"> </span>mtfires[,<span class="op">-</span><span c
 ## Year         1.0000000  -0.0037991   0.3617789
 ## Temperature -0.0037991   1.0000000   0.8135947
 ## loghectares  0.3617789   0.8135947   1.0000000</code></pre>
-<p>The correlation matrix alone is misleading – we need to explore scatterplots to check for nonlinear relationships, outliers, and clustering of observations that may be distorting the numerical measure of the linear relationship. The <code>pairs.panels</code> function from the <code>psych</code> package <span class="citation">(Revelle <a href="#ref-R-psych">2017</a>)</span> combines the numerical correlation information and scatterplots in one display. There are some options to turn off for the moment but it is an easy function to use to get lots of information in one place. As in the correlation matrix, you triangulate the variables for the pairwise relationship. The upper right panel of Figure <a href="chapter6.html#fig:Figure6-3">6.3</a> displays a correlation of 0.36 for <code>Year</code> and <code>loghectares</code> and the lower left panel contains the scatterplot with <code>Year</code> on the x-axis and <code>loghectares</code> on the y-axis. The correlation between <code>Year</code> and <code>Temperature</code> is really small, both in magnitude and in display, but appears to be nonlinear (it goes down between 1985 and 1995 and then goes back up), so the correlation coefficient doesn’t mean much here since it just measures the overall linear relationship. We might say that this is a moderate strength (moderately “clear”) curvilinear relationship. In terms of the underlying climate process, it suggests a decrease in summer temperatures between 1985 and 1995 and then an increase in the second half of the data set.</p>
+<p>The correlation matrix alone is misleading – we need to explore scatterplots to check for nonlinear relationships, outliers, and clustering of observations that may be distorting the numerical measure of the linear relationship. The <code>pairs.panels</code> function from the <code>psych</code> package <span class="citation">(Revelle <a href="#ref-R-psych">2018</a>)</span> combines the numerical correlation information and scatterplots in one display. There are some options to turn off for the moment but it is an easy function to use to get lots of information in one place. As in the correlation matrix, you triangulate the variables for the pairwise relationship. The upper right panel of Figure <a href="chapter6.html#fig:Figure6-3">6.3</a> displays a correlation of 0.36 for <code>Year</code> and <code>loghectares</code> and the lower left panel contains the scatterplot with <code>Year</code> on the x-axis and <code>loghectares</code> on the y-axis. The correlation between <code>Year</code> and <code>Temperature</code> is really small, both in magnitude and in display, but appears to be nonlinear (it goes down between 1985 and 1995 and then goes back up), so the correlation coefficient doesn’t mean much here since it just measures the overall linear relationship. We might say that this is a moderate strength (moderately “clear”) curvilinear relationship. In terms of the underlying climate process, it suggests a decrease in summer temperatures between 1985 and 1995 and then an increase in the second half of the data set.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(psych) 
 <span class="kw">pairs.panels</span>(mtfiresR, <span class="dt">ellipses=</span>F, <span class="dt">scale=</span>T, <span class="dt">smooth=</span>F, <span class="dt">col=</span><span class="dv">0</span>)</code></pre></div>
@@ -336,7 +336,7 @@ mtfiresR &lt;-<span class="st"> </span>mtfires[,<span class="op">-</span><span c
 Figure 6.3: Scatterplot matrix of Montana fires data.
 </p>
 </div>
-<p>As one more example, the Australian Institute of Sport collected data on 102 male and 100 female athletes that are available in the <code>ais</code> data set from the <code>alr3</code> package (<span class="citation">Weisberg (<a href="#ref-R-alr3">2011</a>)</span>, <span class="citation">Weisberg (<a href="#ref-Weisberg2005">2005</a>)</span>). They measured a variety of variables including the athlete’s Hematocrit (<code>Hc</code>, units of percentage of red blood cells in the blood), Body Fat Percentage (<code>Bfat</code>, units of percentage of total body weight), and height (<code>Ht</code>, units of cm). Eventually we might be interested in predicting <code>Hc</code> based on the other variables, but for now the associations are of interest.</p>
+<p>As one more example, the Australian Institute of Sport collected data on 102 male and 100 female athletes that are available in the <code>ais</code> data set from the <code>alr3</code> package (<span class="citation">Weisberg (<a href="#ref-R-alr3">2018</a>)</span>, <span class="citation">Weisberg (<a href="#ref-Weisberg2005">2005</a>)</span>). They measured a variety of variables including the athlete’s Hematocrit (<code>Hc</code>, units of percentage of red blood cells in the blood), Body Fat Percentage (<code>Bfat</code>, units of percentage of total body weight), and height (<code>Ht</code>, units of cm). Eventually we might be interested in predicting <code>Hc</code> based on the other variables, but for now the associations are of interest.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(alr3)
 <span class="kw">data</span>(ais)
@@ -368,8 +368,8 @@ Figure 6.4: Scatterplot matrix of athlete data.
 <pre><code>## # A tibble: 2 x 3
 ##      Ht    Hc  Bfat
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1   180  37.6 35.5 
-## 2   175  59.7  9.56</code></pre>
+## 1  180.  37.6 35.5 
+## 2  175.  59.7  9.56</code></pre>
 <p>We can create a reduced version of the data (<code>aisR2</code>) by removing those two rows using <code>[-c(56, 166),]</code> and then remake the plot:</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aisR2 &lt;-<span class="st"> </span>aisR[<span class="op">-</span><span class="kw">c</span>(<span class="dv">56</span>,<span class="dv">166</span>),] <span class="co">#Removes observations in rows 56 and 166</span>
@@ -381,7 +381,7 @@ Figure 6.5: Scatterplot matrix of athlete data with two potential outliers remov
 </p>
 </div>
 <p>After removing these two unusual observations, the relationships between the variables are more obvious (Figure <a href="chapter6.html#fig:Figure6-5">6.5</a>). There is a moderate strength, relatively linear relationship between <em>Height</em> and <em>Hematocrit</em>. There is almost no relationship between <em>Height</em> and <em>Body Fat %</em> <span class="math inline">\((\boldsymbol{r}=-0.20)\)</span>. There is a negative, moderate strength, somewhat curvilinear relationship between <em>Hematocrit</em> and <em>Body Fat %</em> <span class="math inline">\((\boldsymbol{r}=-0.54)\)</span>. As hematocrit increases initially, the body fat percentage decreases but at a certain level (around 45% for <code>Hc</code>), the body fat percentage seems to level off. Interestingly, it ended up that removing those two outliers had only minor impacts on the estimated correlations – this will not always be the case.</p>
-<p>Sometimes we want to just be able to focus on the correlations, assuming we trust that the correlation is a reasonable description of the results between the variables. To make it easier to see patterns of positive and negative correlations, we can employ a different version of the same display from the <code>corrplot</code> package <span class="citation">(T. Wei and Simko <a href="#ref-R-corrplot">2017</a>)</span>. In this case (Figure <a href="chapter6.html#fig:Figure6-6">6.6</a>), it tells much the same story but also allows the viewer to easily distinguish both size and direction and read off the numerical correlations if desired.</p>
+<p>Sometimes we want to just be able to focus on the correlations, assuming we trust that the correlation is a reasonable description of the results between the variables. To make it easier to see patterns of positive and negative correlations, we can employ a different version of the same display from the <code>corrplot</code> package <span class="citation">(Wei and Simko <a href="#ref-R-corrplot">2017</a>)</span>. In this case (Figure <a href="chapter6.html#fig:Figure6-6">6.6</a>), it tells much the same story but also allows the viewer to easily distinguish both size and direction and read off the numerical correlations if desired.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(corrplot)
 <span class="kw">corrplot.mixed</span>(<span class="kw">cor</span>(aisR2), <span class="dt">upper.col=</span><span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;orange&quot;</span>),<span class="dt">lower.col=</span><span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;orange&quot;</span>))</code></pre></div>
@@ -405,6 +405,7 @@ Figure 6.7: Scatterplot of athlete’s height and hematocrit by sex of athletes.
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aisR2 &lt;-<span class="st"> </span>ais[<span class="op">-</span><span class="kw">c</span>(<span class="dv">56</span>,<span class="dv">166</span>),<span class="kw">c</span>(<span class="st">&quot;Ht&quot;</span>,<span class="st">&quot;Hc&quot;</span>,<span class="st">&quot;Bfat&quot;</span>,<span class="st">&quot;Sex&quot;</span>)]
 <span class="kw">require</span>(car)
+aisR2<span class="op">$</span>Sex &lt;-<span class="st"> </span><span class="kw">as.factor</span>(aisR2<span class="op">$</span>Sex)
 <span class="kw">scatterplot</span>(Hc<span class="op">~</span>Ht<span class="op">|</span>Sex, <span class="dt">data=</span>aisR2, <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">21</span>), <span class="dt">reg.line=</span>F, <span class="dt">smoother=</span>F,
             <span class="dt">boxplots=</span><span class="st">&quot;xy&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Scatterplot of Height vs Hematocrit by Sex&quot;</span>)</code></pre></div>
 <p>Adding the grouping information really changes the impressions of the relationship between <em>Height</em> and <em>Hematocrit</em> – within each sex, there is little relationship between the two variables. The overall relationship is of moderate strength and positive but the subgroup relationships are weak at best. The overall relationship is created by inappropriately combining two groups that had different means in both the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> directions. Men have higher mean heights and hematocrit values than women and putting them together in one large group creates the misleading overall relationship<a href="#fn74" class="footnoteRef" id="fnref74"><sup>74</sup></a>.</p>
@@ -500,7 +501,7 @@ Figure 6.10: Histogram and density curve of the bootstrap distribution of the co
 </div>
 <div id="section6-5" class="section level2">
 <h2><span class="header-section-number">6.5</span> Are tree diameters related to tree heights?</h2>
-<p>In a study at the Upper Flat Creek study area in the University of Idaho Experimental Forest, a random sample of <span class="math inline">\(n=336\)</span> trees was selected from the forest, with measurements recorded on Douglas Fir, Grand Fir, Western Red Cedar, and Western Larch trees. The data set called <code>ufc</code> is available from the <code>spuRs</code> package <span class="citation">(Jones et al. <a href="#ref-R-spuRs">2014</a>)</span> and contains <code>dbh.cm</code> (tree diameter at 1.37 m from the ground, measured in cm) and <code>height.m</code> (tree height in meters). The relationship displayed in Figure <a href="chapter6.html#fig:Figure6-11">6.11</a> is positive, moderately strong with some curvature and increasing variability as the diameter increases. There do not appear to be groups in the data set but since this contains four different types of trees, we would want to revisit this plot by type of tree.</p>
+<p>In a study at the Upper Flat Creek study area in the University of Idaho Experimental Forest, a random sample of <span class="math inline">\(n=336\)</span> trees was selected from the forest, with measurements recorded on Douglas Fir, Grand Fir, Western Red Cedar, and Western Larch trees. The data set called <code>ufc</code> is available from the <code>spuRs</code> package <span class="citation">(Jones et al. <a href="#ref-R-spuRs">2018</a>)</span> and contains <code>dbh.cm</code> (tree diameter at 1.37 m from the ground, measured in cm) and <code>height.m</code> (tree height in meters). The relationship displayed in Figure <a href="chapter6.html#fig:Figure6-11">6.11</a> is positive, moderately strong with some curvature and increasing variability as the diameter increases. There do not appear to be groups in the data set but since this contains four different types of trees, we would want to revisit this plot by type of tree.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(spuRs) <span class="co">#install.packages(&quot;spuRs&quot;)</span>
 <span class="kw">data</span>(ufc)
@@ -516,8 +517,8 @@ Figure 6.11: Scatterplot of tree heights (m) vs tree diameters (cm).
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ufc[<span class="dv">168</span>,]</code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##    plot  tree species dbh.cm height.m
-##   &lt;int&gt; &lt;int&gt; &lt;fctr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-## 1    67     6 WL        57.5     3.40</code></pre>
+##   &lt;int&gt; &lt;int&gt; &lt;fct&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1    67     6 WL        57.5      3.4</code></pre>
 <p>With the outlier in the data set, the correlation is 0.77 and without it, the correlation increases to 0.79. The removal does not create a big change because the data set is relatively large and the <em>diameter</em> value is close to the mean of the <span class="math inline">\(x\text{&#39;s}\)</span><a href="#fn76" class="footnoteRef" id="fnref76"><sup>76</sup></a> but it has some impact on the strength of the correlation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(dbh.cm<span class="op">~</span>height.m, <span class="dt">data=</span>ufc)</code></pre></div>
 <pre><code>## [1] 0.7699552</code></pre>
@@ -694,7 +695,7 @@ Figure 6.15: Scatterplot of Hematocrit versus Body Fat for female athletes.
 Figure 6.16: Plot of sum of squared residuals vs possible slope coefficients for <em>Beers</em> vs <em>BAC</em> data, with vertical line for the least squares estimate that minimizes the sum of squared residuals.
 </p>
 </div>
-<p>Sometimes it is helpful to have a go at finding the estimates yourself. If you install and load the <code>tigerstats</code> <span class="citation">(R. Robinson and White <a href="#ref-R-tigerstats">2016</a>)</span> and <code>manipulate</code> <span class="citation">(Allaire <a href="#ref-R-manipulate">2014</a>)</span> packages in RStudio and then run <code>FindRegLine()</code>, you get a chance to try to find the optimal slope and intercept for a fake data set. Click on the “sprocket” icon in the upper left of the plot and you will see something like Figure <a href="chapter6.html#fig:Figure6-17">6.17</a>. This interaction can help you see how the residuals are being measuring in the y-direction and appreciate that <code>lm</code> takes care of this for us.</p>
+<p>Sometimes it is helpful to have a go at finding the estimates yourself. If you install and load the <code>tigerstats</code> <span class="citation">(Robinson and White <a href="#ref-R-tigerstats">2016</a>)</span> and <code>manipulate</code> <span class="citation">(Allaire <a href="#ref-R-manipulate">2014</a>)</span> packages in RStudio and then run <code>FindRegLine()</code>, you get a chance to try to find the optimal slope and intercept for a fake data set. Click on the “sprocket” icon in the upper left of the plot and you will see something like Figure <a href="chapter6.html#fig:Figure6-17">6.17</a>. This interaction can help you see how the residuals are being measuring in the y-direction and appreciate that <code>lm</code> takes care of this for us.</p>
 <pre><code>&gt; require(tigerstats)
 &gt; require(manipulate)
 &gt; FindRegLine()
@@ -1025,7 +1026,7 @@ Figure 6.23: Diagnostics plots for tree height and diameter simple linear regres
 </div>
 <div id="section6-11" class="section level2">
 <h2><span class="header-section-number">6.11</span> Old Faithful discharge and waiting times</h2>
-<p>A study in August 1985 considered time for Old Faithful and how that might relate to <em>waiting time</em> for the next eruption (<span class="citation">Ripley (<a href="#ref-R-MASS">2017</a>)</span>, <span class="citation">Azzalini and Bowman (<a href="#ref-Azzalini1990">1990</a>)</span>). This sort of research provides the park staff a way to show tourists a predicted time to next eruption so they can quickly see it and then get back in their cars. Both variables are measured in minutes and the scatterplot in Figure <a href="chapter6.html#fig:Figure6-24">6.24</a> shows a moderate to strong positive and relatively linear relationship. We added a <strong><em>smoothing line</em></strong> (red) to this plot. Smoothing lines provide regression-like fits but are performed on local areas of the relationship and so can highlight where the relationships change and can highlight curvilinear relationships. They can also return straight lines just like the regression line if that is reasonable. The technical details of regression smoothing are not covered here but they are a useful graphical addition to help visualize nonlinearity in relationships.</p>
+<p>A study in August 1985 considered time for Old Faithful and how that might relate to <em>waiting time</em> for the next eruption (<span class="citation">Ripley (<a href="#ref-R-MASS">2018</a>)</span>, <span class="citation">Azzalini and Bowman (<a href="#ref-Azzalini1990">1990</a>)</span>). This sort of research provides the park staff a way to show tourists a predicted time to next eruption so they can quickly see it and then get back in their cars. Both variables are measured in minutes and the scatterplot in Figure <a href="chapter6.html#fig:Figure6-24">6.24</a> shows a moderate to strong positive and relatively linear relationship. We added a <strong><em>smoothing line</em></strong> (red) to this plot. Smoothing lines provide regression-like fits but are performed on local areas of the relationship and so can highlight where the relationships change and can highlight curvilinear relationships. They can also return straight lines just like the regression line if that is reasonable. The technical details of regression smoothing are not covered here but they are a useful graphical addition to help visualize nonlinearity in relationships.</p>
 <p>In these data, there appear to be two groups of eruptions (shorter length, shorter wait and longer length, longer wait) – but we don’t know enough about these data to assume that there are two groups. The smoothing line does help us to see if the relationship appears to change or stay the same across different values of the explanatory variable, <code>Duration</code>. The smoothing line suggests that the upper group might have a less steep slope than the lower group as it sort of levels off for observations with <code>Duration</code> of over 4 minutes. It also indicates that there is one point for an eruption under 1 minute in <code>Duration</code> that might be causing some problems. The story of these data involve some measurements during the night that were just noted as being short, medium, and long – and they were re-coded as 2, 3, or 4 minute duration eruptions. We’ll see if our diagnostics detect some of these issues when we fit a simple linear regression to try to explain waiting time based on duration of prior eruption.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(MASS)
@@ -1134,10 +1135,10 @@ pairs.panels(treadmill, ellipses=F, smooth=F, col=0)</code></pre>
 <p>Gude, Patricia H., J. Anthony Cookson, Mark C. Greenwood, and Mark Haggerty. 2009. “Homes in Wildfire-Prone Areas: An Empirical Analysis of Wildfire Suppression Costs and Climate Change.” <a href="www.headwaterseconomics.org" class="uri">www.headwaterseconomics.org</a>.</p>
 </div>
 <div id="ref-R-psych">
-<p>Revelle, William. 2017. <em>Psych: Procedures for Psychological, Psychometric, and Personality Research</em>. <a href="https://CRAN.R-project.org/package=psych" class="uri">https://CRAN.R-project.org/package=psych</a>.</p>
+<p>Revelle, William. 2018. <em>Psych: Procedures for Psychological, Psychometric, and Personality Research</em>. <a href="https://CRAN.R-project.org/package=psych" class="uri">https://CRAN.R-project.org/package=psych</a>.</p>
 </div>
 <div id="ref-R-alr3">
-<p>Weisberg, Sanford. 2011. <em>Alr3: Data to Accompany Applied Linear Regression 3rd Edition</em>. <a href="https://CRAN.R-project.org/package=alr3" class="uri">https://CRAN.R-project.org/package=alr3</a>.</p>
+<p>Weisberg, Sanford. 2018. <em>Alr3: Data to Accompany Applied Linear Regression 3rd Edition</em>. <a href="https://CRAN.R-project.org/package=alr3" class="uri">https://CRAN.R-project.org/package=alr3</a>.</p>
 </div>
 <div id="ref-Weisberg2005">
 <p>Weisberg, Sanford. 2005. <em>Applied Linear Regression, Third Edition</em>. Hoboken, NJ: Wiley.</p>
@@ -1146,7 +1147,7 @@ pairs.panels(treadmill, ellipses=F, smooth=F, col=0)</code></pre>
 <p>Wei, Taiyun, and Viliam Simko. 2017. <em>Corrplot: Visualization of a Correlation Matrix</em>. <a href="https://CRAN.R-project.org/package=corrplot" class="uri">https://CRAN.R-project.org/package=corrplot</a>.</p>
 </div>
 <div id="ref-R-spuRs">
-<p>Jones, Owen, Robert Maillardet, Andrew Robinson, Olga Borovkova, and Steven Carnie. 2014. <em>SpuRs: Functions and Datasets for “Introduction to Scientific Programming and Simulation Using R”.</em> <a href="https://CRAN.R-project.org/package=spuRs" class="uri">https://CRAN.R-project.org/package=spuRs</a>.</p>
+<p>Jones, Owen, Robert Maillardet, Andrew Robinson, Olga Borovkova, and Steven Carnie. 2018. <em>SpuRs: Functions and Datasets for “Introduction to Scientific Programming and Simulation Using R”</em>. <a href="https://CRAN.R-project.org/package=spuRs" class="uri">https://CRAN.R-project.org/package=spuRs</a>.</p>
 </div>
 <div id="ref-R-tigerstats">
 <p>Robinson, Rebekah, and Homer White. 2016. <em>Tigerstats: R Functions for Elementary Statistics</em>. <a href="https://CRAN.R-project.org/package=tigerstats" class="uri">https://CRAN.R-project.org/package=tigerstats</a>.</p>
@@ -1155,7 +1156,7 @@ pairs.panels(treadmill, ellipses=F, smooth=F, col=0)</code></pre>
 <p>Allaire, JJ. 2014. <em>Manipulate: Interactive Plots for Rstudio</em>. <a href="https://CRAN.R-project.org/package=manipulate" class="uri">https://CRAN.R-project.org/package=manipulate</a>.</p>
 </div>
 <div id="ref-R-MASS">
-<p>Ripley, Brian. 2017. <em>MASS: Support Functions and Datasets for Venables and Ripley’s Mass</em>. <a href="https://CRAN.R-project.org/package=MASS" class="uri">https://CRAN.R-project.org/package=MASS</a>.</p>
+<p>Ripley, Brian. 2018. <em>MASS: Support Functions and Datasets for Venables and Ripley’s Mass</em>. <a href="https://CRAN.R-project.org/package=MASS" class="uri">https://CRAN.R-project.org/package=MASS</a>.</p>
 </div>
 <div id="ref-Azzalini1990">
 <p>Azzalini, Adelchi, and Adrian W. Bowman. 1990. “A Look at Some Data on the Old Faithful Geyser.” <em>Applied Statistics</em> 39: 357–65.</p>
@@ -1200,10 +1201,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -1227,9 +1229,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

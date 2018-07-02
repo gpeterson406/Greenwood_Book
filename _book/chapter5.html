@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>A Second Semester Statistics Course with R</title>
   <meta name="description" content="A Second Semester Statistics Course with R">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="A Second Semester Statistics Course with R" />
   <meta property="og:type" content="book" />
@@ -238,7 +238,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="section5-1" class="section level2">
 <h2><span class="header-section-number">5.1</span> Situation, contingency tables, and table plots</h2>
 <p>In this chapter, the focus shifts briefly from analyzing quantitative response variables to methods for handling categorical response variables. This is important because in some situations it is not possible to measure the response variable quantitatively. For example, we will analyze the results from a clinical trial where the results for the subjects were measured as one of three categories: <em>no improvement</em>, <em>some improvement</em>, and <em>marked improvement</em>. While that type of response could be treated as numerical, coded possibly as 1, 2, and 3, it would be difficult to assume that the responses such as those follow a normal distribution since they are <strong><em>discrete</em></strong> (not continuous, measured at whole number values only) and, more importantly, the difference between <em>no improvement</em> and <em>some improvement</em> is not necessarily the same as the difference between <em>some</em> and <em>marked improvement</em>. If it is treated numerically, then the differences between levels are assumed to be the same unless a different coding scheme is used (say 1, 2, and 5). It is better to treat these types of responses as being in one of the three categories and use statistical methods that don’t make unreasonable and arbitrary assumptions about what the numerical coding might mean. The study being performed here involved subjects randomly assigned to either a treatment or a placebo (control) group and we want to address research questions similar to those considered in Chapters <a href="chapter2.html#chapter2">2</a> and <a href="chapter3.html#chapter3">3</a> – assessing differences among two or more groups. With quantitative responses, the differences in the distributions are parameterized via the means of the groups and we used 2-sample mean or ANOVA hypotheses and tests. With categorical responses, the focus is on the probabilities of getting responses in each category and whether they differ among the groups.</p>
-<p>We start with some useful summary techniques, both numerical and graphical, applied to some examples of studies these methods can be used to analyze. Graphical techniques provide opportunities for assessing specific patterns in variables, relationships between variables, and for generally understanding the responses obtained. There are many different types of plots and each can enhance certain features of data. We will start with a “fun” display, called a <em>table plot</em>, to help us understand some aspects of the results from a double-blind randomized clinical trial investigating a treatment for rheumatoid arthritis that has the categorical response variable introduced previously. These data are available in the <code>Arthritis</code> data set available in the <code>vcd</code> package <span class="citation">(D. Meyer, Zeileis, and Hornik <a href="#ref-R-vcd">2017</a>)</span>. There were <span class="math inline">\(n=84\)</span> subjects, with some demographic information recorded along with the <code>Treatment</code> status (<em>Treated</em>, <em>Placebo</em>) and whether the patients’ arthritis symptoms <code>Improved</code> (with levels of <em>None</em>, <em>Some</em>, and <em>Marked</em>).</p>
+<p>We start with some useful summary techniques, both numerical and graphical, applied to some examples of studies these methods can be used to analyze. Graphical techniques provide opportunities for assessing specific patterns in variables, relationships between variables, and for generally understanding the responses obtained. There are many different types of plots and each can enhance certain features of data. We will start with a “fun” display, called a <em>table plot</em>, to help us understand some aspects of the results from a double-blind randomized clinical trial investigating a treatment for rheumatoid arthritis that has the categorical response variable introduced previously. These data are available in the <code>Arthritis</code> data set available in the <code>vcd</code> package <span class="citation">(Meyer, Zeileis, and Hornik <a href="#ref-R-vcd">2017</a>)</span>. There were <span class="math inline">\(n=84\)</span> subjects, with some demographic information recorded along with the <code>Treatment</code> status (<em>Treated</em>, <em>Placebo</em>) and whether the patients’ arthritis symptoms <code>Improved</code> (with levels of <em>None</em>, <em>Some</em>, and <em>Marked</em>).</p>
 <p>The <code>tableplot</code> function from the <code>tabplot</code> package <span class="citation">(Tennekes and de Jonge <a href="#ref-R-tabplot">2017</a>)</span> displays bars for each response in a row<a href="#fn61" class="footnoteRef" id="fnref61"><sup>61</sup></a> based on the category of responses or as a bar with the height corresponding the value of quantitative variables<a href="#fn62" class="footnoteRef" id="fnref62"><sup>62</sup></a>. It also plots a red cell if the observations were missing on a particular variable. The plot can be obtained simply as <code>tableplot(DATASETNAME)</code>. But when using <code>tableplot</code>, we may not want to display everything in the tibble and often just select some of the variables. We use <code>Treatment</code>, <code>Improved</code>, <code>Sex</code>, and <code>Age</code> in the <code>select=...</code> option with a <code>c()</code> and commas between the names of the variables we want to display as shown below. The first one in the list is also the one that the data are sorted based on.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(vcd)
@@ -1179,7 +1179,7 @@ Figure 5.22: Plot of permutation distributions for cheat/lie results with observ
 </div>
 <div id="section5-11" class="section level2">
 <h2><span class="header-section-number">5.11</span> Analyzing a stratified random sample of California schools</h2>
-<p>In recent decades, there has been a push for quantification of school performance and tying financial punishment and rewards to growth in these metrics. One example is the API (Academic Performance Index) in California that is based mainly on student scores on standardized tests. It ranges between 200 and 1000 and year to year changes are of interest to assess “performance” of schools – calculated as one year minus the previous year (negative “growth” is also possible!). Suppose that a researcher is interested in whether the growth metric might differ between different levels of schools. Maybe it is easier or harder for elementary, middle, or high schools to attain growth? The researcher has a list of most of the schools in the state of each level that are using a database that the researcher has access to. In order to assess this question, the researcher takes a stratified random sample<a href="#fn68" class="footnoteRef" id="fnref68"><sup>68</sup></a>, selecting <span class="math inline">\(n_{\text{elementary}}=100\)</span> schools from the population of 4421 elementary schools, <span class="math inline">\(n_{\text{middle}}=50\)</span> from the population of 1018 middle schools, and <span class="math inline">\(n_{\text{high}}=50\)</span> from the population of 755 high schools. These data are available in the <code>survey</code> package <span class="citation">(Lumley <a href="#ref-R-survey">2017</a>)</span> and the api data object that loads both <code>apipop</code> (population) and <code>apistrat</code> (stratified random sample) data sets. The <code>growth</code> (change!) in API scores for the schools between 1999 and 2000 (taken as the year 2000 score minus 1999 score) is used as the response variable. The boxplot and beanplot of the growth scores are displayed in Figure <a href="chapter5.html#fig:Figure5-23">5.23</a>. They suggest some differences in the growth rates among the different levels. There are also a few schools flagged as being possible outliers.</p>
+<p>In recent decades, there has been a push for quantification of school performance and tying financial punishment and rewards to growth in these metrics. One example is the API (Academic Performance Index) in California that is based mainly on student scores on standardized tests. It ranges between 200 and 1000 and year to year changes are of interest to assess “performance” of schools – calculated as one year minus the previous year (negative “growth” is also possible!). Suppose that a researcher is interested in whether the growth metric might differ between different levels of schools. Maybe it is easier or harder for elementary, middle, or high schools to attain growth? The researcher has a list of most of the schools in the state of each level that are using a database that the researcher has access to. In order to assess this question, the researcher takes a stratified random sample<a href="#fn68" class="footnoteRef" id="fnref68"><sup>68</sup></a>, selecting <span class="math inline">\(n_{\text{elementary}}=100\)</span> schools from the population of 4421 elementary schools, <span class="math inline">\(n_{\text{middle}}=50\)</span> from the population of 1018 middle schools, and <span class="math inline">\(n_{\text{high}}=50\)</span> from the population of 755 high schools. These data are available in the <code>survey</code> package <span class="citation">(Lumley <a href="#ref-R-survey">2018</a>)</span> and the api data object that loads both <code>apipop</code> (population) and <code>apistrat</code> (stratified random sample) data sets. The <code>growth</code> (change!) in API scores for the schools between 1999 and 2000 (taken as the year 2000 score minus 1999 score) is used as the response variable. The boxplot and beanplot of the growth scores are displayed in Figure <a href="chapter5.html#fig:Figure5-23">5.23</a>. They suggest some differences in the growth rates among the different levels. There are also a few schools flagged as being possible outliers.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(survey)
 <span class="kw">data</span>(api)
 apistrat &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(apistrat)
@@ -1414,7 +1414,7 @@ tableplot(csd[,c(&quot;isare&quot;,&quot;careabout&quot;,&quot;thoughtabout&quot
 <p>Dayton, C. Mitchell. 1998. <em>Latent Class Scaling Analysis</em>. Thousand Oaks, CA: SAGE Publications.</p>
 </div>
 <div id="ref-R-survey">
-<p>Lumley, Thomas. 2017. <em>Survey: Analysis of Complex Survey Samples</em>. <a href="https://CRAN.R-project.org/package=survey" class="uri">https://CRAN.R-project.org/package=survey</a>.</p>
+<p>Lumley, Thomas. 2018. <em>Survey: Analysis of Complex Survey Samples</em>. <a href="https://CRAN.R-project.org/package=survey" class="uri">https://CRAN.R-project.org/package=survey</a>.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -1454,10 +1454,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -1481,9 +1482,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

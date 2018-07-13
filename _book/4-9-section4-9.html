@@ -226,7 +226,8 @@ img {
 <li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
 <li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
-<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
 </ul></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
@@ -246,13 +247,24 @@ math
 names(math)
 favstats(Score ~ Sex+Background, data=math)</code></pre>
 <p>4.1. Use the <code>favstats</code> summary to discuss whether the design was balanced or not.</p>
-<p>4.2. Make a side-by-side beanplot and interaction plot of the results and discuss the relationship between Sex, Background, and ACT Score.</p>
+<p>4.2. Make a side-by-side beanplot and interaction plot array of the results and discuss the relationship between Sex, Background, and ACT Score.</p>
 <p>4.3. Write out the interaction model in terms of the Greek letters, making sure to define all the terms and don’t forget the error terms in the model.</p>
 <p>4.4. Fit the interaction plot and find the ANOVA table. For the test you should consider first (the interaction), write out the hypotheses, report the test statistic, p-value, distribution of the test statistic under the null, and write a conclusion related to the results of this test.</p>
 <p>4.5. Re-fit the model as an additive model (why is this reasonable here?) and use <code>Anova</code> to find the Type II sums of squares ANOVA. Write out the hypothesis for the Background variable, report the test statistic, p-value, distribution of the test statistic under the null, and write a conclusion related to the results of this test. Make sure to discuss the scope of inference for this result.</p>
 <p>4.6. Use the <code>effects</code> package to make a term-plot from the additive model from 4.5 and discuss the results. Specifically, discuss what you can conclude about the average relationship across both sexes, between Background and average ACT score?</p>
 <p>4.7. Make our standard diagnostic plots and assess the assumptions using these plots. Can you assess independence using these plots? Discuss this assumption in this situation.</p>
 <p>4.8. Use the estimated model coefficients to determine which of the combinations of levels provides the highest estimated average score.</p>
+<p>As a second example, consider data based on Figure 3 from Puhan et al. (2005), which is available at <a href="http://www.bmj.com/content/332/7536/266" class="uri">http://www.bmj.com/content/332/7536/266</a>. In this study, the researchers were interested in whether didgeridoo playing might impact sleep quality (and therefore daytime sleepinees). They obtained volunteers and they randomized the subjects to either get a lesson or be placed on a waiting list for lessons. They constrained the randomization based on the high/low apnoea and high/low on the Epworth scale of the subjects in their initial observations to make sure they balanced the types of subjects going into the treatment and control groups. They measured the subjects’ Epworth value (daytime sleepiness, higher is more sleepy) initially and after four months, where only the treated subjects (those who took lessons) had any intervention. We are interested in whether the mean Epworth scale values changed differently over the four months in the group that got didgeridoo lessons than it did in the control group (that got no lessons). Each subject was measured twice in the data set provided that is available at <a href="http://www.math.montana.edu/courses/s217/documents/epworthdata.csv" class="uri">http://www.math.montana.edu/courses/s217/documents/epworthdata.csv</a>.</p>
+<pre><code>require(readr)
+epworthdata &lt;- read_csv(&quot;http://www.math.montana.edu/courses/s217/documents/epworthdata.csv&quot;)
+epworthdata$Time &lt;- factor(epworthdata$Time)
+levels(epworthdata$Time) &lt;- c(&quot;Pre&quot; , &quot;Post&quot;)
+epworthdata$Group &lt;- factor(epworthdata$Group)
+levels(epworthdata$Group) &lt;- c(&quot;Control&quot; , &quot;Didgeridoo&quot;)</code></pre>
+<p>4.9. Make an interaction plot array to graphically explore the potential interaction of Time and Group on the Epworth responses.</p>
+<p>4.10. Fit the interaction plot and find the ANOVA table. For the test you should consider first (the interaction), write out the hypotheses, report the test statistic, p-value, distribution of the test statistic under the null, and write a conclusion related to the results of this test.</p>
+<p>4.11. Discuss the independence assumption for the previous model. The researchers used an analysis based on matched pairs. Discuss how using ideas from matched pairs might be applicable to the scenario discussed here.</p>
+<p>4.12. Refine the model based on the previous test result and continue refining the model as the results might suggest. This should lead to retaining just a single variable. Make an effects plot for this model and discuss this result related to the intent of the original research. If you read the original paper, they did find evidence of an effect of learning to play the didgeridoo (that there was a different change over time in the treated control when compared to the control group) – why might they have gotten a different result (hint: think about the previous question).</p>
 
 </div>
 <!-- </div> -->

@@ -274,7 +274,7 @@ we don't like any of the available functions in R, we wrote our own function,
 called ``intplot`` that you can download using:
 
 ```{r}
-source("http://www.math.montana.edu/courses/s217/documents/intplot.R")
+source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions.R")
 ```
 
 The function allows a formula interface like ``Y~X1*X2`` and provides the 
@@ -346,10 +346,21 @@ difference between the two brands dropped as the water levels increased. The
 same story appears in Figure \@ref(fig:Figure4-2). As the
 water levels increase (left to right, 10 to 20 to 30 drops), the differences
 between the two brands decrease. Of the two versions, Figure \@ref(fig:Figure4-2)
-is probably easier to read here. The interaction plots also are useful for 
-identifying the best and worst mean responses for combinations of the treatment 
-levels. For example, 10 ``Drops`` and ``Brand`` *B2* lasts longest, on average, and  30 ``Drops`` with ``Brand`` *B1* fails fastest, on average. In this situation, the  lines do not appear to be parallel suggesting that further exploration of the 
+is probably easier to read here. Sometimes it is nice to see the interaction plot made both ways simultaneously, so you can also use the `intplotarray` function, which provides Figure \@ref(fig:Figure4-3b). This plot also adds beanplots to the off-diagonals so you can explore the main effects of each variable, if that is reasonable.
+
+The interaction plots can able to be used to 
+identify the best and worst mean responses for combinations of the treatment 
+levels. For example, 10 ``Drops`` and ``Brand`` *B2* lasts longest, on average, and  30 ``Drops`` with ``Brand`` *B1* fails fastest, on average. In any version of the plot here, the lines do not appear to be parallel suggesting that further exploration of the 
 interaction appears to be warranted. 
+
+(ref:fig4-3b) Interaction plot array of paper towel data with two different versions of interaction plots and beanplots of the responses versus each explanatory variable. 
+
+```{r Figure4-3b, fig.cap="(ref:fig4-3b)",fig.height=5,fig.width=10}
+intplotarray(responses~drops*brand, data=pt)
+```
+
+
+
 
 \indent Before we get to the hypothesis tests
 to formally make this assessment (you knew some sort of p-value was coming, right?), 
@@ -358,7 +369,7 @@ results you could observe in a Two-Way ANOVA situation. Figure \@ref(fig:Figure4
 shows 4 of the 5 scenarios. In panel (a), when there are no differences from either
 variable (Scenario 1), it provides relatively parallel lines and basically no
 differences either across ``Drops`` levels (x-axis) or ``Brand`` (lines). This would 
-result in no evidence related to a difference in brands, water
+result in little to no evidence related to a difference in brands, water
 levels, or any interaction between them. 
 
 (ref:fig4-4) Interaction plots of four possible scenarios in the paper towel study.
@@ -1054,8 +1065,7 @@ $\hat{y}_{i,\text{VC},0.5mg}=\hat{\alpha} + \hat{\gamma}_{\text{VC}}=13.23 + (-5
 microns. Finally, when we consider non-baseline results for both groups, three
 coefficients are required to reconstruct the results in the plot. For example, 
 the estimate for the VC, 1 mg dosage is
-$\hat{y}_{i,\text{VC},1mg}=\hat{\alpha} + \hat{\tau}_{1mg} + \hat{\gamma}_{\text{VC}}
-=13.23 + 9.47 + (-5.25) = 17.45$ microns. We usually will by-pass all this
+$\hat{y}_{i,\text{VC},1mg}=\hat{\alpha} + \hat{\tau}_{1mg} + \hat{\gamma}_{\text{VC}} + \hat{\omega}_{\text{VC},1mg} = 13.23 + 9.47 + (-5.25) +(-0.68)= 16.77$ microns. We usually will by-pass all this
 fun(!) with the coefficients in an interaction model and go from the ANOVA
 interaction test to focusing on the pattern of the responses in the interaction
 plot, but it is good to know that there are still model coefficients driving
@@ -1168,11 +1178,11 @@ debt$cigbuy <- factor(debt$cigbuy)
 debtc <- na.omit(debt)
 ```
 
-(ref:fig4-12) Interaction plot of ``prodebt`` by income group and buy cigarettes 
+(ref:fig4-12) Interaction plot array of ``prodebt`` by income group and buy cigarettes 
 (0=no, 1=yes).
 
 ```{r Figure4-12,fig.cap="(ref:fig4-12)",fig.height=5,fig.width=10}
-intplot(prodebt~cigbuy*incomegp, data=debtc, col=c(1,3), lwd=2)
+intplotarray(prodebt~cigbuy*incomegp, data=debtc, col=c(1,3,4,5,6), lwd=2)
 ```
 
 \indent As in other situations, and especially
@@ -1302,7 +1312,7 @@ plot(debt1)
     
 6. **Write a conclusion:**
 
-    * There was initially no evidence to support retaining the interaction 
+    * There was initially little to no evidence to support retaining the interaction 
     of income group and cigarette buying on pro-debt feelings 
     ($F(4,294)=1.00, \text{p-value} =0.408$) so the interaction was dropped 
     from the model. There is strong evidence of some difference in the mean
@@ -1427,8 +1437,8 @@ normality and equal variance).
 
     * If there is a problem with normality or
     equal variance, consider a "transformation" of the response as discussed in
-    Chapter \@ref(chapter7) This can help make the responses have similar 
-    variances or responses to be more normal, but sometimes not both. 
+    Chapter \@ref(chapter7). This can help make the responses have similar 
+    variances or responses (and the model residuals) to be more normal, but sometimes not both. 
 
 4. If the interaction test has a small p-value, that is your main result. Focus on
 the interaction plot from (1) to fully understand the results, adding Tukey's
@@ -1679,9 +1689,18 @@ data=`r colFmt("DATASETNAME","red")`)**
 
     * Download and install using: 
     
-        ``source("http://www.math.montana.edu/courses/s217/documents/intplot.R")``
+        ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions.R")``
     
     * Provides interaction plot.
+    
+* **intplotarray(`r colFmt("Y","red")`~`r colFmt("A","red")```*```r colFmt("B","red")`,
+data=`r colFmt("DATASETNAME","red")`)**
+
+    * Download and install using: 
+    
+        ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions.R")``
+    
+    * Provides interaction plot array that makes interaction plots switching explanatory variable roles and makes beanplots of the main effects.
     
 * **`r colFmt("INTERACTIONMODELNAME","red")` ``<-`` 
 lm(`r colFmt("Y","red")`~`r colFmt("A","red")```*```r colFmt("B","red")`,
@@ -1756,7 +1775,7 @@ favstats(Score ~ Sex+Background, data=math)
 4.1. Use the ``favstats`` summary to discuss whether the design was balanced or not. 
 
 4.2. Make a side-by-side beanplot and
-interaction plot of the results and discuss the relationship between Sex, 
+interaction plot array of the results and discuss the relationship between Sex, 
 Background, and ACT Score. 
 
 4.3. Write out the interaction model in
@@ -1787,3 +1806,26 @@ these plots? Discuss this assumption in this situation.
 4.8. Use the estimated model
 coefficients to determine which of the combinations of levels provides the
 highest estimated average score.
+
+As a second example, consider data based on Figure 3 from Puhan et al. (2005), which is available at http://www.bmj.com/content/332/7536/266. In this study, the researchers were interested in whether didgeridoo playing might impact sleep quality (and therefore daytime sleepinees). They obtained volunteers and they randomized the subjects to either get a lesson or be placed on a waiting list for lessons. They constrained the randomization based on the high/low apnoea and high/low on the Epworth scale of the subjects in their initial observations to make sure they balanced the types of subjects going into the treatment and control groups. They measured the subjects' Epworth value (daytime sleepiness, higher is more sleepy) initially and after four months, where only the treated subjects (those who took lessons) had any intervention. We are interested in whether the mean Epworth scale values changed differently over the four months in the group that got didgeridoo lessons than it did in the control group (that got no lessons). Each subject was measured twice in the data set provided that is available at http://www.math.montana.edu/courses/s217/documents/epworthdata.csv.
+
+```
+require(readr)
+epworthdata <- read_csv("http://www.math.montana.edu/courses/s217/documents/epworthdata.csv")
+epworthdata$Time <- factor(epworthdata$Time)
+levels(epworthdata$Time) <- c("Pre" , "Post")
+epworthdata$Group <- factor(epworthdata$Group)
+levels(epworthdata$Group) <- c("Control" , "Didgeridoo")
+```
+
+4.9. Make an interaction plot array to graphically explore the potential interaction of Time and Group on the Epworth responses.
+
+4.10.  Fit the interaction plot and find
+the ANOVA table. For the test you should consider first (the interaction), 
+write out the hypotheses, report the test statistic, p-value, distribution of
+the test statistic under the null, and write a conclusion related to the
+results of this test.
+
+4.11. Discuss the independence assumption for the previous model. The researchers used an analysis based on matched pairs. Discuss how using ideas from matched pairs might be applicable to the scenario discussed here.
+
+4.12. Refine the model based on the previous test result and continue refining the model as the results might suggest. This should lead to retaining just a single variable. Make an effects plot for this model and discuss this result related to the intent of the original research. If you read the original paper, they did find evidence of an effect of learning to play the didgeridoo (that there was a different change over time in the treated control when compared to the control group) -- why might they have gotten a different result (hint: think about the previous question).

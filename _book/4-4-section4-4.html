@@ -226,7 +226,8 @@ img {
 <li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
 <li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
-<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
 </ul></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
@@ -237,12 +238,12 @@ img {
 <div class="col-sm-12">
 <div id="section4-4" class="section level2">
 <h2><span class="header-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</h2>
-<p>The effects of dosage and delivery method of ascorbic acid on Guinea Pig odontoblast growth was analyzed as a One-Way ANOVA in Section <a href="3-5-section3-5.html#section3-5">3.5</a> by assessing evidence of any difference in the means of any combinations of dosage method (Vit C capsule vs Orange Juice) and three dosage amounts (0.5, 1, and 2 mg/day). Now we will consider the dosage and delivery methods as two separate variables and explore their potential interaction. A beanplot and interaction plot are provided in Figure <a href="4-4-section4-4.html#fig:Figure4-8">2.53</a>.</p>
+<p>The effects of dosage and delivery method of ascorbic acid on Guinea Pig odontoblast growth was analyzed as a One-Way ANOVA in Section <a href="3-5-section3-5.html#section3-5">3.5</a> by assessing evidence of any difference in the means of any combinations of dosage method (Vit C capsule vs Orange Juice) and three dosage amounts (0.5, 1, and 2 mg/day). Now we will consider the dosage and delivery methods as two separate variables and explore their potential interaction. A beanplot and interaction plot are provided in Figure <a href="4-4-section4-4.html#fig:Figure4-8">2.54</a>.</p>
 
 <div class="figure"><span id="fig:Figure4-8"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-8-1.png" alt="Beanplot and interaction plot of the odontoblast growth data set." width="576" />
 <p class="caption">
-Figure 2.53: Beanplot and interaction plot of the odontoblast growth data set.
+Figure 2.54: Beanplot and interaction plot of the odontoblast growth data set.
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ToothGrowth)
@@ -301,7 +302,7 @@ TG2 &lt;-<span class="st"> </span><span class="kw">lm</span>(len<span class="op"
 </ul></li>
 <li><p>Constant variance:</p>
 <ul>
-<li><p>To assess this assumption, we can use the diagnostic plots in Figure <a href="4-4-section4-4.html#fig:Figure4-9">2.54</a>.</p></li>
+<li><p>To assess this assumption, we can use the diagnostic plots in Figure <a href="4-4-section4-4.html#fig:Figure4-9">2.55</a>.</p></li>
 <li><p>In the Residuals vs Fitted and the Scale-Location plots, the differences in variability among the groups (see the different x-axis positions for each group’s fitted values) is minor, so there is not strong evidence of a problem with the equal variance assumption.</p></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
@@ -309,12 +310,12 @@ TG2 &lt;-<span class="st"> </span><span class="kw">lm</span>(len<span class="op"
 <div class="figure"><span id="fig:Figure4-9"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-9-1.png" alt="Diagnostic plots for the interaction model for odontoblast         growth interaction model." width="960" />
 <p class="caption">
-Figure 2.54: Diagnostic plots for the interaction model for odontoblast growth interaction model.
+Figure 2.55: Diagnostic plots for the interaction model for odontoblast growth interaction model.
 </p>
 </div></li>
 <li><p>Normality of residuals:</p>
 <ul>
-<li>The QQ-Plot in Figure <a href="4-4-section4-4.html#fig:Figure4-9">2.54</a> does not suggest a problem with this assumption.</li>
+<li>The QQ-Plot in Figure <a href="4-4-section4-4.html#fig:Figure4-9">2.55</a> does not suggest a problem with this assumption.</li>
 </ul></li>
 </ul></li>
 <li><p><strong>Calculate the test statistic for the interaction test.</strong></p>
@@ -357,23 +358,23 @@ Figure 2.54: Diagnostic plots for the interaction model for odontoblast growth i
 ## dosef2           12.83   1.624017  7.9001660 1.429712e-10
 ## suppVC:dosef1    -0.68   2.296706 -0.2960762 7.683076e-01
 ## suppVC:dosef2     5.33   2.296706  2.3207148 2.410826e-02</code></pre>
-<p>There are two <span class="math inline">\(\omega_{jk}\text{&#39;s}\)</span> in the results, related to modifying the estimates for doses of 1 (-0.68) and 2 (5.33) for the Vitamin C group. If you want to re-construct the fitted values from the model that are displayed in Figure <a href="4-4-section4-4.html#fig:Figure4-10">2.55</a>, you have to look for any coefficients that are “turned on” for a combination of levels of interest. For example, for the OJ group (solid line in Figure <a href="4-4-section4-4.html#fig:Figure4-10">2.55</a>), the dosage of 0.5 mg/day has an estimate of an average growth of approximately 13 mm. This is the baseline group, so the model estimate for an observation in the OJ and 0.5 mg/day dosage is simply <span class="math inline">\(\hat{y}_{i,\text{OJ},0.5mg}=\hat{\alpha}=13.23\)</span> microns. For the OJ and 2 mg dosage estimate that has a value over 25 microns in the plot, the model incorporates the deviation for the 2 mg dosage: <span class="math inline">\(\hat{y}_{i,\text{OJ},2mg}=\hat{\alpha} + \hat{\tau}_{2mg}=13.23 + 12.83 = 26.06\)</span> microns. For the Vitamin C group, another coefficient becomes involved from its “main effect”. For the VC and 0.5 mg dosage level, the estimate is approximately 8 microns. The pertinent model components are <span class="math inline">\(\hat{y}_{i,\text{VC},0.5mg}=\hat{\alpha} + \hat{\gamma}_{\text{VC}}=13.23 + (-5.25) = 7.98\)</span> microns. Finally, when we consider non-baseline results for both groups, three coefficients are required to reconstruct the results in the plot. For example, the estimate for the VC, 1 mg dosage is <span class="math inline">\(\hat{y}_{i,\text{VC},1mg}=\hat{\alpha} + \hat{\tau}_{1mg} + \hat{\gamma}_{\text{VC}} =13.23 + 9.47 + (-5.25) = 17.45\)</span> microns. We usually will by-pass all this fun(!) with the coefficients in an interaction model and go from the ANOVA interaction test to focusing on the pattern of the responses in the interaction plot, but it is good to know that there are still model coefficients driving our results.</p>
+<p>There are two <span class="math inline">\(\omega_{jk}\text{&#39;s}\)</span> in the results, related to modifying the estimates for doses of 1 (-0.68) and 2 (5.33) for the Vitamin C group. If you want to re-construct the fitted values from the model that are displayed in Figure <a href="4-4-section4-4.html#fig:Figure4-10">2.56</a>, you have to look for any coefficients that are “turned on” for a combination of levels of interest. For example, for the OJ group (solid line in Figure <a href="4-4-section4-4.html#fig:Figure4-10">2.56</a>), the dosage of 0.5 mg/day has an estimate of an average growth of approximately 13 mm. This is the baseline group, so the model estimate for an observation in the OJ and 0.5 mg/day dosage is simply <span class="math inline">\(\hat{y}_{i,\text{OJ},0.5mg}=\hat{\alpha}=13.23\)</span> microns. For the OJ and 2 mg dosage estimate that has a value over 25 microns in the plot, the model incorporates the deviation for the 2 mg dosage: <span class="math inline">\(\hat{y}_{i,\text{OJ},2mg}=\hat{\alpha} + \hat{\tau}_{2mg}=13.23 + 12.83 = 26.06\)</span> microns. For the Vitamin C group, another coefficient becomes involved from its “main effect”. For the VC and 0.5 mg dosage level, the estimate is approximately 8 microns. The pertinent model components are <span class="math inline">\(\hat{y}_{i,\text{VC},0.5mg}=\hat{\alpha} + \hat{\gamma}_{\text{VC}}=13.23 + (-5.25) = 7.98\)</span> microns. Finally, when we consider non-baseline results for both groups, three coefficients are required to reconstruct the results in the plot. For example, the estimate for the VC, 1 mg dosage is <span class="math inline">\(\hat{y}_{i,\text{VC},1mg}=\hat{\alpha} + \hat{\tau}_{1mg} + \hat{\gamma}_{\text{VC}} + \hat{\omega}_{\text{VC},1mg} = 13.23 + 9.47 + (-5.25) +(-0.68)= 16.77\)</span> microns. We usually will by-pass all this fun(!) with the coefficients in an interaction model and go from the ANOVA interaction test to focusing on the pattern of the responses in the interaction plot, but it is good to know that there are still model coefficients driving our results.</p>
 
 <div class="figure"><span id="fig:Figure4-10"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-10-1.png" alt="Term-plot for the estimated interaction for the Odontoblast Growth data." width="480" />
 <p class="caption">
-Figure 2.55: Term-plot for the estimated interaction for the Odontoblast Growth data.
+Figure 2.56: Term-plot for the estimated interaction for the Odontoblast Growth data.
 </p>
 </div>
 
 <div class="figure"><span id="fig:Figure4-11"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-11-1.png" alt="Interaction plot for Odontoblast data with added CLD from Tukey’s HSD." width="960" />
 <p class="caption">
-Figure 2.56: Interaction plot for Odontoblast data with added CLD from Tukey’s HSD.
+Figure 2.57: Interaction plot for Odontoblast data with added CLD from Tukey’s HSD.
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">allEffects</span>(TG2), <span class="dt">grid=</span>T, <span class="dt">multiline=</span>T, <span class="dt">ci.style=</span><span class="st">&quot;bars&quot;</span>)</code></pre></div>
-<p>Given the presence of an important interaction, then the final step in the interpretation here is to interpret the results in the interaction plot or term-plot of the interaction model, supported by the p-value suggesting evidence of a different effect of supplement type based on the dosage level. To supplement this even more, knowing which combinations of levels differ can enhance our discussion. Tukey’s HSD results (specifically the CLD) can be added to the original interaction plot by turning on the <code>cld=T</code> option in the <code>intplot</code> function as seen in Figure <a href="4-4-section4-4.html#fig:Figure4-11">2.56</a>. Sometimes it is hard to see the letters and so there is also a <code>cldshift=...</code> option to move the letters up or down, here a value of 1 seemed to work.</p>
+<p>Given the presence of an important interaction, then the final step in the interpretation here is to interpret the results in the interaction plot or term-plot of the interaction model, supported by the p-value suggesting evidence of a different effect of supplement type based on the dosage level. To supplement this even more, knowing which combinations of levels differ can enhance our discussion. Tukey’s HSD results (specifically the CLD) can be added to the original interaction plot by turning on the <code>cld=T</code> option in the <code>intplot</code> function as seen in Figure <a href="4-4-section4-4.html#fig:Figure4-11">2.57</a>. Sometimes it is hard to see the letters and so there is also a <code>cldshift=...</code> option to move the letters up or down, here a value of 1 seemed to work.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">intplot</span>(len<span class="op">~</span>supp<span class="op">*</span>dose, <span class="dt">data=</span>ToothGrowth, <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">cldshift=</span><span class="dv">1</span>,
         <span class="dt">cld=</span>T, <span class="dt">main=</span><span class="st">&quot;Interaction Plot with CLD&quot;</span>)</code></pre></div>
 <p>The interpretation of the previous hypothesis test result can be concluded with the following discussion. Generally increasing the dosage increases the mean growth except for the 2 mg/day dosage level where the increase levels off in the OJ group (OJ 1 and 2 mg/day are not detectably different) and the differences between the two delivery methods disappear at the highest dosage level. But for 0.5 and 1 mg/day dosages, OJ is clearly better than VC by about 10 microns of growth on average.</p>

@@ -213,7 +213,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.2" data-path="chapter9.html"><a href="chapter9.html#section9-2"><i class="fa fa-check"></i><b>9.2</b> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li class="chapter" data-level="9.3" data-path="chapter9.html"><a href="chapter9.html#section9-3"><i class="fa fa-check"></i><b>9.3</b> Ants learn to rely on more informative attributes during decision-making</a></li>
 <li class="chapter" data-level="9.4" data-path="chapter9.html"><a href="chapter9.html#section9-4"><i class="fa fa-check"></i><b>9.4</b> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
-<li class="chapter" data-level="9.5" data-path="chapter9.html"><a href="chapter9.html#section9-5"><i class="fa fa-check"></i><b>9.5</b> General summary</a></li>
+<li class="chapter" data-level="9.5" data-path="chapter9.html"><a href="chapter9.html#section9-5"><i class="fa fa-check"></i><b>9.5</b> What do didgeridoos really do about sleepiness?</a></li>
+<li class="chapter" data-level="9.6" data-path="chapter9.html"><a href="chapter9.html#section9-6"><i class="fa fa-check"></i><b>9.6</b> General summary</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -508,7 +509,7 @@ Figure 8.6: Diagnostic plots for model m4: <span class="math inline">\(\text{Sno
 </ul></li>
 <li><p><strong>Normality of residuals:</strong></p>
 <ul>
-<li>The residuals match the normal distribution fairly closely the QQ-plot, showing only a little deviation for observation 9 from a normal distribution and that deviation is extremely minor. Certainly no evidence of a violation of the normality assumption here.</li>
+<li>The residuals match the normal distribution fairly closely the QQ-plot, showing only a little deviation for observation 9 from a normal distribution and that deviation is extremely minor. There is certainly no indication of a violation of the normality assumption here.</li>
 </ul></li>
 <li><p><strong>No influential points:</strong></p>
 <ul>
@@ -997,7 +998,7 @@ elev1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Elevation<span cl
 <p><span class="math inline">\(\boldsymbol{H_0: \beta_0=0 \textbf{ vs } H_A: \beta_0\ne 0}\)</span> in a model with <em>Elevation</em> and <em>Maximum Temperature</em>.</p>
 <p><span class="math inline">\(t=-4.269\)</span>, with an assumption that the test statistic follows a <span class="math inline">\(t_{20}\)</span>-distribution under the null hypothesis, and the p-value <span class="math inline">\(= 0.000375\)</span>.</p>
 <p>There is strong evidence to suggest that the true mean <em>Snow Depth</em> is different from 0 when the <em>Maximum Temperature</em> is 0 and the <em>Elevation</em> is 0 in the population of SNOTEL sites. To reinforce the general uselessness of this test, think about the combination of <span class="math inline">\(x\text{&#39;s}\)</span> – is that even physically possible in Montana (or the continental US) in April?</p>
-<p>Remember when testing slope coefficients in MLR, that if we fail to reject the null hypothesis, it does not mean that there is no relationship or even no linear relationship between the variables, but that there is no evidence of a linear relationship <strong>once we account for the other variables in the model</strong>. If you do not find a small p-value for a variable, you should either be cautious when interpreting the coefficient, or not interpret it. Some model building strategies would lead to dropping the term from the model but sometimes we will have models to interpret that contain terms with larger p-values. Sometimes they are still of interest but the weight on the interpretation isn’t as heavy as if the term had a small p-value – you should remember that you can’t prove that coefficient is different from 0 in that model. It also may mean that you don’t know too much about its specific value. Confidence intervals will help us pin down where we think the true slope coefficient might be located, given the other variables in the model, and so are usually pretty interesting to report.</p>
+<p>Remember when testing slope coefficients in MLR, that if we fail to reject the null hypothesis, it does not mean that there is no relationship or even no linear relationship between the variables, but that there is insufficient evidence to declare a linear relationship is present <strong>once we account for the other variables in the model</strong>. If you do not find a small p-value for a variable, you should either be cautious when interpreting the coefficient, or not interpret it. Some model building strategies would lead to dropping the term from the model but sometimes we will have models to interpret that contain terms with larger p-values. Sometimes they are still of interest but the weight on the interpretation isn’t as heavy as if the term had a small p-value – you should remember that you can’t prove that coefficient is different from 0 in that model. It also may mean that you don’t know too much about its specific value. Confidence intervals will help us pin down where we think the true slope coefficient might be located, given the other variables in the model, and so are usually pretty interesting to report.</p>
 <p>Confidence intervals provide the dual uses of inferences for the location of the true slope and whether the true slope seems to be different from 0. The confidence intervals here have our regular format of estimate <span class="math inline">\(\mp\)</span> margin of error. Like the previous tests, we work with <span class="math inline">\(t\)</span>-distributions with <span class="math inline">\(n-K-1\)</span> degrees of freedom. Specifically the 95% confidence interval for slope coefficient <span class="math inline">\(k\)</span> is</p>
 <p><span class="math display">\[\boldsymbol{b_k \mp t^*_{n-K-1}\textbf{SE}_{b_k}}\ .\]</span></p>
 <p>The interpretation is the same as in SLR with the additional tag of “after controlling for the other variables in the model” for the reasons discussed before. The general slope CI interpretation for predictor <span class="math inline">\(\boldsymbol{x_k}\)</span> in an MLR is:</p>
@@ -1105,7 +1106,7 @@ Figure 8.15: Diagnostic plots for the <span class="math inline">\(\text{FYGPA}\s
 <li><p>The initial scatterplots (Figure <a href="chapter8.html#fig:Figure8-13">8.14</a>) do not show any clear nonlinearities with each predictor used in this model.</p></li>
 <li><p>The Residuals vs Fitted and Scale-Location plots (Figure <a href="chapter8.html#fig:Figure8-14">8.15</a>) do not show much more than a football shape, which is our desired result.</p>
 <ul>
-<li>Together, there is no evidence of a violation of the linearity assumption.</li>
+<li>Together, there is no suggestion of a violation of the linearity assumption.</li>
 </ul></li>
 </ul></li>
 <li><p><strong>Multicollinearity checked for:</strong></p>
@@ -1121,7 +1122,7 @@ Figure 8.15: Diagnostic plots for the <span class="math inline">\(\text{FYGPA}\s
 ## 1.13061 1.13061</code></pre></li>
 <li><p><strong>Equal (constant) variance:</strong></p>
 <ul>
-<li>There is no clear change in variability as a function of fitted values so no evidence of a violation of the constant variance of residuals assumption.</li>
+<li>There is no clear change in variability as a function of fitted values so no indication of a violation of the constant variance of residuals assumption.</li>
 </ul></li>
 <li><p><strong>Normality of residuals:</strong></p>
 <ul>
@@ -1965,7 +1966,7 @@ Figure 8.34: Diagram of models to consider in an interaction model.
 <li>The alternative states that at least one of the deviation coefficients for getting different y-intercepts for the different <em>Treatments</em> is not 0 in the population.</li>
 </ul></li>
 </ul>
-<p>The <span class="math inline">\(F\)</span>-test for the categorical variable in an additive model follows <span class="math inline">\(F(J-1, n-J-1)\)</span>-distribution under the null hypothesis. For this example, the test statistic for <em>Treatment</em> follows an <span class="math inline">\(F(3, 93)\)</span>-distribution under the null hypothesis. The observed test statistic has a value of 1.74, generating a p-value of 0.164. So we would fail to reject the null hypothesis and conclude that there is no evidence to support the conclusion of some difference in y-intercepts between the <em>treatment</em> groups, in a model with <em>du1</em>, in the population. We could interpret this in the fashion we used initially in MLR by stating this result as: there is little to no evidence of a difference in the mean <em>du2</em> for the <em>Treatment</em> groups after controlling for <em>du1</em>.</p>
+<p>The <span class="math inline">\(F\)</span>-test for the categorical variable in an additive model follows <span class="math inline">\(F(J-1, n-J-1)\)</span>-distribution under the null hypothesis. For this example, the test statistic for <em>Treatment</em> follows an <span class="math inline">\(F(3, 93)\)</span>-distribution under the null hypothesis. The observed test statistic has a value of 1.74, generating a p-value of 0.164. So we would fail to reject the null hypothesis and conclude that there is little to no evidence to support the conclusion of some difference in y-intercepts between the <em>treatment</em> groups, in a model with <em>du1</em>, in the population. We could interpret this in the fashion we used initially in MLR by stating this result as: there is little to no evidence of a difference in the mean <em>du2</em> for the <em>Treatment</em> groups after controlling for <em>du1</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">head1 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">+</span>treatment, <span class="dt">data=</span>Headache)
 <span class="kw">Anova</span>(head1)</code></pre></div>
 <pre><code>## Anova Table (Type II tests)
@@ -2094,7 +2095,7 @@ FEV<span class="op">$</span>smoke &lt;-<span class="st"> </span><span class="kw"
 Figure 8.36: Diagnostics for the log(FEV) model that includes height, sex, and an interaction between age and smoking status (the full model).
 </p>
 </div>
-<p>The diagnostic plots suggest that there are a few outlying points (Figure <a href="chapter8.html#fig:Figure8-35">8.36</a>) but they are not influential and there is no evidence of violations of the normality and constant variance assumptions. If we select a different model(s), we would want to check its diagnostics and make sure that the results do not look noticeably worse than these do.</p>
+<p>The diagnostic plots suggest that there are a few outlying points (Figure <a href="chapter8.html#fig:Figure8-35">8.36</a>) but they are not influential and there is no indication of violations of the normality and constant variance assumptions. If we select a different model(s), we would want to check its diagnostics and make sure that the results do not look noticeably worse than these do.</p>
 <p>The <code>AIC</code> function can be used to generate the AIC values for a single or set of candidate models. It will also provide the model degrees of freedom used for each model. For example, suppose that the want to compare <code>fm1</code> to a model without the interaction term in the model, called <code>fm1R</code>. You need to fit both models and then apply the <code>AIC</code> function to them with commas between the model names:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fm1R &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>height<span class="op">+</span>age<span class="op">+</span>smoke<span class="op">+</span>sex, <span class="dt">data=</span>FEV)
 <span class="kw">AIC</span>(fm1, fm1R)</code></pre></div>

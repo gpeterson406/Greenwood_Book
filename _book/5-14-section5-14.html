@@ -226,7 +226,8 @@ img {
 <li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
 <li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
-<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
 </ul></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
@@ -254,22 +255,30 @@ img {
 <p>Relevant to the <a href="http://fivethirtyeight.com/datalab/data-is-vs-data-are/">interests of FiveThirtyEight</a> in particular, we also asked whether people preferred using “data” as a singular or plural noun. To those who prefer the plural, I’ll put this in your terms: The data are pretty conclusive that the vast majority of respondents think we should say “data is.” The singular crowd won by a 58 percentage-point margin, with 79 percent of respondents liking “data is” to 21 percent preferring “data are.” But only half of respondents had put any thought to the usage prior to our survey, so it seems that it’s not a pressing issue for most.</p>
 </blockquote>
 <p>This came from a survey that contained questions about <em>which is the correct usage</em>, (<code>isare</code>), <em>have you thought about this issue</em> (<code>thoughtabout</code>) with levels Yes/No, and <em>do you care about this issue</em> (<code>careabout</code>) with four levels from <em>Not at all</em> to <em>A lot</em>. The following code loads their data set after missing responses were removed, does a little re-ordering of factor levels to help make the results easier to understand, and makes a table plot to get a general sense of the results including information on the respondents’ gender, age, income, and education.</p>
-<pre><code>csd &lt;- read_csv(&quot;http://www.math.montana.edu/courses/s217/documents/csd.csv&quot;)
-require(tabplot)
-#Need to make it explicit that these are factor variables
-csd$careabout &lt;- factor(csd$careabout) 
-#Reorders factor levels to be in &quot;correct&quot; order
-csd$careabout &lt;- factor(csd$careabout,
-                    levels=levels(csd$careabout)[c(1,4,3,2)]) 
-csd$Education &lt;- factor(csd$Education)
-csd$Education &lt;- factor(csd$Education,
-                    levels=levels(csd$Education)[c(4,3,5,1,2)])
-csd$Household.Income &lt;- factor(csd$Household.Income)
-csd$Household.Income &lt;- factor(csd$Household.Income,
-                    levels=levels(csd$Household.Income)[c(1,4,5,6,2,3)])
-#Sorts plot by careabout responses
-tableplot(csd[,c(&quot;isare&quot;,&quot;careabout&quot;,&quot;thoughtabout&quot;,&quot;Gender&quot;,
-                 &quot;Age&quot;,&quot;Household.Income&quot;,&quot;Education&quot;)], sortCol=careabout) </code></pre>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(readr)
+csd &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/csd.csv&quot;</span>)
+<span class="kw">require</span>(tabplot)
+<span class="co">#Need to make it explicit that these are factor variables</span>
+csd<span class="op">$</span>careabout &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>careabout) 
+<span class="co">#Reorders factor levels to be in &quot;correct&quot; order</span>
+csd<span class="op">$</span>careabout &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>careabout,
+                    <span class="dt">levels=</span><span class="kw">levels</span>(csd<span class="op">$</span>careabout)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>)]) 
+csd<span class="op">$</span>Education &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Education)
+csd<span class="op">$</span>Education &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Education,
+                    <span class="dt">levels=</span><span class="kw">levels</span>(csd<span class="op">$</span>Education)[<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">2</span>)])
+csd<span class="op">$</span>Household.Income &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Household.Income)
+csd<span class="op">$</span>Household.Income &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Household.Income,
+                    <span class="dt">levels=</span><span class="kw">levels</span>(csd<span class="op">$</span>Household.Income)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">3</span>)])
+<span class="co">#Sorts plot by careabout responses</span>
+<span class="kw">tableplot</span>(csd[,<span class="kw">c</span>(<span class="st">&quot;isare&quot;</span>,<span class="st">&quot;careabout&quot;</span>,<span class="st">&quot;thoughtabout&quot;</span>,<span class="st">&quot;Gender&quot;</span>,
+                 <span class="st">&quot;Age&quot;</span>,<span class="st">&quot;Household.Income&quot;</span>,<span class="st">&quot;Education&quot;</span>)], <span class="dt">sortCol=</span>careabout,<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>)) </code></pre></div>
+<div class="figure"><span id="fig:Figure5-27"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-27-1.png" alt="Tableplot of “data from”data-is-vs-data-are&quot; survey, sorted by “CareAbout” responses." width="576" />
+<p class="caption">
+Figure 2.90: Tableplot of “data from”data-is-vs-data-are&quot; survey, sorted by “CareAbout” responses.
+</p>
+</div>
 <p>5.8. If we are interested in the variables <code>isare</code> and <code>careabout</code>, what sort of test should we perform?</p>
 <p>5.9. Make the appropriate plot of the results for the table relating those two variables relative to your answer to 5.8.</p>
 <p>5.10. Generate the contingency table and find the expected cell counts, first “by hand” and then check them using the output. Is the parametric procedure appropriate here? Why or why not?</p>

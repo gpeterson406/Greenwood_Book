@@ -213,7 +213,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.2" data-path="chapter9.html"><a href="chapter9.html#section9-2"><i class="fa fa-check"></i><b>9.2</b> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li class="chapter" data-level="9.3" data-path="chapter9.html"><a href="chapter9.html#section9-3"><i class="fa fa-check"></i><b>9.3</b> Ants learn to rely on more informative attributes during decision-making</a></li>
 <li class="chapter" data-level="9.4" data-path="chapter9.html"><a href="chapter9.html#section9-4"><i class="fa fa-check"></i><b>9.4</b> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
-<li class="chapter" data-level="9.5" data-path="chapter9.html"><a href="chapter9.html#section9-5"><i class="fa fa-check"></i><b>9.5</b> General summary</a></li>
+<li class="chapter" data-level="9.5" data-path="chapter9.html"><a href="chapter9.html#section9-5"><i class="fa fa-check"></i><b>9.5</b> What do didgeridoos really do about sleepiness?</a></li>
+<li class="chapter" data-level="9.6" data-path="chapter9.html"><a href="chapter9.html#section9-6"><i class="fa fa-check"></i><b>9.6</b> General summary</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -350,7 +351,7 @@ Figure 9.3: Interaction plot of biomass responses by treatment and species.
 Figure 9.4: Diagnostic plots of treatment by species interaction model for Biomass.
 </p>
 </div>
-<p>There is a clear problem with non-constant variance showing up in a fanning shape<a href="#fn121" class="footnoteRef" id="fnref121"><sup>121</sup></a> in the Residuals versus Fitted and Scale-Location plots in Figure <a href="chapter9.html#fig:Figure9-4">9.4</a>. Interestingly, the normality assumption is not an issue so hopefully we will not worsen this result by using a transformation to try to address the non-constant variance issue. The independence assumption is violated in two ways for this model by this study design – the blocks create clusters or groups of observations and the block should be accounted for (they did this in their models by adding <em>block</em> as a categorical variable to their models). Using blocked designs and accounting for the blocks in the model will typically give more precise inferences for the effects of interest, the treatments randomized within the blocks. Additionally, <strong>there are two measurements on each plot</strong> within block, one for <em>SP</em> and one for <em>HS</em> and these might be related (for example, high <em>HS</em> biomass might beassociated with high <em>SP</em>) so putting both observations into a model <strong>violates the independence assumption</strong> at a second level. It takes more advanced statistical models (called linear mixed models) to see how to fully deal with this, for now it is important to recognize the issues. The more complicated models provide similar results here and include the <em>treatment</em> by <em>species</em> interaction we are going to explore, they just add to this basic model to account for these other issues.</p>
+<p>There is a clear problem with non-constant variance showing up in a fanning shape<a href="#fn121" class="footnoteRef" id="fnref121"><sup>121</sup></a> in the Residuals versus Fitted and Scale-Location plots in Figure <a href="chapter9.html#fig:Figure9-4">9.4</a>. Interestingly, the normality assumption is not an issue so hopefully we will not worsen this result by using a transformation to try to address the non-constant variance issue. The independence assumption is violated in two ways for this model by this study design – the blocks create clusters or groups of observations and the block should be accounted for (they did this in their models by adding <em>block</em> as a categorical variable to their models). Using blocked designs and accounting for the blocks in the model will typically give more precise inferences for the effects of interest, the treatments randomized within the blocks. Additionally, <strong>there are two measurements on each plot</strong> within block, one for <em>SP</em> and one for <em>HS</em> and these might be related (for example, high <em>HS</em> biomass might be associated with high <em>SP</em>) so putting both observations into a model <strong>violates the independence assumption</strong> at a second level. It takes more advanced statistical models (called linear mixed models) to see how to fully deal with this, for now it is important to recognize the issues. The more complicated models provide similar results here and include the <em>treatment</em> by <em>species</em> interaction we are going to explore, they just add to this basic model to account for these other issues.</p>
 <p>Remember that <strong>before using a <em>log</em>-transformation, you always must check that the responses are strictly greater than 0</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(gdn<span class="op">$</span>Massperha)</code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -486,7 +487,7 @@ PWnewm2 &lt;-<span class="st"> </span><span class="kw">glht</span>(newm2, <span 
 Figure 9.8: Interaction plot for log-biomass with CLD from Tukey’s HSD for all pairwise comparisons.
 </p>
 </div>
-<p>These results suggest that <em>HS-N50</em> is detectably different from all the other groups (letter “a”). The rest of the story is more complicated since many of the sets contain overlapping groups in terms of detectable differences. Some specific aspects of those results are most interesting. The mean log-biomasses were not detectably different between the (they share a “d”). In other words, without treatment, there is no evidence of a difference in how much of the two species are present in the sites. For <em>N12.5</em> and <em>N50</em> treatments, there are detectable differences between the <em>Species</em>. These comparisons are probably of the most interest initially and suggest that the treatments have a different impact on the two species, remembering that in the control treatments, the results for the two species were not detectably different. Further explorations of the sizes of the differences that can be extracted from selected confidence intervals in the Tukey’s HSD results printed above. Because these results are for the log-scale responses, we could exponentiate coefficients for groups that are deviations from the baseline category and interpret those as multiplicative changes in the median relative to the baseline group, but at the end of this amount of material, I thought that might stop you from reading on any further…</p>
+<p>These results suggest that <em>HS-N50</em> is detectably different from all the other groups (letter “a”). The rest of the story is more complicated since many of the sets contain overlapping groups in terms of detectable differences. Some specific aspects of those results are most interesting. The mean log-biomasses were not detectably different between the (they share a “d”). In other words, without treatment, there is little to no evidence of a difference in how much of the two species are present in the sites. For <em>N12.5</em> and <em>N50</em> treatments, there are detectable differences between the <em>Species</em>. These comparisons are probably of the most interest initially and suggest that the treatments have a different impact on the two species, remembering that in the control treatments, the results for the two species were not detectably different. Further explorations of the sizes of the differences that can be extracted from selected confidence intervals in the Tukey’s HSD results printed above. Because these results are for the log-scale responses, we could exponentiate coefficients for groups that are deviations from the baseline category and interpret those as multiplicative changes in the median relative to the baseline group, but at the end of this amount of material, I thought that might stop you from reading on any further…</p>
 
 </div>
 <div id="section9-3" class="section level2">
@@ -716,11 +717,193 @@ Figure 9.11: Diagnostic plots for the top AIC model.
 <p><span class="math display">\[\log{(\text{count})}_i=\beta_0 + \beta_1\cdot\log{(\text{DBF})}_i + \beta_2I_{\text{TJK},i} + \varepsilon_i,\]</span></p>
 <p>exploring whether <em>DBC</em> or <em>DBF</em> is “better” with <em>TJK</em> in the model. There is no hypothesis test to compare these two models because one is not <strong><em>nested</em></strong> in the other – <strong>it is not possible to get from one model to the other by setting one or more slope coefficients to 0 so we can’t test our way from one model to the other one</strong>. The AICs suggest that the model with <em>DBC</em> and <em>TJK</em> is better than the model with <em>DBF</em> and <em>TJK</em>, so that helps us make that decision. After that step, we could rely on <span class="math inline">\(t\)</span>-tests or ANOVA <span class="math inline">\(F\)</span>-tests to decide whether further refinement is suggested/possible for the model with <em>DBC</em> and <em>TJK</em>. This would provide the direct inferences that they probably want and are trying to obtain from AICs along with p-values in their paper.</p>
 <p>Finally, their results would actually be more valid if they had used a set of statistical methods designed for modeling responses that are counts of events or things, especially those whose measurements change as a function of sampling effort; models called <strong><em>Poisson rate models</em></strong> would be ideal for their application. The other aspect of the biodiversity that they measured for each stage was the duration of the stage. They never incorporated that information and it makes sense given their interests in comparing biodiversity across stages, not understanding why more or less biodiversity might occur. But other researchers might want to estimate the biodiversity after also controlling for the length of time that the stage lasted and the sampling efforts involved in detecting the biodiversity of each stage, models that are only a few steps away from those considered here. In general, this study presents some of the pitfalls of attempting to use advanced statistical methods as well as hinting at the benefits. The statistical models are the only way to access the results of interest; inaccurate usage of statistical models can provide inaccurate conclusions. They seemed to mostly get the right answers despite a suite of errors in their work.</p>
+
 </div>
 <div id="section9-5" class="section level2">
-<h2><span class="header-section-number">9.5</span> General summary</h2>
-<p>As we wrap up, it is important to remember that these tools are limited by the quality of the data collected. If you are ever involved in applying these statistical models, whether in a research or industrial setting, make sure that the research questions are discussed before data collection. And before data collection is started, make sure that the methods will provide results that can address the research questions. And, finally, make sure someone involved in the project knows how to perform the appropriate statistical analysis. One way to make sure you know how to analyze a data set and, often, clarify the research questions and data collection needs, is to <strong>make a fake data set and analyze it</strong>. With this sort of preparation, many issues can be avoided. Remember to think about reasons why assumptions of your proposed method might be violated.</p>
-<p>You are now <strong>armed</strong> and a bit <strong>dangerous</strong> with statistical methods. If you go to use them, remember the fundamentals and find the story in the data. After deciding on any research questions of interest, graph the data and make sure that the statistical methods will give you results that make some sense based on the graphical results. In the MLR results, it is possible that graphs will not be able to completely tell you the story, but all the other methods should follow the pictures you see. Even when (or especially when) you use sophisticated statistical methods, graphical presentations are critical to helping others understand the results. We have discussed examples that involve displaying categorical and quantitative variables and even some displays that bridge both types of variables. We hope you have enjoyed this material and been able to continue to develop your interests in statistics. You will see it in many future situations both in courses in your area of study and in real problems that need answers. You are also prepared to take more advanced statistics courses – if you want to discuss the next options, we are happy to provide additional information about the best next steps in learning statistics.</p>
+<h2><span class="header-section-number">9.5</span> What do didgeridoos really do about sleepiness?</h2>
+
+<p>In the practice problems at the end of Chapter 4, a study (Puhan et al. (2005), available at <a href="http://www.bmj.com/content/332/7536/266" class="uri">http://www.bmj.com/content/332/7536/266</a>) related to a pre-post, two group comparison of the sleepiness ratings of subjects. They obtained <span class="math inline">\(n\)</span>=25 volunteers and they randomized the subjects to either get a lesson or be placed on a waiting list for lessons. They constrained the randomization based on the high/low apnoea and high/low on the Epworth scale of the subjects in their initial observations to make sure they balanced the types of subjects going into the treatment and control groups. They measured the subjects’ Epworth value (daytime sleepiness, higher is more sleepy) initially and after four months, where only the treated subjects (those who took lessons) had any intervention. We are interested in whether the mean Epworth scale values changed differently over the four months in the group that got didgeridoo lessons than it did in the control group (that got no lessons). Each subject was measured twice (so the total sample size in the data set is 50) in the data set provided that is available at <a href="http://www.math.montana.edu/courses/s217/documents/epworthdata.csv" class="uri">http://www.math.montana.edu/courses/s217/documents/epworthdata.csv</a>.</p>
+<p>The data set was not initially provided by the researchers, but they did provide a plot very similar to Figure <a href="chapter9.html#fig:Figure9-12">9.12</a>. Since this is last section of the book, I am going to use a new package to make the plot, <code>qplot</code> from the <code>ggplot2</code> package, that violates one of the rules used to this point - it doesn’t have a formula interface. If you continue much further in learning to use R, you will see the benefits of some other functions and styles of functions. You will also likely run into the <code>ggplot2</code> package, which is part of the “tidyverse” and has been developed to implement sophisticated graphics. For more on this, you can visit <a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a> and the related book by Hadley Wickham, who now works for R-studio. We could have used <code>ggplot2</code> to make every graph in the book, but elected to focus on the simpler formula interface that few of these functions use. For now, I am going to use it to make Figure <a href="chapter9.html#fig:Figure9-12">9.12</a> with the <code>qplot</code> function that allows me to display a line for each subject over the two time points (pre and post) of observation and indicate which group the subjects were assigned to. This allows us to see the variation at a given time across subjects and changes over time, which is critical here as this shows clearly why we had a violation of the independence assumption in these data. In the plot, you can see that there are not clear differences in the two groups at the “Pre” time but that treated group seems to have most of the lines go down to lower sleepiness ratings and that this is not happening much for the subjects in the control group.</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(readr)
+epworthdata &lt;-<span class="st"> </span>
+<span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/epworthdata.csv&quot;</span>)
+epworthdata<span class="op">$</span>Time &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Time)
+<span class="kw">levels</span>(epworthdata<span class="op">$</span>Time) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Pre&quot;</span> , <span class="st">&quot;Post&quot;</span>)
+epworthdata<span class="op">$</span>Group &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Group)
+<span class="kw">levels</span>(epworthdata<span class="op">$</span>Group) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Control&quot;</span> , <span class="st">&quot;Didgeridoo&quot;</span>)
+
+<span class="kw">require</span>(ggplot2)
+<span class="kw">require</span>(ggthemes)
+<span class="kw">require</span>(viridis)
+<span class="kw">qplot</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Epworth, <span class="dt">data =</span> epworthdata, 
+      <span class="dt">group =</span> Subject, <span class="dt">colour =</span> Group, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;line&quot;</span>,
+      <span class="st">&quot;point&quot;</span>))<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) </code></pre></div>
+<div class="figure"><span id="fig:Figure9-12"></span>
+<img src="09-caseStudies_files/figure-html/Figure9-12-1.png" alt="Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time." width="960" />
+<p class="caption">
+Figure 9.12: Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time.
+</p>
+</div>
+<p>This plot seems to contradict the result from the following Two-Way ANOVA (that is a repeat of what you would have seen had you done the practice problem earlier in the book and the related interaction plot) – there is little to no evidence against the null hypothesis of no interaction between Time and Treatment group on Epworth scale ratings (F(1,46)=1.37, p-value=0.248 as seen in Table 9.2). But this model assumes all the observations are independent and so does not account for the repeated measures on the same subjects. It ends up that if we account for systematic differences in subjects, we can (sometimes) find the differences we are interested in more clearly.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(car)
+lm_int &lt;-<span class="st"> </span><span class="kw">lm</span>(Epworth <span class="op">~</span><span class="st"> </span>Time<span class="op">*</span>Group,<span class="dt">data=</span>epworthdata)
+<span class="kw">Anova</span>(lm_int)</code></pre></div>
+
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Sum Sq</th>
+<th align="right">Df</th>
+<th align="right">F value</th>
+<th align="right">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time</td>
+<td align="right">120.745800</td>
+<td align="right">1</td>
+<td align="right">5.6530102</td>
+<td align="right">0.0216381</td>
+</tr>
+<tr class="even">
+<td>Group</td>
+<td align="right">8.651378</td>
+<td align="right">1</td>
+<td align="right">0.4050354</td>
+<td align="right">0.5276545</td>
+</tr>
+<tr class="odd">
+<td>Time:Group</td>
+<td align="right">29.264947</td>
+<td align="right">1</td>
+<td align="right">1.3701101</td>
+<td align="right">0.2478214</td>
+</tr>
+<tr class="even">
+<td>Residuals</td>
+<td align="right">982.539675</td>
+<td align="right">46</td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+<p>If the issue is failing to account for differences in subjects, then why not add “Subject” to the model? There are two things to consider. First, we would need to make sure that “Subject” is a factor variable as the “Subject” variable is initially numerical from 1 to 25. Second, we have to deal with having a factor variable with 25 levels (so 24 indicator variables!). This is a big number and would make writing out the model and interpreting the term-plot for Subject extremely challenging. Fortunately, we are not too concerned about how much higher or lower an individual is than a baseline subject, but we do need to account for it in the model. This sort of “repeated measures” modeling is more often handled by a more complex set of extended regression models that are called mixed effects models and are designed to handle this sort of grouping variable with many levels.</p>
+<p>But if we put the Subject factor variable into the previous model, we can use Type II ANOVA tests to test for an interaction between Time and Group (our primary research question) after controlling for subject-to-subject variation. There is a warning message about <strong>aliasing</strong> that occurs when you do this which means that it is not possible to estimate all the <span class="math inline">\(\beta\)</span>s in this model (and why we more typically used mixed models to do this sort of thing). Despite this, the test for “Time:Group” in Table 9.3 is correct and now accounts for the repeated measures on the subject. It provides F(1,23)=5.43 with a p-value of 0.029, suggesting that there is moderate evidence for retaining that interaction in the model. This is a notably different result from what we observed in the Two-Way ANOVA interaction model that didn’t account for repeated measures on the subjects.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">epworthdata<span class="op">$</span>Subject &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Subject)
+lm_int_wsub &lt;-<span class="st"> </span><span class="kw">lm</span>(Epworth <span class="op">~</span><span class="st"> </span>Time <span class="op">*</span><span class="st"> </span>Group <span class="op">+</span><span class="st"> </span>Subject,<span class="dt">data=</span>epworthdata)
+<span class="kw">Anova</span>(lm_int_wsub)</code></pre></div>
+
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Sum Sq</th>
+<th align="right">Df</th>
+<th align="right">F value</th>
+<th align="right">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time</td>
+<td align="right">120.74580</td>
+<td align="right">1</td>
+<td align="right">22.410088</td>
+<td align="right">0.0000904</td>
+</tr>
+<tr class="even">
+<td>Group</td>
+<td align="right"></td>
+<td align="right">0</td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td>Subject</td>
+<td align="right">858.61542</td>
+<td align="right">23</td>
+<td align="right">6.928550</td>
+<td align="right">0.0000087</td>
+</tr>
+<tr class="even">
+<td>Time:Group</td>
+<td align="right">29.26495</td>
+<td align="right">1</td>
+<td align="right">5.431494</td>
+<td align="right">0.0289074</td>
+</tr>
+<tr class="odd">
+<td>Residuals</td>
+<td align="right">123.92425</td>
+<td align="right">23</td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+<p>With this result, we would usually explore the term-plots from this model to get a sense of the pattern of the changes over time in the treatment and control groups. That aliasing issue means that the “effects” function also has some issues. To see the effects plots, we need to use a mixed effects model from the “nlme” package. This model is beyond the scope of this material, but it provides the same F-statistic for the interaction (F(1,23)=5.43) and the term-plots can now be produced (Figure <a href="chapter9.html#fig:Figure9-14">9.13</a>). In that plot, we again see that the didgeridoo group mean for “Post” is noticeably lower than in the “Pre” and that the changes in the control group were minimal over the four months. This difference in the changes over time was present in the initial graphical exploration but we needed to account for variation in subjects to be able to detect this difference. While these results rely on more complex models than we have time to discuss here, hopefully the similarity of the results of interest should resonate with the methods we have been exploring while hinting at more possibilities if you learn more statistical methods.</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(nlme)
+lme_int &lt;-<span class="st"> </span><span class="kw">lme</span>(Epworth <span class="op">~</span><span class="st"> </span>Time <span class="op">*</span><span class="st"> </span>Group, <span class="dt">random=</span> <span class="op">~</span><span class="dv">1</span><span class="op">|</span>Subject, <span class="dt">data=</span>epworthdata)
+<span class="kw">anova</span>(lme_int)
+<span class="kw">require</span>(effects)
+<span class="kw">plot</span>(<span class="kw">allEffects</span>(lme_int),<span class="dt">multiline=</span>T,<span class="dt">ci.style=</span><span class="st">&quot;bars&quot;</span>)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">numDF</th>
+<th align="right">denDF</th>
+<th align="right">F-value</th>
+<th align="right">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">1</td>
+<td align="right">23</td>
+<td align="right">132.8135357</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="even">
+<td>Time</td>
+<td align="right">1</td>
+<td align="right">23</td>
+<td align="right">22.4101426</td>
+<td align="right">0.0000903</td>
+</tr>
+<tr class="odd">
+<td>Group</td>
+<td align="right">1</td>
+<td align="right">23</td>
+<td align="right">0.2317466</td>
+<td align="right">0.6347803</td>
+</tr>
+<tr class="even">
+<td>Time:Group</td>
+<td align="right">1</td>
+<td align="right">23</td>
+<td align="right">5.4315068</td>
+<td align="right">0.0289072</td>
+</tr>
+</tbody>
+</table>
+<div class="figure"><span id="fig:Figure9-14"></span>
+<img src="09-caseStudies_files/figure-html/Figure9-14-1.png" alt="Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model." width="960" />
+<p class="caption">
+Figure 9.13: Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
+</p>
+</div>
+</div>
+<div id="section9-6" class="section level2">
+<h2><span class="header-section-number">9.6</span> General summary</h2>
+<p>As we wrap up, it is important to remember that these tools are limited by the quality of the data collected. If you are ever involved in applying these statistical models, whether in a research or industrial setting, make sure that the research questions are discussed before data collection. And before data collection is started, make sure that the methods will provide results that can address the research questions. And, finally, make sure someone involved in the project knows how to perform the appropriate statistical analysis. One way to make sure you know how to analyze a data set and, often, clarify the research questions and data collection needs, is to make a data set that resembles the one you want to collect and analyze it. This can highlight the sorts of questions the research can address and potentially expose issues before the study starts. With this sort of preparation, many issues can be avoided. Remember to think about reasons why assumptions of your proposed method might be violated.</p>
+<p>You are now <strong>armed</strong> and a bit <strong>dangerous</strong> with statistical methods. If you go to use them, remember the fundamentals and find the story in the data. After deciding on any research questions of interest, graph the data and make sure that the statistical methods will give you results that make some sense based on the graphical results. In the MLR results, it is possible that graphs will not be able to completely tell you the story, but all the other methods should follow the pictures you see. Even when (or especially when) you use sophisticated statistical methods, graphical presentations are critical to helping others understand the results. We have discussed examples that involve displaying categorical and quantitative variables and even some displays that bridge both types of variables. We hope you have enjoyed this material and been able to continue to develop your interests in statistics. You will see it in many future situations both in courses in your area of study and outside of academia to try to address problems that need answers. You are also prepared to take more advanced statistics courses – if you want to discuss the next options, we are happy to provide additional information about the best next steps in learning statistics.</p>
 
 </div>
 </div>

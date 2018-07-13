@@ -226,7 +226,8 @@ img {
 <li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
 <li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
-<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
 </ul></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
@@ -239,7 +240,7 @@ img {
 <h2><span class="header-section-number">4.5</span> Observational study example: The Psychology of Debt</h2>
 <p>In this section, the analysis of a survey of <span class="math inline">\(N=464\)</span> randomly sampled adults will be analyzed from a survey conducted by <span class="citation">Lea, Webley, and Walker (<a href="#ref-Lea1995">1995</a>)</span> and available in the <code>debt</code> data set from the <code>faraway</code> package <span class="citation">(Faraway <a href="#ref-R-faraway">2016</a>)</span>. The subjects responded to a variety of questions including whether they buy cigarettes (<code>cigbuy</code>: 0 if no, 1 if yes), their housing situation (<code>house</code>: 1 = rent, 2 = mortgage, and 3 = owned outright), their income group (<code>incomegp</code>: 1 = lowest, 5 = highest), and their score on a continuous scale of attitudes about debt (<code>prodebt</code>: 1 = least favorable, 5 = most favorable). The variable <code>prodebt</code> was derived as the average of a series of questions about debt with each question measured on an <strong><em>ordinal</em></strong> 1 to 5 scale, with higher values corresponding to more positive responses about <span class="math inline">\(\underline{\text{going into debt}}\)</span> of various kinds. The ordered scale on surveys that try to elicit your opinions on topics with scales from 1 to 5 or 1 to 7 or even, sometimes, 1 to 10 is called a <strong><em>Likert scale</em></strong> <span class="citation">(Likert <a href="#ref-Likert1932">1932</a>)</span>. It is not a quantitative scale and really should be handled more carefully than taking an average of a set responses. That said, it is extremely common practice in social science research to treat ordinal responses as if they are quantitative and take the average of many of them to create a more continuous response variable like the one we are using here. If you continue your statistics explorations, you will see some better techniques for analyzing responses obtained in this fashion. That said, the scale of the response is relatively easy to understand as an amount of willingness to go into debt on a scale from 1 to 5 with higher values corresponding to more willingness to be in debt.</p>
 <p>This data set is typical of survey data where respondents were not required to answer all questions and there are some missing responses. We will clean out any individuals that failed to respond to all questions using the <code>na.omit</code> function, which will return only subjects that responded to every question in the data set. But is this dangerous? Suppose that people did not want to provide their income levels if they were in the lowest or, maybe, highest income groups. Then we would be missing responses systematically and conclusions could be biased because of ignoring these types of subjects. This is another topic for more advanced statistical methods to try to handle but something every researcher should worry about when selected subjects do not respond at all or fail to answer some questions. This ties back into our discussion of who was sampled. We need to think carefully about who was part of the sample but refused to participate and how that might impact our inferences.</p>
-<p>Ignoring this potential for bias in the results for the moment, we are first interested in whether buying cigarettes/not and income groups interact in their explanation of the respondent’s mean opinions on being in debt. The interaction plot (Figure <a href="4-5-section4-5.html#fig:Figure4-12">2.57</a>) may suggest an interaction between <code>cigbuy</code> and <code>incomegp</code> from income levels 1 to 3 where the lines cross but it is not as clear as the previous examples. The interaction <span class="math inline">\(F\)</span>-test helps us objectively assess evidence for that interaction. Based on the plot, there do not appear to be differences based on cigarette purchasing but there might be some differences between the income groups. If there is no interaction present, then this suggests that we might be in Scenario 2 or 3 where a single main effect of interest is present.</p>
+<p>Ignoring this potential for bias in the results for the moment, we are first interested in whether buying cigarettes/not and income groups interact in their explanation of the respondent’s mean opinions on being in debt. The interaction plot (Figure <a href="4-5-section4-5.html#fig:Figure4-12">2.58</a>) may suggest an interaction between <code>cigbuy</code> and <code>incomegp</code> from income levels 1 to 3 where the lines cross but it is not as clear as the previous examples. The interaction <span class="math inline">\(F\)</span>-test helps us objectively assess evidence for that interaction. Based on the plot, there do not appear to be differences based on cigarette purchasing but there might be some differences between the income groups. If there is no interaction present, then this suggests that we might be in Scenario 2 or 3 where a single main effect of interest is present.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(faraway)
 <span class="kw">data</span>(debt)
 <span class="kw">require</span>(tibble)
@@ -248,11 +249,11 @@ debt<span class="op">$</span>incomegp &lt;-<span class="st"> </span><span class=
 debt<span class="op">$</span>cigbuy &lt;-<span class="st"> </span><span class="kw">factor</span>(debt<span class="op">$</span>cigbuy)
 debtc &lt;-<span class="st"> </span><span class="kw">na.omit</span>(debt)</code></pre></div>
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">intplot</span>(prodebt<span class="op">~</span>cigbuy<span class="op">*</span>incomegp, <span class="dt">data=</span>debtc, <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">intplotarray</span>(prodebt<span class="op">~</span>cigbuy<span class="op">*</span>incomegp, <span class="dt">data=</span>debtc, <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
 <div class="figure"><span id="fig:Figure4-12"></span>
-<img src="04-twoWayAnova_files/figure-html/Figure4-12-1.png" alt="Interaction plot of prodebt by income group and buy cigarettes (0=no, 1=yes)." width="960" />
+<img src="04-twoWayAnova_files/figure-html/Figure4-12-1.png" alt="Interaction plot array of prodebt by income group and buy cigarettes (0=no, 1=yes)." width="960" />
 <p class="caption">
-Figure 2.57: Interaction plot of <code>prodebt</code> by income group and buy cigarettes (0=no, 1=yes).
+Figure 2.58: Interaction plot array of <code>prodebt</code> by income group and buy cigarettes (0=no, 1=yes).
 </p>
 </div>
 <p>As in other situations, and especially with observational studies where a single large sample is analyzed, it is important to check for balance - whether all the combinations of the two predictor variables are similarly represented. Even more critically, we need to check whether all the combinations of levels of factors are measured. If a combination is not measured, then we lose the ability to estimate the mean for that combination and the ability to test for an interaction. A solution to that problem would be to collapse the categories of one of the variables, changing the definitions of the levels but if you fail to obtain information for all combinations, you can’t work with the interaction model. In this situation, we barely have enough information to proceed (the smallest <span class="math inline">\(n_{jk}\)</span> is 8 for income group 4 that buys cigarettes). We have a very unbalanced design with counts between 8 and 51 in the different combinations.</p>
@@ -274,14 +275,14 @@ debt1 &lt;-<span class="st"> </span><span class="kw">lm</span>(prodebt<span clas
 ## cigbuy            0.703   1  1.4270 0.233222
 ## incomegp:cigbuy   1.971   4  1.0003 0.407656
 ## Residuals       144.835 294</code></pre>
-<p>The diagnostic plots (Figure <a href="4-5-section4-5.html#fig:Figure4-13">2.58</a>) seem to be pretty well-behaved with no apparent violations of the normality assumption and no clear evidence of a violation of the constant variance assumption. The observations would seem to be independent because there is no indication of structure to the measurements of the survey respondents that might create dependencies. In observational studies, violations of the independence assumption might come from repeated measures of the same person or multiple measurements within the same family/household or samples that are clustered geographically. The random sampling from a population should allow inferences to a larger population except for that issue of removing partially missing responses. We also don’t have much information on the population sampled, so will just leave this vague here but know that there is a population these conclusions apply to since it was random sample. All of this suggests proceeding to fitting and exploring the additive model is reasonable here. No causal inferences are possible because this is an observational study.</p>
+<p>The diagnostic plots (Figure <a href="4-5-section4-5.html#fig:Figure4-13">2.59</a>) seem to be pretty well-behaved with no apparent violations of the normality assumption and no clear evidence of a violation of the constant variance assumption. The observations would seem to be independent because there is no indication of structure to the measurements of the survey respondents that might create dependencies. In observational studies, violations of the independence assumption might come from repeated measures of the same person or multiple measurements within the same family/household or samples that are clustered geographically. The random sampling from a population should allow inferences to a larger population except for that issue of removing partially missing responses. We also don’t have much information on the population sampled, so will just leave this vague here but know that there is a population these conclusions apply to since it was random sample. All of this suggests proceeding to fitting and exploring the additive model is reasonable here. No causal inferences are possible because this is an observational study.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
 <span class="kw">plot</span>(debt1)</code></pre></div>
 <div class="figure"><span id="fig:Figure4-13"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-13-1.png" alt="Diagnostic plot for prodebt by income group and buy cigarettes/not interaction model." width="960" />
 <p class="caption">
-Figure 2.58: Diagnostic plot for <code>prodebt</code> by income group and buy cigarettes/not interaction model.
+Figure 2.59: Diagnostic plot for <code>prodebt</code> by income group and buy cigarettes/not interaction model.
 </p>
 </div>
 <ol style="list-style-type: decimal">
@@ -306,17 +307,17 @@ Figure 2.58: Diagnostic plot for <code>prodebt</code> by income group and buy ci
 <div class="figure"><span id="fig:Figure4-14"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-14-1.png" alt="Diagnostic plot for ``prodebt`` by income group and buy   cigarettes/not" width="960" />
 <p class="caption">
-Figure 2.59: Diagnostic plot for <code>prodebt</code> by income group and buy cigarettes/not
+Figure 2.60: Diagnostic plot for <code>prodebt</code> by income group and buy cigarettes/not
 </p>
 </div>
 <ul>
 <li><p>Constant Variance:</p>
 <ul>
-<li>In the Residuals vs Fitted and the Scale-Location plots in Figure <a href="4-5-section4-5.html#fig:Figure4-14">2.59</a>, the differences in variability among groups is minor and nothing suggests a violation. <strong>If you change models, you should always revisit the diagnostic plots to make sure you didn’t create problems that were not present in more complicated models.</strong></li>
+<li>In the Residuals vs Fitted and the Scale-Location plots in Figure <a href="4-5-section4-5.html#fig:Figure4-14">2.60</a>, the differences in variability among groups is minor and nothing suggests a violation. <strong>If you change models, you should always revisit the diagnostic plots to make sure you didn’t create problems that were not present in more complicated models.</strong></li>
 </ul></li>
 <li><p>Normality of residuals:</p>
 <ul>
-<li>The QQ-Plot in Figure <a href="4-5-section4-5.html#fig:Figure4-14">2.59</a> does not suggest a problem with this assumption.</li>
+<li>The QQ-Plot in Figure <a href="4-5-section4-5.html#fig:Figure4-14">2.60</a> does not suggest a problem with this assumption.</li>
 </ul></li>
 </ul></li>
 <li><p><strong>Calculate the test statistic for the two main effect tests.</strong></p>
@@ -341,16 +342,16 @@ Figure 2.59: Diagnostic plot for <code>prodebt</code> by income group and buy ci
 </ul></li>
 <li><p><strong>Write a conclusion:</strong></p>
 <ul>
-<li>There was initially no evidence to support retaining the interaction of income group and cigarette buying on pro-debt feelings (<span class="math inline">\(F(4,294)=1.00, \text{p-value} =0.408\)</span>) so the interaction was dropped from the model. There is strong evidence of some difference in the mean pro-debt feelings in the population across the income groups, after adjusting for cigarette buying. There is little to no evidence of a difference in the mean pro-debt feelings in the population based on cigarette buying/not, after adjusting for income group.</li>
+<li>There was initially little to no evidence to support retaining the interaction of income group and cigarette buying on pro-debt feelings (<span class="math inline">\(F(4,294)=1.00, \text{p-value} =0.408\)</span>) so the interaction was dropped from the model. There is strong evidence of some difference in the mean pro-debt feelings in the population across the income groups, after adjusting for cigarette buying. There is little to no evidence of a difference in the mean pro-debt feelings in the population based on cigarette buying/not, after adjusting for income group.</li>
 </ul></li>
 </ol>
-<p>So we learned that the additive model was more appropriate for these responses and that the results resemble Scenario 2 or 3 with only one main effect being important. In the additive model, the coefficients can be interpreted as shifts from the baseline after controlling for the other variable in the model. Figure <a href="4-5-section4-5.html#fig:Figure4-15">2.60</a> shows the increasing average comfort with being in debt as the income groups go up. Being a cigarette buyer was related to a lower comfort level with debt. But compare the y-axis scales in the two plots – the differences in the means across income groups are almost 0.5 points on a 5 point scale whereas the difference across <code>cigbuy</code>’s two levels is less than 0.15 units. The error bars for the 95% confidence intervals are of similar width but the differences in means show up clearly in the income group term-plot. This is all indirectly related to the size of the p-values for each term in the additive model but hopefully helps to build some intuition on the reason for differences.</p>
+<p>So we learned that the additive model was more appropriate for these responses and that the results resemble Scenario 2 or 3 with only one main effect being important. In the additive model, the coefficients can be interpreted as shifts from the baseline after controlling for the other variable in the model. Figure <a href="4-5-section4-5.html#fig:Figure4-15">2.61</a> shows the increasing average comfort with being in debt as the income groups go up. Being a cigarette buyer was related to a lower comfort level with debt. But compare the y-axis scales in the two plots – the differences in the means across income groups are almost 0.5 points on a 5 point scale whereas the difference across <code>cigbuy</code>’s two levels is less than 0.15 units. The error bars for the 95% confidence intervals are of similar width but the differences in means show up clearly in the income group term-plot. This is all indirectly related to the size of the p-values for each term in the additive model but hopefully helps to build some intuition on the reason for differences.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">allEffects</span>(debt1r))</code></pre></div>
 <div class="figure"><span id="fig:Figure4-15"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-15-1.png" alt="Term-plots for the prodebt response additive model with left panel for income group and the right panel for buying cigarettes or not (1 for yes)." width="960" />
 <p class="caption">
-Figure 2.60: Term-plots for the <code>prodebt</code> response additive model with left panel for income group and the right panel for buying cigarettes or not (1 for yes).
+Figure 2.61: Term-plots for the <code>prodebt</code> response additive model with left panel for income group and the right panel for buying cigarettes or not (1 for yes).
 </p>
 </div>
 <p>The estimated coefficients can also be interesting to interpret for the additive model. Here are the model summary coefficients:</p>
@@ -435,21 +436,17 @@ Figure 2.60: Term-plots for the <code>prodebt</code> response additive model wit
 </tbody>
 </table>
 
-<p>One final plot of the fitted values from this additive model in Figure <a href="4-5-section4-5.html#fig:Figure4-16">2.61</a> hopefully crystallizes the implications of an additive model and reinforces that this model creates and assumes that the differences across levels of one variable are the same regardless of the level of the other variable and that this creates parallel lines. The difference between <code>cigbuy</code> levels across all income groups is a drop in -0.106 points. The income groups have the same differences regardless of cigarette buying or not, with income group 5 much higher than the other four groups.</p>
+<p>One final plot of the fitted values from this additive model in Figure <a href="#fig:Figure4-16"><strong>??</strong></a> hopefully crystallizes the implications of an additive model and reinforces that this model creates and assumes that the differences across levels of one variable are the same regardless of the level of the other variable and that this creates parallel lines. The difference between <code>cigbuy</code> levels across all income groups is a drop in -0.106 points. The income groups have the same differences regardless of cigarette buying or not, with income group 5 much higher than the other four groups.</p>
 
-<div class="figure"><span id="fig:Figure4-16"></span>
-<img src="04-twoWayAnova_files/figure-html/Figure4-16-1.png" alt="Illustration of the results from Table 2.7 showing the combined impacts of the components of the additive model for prodebt. Panel (a) uses income groups on the x-axis and different lines for cigarette buyers (1) or not (0). Panel (b) displays the different income groups as lines with the cigarette buying status on the x-axis." width="576" />
-<p class="caption">
-Figure 2.61: Illustration of the results from Table <a href="4-3-section4-3.html#tab:Table4-2">2.7</a> showing the combined impacts of the components of the additive model for <code>prodebt</code>. Panel (a) uses income groups on the x-axis and different lines for cigarette buyers (1) or not (0). Panel (b) displays the different income groups as lines with the cigarette buying status on the x-axis.
-</p>
-</div>
+<pre><code>## [1] &quot;Do not do transformations in formula call to function, transform variable prior to use of function&quot;</code></pre>
+<pre><code>## [1] &quot;Do not do transformations in formula call to function, transform variable prior to use of function&quot;</code></pre>
 <p><strong>In general, we proceed through the following steps in any 2-WAY ANOVA situation:</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>Make an interaction plot.</p></li>
 <li><p>Fit the interaction model; examine the test for the interaction.</p></li>
 <li><p>Check the residual diagnostic plots for the interaction model (especially normality and equal variance).</p>
 <ul>
-<li>If there is a problem with normality or equal variance, consider a “transformation” of the response as discussed in Chapter <a href="7-chapter7.html#chapter7"><strong>??</strong></a> This can help make the responses have similar variances or responses to be more normal, but sometimes not both.</li>
+<li>If there is a problem with normality or equal variance, consider a “transformation” of the response as discussed in Chapter <a href="7-chapter7.html#chapter7"><strong>??</strong></a>. This can help make the responses have similar variances or responses (and the model residuals) to be more normal, but sometimes not both.</li>
 </ul></li>
 <li><p>If the interaction test has a small p-value, that is your main result. Focus on the interaction plot from (1) to fully understand the results, adding Tukey’s HSD results to see which means of the combinations of levels are detected as being different.</p></li>
 <li><p>If the interaction is not considered important, then re-fit the model without the interaction (additive model) and re-check the diagnostic plots. If the diagnostics are reasonable to proceed:</p>

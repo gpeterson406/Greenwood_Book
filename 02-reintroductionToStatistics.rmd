@@ -1739,11 +1739,11 @@ the $t$-distribution is symmetric:
 ```
 
 More generally, we could always make the test statistic positive using the 
-absolute value, find the area to the right of it, and then double that for a 
+absolute value (``abs``), find the area to the right of it (``lower.tail=F``), and then double that for a 
 two-sided test p-value:
 
 ```{r}
-2*pt(abs(-2.1702), df=73, lower.tail=T)
+2*pt(abs(-2.1702), df=73, lower.tail=F)
 ```
 
 \indent Permutation distributions do not need to match the named parametric
@@ -1938,12 +1938,12 @@ using the permutation results for the grade data:
 
     * **Equal variance condition**: There is a small difference in the range 
     of the observations in the two groups but the standard deviations are very 
-    similar so there is no evidence that this condition is violated. 
+    similar so there is effectively no evidence that this condition is violated. 
 
     * **Similar distribution condition**: Based on the side-by-side boxplots and
     beanplots, it appears that both groups have slightly left-skewed 
     distributions, which could be problematic for the parametric approach, but 
-    there is no evidence that the permutation approach condition is violated 
+    there is essentially no evidence that the permutation approach condition is violated 
     since the distributions look to have fairly similar shapes. 
 
 3. Find the value of the appropriate test statistic

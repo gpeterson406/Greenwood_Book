@@ -226,7 +226,8 @@ img {
 <li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
 <li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
-<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
 </ul></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
@@ -399,12 +400,12 @@ color='red'>Total</font></b></td>
 ## drops        2 4.8581  2.4290  5.8981 0.008251
 ## brand:drops  2 1.5801  0.7901  1.9184 0.168695
 ## Residuals   24 9.8840  0.4118</code></pre>
-<p>It is useful to display the estimates from this model and we can utilize <code>plot(allEffects(MODELNAME))</code> to visualize the results for the terms in our models. If we turn on the options for <code>grid=T</code>, <code>multiline=T</code>, and <code>ci.style=&quot;bars&quot;</code> we will get a more useful version of the basic “effect plot” for Two-Way ANOVA models with interaction. The results of the estimated interaction model are displayed in Figure <a href="4-3-section4-3.html#fig:Figure4-6">2.51</a>, which looks very similar to our previous interaction plot. The only difference is that this comes from model that assumes equal variance and these plots show 95% confidence intervals for the means instead of the 1 standard error used above that was calculated using the variance of the observations at each combination of levels.</p>
+<p>It is useful to display the estimates from this model and we can utilize <code>plot(allEffects(MODELNAME))</code> to visualize the results for the terms in our models. If we turn on the options for <code>grid=T</code>, <code>multiline=T</code>, and <code>ci.style=&quot;bars&quot;</code> we will get a more useful version of the basic “effect plot” for Two-Way ANOVA models with interaction. The results of the estimated interaction model are displayed in Figure <a href="4-3-section4-3.html#fig:Figure4-6">2.52</a>, which looks very similar to our previous interaction plot. The only difference is that this comes from model that assumes equal variance and these plots show 95% confidence intervals for the means instead of the 1 standard error used above that was calculated using the variance of the observations at each combination of levels.</p>
 
 <div class="figure"><span id="fig:Figure4-6"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-6-1.png" alt="Plot of estimated results of interaction model for the paper towel performance data." width="576" />
 <p class="caption">
-Figure 2.51: Plot of estimated results of interaction model for the paper towel performance data.
+Figure 2.52: Plot of estimated results of interaction model for the paper towel performance data.
 </p>
 </div>
 <p>In the absence of evidence to include the interaction, the model should be simplified to the additive model and the interpretation focused on each main effect, conditional on having the other variable in the model. To fit an additive model and not include an interaction, the model formula involves a “+” instead of a “<code>*</code>” between the explanatory variables.</p>
@@ -464,14 +465,14 @@ Figure 2.51: Plot of estimated results of interaction model for the paper towel 
 ## Residual standard error: 0.664 on 26 degrees of freedom
 ## Multiple R-squared:  0.445,  Adjusted R-squared:  0.3809 
 ## F-statistic: 6.948 on 3 and 26 DF,  p-value: 0.001381</code></pre>
-<p>In the model summary, the baseline combination estimated in the <code>(Intercept)</code> row is for <code>Brand</code> <em>B1</em> and <code>Drops</code> 10 and estimates the mean failure time as 1.85 seconds for this combination. As before, the group labels that do not show up are the baseline but there are two variables’ baselines to identify. Now the “simple” aspects of the additive model show up. The interpretation of the <code>Brands</code> <em>B2</em> coefficient is as a deviation from the baseline but it applies regardless of the level of <code>Drops</code>. Any difference between <em>B1</em> and <em>B2</em> involves a shift up of 0.76 seconds in the estimated mean failure time. Similarly, going from 10 (baseline) to 20 drops results in a drop in the estimated failure mean of 0.47 seconds and going from 10 to 30 drops results in a drop of almost 1 second in the average time to failure, both estimated changes are the same regardless of the brand of paper towel being considered. Sometimes, especially in observational studies, we use the terminology “controlled for” to remind the reader that the other variable was present in the model<a href="#fn58" class="footnoteRef" id="fnref58"><sup>58</sup></a> and also explained some of the variability in the responses. The term-plots for the additive model (Figure <a href="4-3-section4-3.html#fig:Figure4-7">2.52</a>) help us visualize the impacts of changes brand and changing water levels, holding the other variable constant. The differences in heights in each panel correspond to the coefficients just discussed.</p>
+<p>In the model summary, the baseline combination estimated in the <code>(Intercept)</code> row is for <code>Brand</code> <em>B1</em> and <code>Drops</code> 10 and estimates the mean failure time as 1.85 seconds for this combination. As before, the group labels that do not show up are the baseline but there are two variables’ baselines to identify. Now the “simple” aspects of the additive model show up. The interpretation of the <code>Brands</code> <em>B2</em> coefficient is as a deviation from the baseline but it applies regardless of the level of <code>Drops</code>. Any difference between <em>B1</em> and <em>B2</em> involves a shift up of 0.76 seconds in the estimated mean failure time. Similarly, going from 10 (baseline) to 20 drops results in a drop in the estimated failure mean of 0.47 seconds and going from 10 to 30 drops results in a drop of almost 1 second in the average time to failure, both estimated changes are the same regardless of the brand of paper towel being considered. Sometimes, especially in observational studies, we use the terminology “controlled for” to remind the reader that the other variable was present in the model<a href="#fn58" class="footnoteRef" id="fnref58"><sup>58</sup></a> and also explained some of the variability in the responses. The term-plots for the additive model (Figure <a href="4-3-section4-3.html#fig:Figure4-7">2.53</a>) help us visualize the impacts of changes brand and changing water levels, holding the other variable constant. The differences in heights in each panel correspond to the coefficients just discussed.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(effects)
 <span class="kw">plot</span>(<span class="kw">allEffects</span>(m2))</code></pre></div>
 <div class="figure"><span id="fig:Figure4-7"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-7-1.png" alt="Term-plots of additive model for paper towel data. Left panel displays results for two brands and right panel for number of drops of water, each after controlling for the other." width="480" />
 <p class="caption">
-Figure 2.52: Term-plots of additive model for paper towel data. Left panel displays results for two brands and right panel for number of drops of water, each after controlling for the other.
+Figure 2.53: Term-plots of additive model for paper towel data. Left panel displays results for two brands and right panel for number of drops of water, each after controlling for the other.
 </p>
 </div>
 </div>

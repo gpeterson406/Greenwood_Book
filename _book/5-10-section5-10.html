@@ -226,7 +226,8 @@ img {
 <li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
 <li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
-<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
 </ul></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
@@ -249,7 +250,7 @@ cheating<span class="op">$</span>COPYEXAM &lt;-<span class="st"> </span><span cl
 cheating<span class="op">$</span>GPA &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>GPA)
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
 <span class="kw">require</span>(tabplot)
-<span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>GPA)</code></pre></div>
+<span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>GPA,<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</code></pre></div>
 <div class="figure"><span id="fig:Figure5-18"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-18-1.png" alt="Table plot of initial cheating and lying data set." width="480" />
 <p class="caption">
@@ -274,7 +275,7 @@ cheatlietable</code></pre></div>
 ##   ExamLie    10          1         3              2
 ##   PaperLie   13          1         4              2
 ##   LieBoth    11          1         4              2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>liar, <span class="dt">select=</span><span class="kw">c</span>(liar,copier))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>liar, <span class="dt">select=</span><span class="kw">c</span>(liar,copier),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</code></pre></div>
 <div class="figure"><span id="fig:Figure5-19"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-19-1.png" alt="Table plot of new variables liar and copier that allow exploration of relationships between different types of lying and cheating behaviors." width="960" />
 <p class="caption">
@@ -288,7 +289,7 @@ cheating<span class="op">$</span>liar2 &lt;-<span class="st"> </span>cheating<sp
 <span class="kw">levels</span>(cheating<span class="op">$</span>liar2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;LieBoth&quot;</span>)
 cheating<span class="op">$</span>copier2 &lt;-<span class="st"> </span>cheating<span class="op">$</span>copier
 <span class="kw">levels</span>(cheating<span class="op">$</span>copier2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;CopyBoth&quot;</span>)
-<span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>liar2, <span class="dt">select=</span><span class="kw">c</span>(liar2,copier2))</code></pre></div>
+<span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>liar2, <span class="dt">select=</span><span class="kw">c</span>(liar2,copier2),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</code></pre></div>
 <div class="figure"><span id="fig:Figure5-20"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-20-1.png" alt="Table plot of lying and copying variables after combining categories." width="960" />
 <p class="caption">

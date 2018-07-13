@@ -226,7 +226,8 @@ img {
 <li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
 <li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
-<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> General summary</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
 </ul></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
@@ -250,28 +251,28 @@ img {
 <li><p>The model for the mean is “correct” (<strong><em>Linearity, No Influential points, Only one group</em></strong>).</p></li>
 </ol>
 <p>The diagnostics described at the end of Chapter <a href="6-chapter6.html#chapter6"><strong>??</strong></a> provide techniques for checking these assumptions – meeting these assumptions is fundamental to having a regression line that we trust and inferences from it that we also can trust.</p>
-<p>To make this clearer, suppose that in the <em>Beers</em> and <em>BAC</em> study that they had randomly assigned 20 students to consume each number of beers. We would expect some variation in the <em>BAC</em> for each group of 20 at each level of <em>Beers</em> but that each group of observations will be centered at the true mean <em>BAC</em> for each number of <em>Beers</em>. The regression model assumes that the <em>BAC</em> values are normally distributed around the mean for each <em>Beer</em> level, <span class="math inline">\(\text{BAC}_i \sim N(\beta_0 + \beta_1\text{ Beers}_i,\sigma^2)\)</span>, with the mean defined by the regression equation. We actually do not need to obtain more than one observation at each <span class="math inline">\(x\)</span> value to make this assumption or assess it, but the plots below show you what this could look like. The sketch in Figure <a href="7-1-section7-1.html#fig:Figure7-1">2.115</a> attempts to show the idea of normal distributions that are centered at the true regression line, all with the same shape and variance that is an assumption of the regression model. Figure <a href="7-1-section7-1.html#fig:Figure7-2">2.116</a> contains simulated realizations from a normal distribution of 20 subjects at each <em>Beer</em> level around the assumed true regression line with two different residual SEs of 0.02 and 0.06. The original BAC model has a residual SE of 0.02 but had many fewer observations at each <em>Beer</em> value.</p>
+<p>To make this clearer, suppose that in the <em>Beers</em> and <em>BAC</em> study that they had randomly assigned 20 students to consume each number of beers. We would expect some variation in the <em>BAC</em> for each group of 20 at each level of <em>Beers</em> but that each group of observations will be centered at the true mean <em>BAC</em> for each number of <em>Beers</em>. The regression model assumes that the <em>BAC</em> values are normally distributed around the mean for each <em>Beer</em> level, <span class="math inline">\(\text{BAC}_i \sim N(\beta_0 + \beta_1\text{ Beers}_i,\sigma^2)\)</span>, with the mean defined by the regression equation. We actually do not need to obtain more than one observation at each <span class="math inline">\(x\)</span> value to make this assumption or assess it, but the plots below show you what this could look like. The sketch in Figure <a href="7-1-section7-1.html#fig:Figure7-1">2.116</a> attempts to show the idea of normal distributions that are centered at the true regression line, all with the same shape and variance that is an assumption of the regression model. Figure <a href="7-1-section7-1.html#fig:Figure7-2">2.117</a> contains simulated realizations from a normal distribution of 20 subjects at each <em>Beer</em> level around the assumed true regression line with two different residual SEs of 0.02 and 0.06. The original BAC model has a residual SE of 0.02 but had many fewer observations at each <em>Beer</em> value.</p>
 
 <div class="figure"><span id="fig:Figure7-1"></span>
 <img src="chapter7_files/image029small.png" alt="Sketch of assumed normal distributions for the responses centered at the regression line." width="109" />
 <p class="caption">
-Figure 2.115: Sketch of assumed normal distributions for the responses centered at the regression line.
+Figure 2.116: Sketch of assumed normal distributions for the responses centered at the regression line.
 </p>
 </div>
 
 <div class="figure"><span id="fig:Figure7-2"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-2-1.png" alt="Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06)." width="576" />
 <p class="caption">
-Figure 2.116: Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06).
+Figure 2.117: Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06).
 </p>
 </div>
 <p>Along with getting the idea that regression models define normal distributions in the y-direction that are centered at the regression line, you can also get a sense of how variable samples from a normal distribution can appear. Each distribution of 20 subjects at each <span class="math inline">\(x\)</span> value came from a normal distribution but there are some of those distributions that might appear to generate small outliers and have slightly different variances. This can help us to remember to not be too particular when assessing assumptions and allow for some variability in spreads and a few observations from the tails of the distribution to occasionally arise.</p>
-<p>In sampling from the population, we expect some amount of variability of each estimator around its true value. This variability leads to the potential variability in estimated regression lines (think of a suite of potential estimated regression lines that would be created by different random samples from the same population). Figure <a href="7-1-section7-1.html#fig:Figure7-3">2.117</a> contains the true regression line (bold, red) and realizations of the estimated regression line in simulated data based on results similar to the real data set. This variability due to random sampling is something that needs to be properly accounted for to use the <strong>single</strong> estimated regression line to make inferences about the true line and parameters based on the sample-based estimates. The next sections develop those inferential tools.</p>
+<p>In sampling from the population, we expect some amount of variability of each estimator around its true value. This variability leads to the potential variability in estimated regression lines (think of a suite of potential estimated regression lines that would be created by different random samples from the same population). Figure <a href="7-1-section7-1.html#fig:Figure7-3">2.118</a> contains the true regression line (bold, red) and realizations of the estimated regression line in simulated data based on results similar to the real data set. This variability due to random sampling is something that needs to be properly accounted for to use the <strong>single</strong> estimated regression line to make inferences about the true line and parameters based on the sample-based estimates. The next sections develop those inferential tools.</p>
 
 <div class="figure"><span id="fig:Figure7-3"></span>
 <img src="chapter7_files/image034.png" alt="Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set." width="557" />
 <p class="caption">
-Figure 2.117: Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set.
+Figure 2.118: Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set.
 </p>
 </div>
 

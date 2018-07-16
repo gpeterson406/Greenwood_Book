@@ -98,9 +98,9 @@ not want to display everything in the tibble and often just select some
 of the variables. We use ``Treatment``, ``Improved``, ``Sex``, and ``Age``
 in the ``select=...`` option with a ``c()`` and commas between the names of 
 the variables we want to display as shown below. The first one in the list is also the one that
-the data are sorted based on. 
+the data are sorted on. The ``pals=list("BrBG")`` option specifies a color palette for the plot that is color-blind friendly.
 
-(ref:fig5-1) Table plot of the arthritis data set.
+(ref:fig5-1) Table plot of the arthritis data set. 
 
 ```{r Figure5-1,fig.cap="(ref:fig5-1)", fig.height=6,fig.width=10}
 require(vcd)
@@ -109,7 +109,8 @@ require(tibble)
 Arthritis <- as.tibble(Arthritis)
 #Homogeneity example
 require(tabplot)
-tableplot(Arthritis,select=c(Treatment,Improved,Sex,Age))
+require(RColorBrewer)
+tableplot(Arthritis,select=c(Treatment,Improved,Sex,Age),pals=list("BrBG"))
 ```
 
 \indent The first thing we can gather from Figure \@ref(fig:Figure5-1) is that there 
@@ -119,8 +120,8 @@ studies when observations are not obtained for many different reasons and it is
 always good to check for missing data issues -- this plot provides a quick visual
 method for doing that check. Primarily we are interested in whether the
 treatment led to a different pattern (or rates) of improvement responses. There
-seems to be more purple (*Marked*) improvement responses in the treatment 
-group and more blue (*None*) responses in the placebo group. 
+seems to be more light (*Marked*) improvement responses in the treatment 
+group and more dark (*None*) responses in the placebo group. 
 This sort of plot also helps us to simultaneously consider the role of other
 variables in the observed responses. You can see the sex of each subject in the
 vertical panel for ``Sex`` and it seems
@@ -1205,7 +1206,7 @@ election$PARTY <- factor(election$PARTY)
 election$EDUC <- factor(election$EDUC)
 election$SEX <- factor(election$GENDER)
 levels(election$VOTEF) <- c("Gore","Bush","Other")
-tableplot(election, select=c(VOTEF,PARTY,EDUC,SEX))
+tableplot(election, select=c(VOTEF,PARTY,EDUC,SEX),pals=list("BrBG"))
 ```
 
 In Figure \@ref(fig:Figure5-13), we can see many missing ``VOTEF``
@@ -1236,7 +1237,7 @@ variables.
 
 ```{r Figure5-14,fig.cap="(ref:fig5-14)", fig.height=5,fig.width=10}
 election2 <- na.omit(election[,c("VOTEF","PARTY","EDUC","SEX")])
-tableplot(election2, select=c(VOTEF,PARTY,EDUC,SEX), sort=1)
+tableplot(election2, select=c(VOTEF,PARTY,EDUC,SEX), sort=1,pals=list("BrBG"))
 ```
  
 
@@ -1473,7 +1474,7 @@ cheating$COPYEXAM <- factor(cheating$COPYEXAM)
 cheating$GPA <- factor(cheating$GPA)
 par(mfrow=c(1,1))
 require(tabplot)
-tableplot(cheating, sort=GPA)
+tableplot(cheating, sort=GPA,pals=list("BrBG"))
 ```
 
 \indent We can explore some interesting questions about the relationships between 
@@ -1533,7 +1534,7 @@ levels(cheating$copier) <- c("None","PaperCheat","ExamCheat","PaperExamCheat")
 
 cheatlietable <- tally(~liar+copier, data=cheating)
 cheatlietable
-tableplot(cheating, sort=liar, select=c(liar,copier))
+tableplot(cheating, sort=liar, select=c(liar,copier),pals=list("BrBG"))
 ```
 
 \indent Unfortunately for our statistic, there were very few responses in some combinations of 
@@ -1556,7 +1557,7 @@ cheating$liar2 <- cheating$liar
 levels(cheating$liar2) <- c("None","ExamorPaper","ExamorPaper","LieBoth")
 cheating$copier2 <- cheating$copier
 levels(cheating$copier2) <- c("None","ExamorPaper","ExamorPaper","CopyBoth")
-tableplot(cheating, sort=liar2, select=c(liar2,copier2))
+tableplot(cheating, sort=liar2, select=c(liar2,copier2),pals=list("BrBG"))
 cheatlietable <- tally(~liar2+copier2, data=cheating)
 cheatlietable
 ```
@@ -1999,6 +2000,12 @@ are easily identified:
     * Makes a mosaic plot useful for finding patterns in the table 
     in independence test situations.
     
+* **tableplot(data=`r colFmt("DATASETNAME","red")`, sortCol=`r colFmt("VARIABLENAME","red")`,pals=list("BrBG"))**
+
+    * Makes a tableplot sorted by `r colFmt("VARIABLENAME","red")`, requires that the ``tabplot`` and `RColorBrewer` packages have been loaded.
+    
+    * The ``pals=list("BrBG")`` option provides a color-blind friendly color palette, although other options are possible, such as ``pals=list("RdBu")``.
+    
 * **chisq.test(`r colFmt("TABLENAME","red")`)**
 
     * Provides $X^2$ and p-values based on the 
@@ -2029,6 +2036,7 @@ df=(`r colFmt("R","red")` - 1)``*``(`r colFmt("C","red")` - 1), lower.tail=F)**
 * **mosaicplot(`r colFmt("TABLENAME","red")`, shade=T)**
 
     * Provides a mosaic plot with shading based on standardized residuals.
+
 
 ## Practice problems	{#section5-14}
 
@@ -2123,7 +2131,10 @@ little re-ordering of factor levels to help make the results easier to
 understand, and makes a table plot to get a general sense of the results 
 including information on the respondents' gender, age, income, and education. 
 
-```
+(ref:fig5-27) Tableplot of "data from "data-is-vs-data-are" survey, sorted by "CareAbout" responses. 
+
+```{r Figure5-27,fig.cap="(ref:fig5-27)",echo=T,fig.width=6,fig.height=4}
+require(readr)
 csd <- read_csv("http://www.math.montana.edu/courses/s217/documents/csd.csv")
 require(tabplot)
 #Need to make it explicit that these are factor variables
@@ -2139,7 +2150,7 @@ csd$Household.Income <- factor(csd$Household.Income,
                     levels=levels(csd$Household.Income)[c(1,4,5,6,2,3)])
 #Sorts plot by careabout responses
 tableplot(csd[,c("isare","careabout","thoughtabout","Gender",
-                 "Age","Household.Income","Education")], sortCol=careabout) 
+                 "Age","Household.Income","Education")], sortCol=careabout,pals=list("BrBG")) 
 ```
 
 5.8. If we are interested in the variables ``isare`` and ``careabout``,

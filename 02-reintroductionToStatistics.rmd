@@ -56,7 +56,7 @@ sophisticated statistical methods. To keep this "review" as short as possible,
 we will not consider every situation you learned in introductory statistics and
 instead focus exclusively on the situation where we have a quantitative
 response variable measured on two groups, adding a new graphic called a "bean
-plot" to help us see the differences in the observations in the groups. 
+plot" \index{beanplot} to help us see the differences in the observations in the groups. 
 
 ##Histograms, boxplots, and density curves {#section2-1}
 
@@ -93,7 +93,7 @@ of the measurement. The "who, what, when, and where" of the collection
 of the observations is critical to the
 sort of conclusions we can make based on the results. The information on the
 study design provides information required to assess the scope of inference of
-the study. Generally, remember to think about the research questions the
+the study. \index{scope of inference} Generally, remember to think about the research questions the
 researchers were trying to answer and whether their study actually would answer
 those questions. There are no formulas to help us sort some of these things
 out, just critical thinking about the context of the measurements. 
@@ -144,10 +144,10 @@ pandoc.table(m,caption="(\\#tab:Table2-1) (ref:tab2-1)", keep.line.breaks = TRUE
 summarizing the sample size. We will use ***n*** for the 
 number of subjects in the sample and denote the population size (if
 available) with ***N***. Here, the sample size is ***n=114***. In
-this situation, we do not have a random sample from a population 
+this situation, we do not have a random sample from a population \index{random sampling} 
 (these were volunteers from the population of prisoners at the
 particular prison) so we cannot make inferences from our sample to a larger group. 
-But we can assess whether there is a ***causal effect***^[As noted previously, we reserve the term "effect" for situations where random assignment allows us to consider causality as the reason for the differences in the response variable among levels of the explanatory variable, but this is only the case if we find evidence against the null hypothesis of no difference
+But we can assess whether there is a ***causal effect***^[As noted previously, we reserve the term "effect" for situations where random assignment \index{random assignment} allows us to consider causality as the reason for the differences in the response variable among levels of the explanatory variable, but this is only the case if we find evidence against the null hypothesis of no difference
 in the groups.]: if sufficient evidence is found to conclude that there is some difference in
 the responses across the treated groups, we can attribute those differences to
 the treatments applied, since the groups should be same otherwise due to the
@@ -156,7 +156,7 @@ that it was collected on prisoners -- becomes pretty important in thinking about
 the ramifications of any results. Are male prisoners different from the
 population of college males or all residents of a state such as Montana? If so, 
 then we should not assume that the detected differences, if detected, would
-also exist in some other group of male subjects. The lack of a random sample
+also exist in some other group of male subjects. The lack of a random sample \index{random sampling}
 makes it impossible to assume that this set of prisoners might be like other
 prisoners. So there are definite limitations to the inferences in the following
 results. But it is still interesting to see if the pictures caused a difference
@@ -164,7 +164,7 @@ in the suggested mean sentences, even though the inferences are limited to this
 group of prisoners. If this had been an observational study (suppose that the
 prisoners could select one of the three pictures), then we would have to avoid
 any of the "causal" language that we can consider here because the pictures
-were not randomly assigned to the subjects. Without random assignment, the
+were not randomly assigned to the subjects. Without random assignment, \index{random assignment} the
 explanatory variable of picture choice could be ***confounded*** with  another characteristic of prisoners that was related to which picture they selected and
 the rating they provided. Confounding is not the only reason to avoid causal
 statements with non-random assignment but the inability to separate the effect
@@ -434,15 +434,15 @@ and that $\sigma$ ("sigma") is the symbol of the
 
 ##Beanplots {#section2-2}
 
-The other graphical display for comparing multiple groups we will use is a display called a ***beanplot*** [@Kampstra2008]. Figure \@ref(fig:Figure2-5) 
-shows an example of a beanplot that provides a side-by-side display that 
+The other graphical display for comparing multiple groups we will use is a display called a ***beanplot*** [@Kampstra2008] \index{beanplot}. Figure \@ref(fig:Figure2-5) 
+shows an example of a beanplot \index{beanplot} that provides a side-by-side display that 
 contains the density curves, the original observations that generated the 
 density curve in a (jittered) rug-plot, the mean of each group, and the 
 overall mean of the entire data set. For each group, the density curves 
 are mirrored to aid in visual assessment of the shape of the distribution, 
 which makes a "bean" of sorts. This mirroring also
 creates a shape that resembles a violin with skewed distributions so this
-display has also been called a "violin plot". The beanplot includes bold
+display has also been called a "violin plot". The beanplot \index{beanplot} includes bold
 horizontal lines at the mean for each group and adds a lighter
 dashed line for the overall mean to allow comparison of that global mean with the individual group means. All together this plot shows us information
 on the center (mean), spread, and shape of the distributions of the responses. 
@@ -450,12 +450,12 @@ Our inferences typically focus on the means of the groups and this plot allows
 us to compare those across the groups while gaining information on the shapes
 of the distributions of responses in each group. 
 
-\indent To use the ``beanplot`` function we need to install and then load the ``beanplot`` 
+\indent To use the ``beanplot`` function \index{R functions!\textbf{beanplot}} we need to install and then load the ``beanplot`` 
 package [@R-beanplot]. The function works like the boxplot used previously
 except that options 
 for ``log``, ``col``, and ``method`` need to be specified. Use these^[Well, you 
 can use other colors (try "lightblue" for example), but I think bisque
-looks nice in these plots.] options for any beanplots you make: 
+looks nice in these plots.] options for any beanplots you make \index{beanplot}: 
 ``log="", col="bisque", method="jitter"``. 
 
 (ref:fig2-5) Beanplot of Years by picture group. Long, bold lines correspond 
@@ -624,7 +624,7 @@ MockJury2$Attr <- factor(MockJury2$Attr)
 summary(MockJury2$Attr)
 ```
 
-Now if we remake the boxplots and beanplots, they only contain results for 
+Now if we remake the boxplots and beanplots, \index{beanplot} they only contain results for 
 the two groups of interest here as seen in Figure \@ref(fig:Figure2-6). 
 
 (ref:fig2-6) Boxplot and beanplot of the *Years* responses on the reduced ``MockJury2`` data set. 
@@ -640,6 +640,8 @@ beanplot(Years ~ Attr,data=MockJury2,log="",col="bisque",method="jitter")
 boxplot(Years~Attr, data=MockJury2) 
 beanplot(Years~Attr, data=MockJury2, log="", col="bisque", method="jitter")
 ```
+
+\index{beanplot}
 
 \indent The two-sample mean techniques you learned in your previous course all 
 start with comparing the means the two groups. We can obtain the two 
@@ -744,11 +746,11 @@ they are true to be able to assess the evidence $\underline{\text{against them}}
 Consider the original study design here, the pictures were randomly assigned to 
 the subjects. If the null hypothesis were true, then we would have no difference 
 in the population means of the groups. And this would apply if we had done a 
-different random assignment of the pictures to the subjects. So let's try this: 
+different random assignment \index{random assignment} of the pictures to the subjects. So let's try this: 
 assume that the null hypothesis is true and randomly re-assign the treatments
 (pictures) to the observations that were obtained. In other words, keep the 
 sentences (*Years*) the same and shuffle the group labels randomly. The
-technical term for this is doing a ***permutation*** (a random shuffling of 
+technical term for this is doing a ***permutation*** \index{permutation} (a random shuffling of 
 a grouping variable relative to the observed responses). If the null is true 
 and the means 
 in the two groups are the same, then we should be able to re-shuffle the 
@@ -761,7 +763,7 @@ sets. It helps to see an example of a permutation of the labels to understand
 what this means here. 
 
 \indent In the ``mosaic`` package, the ``shuffle`` function allows us to easily perform
-a permutation^[We'll see the ``shuffle`` function in a more common usage below; 
+a \index{permutation} permutation^[We'll see the ``shuffle`` function in a more common usage below; 
 while the code to generate ``Perm1`` is provided, it isn't something to worry 
 about right now.]. Just one time, we can explore what a permutation of the 
 treatment labels could look like in the ``PermutedAttr`` variable below. Note 
@@ -802,10 +804,10 @@ contains $n$ names, except that every time a name is selected, it goes back into
 the hat -- we'll use this technique in Section \@ref(section2-8)
 to do what is called ***bootstrapping***. Both sampling mechanisms can be 
 used to generate inferences but each has particular situations
-where they are most useful. For hypothesis testing, we will use permutations
+where they are most useful. For hypothesis testing, we will use permutations \index{permutation}
 (sampling without replacement) as its mechanism most closely matches the null hypotheses we will be testing. 
 
-\indent The comparison of the beanplots for the real data set and permuted version of 
+\indent The comparison of the beanplots \index{beanplot} for the real data set and permuted version of 
 the labels is what is really interesting (Figure \@ref(fig:Figure2-8)). The 
 original difference in the sample means of the two groups was 1.84 years 
 (*Unattractive* minus *Average*). The sample means are the ***statistics*** 
@@ -1284,7 +1286,7 @@ that the true means are equal, just that there was not enough evidence to
 conclude that they were different. There are many potential reasons why we 
 might fail to reject the null, but the most common one is that our sample 
 size was too small (which is related to having too little evidence). Other 
-reasons include simply the variation in taking a random sample from the 
+reasons include simply the variation in taking a random sample  \index{random sampling} from the 
 population(s). This randomness in samples and the differences in the sample 
 means also implies that p-values are random and can easily vary if the data set
 had been slightly different. This also relates to the suggestion of using a 
@@ -1310,7 +1312,7 @@ we have enough evidence to feel like we have proven that the population or true 
 differ "beyond a reasonable doubt". 
 
 \indent The scope of any inferences is constrained based on whether there is a 
-***random sample*** (RS) and/or ***random assignment*** (RA).
+***random sample*** (RS) and/or ***random assignment*** (RA). \index{scope of inference} \index{random assignment}  \index{random sampling}
 Table \@ref(tab:Table2-2) contains the four possible combinations of these 
 two characteristics of a given study. Random assignment of treatment levels to
 subjects allows for causal
@@ -1320,7 +1322,7 @@ at least some sort of representative sample) allows inferences to be made to
 the population of interest. If we do not have RA, then causal inferences cannot 
 be made. If we do not have a representative sample, then our inferences are
 limited to the sampled subjects. 
-
+\index{confounding}
 \footnotesize
 
 (ref:tab2-2) Scope of inference summary.
@@ -1344,11 +1346,11 @@ pandoc.table(x, keep.line.breaks = TRUE,caption="(\\#tab:Table2-2) (ref:tab2-2)"
 \normalsize
 
 \indent A simple example helps to clarify how the scope of inference can change 
-based on the study design. Suppose
+based on the study design. \index{scope of inference} Suppose
 we are interested in studying the GPA of students. If we had taken a random 
 sample from, say, the STAT 217 students in a given semester, our scope of 
 inference would be the population of STAT 217 students in that semester. If we had 
-taken a random sample from the entire MSU population, then the inferences would 
+taken a random sample \index{random sampling} from the entire MSU population, then the inferences would 
 be to the entire MSU population in that semester. These are similar types of 
 problems but the two populations are very different and the group you are trying 
 to make conclusions about should be noted carefully in your results -- it does 
@@ -1361,7 +1363,7 @@ the group that volunteered.
 \indent To consider the impacts of RA versus results from purely observational
 studies, we need to be 
 comparing groups. Suppose that we are interested in differences in the mean 
-GPAs for different sections of STAT 217 and that we take a random sample of 
+GPAs for different sections of STAT 217 and that we take a random sample  \index{random sampling} of 
 students from each section and compare the results and find evidence of some
 difference. In this scenario, we can conclude that there is some difference in
 the population of STAT 217 students but we can't say that being in different 
@@ -1433,19 +1435,22 @@ is one situation where thinking about comparisons to fixed $\alpha$ levels is
 useful for understanding and studying statistical hypothesis testing. The 
 specific definition of $\alpha$ is that it is the probability of rejecting
 $H_0$ when $H_0$ is true, the probability of what is called a
-***Type I error***. Type I errors are also called ***false rejections*** or 
+***Type I error***. \index{type I error} Type I errors are also called ***false rejections*** or 
 ***false detections***. In the two-group mean situation, a Type I error would 
 be concluding that there 
 is a difference in the true means between the groups when none really exists 
 in the population. In the courtroom setting, this is like falsely finding 
 someone guilty. We don't want to do this very often, so we use small values 
 of the significance level, allowing us to control the rate of Type I errors 
-at $\alpha$. We also have to worry about **Type II errors**, which are failing
+at $\alpha$. \index{type I error} We also have to worry about **Type II errors**, \index{type II error} which are failing
 to reject the null hypothesis when it's false. In a courtroom, this is the same
 as failing to convict a truly guilty person. This most often occurs due to a 
 lack of evidence that could be due to a small sample size or merely just an 
 unusual sample from the population. You can use the Table \@ref(tab:Table2-3) 
 to help you remember all the possibilities. 
+
+\index{type I error} 
+\index{type II error} 
 
 (ref:tab2-3) Table of decisions and truth scenarios in a hypothesis 
 testing situation. But we never know the truth in a real situation. 
@@ -1469,17 +1474,20 @@ pandoc.table(x, keep.line.breaks = TRUE,caption="(\\#tab:Table2-3) (ref:tab2-3)"
 interest in studying the rate or
 probability of Type I and II errors. The probability of a Type I error was 
 defined previously as $\alpha$, the significance level. The ***power*** of a
-procedure is the probability of rejecting the null hypothesis when it is false.
+procedure is the probability of rejecting the null hypothesis when it is false. \index{power} \index{type I error} \index{type II error}
 Power is defined as
 
 $$\text{Power} = 1 - \text{Probability(Type II error) } = 
 \text{Probability(Reject } H_0 | H_0 \text{ is false),}$$
 
+\index{type I error}
+\index{type II error}
+
 or, in words, the probability of detecting a difference when it actually
 exists. We want to use a statistical procedure that controls the Type I error 
 rate at the pre-specified level and has high power to detect false null 
 hypotheses. Increasing the sample size is one of the most commonly used 
-methods for increasing the power in a given situation. Sometimes we can choose 
+methods for increasing the power \index{power} in a given situation. Sometimes we can choose 
 among different procedures and use the power of the procedures to help us make 
 that selection. Note that there are many ways $H_0$ false and the power changes 
 based on how false the null hypothesis actually is. To make this concrete, 
@@ -1487,7 +1495,7 @@ suppose that the true mean sentences differed by either 1 or 20 years in
 previous example. The chances of rejecting the null hypothesis are much larger 
 when the groups actually differ by 20 years than if they differ by just 1 year, 
 given the same sample size. For a given difference in the true means, the larger 
-the sample, the higher the power of the study to actually find evidence of a
+the sample, the higher the power \index{power} of the study to actually find evidence of a
 difference in the groups. 
 
 \indent After making a decision (was there enough evidence to reject the null 
@@ -1500,7 +1508,7 @@ that the null hypothesis is wrong. We are **NOT** saying that the null is
 correct and we **NEVER** accept the null hypothesis. We just failed to find 
 enough evidence to say it's wrong. If we find sufficient evidence to reject the 
 null, then we need to revisit the method of data collection and design of the 
-study to discuss scope of inference. Can we discuss causality (due to RA) and/or 
+study to discuss scope of inference. \index{scope of inference} Can we discuss causality (due to RA) and/or 
 make inferences to a larger group than those in the sample (due to RS)? 
 
 
@@ -1525,7 +1533,7 @@ used (discussed below),
 5. Make a decision, and
 
 6. Write a conclusion specific to the problem, including scope of 
-inference discussion. Report and discuss an estimate of the differences. 
+inference discussion. \index{scope of inference} Report and discuss an estimate of the differences. 
 -------------------------------------------------------------------------------
 
 ## Connecting randomization (nonparametric) and parametric tests {#section2-6}
@@ -1764,12 +1772,12 @@ this violates the assumptions of this procedure.]
 2. **Equal variances** in the groups (because we used a procedure that assumes 
 equal variances! -- there is another procedure that allows you to relax this
 assumption if needed...). To assess this, compare the standard deviations and
-variability in the beanplots and see if they look noticeably different. Be
+variability in the beanplots \index{beanplot} and see if they look noticeably different. Be
 particularly critical of this assessment if the sample sizes differ greatly 
 between groups. 
 
 3. **Normal distributions** of the observations in each group. We'll learn more
-diagnostics later, but the boxplots and beanplots are a good place to start to 
+diagnostics later, but the boxplots and beanplots \index{beanplot} are a good place to start to 
 help you look for skews or outliers, which were both present here. If you find 
 skew and/or outliers, that would suggest a problem with the assumption of 
 normality as normal distributions are symmetric and extreme observations occur 
@@ -1804,7 +1812,7 @@ normality assumption. It is not resistant to impacts of violations of any of
 the other assumptions. In fact, it can be quite sensitive to unequal variances 
 as it will detect differences in the variances of the groups instead of 
 differences in the means. Its scope of inference is the same as the parametric
-approach. It also can provide similarly inaccurate conclusions in the presence 
+approach. \index{scope of inference} It also can provide similarly inaccurate conclusions in the presence 
 of non-independent observations as for the parametric approach. In this 
 example, we discover that parametric and permutation approaches provide very 
 similar inferences. 
@@ -1941,7 +1949,7 @@ using the permutation results for the grade data:
     similar so there is effectively no evidence that this condition is violated. 
 
     * **Similar distribution condition**: Based on the side-by-side boxplots and
-    beanplots, it appears that both groups have slightly left-skewed 
+    beanplots \index{beanplot}, it appears that both groups have slightly left-skewed 
     distributions, which could be problematic for the parametric approach, but 
     there is essentially no evidence that the permutation approach condition is violated 
     since the distributions look to have fairly similar shapes. 
@@ -1966,7 +1974,7 @@ using the permutation results for the grade data:
     * Since the p-value is "small", we find strong evidence against the null
     hypothesis and can reject the null hypothesis. 
 
-6. Conclusion and scope of inference, specific to the problem
+6. Conclusion and scope of inference, specific to the problem \index{scope of inference}
 
     * There is strong evidence against the null hypothesis of no difference 
     in the true mean GPA between males and females for the STAT 217 students 
@@ -1976,7 +1984,7 @@ using the permutation results for the grade data:
     * Because this was not a randomized experiment, we can't say that the 
     difference in sex causes the difference in mean GPA and because it was 
     not a random sample from a larger population, our inferences only pertain 
-    the STAT 217 students that responded to the survey in that semester. 
+    the STAT 217 students that responded to the survey in that semester. \index{random sampling}
     
     * Females were estimated to have a higher mean GPA by 0.25 points. The next
     section discusses confidence intervals that we could add to this result to
@@ -2002,7 +2010,7 @@ observations we have by assuming that the sample represents the population.
 Since each observation represents other similar observations in the 
 population that we didn't get to measure, if we ***sample with replacement***
 to generate a new data set of size *n* from our data set (also of size *n*) 
-it mimics the process of taking repeated random samples of size $n$ from our
+it mimics the process of taking repeated random samples \index{random sampling} of size $n$ from our
 population of interest. This process also 
 ends up giving us useful sampling distributions of statistics even when our 
 standard normality assumption is violated, similar to what we encountered 
@@ -2249,10 +2257,10 @@ intervals have the same interpretation, only the methods for calculating the
 intervals and the assumptions differ. Specifically, the bootstrap interval can
 tolerate different distribution shapes other than normal and still provide 
 intervals that work well^[When hypothesis tests "work well" they have high
-power to detect differences while having Type I error rates that are close
+power \index{power} to detect differences while having Type I error rates \index{type I error} that are close
 to what we choose *a priori*. When confidence intervals "work well", they contain
 the true parameter value in repeated random samples at around the selected
-confidence level.]. The other assumptions are all the same as for the hypothesis 
+confidence level. \index{random sampling}]. The other assumptions are all the same as for the hypothesis 
 test, where we continue to assume that we have independent observations with 
 equal variances for the two groups. 
 
@@ -2325,7 +2333,7 @@ form a confidence interval. The ME depends on the choice of confidence level
 although 95% is almost always selected. 
 
 \indent To finish this example, R can be used to help you do calculations much 
-like a calculator except with much more power "under the hood". You have to 
+like a calculator except with much more power "under the hood". \index{power} You have to 
 make sure you are careful with using ``( )`` to group items and remember that 
 the asterisk (*) is used for multiplication in R. We need the pertinent 
 information which is available from the ``favstats`` output repeated below to 
@@ -2518,7 +2526,7 @@ disagree, the nonparametric methods are likely to be more trustworthy since
 they have less restrictive assumptions but can still have problems. 
 
 \indent When the noted conditions are not met in a hypothesis testing situation, the 
-Type I error rates can be inflated, meaning that we reject the null hypothesis 
+Type I error \index{type I error} rates can be inflated, meaning that we reject the null hypothesis 
 more often than we have allowed to occur by chance. Specifically, we could have 
 a situation where our assumed 5% significance level test might actually reject 
 the null when it is true 20% of the time. If this is occurring, we call a 
@@ -2571,7 +2579,7 @@ data=`r colFmt("DATASETNAME","red")`, log="", col="lightblue", method="jitter")*
 
     * Requires the ``beanplot`` package is loaded. 
     
-    * Makes a beanplot of a variable named Y for groups in X from the data set. 
+    * Makes a beanplot of a variable named Y for groups in X from the data set. \index{beanplot}
     
 * **mean(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`); sd(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`)** 
 
@@ -2653,13 +2661,13 @@ date -- the study just didn't run long enough. This is called ***censoring***.
 What is the problem with the numerical summaries here if the missing responses 
 were all something larger than the largest observation?
 
-2.2. Make a beanplot and a boxplot of ``daysanysub`` ~ ``sex`` using the 
+2.2. Make a beanplot \index{beanplot} and a boxplot of ``daysanysub`` ~ ``sex`` using the 
 ``HELPrct3`` data set created above. Compare the distributions, recommending
 parametric or nonparametric inferences. 
 
 2.3. Generate the permutation results and write out the 6+ steps of the 
 hypothesis test, making sure to note the numerical value of observed test 
-statistic you are using and include a discussion of the scope of inference. 
+statistic you are using and include a discussion of the scope of inference. \index{scope of inference} 
 
 2.4. Interpret the p-value for these results. 
 

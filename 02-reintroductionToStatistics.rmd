@@ -147,7 +147,7 @@ available) with ***N***. Here, the sample size is ***n=114***. In
 this situation, we do not have a random sample from a population \index{random sampling} 
 (these were volunteers from the population of prisoners at the
 particular prison) so we cannot make inferences from our sample to a larger group. 
-But we can assess whether there is a ***causal effect***^[As noted previously, we reserve the term "effect" for situations where random assignment \index{random assignment} allows us to consider causality as the reason for the differences in the response variable among levels of the explanatory variable, but this is only the case if we find evidence against the null hypothesis of no difference
+But we can assess whether there is a \index{causal effect} ***causal effect***^[As noted previously, we reserve the term "effect" for situations where random assignment \index{random assignment} allows us to consider causality as the reason for the differences in the response variable among levels of the explanatory variable, but this is only the case if we find evidence against the null hypothesis of no difference
 in the groups.]: if sufficient evidence is found to conclude that there is some difference in
 the responses across the treated groups, we can attribute those differences to
 the treatments applied, since the groups should be same otherwise due to the
@@ -165,7 +165,8 @@ group of prisoners. If this had been an observational study (suppose that the
 prisoners could select one of the three pictures), then we would have to avoid
 any of the "causal" language that we can consider here because the pictures
 were not randomly assigned to the subjects. Without random assignment, \index{random assignment} the
-explanatory variable of picture choice could be ***confounded*** with  another characteristic of prisoners that was related to which picture they selected and
+explanatory variable of picture choice could be ***confounded*** \index{confounded}
+with  another characteristic of prisoners that was related to which picture they selected and
 the rating they provided. Confounding is not the only reason to avoid causal
 statements with non-random assignment but the inability to separate the effect
 of other variables (measured or unmeasured) from the differences we are
@@ -525,7 +526,7 @@ or the famous "twin" studies with one twin assigned to each group).
 \indent Here we are going to use the "simple" two independent group scenario to 
 review some basic statistical concepts and connect two different 
 frameworks for conducting statistical inference: randomization and 
-parametric inference techniques. ***Parametric*** statistical methods 
+parametric \index{parametric} inference techniques. ***Parametric*** statistical methods 
 involve making assumptions about the distribution of the
 responses and obtaining confidence intervals and/or p-values using a 
 *named* distribution (like the $z$ or $t$-distributions). Typically these
@@ -535,6 +536,7 @@ methods use a computer to shuffle, sample, or simulate observations in ways
 that allow you to obtain distributions of possible results to find areas and
 cutoffs without resorting to using tables and named distributions. 
 Randomization methods are what are called ***nonparametric*** methods 
+\index{nonparametric}
 that often make fewer assumptions (they are ***not free of assumptions***!)
 and so can handle a larger set of problems more easily than parametric 
 methods. When the assumptions involved in the parametric procedures are 
@@ -785,7 +787,9 @@ If you count up the number of subjects in each group by counting the number
 of times each label (Average, Unattractive) occurs, it is the same in both the 
 ``Attr`` and ``PermutedAttr`` columns. Permutations involve randomly 
 re-ordering the values of a variable -- here the ``Attr`` group labels -- without
-changing the content of the variable. This result can also be generated using 
+changing the content of the variable. 
+\index{permutation}
+This result can also be generated using 
 what is called ***sampling without replacement***: sequentially select $n$ labels 
 from the original variable (*Attr*), removing each observed label and making sure that each of the
 original ``Attr`` labels is selected once and only once. The new, randomly 
@@ -802,7 +806,9 @@ chance of selection for each sampled observation -- in other words, observations
 can be selected more than once. This is like picking $n$ names out of a hat that
 contains $n$ names, except that every time a name is selected, it goes back into 
 the hat -- we'll use this technique in Section \@ref(section2-8)
-to do what is called ***bootstrapping***. Both sampling mechanisms can be 
+to do what is called ***bootstrapping***. 
+\index{bootstrap}
+Both sampling mechanisms can be 
 used to generate inferences but each has particular situations
 where they are most useful. For hypothesis testing, we will use permutations \index{permutation}
 (sampling without replacement) as its mechanism most closely matches the null hypotheses we will be testing. 
@@ -839,7 +845,7 @@ beanplot(Years~PermutedAttr,data=Perm1,log="",col="bisque",method="jitter",
 ```
 
 These results suggest that the observed difference was larger than what we got 
-when we did a single permutation although it was only a little bit larger than 
+when we did a single permutation \index{permutation} although it was only a little bit larger than 
 a difference we could observe in permutations if we ignore the difference in 
 directions. Conceptually, permuting observations between group labels is 
 consistent with the null hypothesis -- this is a technique to generate results 
@@ -861,7 +867,9 @@ the groups based on our observed data set.
 In any testing situation, you must define some function of the observations that
 gives us a single number that addresses our question of interest. This quantity
 is called a ***test statistic***. These often take on complicated forms and 
-have names like $t$ or $z$ statistics that relate to their parametric (named)
+have names like $t$ or $z$ statistics that relate to their parametric
+\index{parametric}
+(named)
 distributions so we know where to look up ***p-values***^[P-values are the 
 probability of obtaining a result as extreme as or more extreme than we observed 
 given that the null hypothesis is true.]. In randomization settings, they can
@@ -887,7 +895,9 @@ We then compare the $T_{obs}=\bar{x}_\text{Unattractive}-\bar{x}_\text{Average} 
 to the distribution of results that are possible for the permuted results ($T^*$)
 which corresponds to assuming the null hypothesis is true. 
 
-\indent We need to consider lots of permutations to do a permutation test. In contrast to
+\indent We need to consider lots of permutations to do a permutation test.
+\index{permutation!test} 
+In contrast to
 your introductory statistics course where, if you did this, it was just a click
 away, we are going to learn what was going on under the hood. Specifically, we
 need a ***for loop*** in R to be able to repeatedly generate the permuted data
@@ -975,9 +985,11 @@ Tstar
 
 \indent Five permutations are still not enough to assess whether our $T_{obs}$
 of 1.84 is unusual and we need to do many permutations to get an accurate 
-assessment of the possibilities under the null hypothesis. It is common practice 
+assessment of the possibilities under the null hypothesis. 
+\index{permutation!test}
+It is common practice 
 to consider something like 1,000 permutations. The ``Tstar`` vector when we set 
-*B* to be large, say ``B=1000``, contains the permutation distribution for the
+*B* to be large, say ``B=1000``, contains the permutation distribution \index{permutation!distribution} for the
 selected test statistic under^[We often say
 "under" in statistics and we mean "given that the following is true".] the null
 hypothesis -- what is called the ***null distribution*** of the statistic. The 
@@ -1073,7 +1085,9 @@ pval <- pdata(Tstar, Tobs, lower.tail=F)
 The proportion of `r pval` tells us that `r pval*1000` of the 1,000 permuted results 
 (`r pval*100`%) were as large or larger than what we observed. This type of 
 work is how we can
-generate ***p-values*** using permutation distributions. P-values, as you should
+generate ***p-values*** using permutation distributions.
+\index{permutation!distribution}
+P-values, as you should
 remember, are the probability of getting a result as extreme as or more extreme 
 than what we observed, $\underline{\text{given that the null is true}}$. Finding 
 only `r pval*1000`
@@ -1175,7 +1189,7 @@ two groups.
 
 \indent Before we move on, let's note some interesting features of the permutation 
 distribution of the difference in the sample means shown in 
-Figure \@ref(fig:Figure2-11). 
+Figure \@ref(fig:Figure2-11). \index{permutation!distribution}
 
 1. It is basically centered at 0. Since we are performing permutations assuming 
 the null model is true, we are assuming that $\mu_1 = \mu_2$ which implies that
@@ -1190,7 +1204,9 @@ of this size) of the difference in sample means ($\bar{x}_1 - \bar{x}_2$) become
 more normally distributed as the sample sizes increase. With 38 and 37 
 observations in the groups, we are likely to have a relatively normal looking
 distribution of the difference in the sample means. This result will allow us to 
-use a parametric method to approximate this sampling distribution under the null 
+use a parametric 
+\index{parametric}
+method to approximate this sampling distribution under the null 
 model if some assumptions are met, as we'll discuss below. 
 
 3. Our observed difference in the sample means (1.84 years) is a fairly unusual 
@@ -1403,8 +1419,12 @@ $H_0$ is true. It
 is used to calculate the ***p-value***, the probability of obtaining a 
 result as extreme or more extreme than what we observed given that the null 
 hypothesis is true. We will find sampling distributions using 
-***nonparametric*** approaches (like the permutation approach used previously) 
-and ***parametric*** methods (using "named" distributions like the 
+***nonparametric*** 
+\index{nonparametric}
+approaches (like the permutation \index{permutation} approach used previously) 
+and ***parametric*** 
+\index{parametric}
+methods (using "named" distributions like the 
 $t$, F, and $\chi^2$). 
 
 \indent Small p-values are evidence against the null hypothesis because the observed
@@ -1549,7 +1569,11 @@ means, we also could "standardize" the difference in the means by dividing by
 an appropriate quantity that reflects the variation in the difference in the
 means. All of these are valid and can sometimes provide similar results - it
 ends up that there are many possibilities for testing using the randomization
-(nonparametric) techniques introduced previously. Parametric statistical
+(nonparametric) 
+\index{nonparametric}
+techniques introduced previously. Parametric 
+\index{parametric}
+statistical
 methods focus on means because the statistical theory surrounding means is
 quite a bit easier (not easy, just easier) than other options but there are
 just a couple of test statistics that you can use and end up with named
@@ -1572,9 +1596,13 @@ $$s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}.$$
 
 The $t$-statistic keeps the important comparison between the means in the
 numerator that we used before and standardizes (re-scales) that difference so
-that $t$ will follow a $t$-distribution (a parametric "named" distribution) if 
+that $t$ will follow a $t$-distribution (a parametric 
+\index{parametric}
+"named" distribution) if 
 certain assumptions are met. But first we should see if standardizing the 
-difference in the means had an impact on our permutation test results. Instead 
+difference in the means had an impact on our permutation test 
+\index{permutation!test}
+results. Instead 
 of using the ``diffmean`` function, we will use the ``t.test`` function (see 
 its full use below) and have it calculate the formula for $t$ for us. The R 
 code "``$statistic``" is basically a way of extracting just the number we want 
@@ -1586,7 +1614,9 @@ test, the code resembles the permutation test code in Section \@ref(section2-4)
 with the new $t$-statistic replacing the difference in the sample means that we 
 used before. 
 
-\indent The permutation distribution in Figure \@ref(fig:Figure2-12) looks 
+\indent The permutation distribution 
+\index{permutation!distribution}
+in Figure \@ref(fig:Figure2-12) looks 
 similar to the previous results with slightly different x-axis scaling. The 
 observed $t$-statistic was $-2.17$ and the proportion of permuted results that 
 were as or more extreme than the observed result 
@@ -1640,7 +1670,9 @@ plot(density(Tstar), main="Density curve of Tstar")
 abline(v=c(-1,1)*Tobs, lwd=2, col="red")
 ```
 
-\indent The parametric version of these results is based on using what is called 
+\indent The parametric version
+\index{parametric}
+of these results is based on using what is called 
 the ***two-independent sample t-test***. There are actually two versions of this 
 test, one that assumes that variances are equal in the groups and one that 
 does not. There is a rule of thumb that if the **ratio of the larger standard
@@ -1731,7 +1763,9 @@ named distributions such as the $t$-distribution. In this case, the distribution
 of the test statistic under the null hypothesis is a $t(73)$ or a $t$ with 73 
 degrees of freedom. The ``pt`` function is used to get p-values from the
 $t$-distribution in the same manner that ``pdata`` could help us to find p-values
-from the permutation distribution. We need to provide the ``df=...`` and specify 
+from the permutation distribution. 
+\index{permutation!distribution}
+We need to provide the ``df=...`` and specify 
 the tail of the distribution of interest using the ``lower.tail`` option along 
 with the cutoff of interest. If we want the area to the left of -2.17:
 
@@ -1754,8 +1788,10 @@ two-sided test p-value:
 2*pt(abs(-2.1702), df=73, lower.tail=F)
 ```
 
-\indent Permutation distributions do not need to match the named parametric
-distribution to work correctly, although this happened in the previous example.
+\indent Permutation distributions \index{permutation!distribution} do not need to match the named 
+parametric distribution
+\index{parametric!distribution}
+to work correctly, although this happened in the previous example.
 The parametric approach, the $t$-test, requires certain conditions to be met 
 for the sampling distribution of the 
 statistic to follow the named distribution and provide accurate p-values. The
@@ -1783,7 +1819,7 @@ skew and/or outliers, that would suggest a problem with the assumption of
 normality as normal distributions are symmetric and extreme observations occur 
 very rarely. 
 
-For the permutation test, we relax the third condition and replace it with:
+For the permutation test, \index{permutation!test} we relax the third condition and replace it with:
 
 3. ***Similar distributions for the groups:*** The permutation approach 
 allows valid inferences as long as the two groups have similar shapes and only
@@ -1885,7 +1921,7 @@ Compare these results to the permutation approach, which relaxes that normality
 assumption, with the results that follow. In the permutation test, $T=2.692$ and 
 the p-value is `r perm_pval` which is a little smaller than the result provided 
 by the parametric approach. The agreement of the two approaches, again, provides 
-some re-assurance about the use of either approach. 
+some re-assurance about the use of either approach. \index{permutation!test}
 
 ```{r eval=F}
 Tobs <- t.test(GPA~Sex, data=s217, var.equal=T)$statistic
@@ -1915,7 +1951,7 @@ abline(v=c(-1,1)*Tobs, lwd=2, col="red")
 ```
 
 Here is a full write-up of the results using all 6+ hypothesis testing steps, 
-using the permutation results for the grade data:
+using the permutation \index{permutation} results for the grade data:
 
 0. *Isolate the claim to be proved and method to use (define a test statistic T)*.
     We want to test for a difference in the means between males and females and 
@@ -2001,9 +2037,12 @@ into groups that are as interesting as what we observed if the null hypothesis
 is assumed true. In most situations, we also want to estimate parameters of 
 interest and provide ***confidence intervals*** for those parameters (an 
 interval where we are __% ***confident*** that the true parameter lies). As 
-before, there are two options we will consider -- a parametric and a 
-nonparametric approach. The nonparametric approach will be using what is 
-called ***bootstrapping*** and draws its name from "pull yourself up by 
+before, there are two options we will consider -- a parametric \index{parametric} and a 
+nonparametric approach. The nonparametric \index{nonparametric}
+approach will be using what is 
+called ***bootstrapping*** 
+\index{bootstrap}
+and draws its name from "pull yourself up by 
 your bootstraps" where you improve your situation based on your own efforts.
 In statistics, we make our situation or inferences better by re-using the 
 observations we have by assuming that the sample represents the population.
@@ -2031,7 +2070,9 @@ contains a new variable called ``orig.id`` which is the number of the subject
 from the original data set. By summarizing how often each of these id's
 occurred in a bootstrapped data set, we can see how the re-sampling works.
 The ``table`` function will count up how many times each observation was used in 
-the bootstrap sample, providing a row with the id followed by a row with the 
+the bootstrap sample,
+\index{bootstrap!sample}
+providing a row with the id followed by a row with the 
 count^[The ``as.numeric`` function is also used here. It really isn't important
 but makes sure the output of ``table`` is sorted by observation number by first
 converting the *orig.id* variable into a numeric vector.]. In the first bootstrap
@@ -2096,7 +2137,9 @@ plot(cs2_final,ylab="Counts of number of times of re-sampling",
 $B$ times using
 another ``for`` loop, we will track our quantity of interest, say $T$, in all 
 these new "data sets" and call those results $T^*$. The distribution of the
-bootstrapped $T^*$ statistics will tell us about the range of results to expect 
+bootstrapped
+\index{bootstrap!distribution}
+$T^*$ statistics will tell us about the range of results to expect 
 for the statistic and the middle __% of the $T^*$'s provides a 
 ***bootstrap confidence interval***^[There are actually many ways to use this
 information to make a confidence interval. We are using the simplest method
@@ -2143,12 +2186,14 @@ abline(v=Tobs, col="red", lwd=2)
 In this situation, the observed difference in the mean sentences is 1.84 years
 (*Unattractive* - *Average*), which is the vertical line in Figure
 \@ref(fig:Figure2-18).
-The bootstrap distribution shows the results for the difference in the sample 
+The bootstrap distribution 
+\index{bootstrap!distribution}
+shows the results for the difference in the sample 
 means when fake data sets are re-constructed by sampling from the original data set with
 replacement. The bootstrap distribution is approximately centered at the observed
 value (difference in the sample means) and is relatively symmetric. 
 
-\indent The permutation distribution in the same situation (Figure
+\indent The permutation distribution \index{permutation!distribution} in the same situation (Figure
 \@ref(fig:Figure2-12)) had a similar shape but was centered at 0. 
 Permutations create sampling 
 distributions based on assuming the null hypothesis is true, which is useful for

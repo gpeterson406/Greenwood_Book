@@ -177,6 +177,7 @@ stated to avoid implying causal effects.
 
 \indent Instead of loading this data set into R using the "Import Dataset" 
 functionality, we can load an R
+\index{import data}
 package that contains the data, making for easy access to this data set. The
 package called ``heplots`` [@R-heplots] contains a data set called ``MockJury`` 
 that contains the results of the study. We also rely on the R package called 
@@ -427,7 +428,7 @@ see some at https://en.wikipedia.org/wiki/Normal_distribution]
 \index{normal distribution}
 with mean 0 
 and standard deviation of 1. In the current situation, we could ask whether
-the ``Years`` variable seems like it may follow a normal distribution, in 
+the ``Years`` variable seems like it may follow a Normal distribution, in 
 other words, is $\text{Years}\sim N(\mu,\sigma^2)$? Since the responses are right
 skewed with some groups having outliers, it is not reasonable to assume that
 the *Years* variable for any of the three groups may follow a Normal 
@@ -439,7 +440,7 @@ and that $\sigma$ ("sigma") is the symbol of the
 
 ##Beanplots {#section2-2}
 
-The other graphical display for comparing multiple groups we will use is a display called a ***beanplot*** [@Kampstra2008] \index{beanplot}. Figure \@ref(fig:Figure2-5) 
+The other graphical display for comparing multiple groups we will use is a display called a ***beanplot*** [@Kampstra2008]. \index{beanplot} Figure \@ref(fig:Figure2-5) 
 shows an example of a beanplot \index{beanplot} that provides a side-by-side display that 
 contains the density curves, the original observations that generated the 
 density curve in a (jittered) rug-plot, the mean of each group, and the 
@@ -455,13 +456,16 @@ Our inferences typically focus on the means of the groups and this plot allows
 us to compare those across the groups while gaining information on the shapes
 of the distributions of responses in each group. 
 
-\indent To use the ``beanplot`` function \index{R functions!\textbf{beanplot}} we need to install and then load the ``beanplot`` 
-package [@R-beanplot]. The function works like the boxplot used previously
+\indent To use the ``beanplot`` function \index{\texttt{beanplot()}} we need to install and then load the ``beanplot`` 
+package [@R-beanplot]. 
+\index{R packages!\textbf{beanplot}}
+The function works like the boxplot used previously
 except that options 
 for ``log``, ``col``, and ``method`` need to be specified. Use these^[Well, you 
 can use other colors (try "lightblue" for example), but I think bisque
-looks nice in these plots.] options for any beanplots you make \index{beanplot}: 
+looks nice in these plots.] options for any beanplots you make: \index{beanplot} 
 ``log="", col="bisque", method="jitter"``. 
+
 
 (ref:fig2-5) Beanplot of Years by picture group. Long, bold lines correspond 
 to mean of each group, dashed line for overall or global mean.
@@ -531,7 +535,9 @@ or the famous "twin" studies with one twin assigned to each group).
 review some basic statistical concepts and connect two different 
 frameworks for conducting statistical inference: randomization and 
 parametric \index{parametric} inference techniques. ***Parametric*** statistical methods 
-involve making assumptions about the distribution of the
+involve making assumptions 
+\index{assumptions}
+about the distribution of the
 responses and obtaining confidence intervals and/or p-values using a 
 *named* distribution (like the $z$ or $t$-distributions). Typically these
 results are generated using formulas and looking up areas under curves or
@@ -543,7 +549,9 @@ Randomization methods are what are called ***nonparametric*** methods
 \index{nonparametric}
 that often make fewer assumptions (they are ***not free of assumptions***!)
 and so can handle a larger set of problems more easily than parametric 
-methods. When the assumptions involved in the parametric procedures are 
+methods.
+\index{assumptions}
+When the assumptions involved in the parametric procedures are 
 met by a data set, the randomization methods often provide very similar 
 results to those provided by the parametric techniques. To be a more 
 sophisticated statistical consumer, it is useful to have some knowledge 
@@ -622,7 +630,7 @@ It ends up that R remembers the *Beautiful* category even though there are
 0 observations in it now and that can cause us some problems. When we remove a
 group of observations^[It is also possible to use the ``subset`` function to eliminate observations that do not have a particular trait and ``subset(MockJury,subset=NotBeautiful)`` would provide the same result as ``MockJury[MockJury$NotBeautiful,]`` did here.], we sometimes need to clean up categorical variables to
 just reflect the categories that are present. The ``factor`` 
-\index{``factor()``}
+\index{\texttt{factor()}}
 function 
 creates categorical variables based on the levels of the variables that are 
 observed and is useful to run here to clean up ``Attr``. 
@@ -632,7 +640,7 @@ MockJury2$Attr <- factor(MockJury2$Attr)
 summary(MockJury2$Attr)
 ```
 
-Now if we remake the boxplots and beanplots, \index{beanplot} they only contain results for 
+Now if we remake the boxplots and beanplots, they only contain results for 
 the two groups of interest here as seen in Figure \@ref(fig:Figure2-6). 
 
 (ref:fig2-6) Boxplot and beanplot of the *Years* responses on the reduced ``MockJury2`` data set. 
@@ -649,7 +657,6 @@ boxplot(Years~Attr, data=MockJury2)
 beanplot(Years~Attr, data=MockJury2, log="", col="bisque", method="jitter")
 ```
 
-\index{beanplot}
 
 \indent The two-sample mean techniques you learned in your previous course all 
 start with comparing the means the two groups. We can obtain the two 
@@ -1386,6 +1393,7 @@ the population of interest. If we do not have RA, then causal inferences cannot
 be made. If we do not have a representative sample, then our inferences are
 limited to the sampled subjects. 
 \index{confounding}
+
 \footnotesize
 
 (ref:tab2-2) Scope of inference summary.
@@ -1652,7 +1660,7 @@ $$s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}.$$
 The $t$-statistic keeps the important comparison between the means in the
 numerator that we used before and standardizes (re-scales) that difference so
 that $t$ will follow a $t$-distribution
-\index{$t$-distribution}
+\index{t-distribution}
 (a parametric 
 \index{parametric}
 "named" distribution) if 
@@ -1741,7 +1749,7 @@ comparing the two potential test statistics, the procedure that assumes equal
 variances has a complicated denominator (see the formula above for $t$ 
 involving $s_p$) but a simple formula for ***degrees of freedom*** (***df***)
 \index{degrees of freedom!t-distribution}
-\index{$t$-distribution}
+\index{t-distribution}
 for the $t$-distribution ($df=n_1+n_2-2$) that approximates the
 distribution of the test statistic, $t$, under the null hypothesis. The 
 procedure that assumes unequal variances has a simpler test statistic and a 
@@ -1770,7 +1778,7 @@ legend("left",legend=c("t(2)","t(10)","t(20)","Normal"),col=c("black","grey","bl
 \indent If the assumptions for the equal variance $t$-test are met and the null 
 hypothesis is true, then the sampling distribution of the test statistic should 
 follow a $t$-distribution
-\index{$t$-distribution}
+\index{t-distribution}
 with $n_1+n_2-2$ degrees of freedom. The ***t-distribution*** is a bell-shaped curve that is more spread out for smaller 
 values of degrees of freedom as shown in Figure \@ref(fig:Figure2-13). The
 $t$-distribution looks more and more like a ***standard normal distribution***
@@ -1784,7 +1792,7 @@ $t$-distribution looks more and more like a ***standard normal distribution***
 we need to calculate the 
 test statistic and $df$, then look up the areas in the tails of the 
 $t$-distribution
-\index{$t$-distribution}
+\index{t-distribution}
 relative to the observed $t$-statistic. We'll learn how to use 
 R to do this below, but for now we will allow the ``t.test`` function to take 
 care of this. The ``t.test`` function uses our formula notation (``Years~Attr``) 
@@ -1793,6 +1801,8 @@ equal-variance test result, the ``var.equal=T`` option needs to be turned on.
 Then ``t.test`` provides us with lots of useful output. The three results we've 
 been discussing are available in the output below -- the test statistic value 
 (-2.17), $df=73$, and the p-value, from the $t$-distribution with 73 degrees of freedom, of 0.033. 
+
+\newpage
 
 ```{r}
 t.test(Years ~ Attr, data=MockJury2, var.equal=T)
@@ -1828,6 +1838,7 @@ picture of the area of interest, and/or note the distribution you would use.] fr
 named distributions such as the $t$-distribution. In this case, the distribution 
 of the test statistic under the null hypothesis is a $t(73)$ or a $t$ with 73 
 degrees of freedom. The ``pt`` function is used to get p-values from the
+\index{\texttt{pt()}}
 $t$-distribution in the same manner that ``pdata`` could help us to find p-values
 from the permutation distribution. 
 \index{permutation!distribution}
@@ -1841,7 +1852,7 @@ pt(-2.1702, df=73, lower.tail=T)
 
 And we can double it to get the p-value that ``t.test`` provided earlier, because 
 the $t$-distribution is symmetric:
-\index{$t$-distribution}
+\index{t-distribution}
 
 ```{r}
 2*pt(-2.1702, df=73, lower.tail=T)
@@ -1871,8 +1882,8 @@ Each observation obtained is unrelated to all other
 observations. To assess this, consider whether anything in the data collection
 might lead to clustered or related observations that are un-related to the
 differences in the groups. For example, was the same person measured more than
-once?^[In some studies, the same subject might be measured in both conditions and 
-this violates the assumptions of this procedure.]
+once^[In some studies, the same subject might be measured in both conditions and 
+this violates the assumptions of this procedure.]?
 
 2. **Equal variances** in the groups (because we used a procedure that assumes 
 equal variances! -- there is another procedure that allows you to relax this
@@ -1882,7 +1893,7 @@ particularly critical of this assessment if the sample sizes differ greatly
 between groups. 
 
 3. **Normal distributions** of the observations in each group. We'll learn more
-diagnostics later, but the boxplots and beanplots \index{beanplot} are a good place to start to 
+diagnostics later, but the boxplots and beanplots are a good place to start to 
 help you look for skews or outliers, which were both present here. If you find 
 skew and/or outliers, that would suggest a problem with the assumption of 
 normality as normal distributions
@@ -1915,9 +1926,13 @@ the parametric procedure. The shapes look similar for the two groups so there
 is less reason to be concerned with using the permutation approach based on 
 its version of condition (3) above. 
 
-\indent The permutation approach is resistant to impacts of violations of the
+\indent The permutation approach is resistant 
+\index{resistant}
+to impacts of violations of the
 normality assumption. It is not resistant to impacts of violations of any of 
-the other assumptions. In fact, it can be quite sensitive to unequal variances 
+the other assumptions.
+\index{assumptions}
+In fact, it can be quite sensitive to unequal variances 
 as it will detect differences in the variances of the groups instead of 
 differences in the means. Its scope of inference is the same as the parametric
 approach. \index{scope of inference} It also can provide similarly inaccurate conclusions in the presence 
@@ -1940,6 +1955,11 @@ output and as displayed in Figure \@ref(fig:Figure2-15).
 s217 <- read_csv("http://www.math.montana.edu/courses/s217/documents/s217.csv")
 require(mosaic)
 require(beanplot)
+```
+
+\newpage
+
+```{r}
 mean(GPA~Sex, data=s217)
 favstats(GPA~Sex, data=s217)
 ```
@@ -2059,7 +2079,7 @@ using the permutation \index{permutation} results for the grade data:
     similar so there is effectively no evidence that this condition is violated. 
 
     * **Similar distribution condition**: Based on the side-by-side boxplots and
-    beanplots \index{beanplot}, it appears that both groups have slightly left-skewed 
+    beanplots, it appears that both groups have slightly left-skewed 
     distributions, which could be problematic for the parametric approach, but 
     there is essentially no evidence that the permutation approach condition is violated 
     since the distributions look to have fairly similar shapes. 
@@ -2068,7 +2088,7 @@ using the permutation \index{permutation} results for the grade data:
 
     * $T=2.69$ from the previous R output. 
 
-\newpage
+
 
 4. Find the p-value
 
@@ -2135,7 +2155,8 @@ confidence interval for a median or a standard deviation) or when we consider
 functions of more than one parameter and don't want to derive the distribution 
 of the statistic (say the difference in two medians). In this text, 
 bootstrapping is used to provide more trustworthy inferences when some of our
-assumptions (especially normality) might be violated for our parametric procedure. 
+assumptions (especially normality) might be violated for our parametric procedure.
+\index{assumptions}
 
 \indent To perform bootstrapping, we will use the ``resample`` function from the
 ``mosaic`` package. We can apply this function to a data set and get a new 
@@ -2228,7 +2249,6 @@ bootstrapping code is very similar to the permutation code except that we apply
 the ``resample`` function to the entire data set as opposed to the ``shuffle``
 function that was applied only to the explanatory variable. 
 
-\newpage
 
 ```{r}
 Tobs <- diffmean(Years~Attr, data=MockJury2); Tobs
@@ -2368,7 +2388,7 @@ in later chapters. The parametric confidence interval is called the
 ***equal variance, two-sample t confidence interval*** and additionally 
 assumes that the populations 
 being sampled from are normally distributed. It leads to using a $t$-distribution
-\index{$t$-distribution}
+\index{t-distribution}
 to form the interval. The output from the ``t.test`` function provides the 
 parametric 95% confidence interval calculated for you:
 
@@ -2386,7 +2406,9 @@ intervals that work well^[When hypothesis tests "work well" they have high
 power \index{power} to detect differences while having Type I error rates \index{type I error} that are close
 to what we choose *a priori*. When confidence intervals "work well", they contain
 the true parameter value in repeated random samples at around the selected
-confidence level. \index{random sampling}]. The other assumptions are all the same as for the hypothesis 
+confidence level. \index{random sampling}]. The other assumptions
+\index{assumptions}
+are all the same as for the hypothesis 
 test, where we continue to assume that we have independent observations with 
 equal variances for the two groups. 
 
@@ -2516,8 +2538,6 @@ sp
 
 The margin of error is:
 
-\newpage
-
 ```{r}
 qt(0.975, df=77)*sp*sqrt(1/37+1/42)
 ```
@@ -2540,10 +2560,10 @@ t.test(GPA~Sex,data=s217,var.equal=T)
 Note that we can easily switch to 90% or 99% confidence intervals by simply 
 changing the percentile in ``qt`` or changing the ``conf.level`` option in the
 ``t.test`` function. In the following two lines of code, we added 
-octothorpes^[You can correctly call octothorpes *number* symbols or, in the 
+octothorpes (#)^[You can correctly call octothorpes *number* symbols or, in the 
 twitter verse, *hashtags*. For more on this symbol, see
 "http://blog.dictionary.com/octothorpe/". Even after reading this, I call them 
-number symbols.](#) and then some text after function
+number symbols.] and then some text after function
 calls to explain what is being calculated. In computer code, octothorpes
 provide a way of adding comments that tell the software (here R) to ignore any
 text after a "#" on a given line. In the color version of the text, comments are 
@@ -2650,6 +2670,7 @@ results, suggesting that the assumptions were at least close to being met for
 the parametric procedures. When parametric and nonparametric approaches
 disagree, the nonparametric methods are likely to be more trustworthy since
 they have less restrictive assumptions but can still have problems. 
+\index{assumptions}
 
 \indent When the noted conditions are not met in a hypothesis testing situation, the 
 Type I error \index{type I error} rates can be inflated, meaning that we reject the null hypothesis 
@@ -2679,17 +2700,18 @@ need to be installed and loaded for this code to have a chance of working:
 * **summary(`r colFmt("DATASETNAME","red")`)**
 
     * Provides numerical summaries of all variables in the data set. 
+    \index{\texttt{summary()}|textbf}
 
 * **t.test(`r colFmt("Y","red")` ~ `r colFmt("X","red")`, 
 data=`r colFmt("DATASETNAME","red")`, conf.level=0.95)**
 
     * Provides two-sample t-test test statistic, df, p-value, and 95% 
-    confidence interval. 
+    confidence interval. \index{\texttt{t.test()}|textbf}
     
 * **2``*``pt(abs(`r colFmt("Tobs","red")`), df=`r colFmt("DF","red")`, lower.tail=F)**
 
     * Finds the two-sided test p-value for an observed 2-sample t-test 
-    statistic of ``Tobs``. 
+    statistic of ``Tobs``. \index{\texttt{pt()}|textbf}
 
 * **hist(`r colFmt("DATASETNAME\\$Y","red")`)**
 
@@ -2705,7 +2727,7 @@ data=`r colFmt("DATASETNAME","red")`, log="", col="lightblue", method="jitter")*
 
     * Requires the ``beanplot`` package is loaded. 
     
-    * Makes a beanplot of a variable named Y for groups in X from the data set. \index{beanplot}
+    * Makes a beanplot of a variable named Y for groups in X from the data set.     \index{\texttt{beanplot()}|textbf}
     
 * **mean(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`); sd(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`)** 
 
@@ -2733,7 +2755,9 @@ for (b in (1:B)){
 
     * Finds the proportion of the permuted test statistics in Tstar that are 
     less than -|Tobs| or greater than |Tobs|, useful for finding the two-sided 
-    test p-value. 
+    test p-value. \index{\texttt{pdata()}|textbf}
+
+\newpage
 
 * **Tobs ``<-`` diffmean(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`, var.equal=T)\$statistic; Tobs  
 B ``<-`` 1000  
@@ -2749,9 +2773,7 @@ for (b in (1:B)){
 * **qdata(Tstar, c(0.025, 0.975))**
 
     * Provides the values that delineate the middle 95% of the results in the
-    bootstrap distribution (``Tstar``).
-
-\newpage
+    bootstrap distribution (``Tstar``). \index{\texttt{qdata()}|textbf}
 
 ## Practice problems {#section2-12}
 
@@ -2787,13 +2809,13 @@ date -- the study just didn't run long enough. This is called ***censoring***.
 What is the problem with the numerical summaries here if the missing responses 
 were all something larger than the largest observation?
 
-2.2. Make a beanplot \index{beanplot} and a boxplot of ``daysanysub`` ~ ``sex`` using the 
+2.2. Make a beanplot and a boxplot of ``daysanysub`` ~ ``sex`` using the 
 ``HELPrct3`` data set created above. Compare the distributions, recommending
 parametric or nonparametric inferences. 
 
 2.3. Generate the permutation results and write out the 6+ steps of the 
 hypothesis test, making sure to note the numerical value of observed test 
-statistic you are using and include a discussion of the scope of inference. \index{scope of inference} 
+statistic you are using and include a discussion of the scope of inference. 
 
 2.4. Interpret the p-value for these results. 
 

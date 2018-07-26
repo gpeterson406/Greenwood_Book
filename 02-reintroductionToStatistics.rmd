@@ -1098,6 +1098,7 @@ Second, we can calculate the exact number of permuted results that were as
 large or larger 
 than what we observed. To calculate the proportion of the 1,000 values that were 
 as large or larger than what we observed, we will use the ``pdata`` function. 
+\index{\texttt{pdata()}}
 To use this 
 function, we need to provide the distribution of values to compare to the cut-off
 (``Tstar``), the cut-off point (``Tobs``), and whether we want calculate the
@@ -1153,6 +1154,7 @@ we need to also find how many of the permuted results were smaller than or equal
 to -1.84 years 
 to add to our previous proportion. Using ``pdata`` with ``-Tobs`` as the cut-off 
 and ``lower.tail=T`` provides this result:
+\index{\texttt{pdata()}}
 
 ```{r}
 pdata(Tstar, -Tobs, lower.tail=T)
@@ -1204,6 +1206,7 @@ This will always work and finds areas in both tails regardless of whether the
 observed statistic is positive or negative. In R, the ``abs`` function provides the
 ***absolute value*** and we can again use ``pdata`` to find our p-value in one line 
 of code: 
+\index{\texttt{pdata()}}
 
 ```{r}
 pdata(abs(Tstar), abs(Tobs), lower.tail=F)

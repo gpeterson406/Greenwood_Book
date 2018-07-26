@@ -192,7 +192,9 @@ dashed horizontal line
 at 4.7 years (the R code below shows the overall mean of *Years* is 4.7). While 
 the hypotheses focus on the means, the model also contains assumptions about the
 distribution of the responses -- specifically that the distributions are normal 
-and that all the groups have the same variability. As discussed previously, it 
+and that all the groups have the same variability.
+\index{assumptions}
+As discussed previously, it 
 appears that the distributions are right skewed and the variability might not be 
 the same for all the groups. The boxplot provides the information about the skew 
 and variability but since it doesn't display the means it is not directly related 
@@ -209,6 +211,7 @@ for extensions to more complex models described in Chapter \@ref(chapter4) and
 beyond. The other ***parameterization*** (way of writing out or defining) of the 
 model is called the `r colFmtBold("reference-coded model","purple")` since it 
 writes out the model in terms of a 
+\index{reference coding}
 \index{model!reference-coded}
 ***baseline group*** and deviations from that baseline or reference level. The
 reference-coded model for the $i^{th}$ subject in the $j^{th}$ group is 
@@ -285,12 +288,16 @@ quantitative response will use this function, suggesting a common thread in
 the most commonly used statistical models.]. The ``lm`` function continues to 
 use the same format as previous functions, ``lm(Y~X, data=datasetname)``.
 It ends up that this code will give you the reference-coded version of the 
-model by default (The developers of R thought it was that important!). We want to start with the
+model by default (The developers of R thought it was that important!).
+\index{reference coding}
+\index{\texttt{lm()}}
+We want to start with the
 cell-means version of the model,
 \index{model!cell-means}
 so we have to override the standard technique 
 and add a "``-1``" to the formula interface to tell R that we want to the 
 cell-means coding. Generally, this looks like ``lm(Y~X-1, data=datasetname).``
+\index{\texttt{lm()}}
 Once we fit a model in R, the ``summary`` function run on the model provides a
 useful "summary" of the model coefficients and a suite of other potentially
 interesting information. For the moment, we will focus on the estimated model
@@ -385,6 +392,7 @@ load the ``effects`` package and then use ``plot(allEffects(...))`` functions
 together on the ``lm`` object called ``lm2`` that was estimated above. You can
 find the correspondence between the displayed means and the estimates that were
 constructed in Table \@ref(tab:Table3-1). 
+\index{\texttt{allEffects()}}
 
 (ref:fig3-2) Plot of the estimated group mean sentences from the reference-coded
 model for the MockJury data from the ``effects`` package.
@@ -408,6 +416,7 @@ $\color{purple}{\boldsymbol{\alpha}}$ having the same definition as
 $\color{red}{\mu}$ for the cell means model -- it forces a common value for the 
 mean for all the groups. Moving from the *reference-coded* model to the *mean-only*
 model is also an example of a situation where we move from a "full" model
+\index{cell means}
 \index{model!full}
 to a
 "reduced" model by setting some coefficients in the "full" model to 0 and, by doing
@@ -501,8 +510,9 @@ beanplot(y3~x1,ylab="",main="Scenario 4",ylim=c(0,20),method="jitter",col="red")
 ```
 
 \indent The statistic that allows the comparison of relative amounts of variation is called
-the ***ANOVA F-statistic***. It is developed using ***sums of squares*** which 
-are measures of total variation like those that are used in the numerator of the
+the ***ANOVA F-statistic***. It is developed using ***sums of squares***
+\index{sums of squares}
+which are measures of total variation like those that are used in the numerator of the
 standard deviation ($\Sigma_1^N(y_i-\bar{y})^2$) that took all the observations, 
 subtracted the mean, squared the differences, and then added up the results
 over all the observations to generate a measure of total variability. With
@@ -555,7 +565,9 @@ $A\text{'s}$ sum of squares and the error sums of squares,
 
 $$\textbf{SS}_{\textbf{Total}} \mathbf{=} \textbf{SS}_\textbf{A} \mathbf{+} \textbf{SS}_\textbf{E}.$$
 
-This result is called the ***sums of squares decomposition formula***. The equality means that if the $\textbf{SS}_\textbf{A}$ goes up, then the
+This result is called the ***sums of squares decomposition formula***.
+\index{sums of squares}
+The equality means that if the $\textbf{SS}_\textbf{A}$ goes up, then the
 $\textbf{SS}_\textbf{E}$ must go down if $\textbf{SS}_{\textbf{Total}}$ remains 
 the same. We use these results to build our test statistic and organize this information in 
 what is called an ***ANOVA table***.
@@ -654,6 +666,7 @@ text(c(1.25,1.25,1.25),c(7,6.5,6),labels=label_list, col="blue",cex=0.75)
 
 \indent It may be easiest to understand the *sums of squares decomposition* by connecting 
 it to our permutation ideas. 
+\index{sums of squares!decomposition}
 \index{permutation}
 In a permutation situation, the total variation 
 ($SS_\text{Total}$) cannot change -- it is the same responses varying
@@ -690,6 +703,7 @@ variation there is in the means. The permutation p-value for the alternative
 hypothesis of **some** (not of greater or less than!) difference in the true 
 means of the groups will involve counting the number of permuted $SS_A^*$ results
 that are as large or larger than what we observed. 
+\index{p-value!permutation distribution}
 
 (ref:fig3-4) Plot of means and 95% confidence intervals for the three groups 
 for the real Mock Jury data (a) and three different permutations of the treatment labels 
@@ -705,6 +719,7 @@ we can use the bracket, ``[,]``, referencing to extract that
 number from the ANOVA table that ``anova`` produces with 
 ``anova(lm(Years~Attr, data=MockJury))[1, 2]``. We'll store the observed value
 of $\text{SS}_A$ in ``Tobs``, reusing some ideas from Chapter \@ref(chapter2). 
+\index{\texttt{anova()}}
 
 ```{r}
 Tobs <- anova(lm(Years~Attr, data=MockJury))[1,2]; Tobs
@@ -752,6 +767,7 @@ also many permuted results that are much larger than observed. The proportion
 of permuted results that exceed the observed value is found using ``pdata`` 
 as before, except only for the area to the right of the observed result. We know 
 that ``Tobs`` will always be positive so no absolute values are required here. 
+\index{\texttt{pdata()}}
 
 ```{r}
 pdata(Tstar, Tobs, lower.tail=F)
@@ -765,6 +781,7 @@ This provides a permutation-based p-value of `r x` and suggests marginal evidenc
 against the null hypothesis of no difference in the true means. We would interpret 
 this p-value as saying that there is a `r 100*x`% chance of getting a $\text{SS}_A$
 as large or larger than we observed, given that the null hypothesis is true.
+\index{p-value!interpretation of}
 
 \indent It ends up that some nice parametric statistical results 
 are available (if our assumptions are met) for the ratio of estimated variances,
@@ -803,6 +820,8 @@ means around the grand mean.
 * $\text{MS}_{\text{Error}} = \text{SS}_{\text{Error}}/(N-J)$, which estimates 
 the variation of the errors around the group means.
 
+\newpage
+
 \indent These results are put together using a ratio to define the ***ANOVA F-statistic***
 (also called the ***F-ratio***) as: 
 
@@ -814,7 +833,9 @@ there would be no evidence of a difference in the means. If the $\text{MS}_A$ is
 larger than the $\text{MS}_E$, the $F$-statistic will provide evidence against 
 the null hypothesis. The "size" of the $F$-statistic is formalized by finding the
 p-value. The $F$-statistic, if assumptions discussed below are met and we assume 
-the null hypothesis is true, follows what is called an $F$-distribution. The 
+the null hypothesis is true, follows what is called an $F$-distribution.
+\index{F-distribution}
+The 
 ***F-distribution*** is a right-skewed distribution whose shape is defined by what
 are called the ***numerator degrees of freedom*** ($J-1$) and the
 ***denominator degrees of freedom*** ($N-J$). These names correspond to the values
@@ -837,7 +858,7 @@ different $F$-distributions are displayed for you in Figure \@ref(fig:Figure3-6)
 (ref:fig3-6) Density curves of four different $F$-distributions. Upper left is an 
 $F(2, 111)$, upper right is $F(2, 10)$, lower left is $F(6, 10)$, and lower right 
 is $F(6, 111)$. P-values are found using the areas to the right of the observed
-$F$-statistic value in all F-distributions. 
+$F$-statistic value in all F-distributions. \index{p-value!calculation of}
 
 ```{r Figure3-6,fig.cap="(ref:fig3-6)",echo=F,fig.height=4.25}
 x <- seq(from=0,to=6, length.out=50)
@@ -895,12 +916,13 @@ verify this result using the observed $F$-statistic of `r round(orig_anova[1,4],
 (which came from taking the ratio of the two mean squares, 
 F=`r round(orig_anova[1,3],2)`/`r round(orig_anova[2,3],2)`)
 which follows an $F(2, 111)$ distribution if the null hypothesis is true and some 
-other assumptions are met.
+other assumptions are met. 
 
 Using the ``pf`` function provides us with areas in the
 specified $F$-distribution with the ``df1`` provided to the function as the 
 numerator *df* and ``df2`` as the denominator *df* and ``lower.tail=F`` reflecting 
 our desire for a right tailed area.
+\index{\texttt{pf()}}
 
 ```{r}
 pf(2.77, df1=2, df2=111, lower.tail=F)
@@ -995,6 +1017,7 @@ results and only report their biggest differences. This biases the
 results to detecting results more than they should be and then when 
 other researchers try to repeat the same studies, they fail to find 
 similar results.]. 
+\index{p-value!criticisim}
 \index{type I error}
 If the entire suite of pairwise comparisons are considered, this 
 result may lose some of its luster. In other words, if we consider the suite of 
@@ -1029,6 +1052,7 @@ differences in the variation among groups even if the true variability is exactl
 equal in the populations. In addition to our direct plotting, there are some 
 diagnostic plots available from the ``lm`` function that can help us more
 clearly assess potential violations of the previous assumptions.
+\index{\texttt{lm()}}
 
 \indent We can obtain a suite of four diagnostic plots by using the ``plot`` function on 
 any linear model object that we have fit. To get all the plots together in four 
@@ -1077,6 +1101,7 @@ and whether that *shows a clear violation of the assumption* of equal variance
 for all observations. Like in hypothesis testing, you can never prove that you've 
 met assumptions based on a plot "looking OK", but you can say that there is no 
 clear evidence that the assumption is violated! 
+\index{assumptions}
 
 (ref:fig3-9) Default diagnostic plots for the Mock Jury full linear model.
 
@@ -1275,8 +1300,12 @@ plot(density(y6),xlab="y6",ylab='Density',main="(l) Density plot of y6",col="blu
 \indent The last issues with assessing the assumptions in an ANOVA relates to 
 situations where the methods are more or less ***resistant***^[A resistant 
 procedure is one that is not severely impacted by a particular violation of an
-assumption. For example, the median is resistant to the impact of an outlier. But the mean is not a resistant measure as changing the value of a single point changes the mean.]
-to violations of assumptions. In simulation studies of the performance of the $F$-test, researchers have found that the
+assumption. For example, the median is resistant to the impact of
+an outlier. But the mean is not a resistant measure as changing the value
+of a single point changes the mean.] to violations of assumptions. 
+\index{resistant}
+In simulation studies of the performance of the $F$-test, researchers 
+have found that the
 parametric ANOVA $F$-test is more resistant to violations of the assumptions of
 the normality and equal variance assumptions if the design is balanced. 
 \index{balanced}
@@ -1292,6 +1321,7 @@ observations in each group to see if they are equal or similar using the
 being able to get counts of observations, especially for cross-classifying
 observations on two variables that is used in Chapter \@ref(chapter5). For just 
 a single variable, we use ``tally(~x, data=...)``:
+\index{\texttt{tally()}}
 
 ```{r,warning=F,message=F}
 require(mosaic)
@@ -1384,8 +1414,10 @@ at a dosage of 2 mg/day. The variability around the means looks to be small
 relative to the differences among the means, so we should expect a small 
 p-value from our $F$-test. The design is balanced as noted above ($n_j=10$ 
 for all six groups) so the methods are some what resistant to impacts from
-non-normality and non-constant variance but we should still assess the patterns in the plots. There is some suggestion of 
-non-constant variance in the plots but this will be explored
+non-normality and non-constant variance but we should still 
+assess the patterns in the plots. 
+\index{resistant}
+There is some suggestion of non-constant variance in the plots but this will be explored
 further below when we can remove the difference in the means and combine all
 the residuals together.
 \index{residuals}
@@ -1424,7 +1456,9 @@ start. We will use a 5% significance level.
         food or could share illness or levels of activity. The animals in one 
         cage might be systematically different from the others and this 
         "clustering" of observations would present a potential violation of the
-        independence assumption. If the experiment had the animals in separate 
+        independence assumption. 
+        
+            If the experiment had the animals in separate 
         cages, there is no clear dependency in the design of the study and we can
         assume^[In working with researchers on hundreds of projects, our experience has been that we often require many conversations to discover all the potential sources of issues in data sets, especially related to assessing independence of the observations.] that there is no problem with this assumption. 
         
@@ -1466,9 +1500,8 @@ start. We will use a 5% significance level.
     anova(m2)
     ```
 
-\newpage
 
-4. **Find the p-value**:
+4. **Find the p-value**:\index{p-value}
 
     * There are two options here, especially since it seems that our assumptions about 
     variance and normality are not violated (note that we do not say "met" -- we just have 
@@ -1478,7 +1511,8 @@ start. We will use a 5% significance level.
     * The parametric approach is easiest -- the p-value comes from the previous 
     ANOVA table as ``< 2e-16``. First, note that this is in scientific notation 
     that is a compact way of saying that the p-value here is $2.2*10^{-16}$ or
-    0.00000000000000022. When you see ``2.2e-16`` in R output, it also means
+    0.00000000000000022.\index{p-value!zero}
+    When you see ``2.2e-16`` in R output, it also means
     that the calculation is at the numerical precision limits of the computer. 
     What R is really trying to report is that this is a very small number. 
     **When you encounter p-values that are smaller than 0.0001, you should just
@@ -1506,7 +1540,8 @@ start. We will use a 5% significance level.
     abline(v=Tobs, col="red", lwd=3)
     ```
     
-    * **The permutation p-value was reported as 0. This should be reported as 
+    * **The permutation p-value was reported as 0.\index{p-value!zero}
+    This should be reported as 
     p-value < 0.001** since we did 1,000 permutations and found that none of the
     permuted $F$-statistics, $F^*$, were larger than the observed $F$-statistic
     of 41.56. The permuted results do not exceed 6 as seen in Figure 
@@ -1669,11 +1704,11 @@ possible to consider situations where millions of tests are
 considered so these are real issues to be concerned about in many situations.
 Researchers want to make sure that when they report a "significant" result that
 it is really likely to be a real result and will show up as a difference in the 
-next data set they collect.^[Some researchers are now collecting multiple data 
+next data set they collect^[Some researchers are now collecting multiple data 
 sets to use in a single study and using one data set to identify interesting 
 results and then using a validation or test data set that they withheld from 
 initial analysis to try to verify that the first results are also present in that 
-second data set. This also has problems but the only way to develop an understanding of a process is to look across a suite of studies and learn from that accumulation of evidence.] 
+second data set. This also has problems but the only way to develop an understanding of a process is to look across a suite of studies and learn from that accumulation of evidence.]. 
 
 (ref:fig3-18) Plot of family-wise error rate as the number of tests performed 
 increases. Dashed line indicates 0.05. 
@@ -1691,6 +1726,8 @@ $J$ choose 2, $\begin{pmatrix}J\\2\end{pmatrix}$, to get the number of unique pa
 size 2 that we can make out of $J$ individual treatment levels. We don't need to 
 explore the combinatorics formula for this, as the ``choose`` function in R can give us the 
 answers:
+
+\newpage
 
 ```{r}
 choose(3,2)
@@ -1921,8 +1958,6 @@ function, the ``level`` option is the confidence level and for the ``cld``, it i
 family-wise significance level. Note that 90% confidence corresponds to a 10% 
 significance level. 
 
-\newpage
-
 ```{r}
 confint(Tm2, level=0.9)
 ```
@@ -2017,7 +2052,7 @@ data=`r colFmt("DATASETNAME","red")`)**
     
     * Here it is used to fit the reference-coded One-Way ANOVA model with Y as the 
     response variable and X as the grouping variable, storing the estimated model 
-    object in MODELNAME. 
+    object in MODELNAME. \index{\texttt{lm()}|textbf}
 
 * **`r colFmt("MODELNAME","red")` <- lm(`r colFmt("Y","red")`~`r colFmt("X","red")`-1,
 data=`r colFmt("DATASETNAME","red")`)**
@@ -2041,7 +2076,7 @@ data=`r colFmt("DATASETNAME","red")`)**
 df2=`r colFmt("DENOMDF","red")`, lower.tail=F)**
 
     * Finds the p-value for an observed $F$-statistic with NUMDF and DENOMDF degrees 
-    of freedom. 
+    of freedom. \index{\texttt{pf()}|textbf}
 
 * **par(mfrow=c(2,2)); plot(`r colFmt("MODELNAME","red")`)**
 
@@ -2052,7 +2087,7 @@ df2=`r colFmt("DENOMDF","red")`, lower.tail=F)**
     
     * Requires the ``effects`` package be loaded. 
 
-    * Plots the estimated model component.
+    * Plots the estimated model component. \index{\texttt{allEffects()}|textbf}
     
 * **Tm2 <- glht(`r colFmt("MODELNAME","red")`, linfct=mcp(`r colFmt("X","red")`="Tukey"));
 confint(Tm2); plot(Tm2); cld(Tm2)**

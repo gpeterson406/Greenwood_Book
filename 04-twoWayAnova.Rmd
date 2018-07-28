@@ -222,6 +222,7 @@ pt$brand <- factor(pt$brand)
 The data set contains five observations per combination of treatment levels as
 provided by the ``tally`` function. To get counts for combinations of the 
 variables, use the general formula of ``tally(x1~x2, data=...)`` -- noting that the  order of ``x1`` and ``x2`` doesn't matter here:
+\index{\texttt{tally()}}
 
 ```{r}
 require(mosaic)
@@ -233,7 +234,9 @@ and ``Drops`` [(*B1*, 10), (*B1*, 20), (*B1*, 30), (*B2*, 10), (*B2*, 20),
 (*B2*, 30)] are $n_{jk} = 5$ for $j^{th}$ level of ``Brand`` ($j=1, 2$) and 
 $k^{th}$ level of ``Drops`` ($k=1, 2, 3$). The ``tally`` function gives us a 
 ***contingency table*** with $R = 2$ rows (*B1*, *B2*) and $C = 3$ columns 
-(10, 20, and 30). We'll have more fun with $R$ by $C$
+(10, 20, and 30).
+\index{contingency table}
+We'll have more fun with $R$ by $C$
 tables in Chapter \@ref(chapter5) -- here it helps us to see the sample size in 
 each combination of factor levels. The ``favstats`` function also helps us 
 dig into the results for all combinations of factor levels. The notation 
@@ -295,6 +298,7 @@ responses (y-axis) versus levels of one predictor variable on the x-axis,
 adding points and separate lines for each level of the other predictor variable. Because 
 we don't like any of the available functions in R, we wrote our own function, 
 called ``intplot`` that you can download using:
+\index{\texttt{intplot()}}
 
 ```{r}
 source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions.R")
@@ -380,6 +384,7 @@ water levels increase (left to right, 10 to 20 to 30 drops), the differences
 between the two brands decrease. Of the two versions, Figure \@ref(fig:Figure4-2)
 is probably easier to read here. Sometimes it is nice to see the interaction plot made both ways simultaneously, so you can also use the `intplotarray` function, which provides Figure \@ref(fig:Figure4-4). This plot also adds beanplots to the off-diagonals so you can explore the main effects of each variable, if that is reasonable.
 \index{main effects}
+\index{\texttt{intplotarray()}}
 
 The interaction plots can able to be used to 
 identify the best and worst mean responses for combinations of the treatment 
@@ -721,6 +726,7 @@ interaction hypothesis test. To fit the interaction model using ``lm``,
 the general formulation is ``lm(y~x1*x2, data=...)``. The
 order of the variables doesn't matter and the most important part of the model,
 to start with, relates to the interaction of the variables. 
+\index{\texttt{lm()}}
 
 \indent The ANOVA table output
 shows the results for the interaction model obtained by running the ``anova``
@@ -734,6 +740,7 @@ observe a difference in the $\omega_{jk}\text{'s}$ like we did or more
 extreme if the $\omega_{jk}\text{'s}$ really were all 0. So it seems that the interaction probably is not needed. Note that for the interaction 
 model components, R presents them with a colon, ``:``, between the variable 
 names.
+\index{\texttt{anova()}}
 
 ```{r}
 m1 <- lm(responses~brand*drops, data=pt)
@@ -750,6 +757,7 @@ displayed in Figure \@ref(fig:Figure4-7), which looks very similar to our
 previous interaction plot. The only difference is that this comes from model 
 that assumes equal variance and these plots show 95% confidence intervals 
 for the means instead of the 1 standard error used above that was calculated using the variance of the observations at each combination of levels. 
+\index{\texttt{allEfects()}}
 
 (ref:fig4-7) Plot of estimated results of interaction model for the paper towel performance data. 
 
@@ -768,11 +776,12 @@ formula involves a "+" instead of a "``*``" between the explanatory variables.
 m2 <- lm(responses~brand+drops, data=pt)
 ```
 
-\newpage
+\index{\texttt{anova()}}
 
 ```{r}
 anova(m2)
 ```
+
 
 The p-values for the main effects of ``brand`` and ``drops`` change slightly from the
 results in the interaction model due to changes in the $\text{MS}_E$ from
@@ -823,7 +832,9 @@ conditional on any other terms at the same level of the model and match the
 hypotheses written out earlier in this section. To get the "correct" ANOVA
 results, the ``car`` (@R-car, @Fox2011) package is required. We use the 
 ``Anova`` function on our linear models from here forward to get the "right" 
-tests in our ANOVA tables^[The ``anova`` results are not wrong, just not what we want.]. Note how the case-sensitive nature of R code shows 
+tests in our ANOVA tables^[The ``anova`` results are not wrong, just not what we want.].
+\index{R packages!\textbf{car}}
+Note how the case-sensitive nature of R code shows 
 up in the use of the capital-A ``Anova`` function instead of the ``anova`` 
 function used previously. In this case, because the design was balanced, the
 results are the same using either function. Observational studies rarely
@@ -838,6 +849,7 @@ longer can be applied, but it is a small sacrifice to get each test after
 adjusting for all other variables^[Actually, the tests are only conditional 
 on other main effects if Type II Sums of Squares are used for an interaction 
 model.].
+\index{\texttt{Anova()}}
 
 ```{r, warning=F,message=F}
 require(car)
@@ -972,7 +984,9 @@ categorical variables the correct way, we should use the ``factor``
 function on any variables that are categorical but are coded numerically in the
 data set. The following code creates a new variable called ``dosef``
 using the ``factor`` function that will help us obtain correct results from the linear 
-model. The re-run of the ANOVA table provides the correct analysis and the 
+model.
+\index{\texttt{factor()}}
+The re-run of the ANOVA table provides the correct analysis and the 
 expected $df$ for the two rows of output involving ``dosef``:
 
 ```{r}
@@ -1022,6 +1036,8 @@ the interaction had been dropped, we would have reported the test results for th
 interaction, then re-fit the additive model and used it to explore the main effect
 tests and estimates for *Dose* and *Delivery method*.
 
+\newpage
+
 1. **Hypotheses:**
 
     * $H_0$: No interaction between *Delivery method* and *Dose* on odontoblast
@@ -1029,8 +1045,6 @@ tests and estimates for *Dose* and *Delivery method*.
     
         $\Leftrightarrow$ All $\omega_{jk}\text{'s}=0$.
     
-    \newpage
-
     * $H_A$: Interaction between *Delivery method* and *Dose* on odontoblast
     growth in population of guinea pigs 
     
@@ -1083,6 +1097,7 @@ tests and estimates for *Dose* and *Delivery method*.
     * The ANOVA $F$-test p-value of 0.0219 for the interaction.
     
     * To find this p-value directly in R from the test statistic value and distribution, we can use the ``pf`` function.
+    \index{\texttt{pf()}}
     
     ```{r}
     pf(4.107, df1=2, df2=54, lower.tail=F)
@@ -1181,6 +1196,7 @@ Figure \@ref(fig:Figure4-12). Sometimes it is hard to see the letters and so
 there is also a ``cldshift=...`` option to move the letters up or down, here a 
 value of 1 seemed to work. 
 \index{interaction plot}
+\index{\texttt{intplot}}
 
 ```{r eval=F}
 intplot(len~supp*dose, data=ToothGrowth, col=c(1,2), cldshift=1,
@@ -1199,7 +1215,9 @@ dosages, OJ is clearly better than VC by about 10 microns of growth on average.
 In this section, the analysis of a survey of $N=464$ randomly sampled
 adults will be analyzed from a survey conducted by @Lea1995
 and available in the ``debt`` data set from the ``faraway`` package 
-[@R-faraway]. The subjects responded to a variety of questions
+[@R-faraway].
+\index{R packages!\textbf{faraway}}
+The subjects responded to a variety of questions
 including whether they buy cigarettes (``cigbuy``: 0 if
 no, 1 if yes), their housing situation (``house``: 1 = rent, 2 = mortgage,
 and 3 = owned outright), their income group (``incomegp``: 1 =
@@ -1282,7 +1300,6 @@ barely have enough information to proceed (the smallest $n_{jk}$ is 8 for
 income group 4 that buys cigarettes). We have a very unbalanced design
 with counts between 8 and 51 in the different combinations. 
 
-\newpage
 
 ```{r}
 tally(cigbuy~incomegp, data=debtc)
@@ -1332,6 +1349,8 @@ par(mfrow=c(2,2))
 plot(debt1)
 ```
  
+\newpage
+
 1. **Hypotheses (Two sets apply when the additive model is the focus!):**
 
     * $H_0$: No difference in means for ``prodebt`` for income groups in 
@@ -1343,9 +1362,7 @@ plot(debt1)
     population, given cigarette buying in model 
     
         $\Leftrightarrow$ Not all $\tau_j\text{'s} = 0$ in additive model. 
-    
-    \newpage
-    
+
     * $H_0$: No difference in means for ``prodebt`` for cigarette 
     buying/not in population, given income group in model </span>
 
@@ -1509,11 +1526,15 @@ buying status on the x-axis.
 ```{r Figure4-17,fig.cap="(ref:fig4-17)",echo=F,fig.width=6,fig.height=3.5}
 par(mfrow=c(1,2))
 old.par <- par(mai=c(0.85,1,0.5,0.25))
-intplot(jitter(fitted(debt1r))~cigbuy*incomegp,data=debtc,col=c(1,3),
+debt1r_fitted_jitter <- jitter(fitted(debt1r))
+intplot(debt1r_fitted_jitter~cigbuy*incomegp,data=debtc,col=c(1,3),
         lwd=2,main="(a)",ylab="Mean of ProDebt",xlim=c(0.8,7),cex.leg=0.75)
-intplot(jitter(fitted(debt1r))~incomegp*cigbuy,data=debtc,lwd=2,
+debt1r_fitted_jitter <- jitter(fitted(debt1r))
+intplot(debt1r_fitted_jitter~incomegp*cigbuy,data=debtc,lwd=2,
         main="(b)",ylab="Mean of ProDebt",xlim=c(0.8,3),cex.leg=0.75)
 ```
+
+\newpage
 
 **In general, we proceed through the following steps in any 2-WAY ANOVA situation:**
 
@@ -1607,6 +1628,7 @@ statistical evidence related to an interaction between ``Brand`` and
 ``Drops``. A problem will arise in trying to form the ANOVA table as you 
 would see this when you run the ``anova``^[We switched back to the ``anova`` function here as the ``Anova`` function only reports ``Error in Anova.lm(lm(responses ~ dropsf * brand, data = ptR)) : 
   residual df = 0``, which is fine but not as useful for understanding as what ``anova`` provides.] function on the interaction model:
+\index{\texttt{anova()}}
 
 \small
 
@@ -1754,8 +1776,6 @@ then eventually incorporating both categorical and quantitative predictor
 variables. The methods in Chapter \@ref(chapter8) are actually quite similar 
 to those considered here, so the better you understand these models, the easier that material will be master. 
 
-\newpage
-
 ## Summary of important R code	{#section4-8}
 
 The main components of R code used in this chapter follow with components to 
@@ -1770,14 +1790,14 @@ data=`r colFmt("DATASETNAME","red")`)**
     
     * Provides the counts of observations in each combination of categorical 
     predictor variables A and B, used to check for balance and understand sample 
-    sizes in each combination. 
+    sizes in each combination. \index{\texttt{tally()}|textbf}
     
 * **`r colFmt("DATASETNAME","red")`&#36;`r colFmt("VARIABLENAME","red")` ``<-`` 
 factor(`r colFmt("DATASETNAME","red")`&#36;`r colFmt("VARIABLENAME","red")`)**
 
     * Use the ``factor`` function on any numerically coded
     explanatory variable where the numerical codes represent levels of a
-    categorical variable. 
+    categorical variable. \index{\texttt{factor()}|textbf}
     
 * **intplot(`r colFmt("Y","red")`~`r colFmt("A","red")```*```r colFmt("B","red")`,
 data=`r colFmt("DATASETNAME","red")`)**
@@ -1786,7 +1806,7 @@ data=`r colFmt("DATASETNAME","red")`)**
     
         ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions.R")``
     
-    * Provides interaction plot.
+    * Provides interaction plot. \index{\texttt{intplot()}|textbf}
     
 * **intplotarray(`r colFmt("Y","red")`~`r colFmt("A","red")```*```r colFmt("B","red")`,
 data=`r colFmt("DATASETNAME","red")`)**
@@ -1796,6 +1816,7 @@ data=`r colFmt("DATASETNAME","red")`)**
         ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions.R")``
     
     * Provides interaction plot array that makes interaction plots switching explanatory variable roles and makes beanplots of the main effects.
+    \index{\texttt{intplotarray()}|textbf}
     
 * **`r colFmt("INTERACTIONMODELNAME","red")` ``<-`` 
 lm(`r colFmt("Y","red")`~`r colFmt("A","red")```*```r colFmt("B","red")`,
@@ -1822,14 +1843,16 @@ data=`r colFmt("DATASETNAME","red")`)**
     * Generates model summary information including the estimated model coefficients, 
     SEs, t-tests, and p-values. 
 
-* **Anova(`r colFmt("MODELNAME","red")`)**
+* **Anova(`r colFmt("MODELNAME","red")`)** 
 
     * Requires the ``car`` package to be loaded.
     
     * Generates a Type II Sums of Squares ANOVA table that is useful for 
     both additive and interaction models, but it most important to use 
     when working with the additive model as it provides inferences for 
-    each term conditional on the other one. 
+    each term conditional on the other one. \index{\texttt{Anova()}|textbf}
+
+\newpage
 
 * **par(mfrow=c(2,2)); plot(`r colFmt("MODELNAME","red")`)**
 
@@ -1841,6 +1864,7 @@ data=`r colFmt("DATASETNAME","red")`)**
     * Requires the ``effects`` package be loaded. 
 
     * Plots the results from the estimated model.
+    \index{\texttt{allEffects()|textbf}}
 
 
 ## Practice problems	{#section4-9}
@@ -1854,7 +1878,7 @@ Algebra courses, Geometry, Trigonometry, Advanced Mathematics, and Beginning
 Calculus. These data were generated from summary statistics for one particular
 form of the test as reported by @Doolittle1989. The source of this version of
 the data set is @Ramsey2012 and the ``Sleuth2`` package 
-[@R-Sleuth2]. 
+[@R-Sleuth2]. \index{R packages!\textbf{Sleuth2}}
 First install and then load that package. 
 
 ```

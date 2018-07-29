@@ -180,7 +180,9 @@ functionality, we can load an R
 \index{import data}
 package that contains the data, making for easy access to this data set. The
 package called ``heplots`` [@R-heplots] contains a data set called ``MockJury`` 
-that contains the results of the study. We also rely on the R package called 
+that contains the results of the study.
+\index{R packages!\textbf{heplots}}
+We also rely on the R package called 
 ``mosaic`` [@R-mosaic] that was introduced previously. First (but only once), 
 you need to install both packages, which can
 be done either using the Packages tab in the lower right panel of RStudio or
@@ -221,6 +223,7 @@ can find out more about the data set in a couple of ways. First,
 we can use the ``View`` function to provide a spreadsheet type of display 
 in the upper left panel. Second, we can use the ``head`` and ``tail`` 
 functions to print out the beginning and end of the data set.  
+\index{R packages!\textbf{tibble}}
 
 ```{r eval=F}
 require(tibble)
@@ -1663,7 +1666,7 @@ $$s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}.$$
 The $t$-statistic keeps the important comparison between the means in the
 numerator that we used before and standardizes (re-scales) that difference so
 that $t$ will follow a $t$-distribution
-\index{t-distribution}
+\index{@$t$-distribution}
 (a parametric 
 \index{parametric}
 "named" distribution) if 
@@ -1752,7 +1755,7 @@ comparing the two potential test statistics, the procedure that assumes equal
 variances has a complicated denominator (see the formula above for $t$ 
 involving $s_p$) but a simple formula for ***degrees of freedom*** (***df***)
 \index{degrees of freedom!t-distribution}
-\index{t-distribution}
+\index{@$t$-distribution}
 for the $t$-distribution ($df=n_1+n_2-2$) that approximates the
 distribution of the test statistic, $t$, under the null hypothesis. The 
 procedure that assumes unequal variances has a simpler test statistic and a 
@@ -1781,7 +1784,7 @@ legend("left",legend=c("t(2)","t(10)","t(20)","Normal"),col=c("black","grey","bl
 \indent If the assumptions for the equal variance $t$-test are met and the null 
 hypothesis is true, then the sampling distribution of the test statistic should 
 follow a $t$-distribution
-\index{t-distribution}
+\index{@$t$-distribution}
 with $n_1+n_2-2$ degrees of freedom. The ***t-distribution*** is a bell-shaped curve that is more spread out for smaller 
 values of degrees of freedom as shown in Figure \@ref(fig:Figure2-13). The
 $t$-distribution looks more and more like a ***standard normal distribution***
@@ -1795,7 +1798,7 @@ $t$-distribution looks more and more like a ***standard normal distribution***
 we need to calculate the 
 test statistic and $df$, then look up the areas in the tails of the 
 $t$-distribution
-\index{t-distribution}
+\index{@$t$-distribution}
 relative to the observed $t$-statistic. We'll learn how to use 
 R to do this below, but for now we will allow the ``t.test`` function to take 
 care of this. The ``t.test`` function uses our formula notation (``Years~Attr``) 
@@ -1855,7 +1858,7 @@ pt(-2.1702, df=73, lower.tail=T)
 
 And we can double it to get the p-value that ``t.test`` provided earlier, because 
 the $t$-distribution is symmetric:
-\index{t-distribution}
+\index{@$t$-distribution}
 
 ```{r}
 2*pt(-2.1702, df=73, lower.tail=T)
@@ -2391,7 +2394,7 @@ in later chapters. The parametric confidence interval is called the
 ***equal variance, two-sample t confidence interval*** and additionally 
 assumes that the populations 
 being sampled from are normally distributed. It leads to using a $t$-distribution
-\index{t-distribution}
+\index{@$t$-distribution}
 to form the interval. The output from the ``t.test`` function provides the 
 parametric 95% confidence interval calculated for you:
 
@@ -2795,6 +2798,7 @@ missing responses and the following code will produce ``favstats`` with the
 missing values and then provide a data set that by 
 applying the ``na.omit`` function removes any observations with missing 
 values. 
+\index{R packages!\textbf{mosaicData}}
 
 ```
 require(mosaicData)

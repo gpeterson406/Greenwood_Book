@@ -452,7 +452,7 @@ One-Way ANOVA model and getting estimates from output but still hasn't
 addressed how to assess evidence related to whether the observed differences 
 in the means among the groups is "real". In this section, we develop what is 
 called the ***ANOVA F-test*** 
-\index{F-test}
+\index{@$F$-test}
 that provides a method of aggregating the 
 differences among the means of 2 or more groups and testing our null hypothesis 
 of no difference in the means vs the alternative. In order to develop the test, 
@@ -834,7 +834,7 @@ larger than the $\text{MS}_E$, the $F$-statistic will provide evidence against
 the null hypothesis. The "size" of the $F$-statistic is formalized by finding the
 p-value. The $F$-statistic, if assumptions discussed below are met and we assume 
 the null hypothesis is true, follows what is called an $F$-distribution.
-\index{F-distribution}
+\index{@$F$-distribution}
 The 
 ***F-distribution*** is a right-skewed distribution whose shape is defined by what
 are called the ***numerator degrees of freedom*** ($J-1$) and the
@@ -1199,6 +1199,7 @@ be smaller (maybe 2.5) if the distribution was normal. Put together, this patter
 in the QQ-plot suggests that the left tail is too compacted (too short) and 
 the right tail is too spread out -- this is the right skew we identified from the
 histogram and density curve! 
+\index{R packages!\textbf{car}}
 
 (ref:fig3-11) QQ-plot of residuals from Mock Jury linear model.
 
@@ -1448,6 +1449,7 @@ start. We will use a 5% significance level.
         * $\boldsymbol{H_A:} \textbf{ Not all } \boldsymbol{\tau_j} \textbf{ equal 0}$
         
 2. **Validity conditions**:
+\index{validity conditions!One-Way ANOVA}
 
     * Independence:
     
@@ -1774,7 +1776,9 @@ Chapter \@ref(chapter2). The formula otherwise is very similar to the one used i
 \indent We will use the ``confint``, ``cld``, and ``plot`` functions 
 applied to output from the ``glht`` function (all from the ``multcomp`` package; 
 @Hothorn2008, [@R-multcomp]) to easily get the required comparisons from our 
-ANOVA model. Unfortunately, its code format is a little complicated -- but there are 
+ANOVA model.
+\index{R packages!\textbf{multcomp}}
+Unfortunately, its code format is a little complicated -- but there are 
 just two places to modify the code, by including the model name and after ``mcp`` 
 (stands for *multiple comparisons*) in the ``linfct`` option, you need to include the
 explanatory variable name as ``VARIABLENAME="Tukey"``. The last part is to get the 

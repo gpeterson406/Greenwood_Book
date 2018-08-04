@@ -1002,7 +1002,7 @@ question(s).
 
 With more than one variable, we now have many potential models that we could
 consider.
-\index{model!MLR!comparision of}
+\index{model!MLR!comparison of}
 We could include only one of the predictors, all of them, or
 combinations of sets of the
 variables. For example, maybe the model that includes *Elevation* does not "need"
@@ -1191,7 +1191,7 @@ modeling situations; that measure is called the ***AIC***.
 ## General recommendations for MLR interpretations and VIFs	{#section8-5}
 
 There are some important issues to remember^[This section was inspired by a
-similar section from De Veaux, Velleman, and Bock (2011).] when interpreting
+similar section from @DeVeaux2011.] when interpreting
 regression models that can result in common mistakes. 
 
 * **Don't claim to "hold everything constant" for a single individual**:
@@ -3909,7 +3909,7 @@ run time was found -- maybe we can replace the treadmill test result with a
 combined prediction built using a few variables using the MLR techniques. The
 following code will get us re-started in this situation. 
 
-```
+```r
 treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv")
 tm1 <- lm(TreadMillOx~RunTime, data=treadmill)
 ```
@@ -3958,7 +3958,7 @@ into low, middle, and high for those observed. The scatterplot lets you
 explore whether the relationship between treadmill oxygen and run time might 
 differ across the age groups. 
 
-```
+```r
 treadmill$Ageb <- cut(treadmill$Age, breaks=c(37,44.5,50.5,58))
 summary(treadmill$Ageb)
 require(car)

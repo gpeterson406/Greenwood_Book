@@ -357,7 +357,7 @@ assigned to contrast with having those variables interacting in the model.
 It is the one place in the book where we use "effects" without worrying about random 
 assignment.].
 \index{main effects}
-\index{model!main efects}
+\index{model!main effects}
 Main effects are much like the results we found in 
 Chapter \@ref(chapter3) where we can compare
 means across levels of a single variable except that there are results for two
@@ -561,7 +561,7 @@ enough to reject that all $\omega_{jk}\text{'s}=0$.
 * $H_0$: No interaction between A and B on response in population $\Leftrightarrow$ All
 $\omega_{jk}\text{'s}=0$.
 
-* $H_A$: Interaction between A and B on reponse in population $\Leftrightarrow$ At least
+* $H_A$: Interaction between A and B on response in population $\Leftrightarrow$ At least
 one $\omega_{jk}\ne 0$.
 
 To perform this test, a new ANOVA $F$-test is required (presented below) but 
@@ -757,7 +757,7 @@ displayed in Figure \@ref(fig:Figure4-7), which looks very similar to our
 previous interaction plot. The only difference is that this comes from model 
 that assumes equal variance and these plots show 95% confidence intervals 
 for the means instead of the 1 standard error used above that was calculated using the variance of the observations at each combination of levels. 
-\index{\texttt{allEfects()}}
+\index{\texttt{allEffects()}}
 
 (ref:fig4-7) Plot of estimated results of interaction model for the paper towel performance data. 
 
@@ -1928,9 +1928,23 @@ these plots? Discuss this assumption in this situation.
 coefficients to determine which of the combinations of levels provides the
 highest estimated average score.
 
-As a second example, consider data based on Figure 3 from Puhan et al. (2005), which is available at http://www.bmj.com/content/332/7536/266. In this study, the researchers were interested in whether didgeridoo playing might impact sleep quality (and therefore daytime sleepinees). They obtained volunteers and they randomized the subjects to either get a lesson or be placed on a waiting list for lessons. They constrained the randomization based on the high/low apnoea and high/low on the Epworth scale of the subjects in their initial observations to make sure they balanced the types of subjects going into the treatment and control groups. They measured the subjects' Epworth value (daytime sleepiness, higher is more sleepy) initially and after four months, where only the treated subjects (those who took lessons) had any intervention. We are interested in whether the mean Epworth scale values changed differently over the four months in the group that got didgeridoo lessons than it did in the control group (that got no lessons). Each subject was measured twice in the data set provided that is available at http://www.math.montana.edu/courses/s217/documents/epworthdata.csv.
+As a second example, consider data based on Figure 3 from @Puhan2006, which is
+available at http://www.bmj.com/content/332/7536/266. In this study, the 
+researchers were interested in whether didgeridoo playing might impact sleep 
+quality (and therefore daytime sleepiness). They obtained volunteers and they
+randomized the subjects to either get a lesson or be placed on a waiting list 
+for lessons. They constrained the randomization based on the high/low apnoea 
+and high/low on the Epworth scale of the subjects in their initial observations 
+to make sure they balanced the types of subjects going into the treatment and 
+control groups. They measured the subjects' Epworth value (daytime sleepiness, 
+higher is more sleepy) initially and after four months, where only the treated
+subjects (those who took lessons) had any intervention. We are interested in 
+whether the mean Epworth scale values changed differently over the four months 
+in the group that got didgeridoo lessons than it did in the control group (that 
+got no lessons). Each subject was measured twice in the data set provided that 
+is available at http://www.math.montana.edu/courses/s217/documents/epworthdata.csv.
 
-```
+```r
 require(readr)
 epworthdata <- read_csv("http://www.math.montana.edu/courses/s217/documents/epworthdata.csv")
 epworthdata$Time <- factor(epworthdata$Time)

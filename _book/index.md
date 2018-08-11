@@ -1,0 +1,56 @@
+--- 
+title: "A Second Semester Statistics Course with R"
+author: "Mark C Greenwood"
+date: 'Version 5.0 -- Published Fall 2018'
+output:
+  bookdown::pdf_book: 
+    keep_tex: yes
+    latex_engine: pdflatex
+  bookdown::html_book:
+    css: toc.css
+    toc: yes
+    mathjax: default
+  bookdown::gitbook: default
+documentclass: book
+link-citations: yes
+github-repo: gpeterson406/Greenwood_Book
+bibliography:
+- references.bib
+- packages.bib
+site: bookdown::bookdown_site
+biblio-style: plainnat
+header-includes:
+- \usepackage{amsmath}
+- \usepackage{color}
+---
+
+
+
+# Cover {-}
+
+![](frontMatter/titlepage_2018.png)<!-- -->
+
+# Acknowledgments {-}
+
+I would like to thank all the students and instructors who have provided input in the development of the current version of STAT 217 and that have impacted the choice of topics and how we try to teach them. Dr. Jim Robison-Cox initially developed this course using R and much of this work retains his initial ideas. The first three editions of the book were co-authored with Dr. Katharine Banner, who had a major impact on all aspects of the book as it exists today. Many years of teaching these topics and helping researchers use these topics has helped to refine how they are presented here. Observing students years after the course has also impacted what we try to teach in the course, trying to prepare these students for the next levels of statistics courses that they might encounter, the next class where they might need or want to use statistics, and for potentially using statistics in the rest of their lives.
+
+I have intentionally taken a first person perspective at times to be able to include stories from some of those interactions to try to help you avoid some of their pitfalls in your current or future usage of statistics. When I take the perspective of "we", I am referring to the team of instructors that help to deliver this material to the students. I would also like to thank my wife, Teresa Greenwood, for allowing me the time and providing support as I repeatedly work on this. Buster Greenwood (our dog) also has played a role in approving everything that I write. I would like to acknowledge Dr. Gordon Bril (Luther College) who introduced me to statistics while I was an undergraduate and Dr. Snehalata Huzurbazar (West Virginia University) that guided me to completing my Master’s and Ph.D. in Statistics and continues to be a valued mentor and friend to me.
+
+The development of this text was initially supported with funding from Montana State University’s Instructional Innovation Grant Program with the grant *Towards more active learning in STAT 217*. This book was born with the goal of having a targeted presentation of topics that we cover (and few that we don’t) that minimizes cost to students and incorporates the statistical software R (and the interface RStudio) from day one and every day after that. The software is a free, open-source platform and so is dynamically changing over time. This has necessitated frequent revisions of the text. 
+
+This is Version 5.0 of the book that contains small changes to correct a few errors and R code changes from version 4.0. Versions 4.0 and 5.0 of the text have been created by Greta Linse Peterson of Great Lines Writing and Consulting Services (https://www.greatlineswriting.com/) who ported the book into RStudio's bookdown format and tried to edit and improve the writing in the text. Any remaining errors are the responsibility of Mark Greenwood. The first chapters of the book were developed during Fall 2013 and the text has continually evolved since its creation. In recent versions, updates of discussions of hypothesis testing have been made to reflect the newest thinking in the statistics education community. As a field, we are transitioning from fixed alpha, null hypothesis significance testing, to graded interpretations of evidence available from p-values. This update tries to further refine the presentation of interpretations of hypothesis testing results. And continues to evolve and respond to changes in the R software that impact the methods and results that are provided here.
+
+\newpage
+
+We have made every attempt to keep costs for the book as low as possible by making it possible for most pages to be printed in black and white. The printed text is available from the Montana State University Bookstore. The text (in full color and with dynamic links) is also available as a free digital download from Montana State University’s ScholarWorks repository at https://scholarworks.montana.edu/xmlui/handle/1/2999. 
+
+You may also access the online version of the book from the couse website:
+http://www.math.montana.edu/courses/s217/documents/_book/.
+
+Enjoy your journey from introductory to intermediate statistics!
+ 
+<img src="frontMatter/creative_commons_license.png" width="44" style="display: block; margin: auto;" />
+
+This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+

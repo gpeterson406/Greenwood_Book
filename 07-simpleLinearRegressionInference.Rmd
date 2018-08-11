@@ -605,7 +605,7 @@ them yearly average maximum temperatures but note that it was a little more
 complicated than that to arrive at the response variable we are analyzing. 
 
 (ref:fig7-5) Scatterplot of average yearly maximum temperatures in 
-Bozeman from 1900 to 2014 with SLR (thin, green) and smoothing (thick, red) lines.
+Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines.
 
 ```{r Figure7-5,fig.cap="(ref:fig7-5)",error=F,message=F,fig.height=5,fig.width=10}
 bozemantemps <- read_csv("http://www.math.montana.edu/courses/s217/documents/BozemanMeanMax.csv")
@@ -613,7 +613,7 @@ summary(bozemantemps)
 length(bozemantemps$Year) #Some years are missing (1905, 1906, 1948, 1950,1995)
 require(car)
 scatterplot(meanmax~Year, data=bozemantemps, 
-            ylab="Mean Maximum Temperature (degrees F)", spread=F,
+            ylab="Mean Maximum Temperature (degrees F)", smooth=list(spread=F),
             main="Scatterplot of Bozeman Yearly Average Max Temperatures")
 ```
 
@@ -1263,9 +1263,9 @@ require(spuRs) # install.packages("spuRs")
 data(ufc)
 ufc <- as.tibble(ufc)
 require(car)
-scatterplot(height.m~dbh.cm, data=ufc[-168,], smooth=T, spread=F,
+scatterplot(height.m~dbh.cm, data=ufc[-168,], smooth=list(spread=F),
             main="Tree height vs tree diameter")
-scatterplot(log(height.m)~dbh.cm, data=ufc[-168,], smooth=T, spread=F,
+scatterplot(log(height.m)~dbh.cm, data=ufc[-168,], smooth=list(spread=F),
             main="log-Tree height vs tree diameter")
 ```
 
@@ -1276,7 +1276,7 @@ require(spuRs) # install.packages("spuRs")
 data(ufc)
 ufc<-as.tibble(ufc)
 require(car)
-scatterplot(height.m~dbh.cm, data=ufc[-168,], smooth=T, spread=F,
+scatterplot(height.m~dbh.cm, data=ufc[-168,], smooth=list(spread=F),
             main="Tree height vs tree diameter")
 ```
 
@@ -1291,7 +1291,7 @@ situation worse.
 (ref:fig7-14) Scatterplot of log(tree height) versus tree diameter.
 
 ```{r Figure7-14,fig.cap="(ref:fig7-14)",echo=F}
-scatterplot(log(height.m)~dbh.cm, data=ufc[-168,], smooth=T, spread=F,
+scatterplot(log(height.m)~dbh.cm, data=ufc[-168,], smooth=list(spread=F),
             main="log-Tree height vs tree diameter")
 ```
 
@@ -1311,7 +1311,7 @@ the original scale.
 (ref:fig7-15) Scatterplot of tree height versus log(tree diameter).
 
 ```{r Figure7-15,fig.cap="(ref:fig7-15)",echo=F}
-scatterplot(height.m~log(dbh.cm), data=ufc[-168,], smooth=T, spread=F,
+scatterplot(height.m~log(dbh.cm), data=ufc[-168,], smooth=list(spread=F),
             main="Tree height vs log-tree diameter")
 ```
 
@@ -1329,8 +1329,7 @@ tree *height* vs *log(diameter)* versions of the variables
 (ref:fig7-16) Scatterplot of log(tree height) versus log(tree diameter).
 
 ```{r Figure7-16,fig.cap="(ref:fig7-16)",warning=F,message=F}
-scatterplot(log(height.m)~log(dbh.cm), data=ufc[-168,], smooth=T,
-            spread=F, main="log-Tree height vs log-tree diameter")
+scatterplot(log(height.m)~log(dbh.cm), data=ufc[-168,], smooth=list(spread=F), main="log-Tree height vs log-tree diameter")
 ```
 
 \indent Economists also like to use $\log(y)\sim \log(x)$ transformations. The 

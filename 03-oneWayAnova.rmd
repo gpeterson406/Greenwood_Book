@@ -1207,7 +1207,7 @@ histogram and density curve!
 ```{r Figure3-11,fig.cap="(ref:fig3-11)",echo=F,fig.height=3,fig.width=6}
 par(mfrow=c(1,2))
 require(car)
-qqPlot(eij, main="QQ-Plot of residuals")
+s <- qqPlot(eij, main="QQ-Plot of residuals",envelope=F)
 plot(density(eij), main="Density plot of residuals", ylab="Density",
      xlab="Residuals")
 ```
@@ -1251,21 +1251,21 @@ require(car)
 par(mfrow=c(4,2))
 #Right skew
 y1 <- scale(rf(75,df1=3,df2=8))
-qqPlot(y1,main="(a) QQ-Plot of y1",envelope=F,pch=19,cex=1.3)
+s <- qqPlot(y1,main="(a) QQ-Plot of y1",envelope=F,pch=19,cex=1.3)
 plot(density(y1),xlab="y1",ylab='Density',main="(b) Density plot of y1",col="blue",xlim=c(-6.5,6.5))
 #Left Skew
 y2 <- scale(-rf(75,df1=3,df2=8))
-qqPlot(y2,main="(c) QQ-Plot of y2",envelope=F,pch=19,cex=1.3)
+s <- qqPlot(y2,main="(c) QQ-Plot of y2",envelope=F,pch=19,cex=1.3)
 plot(density(y2),xlab="y2",ylab='Density',main="(d) Density plot of y2",col="blue",xlim=c(-6.5,6.5))
 
 #t(2)
 y3 <- scale(rt(75,df=4))
-qqPlot(y3,main="(e) QQ-Plot of y3",envelope=F,pch=19,cex=1.3)
+s <- qqPlot(y3,main="(e) QQ-Plot of y3",envelope=F,pch=19,cex=1.3)
 plot(density(y3),xlab="y3",ylab='Density',main="(f) Density plot of y3",col="blue",xlim=c(-6.5,6.5))
 
 #Uniform
 y4 <- scale(runif(75,0,1))
-qqPlot(y4,main="(g) QQ-Plot of y4",envelope=F,pch=19,cex=1.3)
+s <- qqPlot(y4,main="(g) QQ-Plot of y4",envelope=F,pch=19,cex=1.3)
 plot(density(y4),xlab="y4",ylab='Density',main="(h) Density plot of y4",col="blue",xlim=c(-6.5,6.5))
 ```
 
@@ -1288,13 +1288,13 @@ old.par <- par(mai=c(0.75,0.5,0.5,0.5))
 #One normal example
 
 y5 <- scale(rnorm(75))
-qqPlot(y5,main="(i) QQ-Plot of y5",envelope=F,pch=19,cex=1.3)
+s <- qqPlot(y5,main="(i) QQ-Plot of y5",envelope=F,pch=19,cex=1.3)
 plot(density(y5),xlab="y5",ylab='Density',main="(j) Density plot of y5",col="blue",xlim=c(-6.5,6.5))
 
 
 #Another normal example
 y6 <- scale(rnorm(75))
-qqPlot(y6,main="(k) QQ-Plot of y6",envelope=F,pch=19,cex=1.3)
+s <- qqPlot(y6,main="(k) QQ-Plot of y6",envelope=F,pch=19,cex=1.3)
 plot(density(y6),xlab="y6",ylab='Density',main="(l) Density plot of y6",col="blue",xlim=c(-6.5,6.5))
 ```
 

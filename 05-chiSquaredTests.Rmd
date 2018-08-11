@@ -650,7 +650,7 @@ statistic and find
 its distribution under the null hypothesis. The test statistic 
 used with both
 types of tests is called the  $\mathbf{X^2}$ ***statistic***
-(we want to call the statistic X-squared not Chi-squared). The statistic 
+(we want to call the statistic X-square not Chi-square). The statistic 
 compares the
 observed counts in the contingency table to the ***expected counts*** 
 under the null hypothesis, with large differences between what 
@@ -1052,7 +1052,7 @@ since the smallest expected cell count is 6.833 (so all expected counts are larg
 \indent The $\boldsymbol{\chi^2}$-distribution is a right-skewed distribution 
 that starts at 0 as shown in Figure \@ref(fig:Figure5-10). Its shape
 changes as a function of its degrees of freedom. In the contingency 
-table analyses, the ***degrees of freedom*** for the Chi-squared test 
+table analyses, the ***degrees of freedom*** for the Chi-square test 
 are calculated as \index{Chi-Square Test} 
 \index{degrees of freedom!Chi-Square test}
 
@@ -1295,7 +1295,7 @@ based on the voting status in this plot, but, as noted above, sorting on these
 other variables can sometimes help to see other relationships between
 variables. 
 
-(ref:fig5-14) Tableplot of election data with subjects without any missing responses.
+(ref:fig5-14) Tableplot of election data with subjects without any missing responses (complete cases).
 
 ```{r Figure5-14,fig.cap="(ref:fig5-14)", fig.height=5,fig.width=10}
 election2 <- na.omit(election[,c("VOTEF","PARTY","EDUC","SEX")])
@@ -1526,7 +1526,7 @@ from 1 to 5, respectively. Again, the code starts with making sure the
 variables are treated categorically by applying the ``factor`` function. 
 \index{\texttt{factor()}}
 
-(ref:fig5-18) Tableplot of initial cheating and lying data set.
+(ref:fig5-18) Tableplot of initial cheating and lying data set. Note that a few GPAs were missing in the data set.
 
 ```{r Figure5-18,fig.cap="(ref:fig5-18)"}
 require(poLCA)
@@ -1851,7 +1851,7 @@ linear model.
 m1 <- lm(growth~stype, data=apistrat)
 require(car)
 Anova(m1)
-plot(m1, which=2)
+plot(m1, which=2, pch=16)
 ```
 
 \indent One way to get around the normality assumption is to use a method 
@@ -1891,7 +1891,7 @@ tally(~growthcut, data=apistrat)
 ```
 
 \indent Now that we have a categorical response variable, we need to decide which 
-sort of Chi-squared
+sort of Chi-square
 analysis to perform. The sampling design determines the correct analysis as
 always in these situations. The stratified random sample involved samples from
 each of the three populations so a Homogeneity test should be employed. In
@@ -2024,7 +2024,7 @@ violated.
 Chi-square tests can be generally used to perform two types of tests,
 the Independence and Homogeneity
 tests. The appropriate analysis is determined based on the data collection
-methodology. The parametric Chi-squared distribution for which these tests are
+methodology. The parametric Chi-square distribution for which these tests are
 named is appropriate when the expected cell counts are large enough (related to
 having a large enough overall sample). When this condition is violated, the
 permutation approach can provide valuable inferences in these situations in
@@ -2035,7 +2035,7 @@ most situations.
 summary of the results that can also be found in contingency tables. You should
 have learned how to calculate the $X^2$ (X-squared) test statistic
 based on first finding the expected cell counts. Under certain assumptions, it
-will follow a Chi-Squared distribution with $(R-1)(C-1)$ degrees of freedom. When
+will follow a Chi-Square distribution with $(R-1)(C-1)$ degrees of freedom. When
 those assumptions are not met, it is better to use a permutation approach to
 find p-values. Either way, the same statistic is used to test either kind of
 hypothesis, independence or homogeneity. After assessing evidence against the null hypothesis, it is interesting to see which cells in the table

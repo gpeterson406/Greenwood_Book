@@ -550,7 +550,7 @@ scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
 aisR2 <- ais[-c(56,166),c("Ht","Hc","Bfat","Sex")]
 require(car)
 aisR2$Sex <- as.factor(aisR2$Sex)
-scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), reg.line=F, smoother=F,
+scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
             boxplots="xy", main="Scatterplot of Height vs Hematocrit by Sex")
 ```
 
@@ -600,7 +600,7 @@ cor(Hc~Bfat, data=aisR2[aisR2$Sex==1,]) #Females only
 were coded as 0s and females as 1s. 
 
 ```{r Figure6-8,fig.cap="(ref:fig6-8)",echo=F}
-scatterplot(Hc~Bfat|Sex, data=aisR2, pch=c(3,21), reg.line=F, smoother=F,
+scatterplot(Hc~Bfat|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
             boxplots="xy", main="Scatterplot of Body Fat vs Hematocrit by Sex",
             cex.main=1)
 ```
@@ -608,7 +608,7 @@ scatterplot(Hc~Bfat|Sex, data=aisR2, pch=c(3,21), reg.line=F, smoother=F,
 \newpage
 
 ```{r eval=F}
-scatterplot(Hc~Bfat|Sex, data=aisR2, pch=c(3,21), reg.line=F, smoother=F,
+scatterplot(Hc~Bfat|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
             boxplots="xy", main="Scatterplot of Body Fat vs Hematocrit by Sex")
 ```
 
@@ -634,14 +634,14 @@ cor(Bfat~Ht, data=aisR2[aisR2$Sex==1,]) #Females only
 (ref:fig6-9) Scatterplot of athlete's body fat and height by sex.
 
 ```{r Figure6-9,fig.cap="(ref:fig6-9)",echo=F}
-scatterplot(Bfat~Ht|Sex, data=aisR2, pch=c(3,21), reg.line=F, smoother=F,
+scatterplot(Bfat~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
             boxplots="xy", main="Scatterplot of Height vs Body Fat by Sex",
             cex.main=1)
 ```
 
 
 ```{r eval=F}
-scatterplot(Bfat~Ht|Sex, data=aisR2, pch=c(3,21), reg.line=F, smoother=F,
+scatterplot(Bfat~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
             boxplots="xy", main="Scatterplot of Height vs Body Fat by Sex")
 ```
 
@@ -766,6 +766,7 @@ bootstrap confidence interval.
 
 ```{r Figure6-10,fig.cap="(ref:fig6-10)",fig.width=10,fig.height=5}
 quantiles
+par(mfrow=c(1,2))
 hist(Tstar, labels=T, ylim=c(0,550))
 abline(v=Tobs, col="red", lwd=3)
 abline(v=quantiles$quantile, col="blue", lty=2, lwd=3)
@@ -835,7 +836,7 @@ by type of tree.
 require(spuRs) #install.packages("spuRs")
 data(ufc)
 ufc <- as.tibble(ufc)
-scatterplot(height.m~dbh.cm, data=ufc, smooth=F, reg.line=F)
+scatterplot(height.m~dbh.cm, data=ufc, smooth=F, regLine=T)
 ```
 
 Of particular interest is an observation with a diameter around 58 cm and a height
@@ -1410,7 +1411,7 @@ equation -- here between 54 and 60 degrees F seems reasonable.
 estimated regression line. 
 
 ```{r Figure6-18,fig.cap="(ref:fig6-18)",warning=F,message=F}
-scatterplot(loghectares~Temperature, data=mtfires, smoother=T,
+scatterplot(loghectares~Temperature, data=mtfires, regLine=T, smooth=F, spread=F,
             main="Scatterplot with regression line for Area burned vs Temperature")
 ```
 
@@ -2048,7 +2049,7 @@ time to next eruption so they can quickly see it and then get back in their
 cars. Both variables are measured in minutes and the scatterplot in 
 Figure \@ref(fig:Figure6-24)
 shows a moderate to strong positive and relatively linear relationship. We
-added a ***smoothing line*** (red) to this plot. Smoothing lines provide
+added a ***smoothing line*** (dashed line) to this plot. Smoothing lines provide
 regression-like fits but are performed on local areas of the relationship 
 and so can highlight where the relationships
 change and can highlight curvilinear relationships. They can also return
@@ -2081,7 +2082,7 @@ data(geyser)
 geyser <- as.tibble(geyser)
 #Aligns the duration with time to next eruption
 G2 <- tibble(Waiting=geyser$waiting[-1], Duration=geyser$duration[-299]) 
-scatterplot(Waiting~Duration, data=G2, spread=F)
+scatterplot(Waiting~Duration, data=G2, smooth=list(spread=F)) #Adds smoothing line
 ```
 
 \indent The first concern with these data

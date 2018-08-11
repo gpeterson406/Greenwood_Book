@@ -2134,17 +2134,15 @@ summary(SATSex1)
 (ref:fig8-17) Plot of FYGPA vs SATV by Sex of students.
 
 ```{r Figure8-17,fig.cap="(ref:fig8-17)",echo=F,fig.height=5,fig.width=10}
-scatterplot(FYGPA~SATV|SEX, lwd=3, data=satGPA, spread=F,
-            smooth=F, main="Scatterplot of GPA vs SATV by Sex",
-            cex.main=1)
+scatterplot(FYGPA~SATV|SEX, lwd=3, data=satGPA, smooth=list(spread=F),
+            main="Scatterplot of GPA vs SATV by Sex", cex.main=1)
 ```
 
 (ref:fig8-18) Plot of FYGPA vs SATM by Sex of students.
 
 ```{r Figure8-18,fig.cap="(ref:fig8-18)",echo=F,fig.height=5,fig.width=10}
-scatterplot(FYGPA~SATM|SEX, lwd=3, data=satGPA, spread=F,
-            smooth=F, main="Scatterplot of GPA vs SATM by Sex",
-            cex.main=1)
+scatterplot(FYGPA~SATM|SEX, lwd=3, data=satGPA, smooth=list(spread=F),
+            main="Scatterplot of GPA vs SATM by Sex", cex.main=1)
 ```
 
 The ``SEX `` row contains information that the linear model chose *MALE* as
@@ -2356,10 +2354,10 @@ called ``du2``). One would expect that there would be a relationship between the
 upper tolerance levels of the subjects before and after treatment. But
 maybe the treatments impact that relationship? We can use our indicator
 approach to see if the treatments provide a shift to higher tolerances after
-accounting for the relationship between the two measurements^[Models like this with a categorical variable and quantitative variable are often called *ANCOVA* or *analysis of covariance* models but really are just versions of our linear models we've been using throughout this material.]. The scatterplot
+accounting for the relationship between the two measurements^[Models like this with a categorical variable and quantitative variable are often called *ANCOVA* or *analysis of covariance* models but really are just versions of our linear models we've been using throughout this material.]. The scatterplot^[Note that we employed some specific options in the ``legend`` option to get the legend to fit on this scatterplot better. Usually you can avoid this but the ``coords`` option defined a location and the ``columns`` option made it a two column legend.]
 of the results in Figure \@ref(fig:Figure8-21) shows some variation in the
 slopes and the intercepts for the groups although the variation in intercepts
-seems more prominent than differences in slopes. 
+seems more prominent than differences in slopes.  
 
 (ref:fig8-21) Scatterplot of post-treatment decibel tolerance (du2) vs
 pre-treatment tolerance (du1) by treatment level (4 groups). 
@@ -2371,7 +2369,7 @@ require(tibble)
 Headache <- as.tibble(Headache)
 Headache
 scatterplot(du2~du1|treatment, data=Headache, smooth=F, lwd=2,
-            main="Plot of Maximum DB tolerances before and after treatment (by treatment)",
+            main="Plot of Maximum DB tolerances before & after treatment (by treatment)",
             legend=list(coords="topleft",columns=2))
 ```
 

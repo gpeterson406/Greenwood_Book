@@ -502,7 +502,7 @@ chisq.test(table1, correct=F)
 ```
 
 The $X^2$ statistic is 5.97 which, if our assumptions are met, should 
-approximately follow a Chi-squared distribution with $(R-1)*(C-1)=1$ degrees of
+approximately follow a Chi-square distribution with $(R-1)*(C-1)=1$ degrees of
 freedom under the null hypothesis. The p-value is 0.015, suggesting that there
 is moderate to strong evidence against the null hypothesis. We can conclude that there is moderate evidence of a
 difference in the distribution of the responses between the two treated groups
@@ -861,7 +861,7 @@ http://www.math.montana.edu/courses/s217/documents/epworthdata.csv.
 did provide a plot very similar to Figure \@ref(fig:Figure9-12). Since this 
 is last section of the book, I am going to use a new package to make the plot,
 ``qplot`` from the ``ggplot2`` package [@R-ggplot2], that violates one of 
-the rules used to this point - it doesn't have a formula interface.
+the rules used for R functions to this point - it doesn't have a formula interface.
 \index{R packages!\textbf{ggplot2}}
 The ``viridis`` package [@R-viridis] was used to specify the colors in the plot.
 \index{R packages!\textbf{viridis}}
@@ -869,10 +869,8 @@ If you continue much further in learning to use R, you will see the benefits
 of some other functions and styles of functions. You will also likely run into 
 the ``ggplot2`` package, which is part of the "tidyverse" and has been developed 
 to implement sophisticated graphics. For more on this, you can visit
-https://ggplot2.tidyverse.org/ and the related book by Hadley Wickham, who now
-works for R-studio. We could have used ``ggplot2`` to make every graph in the 
-book, but elected to focus on the simpler formula interface that few of these
-functions use. For now, I am going to use it to make Figure
+https://ggplot2.tidyverse.org/ and the related book by Hadley Wickham, who orks for RStudio. We could have used ``ggplot2`` to make every graph in the 
+book, but elected to focus on functions that rely on formula interfaces. For now, I am going to use it to make Figure
 \@ref(fig:Figure9-12) with the ``qplot`` function that allows me to display a 
 line for each subject over the two time points (pre and post) of observation 
 and indicate which group the subjects were assigned to. This allows us to see 
@@ -880,7 +878,7 @@ the variation at a given time across subjects and changes over time, which is
 critical here as this shows clearly why we had a violation of the independence
 assumption in these data. In the plot, you can see that there are not clear differences in the two groups at the "Pre" time but that treated group seems 
 to have most of the lines go down to lower sleepiness ratings and that this is 
-not happening much for the subjects in the control group. 
+not happening much for the subjects in the control group. The violation of the independence assumption is diagnosable from the study design (two observations on each subject). The plot allows us to go further and see that many subjects had similar Epworth scores from pre to post (high in pre, generally high in post) once we account for systemtic changes in the treated subjects.
 
 (ref:fig9-12) Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time.
 
@@ -992,7 +990,7 @@ anova(lme_int)
 
 ```{r eval=F}
 require(effects)
-plot(allEffects(lme_int),multiline=T,ci.style="bars"
+plot(allEffects(lme_int),multiline=T,ci.style="bars")
 ```
 
 \newpage

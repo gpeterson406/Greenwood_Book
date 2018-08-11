@@ -62,7 +62,7 @@ plot" \index{beanplot} to help us see the differences in the observations in the
 
 Part of learning statistics is learning to correctly use the terminology, some of which is used colloquially
 differently than it is used in formal statistical settings. The most commonly
-"misused" statistical term is ***data***. In statistical parlance, we want to note the plurality of
+"misused" statistical term is ***data***. \index{data} \index{datum} In statistical parlance, we want to note the plurality of
 data. Specifically, ***datum*** is a single measurement, possibly on multiple random
 variables, and so it is appropriate to say that "**a datum is...**". 
 Once we move to discussing data, we are now referring to more than one 
@@ -84,7 +84,7 @@ term to refer to the group of observations and this makes it really easy to
 make mistakes on the usage of "data"^[Either try to remember "data is a plural word" or replace "data" with "things" in your sentence and consider whether it sounds right.]. 
 
 \indent It is also really important to note that ***variables*** have to vary --
-if you measure the sex of your subjects but are only measuring females, then you do
+if you measure the level of education of your subjects but all are high school graduates, then you do
 not have a "variable". You may not know if you have real variability in a
 "variable" until you explore the results you obtained. 
 
@@ -107,7 +107,7 @@ prison) pictures of one of three young women. Each picture had previously been
 decided to be either beautiful, average, or unattractive by the researchers. 
 Each "juror" was randomly assigned to one of three levels of this factor
 \index{factor}
-(which is a categorical *predictor* or *explanatory* variable) 
+(which is a categorical *predictor* or *explanatory* variable) \index{explanatory}
 and then each participant rated their
 picture on a variety of traits such as how warm or sincere the woman appeared. 
 Finally, they were told the women had committed a crime (also randomly assigned
@@ -143,9 +143,9 @@ pandoc.table(m,caption="(\\#tab:Table2-1) (ref:tab2-1)", keep.line.breaks = TRUE
 ```
 
 \indent When working with data, we should always start with 
-summarizing the sample size. We will use ***n*** for the 
+summarizing the sample size. We will use ***n*** \index{n} for the 
 number of subjects in the sample and denote the population size (if
-available) with ***N***. Here, the sample size is ***n=114***. In
+available) with ***N***. \index{N} Here, the sample size is ***n=114***. In
 this situation, we do not have a random sample from a population \index{random sampling} 
 (these were volunteers from the population of prisoners at the
 particular prison) so we cannot make inferences from our sample to a larger group. 
@@ -213,7 +213,7 @@ and then repeat trying to load the package you wanted. These are called package 
 data(MockJury)
 ```
 
-\indent Some data sets, like this one, will load in a different data set framework
+Some data sets, like this one, will load in a different data set framework
 called a "data frame" (its class in R is "data.frame"). You can leave it in this
 format but for consistency of output, we will change it to a *tibble* using the
 ``as.tibble`` function in the code that follows. Now there will be a tibble called
@@ -251,12 +251,12 @@ help(MockJury)
 
 The ``help`` function is also useful with functions in R to help you 
 understand options and, at the bottom of the help, 
-see examples of using the function. 
+see examples of using the function. \index{\texttt{help()}|textbf}
 
 \indent With many variables in a data set, it is often useful to get some 
 quick information about all of them; the ``summary`` function provides 
 useful information whether the variables are categorical or 
-quantitative and notes if any values were missing. 
+quantitative and notes if any values were missing. \index{\texttt{summary()}|textbf}
 
 ```{r}
 summary(MockJury)
@@ -268,7 +268,7 @@ providing summary information based on the type of
 variable, either counts by category for categorical variables (``Attr`` 
 and ``Crime``) or the 5-number summary plus the mean for quantitative 
 variables. If present, you would also get a count of missing values that are
-called "NAs" in R. For the first variable, called ``Attr`` in the data.frame 
+called "NAs" in R. \index{NA} For the first variable, called ``Attr`` in the data.frame 
 and that we might more explicitly name *Attractiveness*, we find counts of the 
 number of subjects shown each picture: $37$ out of $114$ viewed the 
 "Unattractive" picture, $38$ viewed "Average", and $39$ viewed "Beautiful". 
@@ -316,7 +316,7 @@ in the results. If the analysis is unaffected by the "unusual" observations,
 then it matters little whether they are dropped or not. If they do affect the
 results, then reporting both versions of results allows the reader to judge the
 impacts for themselves. It is important to remember that sometimes the outliers
-are the most interesting part of the data set. 
+are the most interesting part of the data set. \index{outlier}
 
 \indent Often when statisticians think of distributions of data, we think 
 of the smooth underlying
@@ -324,7 +324,7 @@ shape that led to the data set that is being displayed in the histogram.
 Instead of binning up observations and making bars in the histogram, we can
 estimate what is called a ***density curve*** as a smooth curve 
 that represents the observed distribution of the responses. Density curves can
-sometimes help us see features of the data sets more clearly. 
+sometimes help us see features of the data sets more clearly. \index{density curve}
 
 \indent To understand the density curve, it is useful to initially see 
 the histogram and density curve together. The height of the density curve is scaled 
@@ -366,7 +366,7 @@ default choices for bars in histogram as they are reasonably selected, but we
 can add information on the original observations being included in each bar to
 better understand the choices that ``hist`` is making. In the previous 
 display, we can add what is called a ***rug*** to the plot, where a tick 
-mark is made on the x-axis for each observation. Because the responses 
+mark is made on the x-axis for each observation. \index{rug} Because the responses 
 were provided as whole years (1, 2, 3, ..., 15), we need to use a graphical 
 technique called ***jittering*** to add a little noise^[Jittering typically 
 involves adding random variability to each observation that
@@ -374,7 +374,7 @@ is uniformly distributed in a range determined based on the spacing of the
 observation. This means that if you re-run the ``jitter`` function, the results will change. 
 For more details, type ``help(jitter)`` in the console in RStudio.] to each observation so all the
 observations at each year value do not 
-plot as a single line. In Figure \@ref(fig:Figure2-3), the added tick marks 
+plot as a single line. \index{jitter} In Figure \@ref(fig:Figure2-3), the added tick marks 
 on the x-axis show the approximate locations of the original observations. 
 We can see how there are 3 observations at 15 (all were 15 and the noise 
 added makes it possible to see them all). The limitations of the 
@@ -398,7 +398,7 @@ rug(jitter(MockJury$Years), col="blue", lwd=2)
 distribution of responses across more than one group. We will have two displays
 that will help us make these comparisons. The simplest is 
 the ***side-by-side boxplot***, where a boxplot is displayed for each group 
-of interest using the same y-axis scaling. In R, we can use its ***formula***
+of interest using the same y-axis scaling. \index{boxplot} In R, we can use its ***formula***
 notation to see if the response (``Years``) differs based on the group 
 (``Attr``) by using something like ``Y~X`` or, here, ``Years~Attr``. 
 We also need to tell R where to find the variables -- use the last option in the command, ``data=DATASETNAME`` , to inform R of the tibble to look in 
@@ -421,7 +421,7 @@ boxplot(Years~Attr, data=MockJury)
 
 \indent The "~" (which is read as the *tilde* symbol, which you can find in the
 upper left corner of your keyboard) notation will be used in two ways this 
-semester. The formula use in R employed previously declares that the 
+semester. \index{tilde} The formula use in R employed previously declares that the 
 response variable here is *Years* and the explanatory variable is *Attr*. 
 The other use for "~" is as shorthand for "is distributed as" and is used in
 the context of $Y\sim N(0,1)$, which translates (in statistics) to defining the 
@@ -439,7 +439,7 @@ distribution (more later on the issues this creates!). Remember that
 $\mu$ and $\sigma$ are parameters where 
 $\mu$ ("mu") is our standard symbol for the ***population mean***
 and that $\sigma$ ("sigma") is the symbol of the 
-***population standard deviation***. 
+***population standard deviation***. \index{mean} \index{standard deviation}
 
 ##Beanplots {#section2-2}
 
@@ -525,14 +525,14 @@ almost 2 years in the mean sentence between *Average* and *Unattractive* groups.
 wait until Chapter 3 and the One-Way ANOVA test to fully assess evidence 
 related to some difference among the three groups. For now, we are going to 
 focus on comparing the mean *Years* between *Average* and *Unattractive* groups
--- which is a ***two-independent sample mean*** situation and something you 
+-- which is a ***two independent sample mean*** situation and something you 
 should have seen before. Remember that the "independent" sample part of 
 this refers to observations that are independently observed for the two 
 groups as opposed to the paired sample situation that you may have 
 explored where one observation from the first group is related to an 
 observation in the second group (two measures on the same person (we 
 generically call this "repeated measures")
-or the famous "twin" studies with one twin assigned to each group). 
+or the famous "twin" studies with one twin assigned to each group). \index{two independent sample mean}
 
 \indent Here we are going to use the "simple" two independent group scenario to 
 review some basic statistical concepts and connect two different 

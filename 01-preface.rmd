@@ -36,7 +36,7 @@ methods discussed in the text. As a text primarily designed for a second
 statistics course, it presumes that you have had an introductory statistics
 course. There are now many different varieties of introductory statistics from
 traditional, formula-based courses (called "consensus" curriculum courses) to
-more modern, compute-intensive courses that use randomization ideas to try to
+more modern, computational-intensive courses that use randomization ideas to try to
 enhance learning of basic statistical methods. We are not going to presume that
 you have had a particular "flavor" of introductory statistics or that you had
 your introductory statistics out of a particular text, just that you have had a
@@ -52,9 +52,9 @@ quantitative response, something that you should have seen before.
 or both. As we explore various techniques, look for the identifying characteristics
 of each method -- what type of research questions are being addressed
 (relationships or group differences, for example) and what type of variables
-are being analyzed (quantitative or categorical). ***Quantitative variables*** are made up of numerical measurements that have meaningful units attached to
-them. ***Categorical variables*** take on values that are categories or labels.
-Additionally, you will need to carefully identify the ***response*** and ***explanatory*** variables, where
+are being analyzed (quantitative or categorical). ***Quantitative variables*** \index{quantitative} are made up of numerical measurements that have meaningful units attached to
+them. ***Categorical variables*** \index{categorical} take on values that are categories or labels.
+Additionally, you will need to carefully identify the ***response*** \index{response} and ***explanatory*** \index{explanatory} variables, where
 the study and variable characteristics should suggest which variables should be used
 as the explanatory variables that may explain
 variation in the response variable. Because this is an intermediate statistics
@@ -80,7 +80,7 @@ on the research question and data collection process as well as the types of
 variables measured. 
 
 \indent Figure \@ref(fig:Figure1-1) frames the topics we will discuss. Taking a broad
-vision of the methods we will consider, 
+view of the methods we will consider, 
 there are basically two scenarios -- one when the response is quantitative and
 one when the response is categorical. Examples of quantitative responses we will
 see later involve *suggested jail sentence* (in years) and *body fat* (percentage). 
@@ -152,7 +152,7 @@ drug (vs taking a ***placebo***^[A ***placebo*** is a treatment level designed t
 mimic the potentially efficacious level(s) but that can have no actual effect. The
 ***placebo effect*** is the effect that thinking that an effective treatment was
 received has on subjects. There are other related issues in performing experiments
-like the ***Hawthorne*** or observer ***effect*** where subjects modify behavior
+like the ***Hawthorne*** or ***observer effect*** where subjects modify behavior
 because they are being observed.])
 has an ***effect***^[We will reserve the term "effect" for situations where we could
 potentially infer causal impacts on the response of the explanatory variable which
@@ -213,7 +213,7 @@ that can be made. The ***scope of inference*** from the bottom of Figure
 of the study -- ***random assignment*** and ***random sampling***.
 \index{random assignment} \index{random sampling} In a given
 situation, you need to use the description of the study to decide if the
-explanatory variable was randomly assigned to study units (this allows for ***causal inferences*** if differences are detected) or not (so no causal statements
+explanatory variable was randomly assigned to study units (this allows for ***causal inferences*** \index{causal effect} if differences are detected) or not (so no causal statements
 are possible). As an example, think about two studies, one where students are
 randomly assigned to either get tutoring with their statistics course or not
 and another where the students are asked at the end of the semester whether
@@ -238,7 +238,7 @@ a population -- conclusions would be about causal impacts that would happen in t
 population. 
 
 \indent By the end of this material, you should have some basic R skills and abilities to create basic ANOVA and
-Regression models, as well as to handle Chi-squared testing situations. 
+Regression models, as well as to handle Chi-square testing situations. 
 Together, this should prepare you for future statistics courses or for other
 situations where you are expected to be able to identify an appropriate
 analysis, do the calculations for a given data set, and then effectively
@@ -598,7 +598,7 @@ edit code -- then save the file as something like "MyFileName.R" in your preferr
 Saving your code will mean that you can return to where you
 were working last by simply re-running the saved script file. With code in the
 script window, you can place the cursor on a line of code or highlight a chunk
-of code and hit the "Run" button^[You can also use Ctrl-R if you like hot keys.] 
+of code and hit the "Run" button^[You can also use Ctrl+Enter if you like hot keys.] 
 on the upper part of the panel. It will appear
 in the console with results just like what you would obtain if you typed it
 after the command prompt and hit enter for each line. Figure \@ref(fig:Figure1-4) 
@@ -628,7 +628,7 @@ save code, and the ``treadmill`` data set loaded, we can (finally!) start to
 summarize the results of the study. The ``treadmill`` object is what R calls a 
 ***tibble***^[Tibbles are R are objects that can contain both 
 categorical and quantitative variables on your $n$ subjects with a name for each
-variable that is also the name of each column in a matrix. Each subject is a 
+variable that is also the name of each column in a matrix. \index{tibble} Each subject is a 
 row of the data set. The name (supposedly) is due to the way *table* sounds in the accent of a particularly influential developer at RStudio who is from New Zealand.] and contains columns corresponding to each variable in 
 the spreadsheet. Every
 function in R will involve specifying the variable(s) of interest and how you
@@ -658,7 +658,7 @@ And now we know that the average running time for 1.5 miles for the subjects in 
 mean and SD are only appropriate summaries if the distribution is roughly
 ***symmetric*** (both sides of the distribution are approximately the same shape and length). The 
 ``mosaic``  package provides a useful function called ``favstats`` that provides 
-the mean and SD as well as the ***5 number summary***: 
+the mean and SD as well as the ***5 number summary***: \index{5 number summary}
 the minimum (``min``), the first quartile (``Q1``, the 25^th^ percentile), 
 the median (50^th^ percentile), the third quartile (``Q3``, the 75^th^
 percentile), and the maximum (``max``). It also provides the number of 
@@ -685,8 +685,8 @@ information about how similar all the subjects in this study were. Researchers o
 \indent A graphical display of these results will help us to assess the shape 
 of the distribution of run times -- including considering the potential for the presence of a ***skew*** (whether the right or left tail of the distribution 
 is noticeably more spread out, with left skew meaning that the left tail 
-is more spread out than the right tail) and ***outliers*** 
-(unusual observations). A ***histogram*** is a good place to start.
+is more spread out than the right tail) \index{skew} and ***outliers*** \index{outlier}
+(unusual observations). A ***histogram*** \index{histogram} is a good place to start.
 Histograms display connected bars with counts of observations defining
 the height of bars based on a set of bins of values of the quantitative variable. 
 We will apply the ``hist`` function to the ``RunTime`` variable, which produces 
@@ -696,7 +696,7 @@ Figure \@ref(fig:Figure1-5).
 > hist(treadmill$RunTime)
 ```
 
-(ref:fig1-5) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study.
+(ref:fig1-5) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study, bar heights are counts.
 
 ```{r Figure1-5, fig.cap='(ref:fig1-5)',echo=F}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))

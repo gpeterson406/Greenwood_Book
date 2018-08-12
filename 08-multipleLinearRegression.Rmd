@@ -416,7 +416,7 @@ validity conditions. For MLR, they are similar to those for SLR:
     * Issues here do not mean we cannot proceed with a given model, but it can
     impact our ability to trust and interpret the estimated terms.
     
-    * Check a scatterplot or correlation matrix to assess the potential for 
+    * Check a scatterplot or correlation matrix \index{correlation matrix} to assess the potential for 
     shared information in different predictor variables.
     
     * Use the diagnostic measure called a ***variance inflation factor***
@@ -642,7 +642,7 @@ $$\begin{array}{rl}
 0.505\cdot\text{MinTemp}_{10} - 0.562\cdot\text{MaxTemp}_{10} \\
 & = -10.51 + 0.0123*\boldsymbol{5600} -0.505*\boldsymbol{28} - 
 0.562*\boldsymbol{36} \\
-& = 23.998 \text{ inches,}
+& = 23.998 \text{ inches.}
 \end{array}$$
 
 The observed snow depth here was $y_{10} = 14.0$ inches so the observed
@@ -1286,7 +1286,7 @@ regression models that can result in common mistakes.
     
     The predictors all share at least moderately strong linear relationships. For
     example, the $\boldsymbol{r}=-0.91$ between *Min.Temp* and *Elevation*
-    suggests
+    suggests \index{correlation matrix} 
     that they contain very similar information and that extends to other pairs of
     variables as well. When variables share information, their addition to models
     may not improve the performance of the model and actually can make the
@@ -1796,7 +1796,7 @@ plot(gpa1, sub.caption="Diagnostics for GPA model with SATV and SATM")
         more than two predictors, each variable can have a different VIF
         value.]. This suggests that both SEs are about 13% larger than they
         otherwise would have been due to shared information between the two
-        predictor variables. \index{vif}
+        predictor variables. \index{VIF}
         
         ```{r}
         vif(gpa1)
@@ -2097,10 +2097,10 @@ to assess whether things are "really" different between the two groups.
 
 ```{r eval=F}
 require(car)
-scatterplot(FYGPA~SATV|sex, lwd=3, data=satGPA, spread=F,
-            smooth=F, main="Scatterplot of GPA vs SATV by Sex")
-scatterplot(FYGPA~SATM|sex, lwd=3, data=satGPA, spread=F,
-            smooth=F, main="Scatterplot of GPA vs SATM by Sex")
+scatterplot(FYGPA~SATV|sex, lwd=3, data=satGPA, smooth=F,
+            main="Scatterplot of GPA vs SATV by Sex")
+scatterplot(FYGPA~SATM|sex, lwd=3, data=satGPA, smooth=F,
+            main="Scatterplot of GPA vs SATM by Sex")
 ```
 
 \indent To fit one model to a data set that contain multiple groups, we need a way of
@@ -2135,14 +2135,14 @@ summary(SATSex1)
 (ref:fig8-17) Plot of FYGPA vs SATV by Sex of students.
 
 ```{r Figure8-17,fig.cap="(ref:fig8-17)",echo=F,fig.height=5,fig.width=10}
-scatterplot(FYGPA~SATV|SEX, lwd=3, data=satGPA, smooth=list(spread=F),
+scatterplot(FYGPA~SATV|SEX, lwd=3, data=satGPA, smooth=F,
             main="Scatterplot of GPA vs SATV by Sex", cex.main=1)
 ```
 
 (ref:fig8-18) Plot of FYGPA vs SATM by Sex of students.
 
 ```{r Figure8-18,fig.cap="(ref:fig8-18)",echo=F,fig.height=5,fig.width=10}
-scatterplot(FYGPA~SATM|SEX, lwd=3, data=satGPA, smooth=list(spread=F),
+scatterplot(FYGPA~SATM|SEX, lwd=3, data=satGPA, smooth=F,
             main="Scatterplot of GPA vs SATM by Sex", cex.main=1)
 ```
 

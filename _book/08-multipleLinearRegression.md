@@ -21,7 +21,9 @@ In many situations, especially in observational studies, it is unlikely that
 the system is simple enough to be characterized
 by a single predictor variable. In experiments, if we randomly assign levels of
 a predictor variable we can assume that the impacts of other variables cancel
-out as a direct result of the random assignment. But it is possible even in
+out as a direct result of the random assignment.
+\index{random assignment}
+But it is possible even in
 these experimental situations that we can "improve" our model for the response
 variable by adding additional predictor variables that explain additional
 variation in the responses, reducing the amount of unexplained variation. This
@@ -29,7 +31,11 @@ can allow more precise inferences to be generated from the model. As mentioned
 previously, it might be useful to know the sex or weight of the subjects in the
 Beers vs BAC study to account for more of the variation in the responses -- this
 idea motivates our final topic: ***multiple linear regression*** (**MLR**)
-models. In observational studies, 
+models.
+\index{multiple linear regression|see {MLR}}
+\index{MLR}
+\index{model!MLR}
+In observational studies, 
 we can think of a suite of characteristics of observations that might be
 related to a response variable. For example, consider a study of yearly
 salaries and variables that might explain the amount people get paid. We might
@@ -41,27 +47,35 @@ gender and education level, but a model using those variables might still
 provide some useful information about each component and about age impacts on
 income after we adjust (control) for sex and education. The extension to MLR
 allows us to incorporate multiple predictors into a regression model.
+\index{MLR}
 Geometrically, this is a way of relating many different dimensions (number of
 $x\text{'s}$) to what happened in a single response variable (one dimension). 
 
 \indent We start with the same model as in SLR except now we allow $K$ different
 $x\text{'s}$:
+\index{model!MLR!additive}
 
 $$y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i}+ \ldots + \beta_Kx_{Ki}
 + \varepsilon_i$$
 
 Note that if $K=1$, we are back to SLR. In the MLR model, there are $K$
 predictors and we still have a
-y-intercept. The MLR model carries the same assumptions as an SLR model with a
+y-intercept.
+\index{model!MLR}
+The MLR model carries the same assumptions as an SLR model with a
 couple of slight tweaks specific to MLR (see Section \@ref(section8-2)
 for the details on the changes to the validity conditions). 
 
 \indent We are able to use the
 least squares criterion for estimating the regression coefficients in MLR, but
-the mathematics are beyond the scope of this course. The ``lm`` function takes
+the mathematics are beyond the scope of this course.
+\index{MLR}
+The ``lm`` function takes
 care of finding the least squares coefficients using a very sophisticated
 algorithm^[If you take advanced applied mathematics courses, you can learn
-more about the algorithms being used by ``lm``. Everyone else only cares 
+more about the algorithms being used by ``lm``.
+\index{\texttt{lm()}} 
+Everyone else only cares 
 about the algorithms when they don't work -- which is usually due to the
 user's inputs in these models not the algorithm itself.]. The estimated 
 regression equation it returns is:
@@ -87,7 +101,8 @@ code loads the data set and makes the scatterplot matrix
 (Figure \@ref(fig:Figure8-1)) to allow
 some preliminary assessment of the pairwise relationships. 
 
-(ref:fig8-1) Scatterplot matrix of data from a sample of SNOTEL sites in April on four variables.
+
+(ref:fig8-1) Scatterplot matrix of data from a sample of SNOTEL sites in April on four variables. \index{R packages!\textbf{psych}}
 
 
 ```r
@@ -109,7 +124,9 @@ Higher temperatures seem to be associated with less snow - not a big surprise so
 far! There might be an outlier at an elevation of 7400 feet and a snow depth
 below 10 inches that we should explore further. 
 
-\indent A new issue arises in attempting to build MLR models called  ***multicollinearity***. Again, it is a not surprise that temperature and
+\indent A new issue arises in attempting to build MLR models called  ***multicollinearity***.
+\index{multicollinearity}
+Again, it is a not surprise that temperature and
 elevation are correlated but that creates a
 problem if we try to put them both into a model to explain snow depth. Is it
 the elevation, temperature, or the combination of both that matters for getting
@@ -134,6 +151,7 @@ snow deposition and retention).
 
 (ref:fig8-2) Plot of estimated
 SLR model for Snow Depth with only Elevation as the predictor.
+\index{R packages!\textbf{effects}}
 
 <div class="figure">
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-2-1.png" alt="(ref:fig8-2)" width="480" />
@@ -303,7 +321,7 @@ as in other topics but with adding "``+``" between any additional
 predictors^[We used this same notation in the fitting the additive Two-Way 
 ANOVA and this is also additive in terms of these variables. Interaction 
 models are discussed later in the chapter.] we want to add to the model, 
-``y~x1+x2+...+xk``:
+``y~x1+x2+...+xk``: \index{model!MLR}
 
 (ref:fig8-4) Term-plots for the MLR for Snow Depth based on Elevation, 
 Min Temp and Max Temp. Note that the x-axis ranges are different than those 
@@ -372,6 +390,7 @@ the response. This issue disappears when the predictors are uncorrelated
 or even just minimally correlated. 
 
 There are some ramifications of multicollinearity in MLR:
+\index{multicollinearity}
 
 1. Adding variables to a model might lead to almost no improvement in the
 overall variability explained by the model. 
@@ -389,7 +408,9 @@ any coefficient estimates.
 
 These seem like pretty serious issues and they are but there are many, many
 situations where we proceed with MLR even
-in the presence of potentially correlated predictors. It is likely that you
+in the presence of potentially correlated predictors.
+\index{MLR}
+It is likely that you
 have heard or read about inferences from models that are dealing with this
 issue -- for example, medical studies often report the increased risk of death
 from some behavior or trait after controlling for sex, age, etc. In many
@@ -397,11 +418,13 @@ research articles, it is becoming common practice to report the slope for a
 variable that is of most interest with it in the model alone (SLR) and in models 
 after adjusting for the other variables that are expected to matter. These types
 of results are built with MLR or related multiple-predictor models like MLR. 
+\index{MLR}
 
 ## Validity conditions in MLR	{#section8-2}
 
 But before we get too excited about any results, we should always assess our
 validity conditions. For MLR, they are similar to those for SLR:
+\index{validity conditions!MLR}
 
 * **Quantitative variables condition:**
 
@@ -414,6 +437,7 @@ validity conditions. For MLR, they are similar to those for SLR:
     * This assumption is about the responses -- we must assume that they were
     collected in a fashion so that they can be assumed to be independent. This
     implies that we also have independent random errors.
+    \index{independence assumption!MLR}
     
     * This is not an assumption about the predictor variables!
 
@@ -428,7 +452,7 @@ validity conditions. For MLR, they are similar to those for SLR:
         
             * Only visual evidence of a curving relationship is a problem here.
             Transformations of individual explanatory variables or the
-            response are possible.
+            response are possible.\index{transformation}
             
         2. Examine the Residuals vs Fitted plot:
         
@@ -436,6 +460,7 @@ validity conditions. For MLR, they are similar to those for SLR:
             suggest a missed curving relationship with at least one predictor
             variable, but it will not be specific as to which one is non-linear.
             Revisit the scatterplots to identify the source of the issue.
+            \index{Residuals vs Fitted plot}
             
 * **Multicollinearity effects checked for:**
 
@@ -447,7 +472,7 @@ validity conditions. For MLR, they are similar to those for SLR:
     
     * Use the diagnostic measure called a ***variance inflation factor***
     (***VIF***) discussed in Section \@ref(section8-5) (we need to develop
-    some ideas first to understand this measure).
+    some ideas first to understand this measure). \index{VIF}
     
 * **Equal (constant) variance:**
 
@@ -465,6 +490,7 @@ validity conditions. For MLR, they are similar to those for SLR:
     * The ***leverage*** values in the Residuals vs Leverage plot are
     scaled to add up to the *degrees of freedom (df) used for the model*
     which is the number of explanatory variables ($K$) plus 1, so $K+1$.
+    \index{Residuals vs Leverage plot}
     
     * The scale of leverages depends on the complexity of the model through
     the *df* and the sample size.
@@ -490,7 +516,9 @@ validity conditions. For MLR, they are similar to those for SLR:
         (over 0.5 is possibly influential and over 1 is definitely influential).
 
 \indent While not a condition for use of the methods, a note about RA and RS is useful
-here in considering the scope of inference of any results. To make inferences
+here in considering the scope of inference of any results.
+\index{scope of inference}
+To make inferences
 about a population, we need to have a representative sample. If we have 
 randomly assigned levels of treatment variables(s), then we can make causal
 inferences to subjects like those that we could have observed. And if we both
@@ -528,7 +556,9 @@ For the *Snow Depth* data, the conditions can be assessed as:
     methods to actually assess whether there is spatial dependency in these data. Even if you were going to pursue models that incorporate spatial correlations, the first task would be to fit this sort of model
     and then explore the results. When data are collected across space, you should note that there might be some sort of spatial dependency that *could* violate the independence assumption.
     
-We need our diagnostic plots to assess the remaining assumptions. The same code
+We need our diagnostic plots to assess the remaining assumptions.
+\index{assumptions}
+The same code
 as before will provide diagnostic plots. There is some extra code 
 (``par(...)``) added to allow us to add labels to the plots to know which model
 is being displayed since we have so many to discuss here.
@@ -592,7 +622,7 @@ plot(m4, sub.caption="Diagnostics for m4")
     * The residuals match the normal distribution fairly closely the QQ-plot, showing only a little 
     deviation for observation 9 from a normal distribution and that deviation 
     is extremely minor. There is certainly no indication of a violation of the normality
-    assumption here. 
+    assumption here. \index{QQ-plot}
     
 * **No influential points:**
 
@@ -928,6 +958,7 @@ observed responses. Throughout this discussion, we have mainly focused on the
 slope coefficients and diagnostics. We have other tools in MLR to more
 quantitatively assess and compare different regression models that are considered
 in the next sections. 
+\index{MLR}
 
 (ref:fig8-9) Term-plots for the MLR for Snow Depth based on Elevation,
 Min Temp and Max Temp with two observations removed.
@@ -968,6 +999,7 @@ slope coefficient. Specifically, we can interpret the *Elevation* slope as:
 For a 1 foot increase in *Elevation*, we expect the mean *Snow Depth* to
 increase by 0.0269 inches, holding the minimum and maximum temperatures
 constant. More generally, the ***slope interpretation in an MLR*** is:
+\index{slope interpretation!MLR}
 
 > For a 1 **[*units of $\boldsymbol{x_k}$*]** increase in 
 $\boldsymbol{x_k}$, we expect the mean of $\boldsymbol{y}$ to change by
@@ -1145,6 +1177,7 @@ term-plots, or we can just use the ``allEffects`` function to do this for us.
 This exercise is useful to complete once to understand what is being displayed
 in term-plots but using the ``allEffects`` function makes getting these plots
 much easier. 
+\index{\texttt{allEffects()}}
 
 \indent There are two other model components of possible interest in this model. The 
 slope of 0.984 for *Min.Temp* suggests that for a 1$^\circ F$ increase in 
@@ -1184,7 +1217,9 @@ question(s).
 ## Comparing multiple regression models	{#section8-4}
 
 With more than one variable, we now have many potential models that we could
-consider. We could include only one of the predictors, all of them, or
+consider.
+\index{model!MLR!comparison of}
+We could include only one of the predictors, all of them, or
 combinations of sets of the
 variables. For example, maybe the model that includes *Elevation* does not "need"
 both *Min.Temp* and *Max.Temp*? Or maybe the model isn't improved over an SLR
@@ -1193,7 +1228,7 @@ with just *Elevation* as a predictor. Or maybe none of the predictors are
 we discuss some general model comparison issues and a metric that can be used
 to pick among a suite of different models (often called a set of ***candidate
 models*** to reflect that they are all potentially interesting and we need to
-compare them and possibly pick one). 
+compare them and possibly pick one). \index{candidate models}
 
 \indent It is certainly possible the researchers may have an *a priori*
 reason to only consider a single model. For example, in a designed experiment
@@ -1209,7 +1244,7 @@ interpretation of each predictor in the presence of others. Because of this,
 multiple models are often considered, where "unimportant" variables are dropped
 from the model. The assessment of "importance" using p-values will be discussed
 in Section \@ref(section8-6), but for now we will consider other reasons to pick
-one model over another. 
+one model over another. \index{model!MLR!comparison of}
 
 \indent There are some general reasons to choose a particular model:
 
@@ -1293,7 +1328,9 @@ provides
 one method for building a model (different from using p-values to drop
 unimportant variables as discussed below), by fitting a set of candidate models
 containing different variables and then **picking the model with the largest**
-$\boldsymbol{R}^2_{\text{adjusted}}$. You will want to interpret this new
+$\boldsymbol{R}^2_{\text{adjusted}}$.
+\index{candidate models}
+You will want to interpret this new
 measure on a percentage scale, but do not do that. It is a just a measure to
 help you pick a model and that is all it is! 
 
@@ -1396,7 +1433,7 @@ modeling situations; that measure is called the ***AIC***.
 ## General recommendations for MLR interpretations and VIFs	{#section8-5}
 
 There are some important issues to remember^[This section was inspired by a
-similar section from De Veaux, Velleman, and Bock (2011).] when interpreting
+similar section from @DeVeaux2011.] when interpreting
 regression models that can result in common mistakes. 
 
 * **Don't claim to "hold everything constant" for a single individual**:
@@ -1426,7 +1463,9 @@ regression models that can result in common mistakes.
     be corrupted/modified by the other variables being in the model. In
     observational studies, there are also all the potential lurking variables that
     we did not measure or even confounding variables that we did measure but can't
-    disentangle from the variable used in a particular model. While we do have a
+    disentangle from the variable used in a particular model.
+    \index{confounding}
+    While we do have a
     complicated mathematical model relating various $x\text{'s}$ to the response,
     do not lose that fundamental focus on causal vs non-causal inferences based on
     the design of the study. 
@@ -1469,12 +1508,15 @@ regression models that can result in common mistakes.
     including one variable will have an impact on the other variable. Consider the
     correlations among the predictors in the SNOTEL data set or visually displayed
     in Figure \@ref(fig:Figure8-12):
+    \index{R packages!\textbf{corrplot}}
+    \index{correlation plot}
 
     
     ```r
     require(corrplot)
     par(mfrow=c(1,1), oma=c(0,0,1,0))
-    corrplot.mixed(cor(snotel2[-c(9,22),3:6]), upper.col=c(1, "orange"),lower.col=c(1, "orange"))
+    corrplot.mixed(cor(snotel2[-c(9,22),3:6]), upper.col=c(1, "orange"),
+                   lower.col=c(1, "orange"))
     round(cor(snotel2[-c(9,22),3:6]),2)
     ```
     
@@ -1517,11 +1559,13 @@ regression models that can result in common mistakes.
     ***VIFs***). 
 
 \indent  <strong><em>VIFs</em></strong> provide a way to assess the multicollinearity in the MLR model that
-is caused by including specific variables. The amount of information that is
+is caused by including specific variables. \index{VIF} The amount of information that is
 shared between a single explanatory variable and the others can be found by
 regressing that variable on the others and calculating ***R***^2^
 for that model. The code for this regression is something like:
-``lm(X1~X2+X3+...+XK)``, which regresses *X1*on *X2* through *XK*. The 
+``lm(X1~X2+X3+...+XK)``, which regresses *X1*on *X2* through *XK*.
+\index{\texttt{lm()}}
+The 
 $1-\boldsymbol{R}^2$ from this regression is the amount of independent 
 information in *X1* that is not explained by the other variables in the model.
 The VIF for each variable is defined using this quantity as
@@ -1540,7 +1584,9 @@ are on the original scale. An example will show how to easily get these results
 and where the results come from. 
 
 \indent In general, the easy way to obtain VIFs is using the ``vif`` function from the
-``car`` package (Fox, 2003). It has the advantage of also providing a reasonable
+``car`` package (@R-carData, @Fox2003).
+\index{R packages!\textbf{car}} \index{\texttt{vif()}} 
+It has the advantage of also providing a reasonable
 result when we include categorical variables in models 
 (Sections \@ref(section8-9) and \@ref(section8-11)) over some other sources of this information in R. We apply the ``vif``
 function directly to a model of interest and it generates values for each explanatory variable. 
@@ -1652,10 +1698,14 @@ attention to one
 of the most common tasks in any basic statistical model -- assessing whether a
 particular result is more unusual than we would expect by chance. The
 previous discussions of estimation in MLR models informs our interpretations of
-of the tests. The $t$-tests for slope coefficients are based on our standard
+of the tests.
+\index{model!MLR}
+The $t$-tests for slope coefficients are based on our standard
 recipe -- take the estimate, divide it by its standard error and then, assuming
 the statistic follows a $t$-distribution under the null hypothesis, find a
-p-value. This tests whether each true slope coefficient, $\beta_k$, is 0 or not,
+p-value.
+\index{@$t$-distribution}
+This tests whether each true slope coefficient, $\beta_k$, is 0 or not,
 in a model that contains the other variables. Again, sometimes we say
 "after adjusting for" the other $x\text{'s}$ or
 "conditional on" the other $x\text{'s}$ in the model or "after allowing for"...
@@ -1675,7 +1725,9 @@ especially when MLR slopes can occasionally come out in unexpected directions.
 \indent The test statistic for these hypotheses is 
 $\boldsymbol{t=\dfrac{b_k}{\textbf{SE}_k}}$ and, if our assumptions are met,
 follows a $t$-distribution with $n-K-1$ *df* where $K$ is the number of
-predictor variables in the model. We perform the test for each slope
+predictor variables in the model.
+\index{@$t$-distribution}
+We perform the test for each slope
 coefficient, but the test is conditional on the other variables in the model -- the order the variables are fit in does
 **not** change $t$-test results. For the *Snow Depth* example with **Elevation**
 and *Maximum Temperature* as predictors, the pertinent output is in the four
@@ -1726,6 +1778,8 @@ the test statistic follows a $t_{20}$-distribution).
 
 The output provides a p-value of $0.0306$ for this test. We can also find this
 using ``pt``:
+\index{p-value!calculation of}
+\index{\texttt{pt()}}
 
 
 ```r
@@ -1767,7 +1821,9 @@ situation -- to test that the y-intercept $(\boldsymbol{\beta_0})$ in an MLR
 is 0. This tests if the
 true mean response is 0 when all the predictor variables are set to 0. I see
 researchers reporting this p-value frequently and it is possibly the most
-useless piece of information in the regression model summary. Sometimes less
+useless piece of information in the regression model summary.
+\index{p-value!interpretation of}
+Sometimes less
 educated statistics users even think this result is proof of something interesting
 or are disappointed when the p-value is not small. Unless you want to do some
 prediction and are interested in whether the mean response when all the
@@ -1776,7 +1832,9 @@ or, if reported, is certainly not very interesting^[There are some social
 science models where the model is fit with the mean subtracted from each 
 predictor so all have mean 0 and the precision of the y-intercept is 
 interesting. But even in these models, the test for the y-intercept being 0 is 
-rarely of interest.]. But we should at least go through the motions on this 
+rarely of interest.]. 
+\index{@$y$-intercept interpretation!MLR}
+But we should at least go through the motions on this 
 test once so you don't make the same mistakes: 
 
 $\boldsymbol{H_0: \beta_0=0 \textbf{ vs } H_A: \beta_0\ne 0}$ in a model with
@@ -1811,7 +1869,10 @@ coefficient might be located, given the other variables in the model, and so are
 location of the true slope and whether the true slope seems to be different 
 from 0. The confidence intervals here have our regular format of estimate 
 $\mp$ margin of error. Like the previous tests, 
-we work with $t$-distributions with $n-K-1$ degrees of freedom. Specifically
+we work with $t$-distributions with $n-K-1$ degrees of freedom.
+\index{degrees of freedom!MLR}
+\index{@$t$-distribution}
+Specifically
 the 95% confidence interval for slope coefficient $k$ is
 
 $$\boldsymbol{b_k \mp t^*_{n-K-1}\textbf{SE}_{b_k}}\ .$$
@@ -1820,6 +1881,7 @@ The interpretation is the same as in SLR with the additional tag of "after
 controlling for the other variables in the model" for the reasons
 discussed before. The general slope CI interpretation for predictor 
 $\boldsymbol{x_k}$ in an MLR is:
+\index{slope CI interpretation!MLR}
 
 > For a 1 **[*unit of $\boldsymbol{x_k}$*]** increase in $\boldsymbol{x_k}$, we
 are 95% confident that the true mean of $\boldsymbol{y}$ changes by between
@@ -1859,7 +1921,9 @@ last row of the model summary is:
 ## F-statistic: 56.43 on 2 and 20 DF,  p-value: 5.979e-09
 ```
 This test is called the ***overall F-test*** in MLR and is very similar to
-the $F$-test in a reference-coded One-Way ANOVA model. It tests the null
+the $F$-test in a reference-coded One-Way ANOVA model.
+\index{overall @$F$-test}
+It tests the null
 hypothesis that involves setting every coefficient except the y-intercept to
 0 (so all the slope coefficients equal 0). We saw this reduced model in the
 One-Way material when we considered setting all the deviations from the
@@ -1886,7 +1950,9 @@ $x\text{'s}$ since all the predictors are multiplied by coefficients of 0.
 \indent The test statistic to assess these hypotheses is 
 $F = \text{MS}_{\text{model}}/\text{MS}_E$, which is assumed to follow an
 $F$-distribution with $K$ numerator *df* and $n-K-1$ denominator *df* under the
-null hypothesis. The output provides us with $F(2, 20)=56.43$ and a p-value 
+null hypothesis.
+\index{@$F$-distribution}
+The output provides us with $F(2, 20)=56.43$ and a p-value 
 of $5.979*10^{-9}$ (p-value $<0.00001$)
 and strong evidence against the null hypothesis. Thus, there is strong evidence that
 at least one of the two slope coefficients (*Max.Temp*'s or *Elevation*'s) is
@@ -1897,7 +1963,9 @@ about each predictor variable. If neither predictor variable is important, we
 will discover that in the $t$-tests for each coefficient and so our general recommendation is to start there. 
 
 \indent The overall F-test, then, is really about testing whether there is something
-good in the model somewhere. And that certainly is important but it is also not
+good in the model somewhere.
+\index{overall @$F$-test}
+And that certainly is important but it is also not
 too informative.  There is one situation where this test is really interesting,
 when there is only one predictor variable in the model (SLR). In that situation,
 this test provides exactly the same p-value as the $t$-test. $F$-tests will be
@@ -1915,7 +1983,9 @@ based on their test scores. The Educational Testing Service (the company behind
 such fun exams as the SAT and GRE) collected a data set to validate their SAT
 on $n=1000$ students from an unnamed Midwestern university; the data set is
 available in the ``openintro`` package [@R-openintro]
-in the ``satGPA`` data set. It is unclear from the documentation whether a
+in the ``satGPA`` data set. 
+\index{R packages!\textbf{openintro}}
+It is unclear from the documentation whether a
 random sample was collected, in fact it looks like it certainly wasn't a random
 sample of all incoming students at a large university (more later). What
 potential issues would arise if a company was providing a data set to show the
@@ -1937,6 +2007,7 @@ related to the first year college GPA, describing the size of their impacts
 and assessing the predictive potential of SAT-based measures for first year in
 college GPA. There are certainly other possible research questions that can be
 addressed with these data but this will keep us focused. 
+\index{R packages!\textbf{psych}}
 
 (ref:fig8-13) Scatterplot matrix of SAT and GPA data set.
 
@@ -1977,7 +2048,9 @@ $$\text{FYGPA}_i = \beta_0 + \beta_{\text{SATV}}\text{SATV}_i
 
 looks like it might be worth interrogating further so we can jump straight
 into considering the 6+ steps involved in hypothesis testing for the two slope
-coefficients. We will use $t$-based
+coefficients. 
+\index{hypothesis testing}
+We will use $t$-based
 inferences, assuming that we can trust the assumptions. 
 
 \indent Note that this is not a randomized experiment but we can assume that 
@@ -2220,7 +2293,7 @@ variables. The 95% confidence intervals for the means in both plots suggest
 that the results are fairly precisely estimated -- there is little variability
 around the predicted means in each plot. This is mostly a function of the
 sample size as opposed to the model itself explaining most of the variation in the
-responses. 
+responses. \index{R packages!\textbf{effects}}
 
 
 ```r
@@ -2341,7 +2414,7 @@ the mean and pinning down the value of a new observation. The R code is very mes
 and rarely needed, but hopefully this helps reinforce the differences in these
 two types of intervals -- to make them in MLR, you have to fix all but one of
 the predictor variables and we usually do that by fixing the other variables at
-their means. 
+their means. \index{effects plot}
 
 (ref:fig8-16) Term-plots for the $\text{FYGPA}\sim\text{SATV} + \text{SATM}$
 model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines). 
@@ -2389,7 +2462,9 @@ lines(dm1$SATM, pm1$upr, col="grey", lty=3, lwd=3)
 \sectionmark{Different intercepts for different groups}
 
 One of the implicit assumptions up to this point was that the models were being
-applied to a single homogeneous population. In many cases, we take a sample
+applied to a single homogeneous population.
+\index{assumptions}
+In many cases, we take a sample
 from a population but that overall group is likely a combination of individuals from
 different sub-populations. For example, the SAT study was interested in all
 students at the university but that contains the obvious sub-populations based
@@ -2406,6 +2481,7 @@ are actually making an educated guess about what these codes mean. Other
 similar data sets used 1 for males but the documentation on these data is a bit
 sparse. We proceed with a small potential that the conclusions regarding
 differences in ``sex``  are in the wrong direction.] as 1 and women coded as 2. 
+\index{model!MLR!additive}
 
 \indent It appears that the slope for females might be larger (steeper) in this
 relationship than it is for
@@ -2452,13 +2528,17 @@ put in "numbers" as predictors, we create what are called
 that are made up of 0s and 1s, with the 0 reflecting one category and 1 the
 other, changing depending on the category of the individual in the data set. The
 ``lm`` function does this whenever a
-categorical variable is used as an explanatory variable. It sets up the indicator
+categorical variable is used as an explanatory variable.
+\index{\texttt{lm()}}
+It sets up the indicator
 variables using a baseline category (gets coded as a 0) and the deviation
 category for the other level of the variable. We can see how this works by
 exploring what happens when we put ``SEX`` into our ``lm``^[That may not read
 how I intended...] with SATM, after first making sure it is categorical using
 the ``factor`` function and making the factor ``levels`` explicit instead of 1s
 and 2s. 
+\index{\texttt{factor()}}
+\index{\texttt{levels()}}
 
 
 ```r
@@ -2491,14 +2571,14 @@ summary(SATSex1)
 (ref:fig8-17) Plot of FYGPA vs SATV by Sex of students.
 
 <div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="(ref:fig8-17)" width="576" />
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="(ref:fig8-17)" width="960" />
 <p class="caption">(\#fig:Figure8-17)(ref:fig8-17)</p>
 </div>
 
 (ref:fig8-18) Plot of FYGPA vs SATM by Sex of students.
 
 <div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-18-1.png" alt="(ref:fig8-18)" width="576" />
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-18-1.png" alt="(ref:fig8-18)" width="960" />
 <p class="caption">(\#fig:Figure8-18)(ref:fig8-18)</p>
 </div>
 
@@ -2739,7 +2819,9 @@ in the intercept for each group.
 The same techniques can be extended to more than two groups. A study was
 conducted to explore sound tolerances using $n=98$ subjects with the data
 available in the ``Headache`` data set from the ``heplots`` package 
-[@R-heplots]. Each
+[@R-heplots].
+\index{R packages!\textbf{heplots}}
+Each
 subject was initially exposed to a tone, stopping when the tone became definitely
 intolerable (*DU*) and that decibel level was recorded (variable called ``du1``).
 Then the subjects were randomly assigned to one of four treatments: *T1* 
@@ -2753,10 +2835,10 @@ called ``du2``). One would expect that there would be a relationship between the
 upper tolerance levels of the subjects before and after treatment. But
 maybe the treatments impact that relationship? We can use our indicator
 approach to see if the treatments provide a shift to higher tolerances after
-accounting for the relationship between the two measurements^[Models like this with a categorical variable and quantitative variable are often called *ANCOVA* or *analysis of covariance* models but really are just versions of our linear models we've been using throughout this material.]. The scatterplot
+accounting for the relationship between the two measurements^[Models like this with a categorical variable and quantitative variable are often called *ANCOVA* or *analysis of covariance* models but really are just versions of our linear models we've been using throughout this material.]. The scatterplot^[Note that we employed some specific options in the ``legend`` option to get the legend to fit on this scatterplot better. Usually you can avoid this but the ``coords`` option defined a location and the ``columns`` option made it a two column legend.]
 of the results in Figure \@ref(fig:Figure8-21) shows some variation in the
 slopes and the intercepts for the groups although the variation in intercepts
-seems more prominent than differences in slopes. 
+seems more prominent than differences in slopes.  
 
 (ref:fig8-21) Scatterplot of post-treatment decibel tolerance (du2) vs
 pre-treatment tolerance (du1) by treatment level (4 groups). 
@@ -2789,8 +2871,8 @@ Headache
 
 ```r
 scatterplot(du2~du1|treatment, data=Headache, smooth=F, lwd=2,
-            main="Plot of Maximum DB tolerances before and after treatment (by treatment)",
-            legend.coords="topleft")
+            main="Plot of Maximum DB tolerances before & after treatment (by treatment)",
+            legend=list(coords="topleft",columns=2))
 ```
 
 <div class="figure">
@@ -2861,7 +2943,9 @@ indicators stay at 0.
 
 \indent When we fit the additive model of the form ``y~x+group``, the ``lm``
 function takes the $\boldsymbol{J}$ categories and creates $\boldsymbol{J-1}$
-indicator variables. The baseline level is always handled in the intercept.
+indicator variables.
+\index{additive model}
+The baseline level is always handled in the intercept.
 The true model will be of the form
 
 $$y_i=\beta_0 + \beta_1x_i +\beta_2I_{\text{Level}2,i}+\beta_3I_{\text{Level}3,i}
@@ -2880,7 +2964,9 @@ coefficients for the groups as discussed in the next section.
 
 \indent For these types of models, it is always good to start with a plot of the data
 set with regression lines for each group -- assessing whether the lines look
-relatively parallel or not. In Figure \@ref(fig:Figure8-21), there are some
+relatively parallel or not.
+\index{non-parallel lines}
+In Figure \@ref(fig:Figure8-21), there are some
 differences in slopes -- we investigate that further in the next section. For
 now, we can proceed with fitting the additive model with different intercepts
 for the four levels of ``treatment`` and the quantitative explanatory variable, ``du1``. 
@@ -2951,6 +3037,7 @@ $$\widehat{\text{du2}}_i = 0.251 + 0.837\cdot\text{du1}_i\ .$$
 To reinforce what this additive model is doing, Figure \@ref(fig:Figure8-22)
 displays the estimated regression lines for all four
 groups, showing the shifts in the *y*-intercepts among the groups.
+\index{additive model}
 
 (ref:fig8-22) Plot of estimated noise tolerance additive model.
 
@@ -2971,7 +3058,9 @@ this model explaining 75.1% percent of the
 variation in the second decibel tolerance measure. We should check the
 diagnostic plots and VIFs to check for any issues -- all the diagnostics and
 assumptions are as before except that there is no assumption of linearity
-between the grouping variable and the responses. Additionally, sometimes we
+between the grouping variable and the responses.
+\index{assumptions}
+Additionally, sometimes we
 need to add group information to diagnostics to see if any patterns in residuals look
 different in different groups, like linearity or non-constant variance. 
  
@@ -3079,13 +3168,20 @@ all the groups had the same slope coefficient for the quantitative variable.
 Sometimes researchers are specifically interested in whether the slopes vary
 across groups or the regression lines in the scatterplot for the different
 groups may not look parallel or it may just be hard to tell visually if there
-really is a difference in the slopes. Unless you are **very sure** that there
+really is a difference in the slopes.
+\index{non-parallel lines}
+Unless you are **very sure** that there
 is not an interaction between the grouping variable and the quantitative
 predictor, you should start by fitting a model containing an
-interaction and then see if you can drop it. It may be the case that you end up
+interaction and then see if you can drop it.
+\index{interaction!MLR}
+\index{model!MLR!interaction}
+It may be the case that you end up
 with the simpler additive model from the previous sections, but you don't want
 to assume the same slope across groups unless you are absolutely sure that is
-the case. This should remind you a bit of the discussions of the additive and
+the case.
+\index{additive model}
+This should remind you a bit of the discussions of the additive and
 interaction models in the Two-way ANOVA material. The models, concerns, and
 techniques are very similar, but with the quantitative variable replacing one
 of the two categorical variables. As always, the scatterplot is a good first
@@ -3101,9 +3197,12 @@ of students were identified, one group of *dyslexic* students was identified
 first (19 students) and then a group of gender and age similar student matches
 were identified (25 students) for a total sample size of $n=44$, provided in the
 ``dyslexic3`` data set from the ``smdata`` package [@R-smdata].
+\index{R packages!\textbf{smdata}}
 This type of study design is an attempt to "balance" the data from the two
 groups on some important characteristics to make the comparisons of the groups
-as fair as possible. The researchers attempted to balance the characteristics
+as fair as possible.
+\index{balance}
+The researchers attempted to balance the characteristics
 of the subjects in the two groups so that if they found different results for
 the two groups, they could attribute it to the main difference they used to
 create the groups -- dyslexia or not. This design, ***case-control*** or
@@ -3111,7 +3210,9 @@ create the groups -- dyslexia or not. This design, ***case-control*** or
 subjects in the "control" group would hopefully reduce confounding from other
 factors and then allow stronger conclusions in situations where it is
 impossible to randomly
-assign treatments to subjects. We still would avoid using "causal" language but
+assign treatments to subjects.
+\index{confounding}
+We still would avoid using "causal" language but
 this design is about as good as you can get when you are unable to randomly
 assign levels to subjects. 
 
@@ -3152,9 +3253,11 @@ quantitative predictor, we need to include a "modification" of the slope
 coefficient. This is performed using an ***interaction*** between the two
 predictor variables where we allow the impacts of one variable
 (slopes) to change based on the levels of another variable (grouping variable). 
+\index{interaction!MLR}
 The formula notation is ``y~x*group``, remembering that this also includes the
 ***main effects*** (the additive variable components) as well as the
 interaction coefficients as we discussed in the Two-Way ANOVA interaction model.
+\index{main effects}
 We can start with the general model for a two-level categorical variable with an
 interaction, which is
 
@@ -3283,7 +3386,11 @@ to show higher performance on a test like this.
 \indent Checking the assumptions is always recommended before getting focused 
 on the inferences in the model. 
 When fitting models with multiple groups, it is possible to see "groups" in the
-fitted values (x-axis in Residuals vs Fitted and Scale-Location plots) and that is not a problem -- it is a feature of these models. You
+fitted values (x-axis in Residuals vs Fitted and Scale-Location plots) and that is not a problem -- it is a feature of these models.
+\index{Residuals vs Fitted plot}
+\index{Scale-Location plot}
+\index{assumptions}
+You
 should look for issues in the residuals for each group but the residuals should
 overall still be normally distributed and have the same variability everywhere. 
 It is a bit hard to see issues in Figure \@ref(fig:Figure8-26) because of the
@@ -3323,7 +3430,9 @@ within a specific group, the linearity assumption is met. They also assume that
 the variability in the residuals is the same for all observations. Sometimes it
 can be difficult to check the assumptions by looking at the overall diagnostic
 plots and it may be easier to go back to the original scatterplot or plot the
-residuals vs fitted values by group to fully assess the results. For example,
+residuals vs fitted values by group to fully assess the results.
+\index{Residuals vs Fitted plot!by group}
+For example,
 Figure \@ref(fig:Figure8-27)
 shows a scatterplot of the residuals vs the quantitative explanatory variable
 by the groups. The variability in the residuals is a bit larger in the
@@ -3360,15 +3469,21 @@ statistic has a corresponding p-value of 0.0638. So it provides some evidence of
 the wrong idea about directions of relationships) if we ignore a potentially
 important
 interaction and some statisticians would recommend retaining interactions even
-if the evidence is only moderate for its inclusion in the model. For the
+if the evidence is only moderate for its inclusion in the model.
+\index{interaction!MLR}
+For the
 original research question of whether the relationships differ for the two
 groups, we only have marginal evidence to support that result. Possibly with a
 larger sample size or a reading test that only a few students could get 100%
 on, the researchers might have detected a more pronounced difference in the
 slopes for the two groups. 
 
+\newpage
+
 \indent In the presence of a categorical by quantitative interaction, term-plots can
-be generated that plot the results for each group on the same display. This
+be generated that plot the results for each group on the same display.
+\index{interaction!MLR!term-plot}
+This
 basically provides a plot of the "simplified" SLR models for each group. In 
 Figure \@ref(fig:Figure8-28) we can see noticeable differences in the slopes 
 and intercepts. Note that
@@ -3486,7 +3601,10 @@ between the two groups and maybe that is all these data really say... This is th
 logical outcome if we decide that the interaction is not important IN THIS DATA
 SET. In general, if the interaction is dropped, the interaction model can be
 reduced to considering an additive model with the categorical and quantitative
-predictor variables. Either or both of those variables could also be considered
+predictor variables.
+\index{interaction model}
+\index{additive model}
+Either or both of those variables could also be considered
 for removal, possibly starting with the variable with the larger p-value, 
 leaving a string of ever-simpler models possible if large p-values are continually
 encountered^[This is an example of what is called "step down" testing for model
@@ -3595,7 +3713,9 @@ Or we can let the term-plots (Figures \@ref(fig:Figure8-31) and
 can see that all the slopes "look" to be pretty similar. When the interaction
 model is fit and the results "look" like the additive model, there is a good
 chance that we will be able to avoid all this complication and just use the
-additive model without missing anything interesting. There are two different
+additive model without missing anything interesting.
+\index{additive model}
+There are two different
 options for displaying interaction models. Version 1 (Figure
 \@ref(fig:Figure8-31)) has a
 different panel for each level of the categorical variable and Version 2
@@ -3621,7 +3741,9 @@ plot(allEffects(head2), x.var="du1", multiline=T, ci.style="bands")
 
 \indent In situations with more than 2 levels, the $t$-tests for the interaction or
 changing y-intercepts are not informative for deciding if you really need
-different slopes or intercepts for all the groups. They only tell
+different slopes or intercepts for all the groups.
+\index{interaction!MLR}
+They only tell
 you if a specific group is potentially different from the baseline group and
 the choice of the baseline is arbitrary. To assess whether we really need to
 have varying slopes or intercepts with more than two groups we need to develop
@@ -3648,14 +3770,19 @@ develop tests that combine and assess information across multiple
 categorical variable. ANOVA $F$-tests did exactly
 this sort of thing in the One and Two-Way ANOVA models and can do that for us
 here. There are two models that we perform tests in -- the additive and the
-interaction models. We start with a discussion of the tests in an interaction
+interaction models.
+\index{interaction model}
+\index{additive model}
+We start with a discussion of the tests in an interaction
 setting since that provides us the **first test to consider** in most situations
 to assess evidence of whether the extra complexity of varying slopes is really
 needed. If we don't "need" the varying
 slopes or if the plot really does have lines for the groups that look
 relatively parallel, we can fit the additive model and either assess evidence of
 the need for different intercepts or for the quantitative predictor -- either is
-a reasonable next step. Basically this establishes a set of ***nested models***
+a reasonable next step.
+\index{non-parallel lines}
+Basically this establishes a set of ***nested models***
 (each model is a reduced version of another more complicated
 model higher in the tree of models) displayed in Figure \@ref(fig:Figure8-33).
 This is based on
@@ -3673,9 +3800,13 @@ model.
 \indent If the initial interaction test suggests the interaction is important, then no
 further refinement should be considered and that model should be explored (this
 was the same protocol suggested in the 2-WAY ANOVA situation, the other place
-where we considered interactions). If the interaction is not deemed important
+where we considered interactions).
+\index{interaction model}
+If the interaction is not deemed important
 based on the test, then the model should be re-fit using both variables in an
-additive model. In that additive model, both variables can be assessed
+additive model.
+\index{additive model}
+In that additive model, both variables can be assessed
 conditional on the other one. If both have small p-values, then that is the
 final model and should be explored further. If either the categorical or
 quantitative variable have large p-values, then they can be dropped from the
@@ -3698,6 +3829,7 @@ model^[We could also use the ``anova`` function to do this but using ``Anova``
 throughout this material provides the answers we want in the additive model and
 it has no impact for the only test of interest in the interaction model since
 the interaction is the last component in the model.]. 
+\index{\texttt{Anova()}}
 It will provide three tests, one for each variable by themselves, which are not
 too interesting, and then the interaction test. This will result in an
 $F$-statistic that, if the assumptions are met, will follow an 
@@ -3756,7 +3888,9 @@ labeled ``du1:treatment`` in the ``Anova`` output. The ANOVA table below shows
 a test statistic of $F=0.768$ with the *numerator df* of 3, coming from $J-1$,
 and the *denominator df* of 90, coming from $n-2J=98-2*4=90$ and also provided
 in the ``Residuals`` row in the table, leading to an $F(3, 90)$-distribution
-for the test statistic under the null hypothesis. The p-value from this
+for the test statistic under the null hypothesis.
+\index{ANOVA table}
+The p-value from this
 distribution is 0.515, showing little to no evidence against
 the null hypothesis. The conclusion is that there is insufficient evidence to
 claim that the slope coefficient for *du1* in explaining *du2* is different for
@@ -3780,7 +3914,10 @@ Anova(head2)
 
 \indent Without evidence to support an interaction, we should consider both the
 quantitative and categorical variables in an additive model. The ANOVA table
-for the additive model contains two interesting tests. One test is for the
+for the additive model contains two interesting tests.
+\index{additive model}
+\index{ANOVA table}
+One test is for the
 quantitative variable discussed previously. The other is for the categorical
 variable, assessing whether different y-intercepts are needed. The additive
 model here is
@@ -3811,7 +3948,10 @@ population.
     in the population. 
 
 The $F$-test for the categorical variable in an additive model follows 
-$F(J-1, n-J-1)$-distribution under the null hypothesis. For this example, the
+$F(J-1, n-J-1)$-distribution under the null hypothesis.
+\index{additive model}
+\index{@$F$-test}
+For this example, the
 test statistic for *Treatment* follows an $F(3, 93)$-distribution under the null
 hypothesis. The observed test statistic has a value of 1.74, generating a p-value
 of 0.164. So we would fail to reject the null hypothesis and conclude that there
@@ -3857,7 +3997,9 @@ or refining an initially fit MLR
 model. Hypothesis testing can be used (in the case where we have nested models either by adding or deleting a single term at a time)
 or comparisons of adjusted ***R***^2^
 across different potential models (which is valid for nested or non-nested
-model comparisons). Diagnostics should play a role in the models considered and
+model comparisons).
+\index{hypothesis testing}
+Diagnostics should play a role in the models considered and
 in selecting among models that might appear to be similar on a model comparison
 criterion. 
 In this section, a new model selection method is introduced that has stronger
@@ -3903,7 +4045,9 @@ the ***Likelihood*** provides a measure of fit of the model (we let R
 calculate it for us) and gets smaller for better fitting models and 
 $m$ = (number of estimated $\beta\text{'s}+1$). The value $m$ is called the 
 *model degrees of freedom* for AIC calculations and relates to how
-many total parameters are estimated. Note that it is a different measure of
+many total parameters are estimated.
+\index{degrees of freedom!model}
+Note that it is a different measure of
 *degrees of freedom* than used in ANOVA $F$-tests. The main things to understand
 about the formula for the AIC is that as $m$ increases, the AIC will go up and
 that as the fit improves, the *likelihood* will increase (so -2*log-likelihood* will get smaller)^[More details on these components of the methods will be
@@ -3974,11 +4118,14 @@ AICs, and $\Delta\text{AICs}$.
 the top model.
 
 * **DO NOT REPORT P-VALUES OR CALL TERMS "SIGNIFICANT" when models were selected
-using AICs.**
+using AICs.** \index{p-value!caution}
 
     * Hypothesis testing and AIC model selection are not compatible philosophies
     and testing in models selected by AICs invalidates the tests as they have
-    inflated Type I error rates. The AIC results are your "evidence" -- you don't need anything else. If you wanted to report p-values, use them to select your model.
+    inflated Type I error rates.
+    \index{type I error}
+    \index{hypothesis testing}
+    The AIC results are your "evidence" -- you don't need anything else. If you wanted to report p-values, use them to select your model.
     
 * You can describe variables as "important" or "useful" and report confidence
 intervals to aid in interpretation of the terms in the selected model(s)
@@ -3988,14 +4135,16 @@ but need to avoid performing hypothesis tests with the confidence intervals.
 best model *according to AIC* among the set of models *you provided*.
 
 * Model assumptions need to be met to use AICs. They assume that the model is
-specified correctly up to possibly comparing different predictor variables. Perform diagnostic checks on your initial model and the top model.
+specified correctly up to possibly comparing different predictor variables. Perform diagnostic checks on your initial model and the top model. \index{assumptions}
 
 \indent When working with AICs, there are two options. Fit the models of interest and
 then run the ``AIC`` function on each model. This can be tedious, especially
 when we have many possible models to consider. We can make
 it easy to fit all the potential candidate models that are implied by a
 complicated starting model by using the ``dredge`` function from the ``MuMIn``
-package [@R-MuMIn]. The name (dredge) actually speaks to what ***fitting
+package [@R-MuMIn].
+\index{R packages!\textbf{MuMIn}}
+The name (dredge) actually speaks to what ***fitting
 all possible models*** really engages -- what is called ***data dredging***.
 The term is meant to
 refer to considering way too many models for your data set, probably finding
@@ -4003,7 +4152,9 @@ something good from the process, but maybe identifying something spurious since
 you looked at so many models. Note that if you take a hypothesis testing
 approach where you plan to remove any terms with large p-values in this same
 situation, you are really considering all possible models as well because you
-could have removed some or all model components. Methods that consider all
+could have removed some or all model components.
+\index{hypothesis testing}
+Methods that consider all
 possible models are probably best used in exploratory analyses where you do not
 know if any or all terms should be important. If you have more specific
 research questions, then you probably should try to focus on comparisons of models
@@ -4127,7 +4278,9 @@ Researchers were interested in studying the effects of smoking by children on
 their lung development by measuring the forced expiratory volume (*FEV*,
 measured in Liters) in a representative sample of children ($n=654$) between 
 the ages of 3 and 19; this data set is available in the ``FEV`` data set in the
-``coneproj`` package (@R-coneproj, @Liao2014). Measurements on the *age* (in years)
+``coneproj`` package (@R-coneproj, @Liao2014).
+\index{R packages!\textbf{coneproj}}
+Measurements on the *age* (in years)
 and *height* (in inches) as well as the *sex* and *smoking status* of the
 children were made. We would expect both the *age* and *height* to have positive
 relationships with *FEV* (lung capacity) and that smoking might decrease the lung
@@ -4156,7 +4309,7 @@ involved in the interaction if we don't need the interaction.
 (ref:fig8-34) Scatterplot of log(FEV) vs Age by smoking status.
 
 <div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-34-1.png" alt="(ref:fig8-34)" width="672" />
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-34-1.png" alt="(ref:fig8-34)" width="960" />
 <p class="caption">(\#fig:Figure8-34)(ref:fig8-34)</p>
 </div>
 
@@ -4172,7 +4325,7 @@ levels(FEV$smoke) <- c("Nonsmoker","Smoker") #Make smoking status labels explici
 require(car)
 scatterplot(log(FEV)~age|smoke, data=FEV, smooth=F,
             main="Plot of log(FEV) vs Age of children by smoking  status",
-            legend.coords="topleft")
+            legend=list(coords="topleft", columns=1, cex.leg=0.75))
 ```
 
 \indent To get the needed results, start with the ***full model*** -- the most
@@ -4367,7 +4520,9 @@ model**.
 explored in more detail. You should not then focus on hypothesis testing in this
 model^[Hypothesis testing so permeates the use of statistics that even after
 using AICs many researchers are pressured to report p-values for model
-components. Some of this could be confusion caused when people first learned
+components.
+\index{p-value!caution}
+Some of this could be confusion caused when people first learned
 these statistical methods because when we teach you statistics we show you how
 to use various methods, one after another, and forget to mention that you should
 not use **every** method we taught you in **every** analysis.]. Confidence
@@ -4508,7 +4663,7 @@ that are important but were "hiding" when both were included in the model.
 either used in the ANOVA or SLR chapters. The models are more complicated but 
 are built off of methods from previous chapters. In this code, ``y`` is a 
 response variable, ``x1``, ``x2``, ..., ``xK`` are quantitative 
-explanatory variables, ``group``  is a categorical variable and the data are
+explanatory variables, ``group``  is a factor variable and the data are
 in ``DATASETNAME``. 
 
 * **scatterplot(<font color='red'>y</font>~<font color='red'>x1|group</font>,
@@ -4517,12 +4672,14 @@ data=<font color='red'>DATASETNAME</font>, smooth=F)**
     * Requires the ``car`` package.
     
     * Provides a scatterplot with a regression line for each group. 
+    \index{\texttt{scatterplot()}|textbf}
 
 * **<font color='red'>MODELNAME</font> ``<-`` lm(<font color='red'>y</font>~
 <font color='red'>x1+x2+...+xK</font>, data=<font color='red'>DATASETNAME</font>)**
 
     * Estimates an MLR model using least squares with $K$ quantitative
     predictors. 
+    \index{\texttt{lm()}|textbf}
 
 * **<font color='red'>MODELNAME</font> ``<-`` lm(<font color='red'>y</font>~
 <font color='red'>x1*group</font>, data=<font color='red'>DATASETNAME</font>)**
@@ -4540,6 +4697,7 @@ data=<font color='red'>DATASETNAME</font>, smooth=F)**
 
     * Provides parameter estimates, overall $F$-test, ***R***^2^,
     and adjusted ***R***^2^. 
+    \index{\texttt{summary()}|textbf}
 
 * **par(mfrow=c(2, 2)); plot(<font color='red'>MODELNAME</font>)**
 
@@ -4550,6 +4708,7 @@ data=<font color='red'>DATASETNAME</font>, smooth=F)**
     * Provides 95% confidence intervals for the regression model coefficients.
     
     * Change ``level`` if you want other confidence levels.
+    \index{\texttt{confint()}|textbf}
 
 * **plot(allEffects(<font color='red'>MODELNAME</font>))**
     
@@ -4557,11 +4716,20 @@ data=<font color='red'>DATASETNAME</font>, smooth=F)**
     
     * Provides a plot of the estimated regression lines with 95% confidence
     interval for the mean. 
-
+    \index{\texttt{allEffects()}|textbf}
+    
+* **vif(<font color='red'>MODELNAME</font>)**
+    
+    * Requires the ``car`` package. 
+    
+    * Provides VIFs for an MLR model. Only use in additive models - not meaningful for terms involved in interactions.
+    \index{\texttt{vif()}|textbf}    
+    
 * **predict(<font color='red'>MODELNAME</font>, se.fit=T)**
 
     * Provides fitted values for all observed $x\text{'s}$ with SEs for the 
     mean.
+    \index{\texttt{predict()}|textbf}
     
 * **predict(<font color='red'>MODELNAME</font>, newdata=tibble(<font color='red'>x1</font>
 = <font color='red'>X1\_NEW</font>, <font color='red'>x2</font> = <font color='red'>X2\_NEW</font>, 
@@ -4585,11 +4753,13 @@ interval="prediction")**
 
     * Use to generate ANOVA tables and $F$-tests useful when categorical
     variables are included in either the additive or interaction models. 
+    \index{\texttt{Anova()}|textbf}
 
 * **AIC(<font color='red'>MODELNAME\_1</font>, <font color='red'>MODELNAME\_2</font>)**
 
     * Use to get AIC results for two candidate models called ``MODELNAME_1``
     and ``MODELNAME_2``.
+    \index{\texttt{AIC()}|textbf}
     
 * **options(na.action = "na.fail")  
 dredge(<font color='red'>FULL\_MODELNAME</font>, rank="AIC")**
@@ -4598,6 +4768,7 @@ dredge(<font color='red'>FULL\_MODELNAME</font>, rank="AIC")**
 
     * Provides AIC and delta AIC results for all possible simpler models given
     a full model called ``FULL_MODELNAME``. 
+    \index{\texttt{dredge()}|textbf}
 
 
 ## Practice problems	{#section8-17}
@@ -4610,7 +4781,7 @@ run time was found -- maybe we can replace the treadmill test result with a
 combined prediction built using a few variables using the MLR techniques. The
 following code will get us re-started in this situation. 
 
-```
+```r
 treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv")
 tm1 <- lm(TreadMillOx~RunTime, data=treadmill)
 ```
@@ -4642,7 +4813,7 @@ reduced models and report the top two models according to adjusted
 Also discuss and compare the model selection results provided by the delta AICs
 here. 
 
-```
+```r
 require(MuMIn)
 options(na.action = "na.fail") #Must run this code once to use dredge
 dredge(mlr1, rank="AIC", 
@@ -4659,7 +4830,7 @@ into low, middle, and high for those observed. The scatterplot lets you
 explore whether the relationship between treadmill oxygen and run time might 
 differ across the age groups. 
 
-```
+```r
 treadmill$Ageb <- cut(treadmill$Age, breaks=c(37,44.5,50.5,58))
 summary(treadmill$Ageb)
 require(car)

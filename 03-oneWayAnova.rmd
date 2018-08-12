@@ -377,7 +377,7 @@ pandoc.table(m, keep.line.breaks = TRUE,caption="(\\#tab:Table3-1) (ref:tab3-1)"
 
 \indent We can also visualize the results of our linear models using what are called
 ***term-plots*** or ***effect-plots*** 
-\index{effect-plot}
+\index{effects plot} \index{term plot}
 (from the ``effects`` package; [@R-effects])
 \index{R packages!\textbf{effects}}
 as displayed in Figure \@ref(fig:Figure3-2). We don't want to use the word 
@@ -842,7 +842,7 @@ are called the ***numerator degrees of freedom*** ($J-1$) and the
 that we used to calculate the mean squares and where in the $F$-ratio each mean 
 square was used; $F$-distributions are denoted by their degrees of freedom using 
 the convention of $F$ (*numerator df*, *denominator df*). Some examples of 
-different $F$-distributions are displayed for you in Figure \@ref(fig:Figure3-6).
+different $F$-distributions are displayed for you in Figure \@ref(fig:Figure3-6). \index{F-distribution}
 
 \indent The characteristics of the F-distribution can be summarized as:
 
@@ -911,7 +911,7 @@ from above, is:
 anova(lm2)
 ```
 
-The p-value from the $F$-distribution is `r round(orig_anova[1,5],3)`. We can 
+The p-value from the $F$-distribution is `r round(orig_anova[1,5],3)`. \index{F-distribution} We can 
 verify this result using the observed $F$-statistic of `r round(orig_anova[1,4],2)`
 (which came from taking the ratio of the two mean squares, 
 F=`r round(orig_anova[1,3],2)`/`r round(orig_anova[2,3],2)`)
@@ -921,7 +921,7 @@ other assumptions are met.
 Using the ``pf`` function provides us with areas in the
 specified $F$-distribution with the ``df1`` provided to the function as the 
 numerator *df* and ``df2`` as the denominator *df* and ``lower.tail=F`` reflecting 
-our desire for a right tailed area.
+our desire for a right tailed area. \index{F-distribution}
 \index{\texttt{pf()}}
 
 ```{r}
@@ -1115,7 +1115,7 @@ normal distribution. To gain insight into the validity of this assumption, we
 can explore the original observations as displayed in the beanplots, mentally
 subtracting off the differences in the means and focusing on the shapes of the
 distributions of observations in each group. These plots are especially good for
-assessing whether there is a skew or outliers present in each group. If so, 
+assessing whether there is a skew or outliers present in each group. \index{outlier} \index{skew} If so, 
 by definition, the normality assumption is violated. But our assumption is 
 about the distribution of all the errors after removing the differences 
 in the means and so we want an overall assessment technique to understand how
@@ -1278,7 +1278,7 @@ noticeable issues in the distribution of the residuals such as those
 displayed above. Again, you will never be able to prove that you have normally
 distributed residuals even if the residuals are all exactly on the line, but if
 you see QQ-plots as in Figure \@ref(fig:Figure3-12) you can determine that there is clear evidence of violations of the normality assumption. 
-\index{QQ-plot!interpretation of}
+\index{QQ-plot!interpretation of} \index{outlier} \index{skew}
 
 (ref:fig3-13) Two more simulated data sets, both generated from normal distributions.
 
@@ -1309,7 +1309,7 @@ In simulation studies of the performance of the $F$-test, researchers
 have found that the
 parametric ANOVA $F$-test is more resistant to violations of the assumptions of
 the normality and equal variance assumptions if the design is balanced. 
-\index{balanced}
+\index{balance}
 A ***balanced design*** occurs when each group is measured the same number of 
 times. The resistance decreases as the data set becomes less balanced, as the 
 sample sizes in the groups are more different, so having close to balance is 
@@ -1382,7 +1382,7 @@ tally(~Treat, data=ToothGrowth)
 ```
 
 The ``tally`` function helps us to check for balance;
-\index{balanced}
+\index{balance}
 this is a balanced design
 because the same number of guinea pigs ($n_j=10 \text{ for } j=1, 2,\ldots, 6$) 
 were measured in each treatment combination. 
@@ -1668,7 +1668,7 @@ making an adjustment to account for that inflation in Type I errors
 that occurs due to many tests being performed at the same time. 
 There are many different statistical
 methods to make all the pair-wise comparisons, but we will employ the most
-commonly used one, called ***Tukey's Honest Significant Difference*** (Tukey's HSD) 
+commonly used one, called ***Tukey's Honest Significant Difference*** (Tukey's HSD) \index{Tukey's HSD} 
 method^[When this procedure is used with unequal group sizes it is also sometimes
 called Tukey-Kramer's method.]. The name suggests that not using it could lead to a 
 dishonest answer and that it will give you an honest result. It is more that if you don't 
@@ -1680,7 +1680,7 @@ one of them.
 \indent Generally, the challenge in this situation is that if you perform many tests at the same time (instead of just one test), you inflate the 
 Type I error rate.
 \index{type I error}
-We can define the ***family-wise error rate***
+We can define the ***family-wise error rate*** \index{family-wise error rate}
 as the probability that at least one error is made on a set of tests or, more
 compactly, Pr(At least 1 error is made) where Pr() is the probability of an
 event occurring. The family-wise error is meant to capture the overall
@@ -1748,7 +1748,7 @@ significance level, often 5%. To do this, each test must use a slightly more
 conservative cut-off than if just one test is performed and the procedure helps 
 us figure out how much more conservative we need to be. 
 
-\indent Tukey's HSD starts with focusing on the difference between the groups with the 
+\indent Tukey's HSD starts \index{Tukey's HSD} with focusing on the difference between the groups with the 
 largest and smallest means ($\bar{y}_{max}-\bar{y}_{min}$). If 
 $(\bar{y}_{max}-\bar{y}_{min}) \le \text{Margin of Error}$
 for the difference in the means, then all other pairwise differences, say
@@ -1834,7 +1834,7 @@ different groups and the story is not as clear as it is in this case. An
 example of this sort of overlap is seen in the next section. 
 
 \indent There is a method that many researchers use to more efficiently generate and 
-report these sorts of results that is called a ***compact letter display*** 
+report these sorts of results that is called a ***compact letter display*** \index{compact letter display}
 (CLD, @Piepho2004)^[Note that this method is implemented slightly differently than we explain here in some software packages so if you see this in a journal article, read the discussion carefully.]. The ``cld`` function can be applied to the results from 
 ``glht`` to generate the CLD that we can use to provide a "simple" summary of 
 the sets of groups. In this discussion, we define a **set as a union of different
@@ -1954,7 +1954,7 @@ plot(confint(Tm2, level=.9))
 ```
 
 \indent At the family-wise 5% significance level, there are no pairs that are detectably different 
--- they all get the same letter of "a". Now we will produce results for the reader that
+-- they all get the same letter of "a". \index{Tukey's HSD} \index{compact letter display} Now we will produce results for the reader that
 thought a 10% significance was suitable for this application before seeing any
 of the results. We just need to change the confidence level or significance
 level that the CIs or tests are produced with inside the functions. For the ``confint``
@@ -2120,7 +2120,7 @@ help(cholesterol)
 3.1. Graphically explore the differences in the changes in Cholesterol levels for
 the five levels using boxplots and beanplots. 
 
-3.2. Is the design balanced? \index{balanced}
+3.2. Is the design balanced? \index{balance}
 
 3.3. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
 reporting the ANOVA table and the distribution of the test statistic under the null. 

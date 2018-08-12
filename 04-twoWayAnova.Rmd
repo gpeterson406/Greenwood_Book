@@ -107,7 +107,7 @@ from the levels chosen for each measurement. Or we could decide on how many
 observations we want at each combination of the two factors (ideally having 
 them all equal so the design is ***balanced***) and then randomize the order 
 of applying the different combinations of levels. 
-\index{balanced}
+\index{balance}
 
 \indent Why might it be important to randomly apply the brand and number of drops in 
 an experiment? There are situations where the order of observations can be 
@@ -171,7 +171,7 @@ is a desired attribute of all studies.
 \index{power}
 It is also important to make sure that 
 you obtain multiple observations at each combination of the treatment levels, 
-which are called ***replicates***. Having replicate measurements allows 
+which are called ***replicates***. \index{replicate} Having replicate measurements allows 
 estimation of the mean for each combination of the treatment levels as well 
 as estimation and testing for an interaction.
 \index{interaction!Two-Way ANOVA}
@@ -180,7 +180,7 @@ balanced designs because they provide resistance to violation of some
 assumptions as noted in Chapter \@ref(chapter3). A ***balanced design***
 in a Two-Way ANOVA setting involves having the same sample size for every
 combination of the levels of the treatments. 
-\index{balanced}
+\index{balance}
 
 \indent With two categorical explanatory variables, there are now five possible 
 scenarios for the truth. Different situations are created depending on 
@@ -1193,9 +1193,9 @@ HSD results (specifically the CLD) can be added to the original interaction
 plot by turning on the ``cld=T`` option in the ``intplot`` function as seen in 
 Figure \@ref(fig:Figure4-12). Sometimes it is hard to see the letters and so
 there is also a ``cldshift=...`` option to move the letters up or down, here a 
-value of 1 seemed to work. 
+value of 1 seemed to work. \index{Tukey's HSD} \index{compact letter display}
 \index{interaction plot}
-\index{\texttt{intplot}}
+\index{\texttt{intplot()}}
 
 ```{r eval=F}
 intplot(len~supp*dose, data=ToothGrowth, col=c(1,2), cldshift=1,
@@ -1552,7 +1552,7 @@ normality and equal variance).
 
 4. If the interaction test has a small p-value, that is your main result. Focus on
 the interaction plot from (1) to fully understand the results, adding Tukey's
-HSD results to see which means of the combinations of levels are detected as
+HSD \index{Tukey's HSD} results to see which means of the combinations of levels are detected as
 being different. 
 
 5. If the interaction is not considered important, then re-fit the model without
@@ -1585,6 +1585,7 @@ degrees of freedom show that we have nothing left for the error degrees of
 freedom and so we have to drop the interaction and call that potential
 interaction variability "error". 
 \index{degrees of freedom}
+\index{replicate}
 
 \indent We can still perform an analysis of the
 responses but an issue occurs with trying to estimate the interaction 
@@ -1607,7 +1608,7 @@ some interesting interactions present. But remember now that there is only a
 single observation at each combination of the brands and water levels so there
 is not much power to detect differences in this sort of situation and no replicates
 at any combinations of levels that allow estimation of SEs so no bands are produced in the
-plot. 
+plot. \index{replicate}
 \index{power}
 
 (ref:fig4-18) Interaction plot in paper towel data set with no replication. 
@@ -1690,7 +1691,7 @@ ANOVA table. Neither main effect had a small p-value
 *Brand*: $F(1,2)=0.65, \text{ p-value}=0.51$) in the additive model. To 
 get small p-values with the small sample sizes that unreplicated designs would generate, the differences would need to be
 **very** large because the residual degrees of freedom have become very small.
-\index{degrees of freedom}
+\index{degrees of freedom} \index{replicate}
 The term-plots in Figure \@ref(fig:Figure4-19) show that the
 differences among the levels are small relative to the residual variability as
 seen in the error bars around each point estimate. 

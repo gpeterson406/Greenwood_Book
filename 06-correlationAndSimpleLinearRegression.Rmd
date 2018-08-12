@@ -275,7 +275,7 @@ correlation coefficient provides:
     * If the relationship is nonlinear, the correlation is meaningless since it only measures linear relationships 
     and can be misleading if applied to a nonlinear relationship.
     
-3. There should be no outliers.
+3. There should be no outliers. \index{outlier}
 
     * The correlation is very sensitive (technically ***not resistant***) 
     to the impacts of certain types of outliers and you should generally 
@@ -387,7 +387,7 @@ cor(mtfiresR)
 \indent The correlation matrix alone is misleading -- we need to explore scatterplots 
 to check for nonlinear
 relationships, outliers, and clustering of observations that may be distorting
-the numerical measure of the linear relationship. The ``pairs.panels``
+the numerical measure of the linear relationship. \index{outlier} The ``pairs.panels``
 function from the ``psych`` package [@R-psych] combines the numerical 
 correlation information and scatterplots in one display.
 \index{R packages!\textbf{psych}}
@@ -465,7 +465,7 @@ We can create a reduced version of the data (``aisR2``) by removing those
 two rows using ``[-c(56, 166),]`` and then remake the plot:
 
 (ref:fig6-5) Scatterplot matrix of athlete data with two potential 
-outliers removed. 
+outliers removed. \index{outlier}
 
 ```{r Figure6-5,fig.cap="(ref:fig6-5)",warning=F,message=F}
 aisR2 <- aisR[-c(56,166),] #Removes observations in rows 56 and 166
@@ -494,7 +494,7 @@ the ``corrplot`` package [@R-corrplot].
 In this case 
 (Figure \@ref(fig:Figure6-6)), it tells much the same story but also allows 
 the viewer to easily distinguish both size and direction and read off the 
-numerical correlations if desired. 
+numerical correlations if desired. \index{correlation plot}
 
 (ref:fig6-6) Correlation plot of the athlete data with two potential 
 outliers removed. Lighter (orange) circle for positive correlations 
@@ -1587,7 +1587,7 @@ summary(m2)
 ## Outliers: leverage and influence	{#section6-9}
 
 In the review of correlation, we
-loosely considered the impacts of outliers on the correlation. We removed
+loosely considered the impacts of outliers on the correlation. \index{outlier} We removed
 unusual points to see both the visual changes (in the scatterplot) as well as
 changes in the correlation coefficient in Figures \@ref(fig:Figure6-4)
 and \@ref(fig:Figure6-5). In this section, 
@@ -1597,7 +1597,7 @@ big impact on the overall regression results but it is also possible to have a
 clear outlier that has little impact on the results. We call an observation
 ***influential*** if its removal causes a "big" change in the regression line,
 specifically in terms of impacting the
-slope coefficient. Points that are on the edges of the $x\text{'s}$
+slope coefficient. \index{influential} Points that are on the edges of the $x\text{'s}$
 (far from the mean of the $x\text{'s}$) have the potential for more impact 
 on the line as we will see in some examples shortly. 
 
@@ -1605,7 +1605,7 @@ on the line as we will see in some examples shortly.
 further from that location a point is, the more a single point can move
 the line. We can measure the distance of
 points from $\bar{x}$ to quantify each observation's potential for impact 
-on the line using what is called the ***leverage*** of a point. Leverage
+on the line using what is called the ***leverage*** of a point. \index{leverage} Leverage
 is a positive numerical measure with larger values corresponding to more 
 leverage. The scale changes depending on the sample size ($n$) and the
 complexity of the model so all that matters is which observations have 
@@ -1614,7 +1614,7 @@ with x-values
 that provide higher leverage have increased potential to influence the
 estimated regression line. Along with measuring the leverage, we can also
 measure the influence that each point has on the regression line using
-***Cook's Distance*** or ***Cook's D***. It also is a positive
+***Cook's Distance*** or ***Cook's D***. \index{Cook's Distance} It also is a positive
 measure with higher values suggesting more influence. The rule of thumb is that
 Cook's D values over 1.0 correspond to clearly influential points, values over
 0.5 have some influence and values lower than 0.5 indicate points that are not
@@ -1904,7 +1904,7 @@ regression models can be assessed using diagnostic plots:
 * **No influential points**
 
     * Examine the Residuals vs Leverage plot as discussed in the previous 
-    section. \index{Residuals vs Leverage plot}
+    section. \index{Residuals vs Leverage plot} \index{Cook's Distance} \index{influential}
     
     * Consider removing influential points (one at a time) and focusing on results without
     those points in the data set. 

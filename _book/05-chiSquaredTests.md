@@ -17,7 +17,7 @@ output:
 
 
 
-## Situation, contingency tables, and table plots	{#section5-1}
+## Situation, contingency tables, and tableplots	{#section5-1}
 
 In this chapter, the focus shifts briefly from analyzing quantitative 
 response variables to methods
@@ -53,11 +53,14 @@ studies these methods can be used to analyze. Graphical techniques provide
 opportunities for assessing specific patterns in variables, relationships
 between variables, and for generally understanding the responses obtained. 
 There are many different types of plots and each can enhance certain features
-of data. We will start with a "fun" display, called a *table plot*, to help us
+of data. We will start with a "fun" display, called a *tableplot*, to help us
 understand some aspects of the results from a double-blind randomized clinical
 trial investigating a treatment for rheumatoid arthritis that has the
-categorical response variable introduced previously. These data are available
+categorical response variable introduced previously.
+\index{tableplot}
+These data are available
 in the ``Arthritis`` data set available in the ``vcd`` package [@R-vcd].
+\index{R packages!\textbf{vcd}}
 There were $n=84$ subjects, with some demographic 
 information recorded
 along with the ``Treatment`` status (*Treated*, *Placebo*) and whether the 
@@ -71,7 +74,10 @@ the rows in each category.] based on the
 category of responses or as a bar with the height corresponding
 the value of quantitative variables^[Quantitative variables are displayed with
 boxplot-like bounds to describe the variability in the variable for that row of 
-responses for larger data sets.]. It also plots a red cell if the
+responses for larger data sets.].
+\index{\texttt{tableplot()}}
+\index{R packages!\textbf{tabplot}}
+It also plots a red cell if the
 observations were missing on a particular variable. The plot can be obtained
 simply as ``tableplot(DATASETNAME)``. But when using ``tableplot``, we may 
 not want to display everything in the tibble and often just select some 
@@ -79,8 +85,9 @@ of the variables. We use ``Treatment``, ``Improved``, ``Sex``, and ``Age``
 in the ``select=...`` option with a ``c()`` and commas between the names of 
 the variables we want to display as shown below. The first one in the list is also the one that
 the data are sorted on. The ``pals=list("BrBG")`` option specifies a color palette for the plot that is color-blind friendly.
+\index{R packages!\textbf{RColorBrewer}}
 
-(ref:fig5-1) Table plot of the arthritis data set. 
+(ref:fig5-1) Tableplot of the arthritis data set. 
 
 
 ```r
@@ -138,10 +145,14 @@ improvement category. A difference in the effectiveness would manifest in
 different proportions in the different improvement categories between *Treated* 
 and *Placebo*. To get information in this direction, we start with
 obtaining the counts in each combination of categories using the ``tally``
-function to generate contingency tables. ***Contingency tables*** with 
+function to generate contingency tables.
+\index{\texttt{tally()}}
+***Contingency tables*** with 
 ***R*** rows and ***C*** columns (called ***R by C tables***) summarize 
 the counts of observations in each combination of the explanatory and 
-response variables. In these data, there are $R=2$ rows and $C=3$ columns 
+response variables.
+\index{contingency table}
+In these data, there are $R=2$ rows and $C=3$ columns 
 making a $2\times 3$ table -- note that you do not count the row
 and column for the "Totals" in defining the size of the table. In the table, 
 there seems to be many more *Marked* improvement responses (21 vs 7) and 
@@ -165,7 +176,10 @@ tally(~Treatment+Improved, data=Arthritis, margins=T)
 Using the ``tally`` function with ``~x+y`` provides a contingency table with
 the ``x`` variable on the rows and the ``y`` variable on the columns, with
 ``margins=T`` as an option so we can obtain the totals along the rows, 
-columns, and table total of $N=84$. In general, contingency tables contain 
+columns, and table total of $N=84$.
+\index{\texttt{tally()}}
+\index{contingency table}
+In general, contingency tables contain 
 the counts $n_{rc}$ in the $r^{th}$ row and $c^{th}$ column where
 $r=1,\ldots,R$ and $c=1,\ldots,C$. We can also define the ***row totals***
 as the sum across the columns of the counts in row $r$ as
@@ -185,6 +199,7 @@ We'll need these quantities to do some calculations in a bit. A generic
 contingency table with added row, column, 
 and table totals just like the previous result from the ``tally``
 function is provided in Table \@ref(tab:Table5-1).
+\index{contingency table}
 
 (ref:tab5-1) General notation for counts in an *R* by *C* contingency table.
 
@@ -216,6 +231,7 @@ called ***conditional proportions*** or the ***conditional distribution*** of,
 here, *Improved* on *Treatment*)^[The vertical line, "``|``", in ``~ y|x``
 is available on most keyboards on the same key as "``\``". It is the mathematical 
 symbol that means "conditional on" whatever follows.]. 
+\index{\texttt{tally()}}
 Note that they sum to 1.0 in each level of x, *placebo* or *treated*:
 
 
@@ -235,7 +251,9 @@ tally(~Improved|Treatment, data=Arthritis, format="proportion", margins=T)
 This version of the ``tally`` result switches the variables between the rows and columns from the 
 first summary of the data but the single
 "Total" row makes it clear to read the proportions down the columns in this
-version of the table. In this application, it shows how the proportions seem to be different among categories of *Improvement* between the placebo and treatment groups. This matches the previous thoughts on
+version of the table.
+\index{\texttt{tally()}}
+In this application, it shows how the proportions seem to be different among categories of *Improvement* between the placebo and treatment groups. This matches the previous thoughts on
 these data, but now a difference of marked improvement of 16% vs 51% is more
 clearly a big difference. We can also display this result using a 
 ***stacked bar-chart*** that displays the same information using the ``plot``
@@ -275,15 +293,21 @@ reflect the differences in the data collection processes, choosing either
 between what are called Homogeneity and Independence tests. The previous
 situation where levels of a treatment are randomly assigned to the subjects in
 a study describes the situation for what is called a ***Homogeneity Test***.
+\index{Chi-Square Test!Homogeneity Test}
 Homogeneity also applies when random samples are taken from each population of
 interest to generate the observations in each group of the explanatory variable based on the population groups. 
+\index{random sampling}
 These sorts of situations resemble many of the examples from 
 Chapter \@ref(chapter3) where treatments were assigned to subjects. The other 
 situation considered is where a
 single sample is collected to represent a population and then a contingency
-table is formed based on responses on two categorical variables. When one
+table is formed based on responses on two categorical variables.
+\index{contingency table}
+When one
 sample is collected and analyzed using a contingency table, the appropriate
-analysis is called an ***Independence*** or ***Association test***. In this
+analysis is called an ***Independence*** or ***Association test***.
+\index{Chi-Square Test!Independence Test}
+In this
 situation, it is not necessary to have variables that are clearly classified
 as explanatory or response although it is certainly possible. Data that often 
 align with Independence testing are collected using surveys of
@@ -301,7 +325,9 @@ paper and/or taking an exam (*none*, *either*, or *both*) and copying on an
 exam and/or turning in a paper written by
 someone else (*neither*, *either*, or *both*). In this situation, it is not 
 clear which variable is response or explanatory (which should explain the other) and it does not matter
-with the Independence testing framework. Figure \@ref(fig:Figure5-3) contains 
+with the Independence testing framework.
+\index{Chi-Square Test!Independence Test}
+Figure \@ref(fig:Figure5-3) contains 
 a diagram of the
 data collection processes and can help you to identify the appropriate analysis
 situation.
@@ -321,8 +347,12 @@ which can create some desire
 to assume that the differences in the data collection doesn't matter. In
 Homogeneity designs, the sample size in each group
 $(\mathbf{n_{1\bullet}},\mathbf{n_{2\bullet},\ldots,\mathbf{n_{R\bullet}}})$
-is fixed. In Independence situations, the total sample size $\mathbf{N}$ is
-fixed but all the $\mathbf{n_{r\bullet}}\text{'s}$ are random. These
+is fixed.
+\index{Chi-Square Test!Homogeneity Test}
+In Independence situations, the total sample size $\mathbf{N}$ is
+fixed but all the $\mathbf{n_{r\bullet}}\text{'s}$ are random.
+\index{Chi-Square Test!Independence Test}
+These
 differences impact the graphs, hypotheses, and conclusions used even though
 the test statistics and p-values are calculated the same way -- so we only
 need to learn one test statistic to handle the two situations, but we need
@@ -332,7 +362,9 @@ to make sure we know which we're doing!
 
 If we define some additional notation, we can then define hypotheses that allow us
 to assess evidence related to whether the treatment "matters" in Homogeneity
-situations. This situation is similar to what we did in the One-Way ANOVA
+situations.
+\index{Chi-Square Test!Homogeneity Test}
+This situation is similar to what we did in the One-Way ANOVA
 situation with quantitative responses in Chapter \@ref(chapter3) but the parameters now
 relate to proportions in the response variable categories across the groups. 
 First we can define the conditional population proportions in level $c$ (column 
@@ -341,6 +373,7 @@ Table \@ref(tab:Table5-2) shows the proportions, noting that the proportions
 in each row sum to 1 since they are conditional on the group of
 interest. A ***transposed*** (rows and columns flipped) version of this table is
 produced by the ``tally`` function if you use the formula ``~y|x``.
+\index{\texttt{tally()}}
 
 (ref:tab5-2) Table of conditional proportions in the Homogeneity testing scenario. 
 
@@ -363,7 +396,9 @@ produced by the ``tally`` function if you use the formula ``~y|x``.
 Table: (\#tab:Table5-2) (ref:tab5-2)
 
 In the Homogeneity situation, the null hypothesis is that the distributions are the same in all
-the $R$ populations. This means that the null hypothesis is:
+the $R$ populations.
+\index{Chi-Square Test!Homogeneity Test}
+This means that the null hypothesis is:
 
 \newpage
 
@@ -431,7 +466,7 @@ across rows in the table but is a more general question since we do not
 need to determine a variable to condition on, one that takes on the role 
 of an explanatory variable, from the two variables of interest. In general,
 the hypotheses for an Independence test for variables $x$ and $y$ are:
-
+\index{Chi-Square Test!Independence Test}
 
 * $\mathbf{H_0}$: **There is no relationship between** $\mathbf{x}$ **and**
 $\mathbf{y}$ **in the population.** 
@@ -463,8 +498,9 @@ party nominee with strong support for Gore in the democrats
 statistical inferences, here with the potential to extend inferences to 
 the overall population of
 voters. The inferences in an independence test are related to whether there is a
-relationship between the two variables in the population. A 
-***relationship*** between variables occurs when knowing the level of 
+relationship between the two variables in the population.
+\index{Chi-Square Test!Independence Test}
+A ***relationship*** between variables occurs when knowing the level of 
 one variable for a person, 
 say that they voted for Gore, informs the types of responses that you would
 expect for that person, here that they are likely affiliated with the Democratic
@@ -529,6 +565,7 @@ the levels of x) that might be hard to justify. Our summaries in these
 situations are the contingency table (``tally(~var1+var2, data=DATASETNAME)``)
 and a new graph called a ***mosaic plot*** (using the ``mosaicplot`` 
 function). 
+\index{\texttt{tally()}}
 
 \indent Mosaic plots display a box for each cell count whose area corresponds 
 to the proportion of the total data set that is in that cell 
@@ -570,6 +607,7 @@ natural ordering.
 
 \indent The mosaic plots are best made on the tables created by the ``tally`` 
 function from a table that just contains the counts (**no totals**): 
+\index{\texttt{tally()}}
 
 (ref:fig5-5) Mosaic plot of the 2000 election data comparing party 
 affiliation and voting results. 
@@ -635,7 +673,7 @@ statistic and find
 its distribution under the null hypothesis. The test statistic 
 used with both
 types of tests is called the  $\mathbf{X^2}$ ***statistic***
-(we want to call the statistic X-squared not Chi-squared). The statistic 
+(we want to call the statistic X-square not Chi-square). The statistic 
 compares the
 observed counts in the contingency table to the ***expected counts*** 
 under the null hypothesis, with large differences between what 
@@ -647,7 +685,9 @@ of a quantity so it has a standard deviation 1 regardless of its original
 variability and that is what is happening here even though it doesn't 
 look like the standardization you are used to with continuous variables.]
 the difference between the observed and expected counts by the square-root of
-the expected count. The  $\mathbf{X^2}$ ***statistic*** is based on
+the expected count.
+\index{parametric}
+The  $\mathbf{X^2}$ ***statistic*** is based on
 the sum of squared standardized differences, 
 
 $$\boldsymbol{X^2 = \Sigma^{RC}_{i=1}\left(\frac{Observed_i-Expected_i}
@@ -868,8 +908,12 @@ useful here. If we randomly permute the grouping variable used to form the rows
 in the contingency table relative to the responses in the other variable and
 track the possibilities available for the $X^2$ statistic under
 permutations, we can find the probability of getting a result as extreme as or
-more extreme than what we observed assuming the null is true, our p-value. The observed statistic is the
-$X^2$ calculated using the formula above. Like the $F$-statistic, it ends up
+more extreme than what we observed assuming the null is true, our p-value.
+\index{p-value!permutation distribution}
+The observed statistic is the
+$X^2$ calculated using the formula above.
+\index{permutation}
+Like the $F$-statistic, it ends up
 that only results in the right tail of this distribution are desirable for 
 finding evidence against the null hypothesis
 because all the values have to be positive. You can see this by observing that
@@ -944,6 +988,7 @@ results. The code is similar to permutation tests in Chapters
 that each permutation generates a new contingency table that is summarized and
 provided to ``chisq.test `` to analyze. We again extract the 
 ``$statistic``. 
+\index{permutation!distribution}
 
 (ref:fig5-9) Permutation distribution for the $X^2$ statistic for 
 the Arthritis data with an observed $X^2$ of 13.1 (bold, vertical line). 
@@ -991,15 +1036,20 @@ abline(v=Tobs, col="red", lwd=3)
 
 For an observed $X^2$ statistic of 13.055, four out of 1,000 permutation
 results matched or exceeded this value (``pdata`` returned a value of 
-0.004). This suggests that our observed result is quite extreme 
+0.004). 
+\index{\texttt{pdata()}}
+This suggests that our observed result is quite extreme 
 relative to the null
 hypothesis and provides strong evidence against it. 
+\index{permutation!test}
 
 \newpage
 
 **Validity conditions** for a permutation $X^2$ test are:
+\index{validity conditions!@$X^2$ test!permutation}
 
 1. Independence of observations. 
+\index{independence assumption!Chi-square test}
 
 2. Both variables are categorical. 
 
@@ -1024,6 +1074,7 @@ the permutation
 test is met, it is possible to avoid permutations to find the distribution of
 the $X^2$ statistic under the null hypothesis and get a p-value using
 what is called the ***Chi-square or*** $\boldsymbol{\chi^2}$-**distribution**.
+\index{Chi-Square distribution}
 The name of our test statistic, X-squared, is meant to allude to the
 potential that this will follow a $\boldsymbol{\chi^2}$-distribution 
 in certain situations but may not do that all the time and we still 
@@ -1041,7 +1092,9 @@ cell counts are below 5. And the smaller the expected cell counts become, the
 more problematic the $\boldsymbol{\chi^2}$-distribution is as an 
 approximation of the sampling distribution of the $X^2$ statistic under 
 the null hypothesis. **The standard rule of thumb is that all the expected
-cell counts need to exceed 5 for the parametric approach to be valid**. When 
+cell counts need to exceed 5 for the parametric approach to be valid**.
+\index{validity conditions!@$X^2$ test!parametric}
+When 
 this condition is violated, it is better to use the permutation approach. 
 The ``chisq.test`` function will provide a warning message 
 to help you notice this. But it is good practice to always explore
@@ -1066,8 +1119,9 @@ since the smallest expected cell count is 6.833 (so all expected counts are larg
 \indent The $\boldsymbol{\chi^2}$-distribution is a right-skewed distribution 
 that starts at 0 as shown in Figure \@ref(fig:Figure5-10). Its shape
 changes as a function of its degrees of freedom. In the contingency 
-table analyses, the ***degrees of freedom*** for the Chi-squared test 
-are calculated as
+table analyses, the ***degrees of freedom*** for the Chi-square test 
+are calculated as \index{Chi-Square Test} 
+\index{degrees of freedom!Chi-Square test}
 
 $$\textbf{DF} \mathbf{=(R-1)*(C-1)} = (\text{number of rows }-1)*
 (\text{number of columns }-1).$$
@@ -1077,7 +1131,10 @@ to a Chi-square
 distribution with 2 *df* for the distribution of $X^2$ under the null 
 hypothesis. The p-value is based on the area to the right of the observed 
 $X^2$ value of 13.055 and the ``pchisq`` function provides that area as
-0.00146. Note that this is very similar to the permutation result found
+0.00146. 
+\index{p-value}
+\index{\texttt{pchisq()}}
+Note that this is very similar to the permutation result found
 previously for these data. 
 
 
@@ -1165,6 +1222,7 @@ more mean that the cells are contributing 4 or more units to the overall
 statistic, which is a pretty noticeable bump up in the size of the statistic. A
 few contributions at 4 or higher and you will likely end up with a small
 p-value. 
+\index{residuals}
 
 \indent There are two ways to explore standardized residuals. First, we can 
 obtain them via the ``chisq.test`` and manually identify the "big
@@ -1241,7 +1299,7 @@ describe the pattern of responses.
     
     b. For Independence, make a mosaic plot.
     
-    c. Consider a more general exploration using a table plot if other 
+    c. Consider a more general exploration using a tableplot if other 
     variables were measured to check for confounding and other interesting multi-variable relationships. 
     
 4. Conduct the 6+ steps of the appropriate type of hypothesis test.
@@ -1266,13 +1324,15 @@ of voters was obtained
 related to the 2000 Presidential Election with the party affiliations and
 voting results recorded for each subject. The data are available in 
 ``election`` in the ``poLCA`` package [@R-poLCA]. It
-is always good to start with a bit of data exploration with a table plot, 
-displayed in Figure \@ref(fig:Figure5-13). Many of the lines of code here 
+is always good to start with a bit of data exploration with a tableplot, 
+displayed in Figure \@ref(fig:Figure5-13).
+\index{tableplot}
+Many of the lines of code here 
 are just for making
 sure that R is treating the categorical variables that were coded numerically
 as categorical variables. 
 
-(ref:fig5-13) Table plot of vote, party affiliation, education, and 
+(ref:fig5-13) Tableplot of vote, party affiliation, education, and 
 sex from election survey data. Note that
 missing observations are present in three of four variables. Education is coded
 from 1 to 7 with higher values related to higher educational attainment. Sex
@@ -1307,7 +1367,9 @@ survey for whatever reason. We want to focus on those that did respond in
 missing responses on these four variables and remake this plot 
 (Figure \@ref(fig:Figure5-14)). The code also adds the ``sort`` option to the
 ``tableplot`` function call that provides an easy way to sort the data set 
-based on other variables. It is interesting, for example, to sort the
+based on other variables.
+\index{\texttt{tableplot()}}
+It is interesting, for example, to sort the
 responses by *Education* level and explore the differences in other variables.
 These explorations are omitted here but easily available by changing the
 sorting column from 1 to ``sort=3``. Figure \@ref(fig:Figure5-14) shows us that there are clear differences
@@ -1317,7 +1379,7 @@ based on the voting status in this plot, but, as noted above, sorting on these
 other variables can sometimes help to see other relationships between
 variables. 
 
-(ref:fig5-14) Table plot of election data with subjects without any missing responses.
+(ref:fig5-14) Tableplot of election data with subjects without any missing responses (complete cases).
 
 
 ```r
@@ -1388,7 +1450,8 @@ associational, depending on how the subjects ended up in the groups.].
     (7 levels) and voting results (*Bush*, *Gore*, *Other*) in the 
     population. 
 
-2. **Validity conditions:**
+2. **Validity conditions:** 
+\index{validity conditions!Chi-square Test}
 
     * Independence:
     
@@ -1617,7 +1680,9 @@ residuals.
 
 A study of student behavior was performed at a university with a survey of 
 $N=319$ undergraduate students (``cheating`` data set from the ``poLCA``
-package originally published by @Dayton1998). They were asked to answer
+package originally published by @Dayton1998).
+\index{R packages!\textbf{poLCA}}
+They were asked to answer
 four questions about their various
 academic frauds that involved cheating and lying. Specifically, they were 
 asked if they had ever lied to avoid taking an exam (``LIEEXAM`` with 1 
@@ -1630,8 +1695,9 @@ their ``GPA``s were obtained and put into categories: (<2.99, 3.0 to 3.25,
 3.26 to 3.50, 3.51 to 3.75, and 3.76 to 4.0). These categories were coded 
 from 1 to 5, respectively. Again, the code starts with making sure the 
 variables are treated categorically by applying the ``factor`` function. 
+\index{\texttt{factor()}}
 
-(ref:fig5-18) Table plot of initial cheating and lying data set.
+(ref:fig5-18) Tableplot of initial cheating and lying data set. Note that a few GPAs were missing in the data set.
 
 
 ```r
@@ -1655,7 +1721,7 @@ tableplot(cheating, sort=GPA,pals=list("BrBG"))
 
 \indent We can explore some interesting questions about the relationships between 
 these variables. The
-table plot in Figure \@ref(fig:Figure5-18) again helps us to get a general 
+tableplot in Figure \@ref(fig:Figure5-18) again helps us to get a general 
 idea of the data set
 and to assess some complicated aspects of the relationships between variables. 
 For example, the rates of different unethical behaviors seem to decrease with
@@ -1681,7 +1747,7 @@ involved.
 \indent To simplify the results, combining the two groups of variables
 into the four possible combinations on
 each has the potential to simplify the results -- or at least allow exploration
-of additional research questions. In the table plot in 
+of additional research questions. In the tableplot in 
 Figure \@ref(fig:Figure5-19), you can see
 the four categories for each, starting with no bad behavior of either type
 (which is fortunately the most popular response on both variables!). For each
@@ -1695,9 +1761,9 @@ reside, so maybe there is a relationship between those two types of behaviors?
 On the other hand, for the students who have never lied, quite a few had
 cheated on exams. The contingency table can help us dig further into the
 hypotheses related to the Chi-square test of Independence that is appropriate
-in this situation.
+in this situation. \index{Chi-Square Test!Independence Test}
 
-(ref:fig5-19) Table plot of new variables liar and copier that allow 
+(ref:fig5-19) Tableplot of new variables liar and copier that allow 
 exploration of relationships between different types of lying and 
 cheating behaviors.
 
@@ -1739,10 +1805,10 @@ as well in the groups that only had one behavior present. To get a higher
 number of counts in the combinations, we combined the single behavior only levels
 into "*either*" categories and left the *none* and *both* categories for each
 variable. This creates two new variables called ``liar2`` and ``copier2``
-(table plot in Figure \@ref(fig:Figure5-20)). The code to create these 
+(tableplot in Figure \@ref(fig:Figure5-20)). The code to create these 
 variables and make the plot is below.
 
-(ref:fig5-20) Table plot of lying and copying variables after combining 
+(ref:fig5-20) Tableplot of lying and copying variables after combining 
 categories. 
 
 
@@ -1977,7 +2043,9 @@ has a list of most of the schools in the state of each level that are using a
 database that the researcher has access to. In order to assess this question, 
 the researcher takes a stratified random sample^[A stratified random sample
 involves taking a simple random sample from each group or strata of the
-population. It is useful to make sure that each group is represented at a 
+population.
+\index{random sampling}
+It is useful to make sure that each group is represented at a 
 chosen level (for example the sample proportion of the total
 size). If a simple random sample of all schools had been taken, it is possible
 that a level could have no schools selected.], selecting 
@@ -1985,7 +2053,9 @@ $n_{\text{elementary}}=100$ schools from the population of 4421 elementary
 schools, $n_{\text{middle}}=50$ from the population of 1018 middle schools,
 and $n_{\text{high}}=50$ from the population of 755 high
 schools. These data are available in the ``survey`` package [@R-survey]
-and the api data object that loads both ``apipop`` (population) and ``apistrat`` (stratified random sample) data sets. The ``growth`` (change!) in 
+and the api data object that loads both ``apipop`` (population) and ``apistrat`` (stratified random sample) data sets.
+\index{R packages!\textbf{survey}}
+The ``growth`` (change!) in 
 API scores for the schools between 1999 and
 2000 (taken as the year 2000 score minus 1999 score) is used as the response
 variable. The boxplot and beanplot of the growth scores are displayed in Figure
@@ -2068,7 +2138,7 @@ Anova(m1)
 ```
 
 ```r
-plot(m1, which=2)
+plot(m1, which=2, pch=16)
 ```
 
 <div class="figure">
@@ -2081,7 +2151,10 @@ that does not assume the responses
 follow a normal distribution. If we ***bin*** or cut the quantitative response
 variable into a set of ordered categories and apply a Chi-square test, we can
 proceed without concern about the lack of normality in the residuals of the
-ANOVA model. To create these bins, a simple idea would be to use the quartiles
+ANOVA model.
+\index{residuals}
+\index{Chi-Square Test}
+To create these bins, a simple idea would be to use the quartiles
 to generate the response variable categories, binning the quantitative
 responses into groups for the lowest 25%, second 25%, third 25%, and highest
 25% by splitting the data at $Q_1$, the Median, and $Q_3$. In R, the 
@@ -2124,7 +2197,7 @@ tally(~growthcut, data=apistrat)
 ```
 
 \indent Now that we have a categorical response variable, we need to decide which 
-sort of Chi-squared
+sort of Chi-square
 analysis to perform. The sampling design determines the correct analysis as
 always in these situations. The stratified random sample involved samples from
 each of the three populations so a Homogeneity test should be employed. In
@@ -2279,7 +2352,9 @@ ANOVA and still provided useful inferences to the differences in the types of
 schools. When one goes from a quantitative to categorical version of a
 variable, one loses information (the specific details of the quantitative
 responses within each level created) and this almost always will result in a
-loss of statistical power of the procedure. In this situation, the p-value from
+loss of statistical power of the procedure.
+\index{power}
+In this situation, the p-value from
 the ANOVA was of the order $10^{-10}$ while the Chi-square test had a
 p-value of order $10^{-7}$. This larger p-value is typical of the loss of
 power in going to a categorical response when more information was available. 
@@ -2295,7 +2370,7 @@ violated.
 Chi-square tests can be generally used to perform two types of tests,
 the Independence and Homogeneity
 tests. The appropriate analysis is determined based on the data collection
-methodology. The parametric Chi-squared distribution for which these tests are
+methodology. The parametric Chi-square distribution for which these tests are
 named is appropriate when the expected cell counts are large enough (related to
 having a large enough overall sample). When this condition is violated, the
 permutation approach can provide valuable inferences in these situations in
@@ -2306,7 +2381,7 @@ most situations.
 summary of the results that can also be found in contingency tables. You should
 have learned how to calculate the $X^2$ (X-squared) test statistic
 based on first finding the expected cell counts. Under certain assumptions, it
-will follow a Chi-Squared distribution with $(R-1)(C-1)$ degrees of freedom. When
+will follow a Chi-Square distribution with $(R-1)(C-1)$ degrees of freedom. When
 those assumptions are not met, it is better to use a permutation approach to
 find p-values. Either way, the same statistic is used to test either kind of
 hypothesis, independence or homogeneity. After assessing evidence against the null hypothesis, it is interesting to see which cells in the table
@@ -2333,29 +2408,32 @@ are easily identified:
     ``TABLENAME``.
     
     * ``margins=T`` is used if want to display row, column, and 
-    table totals. 
+    table totals. \index{\texttt{tally()}|textbf}
 
 * **plot(<font color='red'>y</font>~
 <font color='red'>x</font>, data=<font color='red'>DATASETNAME</font>)**
 
     * Makes a stacked bar chart useful for homogeneity test situations.
+    \index{\texttt{plot()}|textbf}
     
 * **mosaicplot(<font color='red'>TABLENAME</font>)**
 
     * Makes a mosaic plot useful for finding patterns in the table 
     in independence test situations.
+    \index{\texttt{mosaicplot()}|textbf}
     
 * **tableplot(data=<font color='red'>DATASETNAME</font>, sortCol=<font color='red'>VARIABLENAME</font>,pals=list("BrBG"))**
 
     * Makes a tableplot sorted by <font color='red'>VARIABLENAME</font>, requires that the ``tabplot`` and `RColorBrewer` packages have been loaded.
     
     * The ``pals=list("BrBG")`` option provides a color-blind friendly color palette, although other options are possible, such as ``pals=list("RdBu")``.
+    \index{\texttt{tableplot()}|textbf}
     
 * **chisq.test(<font color='red'>TABLENAME</font>)**
 
     * Provides $X^2$ and p-values based on the 
     $\boldsymbol{\chi^2}$-distribution with $(R-1)(C-1)$ degrees of 
-    freedom.
+    freedom. \index{\texttt{chisq.test()}|textbf}
     
 * **chisq.test(<font color='red'>TABLENAME</font>)$expected**
 
@@ -2368,7 +2446,7 @@ df=(<font color='red'>R</font> - 1)``*``(<font color='red'>C</font> - 1), lower.
     $(R-1)(C-1)$ degrees of freedom for observed test statistic.
     
     * See Section \@ref(section5-5) for code related to finding a 
-    permutation-based p-value. 
+    permutation-based p-value. \index{\texttt{pchisq()}|textbf}
     
 * **chisq.test(<font color='red'>TABLENAME</font>)$residuals^2**
 
@@ -2473,7 +2551,7 @@ correct usage*, (``isare``), *have you thought about this issue*
 (``careabout``) with four levels from *Not at all* to *A lot*. The following
 code loads their data set after missing responses were removed, does a
 little re-ordering of factor levels to help make the results easier to 
-understand, and makes a table plot to get a general sense of the results 
+understand, and makes a tableplot to get a general sense of the results 
 including information on the respondents' gender, age, income, and education. 
 
 (ref:fig5-27) Tableplot of "data from "data-is-vs-data-are" survey, sorted by "CareAbout" responses. 
@@ -2496,7 +2574,8 @@ csd$Household.Income <- factor(csd$Household.Income,
                     levels=levels(csd$Household.Income)[c(1,4,5,6,2,3)])
 #Sorts plot by careabout responses
 tableplot(csd[,c("isare","careabout","thoughtabout","Gender",
-                 "Age","Household.Income","Education")], sortCol=careabout,pals=list("BrBG")) 
+                 "Age","Household.Income","Education")], sortCol=careabout,
+          pals=list("BrBG")) 
 ```
 
 <div class="figure">
@@ -2524,7 +2603,6 @@ the is/are preferences move away from the null hypothesis for people that care
 more about this?
 
 --------------------------------------------------------------------------------
-We might be fighting a losing battle on this particular word usage, but since we
-are in the group that cares a lot about this, we are going
-to keep trying...
+We might be fighting a losing battle on "data is a plural word", but since we
+are in the group that cares a lot about this, we are going to keep trying...
 --------------------------------------------------------------------------------

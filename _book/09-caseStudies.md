@@ -41,6 +41,7 @@ We didn't want to introduce indicator variables at that early stage of the
 material, but we can now write out the same model using our indicator variable
 approach from Chapter \@ref(chapter8) for a $J$-level categorical explanatory
 variable using $J-1$ indicator variables as:
+\index{model!One-Way ANOVA}
 
 $$y_i = \beta_0 + \beta_1I_{\text{Level }2,i} + \beta_2I_{\text{Level }3,i} +
 \cdots + \beta_{J-1}I_{\text{Level }J,i} + \varepsilon_i.$$
@@ -85,13 +86,16 @@ specific One-Way ANOVA (Chapter \@ref(chapter3)) notation as follows:
 The ANOVA reference-coding notation was used to focus on the coefficients that
 were "turned on" and their interpretation without getting bogged down in the
 full power (and notation) of general linear models. 
+\index{reference coding}
 
 \indent The same equivalence is 
-possible to equate our work in the Two-Way ANOVA interaction model, 
+possible to equate our work in the Two-Way ANOVA interaction model,
+\index{model!interaction}
 
 $$y_{ijk} = \alpha + \tau_j + \gamma_k + \omega_{jk} + \varepsilon_{ijk},$$
 
-with the regression notation from the MLR model with an interaction: 
+with the regression notation from the MLR model with an interaction:
+\index{model!MLR!interaction}
 
 $$\begin{array}{rc}
 y_i=&\beta_0 + \beta_1x_i +\beta_2I_{\text{Level }2,i}+\beta_3I_{\text{Level }3,i}
@@ -118,7 +122,7 @@ from published research articles, so you can see the potential utility of the
 methods we've been discussing for handling real problems. They are focused on
 biological applications because the particular journal (*Biology Letters*) that
 all of these were drawn from encourages authors to share their data sets, making
-our re-analyses possible. Use these sections to review or to re-inforce methods 
+our re-analyses possible. Use these sections to review or to re-enforce methods 
 from earlier in the book.
 
 \sectionmark{The impact of simulated chronic nitrogen deposition}
@@ -143,10 +147,15 @@ three experimental units or plots of area 0.1 hectare), one of the three
 treatments were randomly applied. ***Randomized block designs*** involve
 randomization of levels within blocks or groups as opposed to ***completely
 randomized designs*** where each ***experimental unit*** (the subject or plot
-that will be measured) could be randomly assigned to any treatment. This is
+that will be measured) could be randomly assigned to any treatment.
+\index{randomized block design}
+\index{completely randomized design}
+\index{experimental unit}
+This is
 done in agricultural studies to control for systematic differences across the
 fields by making sure each treatment level is used in each area or ***block***
 of the field. 
+\index{block}
 
 \indent The three treatments involved different levels of N applied immediately after
 snow melt, *Control* (no additional N -- just the naturally deposited 
@@ -423,6 +432,8 @@ plot(allEffects(m2), multiline=T, ci.style="bars")
 <p class="caption">(\#fig:Figure9-7)(ref:fig9-7)</p>
 </div>
 
+\newpage
+
 **Follow-up Pairwise Comparisons:**
 
 \indent Given strong evidence of an interaction, many researchers would like more
@@ -456,6 +467,12 @@ levels(gdn$SpTrt)
 
 ```r
 newm2 <- lm(logMassperha~SpTrt, data=gdn)
+```
+
+\newpage
+
+
+```r
 Anova(newm2)
 ```
 
@@ -658,7 +675,7 @@ chisq.test(table1, correct=F)
 ```
 
 The $X^2$ statistic is 5.97 which, if our assumptions are met, should 
-approximately follow a Chi-squared distribution with $(R-1)*(C-1)=1$ degrees of
+approximately follow a Chi-square distribution with $(R-1)*(C-1)=1$ degrees of
 freedom under the null hypothesis. The p-value is 0.015, suggesting that there
 is moderate to strong evidence against the null hypothesis. We can conclude that there is moderate evidence of a
 difference in the distribution of the responses between the two treated groups
@@ -858,7 +875,7 @@ with an AIC of 36.8, so 3.5 AIC units worse than the top model. We put these
 two runs of results together in Table \@ref(tab:Table9-1), re-computing all the
 AICs based on the top model from the first full model considered. 
 
-(ref:tab9-1) Model comparision table.
+(ref:tab9-1) Model comparison table.
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -946,7 +963,7 @@ that fully to verify that there is no support for an interaction.
 
 
 
-\indent Ignoring the violation of the independence assumption, we are otherwise ok to
+\indent Ignoring the violation of the independence assumption, we are otherwise OK to
 explore the model more and see what it tells us about biodiversity of
 *Sauropodomorphs*. The top model is estimated to be
 $\log{(\widehat{\text{count}})}_i=-1.089 + 0.724\cdot\log{(\text{DBC})}_i -0.75I_{\text{TJK},i}$. 
@@ -970,6 +987,8 @@ results for the Triassic and Jurassic. On the original count scale, this
 suggests $\exp(-0.76)=0.47$ times (53% drop in) the median biodiversity count 
 per stage for Cretaceous versus the prior time period, after correcting for
 log-sampling effort in each stage. 
+
+\newpage
 
 
 ```r
@@ -1045,11 +1064,44 @@ despite a suite of errors in their work.
 
 \sectionmark{didgeridoos and sleepiness}
 
-In the practice problems at the end of Chapter 4, a study (Puhan et al. (2005), available at http://www.bmj.com/content/332/7536/266) related to a pre-post, two group comparison of the sleepiness ratings of subjects. They obtained $n$=25 volunteers and they randomized the subjects to either get a lesson or be placed on a waiting list for lessons. They constrained the randomization based on the high/low apnoea and high/low on the Epworth scale of the subjects in their initial observations to make sure they balanced the types of subjects going into the treatment and control groups. They measured the subjects' Epworth value (daytime sleepiness, higher is more sleepy) initially and after four months, where only the treated subjects (those who took lessons) had any intervention. We are interested in whether the mean Epworth scale values changed differently over the four months in the group that got didgeridoo lessons than it did in the control group (that got no lessons). Each subject was measured twice (so the total sample size in the data set is 50) in the data set provided that is available at http://www.math.montana.edu/courses/s217/documents/epworthdata.csv.
+In the practice problems at the end of Chapter 4, a study (@Puhan2006) related
+to a pre-post, two group comparison of the sleepiness ratings of subjects. They
+obtained $n=25$ volunteers and they randomized the subjects to either get a 
+lesson or be placed on a waiting list for lessons. They constrained the 
+randomization based on the high/low apnoea and high/low on the Epworth scale 
+of the subjects in their initial observations to make sure they balanced the 
+types of subjects going into the treatment and control groups. They measured 
+the subjects' Epworth value (daytime sleepiness, higher is more sleepy) 
+initially and after four months, where only the treated subjects (those who 
+took lessons) had any intervention. We are interested in whether the mean Epworth
+scale values changed differently over the four months in the group that got 
+didgeridoo lessons than it did in the control group (that got no lessons). Each
+subject was measured twice (so the total sample size in the data set is 50) in 
+the data set provided that is available at
+http://www.math.montana.edu/courses/s217/documents/epworthdata.csv.
 
-\indent The data set was not initially provided by the researchers, but they did provide a plot very similar to Figure
-\@ref(fig:Figure9-12). Since this is last section of the book, I am going to use a new package to make the plot, `qplot` from the `ggplot2` package, that violates one of the rules used to this point - it doesn't have a formula interface. If you continue much further in learning to use R, you will see the benefits of some other functions and styles of functions. You will also likely run into the `ggplot2` package, which is part of the "tidyverse" and has been developed to implement sophisticated graphics. For more on this, you can visit https://ggplot2.tidyverse.org/ and the related book by Hadley Wickham, who now works for R-studio. We could have used `ggplot2` to make every graph in the book, but elected to focus on the simpler formula interface that few of these functions use. For now, I am going to use it to make Figure
-\@ref(fig:Figure9-12) with the `qplot` function that allows me to display a line for each subject over the two time points (pre and post) of observation and indicate which group the subjects were assigned to. This allows us to see the variation at a given time across subjects and changes over time, which is critical here as this shows clearly why we had a violation of the independence assumption in these data. In the plot, you can see that there are not clear differences in the two groups at the "Pre" time but that treated group seems to have most of the lines go down to lower sleepiness ratings and that this is not happening much for the subjects in the control group.
+\indent The data set was not initially provided by the researchers, but they 
+did provide a plot very similar to Figure \@ref(fig:Figure9-12). Since this 
+is last section of the book, I am going to use a new package to make the plot,
+``qplot`` from the ``ggplot2`` package [@R-ggplot2], that violates one of 
+the rules used for R functions to this point - it doesn't have a formula interface.
+\index{R packages!\textbf{ggplot2}}
+The ``viridis`` package [@R-viridis] was used to specify the colors in the plot.
+\index{R packages!\textbf{viridis}}
+If you continue much further in learning to use R, you will see the benefits 
+of some other functions and styles of functions. You will also likely run into 
+the ``ggplot2`` package, which is part of the "tidyverse" and has been developed 
+to implement sophisticated graphics. For more on this, you can visit
+https://ggplot2.tidyverse.org/ and the related book by Hadley Wickham, who orks for RStudio. We could have used ``ggplot2`` to make every graph in the 
+book, but elected to focus on functions that rely on formula interfaces. For now, I am going to use it to make Figure
+\@ref(fig:Figure9-12) with the ``qplot`` function that allows me to display a 
+line for each subject over the two time points (pre and post) of observation 
+and indicate which group the subjects were assigned to. This allows us to see 
+the variation at a given time across subjects and changes over time, which is 
+critical here as this shows clearly why we had a violation of the independence
+assumption in these data. In the plot, you can see that there are not clear differences in the two groups at the "Pre" time but that treated group seems 
+to have most of the lines go down to lower sleepiness ratings and that this is 
+not happening much for the subjects in the control group. The violation of the independence assumption is diagnosable from the study design (two observations on each subject). The plot allows us to go further and see that many subjects had similar Epworth scores from pre to post (high in pre, generally high in post) once we account for systemtic changes in the treated subjects.
 
 (ref:fig9-12) Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time.
 
@@ -1076,7 +1128,16 @@ qplot(x = Time, y = Epworth, data = epworthdata,
 <p class="caption">(\#fig:Figure9-12)(ref:fig9-12)</p>
 </div>
 
-\indent This plot seems to contradict the result from the following Two-Way ANOVA (that is a repeat of what you would have seen had you done the practice problem earlier in the book and the related interaction plot) -- there is little to no evidence against the null hypothesis of no interaction between Time and Treatment group on Epworth scale ratings (F(1,46)=1.37, p-value=0.248 as seen in Table 9.2). But this model assumes all the observations are independent and so does not account for the repeated measures on the same subjects. It ends up that if we account for systematic differences in subjects, we can (sometimes) find the differences we are interested in more clearly.
+\indent This plot seems to contradict the result from the following Two-Way 
+ANOVA (that is a repeat of what you would have seen had you done the practice 
+problem earlier in the book and the related interaction plot) -- there is 
+little to no evidence against the null hypothesis of no interaction between 
+Time and Treatment group on Epworth scale ratings ($F(1,46)=1.37$, p-value$=0.2484$
+as seen in Table \@ref(tab:Table9-2)). But this model assumes all the 
+observations are independent and so does not account for the repeated measures 
+on the same subjects. It ends up that if we account for systematic differences
+in subjects, we can (sometimes) find the differences we are interested in more 
+clearly.
 
 
 ```r
@@ -1088,16 +1149,40 @@ Anova(lm_int)
 (ref:tab9-2) ANOVA table from Two-Way ANOVA interaction model.
 
 
-                  Sum Sq   Df     F value      Pr(>F)
------------  -----------  ---  ----------  ----------
-Time          120.745800    1   5.6530102   0.0216381
-Group           8.651378    1   0.4050354   0.5276545
-Time:Group     29.264947    1   1.3701101   0.2478214
-Residuals     982.539675   46                        
+Table: (\#tab:Table9-2)(ref:tab9-2)
 
-\indent If the issue is failing to account for differences in subjects, then why not add "Subject" to the model? There are two things to consider. First, we would need to make sure that "Subject" is a factor variable as the "Subject" variable is initially numerical from 1 to 25. Second, we have to deal with having a factor variable with 25 levels (so 24 indicator variables!). This is a big number and would make writing out the model and interpreting the term-plot for Subject extremely challenging. Fortunately, we are not too concerned about how much higher or lower an individual is than a baseline subject, but we do need to account for it in the model. This sort of "repeated measures" modeling is more often handled by a more complex set of extended regression models that are called mixed effects models and are designed to handle this sort of grouping variable with many levels.
+               Sum Sq   Df   F value   Pr(>F)
+-----------  --------  ---  --------  -------
+Time          120.746    1     5.653    0.022
+Group           8.651    1     0.405    0.528
+Time:Group     29.265    1     1.370    0.248
+Residuals     982.540   46                   
 
-\indent But if we put the Subject factor variable into the previous model, we can use Type II ANOVA tests to test for an interaction between Time and Group (our primary research question) after controlling for subject-to-subject variation. There is a warning message about **aliasing** that occurs when you do this which means that it is not possible to estimate all the $\beta$s in this model (and why we more typically used mixed models to do this sort of thing). Despite this, the test for "Time:Group" in Table 9.3 is correct and now accounts for the repeated measures on the subject. It provides F(1,23)=5.43 with a p-value of 0.029, suggesting that there is moderate evidence for retaining that interaction in the model. This is a notably different result from what we observed in the Two-Way ANOVA interaction model that didn't account for repeated measures on the subjects. 
+\indent If the issue is failing to account for differences in subjects, then 
+why not add "Subject" to the model? There are two things to consider. First, 
+we would need to make sure that "Subject" is a factor variable as the "Subject"
+variable is initially numerical from 1 to 25. Second, we have to deal with 
+having a factor variable with 25 levels (so 24 indicator variables!). This is 
+a big number and would make writing out the model and interpreting the 
+term-plot for Subject extremely challenging. Fortunately, we are not too 
+concerned about how much higher or lower an individual is than a baseline 
+subject, but we do need to account for it in the model. This sort of "repeated
+measures" modeling is more often handled by a more complex set of extended 
+regression models that are called mixed effects models and are designed to 
+handle this sort of grouping variable with many levels.
+
+\indent But if we put the Subject factor variable into the previous model, we 
+can use Type II ANOVA tests to test for an interaction between Time and Group 
+(our primary research question) after controlling for subject-to-subject 
+variation. There is a warning message about **aliasing** that occurs when you 
+do this which means that it is not possible to estimate all the $\beta$s in 
+this model (and why we more typically used mixed models to do this sort of 
+thing). Despite this, the test for ``Time:Group`` in Table \@ref(tab:Table9-3)
+is correct and now accounts for the repeated measures on the subject. It 
+provides $F(1,23)=5.43$ with a p-value of 0.029, suggesting that there is 
+moderate evidence for retaining that interaction in the model. This is a 
+notably different result from what we observed in the Two-Way ANOVA 
+interaction model that didn't account for repeated measures on the subjects. 
 
 
 ```r
@@ -1109,38 +1194,60 @@ Anova(lm_int_wsub)
 (ref:tab9-3) ANOVA table from Two-Way ANOVA interaction model.
 
 
-                 Sum Sq   Df     F value      Pr(>F)
------------  ----------  ---  ----------  ----------
-Time          120.74580    1   22.410088   0.0000904
-Group                      0                        
-Subject       858.61542   23    6.928550   0.0000087
-Time:Group     29.26495    1    5.431494   0.0289074
-Residuals     123.92425   23                        
+Table: (\#tab:Table9-3)(ref:tab9-3)
 
-\indent With this result, we would usually explore the term-plots from this model to get a sense of the pattern of the changes over time in the treatment and control groups. That aliasing issue means that the "effects" function also has some issues. To see the effects plots, we need to use a mixed effects model from the "nlme" package. This model is beyond the scope of this material, but it provides the same F-statistic for the interaction (F(1,23)=5.43) and the term-plots can now be produced (Figure \@ref(fig:Figure9-14)). In that plot, we again see that the didgeridoo group mean for "Post" is noticeably lower than in the "Pre" and that the changes in the control group were minimal over the four months. This difference in the changes over time was present in the initial graphical exploration but we needed to account for variation in subjects to be able to detect this difference. While these results rely on more complex models than we have time to discuss here, hopefully the similarity of the results of interest should resonate with the methods we have been exploring while hinting at more possibilities if you learn more statistical methods.
+               Sum Sq   Df   F value   Pr(>F)
+-----------  --------  ---  --------  -------
+Time          120.746    1    22.410    0.000
+Group                    0                   
+Subject       858.615   23     6.929    0.000
+Time:Group     29.265    1     5.431    0.029
+Residuals     123.924   23                   
 
-(ref:fig9-14) Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
+\indent With this result, we would usually explore the term-plots from this 
+model to get a sense of the pattern of the changes over time in the treatment 
+and control groups. That aliasing issue means that the "effects" function also
+has some issues. To see the effects plots, we need to use a mixed effects model 
+from the ``nlme`` package. This model is beyond the scope of this material, but 
+it provides the same $F$-statistic for the interaction ($F(1,23)=5.43$) and the
+term-plots can now be produced (Figure \@ref(fig:Figure9-13)). In that plot, we 
+again see that the didgeridoo group mean for "Post" is noticeably lower than in 
+the "Pre" and that the changes in the control group were minimal over the four
+months. This difference in the changes over time was present in the initial 
+graphical exploration but we needed to account for variation in subjects to be 
+able to detect this difference. While these results rely on more complex models 
+than we have time to discuss here, hopefully the similarity of the results of
+interest should resonate with the methods we have been exploring while hinting 
+at more possibilities if you learn more statistical methods.
 
 
 ```r
 require(nlme)
-lme_int <- lme(Epworth ~ Time * Group, random= ~1|Subject, data=epworthdata)
+lme_int <- lme(Epworth ~ Time*Group, random=~1|Subject, data=epworthdata)
 anova(lme_int)
+```
+
+```
+##             numDF denDF   F-value p-value
+## (Intercept)     1    23 132.81354  <.0001
+## Time            1    23  22.41014  0.0001
+## Group           1    23   0.23175  0.6348
+## Time:Group      1    23   5.43151  0.0289
+```
+
+
+```r
 require(effects)
 plot(allEffects(lme_int),multiline=T,ci.style="bars")
 ```
 
+\newpage
 
-               numDF   denDF       F-value     p-value
-------------  ------  ------  ------------  ----------
-(Intercept)        1      23   132.8135357   0.0000000
-Time               1      23    22.4101426   0.0000903
-Group              1      23     0.2317466   0.6347803
-Time:Group         1      23     5.4315068   0.0289072
+(ref:fig9-13) Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
 
 <div class="figure">
-<img src="09-caseStudies_files/figure-html/Figure9-14-1.png" alt="(ref:fig9-14)" width="960" />
-<p class="caption">(\#fig:Figure9-14)(ref:fig9-14)</p>
+<img src="09-caseStudies_files/figure-html/Figure9-13-1.png" alt="(ref:fig9-13)" width="960" />
+<p class="caption">(\#fig:Figure9-13)(ref:fig9-13)</p>
 </div>
 
 
@@ -1154,8 +1261,10 @@ collection is started, make sure that the methods will provide results that can
 address the research questions. And, finally, make sure someone involved in the
 project knows how to perform the appropriate statistical analysis. One way to
 make sure you know how to analyze a data set and, often, clarify the research
-questions and data collection needs, is to make a data set that resembles the one you want to collect and analyze
-it. This can highlight the sorts of questions the research can address and potentially expose issues before the study starts. With this sort of preparation, many issues can be avoided. Remember to 
+questions and data collection needs, is to make a data set that resembles the 
+one you want to collect and analyze
+it. This can highlight the sorts of questions the research can address and potentially expose issues before the study starts. With this sort of preparation,
+many issues can be avoided. Remember to 
 think about reasons why assumptions of your proposed method might be violated.
 
 \indent You are now **armed** and a bit **dangerous** with statistical methods. If
@@ -1174,3 +1283,5 @@ many future situations both in courses in your area of study and outside of acad
 statistics courses -- if you want to discuss the next options, we are happy to
 provide additional information about the best next steps in learning
 statistics. 
+
+\appendix

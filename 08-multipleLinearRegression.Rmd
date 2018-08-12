@@ -120,7 +120,7 @@ The ``lm`` function takes
 care of finding the least squares coefficients using a very sophisticated
 algorithm^[If you take advanced applied mathematics courses, you can learn
 more about the algorithms being used by ``lm``.
-\index{\texttt{lm()}}
+\index{\texttt{lm()}} 
 Everyone else only cares 
 about the algorithms when they don't work -- which is usually due to the
 user's inputs in these models not the algorithm itself.]. The estimated 
@@ -421,7 +421,7 @@ validity conditions. For MLR, they are similar to those for SLR:
     
     * Use the diagnostic measure called a ***variance inflation factor***
     (***VIF***) discussed in Section \@ref(section8-5) (we need to develop
-    some ideas first to understand this measure).
+    some ideas first to understand this measure). \index{VIF}
     
 * **Equal (constant) variance:**
 
@@ -936,7 +936,7 @@ syntax of ``rep(numbertorepeat, #oftimes).``] to repeat the means of the
 temperatures for each of elevation values we need to make the plot. The code
 creates a specific version of the predictor variables to force the ``predict``
 function to provide fitted values and CIs across different elevations with
-temperatures held constant that is stored in ``newdata1``. 
+temperatures held constant that is stored in ``newdata1``. \index{\texttt{seq()}} \index{\texttt{rep()}}
 
 ```{r}
 elevs <- seq(from=5000, to=8000, length.out=30)
@@ -1055,7 +1055,7 @@ maybe only keeping the best ones, this is very different from picking one model
 (and tests) *a priori* and just exploring that result. 
 
 \indent As in SLR, we can use the ***R***^2^ (the ***coefficient of
-determination***) to measure the percentage of the variation in the
+determination***) \index{R-squared} to measure the percentage of the variation in the
 response variable that the model explains. In MLR, it is important to remember
 that ***R***^2^ is now an overall
 measure for the model and not specific to a single variable. It is comparable to
@@ -1088,7 +1088,7 @@ for SLR or MLR.
 
 \indent However, there is an adjustment to the ***R***^2^ measure that makes it
 useful for selecting among models. The measure is called the ***adjusted***
-***R***^2^. The $\boldsymbol{R}^2_{\text{adjusted}}$ measure adds a
+***R***^2^. \index{R-squared!adjusted} The $\boldsymbol{R}^2_{\text{adjusted}}$ measure adds a
 penalty for adding more variables to the model, providing the potential for this
 measure to decrease if the extra variables do not really benefit the model. The
 measure is calculated as
@@ -1267,6 +1267,7 @@ regression models that can result in common mistakes.
     correlations among the predictors in the SNOTEL data set or visually displayed
     in Figure \@ref(fig:Figure8-12):
     \index{R packages!\textbf{corrplot}}
+    \index{correlation plot}
 
     ```{r eval=F}
     require(corrplot)
@@ -1309,7 +1310,7 @@ regression models that can result in common mistakes.
     ***VIFs***). 
 
 \indent  `r textItalicBold("VIFs")` provide a way to assess the multicollinearity in the MLR model that
-is caused by including specific variables. The amount of information that is
+is caused by including specific variables. \index{VIF} The amount of information that is
 shared between a single explanatory variable and the others can be found by
 regressing that variable on the others and calculating ***R***^2^
 for that model. The code for this regression is something like:
@@ -1317,7 +1318,7 @@ for that model. The code for this regression is something like:
 \index{\texttt{lm()}}
 The 
 $1-\boldsymbol{R}^2$ from this regression is the amount of independent 
-information in *X1* that is not explained by the other variables in the model.
+information in *X1* that is not explained by the other variables in the model. \index{R-squared} 
 The VIF for each variable is defined using this quantity as
 $\textbf{VIF}_{\boldsymbol{k}}\boldsymbol{=1/(1-R^2_k)}$ for variable $k$.
 If there is no shared information $(\boldsymbol{R}^2=0)$, then the VIF will be
@@ -1335,7 +1336,7 @@ and where the results come from.
 
 \indent In general, the easy way to obtain VIFs is using the ``vif`` function from the
 ``car`` package (@R-carData, @Fox2003).
-\index{R packages!\textbf{car}}
+\index{R packages!\textbf{car}} \index{\texttt{vif()}} 
 It has the advantage of also providing a reasonable
 result when we include categorical variables in models 
 (Sections \@ref(section8-9) and \@ref(section8-11)) over some other sources of this information in R. We apply the ``vif``
@@ -1590,8 +1591,8 @@ last row of the model summary is:
 ## F-statistic: 56.43 on 2 and 20 DF,  p-value: 5.979e-09
 ```
 This test is called the ***overall F-test*** in MLR and is very similar to
-the $F$-test in a reference-coded One-Way ANOVA model.
-\index{overall @$F$-test}
+the $F$-test in a reference-coded One-Way ANOVA model. 
+\index{@$F$-test!overall}
 It tests the null
 hypothesis that involves setting every coefficient except the y-intercept to
 0 (so all the slope coefficients equal 0). We saw this reduced model in the
@@ -1795,7 +1796,7 @@ plot(gpa1, sub.caption="Diagnostics for GPA model with SATV and SATM")
         more than two predictors, each variable can have a different VIF
         value.]. This suggests that both SEs are about 13% larger than they
         otherwise would have been due to shared information between the two
-        predictor variables.
+        predictor variables. \index{vif}
         
         ```{r}
         vif(gpa1)
@@ -1882,7 +1883,7 @@ violated and so the inferences from our model should be relatively trustworthy.
     are also limited to students who stayed in school long enough to get a 
     *GPA* from their first year of college at this university. 
 
-\indent The model seems to valid and have predictors with small p-values, but note how much of the variation is not explained by the model. It only explains 21.22% of the variation in the responses. So we found evidence that these variables are useful in predicting the responses, but are they useful enough to use for decisions on admitting students? By quantifying
+\indent The model seems to be valid and have predictors with small p-values, but note how much of the variation is not explained by the model. It only explains 21.22% \index{R-squared} of the variation in the responses. So we found evidence that these variables are useful in predicting the responses, but are they useful enough to use for decisions on admitting students? By quantifying
 the size of the estimated results, we can add to the information about how potentially useful this model might be. The estimated MLR model is
 
 $$\widehat{\text{FYGPA}}_i=0.00737+0.0254\cdot\text{SATV}_i
@@ -1897,7 +1898,7 @@ it is often easier to assess "practical" importance of the results by considerin
 how much change this implies over the range of observed predictor values. 
 
 \indent The term-plots (Figure \@ref(fig:Figure8-15)) provide a visualization of the
-"size" of the differences in the response variable explained by each predictor.
+"size" of the differences in the response variable explained by each predictor. \index{effects plot}
 The *SATV* term-plot shows that for the range of percentiles from around the
 30^th^ percentile to the 70^th^ percentile, the mean first 
 year *GPA* is predicted to go from approximately 1.9 to 3.0. That is a pretty
@@ -2048,7 +2049,7 @@ lines(dm1$SATM, pm1$upr, col="grey", lty=3, lwd=3)
 
 One of the implicit assumptions up to this point was that the models were being
 applied to a single homogeneous population.
-\index{assumptions}
+\index{assumptions} \index{indicator}
 In many cases, we take a sample
 from a population but that overall group is likely a combination of individuals from
 different sub-populations. For example, the SAT study was interested in all
@@ -2112,7 +2113,7 @@ put in "numbers" as predictors, we create what are called
 that are made up of 0s and 1s, with the 0 reflecting one category and 1 the
 other, changing depending on the category of the individual in the data set. The
 ``lm`` function does this whenever a
-categorical variable is used as an explanatory variable.
+categorical variable is used as an explanatory variable. \index{indicator}
 \index{\texttt{lm()}}
 It sets up the indicator
 variables using a baseline category (gets coded as a 0) and the deviation
@@ -2204,7 +2205,7 @@ works this out step-by-step, simplifying the MLR into two SLRs:
     * $= 0.216 + 0.0386\cdot\text{SATM}_i + 0.313$ (combine "like" terms to
     simplify the equation)
     
-    * $= 0.529 + 0.0386\cdot\text{SATM}_i$
+    * $= 0.529 + 0.0386\cdot\text{SATM}_i$ \index{indicator}
     
 In this situation, we then end up with two SLR models that relate *SATM* to 
 *GPA*, one model for *males* 
@@ -2254,7 +2255,7 @@ variable started with a coding of 1 and 2 and retained that
 order even with the recoding of levels that we created to give it more explicit
 names. Because we allow ``lm`` to create indicator variables for us, the main
 thing you need to do is explore the model summary and look for the hint at the
-baseline level that is not displayed after the name of the categorical variable. 
+baseline level that is not displayed after the name of the categorical variable. \index{indicator}
 
 \indent We can also work out the impacts of adding an indicator variable to the model
 in general in the theoretical model with a single quantitative predictor $x_i$
@@ -2301,7 +2302,7 @@ plot(allEffects(SATSex1))
 \indent The model summary and confidence intervals provide some potential interesting
 inferences in these models. Again, these are just applications of MLR methods
 we have already seen except that the definition of one of the variables is
-"different" using the indicator coding idea. For the same model, the ``SEX``
+"different" using the indicator coding idea. \index{indicator} For the same model, the ``SEX``
 coefficient can be used to generate inferences for differences in the mean the
 groups, controlling for their *SATM* scores. 
 
@@ -2352,7 +2353,7 @@ subjects experienced no further exposure to the noise tone until the final
 sensitivity measures were taken). Then the *DU* was measured again (variable
 called ``du2``). One would expect that there would be a relationship between the
 upper tolerance levels of the subjects before and after treatment. But
-maybe the treatments impact that relationship? We can use our indicator
+maybe the treatments impact that relationship? We can use our indicator \index{indicator}
 approach to see if the treatments provide a shift to higher tolerances after
 accounting for the relationship between the two measurements^[Models like this with a categorical variable and quantitative variable are often called *ANCOVA* or *analysis of covariance* models but really are just versions of our linear models we've been using throughout this material.]. The scatterplot^[Note that we employed some specific options in the ``legend`` option to get the legend to fit on this scatterplot better. Usually you can avoid this but the ``coords`` option defined a location and the ``columns`` option made it a two column legend.]
 of the results in Figure \@ref(fig:Figure8-21) shows some variation in the
@@ -2375,7 +2376,7 @@ scatterplot(du2~du1|treatment, data=Headache, smooth=F, lwd=2,
 
 
 \indent This data set contains a categorical variable with 4 levels. To go beyond two
-groups, we have to add more than one indicator variable, defining three
+groups, we have to add more than one indicator variable, \index{indicator} defining three
 indicators to turn on (1) or off (0) for three of the levels of the variable
 with the same reference level used for all the indicators. For this example, 
 the *T1 Treatment* group is chosen as the baseline group so it sort of hides in
@@ -2409,7 +2410,7 @@ pander(res1)
 \indent When we fit the additive model of the form ``y~x+group``, the ``lm``
 function takes the $\boldsymbol{J}$ categories and creates $\boldsymbol{J-1}$
 indicator variables.
-\index{additive model}
+\index{additive model} \index{indicator}
 The baseline level is always handled in the intercept.
 The true model will be of the form
 
@@ -2526,7 +2527,7 @@ distribution to having slightly heavier tails but
 only one outlier is of real concern. There is a small indication of increasing
 variability as a function of the fitted values as both the Residuals vs. Fitted
 and Scale-Location plots show some fanning out for higher values but this is a
-minor issue. There are no influential points in the data set. 
+minor issue. There are no influential points in the data set. \index{influential}
 
 (ref:fig8-24) Diagnostic plots for the additive decibel tolerance model. 
 
@@ -2685,7 +2686,7 @@ found in a row of output with **both** variable names in it (with the indicator
 level name) with a colon between them (something like ``x:grouplevel``). As
 always, the best way to understand any
 model involving indicators is to plug in 0s or 1s for the indicator variable(s)
-and simplify the equations. 
+and simplify the equations. \index{indicator}
 
 * For any observation in the baseline group $I_{\text{CatName},i}=0$, so
 
@@ -2943,7 +2944,7 @@ contains...
 \indent For more than two categories in a categorical variable, the model 
 contains more
 indicators to keep track of but uses the same ideas. We have to deal with
-modifying the intercept and slope coefficients for **every** deviation group so the task is onerous but relatively repetitive.
+modifying the intercept and slope coefficients for **every** deviation group so the task is onerous but relatively repetitive. \index{indicator}
 The general model is:
 
 $$\begin{array}{rl}
@@ -3057,7 +3058,7 @@ or slopes. Because of the multi-degree of freedom aspects of the use of indicato
 variables ($J-1$ variables for a $J$ level categorical variable), we have to
 develop tests that combine and assess information across multiple
 "variables" -- even though these indicators all pertain to a single original
-categorical variable. ANOVA $F$-tests did exactly
+categorical variable. \index{indicator} ANOVA $F$-tests did exactly
 this sort of thing in the One and Two-Way ANOVA models and can do that for us
 here. There are two models that we perform tests in -- the additive and the
 interaction models.
@@ -3078,7 +3079,7 @@ model higher in the tree of models) displayed in Figure \@ref(fig:Figure8-33).
 This is based on
 the assumption that we would proceed through the model, dropping terms if the
 p-values are large ("not significant" in the diagram) to arrive at a final
-model. 
+model. \index{model!nested}
 
 (ref:fig8-33) Diagram of models to consider in an interaction model. 
 
@@ -3441,7 +3442,7 @@ that we used before for model selection, we can revisit the *Snow Depth* data se
 with related results found in Section \@ref(section8-4) and 
 Table \@ref(tab:Table8-1). In that situation we were considering
 a "full" model that included *Elevation*, *Min.Temp*, and *Max.Temp* as potential
-predictor variables after removing two influential points. And we considered all
+predictor variables after removing two influential points. \index{influential} \index{Cook's Distance} And we considered all
 possible reduced models from that "full"^[We put quotes on "full" or sometimes
 call it the "fullish" model because we could always add more to the model, like
 interactions or other explanatory variables. So we rarely have a completely full model but
@@ -3764,7 +3765,7 @@ interactions of categorical and quantitative variables. It is useful to use the
 pertinent names for the simpler models, but at this point we could have called
 everything we are doing ***fitting linear models***. The power of the linear 
 model involves being able to add multiple predictor variables to the
-model and handle categorical predictors using indicator variables. All this
+model and handle categorical predictors using indicator variables. \index{indicator} All this
 power comes with some responsibility in that you need to know what you are
 trying to fit and how to interpret the results provided. We introduced each scenario
 working from simple to the most complicated version of the models, trying to
@@ -3849,8 +3850,15 @@ data=`r colFmt("DATASETNAME","red")`, smooth=F)**
     
     * Provides a plot of the estimated regression lines with 95% confidence
     interval for the mean. 
-    \index{\texttt{plot(allEffects())}|textbf}
-
+    \index{\texttt{allEffects()}|textbf}
+    
+* **vif(`r colFmt("MODELNAME","red")`)**
+    
+    * Requires the ``car`` package. 
+    
+    * Provides VIFs for an MLR model. Only use in additive models - not meaningful for terms involved in interactions.
+    \index{\texttt{vif()}|textbf}    
+    
 * **predict(`r colFmt("MODELNAME","red")`, se.fit=T)**
 
     * Provides fitted values for all observed $x\text{'s}$ with SEs for the 

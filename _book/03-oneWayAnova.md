@@ -98,7 +98,9 @@ with the alternative hypothesis, the means differed. Now we have three groups
 and the previous model can be extended to this new situation by allowing $j$
 to be 1, 2, or 3. Now that we have more than two groups, we need to admit that 
 what we were doing in Chapter \@ref(chapter2) was actually fitting what is called 
-a ***linear model***. The linear model assumes that the responses follow a normal
+a ***linear model***.
+\index{model!linear}
+The linear model assumes that the responses follow a normal
 distribution with the linear model defining the mean, all observations have the 
 same variance, and the parameters for the mean in the model enter linearly. This 
 last condition is hard to explain at this level of material -- it is sufficient 
@@ -132,12 +134,16 @@ $$H_A: \text{ Not all } \mu_j \text{ are equal}$$
 or, in words, **at least one of the true means differs among the J groups**.
 You will be attracted to trying to say that all means are different in the 
 alternative but we do not put this strict a requirement in place to reject the 
-null hypothesis. The alternative model allows all the true group means to 
+null hypothesis. The alternative model
+\index{model!alternative}
+allows all the true group means to 
 differ but does require that they differ with
 
 $$y_{ij} = {\color{red}{\mu_j}}+\varepsilon_{ij}.$$
 
-This linear model states that the response for the $i^{th}$ observation in 
+This linear model
+\index{model!linear}
+states that the response for the $i^{th}$ observation in 
 the $j^{th}$ group, $\mathbf{y_{ij}}$, is modeled with a group $j$ 
 ($j=1, \ldots, J$) population mean, $\mu_j$, and a random error for each subject
 in each group $\varepsilon_{ij}$, that we assume follows a normal distribution and 
@@ -148,9 +154,12 @@ need a name for this version of the model. The model written in terms of the
 ${\color{red}{\mu_j}}\text{'s}$ is called the 
 <b><font color='red'>cell means model</font></b> and is the 
 easier version of this model to understand. 
+\index{model!cell-means}
 
-\indent One of the reasons we learned about beanplots is that it helps us visually consider
-all the aspects of this model. In the right panel of Figure \@ref(fig:Figure3-1),
+\indent One of the reasons we learned about beanplots is that 
+it helps us visually consider all the aspects of this model. 
+\index{beanplot}
+In the right panel of Figure \@ref(fig:Figure3-1),
 we can see the wider, bold horizontal lines that provide the estimated group means.
 The bigger the differences in the sample means, the more likely we are to find
 evidence against the null hypothesis. You can also see the null model on the plot 
@@ -159,7 +168,9 @@ dashed horizontal line
 at 4.7 years (the R code below shows the overall mean of *Years* is 4.7). While 
 the hypotheses focus on the means, the model also contains assumptions about the
 distribution of the responses -- specifically that the distributions are normal 
-and that all the groups have the same variability. As discussed previously, it 
+and that all the groups have the same variability.
+\index{assumptions}
+As discussed previously, it 
 appears that the distributions are right skewed and the variability might not be 
 the same for all the groups. The boxplot provides the information about the skew 
 and variability but since it doesn't display the means it is not directly related 
@@ -174,11 +185,15 @@ mean(MockJury$Years)
 ## [1] 4.692982
 ```
 
-\indent There is a second way to write out the One-Way ANOVA model that provides a framework
+\indent There is a second way to write out the One-Way ANOVA model 
+\index{model!One-Way ANOVA}
+that provides a framework
 for extensions to more complex models described in Chapter \@ref(chapter4) and 
 beyond. The other ***parameterization*** (way of writing out or defining) of the 
 model is called the <b><font color='purple'>reference-coded model</font></b> since it 
 writes out the model in terms of a 
+\index{reference coding}
+\index{model!reference-coded}
 ***baseline group*** and deviations from that baseline or reference level. The
 reference-coded model for the $i^{th}$ subject in the $j^{th}$ group is 
 $y_{ij} ={\color{purple}{\boldsymbol{\alpha + \tau_j}}}+\varepsilon_{ij}$ where 
@@ -222,12 +237,13 @@ new ideas:
 
 * Null hypothesis in words: No difference in the true means between the groups. 
 
-* Null model: $y_{ij} = \mu_j+\varepsilon_{ij}$
+* Null model: $y_{ij} = \mu_j+\varepsilon_{ij}$ \index{model!null!cell-means}
 
 * Alternative hypothesis in words: At least one of the true means differs between 
 the groups. 
 
 * Alternative model: $y_{ij} = \color{red}{\mu_j}+\varepsilon_{ij}.$
+\index{model!alternative!cell-means}
 
 <b><font color='purple'>Reference-coded Version</font></b>
 
@@ -239,12 +255,13 @@ $H_A: \color{purple}{\text{ Not all } \tau_j \text{ equal 0}}$
 baseline group. 
 
 * Null model: $y_{ij} =\boldsymbol{\alpha} +\varepsilon_{ij}$
+\index{model!null!reference-coded}
 
 * Alternative hypothesis in words: At least one of the true deviations is 
 different from 0 or that at least one group has a different true mean than the
 baseline group. 
 
-* Alternative model: $y_{ij} =\color{purple}{\boldsymbol{\alpha + \tau_j}}+\varepsilon_{ij}$
+* Alternative model: $y_{ij} =\color{purple}{\boldsymbol{\alpha + \tau_j}}+\varepsilon_{ij}$ \index{model!alternative!reference-coded}
 
 \indent In order to estimate the models discussed above, the ``lm`` function is used^[
 If you look closely in the code for the rest of the book, any model for a 
@@ -252,10 +269,16 @@ quantitative response will use this function, suggesting a common thread in
 the most commonly used statistical models.]. The ``lm`` function continues to 
 use the same format as previous functions, ``lm(Y~X, data=datasetname)``.
 It ends up that this code will give you the reference-coded version of the 
-model by default (The developers of R thought it was that important!). We want to start with the
-cell-means version of the model, so we have to override the standard technique 
+model by default (The developers of R thought it was that important!).
+\index{reference coding}
+\index{\texttt{lm()}}
+We want to start with the
+cell-means version of the model,
+\index{model!cell-means}
+so we have to override the standard technique 
 and add a "``-1``" to the formula interface to tell R that we want to the 
 cell-means coding. Generally, this looks like ``lm(Y~X-1, data=datasetname).``
+\index{\texttt{lm()}}
 Once we fit a model in R, the ``summary`` function run on the model provides a
 useful "summary" of the model coefficients and a suite of other potentially
 interesting information. For the moment, we will focus on the estimated model
@@ -305,6 +328,7 @@ mean(Years~Attr, data=MockJury)
 ```
 
 \indent The reference-coded version of the same model is more complicated but ends up 
+\index{model!reference-coded}
 giving the same results once we understand what it is doing. It uses a different
 parameterization to accomplish this, so has different model output. Here is the model
 summary:
@@ -356,10 +380,13 @@ Unattractive   $\hat{\alpha}+\hat{\tau}_3$   4.3333 + 1.4775 = **5.811**
 Table: (\#tab:Table3-1) (ref:tab3-1)
 
 \indent We can also visualize the results of our linear models using what are called
-***term-plots*** or ***effect-plots*** (from the ``effects`` package;
-[@R-effects])
+***term-plots*** or ***effect-plots*** 
+\index{effects plot} \index{term plot}
+(from the ``effects`` package; [@R-effects])
+\index{R packages!\textbf{effects}}
 as displayed in Figure \@ref(fig:Figure3-2). We don't want to use the word 
 "effect" for these model components unless we have random assignment in the study
+\index{random assignment}
 design so we generically call these ***term-plots*** as they display terms or
 components from the model in hopefully useful ways to aid in model interpretation 
 even in the presence of complicated model parameterizations. Specifically, these 
@@ -369,6 +396,7 @@ load the ``effects`` package and then use ``plot(allEffects(...))`` functions
 together on the ``lm`` object called ``lm2`` that was estimated above. You can
 find the correspondence between the displayed means and the estimates that were
 constructed in Table \@ref(tab:Table3-1). 
+\index{\texttt{allEffects()}}
 
 (ref:fig3-2) Plot of the estimated group mean sentences from the reference-coded
 model for the MockJury data from the ``effects`` package.
@@ -392,13 +420,19 @@ where ${\color{red}{\mu}}$ is a common mean for all the observations. We will ca
 this the <b><font color='red'>mean-only</font></b> model since it only has a single mean 
 in it. In the reference-coded version of the model, we have a null hypothesis that
 $H_0: \tau_2 = \ldots = \tau_J = 0$, so the "mean-only" model is 
+\index{model!mean-only}
 $\color{purple}{y_{ij} =\boldsymbol{\alpha}+\varepsilon_{ij}}$ with 
 $\color{purple}{\boldsymbol{\alpha}}$ having the same definition as 
 $\color{red}{\mu}$ for the cell means model -- it forces a common value for the 
 mean for all the groups. Moving from the *reference-coded* model to the *mean-only*
-model is also an example of a situation where we move from a "full" model to a
+model is also an example of a situation where we move from a "full" model
+\index{cell means}
+\index{model!full}
+to a
 "reduced" model by setting some coefficients in the "full" model to 0 and, by doing
-this, get a simpler or "reduced" model. Simple models can be good as they are easier
+this, get a simpler or "reduced" model.
+\index{model!reduced}
+Simple models can be good as they are easier
 to interpret, but having a model for $J$ groups that suggests no difference in the
 groups is not a very exciting result
 in most, but not all, situations^[Suppose we were doing environmental monitoring
@@ -424,8 +458,8 @@ summary(lm3)$coefficients
 
 This model provides an estimate of the common mean for all observations of 
 $4.693 = \hat{\mu} = \hat{\alpha}$ years. This value also is the dashed, horizontal
-line in the beanplot in Figure \@ref(fig:Figure3-1). Some people call this mean-only model
-estimate the grand or overall mean. 
+line in the beanplot in Figure \@ref(fig:Figure3-1). Some people 
+call this mean-only model estimate the grand or overall mean. 
 
 ## One-Way ANOVA Sums of Squares, Mean Squares, and F-test {#section3-3}
 
@@ -433,7 +467,9 @@ The previous discussion showed two ways of parameterizing models for the
 One-Way ANOVA model and getting estimates from output but still hasn't 
 addressed how to assess evidence related to whether the observed differences 
 in the means among the groups is "real". In this section, we develop what is 
-called the ***ANOVA F-test*** that provides a method of aggregating the 
+called the ***ANOVA F-test*** 
+\index{@$F$-test}
+that provides a method of aggregating the 
 differences among the means of 2 or more groups and testing our null hypothesis 
 of no difference in the means vs the alternative. In order to develop the test, 
 some additional notation is needed. The sample size in each group is denoted
@@ -473,15 +509,16 @@ in columns of plot.
 </div>
 
 \indent The statistic that allows the comparison of relative amounts of variation is called
-the ***ANOVA F-statistic***. It is developed using ***sums of squares*** which 
-are measures of total variation like those that are used in the numerator of the
+the ***ANOVA F-statistic***. It is developed using ***sums of squares***
+\index{sums of squares}
+which are measures of total variation like those that are used in the numerator of the
 standard deviation ($\Sigma_1^N(y_i-\bar{y})^2$) that took all the observations, 
 subtracted the mean, squared the differences, and then added up the results
 over all the observations to generate a measure of total variability. With
 multiple groups, we will focus on decomposing that total variability 
 (***Total Sums of Squares***) into variability among the means (we'll call this
 ***Explanatory Variable*** $\mathbf{A}\textbf{'s}$ ***Sums of Squares***) and
-variability in the residuals 
+variability in the residuals \index{residuals}
 or errors (***Error Sums of Squares***). We define each of these quantities in
 the One-Way ANOVA situation as follows:
 
@@ -527,11 +564,17 @@ $A\text{'s}$ sum of squares and the error sums of squares,
 
 $$\textbf{SS}_{\textbf{Total}} \mathbf{=} \textbf{SS}_\textbf{A} \mathbf{+} \textbf{SS}_\textbf{E}.$$
 
-This result is called the ***sums of squares decomposition formula***. The equality means that if the $\textbf{SS}_\textbf{A}$ goes up, then the
+This result is called the ***sums of squares decomposition formula***.
+\index{sums of squares}
+The equality means that if the $\textbf{SS}_\textbf{A}$ goes up, then the
 $\textbf{SS}_\textbf{E}$ must go down if $\textbf{SS}_{\textbf{Total}}$ remains 
 the same. We use these results to build our test statistic and organize this information in 
-what is called an ***ANOVA table***. The ANOVA table is generated using the 
-``anova`` function applied to the reference-coded model, ``lm2`` :
+what is called an ***ANOVA table***.
+\index{ANOVA table}
+The ANOVA table is generated using the 
+``anova`` function applied to the reference-coded model, ``lm2``:
+\index{\texttt{anova()}}
+\index{model!reference-coded}
 
 
 ```r
@@ -572,7 +615,10 @@ the $\textbf{SS}_{\textbf{Total}} \mathbf{=} \textbf{SS}_\textbf{A} \mathbf{+} \
 </div>
 
 \indent It may be easiest to understand the *sums of squares decomposition* by connecting 
-it to our permutation ideas. In a permutation situation, the total variation 
+it to our permutation ideas. 
+\index{sums of squares!decomposition}
+\index{permutation}
+In a permutation situation, the total variation 
 ($SS_\text{Total}$) cannot change -- it is the same responses varying
 around the grand mean. However, the amount of variation attributed to variation 
 among the means and in the residuals can change if we change which observations go 
@@ -594,7 +640,9 @@ shows some evidence differences.
 
 \indent One way to think about $\textbf{SS}_\textbf{A}$ is that it is a function that 
 converts the variation in the group means into a single value. This makes it a
-reasonable test statistic in a permutation testing context. By comparing the 
+reasonable test statistic in a permutation testing context. 
+\index{permutation!test}
+By comparing the 
 observed $\text{SS}_A =$ 70.9 to the permutation results of 
 6.5, 9.7, and 40.5 we see 
 that the observed result is much more extreme than the three alternate versions. 
@@ -605,6 +653,7 @@ variation there is in the means. The permutation p-value for the alternative
 hypothesis of **some** (not of greater or less than!) difference in the true 
 means of the groups will involve counting the number of permuted $SS_A^*$ results
 that are as large or larger than what we observed. 
+\index{p-value!permutation distribution}
 
 (ref:fig3-4) Plot of means and 95% confidence intervals for the three groups 
 for the real Mock Jury data (a) and three different permutations of the treatment labels 
@@ -612,12 +661,15 @@ to the same responses in (b), (c), and (d). Note that ``SSTotal`` is always the 
 but the different amounts of variation associated with the means (``SSA``) or the 
 errors (``SSE``) changes in permutation.
 
-\indent To do a permutation test, we need to be able to calculate and extract the 
+\indent To do a permutation test,
+\index{permutation!test}
+we need to be able to calculate and extract the 
 $\text{SS}_A$ value. In the ANOVA table, it is the second number in the first row;
 we can use the bracket, ``[,]``, referencing to extract that 
 number from the ANOVA table that ``anova`` produces with 
 ``anova(lm(Years~Attr, data=MockJury))[1, 2]``. We'll store the observed value
 of $\text{SS}_A$ in ``Tobs``, reusing some ideas from Chapter \@ref(chapter2). 
+\index{\texttt{anova()}}
 
 
 ```r
@@ -663,6 +715,7 @@ also many permuted results that are much larger than observed. The proportion
 of permuted results that exceed the observed value is found using ``pdata`` 
 as before, except only for the area to the right of the observed result. We know 
 that ``Tobs`` will always be positive so no absolute values are required here. 
+\index{\texttt{pdata()}}
 
 
 ```r
@@ -679,10 +732,13 @@ This provides a permutation-based p-value of 0.072 and suggests marginal evidenc
 against the null hypothesis of no difference in the true means. We would interpret 
 this p-value as saying that there is a 7.2% chance of getting a $\text{SS}_A$
 as large or larger than we observed, given that the null hypothesis is true.
+\index{p-value!interpretation of}
 
-\indent It ends up that some nice parametric statistical results are available (if our
-assumptions are met) for the ratio of estimated variances, the estimated variances are called 
-***Mean Squares***. To turn sums of squares into mean square (variance) estimates, 
+\indent It ends up that some nice parametric statistical results 
+are available (if our assumptions are met) for the ratio of estimated variances,
+the estimated variances are called ***Mean Squares***.
+\index{parametric}
+To turn sums of squares into mean square (variance) estimates, 
 we divide the sums of squares by the amount of free information available. For
 example, remember the typical variance estimator introductory statistics,
 $\Sigma^N_1(y_i-\bar{y})^2/(N-1)$? Your instructor spent some time trying various
@@ -715,6 +771,8 @@ means around the grand mean.
 * $\text{MS}_{\text{Error}} = \text{SS}_{\text{Error}}/(N-J)$, which estimates 
 the variation of the errors around the group means.
 
+\newpage
+
 \indent These results are put together using a ratio to define the ***ANOVA F-statistic***
 (also called the ***F-ratio***) as: 
 
@@ -726,14 +784,16 @@ there would be no evidence of a difference in the means. If the $\text{MS}_A$ is
 larger than the $\text{MS}_E$, the $F$-statistic will provide evidence against 
 the null hypothesis. The "size" of the $F$-statistic is formalized by finding the
 p-value. The $F$-statistic, if assumptions discussed below are met and we assume 
-the null hypothesis is true, follows what is called an $F$-distribution. The 
+the null hypothesis is true, follows what is called an $F$-distribution.
+\index{@$F$-distribution}
+The 
 ***F-distribution*** is a right-skewed distribution whose shape is defined by what
 are called the ***numerator degrees of freedom*** ($J-1$) and the
 ***denominator degrees of freedom*** ($N-J$). These names correspond to the values
 that we used to calculate the mean squares and where in the $F$-ratio each mean 
 square was used; $F$-distributions are denoted by their degrees of freedom using 
 the convention of $F$ (*numerator df*, *denominator df*). Some examples of 
-different $F$-distributions are displayed for you in Figure \@ref(fig:Figure3-6).
+different $F$-distributions are displayed for you in Figure \@ref(fig:Figure3-6). \index{F-distribution}
 
 \indent The characteristics of the F-distribution can be summarized as:
 
@@ -749,7 +809,7 @@ different $F$-distributions are displayed for you in Figure \@ref(fig:Figure3-6)
 (ref:fig3-6) Density curves of four different $F$-distributions. Upper left is an 
 $F(2, 111)$, upper right is $F(2, 10)$, lower left is $F(6, 10)$, and lower right 
 is $F(6, 111)$. P-values are found using the areas to the right of the observed
-$F$-statistic value in all F-distributions. 
+$F$-statistic value in all F-distributions. \index{p-value!calculation of}
 
 <div class="figure">
 <img src="03-oneWayAnova_files/figure-html/Figure3-6-1.png" alt="(ref:fig3-6)" width="480" />
@@ -761,6 +821,7 @@ components. Note the general format of the ANOVA table is in Table \@ref(tab:Tab
 from left to right and up and down to fill in the ANOVA table given just the 
 necessary information to determine the other components -- there is always a 
 question like this on the exam...]:
+\index{ANOVA table}
 
 (ref:tab3-2) General One-Way ANOVA table.
 
@@ -799,17 +860,18 @@ anova(lm2)
 ## Residuals 111 1421.32  12.805
 ```
 
-The p-value from the $F$-distribution is 0.067. We can 
+The p-value from the $F$-distribution is 0.067. \index{F-distribution} We can 
 verify this result using the observed $F$-statistic of 2.77
 (which came from taking the ratio of the two mean squares, 
 F=35.47/12.8)
 which follows an $F(2, 111)$ distribution if the null hypothesis is true and some 
-other assumptions are met.
+other assumptions are met. 
 
 Using the ``pf`` function provides us with areas in the
 specified $F$-distribution with the ``df1`` provided to the function as the 
 numerator *df* and ``df2`` as the denominator *df* and ``lower.tail=F`` reflecting 
-our desire for a right tailed area.
+our desire for a right tailed area. \index{F-distribution}
+\index{\texttt{pf()}}
 
 
 ```r
@@ -826,7 +888,9 @@ $\text{SS}_A$, which was 0.067. The $F$-statistic obviously is another
 potential test statistic to use as a test statistic in a permutation approach, 
 now that we know about it. We should check that we get similar results from it
 with permutations as we did from using $\text{SS}_A$ as a permutation-test test
-statistic. The following code generates the permutation distribution for the
+statistic. The following code generates the permutation distribution
+\index{permutation!distribution}
+for the
 $F$-statistic (Figure \@ref(fig:Figure3-7)) and assesses how unusual the observed
 $F$-statistic of 2.77 was in this permutation distribution.
 The only change in the code involves moving from extracting $\text{SS}_A$ to 
@@ -904,10 +968,20 @@ and *Unattractive* with a $\text{p-value}\approx 0.03$? I selected the two group
 to compare in Chapter \@ref(chapter2) because they were furthest apart.
 "Cherry-picking" the comparison that is likely to be most different creates a 
 false sense of the real situation and inflates the Type I error rate because of 
-the selection^[This fits with a critique of p-value usage called p-hacking or publication bias -- where researchers search across many results and only report their biggest differences. This biases the results to detecting results more than they should be and then when other researchers try to repeat the same studies, they fail to find similar results.]. If the entire suite of pairwise comparisons are considered, this 
+the selection^[This fits with a critique of p-value usage called 
+p-hacking or publication bias -- where researchers search across many 
+results and only report their biggest differences. This biases the 
+results to detecting results more than they should be and then when 
+other researchers try to repeat the same studies, they fail to find 
+similar results.]. 
+\index{p-value!criticism}
+\index{type I error}
+If the entire suite of pairwise comparisons are considered, this 
 result may lose some of its luster. In other words, if we consider the suite of 
 three pair-wise differences (and the tests) implicit in comparing all of them, 
-we may need stronger evidence in the most different pair than a p-value of 0.033 to suggest overall differences. In this situation, the *Beautiful* and *Average* 
+we may need stronger evidence in the most different pair than a 
+p-value of 0.033 to suggest overall differences. In this situation, 
+the *Beautiful* and *Average* 
 groups are not that different from each other so their difference does not 
 contribute much to the overall $F$-test. In Section \@ref(section3-6), we will 
 revisit this topic and consider a method that is
@@ -935,6 +1009,7 @@ differences in the variation among groups even if the true variability is exactl
 equal in the populations. In addition to our direct plotting, there are some 
 diagnostic plots available from the ``lm`` function that can help us more
 clearly assess potential violations of the previous assumptions.
+\index{\texttt{lm()}}
 
 \indent We can obtain a suite of four diagnostic plots by using the ``plot`` function on 
 any linear model object that we have fit. To get all the plots together in four 
@@ -953,29 +1028,38 @@ plot(lm2, pch=16)
 
 There are two plots in Figure \@ref(fig:Figure3-9) with useful information for assessing the
 equal variance assumption. The "Residuals vs Fitted" panel in the top left panel displays  the residuals $(e_{ij} = y_{ij}-\hat{y}_{ij})$ on the y-axis and the fitted values
-$(\hat{y}_{ij})$ on the x-axis. This allows you to see if the variability of the
+$(\hat{y}_{ij})$ on the x-axis. 
+\index{Residuals vs Fitted plot}
+This allows you to see if the variability of the
 observations differs across the groups as a function of the mean of the groups, 
 because all the observations in the same group get the same fitted value -- the 
 mean of the group. In this plot, the points seem to have fairly similar spreads 
 at the fitted values for the three groups with fitted values of 4, 4.3, and 6. 
 The "Scale-Location" plot in the lower left panel has the same x-axis but the 
 y-axis contains the square-root of the absolute value of the standardized 
-residuals. The absolute value transforms all the residuals into a magnitude 
+residuals.
+\index{Scale-Location plot}
+The absolute value transforms all the residuals into a magnitude 
 scale (removing direction) and the square-root helps you see differences in
 variability more accurately. The standardization scales the residuals to have a variance 
 of 1 so help you in other displays to get a sense of how many standard deviations 
 you are away from the mean in the residual distribution. The visual assessment is
 similar in the two plots -- you want to consider whether it appears that the 
 groups have somewhat similar or noticeably different amounts of variability. If 
-you see a clear funnel shape in the Residuals vs Fitted or an increase or decrease 
+you see a clear funnel shape in the Residuals vs Fitted 
+\index{Residuals vs Fitted plot!interpretation of}
+or an increase or decrease 
 in the upper edge of points in the Scale-Location plot that may indicate a 
-violation of the constant variance assumption. Remember that some variation 
+violation of the constant variance assumption.
+\index{Scale-Location plot!interpretation of}
+Remember that some variation 
 across the groups is expected and is OK, but large differences in spreads are problematic for all the procedures that involve linear models. When discussing 
 these results, you want to discuss how clearly the differences in variation are 
 and whether that *shows a clear violation of the assumption* of equal variance 
 for all observations. Like in hypothesis testing, you can never prove that you've 
 met assumptions based on a plot "looking OK", but you can say that there is no 
 clear evidence that the assumption is violated! 
+\index{assumptions}
 
 (ref:fig3-9) Default diagnostic plots for the Mock Jury full linear model.
 
@@ -994,6 +1078,7 @@ by definition, the normality assumption is violated. But our assumption is
 about the distribution of all the errors after removing the differences 
 in the means and so we want an overall assessment technique to understand how
 reasonable our assumption is overall for our model. The residuals from the entire
+\index{residuals}
 model provide us with estimates of the random errors and if the normality 
 assumption is met, then the residuals all-together should approximately follow a
 normal distribution. The ***Normal Q-Q Plot*** in the upper right panel of 
@@ -1027,7 +1112,9 @@ residuals for the model for the prisoner ratings that accounted for different
 means in the three picture groups, which is consistent with the initial assessment of 
 some right skew in the plots of observations in each group.
 
-\indent A Quantile-Quantile plot (***QQ-plot***) shows the "match" of an observed 
+\indent A Quantile-Quantile plot (***QQ-plot***) 
+\index{QQ-plot}
+shows the "match" of an observed 
 distribution with a theoretical distribution, almost always the normal
 distribution. They are also known as Quantile Comparison, Normal Probability, 
 or Normal Q-Q plots, with the last two names being specific to comparing
@@ -1049,7 +1136,9 @@ you are detecting. And to do that, we need to practice interpreting some
 QQ-plots. 
 
 \indent The QQ-plot of the linear model residuals from Figure \@ref(fig:Figure3-9) is extracted and enhanced it a little to make Figure \@ref(fig:Figure3-11) so we 
-can just focus on it. We know from looking at the histogram that this is a 
+can just focus on it.
+\index{QQ-plot!interpretation of}
+We know from looking at the histogram that this is a 
 slightly right skewed distribution. The QQ-plot places the observed ***standardized***^[Here this means re-scaled so that they should have similar 
 scaling to a standard normal with mean 0 and standard deviation 1. This does 
 not change the shape of the distribution but can make outlier identification 
@@ -1074,14 +1163,10 @@ be smaller (maybe 2.5) if the distribution was normal. Put together, this patter
 in the QQ-plot suggests that the left tail is too compacted (too short) and 
 the right tail is too spread out -- this is the right skew we identified from the
 histogram and density curve! 
+\index{R packages!\textbf{car}}
 
 (ref:fig3-11) QQ-plot of residuals from Mock Jury linear model.
 
-
-
-```
-## [1] 82 48
-```
 
 <div class="figure">
 <img src="03-oneWayAnova_files/figure-html/Figure3-11-1.png" alt="(ref:fig3-11)" width="576" />
@@ -1121,23 +1206,6 @@ describe the type of violation and how clear or extreme it seems to be.
 (ref:fig3-12) QQ-plots and density curves of four simulated distributions with
 different shapes. 
 
-
-```
-## [1] 47  4
-```
-
-```
-## [1] 34 40
-```
-
-```
-## [1]  7 48
-```
-
-```
-## [1] 63  8
-```
-
 <div class="figure">
 <img src="03-oneWayAnova_files/figure-html/Figure3-12-1.png" alt="(ref:fig3-12)" width="576" />
 <p class="caption">(\#fig:Figure3-12)(ref:fig3-12)</p>
@@ -1152,17 +1220,9 @@ noticeable issues in the distribution of the residuals such as those
 displayed above. Again, you will never be able to prove that you have normally
 distributed residuals even if the residuals are all exactly on the line, but if
 you see QQ-plots as in Figure \@ref(fig:Figure3-12) you can determine that there is clear evidence of violations of the normality assumption. 
+\index{QQ-plot!interpretation of}
 
 (ref:fig3-13) Two more simulated data sets, both generated from normal distributions.
-
-
-```
-## [1] 26 35
-```
-
-```
-## [1] 12 50
-```
 
 <div class="figure">
 <img src="03-oneWayAnova_files/figure-html/Figure3-13-1.png" alt="(ref:fig3-13)" width="576" />
@@ -1172,11 +1232,16 @@ you see QQ-plots as in Figure \@ref(fig:Figure3-12) you can determine that there
 \indent The last issues with assessing the assumptions in an ANOVA relates to 
 situations where the methods are more or less ***resistant***^[A resistant 
 procedure is one that is not severely impacted by a particular violation of an
-assumption. For example, the median is resistant to the impact of an outlier. But the mean is not a resistant measure as changing the value of a single point changes the mean.]
-to violations of assumptions. In simulation studies of the performance of the $F$-test, researchers have found that the
+assumption. For example, the median is resistant to the impact of
+an outlier. But the mean is not a resistant measure as changing the value
+of a single point changes the mean.] to violations of assumptions. 
+\index{resistant}
+In simulation studies of the performance of the $F$-test, researchers 
+have found that the
 parametric ANOVA $F$-test is more resistant to violations of the assumptions of
-the normality and equal variance assumptions if the design is balanced. A 
-***balanced design*** occurs when each group is measured the same number of 
+the normality and equal variance assumptions if the design is balanced. 
+\index{balance}
+A ***balanced design*** occurs when each group is measured the same number of 
 times. The resistance decreases as the data set becomes less balanced, as the 
 sample sizes in the groups are more different, so having close to balance is 
 preferred to a more imbalanced situation if there is a choice available. There 
@@ -1188,6 +1253,7 @@ observations in each group to see if they are equal or similar using the
 being able to get counts of observations, especially for cross-classifying
 observations on two variables that is used in Chapter \@ref(chapter5). For just 
 a single variable, we use ``tally(~x, data=...)``:
+\index{\texttt{tally()}}
 
 
 ```r
@@ -1225,7 +1291,10 @@ one of the six different treatment combinations possible
 (OJ at 0.5 mg, OJ at 1 mg, OJ at 2 mg, VC at 0.5 mg, VC at 1 mg, and VC at 2 mg). 
 The animals were treated similarly otherwise and we can assume lived in
 separate cages and only one observation was taken for each guinea pig, so we
-can assume the observations are independent^[A violation of the independence assumption could have easily been created if they measured cells in two locations on each guinea pig or took measurements over time on each subject.]. We need to create a variable that
+can assume the observations are independent^[A violation of the independence
+assumption could have easily been created if they measured cells in 
+\index{independence assumption!One-Way ANOVA}
+two locations on each guinea pig or took measurements over time on each subject.]. We need to create a variable that
 combines the levels of delivery type (OJ, VC) and the dosages (0.5, 1, and 2)
 to use our One-Way ANOVA on the six levels. The ``interaction`` function can be 
 used create a new variable that is based on combinations of the levels of other
@@ -1274,7 +1343,9 @@ tally(~Treat, data=ToothGrowth)
 ##     10     10     10     10     10     10
 ```
 
-The ``tally`` function helps us to check for balance; this is a balanced design
+The ``tally`` function helps us to check for balance;
+\index{balance}
+this is a balanced design
 because the same number of guinea pigs ($n_j=10 \text{ for } j=1, 2,\ldots, 6$) 
 were measured in each treatment combination. 
 
@@ -1323,15 +1394,21 @@ at a dosage of 2 mg/day. The variability around the means looks to be small
 relative to the differences among the means, so we should expect a small 
 p-value from our $F$-test. The design is balanced as noted above ($n_j=10$ 
 for all six groups) so the methods are some what resistant to impacts from
-non-normality and non-constant variance but we should still assess the patterns in the plots. There is some suggestion of 
-non-constant variance in the plots but this will be explored
+non-normality and non-constant variance but we should still 
+assess the patterns in the plots. 
+\index{resistant}
+There is some suggestion of non-constant variance in the plots but this will be explored
 further below when we can remove the difference in the means and combine all
-the residuals together. There might be some skew in the responses in some of
-the groups but there are only 10 observations per group so visual evidence of skew in the boxplots and beanplots 
+the residuals together.
+\index{residuals}
+There might be some skew in the responses in some of
+the groups but there are only 10 observations per group so 
+visual evidence of skew in the boxplots and beanplots 
 could be generated by impacts of very few of the observations.
 
-\indent Now we can apply our 6+ steps for performing a hypothesis test with these
-observations. The initial step is deciding on the claim to be assessed and the 
+\indent Now we can apply our 6+ steps for performing a hypothesis test
+\index{hypothesis testing}
+with these observations. The initial step is deciding on the claim to be assessed and the 
 test statistic to use. This is a six group situation with a quantitative 
 response, identifying it as a One-Way ANOVA where we want to test a null 
 hypothesis that all the groups have the same population mean, at least to 
@@ -1351,6 +1428,7 @@ start. We will use a 5% significance level.
         * $\boldsymbol{H_A:} \textbf{ Not all } \boldsymbol{\tau_j} \textbf{ equal 0}$
         
 2. **Validity conditions**:
+\index{validity conditions!One-Way ANOVA}
 
     * Independence:
     
@@ -1359,7 +1437,9 @@ start. We will use a 5% significance level.
         food or could share illness or levels of activity. The animals in one 
         cage might be systematically different from the others and this 
         "clustering" of observations would present a potential violation of the
-        independence assumption. If the experiment had the animals in separate 
+        independence assumption. 
+        
+            If the experiment had the animals in separate 
         cages, there is no clear dependency in the design of the study and we can
         assume^[In working with researchers on hundreds of projects, our experience has been that we often require many conversations to discover all the potential sources of issues in data sets, especially related to assessing independence of the observations.] that there is no problem with this assumption. 
         
@@ -1393,7 +1473,7 @@ start. We will use a 5% significance level.
         and we can proceed comfortably that there is at least not a major problem 
         with this assumption. 
         
-    * Normality of residuals:
+    * Normality of residuals: \index{residuals!normality of}
     
         * The Normal Q-Q plot shows a small deviation in the lower tail but nothing that 
         we wouldn't expect from a normal distribution. So there is no evidence of a problem 
@@ -1417,9 +1497,8 @@ start. We will use a 5% significance level.
     ## Residuals 54  712.11   13.19
     ```
 
-\newpage
 
-4. **Find the p-value**:
+4. **Find the p-value**:\index{p-value}
 
     * There are two options here, especially since it seems that our assumptions about 
     variance and normality are not violated (note that we do not say "met" -- we just have 
@@ -1429,7 +1508,8 @@ start. We will use a 5% significance level.
     * The parametric approach is easiest -- the p-value comes from the previous 
     ANOVA table as ``< 2e-16``. First, note that this is in scientific notation 
     that is a compact way of saying that the p-value here is $2.2*10^{-16}$ or
-    0.00000000000000022. When you see ``2.2e-16`` in R output, it also means
+    0.00000000000000022.\index{p-value!zero}
+    When you see ``2.2e-16`` in R output, it also means
     that the calculation is at the numerical precision limits of the computer. 
     What R is really trying to report is that this is a very small number. 
     **When you encounter p-values that are smaller than 0.0001, you should just
@@ -1477,7 +1557,8 @@ start. We will use a 5% significance level.
     <p class="caption">(\#fig:Figure3-16)Histogram and density curve of permutation distribution for $F$-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56.</p>
     </div>
     
-    * **The permutation p-value was reported as 0. This should be reported as 
+    * **The permutation p-value was reported as 0.\index{p-value!zero}
+    This should be reported as 
     p-value < 0.001** since we did 1,000 permutations and found that none of the
     permuted $F$-statistics, $F^*$, were larger than the observed $F$-statistic
     of 41.56. The permuted results do not exceed 6 as seen in Figure 
@@ -1638,8 +1719,10 @@ It also will test for differences between the OJ.0.5 and VC.2 groups
 and every other pair of levels that you can construct. This method actually
 takes us back to the methods in Chapter \@ref(chapter2) where we compared the means of two
 groups except that we need to deal with potentially many pair-wise comparisons, 
-making an adjustment to account for that inflation in Type I errors that occurs
-due to many tests being performed at the same time. There are many different statistical
+making an adjustment to account for that inflation in Type I errors
+\index{type I error}
+that occurs due to many tests being performed at the same time. 
+There are many different statistical
 methods to make all the pair-wise comparisons, but we will employ the most
 commonly used one, called ***Tukey's Honest Significant Difference*** (Tukey's HSD) 
 method^[When this procedure is used with unequal group sizes it is also sometimes
@@ -1650,7 +1733,10 @@ they are also called false detections.] results. There are other methods that co
 to do a similar correction and also provide "honest" inferences; we are just going to learn 
 one of them. 
 
-\indent Generally, the challenge in this situation is that if you perform many tests at the same time (instead of just one test), you inflate the Type I error rate. We can define the ***family-wise error rate***
+\indent Generally, the challenge in this situation is that if you perform many tests at the same time (instead of just one test), you inflate the 
+Type I error rate.
+\index{type I error}
+We can define the ***family-wise error rate***
 as the probability that at least one error is made on a set of tests or, more
 compactly, Pr(At least 1 error is made) where Pr() is the probability of an
 event occurring. The family-wise error is meant to capture the overall
@@ -1676,11 +1762,11 @@ possible to consider situations where millions of tests are
 considered so these are real issues to be concerned about in many situations.
 Researchers want to make sure that when they report a "significant" result that
 it is really likely to be a real result and will show up as a difference in the 
-next data set they collect.^[Some researchers are now collecting multiple data 
+next data set they collect^[Some researchers are now collecting multiple data 
 sets to use in a single study and using one data set to identify interesting 
 results and then using a validation or test data set that they withheld from 
 initial analysis to try to verify that the first results are also present in that 
-second data set. This also has problems but the only way to develop an understanding of a process is to look across a suite of studies and learn from that accumulation of evidence.] 
+second data set. This also has problems but the only way to develop an understanding of a process is to look across a suite of studies and learn from that accumulation of evidence.]. 
 
 (ref:fig3-18) Plot of family-wise error rate as the number of tests performed 
 increases. Dashed line indicates 0.05. 
@@ -1696,6 +1782,8 @@ $J$ choose 2, $\begin{pmatrix}J\\2\end{pmatrix}$, to get the number of unique pa
 size 2 that we can make out of $J$ individual treatment levels. We don't need to 
 explore the combinatorics formula for this, as the ``choose`` function in R can give us the 
 answers:
+
+\newpage
 
 
 ```r
@@ -1768,7 +1856,9 @@ Chapter \@ref(chapter2). The formula otherwise is very similar to the one used i
 \indent We will use the ``confint``, ``cld``, and ``plot`` functions 
 applied to output from the ``glht`` function (all from the ``multcomp`` package; 
 @Hothorn2008, [@R-multcomp]) to easily get the required comparisons from our 
-ANOVA model. Unfortunately, its code format is a little complicated -- but there are 
+ANOVA model.
+\index{R packages!\textbf{multcomp}}
+Unfortunately, its code format is a little complicated -- but there are 
 just two places to modify the code, by including the model name and after ``mcp`` 
 (stands for *multiple comparisons*) in the ``linfct`` option, you need to include the
 explanatory variable name as ``VARIABLENAME="Tukey"``. The last part is to get the 
@@ -2061,8 +2151,6 @@ function, the ``level`` option is the confidence level and for the ``cld``, it i
 family-wise significance level. Note that 90% confidence corresponds to a 10% 
 significance level. 
 
-\newpage
-
 
 ```r
 confint(Tm2, level=0.9)
@@ -2156,8 +2244,11 @@ $J$ groups ($J \ge 2$), with what is called the One-Way ANOVA procedure. The ini
 test is based on assessing evidence against a null hypothesis of no difference in the true means for the $J$ groups. There are two different methods for estimating these One-Way ANOVA models: 
 the cell-means model and the reference-coded versions of the model. 
 There are times when either model will be preferred, but for the rest of the text, 
-the reference coding is used (sorry!). The ANOVA $F$-statistic, often presented with 
-underlying information in the ANOVA table, provides a method of assessing evidence 
+the reference coding is used (sorry!). The ANOVA $F$-statistic, 
+often presented with 
+underlying information in the ANOVA table,
+\index{ANOVA table}
+provides a method of assessing evidence 
 against the null hypothesis either using permutations or via the $F$-distribution. 
 Pair-wise comparisons using Tukey's HSD provide a method for comparing all the groups 
 and are a nice complement to the overall ANOVA results. A compact letter display was 
@@ -2189,7 +2280,7 @@ data=<font color='red'>DATASETNAME</font>)**
     
     * Here it is used to fit the reference-coded One-Way ANOVA model with Y as the 
     response variable and X as the grouping variable, storing the estimated model 
-    object in MODELNAME. 
+    object in MODELNAME. \index{\texttt{lm()}|textbf}
 
 * **<font color='red'>MODELNAME</font> <- lm(<font color='red'>Y</font>~<font color='red'>X</font>-1,
 data=<font color='red'>DATASETNAME</font>)**
@@ -2203,8 +2294,8 @@ data=<font color='red'>DATASETNAME</font>)**
 
 * **anova(<font color='red'>MODELNAME</font>)**
 
-    * Generates the ANOVA table but **must only be run on the reference-coded version of
-    the model**.
+    * Generates the ANOVA table but **must only be run on the 
+    reference-coded version of the model**. \index{\texttt{anova()}|textbf}
     
     * Results are incorrect if run on the cell-means model since the reduced model 
     under the null is that the mean of all the observations is 0!
@@ -2213,7 +2304,7 @@ data=<font color='red'>DATASETNAME</font>)**
 df2=<font color='red'>DENOMDF</font>, lower.tail=F)**
 
     * Finds the p-value for an observed $F$-statistic with NUMDF and DENOMDF degrees 
-    of freedom. 
+    of freedom. \index{\texttt{pf()}|textbf}
 
 * **par(mfrow=c(2,2)); plot(<font color='red'>MODELNAME</font>)**
 
@@ -2224,7 +2315,7 @@ df2=<font color='red'>DENOMDF</font>, lower.tail=F)**
     
     * Requires the ``effects`` package be loaded. 
 
-    * Plots the estimated model component.
+    * Plots the estimated model component. \index{\texttt{allEffects()}|textbf}
     
 * **Tm2 <- glht(<font color='red'>MODELNAME</font>, linfct=mcp(<font color='red'>X</font>="Tukey"));
 confint(Tm2); plot(Tm2); cld(Tm2)**
@@ -2242,7 +2333,7 @@ For these practice problems, you will work with the cholesterol data set from
 the ``multcomp`` package that was used to generate the Tukey's HSD results. To 
 load the data set and learn more about the study, use the following code:
 
-```
+```r
 require(multcomp)
 data(cholesterol)
 require(tibble)
@@ -2253,7 +2344,7 @@ help(cholesterol)
 3.1. Graphically explore the differences in the changes in Cholesterol levels for
 the five levels using boxplots and beanplots. 
 
-3.2. Is the design balanced? 
+3.2. Is the design balanced? \index{balance}
 
 3.3. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
 reporting the ANOVA table and the distribution of the test statistic under the null. 

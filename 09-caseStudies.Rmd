@@ -62,7 +62,7 @@ We didn't want to introduce indicator variables at that early stage of the
 material, but we can now write out the same model using our indicator variable
 approach from Chapter \@ref(chapter8) for a $J$-level categorical explanatory
 variable using $J-1$ indicator variables as:
-\index{model!One-Way ANOVA}
+\index{model!One-Way ANOVA} \index{indicator}
 
 $$y_i = \beta_0 + \beta_1I_{\text{Level }2,i} + \beta_2I_{\text{Level }3,i} +
 \cdots + \beta_{J-1}I_{\text{Level }J,i} + \varepsilon_i.$$
@@ -367,7 +367,7 @@ plot(allEffects(m2), multiline=T, ci.style="bars")
 details about the source of the differences. We can re-fit the model with a 
 unique mean for each combination of the two predictor variables, fitting a 
 One-Way ANOVA model (here with six levels) and using Tukey's HSD to provide 
-safe inferences for differences among pairs of the true means. There are six 
+safe inferences for differences among pairs of the true means. \index{Tukey's HSD} There are six 
 groups corresponding to all combinations of *Species* (*HS*, *PS*) and
 treatment levels (*Control*, *N12.5*, and *N50*) provided in the new 
 variable ``SpTrt`` by the ``interaction`` function with new levels of 
@@ -397,7 +397,7 @@ confint(PWnewm2)
 ```
 
 We can also generate the Compact Letter Display (CLD) to help us group up the
-results. 
+results. \index{compact letter display}
 
 ```{r warning=F,message=F}
 cld(PWnewm2)
@@ -573,9 +573,9 @@ diversity was different between the *Triassic/Jurassic* (grouped together) and
 considered models that included two different versions of sampling effort
 variables and one for the comparisons of periods (an indicator variable 
 *TJK*=0 if the observation is in *Triassic* or *Jurassic* or 1 if in 
-*Cretaceous*). They *log-e* transformed all their quantitative variables
+*Cretaceous*). \index{indicator} They *log-e* transformed all their quantitative variables
 because the untransformed variables created diagnostic issues including
-influential points. They explored a model just based on the *DBC*
+influential points. \index{influential} They explored a model just based on the *DBC*
 predictor^[This was not even close to their top AIC model so they made an odd
 choice.] and they analyzed the residuals from that model to see if the
 biodiversity was different in the *Cretaceous* or before, finding a 
@@ -929,7 +929,7 @@ knitr::kable(Anova(lm_int), booktabs=TRUE, caption="(ref:tab9-2)",digits=3)
 why not add "Subject" to the model? There are two things to consider. First, 
 we would need to make sure that "Subject" is a factor variable as the "Subject"
 variable is initially numerical from 1 to 25. Second, we have to deal with 
-having a factor variable with 25 levels (so 24 indicator variables!). This is 
+having a factor variable with 25 levels (so 24 indicator variables!). \index{indicator} This is 
 a big number and would make writing out the model and interpreting the 
 term-plot for Subject extremely challenging. Fortunately, we are not too 
 concerned about how much higher or lower an individual is than a baseline 

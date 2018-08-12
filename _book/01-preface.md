@@ -3,6 +3,8 @@ output:
   html_document: default
   pdf_document: default
 ---
+\mainmatter
+
 #Preface {#chapter1}
 
 
@@ -16,14 +18,14 @@ methods discussed in the text. As a text primarily designed for a second
 statistics course, it presumes that you have had an introductory statistics
 course. There are now many different varieties of introductory statistics from
 traditional, formula-based courses (called "consensus" curriculum courses) to
-more modern, compute-intensive courses that use randomization ideas to try to
+more modern, computational-intensive courses that use randomization ideas to try to
 enhance learning of basic statistical methods. We are not going to presume that
 you have had a particular "flavor" of introductory statistics or that you had
 your introductory statistics out of a particular text, just that you have had a
 course that tried to introduce you to the basic terminology and ideas
 underpinning statistical reasoning. We would expect that you are familiar with
 the logic (or sometimes illogic) of hypothesis testing including null and
-alternative hypothesis and confidence interval construction and interpretation
+alternative hypothesis \index{hypothesis testing} and confidence interval construction and interpretation
 and that you have seen all of this in a couple of basic situations. We start
 with a review of these ideas in one and two group situations with a
 quantitative response, something that you should have seen before. 
@@ -32,9 +34,9 @@ quantitative response, something that you should have seen before.
 or both. As we explore various techniques, look for the identifying characteristics
 of each method -- what type of research questions are being addressed
 (relationships or group differences, for example) and what type of variables
-are being analyzed (quantitative or categorical). ***Quantitative variables*** are made up of numerical measurements that have meaningful units attached to
-them. ***Categorical variables*** take on values that are categories or labels.
-Additionally, you will need to carefully identify the ***response*** and ***explanatory*** variables, where
+are being analyzed (quantitative or categorical). ***Quantitative variables*** \index{quantitative} are made up of numerical measurements that have meaningful units attached to
+them. ***Categorical variables*** \index{categorical} take on values that are categories or labels.
+Additionally, you will need to carefully identify the ***response*** \index{response} and ***explanatory*** \index{explanatory} variables, where
 the study and variable characteristics should suggest which variables should be used
 as the explanatory variables that may explain
 variation in the response variable. Because this is an intermediate statistics
@@ -60,7 +62,7 @@ on the research question and data collection process as well as the types of
 variables measured. 
 
 \indent Figure \@ref(fig:Figure1-1) frames the topics we will discuss. Taking a broad
-vision of the methods we will consider, 
+view of the methods we will consider, 
 there are basically two scenarios -- one when the response is quantitative and
 one when the response is categorical. Examples of quantitative responses we will
 see later involve *suggested jail sentence* (in years) and *body fat* (percentage). 
@@ -70,11 +72,12 @@ in a clinical trial or whether a student has turned in copied work
 nuanced aspects to all these analyses as the complexity of both sides of Figure
 \@ref(fig:Figure1-1) suggest, but note that near the bottom, each tree converges 
 on a single
-procedure, using a ***linear model*** for a quantitative response variable or 
-using a ***Chi-square test*** for a categorical response. After selecting the
+procedure, using a ***linear model*** \index{model!linear} for a quantitative response variable or 
+using a ***Chi-square test*** for a categorical response. \index{Chi-Square Test} After selecting the
 appropriate procedure and completing the necessary technical steps to get results
 for a
-given data set, the final step involves assessing the scope of inference and
+given data set, the final step involves assessing the scope of inference 
+\index{scope of inference} and
 types of conclusions that are appropriate based on the design of the study. 
 
 (ref:fig1-1) Flow chart of methods.
@@ -109,7 +112,7 @@ variable where
 there are more than 2 groups to compare -- this is what we call the ***One-Way
 ANOVA*** situation. It generalizes the 2-independent sample hypothesis
 test to handle situations where more than 2 groups are being studied. When we
-learn this method, we will begin discussing model assumptions and methods for
+learn this method, we will begin discussing model assumptions \index{assumptions} and methods for
 assessing those assumptions that will be present in every analysis involving a
 quantitative response. The ***Two-Way ANOVA*** (Chapter \@ref(chapter3))
 considers situations with two categorical explanatory variables and a 
@@ -118,10 +121,10 @@ this somewhat concrete, suppose we are interested in assessing differences in,
 say, the *yield* of wheat from a field based on the amount of *fertilizer* applied
 (none, low, or high) and *variety* of wheat (two types). Here, *yield* is a quantitative response variable that might be measured in bushels per acre and
 there are two categorical explanatory variables, *fertilizer*, with 3 levels, and *variety*, with two levels. In this material, we introduce the idea of an
-***interaction*** between the two explanatory variables: the relationship between one categorical
+***interaction*** between the two explanatory variables: \index{interaction!Two-Way ANOVA} the relationship between one categorical
 variable and the mean of the response changes depending on the levels of the
 other categorical variable. For example, extra fertilizer might enhance the
-growth of one variety and hinder the growth of another so we would say that *fertilizer* has different impacts based on the level of *variety*. Given this interaction may or may not actually be present, we will consider two versions of the model in Two-Way ANOVAs, what are called the ***additive*** (no interaction) and the ***interaction*** models. 
+growth of one variety and hinder the growth of another so we would say that *fertilizer* has different impacts based on the level of *variety*. Given this interaction may or may not actually be present, we will consider two versions of the model in Two-Way ANOVAs, \index{model!Two-Way ANOVA} what are called the ***additive*** \index{model!additive} (no interaction) and the ***interaction*** \index{model!interaction} models. 
 
 \indent Following the methods for two categorical variables and a quantitative response, we explore a method for
 analyzing data where the response is categorical, called the ***Chi-square test***
@@ -132,7 +135,7 @@ drug (vs taking a ***placebo***^[A ***placebo*** is a treatment level designed t
 mimic the potentially efficacious level(s) but that can have no actual effect. The
 ***placebo effect*** is the effect that thinking that an effective treatment was
 received has on subjects. There are other related issues in performing experiments
-like the ***Hawthorne*** or observer ***effect*** where subjects modify behavior
+like the ***Hawthorne*** or ***observer effect*** where subjects modify behavior
 because they are being observed.])
 has an ***effect***^[We will reserve the term "effect" for situations where we could
 potentially infer causal impacts on the response of the explanatory variable which
@@ -144,10 +147,11 @@ Chapter \@ref(chapter5). If the explanatory variable reflects the group that
 subjects were
 obtained from, either through randomization of the treatment level to the
 subjects or by taking samples from separate populations, this is called a
-***Chi-square Homogeneity Test***. It is also possible to obtain a single sample
+***Chi-square Homogeneity Test***. \index{Chi-Square Test!Homogeneity Test} It is also possible to obtain a single sample
 from a population and then obtain information on the levels of the explanatory
 variable for each
-subject. We will analyze these results using what is called a ***Chi-square Independence Test***. They both use the same test statistic but we use slightly different graphics and are testing different hypotheses in these two related
+subject. We will analyze these results using what is called a ***Chi-square Independence Test***.
+\index{Chi-Square Test!Independence Test} They both use the same test statistic but we use slightly different graphics and are testing different hypotheses in these two related
 situations. Figure \@ref(fig:Figure1-1) also shows that if we had a quantitative explanatory
 variable and a categorical response that we would need to "bin" or create
 categories of responses from the quantitative variable to use the Chi-square
@@ -159,7 +163,7 @@ and ***simple linear regression*** models (Chapters \@ref(chapter6) and
 \@ref(chapter7)) -- things you should have seen, at least to some degree,
 previously. The biggest differences here will be
 the depth of exploration of diagnostics and inferences for this model and
-discussions of transformations of variables. If there is more than one
+discussions of transformations of variables. \index{transformation} If there is more than one
 explanatory variable, then we say that we are doing ***multiple linear regression***
 (Chapter \@ref(chapter8)) -- the "multiple" part of the name reflects that there will
 be more
@@ -167,7 +171,9 @@ than one explanatory variable. We use the same name if we have a mix of
 categorical and quantitative predictor variables but there are some new issues
 in setting up the models and interpreting the coefficients that we need to
 consider. In the situation with one categorical predictor and one quantitative
-predictor, we revisit the idea of an interaction. It allows us to consider situations
+predictor, we revisit the idea of an interaction. 
+\index{interaction!MLR} 
+It allows us to consider situations
 where the estimated relationship between a quantitative predictor and the 
 mean response
 varies among different levels of the categorical variable. 
@@ -187,19 +193,20 @@ want to go with learning the software.
 pertains to the population of interest, and how that impacts the inferences
 that can be made. The ***scope of inference*** from the bottom of Figure
 \@ref(fig:Figure1-1) is our shorthand term for remembering to think about two aspects
-of the study -- ***random assignment*** and ***random sampling***. In a given
+of the study -- ***random assignment*** and ***random sampling***.
+\index{random assignment} \index{random sampling} In a given
 situation, you need to use the description of the study to decide if the
-explanatory variable was randomly assigned to study units (this allows for ***causal inferences*** if differences are detected) or not (so no causal statements
+explanatory variable was randomly assigned to study units (this allows for ***causal inferences*** \index{causal effect} if differences are detected) or not (so no causal statements
 are possible). As an example, think about two studies, one where students are
 randomly assigned to either get tutoring with their statistics course or not
 and another where the students are asked at the end of the semester whether
 they sought out tutoring or not. Suppose we compare the final grades in the
 course for the two groups (tutoring/not) and find a big difference. In the
-first study with random assignment, we can say the tutoring caused the
+first study with random assignment, \index{random assignment} we can say the tutoring caused the
 differences we observed. In the second, we could only say that the tutoring was
 associated with differences but because students self-selected the group they
 ended up in, we can't say that the tutoring caused the differences. The other
-aspect of scope of inference concerns random sampling: If the data were obtained
+aspect of scope of inference concerns random sampling: \index{random sampling}If the data were obtained
 using a random sampling mechanism, then our inferences can be safely extended
 to the population that the sample was taken from. However, if we have a non-random
 sample, our inference can only apply to the sample collected. In the previous
@@ -214,7 +221,7 @@ a population -- conclusions would be about causal impacts that would happen in t
 population. 
 
 \indent By the end of this material, you should have some basic R skills and abilities to create basic ANOVA and
-Regression models, as well as to handle Chi-squared testing situations. 
+Regression models, as well as to handle Chi-square testing situations. 
 Together, this should prepare you for future statistics courses or for other
 situations where you are expected to be able to identify an appropriate
 analysis, do the calculations for a given data set, and then effectively
@@ -243,11 +250,11 @@ on learning how to modify that code to work for your particular data set. Only
 really experienced R users "know" functions without having to check other
 resources. After we complete this basic introduction, Chapter \@ref(chapter2) begins doing
 more sophisticated things with R, allowing us to compare quantitative responses
-from two groups, make some graphical displays, do hypothesis testing and create
+from two groups, make some graphical displays, do hypothesis testing \index{hypothesis testing} and create
 confidence intervals in a couple of different ways. 
 
 \indent You will have two downloading activities to complete before you can do anything
-more than read this book^[I recorded a video that walks through getting R and RStudio installed on a PC available in the digital version [here](https://montana.techsmithrelay.com/J1Ww). If you want to see them installed on a mac, you can try [this version](https://www.youtube.com/watch?v=GFImMj1lMRI). Or for either version, try searching YouTube for "How to install R and RStudio".
+more than read this book^[I recorded a video that walks through getting R and RStudio installed on a PC available in the digital version [**here**](https://montana.techsmithrelay.com/J1Ww). If you want to see them installed on a mac, you can try [**this version**](https://www.youtube.com/watch?v=GFImMj1lMRI). Or for either version, try searching YouTube for "How to install R and RStudio".
 ]. First, you need to download R. It is the engine that will do all the computing
 for us, but you will only interact with it once. Go to http://cran.rstudio.com
 and click on the "**Download R for...**" button that
@@ -369,7 +376,8 @@ With the data stored in a variable, we can use functions such as
 ``mean`` and
 ``sd`` to find the mean and standard deviation of the observations contained in
 ``variable1``: 
-
+\index{mean}
+\index{standard deviation}
 
 ```r
 > mean(variable1)
@@ -393,13 +401,19 @@ be saved as a ".csv" file (stands for comma-separated values although Excel
 calls it "CSV (Comma Delimited)"), which basically strips off some of the junk
 that Excel adds to the necessary information in the file. Excel will tell you that
 this is a bad idea, but it actually creates a more stable archival format and
-one that R can use directly^[There are ways to read ".xls" and ".xlsx" files 
-directly into R that we will explore later.]. 
+one that R can use directly.^[There are ways to read ".xls" and ".xlsx" files 
+directly into R that we will explore later.]
 
-\indent The following code to read in the data set relies on an R package called ``readr`` [@R-readr]. Packages in R provide additional functions and data sets that are not available in the initial download of R or RStudio. To get access to the packages, first "install" (basically
-download) and then "load" the package. To install an R package, go to the **Packages** tab in the lower right panel of
+\indent The following code to read in the data set relies on an R package called 
+``readr`` [@R-readr]. Packages in R provide additional functions and data sets that 
+are not available in the initial download of R or RStudio. To get access to the packages, 
+first "install" (basically
+download) and then "load" the package. To install an R package, go to the **Packages** 
+tab in the lower right panel of
 RStudio. Click on the **Install** button and then type in the name of the package in
-the box (here type in ``readr``). RStudio will try to auto-complete the package name
+the box (here type in ``readr``). 
+\index{R packages!\textbf{readr}}
+RStudio will try to auto-complete the package name
 you are typing which should help you make sure you got it typed correctly. This will
 be the first of *many* times that we will mention that R is case sensitive -- in
 other words, ``Readr`` is different from ``readr`` in R syntax and this sort of
@@ -408,15 +422,21 @@ package once on a given computer. If you ever see a message that R can't find a
 package, make sure it appears in the list in the **Packages** tab. If it 
 doesn't, repeat the previous steps to install it. 
 
+---------------------------------------------------------------------------
+**Important**: R is case sensitive! ``Readr`` is not the same as ``readr``!
+---------------------------------------------------------------------------
+
 \indent After installing the package, we need to load it to make it active in a given work
 session. Go to the command prompt and type (or copy and paste) ``require(readr)`` or ``library(readr)``:
+\index{R packages!\textbf{readr}}
 
 ```
 > require(readr)
 ```
 
-With a data set converted to a CSV file and ``readr`` installed and loaded, we need to read the data set into the active workspace. There
-are two ways to do this, either using the point-and-click GUI in RStudio (click
+With a data set converted to a CSV file and ``readr`` installed and loaded, we need to read the data set into the active workspace. 
+\index{import data}
+There are two ways to do this, either using the point-and-click GUI in RStudio (click
 the "Import Dataset" button in the upper right "Environment" panel as
 indicated in Figure \@ref(fig:Figure1-2)) or modifying the ``read_csv`` 
 function to find the file of interest. To practice this, you can 
@@ -452,10 +472,11 @@ during 1.5 mile run (*RunPulse*, in beats per minute), resting pulse rate
 (*RestPulse*, beats per minute), Body Weight (*BodyWeight*, in kg), and *Age* 
 (in years). Open the file in Excel or equivalent software and then save it as 
 a .csv file in a location you can find on your computer. Then go to RStudio 
-and click on **File**, then **Import Dataset**, then **From CSV...**^[If
+and click on **File**, then **Import Dataset**, then **From Text (readr)...**^[If
 you are having trouble getting the file converted and read into R, copy and 
 run the following code: 
 ``treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv")``.] 
+\index{import data}
 Find your file and click "**Import**". R will store the data set as an object with the same name 
 as the .csv file. You could use another name as well, but it is 
 often easiest just to keep the data
@@ -504,10 +525,12 @@ results for the
 window in RStudio to get all the columns to display
 in a single row which can be performed by dragging the gray bars that separate
 the panels.
+\index{\texttt{head()}}
+\index{\texttt{tail()}}
 
 \small
 
-```
+```r
 > head(treadmill)
 # A tibble: 6 x 8
   Subject TreadMillOx TreadMillMaxPulse RunTime RunPulse RestPulse BodyWeight   Age
@@ -536,15 +559,17 @@ the panels.
 \indent When you require a package, you may see a warning message about versions of the package and versions of 
 R -- this is *usually* something you can ignore. Other warning messages could
 be more ominous for proceeding but before getting too concerned, there are 
-couple of basic things to check. First, double check that the package is 
+couple of basic things to check. 
+\index{warning message}
+First, double check that the package is 
 installed (see
 previous steps). Second, check for typographical errors in your code --
 especially for mis-spellings or unintended capitalization. If you are still
 having issues, try repeating the installation process. If that fails, find
 someone more used to using R to help you (for example in the Math Learning
-Center or by emailing your instructor)^[Most computer lab computers at 
+Center or by emailing your instructor).^[Most computer lab computers at 
 Montana State University have RStudio installed and so provide another venue 
-to work.]. 
+to work.] 
 
 \indent To help you go from basic to intermediate R usage and especially to help with more
 complicated problems, you will want to learn how to manage and save your R code. 
@@ -556,9 +581,11 @@ edit code -- then save the file as something like "MyFileName.R" in your preferr
 Saving your code will mean that you can return to where you
 were working last by simply re-running the saved script file. With code in the
 script window, you can place the cursor on a line of code or highlight a chunk
-of code and hit the "Run" button^[You can also use Ctrl-R if you like hot keys.] on the upper part of the panel. It will appear
+of code and hit the "Run" button^[You can also use Ctrl+Enter if you like hot keys.] 
+on the upper part of the panel. It will appear
 in the console with results just like what you would obtain if you typed it
-after the command prompt and hit enter for each line. Figure \@ref(fig:Figure1-4) shows the screen with the code used in this 
+after the command prompt and hit enter for each line. Figure \@ref(fig:Figure1-4) 
+shows the screen with the code used in this 
 section in the upper left panel, saved in
 a file called "CH0.R", with the results of highlighting and executing the first
 section of code using the "Run" button. 
@@ -574,7 +601,9 @@ section of code using the "Run" button.
 
 For the following material, you will need to install and load the ``mosaic`` package [@R-mosaic]. 
 
-```
+\index{R packages!\textbf{mosaic}}
+
+```r
 > require(mosaic)
 ```
 
@@ -583,7 +612,7 @@ save code, and the ``treadmill`` data set loaded, we can (finally!) start to
 summarize the results of the study. The ``treadmill`` object is what R calls a 
 ***tibble***^[Tibbles are R are objects that can contain both 
 categorical and quantitative variables on your $n$ subjects with a name for each
-variable that is also the name of each column in a matrix. Each subject is a 
+variable that is also the name of each column in a matrix. \index{tibble} Each subject is a 
 row of the data set. The name (supposedly) is due to the way *table* sounds in the accent of a particularly influential developer at RStudio who is from New Zealand.] and contains columns corresponding to each variable in 
 the spreadsheet. Every
 function in R will involve specifying the variable(s) of interest and how you
@@ -592,7 +621,7 @@ can use a $ between the name of the tibble and the name of the variable of
 interest, generically as ``tibblename$variablename``. You can think of this as *tibblename's variablename* where the *'s* is replaced by the dollar sign. To identify the 
 ``RunTime`` variable here it would be ``treadmill$RunTime``. In the command line it would look like:
 
-```
+```r
 > treadmill$RunTime
 [1]  8.63  8.17  8.92  8.65 10.33  9.93 10.13 10.08  9.22  8.95 10.85  9.40 11.50 10.50
 [15] 10.60 10.25 10.00 11.17 10.47 11.95  9.63 10.07 11.08 11.63 11.12 11.37 10.95 13.08
@@ -600,8 +629,10 @@ interest, generically as ``tibblename$variablename``. You can think of this as *
 ```
 
 \indent Just as in the previous section, we can generate summary statistics using functions like ``mean`` and ``sd`` by running them on a specific variable:
+\index{mean}
+\index{standard deviation}
 
-```
+```r
 > mean(treadmill$RunTime)
 [1] 10.58613
 > sd(treadmill$RunTime)
@@ -611,15 +642,16 @@ And now we know that the average running time for 1.5 miles for the subjects in 
 mean and SD are only appropriate summaries if the distribution is roughly
 ***symmetric*** (both sides of the distribution are approximately the same shape and length). The 
 ``mosaic``  package provides a useful function called ``favstats`` that provides 
-the mean and SD as well as the ***5 number summary***: 
+the mean and SD as well as the ***5 number summary***: \index{5 number summary}
 the minimum (``min``), the first quartile (``Q1``, the 25^th^ percentile), 
 the median (50^th^ percentile), the third quartile (``Q3``, the 75^th^
 percentile), and the maximum (``max``). It also provides the number of 
 observations (``n``) which was 31, as noted above, and a count of whether any 
 missing values were encountered (``missing``), which was 0 here since all 
 subjects had measurements available on this variable. 
+\index{favstats}
 
-```
+```r
 > favstats(treadmill$RunTime)
   min   Q1 median    Q3   max     mean       sd  n missing
  8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0
@@ -637,18 +669,18 @@ information about how similar all the subjects in this study were. Researchers o
 \indent A graphical display of these results will help us to assess the shape 
 of the distribution of run times -- including considering the potential for the presence of a ***skew*** (whether the right or left tail of the distribution 
 is noticeably more spread out, with left skew meaning that the left tail 
-is more spread out than the right tail) and ***outliers*** 
-(unusual observations). A ***histogram*** is a good place to start.
+is more spread out than the right tail) \index{skew} and ***outliers*** \index{outlier}
+(unusual observations). A ***histogram*** \index{histogram} is a good place to start.
 Histograms display connected bars with counts of observations defining
 the height of bars based on a set of bins of values of the quantitative variable. 
 We will apply the ``hist`` function to the ``RunTime`` variable, which produces 
 Figure \@ref(fig:Figure1-5). 
 
-```
+```r
 > hist(treadmill$RunTime)
 ```
 
-(ref:fig1-5) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study.
+(ref:fig1-5) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study, bar heights are counts.
 
 <div class="figure">
 <img src="01-preface_files/figure-html/Figure1-5-1.png" alt="(ref:fig1-5)" width="480" />
@@ -679,7 +711,7 @@ can override the default options if we desire. One option we can modify here is
 to add labels to the bars to be able to see exactly how many observations fell
 into each bar. Specifically, we can turn the ``labels`` option "on" by making it true ("T") by adding ``labels=T`` to the previous call to the ``hist`` function, separated by a comma. Note that we will use the ``=`` sign only for changing options within functions.  
 
-```
+```r
 > hist(treadmill$RunTime, labels=T)
 ```
 
@@ -701,28 +733,38 @@ accurately from the plot.
 \indent When assessing outliers and skew, the ***boxplot*** 
 (or *Box and Whiskers* plot) can also be helpful (Figure \@ref(fig:Figure1-8)) to describe the 
 shape of the distribution as it displays the 5-number summary and will also indicate
-observations that are "far" above the middle of the observations. R's 
-``boxplot`` function uses the standard rule to indicate an observation as a ***potential outlier*** if it falls more than 1.5 times the ***IQR*** 
-(Inter-Quartile Range, calculated as Q3 -- Q1) below Q1 or above Q3. The potential outliers are plotted with circles and the *Whiskers* (lines that extend from Q1 and Q3 typically to the minimum and maximum) are shortened to only go as far as
+observations that are "far" above the middle of the observations. 
+\index{boxplot}
+R's ``boxplot`` function uses the standard rule to indicate an observation as a
+potential outlier*** if it falls more than 1.5 times the ***IQR*** 
+(Inter-Quartile Range, calculated as Q3 -- Q1) below Q1 or above Q3. 
+\index{outlier}
+The potential outliers 
+are plotted with circles and the *Whiskers* (lines that extend from Q1 and Q3 typically to 
+the minimum and maximum) are shortened to only go as far as
 observations that are within $1.5*$IQR of the upper and lower quartiles. The *box*
-part of the boxplot is a box that goes from Q1 to Q3 and the median is displayed as a line somewhere inside the box^[The median, quartiles and whiskers sometimes occur at the same values when there are many tied observations. If you can't see all the 
+part of the boxplot is a box that goes from Q1 to Q3 and the median is displayed as a line 
+somewhere inside the box.^[The median, quartiles and whiskers sometimes occur at the same 
+values when there are many tied observations. If you can't see all the 
 components of the boxplot, produce the numerical summary to help you understand 
-what happened.]. Looking back at the summary statistics above, Q1=9.78 and Q3=11.27, providing an IQR of:
+what happened.] Looking back at the summary statistics above, Q1=9.78 and Q3=11.27, providing an IQR of:
 
-```
+```r
 > IQR <- 11.27 - 9.78
 > IQR
 [1] 1.49
 ```
 
-One observation (the maximum value of 14.03) is indicated as a potential outlier based on this result by being larger than Q3 $+1.5*$IQR, which was 13.505:
+One observation (the maximum value of 14.03) is indicated as a potential outlier 
+based on this result by being larger than Q3 $+1.5*$IQR, which was 13.505:
 
-```
+```r
 > 11.27 + 1.5*IQR
 [1] 13.505
 ```
 
-\indent The boxplot also shows a slight indication of a right skew (skew towards larger values) with the distance from the minimum to the median being smaller than the
+\indent The boxplot also shows a slight indication of a right skew (skew towards
+larger values) with the distance from the minimum to the median being smaller than the
 distance from the median to the maximum. Additionally, the distance from Q1 to
 the median is smaller than the distance from the median to Q3. It is modest skew,
 but worth noting. 
@@ -734,7 +776,7 @@ but worth noting.
 <p class="caption">(\#fig:Figure1-8)(ref:fig1-8)</p>
 </div>
 
-```
+```r
 > boxplot(treadmill$RunTime)
 ```
 
@@ -753,25 +795,30 @@ be assigned into the options ``ylab`` (for y-axis) or ``main``
 <p class="caption">(\#fig:Figure1-9)(ref:fig1-9)</p>
 </div>
 
-```
+```r
 > boxplot(treadmill$RunTime, ylab="1.5 Mile Run Time (minutes)", 
           main="Boxplot of the Run Times of n=31 participants")
 ```
 
-\indent Throughout the book, we will often use extra options to make figures that are easier for you to understand. There
+\indent Throughout the book, we will often use extra options to make figures that
+are easier for you to understand. There
 are often simpler versions of the functions that will suffice but the extra
 work to get better labeled figures is often worth it. I guess the point is that
 "a picture is worth a thousand words" but in data visualization, that is only
 true if the reader can understand what is being displayed. It is also important
 to think about the quality of the information that is being displayed, 
-regardless of how pretty the graphic might be. So maybe it is better to say "a picture can be worth a thousand words" if it is well-labeled?
+regardless of how pretty the graphic might be. So maybe it is better to say 
+"a picture can be worth a thousand words" if it is well-labeled?
 
 \indent All the previous results were created by running the R code and then copying the
-results from either the console or by copying the figure and then pasting the results into the typesetting program. There is another way
+results from either the console or by copying the figure and then pasting the results 
+into the typesetting program. There is another way
 to use RStudio where you can have it compile the results (both output and
 figures) directly into a document together with the code that generated it, 
-using what is called R Markdown (http://shiny.rstudio.com/articles/rmarkdown.html). It adds some additional setup
-complexity we want to avoid for now but is basically what we used to prepare this book. The main reason to mention this is that you will see a
+using what is called R Markdown (http://shiny.rstudio.com/articles/rmarkdown.html). 
+It adds some additional setup
+complexity we want to avoid for now but is basically what we used to prepare this book. 
+The main reason to mention this is that you will see a
 change in formatting of the R code and output from here forward as you will no
 longer see the command prompt (">") with the code. The output will be
 flagged by having two "##"'s before it. For example, the summary statistics for
@@ -787,20 +834,26 @@ favstats(treadmill$RunTime)
 ##  8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0
 ```
 
-\indent Statisticians (and other scientists) are starting to use these methods because they provide what is called "Reproducible
+\indent Statisticians (and other scientists) are starting to use these methods 
+because they provide what is called "Reproducible
 research" [@Gandrud2015] where all the code and output it produced are
 available in a single place. This allows different researchers to run and verify
 results or the original researchers to revisit their earlier work at a later
 date and recreate all their results exactly. Scientific publications are currently
 encouraging researchers to work in this way and may someday require it. In this
 book, we focus on the R code and show the results from running it, but you may
-want to consider exploring these alternative options. Ask your instructor to show you this way of working and see if you like it better than copying and pasting everything.
+want to consider exploring these alternative options. Ask your instructor to show 
+you this way of working and see if you like it better than copying and pasting everything.
 
-\indent Finally, when you are done with your work and attempt to exit out of RStudio, it will
-ask you to save your workspace. ***DO NOT DO THIS!*** It will just create a cluttered workspace and could even cause you to get incorrect results.  If you
-save your R code (and edit it to only contain the parts of it that worked) via the script window, you can re-create any results by simply
+\indent Finally, when you are done with your work and attempt to exit out of RStudio, 
+it will
+ask you to save your workspace. ***DO NOT DO THIS!*** It will just create a cluttered 
+workspace and could even cause you to get incorrect results.  If you
+save your R code (and edit it to only contain the parts of it that worked) via the 
+script window, you can re-create any results by simply
 re-running that code. If you find that you have lots of "stuff" in your
-workspace because you accidentally saved your workspace, just run ``rm(list = ls())``. It will delete all the data sets from your workspace. 
+workspace because you accidentally saved your workspace, just run ``rm(list = ls())``. 
+It will delete all the data sets from your workspace. 
 
 ##Chapter summary {#section1-4}
 
@@ -836,9 +889,14 @@ required. You can use this as a guide to finding the function names and some
 hints about options that will help you to get the code to work. You can also
 revisit the worked examples using each of the functions. 
 
-* <font color='red'>FILENAME</font> ``<-`` **read.csv(**<font color='red'>"path to csv file/FILENAME.csv"</font>**)**
+* <font color='red'>FILENAME</font> ``<-`` **read_csv(**<font color='red'>"path to csv file/FILENAME.csv"</font>**)**
 
     * Can be generated using "Import Dataset" button or by modifying this text. 
+    
+    * Requires the ``readr`` package to be loaded (``require(readr)``) when using 
+    the code directly.
+    
+    * Imports a text file saved in the CSV format.
 
 * <font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>
 
@@ -848,15 +906,22 @@ revisit the worked examples using each of the functions.
 * **head(**<font color='red'>DATASETNAME</font>**)**
 
     * Provides a list of the first few rows of the data set for all the 
-    variables in it. 
+    variables in it. \index{\texttt{head()}|textbf}
 
+* **tail(**<font color='red'>DATASETNAME</font>**)**
+
+    * Provides a list of the last few rows of the data set for all the 
+    variables in it. \index{\texttt{tail()}|textbf}
+    
 * **mean(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
 
     * Calculates the mean of the observations in a variable. 
+    \index{\texttt{mean()}|textbf}
 
 * **sd(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
 
-    * Calculates the SD of the observations in a variable. 
+    * Calculates the standard deviation of the observations in a variable. 
+    \index{\texttt{sd()}|textbf}
 
 * **favstats(**<font color='red'>DATASETNAME</font>$<font color='red'>VARIABLENAME</font>**)** 
 
@@ -864,16 +929,17 @@ revisit the worked examples using each of the functions.
     installing the package). 
 
     * Provides a suite of numerical summaries of the observations in a variable.
+    \index{\texttt{favstats()}|textbf}
 
 * **hist(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
 
-    * Makes a histogram. 
+    * Makes a histogram. \index{\texttt{hist()}|textbf}
     
 * **boxplot(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
 
-    * Makes a boxplot. 
+    * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
 
-\newpage
+
 
 ##Practice problems {#section1-6}
 
@@ -911,7 +977,9 @@ kilograms and you might prefer to see them in pounds. The conversion is
 lbs=2.205``*``kgs. Create a new variable in the ``treadmill``
 tibble called *BWlb* using this code:
 
-``treadmill$BWlb <- 2.205*treadmill$BodyWeight`` 
+```r
+treadmill$BWlb <- 2.205*treadmill$BodyWeight
+```
  
 and find the mean and SD of the new variable (*BWlb*). 
 

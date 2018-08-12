@@ -101,7 +101,7 @@ It also plots a red cell if the
 observations were missing on a particular variable. The plot can be obtained
 simply as ``tableplot(DATASETNAME)``. But when using ``tableplot``, we may 
 not want to display everything in the tibble and often just select some 
-of the variables. We use ``Treatment``, ``Improved``, ``Sex``, and ``Age``
+of the variables. We use ``Treatment``, ``Improved``, ``Gender``, and ``Age``
 in the ``select=...`` option with a ``c()`` and commas between the names of 
 the variables we want to display as shown below. The first one in the list is also the one that
 the data are sorted on. The ``pals=list("BrBG")`` option specifies a color palette for the plot that is color-blind friendly.
@@ -990,7 +990,7 @@ hypothesis and provides strong evidence against it.
 \index{validity conditions!@$X^2$ test!permutation}
 
 1. Independence of observations. 
-\index{independence assumption!X-squared test}
+\index{independence assumption!Chi-square test}
 
 2. Both variables are categorical. 
 
@@ -1255,7 +1255,7 @@ sure that R is treating the categorical variables that were coded numerically
 as categorical variables. 
 
 (ref:fig5-13) Tableplot of vote, party affiliation, education, and 
-sex from election survey data. Note that
+gender from election survey data. Note that
 missing observations are present in three of four variables. Education is coded
 from 1 to 7 with higher values related to higher educational attainment. Sex
 code 1 is for male and 2 is for female.
@@ -1264,9 +1264,9 @@ code 1 is for male and 2 is for female.
 election$VOTEF <- factor(election$VOTE3)
 election$PARTY <- factor(election$PARTY)
 election$EDUC <- factor(election$EDUC)
-election$SEX <- factor(election$GENDER)
+election$GENDER <- factor(election$GENDER)
 levels(election$VOTEF) <- c("Gore","Bush","Other")
-tableplot(election, select=c(VOTEF,PARTY,EDUC,SEX),pals=list("BrBG"))
+tableplot(election, select=c(VOTEF,PARTY,EDUC,GENDER),pals=list("BrBG"))
 ```
 
 In Figure \@ref(fig:Figure5-13), we can see many missing ``VOTEF``
@@ -1284,13 +1284,13 @@ missing responses on these four variables and remake this plot
 (Figure \@ref(fig:Figure5-14)). The code also adds the ``sort`` option to the
 ``tableplot`` function call that provides an easy way to sort the data set 
 based on other variables.
-\index{\texttt{tableplot}}
+\index{\texttt{tableplot()}}
 It is interesting, for example, to sort the
 responses by *Education* level and explore the differences in other variables.
 These explorations are omitted here but easily available by changing the
 sorting column from 1 to ``sort=3``. Figure \@ref(fig:Figure5-14) shows us that there are clear differences
 in party affiliation based on voting for *Bush*, *Gore*, or
-*Other*. It is harder to see if there are differences in education level or sex
+*Other*. It is harder to see if there are differences in education level or gender
 based on the voting status in this plot, but, as noted above, sorting on these
 other variables can sometimes help to see other relationships between
 variables. 
@@ -1298,8 +1298,8 @@ variables.
 (ref:fig5-14) Tableplot of election data with subjects without any missing responses (complete cases).
 
 ```{r Figure5-14,fig.cap="(ref:fig5-14)", fig.height=5,fig.width=10}
-election2 <- na.omit(election[,c("VOTEF","PARTY","EDUC","SEX")])
-tableplot(election2, select=c(VOTEF,PARTY,EDUC,SEX), sort=1,pals=list("BrBG"))
+election2 <- na.omit(election[,c("VOTEF","PARTY","EDUC","GENDER")])
+tableplot(election2, select=c(VOTEF,PARTY,EDUC,GENDER), sort=1,pals=list("BrBG"))
 ```
  
 
@@ -1347,7 +1347,8 @@ associational, depending on how the subjects ended up in the groups.].
     (7 levels) and voting results (*Bush*, *Gore*, *Other*) in the 
     population. 
 
-2. **Validity conditions:**
+2. **Validity conditions:** 
+\index{validity conditions!Chi-square Test}
 
     * Independence:
     
@@ -2251,7 +2252,6 @@ the is/are preferences move away from the null hypothesis for people that care
 more about this?
 
 --------------------------------------------------------------------------------
-We might be fighting a losing battle on this particular word usage, but since we
-are in the group that cares a lot about this, we are going
-to keep trying...
+We might be fighting a losing battle on "data is a plural word", but since we
+are in the group that cares a lot about this, we are going to keep trying...
 --------------------------------------------------------------------------------

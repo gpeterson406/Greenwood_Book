@@ -1088,6 +1088,8 @@ deep and fundamental but not the topic of this section. For the *Beers*
 and *BAC* example, the ***estimated regression coefficients*** can be 
 found from:
 
+\vspace{11pt}
+
 ```{r}
 m1 <- lm(BAC~Beers, data=BB)
 m1
@@ -1095,6 +1097,8 @@ m1
 
 More often, we will extract these from the ***coefficient table*** produced 
 by a model ``summary``:
+
+\vspace{11pt}
 
 ```{r}
 summary(m1)
@@ -1184,7 +1188,6 @@ aisR2 <- ais[-c(56,166), c("Ht","Hc","Bfat","Sex")]
 m2 <- lm(Hc~Bfat, data=aisR2[aisR2$Sex==1,]) #Results for Females 
 ```
 
-\newpage
 
 (ref:fig6-15) Scatterplot of Hematocrit versus Body Fat for female athletes. 
 
@@ -1512,8 +1515,6 @@ proportion and it is your choice whether you want to report
 and interpret it as a proportion or percentage, just make that clear in how you
 discuss it. 
 
-\vspace{11pt}
-
 ```{r}
 m1 <- lm(BAC~Beers, data=BB)
 summary(m1)
@@ -1575,14 +1576,12 @@ regression model with over 97% of the variation in *Hematocrit* unexplained
 by this model. The scatterplot showed a fairly weak relationship but this
 provides numerical and interpretable information that drives that point home. 
 
-\small
 
 ```{r}
 m2 <- lm(Hc~Bfat, data=aisR2[aisR2$Sex==1,]) #Results for Females
 summary(m2)
 ```
 
-\normalsize
 
 ## Outliers: leverage and influence	{#section6-9}
 
@@ -2184,6 +2183,8 @@ next chapter, we will see that inference techniques
 look similar. People still like to distinguish among the different types of
 situations, but the underlying ***linear models*** are actually exactly the 
 same...
+
+\newpage
 
 ## Summary of important R code	{#section6-13}
 

@@ -1371,6 +1371,11 @@ data(ToothGrowth) #Available in Base R
 require(tibble)
 ToothGrowth <- as.tibble(ToothGrowth) #Convert data.frame to tibble
 require(mosaic)
+```
+
+\newpage
+
+```{r}
 tally(~supp, data=ToothGrowth) #Supplement Type (VC or OJ)
 tally(~dose, data=ToothGrowth) #Dosage level
 
@@ -1437,7 +1442,13 @@ start. We will use a 5% significance level.
 
 
 
-1. **Hypotheses**: $\boldsymbol{H_0: \mu_{\text{OJ}0.5} = \mu_{\text{VC}0.5} = \mu_{\text{OJ}1} = \mu_{\text{VC}1} = \mu_{\text{OJ}2} = \mu_{\text{VC}2}} \textbf{ vs }$ $\boldsymbol{H_A:}\textbf{ Not all } \boldsymbol{\mu_j} \textbf{ equal}$
+1. **Hypotheses**: 
+
+      $\boldsymbol{H_0: \mu_{\text{OJ}0.5} = \mu_{\text{VC}0.5} = \mu_{\text{OJ}1} = \mu_{\text{VC}1} = \mu_{\text{OJ}2} = \mu_{\text{VC}2}}$
+      
+      **vs**
+      
+      $\boldsymbol{H_A:}\textbf{ Not all } \boldsymbol{\mu_j} \textbf{ equal}$
 
     * The null hypothesis could also be written in reference-coding as below
     since OJ.0.5 is chosen as the baseline group (discussed below).
@@ -1462,8 +1473,12 @@ start. We will use a 5% significance level.
         
             If the experiment had the animals in separate 
         cages, there is no clear dependency in the design of the study and we can
-        assume^[In working with researchers on hundreds of projects, our experience has been that we often require many conversations to discover all the potential sources of issues in data sets, especially related to assessing independence of the observations.] that there is no problem with this assumption. 
-        
+        assume^[In working with researchers on hundreds of projects, our 
+        experience has been that we often require many conversations to discover 
+        all the potential sources of issues in data sets, especially related to
+        assessing independence of the observations.] that there is no problem with
+        this assumption. 
+
     * Constant variance:
     
         * As noted above, there is some indication of a difference in the 
@@ -1555,6 +1570,8 @@ start. We will use a 5% significance level.
 
     * Reject $H_0$ since the p-value is very small. 
     
+    \newpage
+    
 6. **Write a conclusion and do scope of inference**:
 
     * There is strong evidence that the different treatments 
@@ -1586,10 +1603,16 @@ interpretations. The default model parameterization uses reference-coding.
 Running the model ``summary`` function on ``m2`` provides the estimated 
 coefficients:
 
-```{r}
+```{r eval=F}
 summary(m2)$coefficients
 ```
     
+\newpage
+
+```{r echo=F}
+summary(m2)$coefficients
+```
+
 For some practice with the reference coding used in these models, let's find 
 the estimates for observations for a couple of the groups. To work with the 
 parameters, you need to start with determining the baseline category that was 
@@ -1627,10 +1650,12 @@ output and Figure \@ref(fig:Figure3-17). Also note that Figure
 \@ref(fig:Figure3-17) is the same whether you plot the results from 
 ``m2`` or ``m3``.
 
+
 ```{r}
 m3 <- lm(len~Treat-1, data=ToothGrowth)
 summary(m3)
 ```
+
 
 (ref:fig3-17) Effect plot of the One-Way ANOVA model for the odontoblast growth data.
 
@@ -1729,7 +1754,6 @@ size 2 that we can make out of $J$ individual treatment levels. We don't need to
 explore the combinatorics formula for this, as the ``choose`` function in R can give us the 
 answers:
 
-\newpage
 
 ```{r}
 choose(3,2)
@@ -1844,6 +1868,8 @@ the different treatment levels.
 ```{r}
 cld(Tm2)
 ```
+
+\newpage
 
 Groups with the same letter are not detectably different (are in the same set) 
 and groups that are detectably different get different letters (are in 
@@ -2043,6 +2069,8 @@ will introduce new models and methods for analyzing data where there are two
 factors as explanatory variables in a model for a quantitative response variable 
 in what is called the Two-Way ANOVA. 
 
+\newpage
+
 ## Summary of important R code {#section3-9}
 
 The main components of R code used in this chapter follow with components to 
@@ -2102,6 +2130,8 @@ confint(Tm2); plot(Tm2); cld(Tm2)**
     
     * Generates the text output and plot for Tukey's HSD as well as the compact 
     letter display. 
+
+\newpage
 
 ## Practice problems {#section3-10}
 

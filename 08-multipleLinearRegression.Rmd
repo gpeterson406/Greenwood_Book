@@ -2394,6 +2394,9 @@ original variable (``treatment``) in the following output. The bolded
 observations show each of the indicators being "turned on". For *T1*, all the
 indicators stay at 0. 
 
+\newpage
+
+
 
 ```{r echo=F}
 Headache$treatment<-factor(Headache$treatment)
@@ -2403,7 +2406,8 @@ colnames(dummies)<-c("I_T2", "I_T3","I_Control")
 res1<-data.frame(Treatment=Headache$treatment,dummies)[1:17,]
 #res1
 emphasize.strong.rows(c(1,2,7,16))
-pander(res1)
+options(knitr.kable.NA = '')
+knitr::kable(res1,booktabs=TRUE)
 ```
 
 
@@ -2467,11 +2471,11 @@ $$\begin{array}{rl}
 &= 0.886+0.837\cdot\text{du1}_i.
 \end{array}$$
 
+\newpage
+
 * Similarly for *T3*:
 
 $$\widehat{\text{du2}}_i = 1.618 + 0.837\cdot\text{du1}_i\ .$$
-
-\newpage
 
 * Finally, for *Control*:
 
@@ -2564,6 +2568,11 @@ it":
 
 ```{r}
 head1R <- lm(du2~du1, data=Headache)
+```
+
+\newpage
+
+```{r}
 summary(head1R)
 ```
 
@@ -2860,7 +2869,6 @@ larger sample size or a reading test that only a few students could get 100%
 on, the researchers might have detected a more pronounced difference in the
 slopes for the two groups. 
 
-\newpage
 
 \indent In the presence of a categorical by quantitative interaction, term-plots can
 be generated that plot the results for each group on the same display.
@@ -2890,6 +2898,8 @@ off the other one, but both have the same slope. The following model summary
 and term-plots (Figure \@ref(fig:Figure8-29)) suggest the potentially
 dangerous conclusion that
 can come from assuming a common slope when that might not be the case. 
+
+\vspace{11pt}
 
 (ref:fig8-29) Term-plots for additive model for reading scores.
 
@@ -3790,6 +3800,7 @@ provided. Because of multicollinearity in models, you should never remove more
 than one quantitative predictor at a time or else you could remove two variables
 that are important but were "hiding" when both were included in the model.
 
+\newpage
 
 ## Summary of important R code	{#section8-16}
 

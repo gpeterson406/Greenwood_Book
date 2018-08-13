@@ -112,18 +112,14 @@ BAC model has a residual SE of 0.02 but had many fewer observations at each
 (ref:fig7-1) Sketch of assumed normal distributions for the responses 
 centered at the regression line.
 
-<div class="figure">
-<img src="chapter7_files/image029small.png" alt="(ref:fig7-1)" width="109" />
-<p class="caption">(\#fig:Figure7-1)(ref:fig7-1)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=3.03in]{chapter7_files/image029small} \caption{(ref:fig7-1)}(\#fig:Figure7-1)
+\end{figure}
 
 (ref:fig7-2) Simulated data for Beers and BAC assuming two different residual
 standard errors (0.02 and 0.06).
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-2-1.png" alt="(ref:fig7-2)" width="576" />
-<p class="caption">(\#fig:Figure7-2)(ref:fig7-2)</p>
-</div>
+![(\#fig:Figure7-2)(ref:fig7-2)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-2-1.pdf) 
 
 \indent Along with getting the idea that regression models define normal 
 distributions in the y-direction that are
@@ -154,10 +150,9 @@ The next sections develop those inferential tools.
 (ref:fig7-3) Variability in realized regression lines based on sampling 
 variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set.
 
-<div class="figure">
-<img src="chapter7_files/image034.png" alt="(ref:fig7-3)" width="557" />
-<p class="caption">(\#fig:Figure7-3)(ref:fig7-3)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=15.47in]{chapter7_files/image034} \caption{(ref:fig7-3)}(\#fig:Figure7-3)
+\end{figure}
 
 \newpage
 
@@ -203,10 +198,9 @@ confidence interval***:
 (ref:fig7-4) Graphic illustrating the confidence interval for a slope 
 coefficient for a 1 unit increase in $x$.
 
-<div class="figure">
-<img src="chapter7_files/image045.png" alt="(ref:fig7-4)" width="210" />
-<p class="caption">(\#fig:Figure7-4)(ref:fig7-4)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=5.83in]{chapter7_files/image045} \caption{(ref:fig7-4)}(\#fig:Figure7-4)
+\end{figure}
 
 > For a 1 **[*units of X*]** increase in **X**, we are ___ % confident 
   that the **true change in the mean of** ***Y*** will be between **LL**
@@ -704,10 +698,7 @@ scatterplot(meanmax~Year, data=bozemantemps,
             main="Scatterplot of Bozeman Yearly Average Max Temperatures")
 ```
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-5-1.png" alt="(ref:fig7-5)" width="960" />
-<p class="caption">(\#fig:Figure7-5)(ref:fig7-5)</p>
-</div>
+![(\#fig:Figure7-5)(ref:fig7-5)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-5-1.pdf) 
 
 The scatterplot in Figure \@ref(fig:Figure7-5) shows the results between 
 1901 and 2014 based on a sample of $n=109$ years because four years had too
@@ -781,10 +772,7 @@ par(mfrow=c(2,2))
 plot(temp1, add.smooth=F)
 ```
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-6-1.png" alt="(ref:fig7-6)" width="960" />
-<p class="caption">(\#fig:Figure7-6)(ref:fig7-6)</p>
-</div>
+![(\#fig:Figure7-6)(ref:fig7-6)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-6-1.pdf) 
 
 * **Linearity of relationship**
 
@@ -827,7 +815,7 @@ plot(temp1, add.smooth=F)
 * **No influential points:**
 
     * There are no influential points displayed in the Residuals vs 
-    Leverage plot since the Cook's D contours are not displayed.
+    Leverage plot since the Cook's D contours are not displayed. \index{influential} \index{Cook's Distance}
     \index{Residuals vs Leverage plot}
     
         * Note: by default this plot contains a smoothing line that is
@@ -903,7 +891,7 @@ if the null hypothesis of no linear relationship is true is less than
 
 5. **Make a decision:**
 
-    The p-value is very small so provides very strong evidence against the null hypothesis of no trend over time.. 
+    The p-value is very small so provides very strong evidence against the null hypothesis of no trend over time. 
 
 \newpage
 
@@ -990,7 +978,7 @@ onset using more sophisticated statistical models. The main point here is to
 not accounting for the number of tests performed**^[The simplest adjustment for 
 multiple testing is using what is called a Bonferroni adjustment, 
 where you multiply all the p-values by the number of tests performed. It
-controls the chances of at least one error to be same as your Type I error rate
+controls the chances of at least one error to be the same as your Type I error rate
 for one test.].\index{type I error} 
 
 \indent Along with the confidence interval, we can also plot the estimated model 
@@ -1020,10 +1008,7 @@ plot(allEffects(temp1, xlevels=list(Year=bozemantemps$Year)),
      grid=T)
 ```
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-7-1.png" alt="(ref:fig7-7)" width="576" />
-<p class="caption">(\#fig:Figure7-7)(ref:fig7-7)</p>
-</div>
+![(\#fig:Figure7-7)(ref:fig7-7)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-7-1.pdf) 
 
 \indent If we extended the plot for the model to ``Year`` = 0, we could see the
 reason that the y-intercept in this model is -47.4$^\circ F$. This is 
@@ -1128,10 +1113,7 @@ evidence of a linear relationship between ``Year`` and ``Temperature``?
 ``Year``, three of which are permutations of the Year variable relative 
 to the Temperatures.
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-8-1.png" alt="(ref:fig7-8)" width="768" />
-<p class="caption">(\#fig:Figure7-8)(ref:fig7-8)</p>
-</div>
+![(\#fig:Figure7-8)(ref:fig7-8)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-8-1.pdf) 
 
 \indent Hopefully you can see that panel (c) contains the most clear linear 
 relationship among the choices. The plot in
@@ -1194,24 +1176,14 @@ pdata(abs(Tstar), abs(Tobs), lower.tail=F)
 ```
 
 ```r
+par(mfrow=c(1,2))
 hist(Tstar, xlim=c(-1,1)*Tobs)
 abline(v=c(-1,1)*Tobs, col="red", lwd=3)
-```
-
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-9-1.png" alt="(ref:fig7-9)" width="960" />
-<p class="caption">(\#fig:Figure7-9)(ref:fig7-9)</p>
-</div>
-
-```r
 plot(density(Tstar), main="Density curve of Tstar", xlim=c(-1,1)*Tobs)
 abline(v=c(-1,1)*Tobs, col="red", lwd=3)
 ```
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-9-2.png" alt="(ref:fig7-9)" width="960" />
-<p class="caption">(\#fig:Figure7-9)(ref:fig7-9)</p>
-</div>
+![(\#fig:Figure7-9)(ref:fig7-9)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-9-1.pdf) 
 
 \indent One other interesting aspect of exploring the permuted data sets as in 
 Figure \@ref(fig:Figure7-8) is that the outlier
@@ -1280,6 +1252,7 @@ quantiles
 ```
 
 ```r
+par(mfrow=c(1,2))
 hist(Tstar, labels=T, ylim=c(0,450))
 abline(v=Tobs, col="red", lwd=2)
 abline(v=quantiles$quantile, col="blue", lwd=3)
@@ -1288,10 +1261,7 @@ abline(v=Tobs, col="red", lwd=2)
 abline(v=quantiles$quantile, col="blue", lwd=3)
 ```
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-10-1.png" alt="(ref:fig7-10)" width="960" />
-<p class="caption">(\#fig:Figure7-10)(ref:fig7-10)</p>
-</div>
+![(\#fig:Figure7-10)(ref:fig7-10)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-10-1.pdf) 
 
 ## Transformations part I: Linearizing relationships	{#section7-5}
 
@@ -1318,7 +1288,7 @@ of this and the next section), or \index{transformation} \index{assumptions}
 3. Consider more advanced statistical models that can account for these issues 
 (the focus of subsequent statistics courses). 
 
-\indent <strong><em>Transformations</em></strong> involve applying a function to 
+\indent \emph{\textbf{Transformations}} involve applying a function to 
 one or both variables.
 \index{transformation}
 After applying this transformation, one hopes to have
@@ -1345,10 +1315,7 @@ a 1 year increase, the slope coefficient is 0.052.
 (ref:fig7-11) Scatterplots of *Temperature* ($^\circ F$) versus *Year* (left)
 and *Temperature* ($^\circ C$) vs *Years* since 1901 (right).
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-11-1.png" alt="(ref:fig7-11)" width="960" />
-<p class="caption">(\#fig:Figure7-11)(ref:fig7-11)</p>
-</div>
+![(\#fig:Figure7-11)(ref:fig7-11)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-11-1.pdf) 
 
 
 ```r
@@ -1400,7 +1367,7 @@ summary(temp3)
 ```
 
 
-\indent <strong><em>Nonlinear transformation functions</em></strong>
+\indent \emph{\textbf{Nonlinear transformation functions}}
 are where we apply something more complicated than this
 shift and scaling, something like $y_{\text{new}}=f(y)$, where $f(\cdot)$ could be 
 a log or power of the original variable $y$. When we apply these sorts of
@@ -1474,10 +1441,7 @@ plot(loghectares~Temperature, data=mtfires, main="(b)",
      ylab="log-Hectares", pch=16)
 ```
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-12-1.png" alt="(ref:fig7-12)" width="960" />
-<p class="caption">(\#fig:Figure7-12)(ref:fig7-12)</p>
-</div>
+![(\#fig:Figure7-12)(ref:fig7-12)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-12-1.pdf) 
 
 Figure \@ref(fig:Figure7-12)(a) displays a relationship
 that would be hard fit using SLR -- it has a curve and the
@@ -1514,10 +1478,7 @@ scatterplot(log(height.m)~dbh.cm, data=ufc[-168,], smooth=list(spread=F),
 
 (ref:fig7-13) Scatterplot of tree height versus tree diameter.
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-13-1.png" alt="(ref:fig7-13)" width="576" />
-<p class="caption">(\#fig:Figure7-13)(ref:fig7-13)</p>
-</div>
+![(\#fig:Figure7-13)(ref:fig7-13)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-13-1.pdf) 
 
 Figure \@ref(fig:Figure7-14) with the log-transformed response seems 
 to show a more nonlinear relationship and may even have more
@@ -1529,10 +1490,7 @@ situation worse.
 
 (ref:fig7-14) Scatterplot of log(tree height) versus tree diameter.
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-14-1.png" alt="(ref:fig7-14)" width="576" />
-<p class="caption">(\#fig:Figure7-14)(ref:fig7-14)</p>
-</div>
+![(\#fig:Figure7-14)(ref:fig7-14)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-14-1.pdf) 
 
 \indent All is not lost in this situation, we can consider two other potential 
 uses of the log-transformation
@@ -1549,10 +1507,7 @@ the original scale.
 
 (ref:fig7-15) Scatterplot of tree height versus log(tree diameter).
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-15-1.png" alt="(ref:fig7-15)" width="576" />
-<p class="caption">(\#fig:Figure7-15)(ref:fig7-15)</p>
-</div>
+![(\#fig:Figure7-15)(ref:fig7-15)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-15-1.pdf) 
 
 \indent The other option, especially when everything else fails, is to apply the
 log-transformation to
@@ -1569,13 +1524,11 @@ tree *height* vs *log(diameter)* versions of the variables
 
 
 ```r
-scatterplot(log(height.m)~log(dbh.cm), data=ufc[-168,], smooth=list(spread=F), main="log-Tree height vs log-tree diameter")
+scatterplot(log(height.m)~log(dbh.cm), data=ufc[-168,], smooth=list(spread=F),
+            main="log-Tree height vs log-tree diameter")
 ```
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-16-1.png" alt="(ref:fig7-16)" width="576" />
-<p class="caption">(\#fig:Figure7-16)(ref:fig7-16)</p>
-</div>
+![(\#fig:Figure7-16)(ref:fig7-16)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-16-1.pdf) 
 
 \indent Economists also like to use $\log(y)\sim \log(x)$ transformations. The 
 log-log transformation
@@ -1606,10 +1559,7 @@ the transformations.
 (ref:fig7-17) Scatterplots of Infant Mortality vs GDP under four 
 different combinations of log-transformations. 
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-17-1.png" alt="(ref:fig7-17)" width="960" />
-<p class="caption">(\#fig:Figure7-17)(ref:fig7-17)</p>
-</div>
+![(\#fig:Figure7-17)(ref:fig7-17)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-17-1.pdf) 
 
 \indent Almost all nonlinear transformations assume that the variables are strictly
 greater than 0. For example, consider what happens when we apply the 
@@ -1654,7 +1604,7 @@ set in two so you can use SLR on each part.
 ***natural log*** (*ln* or log base *e* as you might see it elsewhere). In 
 these situations, applying ``log10`` function (which provides log base 10)
 to the variables would lead to very similar results, but readers may assume
-you used $\ln$ if you don't state that you used $log_{10}$. The main thing
+you used *ln* if you don't state that you used $log_{10}$. The main thing
 to remember to do is to be clear when communicating the version you are
 using. As an example, I was working with researchers on a study
 [@Dieser2010] related to impacts of environmental
@@ -1692,10 +1642,7 @@ explanatory variable, or both.
 
 **Scenario 1: log(y) vs x model:**
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-18-1.png" alt="(ref:fig7-18)" width="960" />
-<p class="caption">(\#fig:Figure7-18)(ref:fig7-18)</p>
-</div>
+![(\#fig:Figure7-18)(ref:fig7-18)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-18-1.pdf) 
 
 \indent First consider the $\log(y) \sim x$ situations where the estimated model
 is of the form $\widehat{\log(y)} = b_0 + b_1x$. When only the response is
@@ -1822,10 +1769,7 @@ temperature data.
 (mortality~ log(GDP)) (top) and implied model (bottom) for the 
 infant mortality data.
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-19-1.png" alt="(ref:fig7-19)" width="960" />
-<p class="caption">(\#fig:Figure7-19)(ref:fig7-19)</p>
-</div>
+![(\#fig:Figure7-19)(ref:fig7-19)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-19-1.pdf) 
 
 \indent When only the explanatory variable is log-transformed, it has a 
 different sort of
@@ -1930,10 +1874,7 @@ par(mfrow=c(2,2))
 plot(ID1)
 ```
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-20-1.png" alt="(ref:fig7-20)" width="960" />
-<p class="caption">(\#fig:Figure7-20)(ref:fig7-20)</p>
-</div>
+![(\#fig:Figure7-20)(ref:fig7-20)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-20-1.pdf) 
 
 There appear to be issues with outliers and a long right tail violating
 the normality assumption. There is
@@ -1949,10 +1890,7 @@ normality, and curvature issues.
 log(mortality) $\sim$ log(GDP) (left) and implied model (right) for the infant
 mortality data.
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-21-1.png" alt="(ref:fig7-21)" width="576" />
-<p class="caption">(\#fig:Figure7-21)(ref:fig7-21)</p>
-</div>
+![(\#fig:Figure7-21)(ref:fig7-21)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-21-1.pdf) 
 
 \indent A final model combines log-transformations of both $x$ and $y$, combining the interpretations used in the previous two situations. This model is called the
 ***log-log model*** and in some fields is also called the ***power law model***.
@@ -2047,10 +1985,7 @@ captures the severe nonlinearity in the relationship between the two variables.
 ## F-statistic: 625.9 on 1 and 191 DF,  p-value: < 2.2e-16
 ```
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-22-1.png" alt="(ref:fig7-22)" width="960" />
-<p class="caption">(\#fig:Figure7-22)(ref:fig7-22)</p>
-</div>
+![(\#fig:Figure7-22)(ref:fig7-22)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-22-1.pdf) 
 
 
 ```r
@@ -2432,10 +2367,7 @@ with a legend.
 (ref:fig7-23) Estimated SLR for BAC data with 95% confidence (dashed lines)
 and 95% prediction (lighter, dotted lines) intervals. 
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-23-1.png" alt="(ref:fig7-23)" width="960" />
-<p class="caption">(\#fig:Figure7-23)(ref:fig7-23)</p>
-</div>
+![(\#fig:Figure7-23)(ref:fig7-23)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-23-1.pdf) 
 
 
 ```r
@@ -2474,10 +2406,7 @@ more than 95% of the observations used to make it.
 (ref:fig7-24) Estimated SLR for Bozeman temperature data with 95% confidence
 (dashed lines) and 95% prediction (lighter, dotted lines) intervals. 
 
-<div class="figure">
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-24-1.png" alt="(ref:fig7-24)" width="960" />
-<p class="caption">(\#fig:Figure7-24)(ref:fig7-24)</p>
-</div>
+![(\#fig:Figure7-24)(ref:fig7-24)](07-simpleLinearRegressionInference_files/figure-latex/Figure7-24-1.pdf) 
 
 \indent We can also use these same methods to do a prediction for the year after the
 data set ended, 2015, and in 2050:
@@ -2584,8 +2513,8 @@ The main components of the R code used in this chapter follow with the
 components to modify in lighter and/or ALL CAPS text where ``y`` is a response variable, ``x`` is an
 explanatory variable, and the data are in ``DATASETNAME``. 
 
-* **scatterplot(<font color='red'>y</font>~<font color='red'>x</font>,
-data=<font color='red'>DATASETNAME</font>, smooth=F)**
+* **scatterplot(\textcolor{red}{y}~\textcolor{red}{x},
+data=\textcolor{red}{DATASETNAME}, smooth=F)**
 
     * Requires the ``car`` package.
     
@@ -2595,63 +2524,63 @@ data=<font color='red'>DATASETNAME</font>, smooth=F)**
     nonlinear relationships.
     \index{\texttt{scatterplot()}|textbf}
     
-* **<font color='red'>MODELNAME</font> ``<-`` lm(<font color='red'>y</font>~
-<font color='red'>x</font>, data=<font color='red'>DATASETNAME</font>)**
+* **\textcolor{red}{MODELNAME} ``<-`` lm(\textcolor{red}{y}~
+\textcolor{red}{x}, data=\textcolor{red}{DATASETNAME})**
 
     * Estimates a regression model using least squares.
     \index{\texttt{lm()}|textbf}
     
-* **summary(<font color='red'>MODELNAME</font>)**
+* **summary(\textcolor{red}{MODELNAME})**
 
     * Provides parameter estimates and R-squared (used heavily in 
     Chapter \@ref(chapter8) as well).
     \index{\texttt{summary()}|textbf}
     
-* **par(mfrow=c(2, 2)); plot(<font color='red'>MODELNAME</font>)**
+* **par(mfrow=c(2, 2)); plot(\textcolor{red}{MODELNAME})**
 
     * Provides four regression diagnostic plots in one plot.
     
-* **confint(<font color='red'>MODELNAME</font>, level=0.95)**
+* **confint(\textcolor{red}{MODELNAME}, level=0.95)**
 
     * Provides 95% confidence intervals for the regression model coefficients.
     
     * Change ``level`` if you want other confidence levels.
     \index{\texttt{confint()}|textbf}
     
-* **plot(allEffects(<font color='red'>MODELNAME</font>))**
+* **plot(allEffects(\textcolor{red}{MODELNAME}))**
     
     * Requires the ``effects`` package. 
 
     * Provides a term-plot of the estimated regression line with 95% confidence
     interval for the mean. \index{\texttt{allEffects()}|textbf}
     
-* **<font color='red'>DATASETNAME\$log.y</font> ``<-`` log(<font color='red'>DATASETNAME\$y</font>)**
+* **\textcolor{red}{DATASETNAME\$log.y} ``<-`` log(\textcolor{red}{DATASETNAME\$y})**
 
     * Creates a transformed variable called log.y -- change this to be more
     specific to your "$y$" or "$x$".
     \index{\texttt{log()}|textbf}
     
-* **predict(<font color='red'>MODELNAME</font>, se.fit=T)**
+* **predict(\textcolor{red}{MODELNAME}, se.fit=T)**
 
     * Provides fitted values for all observed $x\text{'s}$ with SEs for the 
     mean.
     \index{\texttt{predict()}|textbf}
 
-* **predict(<font color='red'>MODELNAME</font>, 
-newdata=tibble(<font color='red'>x</font> = <font color='red'>XNEW</font>),
+* **predict(\textcolor{red}{MODELNAME}, 
+newdata=tibble(\textcolor{red}{x} = \textcolor{red}{XNEW}),
 interval="confidence")**
 
     * Provides fitted value for a specific $x$ (XNEW) with CI for the mean.
     Replace ``x`` with name of  explanatory variable. 
 
-* **predict(<font color='red'>MODELNAME</font>, 
-newdata=tibble(<font color='red'>x</font> = <font color='red'>XNEW</font>),
+* **predict(\textcolor{red}{MODELNAME}, 
+newdata=tibble(\textcolor{red}{x} = \textcolor{red}{XNEW}),
 interval="prediction")**
 
     * Provides fitted value for a specific $x$ (XNEW) with PI for a new
     observation. Replace ``x`` with name of explanatory variable.
     
-* **qt(0.975, df=<font color='red'>n</font> - 2)**
+* **qt(0.975, df=\textcolor{red}{n} - 2)**
 
     * Gets the $t^*$ multiplier for making a 95% interval with $n-2$ replaced
     by the sample size -- 2.
@@ -2667,8 +2596,7 @@ Chapter \@ref(chapter6). The following code will get you back to where we
 stopped at the end of Chapter \@ref(chapter6):
 
 ```r
-treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv",
-                      header=T)
+treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv")
 plot(TreadMillOx~RunTime, data=treadmill)
 tm <- lm(TreadMillOx~RunTime, data=treadmill)
 summary(tm1)

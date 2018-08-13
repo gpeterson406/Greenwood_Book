@@ -147,7 +147,7 @@ group of prisoners. If this had been an observational study (suppose that the
 prisoners could select one of the three pictures), then we would have to avoid
 any of the "causal" language that we can consider here because the pictures
 were not randomly assigned to the subjects. Without random assignment, \index{random assignment} the
-explanatory variable of picture choice could be ***confounded*** \index{confounded}
+explanatory variable of picture choice could be ***confounded*** \index{confounding}
 with  another characteristic of prisoners that was related to which picture they selected and
 the rating they provided. Confounding is not the only reason to avoid causal
 statements with non-random assignment but the inability to separate the effect
@@ -343,10 +343,7 @@ enhanced slightly to add better labels.
 
 (ref:fig2-1) Histogram and boxplot of suggested sentences in years.
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-1-1.png" alt="(ref:fig2-1)" width="576" />
-<p class="caption">(\#fig:Figure2-1)(ref:fig2-1)</p>
-</div>
+![(\#fig:Figure2-1)(ref:fig2-1)](02-reintroductionToStatistics_files/figure-latex/Figure2-1-1.pdf) 
 
 
 ```r
@@ -412,10 +409,7 @@ hist(MockJury$Years, freq=F, xlab="Years", main="Histogram of Years")
 lines(density(MockJury$Years), lwd=3,col="red")
 ```
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-2-1.png" alt="(ref:fig2-2)" width="480" />
-<p class="caption">(\#fig:Figure2-2)(ref:fig2-2)</p>
-</div>
+![(\#fig:Figure2-2)(ref:fig2-2)](02-reintroductionToStatistics_files/figure-latex/Figure2-2-1.pdf) 
 
 \indent Histograms can be sensitive to the choice of the number of bars and 
 even the cut-offs used to define the bins for a given number of bars.
@@ -455,10 +449,7 @@ lines(density(MockJury$Years), lwd=3, col="red")
 rug(jitter(MockJury$Years), col="blue", lwd=2)
 ```
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-3-1.png" alt="(ref:fig2-3)" width="480" />
-<p class="caption">(\#fig:Figure2-3)(ref:fig2-3)</p>
-</div>
+![(\#fig:Figure2-3)(ref:fig2-3)](02-reintroductionToStatistics_files/figure-latex/Figure2-3-1.pdf) 
  
 \indent The graphical tools we've just discussed are going to help us move to comparing the
 distribution of responses across more than one group. We will have two displays
@@ -476,10 +467,7 @@ more variability for the *Unattractive* group along with some potential outliers
 
 (ref:fig2-4) Side-by-side boxplot of Years based on picture groups. 
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-4-1.png" alt="(ref:fig2-4)" width="480" />
-<p class="caption">(\#fig:Figure2-4)(ref:fig2-4)</p>
-</div>
+![(\#fig:Figure2-4)(ref:fig2-4)](02-reintroductionToStatistics_files/figure-latex/Figure2-4-1.pdf) 
 
 
 ```r
@@ -540,10 +528,7 @@ looks nice in these plots.] options for any beanplots you make: \index{beanplot}
 (ref:fig2-5) Beanplot of Years by picture group. Long, bold lines correspond 
 to mean of each group, dashed line for overall or global mean.
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-5-1.png" alt="(ref:fig2-5)" width="480" />
-<p class="caption">(\#fig:Figure2-5)(ref:fig2-5)</p>
-</div>
+![(\#fig:Figure2-5)(ref:fig2-5)](02-reintroductionToStatistics_files/figure-latex/Figure2-5-1.pdf) 
 
 
 ```r
@@ -806,10 +791,7 @@ the two groups of interest here as seen in Figure \@ref(fig:Figure2-6).
 
 (ref:fig2-6) Boxplot and beanplot of the *Years* responses on the reduced ``MockJury2`` data set. 
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-6-1.png" alt="(ref:fig2-6)" width="552" />
-<p class="caption">(\#fig:Figure2-6)(ref:fig2-6)</p>
-</div>
+![(\#fig:Figure2-6)(ref:fig2-6)](02-reintroductionToStatistics_files/figure-latex/Figure2-6-1.pdf) 
 
 
 ```r
@@ -851,7 +833,11 @@ diffmean(Years~Attr, data=MockJury2)
 ## 1.837127
 ```
 
+\sectionmark{Models, hypotheses, and permutations for 2 sample means}
+
 ## Models, hypotheses, and permutations for the two sample mean situation {#section2-3}
+
+\sectionmark{Models, hypotheses, and permutations for 2 sample means}
 
 There appears to be some evidence that the *Unattractive* group is 
 getting higher average lengths of sentences from the prisoner "jurors" than
@@ -934,10 +920,9 @@ model where the groups "look the same".
 and a single possibility that could occur if the alternative were true 
 (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.
 
-<div class="figure">
-<img src="chapter2_files/image015.png" alt="(ref:fig2-7)" width="480" />
-<p class="caption">(\#fig:Figure2-7)(ref:fig2-7)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=13.33in]{chapter2_files/image015} \caption{(ref:fig2-7)}(\#fig:Figure2-7)
+\end{figure}
 
 
 \indent In statistical inference, null hypotheses (and their 
@@ -1103,6 +1088,7 @@ direction (Average had a higher mean than Unattractive in the permuted data).
 \newpage
 
 
+
 ```r
 mean(Years~PermutedAttr, data=Perm1)
 ```
@@ -1111,6 +1097,7 @@ mean(Years~PermutedAttr, data=Perm1)
 ##      Average Unattractive 
 ##     5.447368     4.297297
 ```
+
 
 
 ```r
@@ -1126,10 +1113,7 @@ diffmean(Years~PermutedAttr, data=Perm1)
 permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set.
 
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="(ref:fig2-8)" width="672" />
-<p class="caption">(\#fig:Figure2-8)(ref:fig2-8)</p>
-</div>
+![(\#fig:Figure2-8)(ref:fig2-8)](02-reintroductionToStatistics_files/figure-latex/Figure2-8-1.pdf) 
 
 These results suggest that the observed difference was larger than what we got 
 when we did a single permutation \index{permutation} although it was only a little bit larger than 
@@ -1334,10 +1318,7 @@ statistics of the results:
 (ref:fig2-9) Histogram (left, with counts in bars) and density curve (right) of 
 values of test statistic for 1,000 permutations. 
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-9-1.png" alt="(ref:fig2-9)" width="960" />
-<p class="caption">(\#fig:Figure2-9)(ref:fig2-9)</p>
-</div>
+![(\#fig:Figure2-9)(ref:fig2-9)](02-reintroductionToStatistics_files/figure-latex/Figure2-9-1.pdf) 
 
 
 ```r
@@ -1379,10 +1360,7 @@ line at our $T_{obs}$ value specified in the ``v`` (for vertical) option.
 values of test statistic for 1,000 permutations with bold vertical line for
 value of observed test statistic. 
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-10-1.png" alt="(ref:fig2-10)" width="960" />
-<p class="caption">(\#fig:Figure2-10)(ref:fig2-10)</p>
-</div>
+![(\#fig:Figure2-10)(ref:fig2-10)](02-reintroductionToStatistics_files/figure-latex/Figure2-10-1.pdf) 
 
 
 ```r
@@ -1408,7 +1386,7 @@ of interest).
 
 
 ```r
-pdata(Tstar, Tobs, lower.tail=F)
+pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 ```
@@ -1460,7 +1438,7 @@ and ``lower.tail=T`` provides this result:
 
 
 ```r
-pdata(Tstar, -Tobs, lower.tail=T)
+pdata(Tstar, -Tobs, lower.tail=T)[[1]]
 ```
 
 ```
@@ -1477,10 +1455,7 @@ Figure \@ref(fig:Figure2-11) shows both cut-offs on the histogram and density cu
 permutations with bold lines for value of observed test statistic (1.84) and its
 opposite value (-1.84) required for performing the two-sided test.
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-11-1.png" alt="(ref:fig2-11)" width="960" />
-<p class="caption">(\#fig:Figure2-11)(ref:fig2-11)</p>
-</div>
+![(\#fig:Figure2-11)(ref:fig2-11)](02-reintroductionToStatistics_files/figure-latex/Figure2-11-1.pdf) 
 
 
 ```r
@@ -1513,7 +1488,7 @@ of code:
 
 
 ```r
-pdata(abs(Tstar), abs(Tobs), lower.tail=F)
+pdata(abs(Tstar), abs(Tobs), lower.tail=F)[[1]]
 ```
 
 ```
@@ -1605,10 +1580,9 @@ estimated results (with a measure of precision of the estimated difference).
 (ref:figPValStr) Graphic suggesting potential interpretations of strength of 
 evidence based on gradient of p-values.
 
-<div class="figure">
-<img src="chapter2_files/pvalueStrengths.png" alt="(ref:figPValStr)" width="800" />
-<p class="caption">(\#fig:FigurePValStr)(ref:figPValStr)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=22.22in]{chapter2_files/pvalueStrengths} \caption{(ref:figPValStr)}(\#fig:FigurePValStr)
+\end{figure}
 
 ## Hypothesis testing (general) {#section2-5}
 
@@ -1704,7 +1678,7 @@ at least some sort of representative sample) allows inferences to be made to
 the population of interest. If we do not have RA, then causal inferences cannot 
 be made. If we do not have a representative sample, then our inferences are
 limited to the sampled subjects. 
-\index{confounded}
+\index{confounding}
 
 \footnotesize
 
@@ -2026,10 +2000,7 @@ the same data set or if you re-run your permutation code.
 
 (ref:fig2-12) Permutation distribution of the $t$-statistic.
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-12-1.png" alt="(ref:fig2-12)" width="960" />
-<p class="caption">(\#fig:Figure2-12)(ref:fig2-12)</p>
-</div>
+![(\#fig:Figure2-12)(ref:fig2-12)](02-reintroductionToStatistics_files/figure-latex/Figure2-12-1.pdf) 
 
 
 ```r
@@ -2052,12 +2023,11 @@ for (b in (1:B)){
 
 
 ```r
-pdata(abs(Tstar), abs(Tobs), lower.tail=F)
+pdata(abs(Tstar), abs(Tobs), lower.tail=F)[[1]]
 ```
 
 ```
-##     t 
-## 0.031
+## [1] 0.031
 ```
 
 
@@ -2098,10 +2068,7 @@ closer to the normal distribution as the degrees of freedom increase and at 20
 degrees of freedom, the $t$-distribution *almost* matches a standard normal 
 curve.
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-13-1.png" alt="(ref:fig2-13)" width="672" />
-<p class="caption">(\#fig:Figure2-13)(ref:fig2-13)</p>
-</div>
+![(\#fig:Figure2-13)(ref:fig2-13)](02-reintroductionToStatistics_files/figure-latex/Figure2-13-1.pdf) 
 
 \indent If the assumptions for the equal variance $t$-test are met and the null 
 hypothesis is true, then the sampling distribution of the test statistic should 
@@ -2164,10 +2131,7 @@ happened to be here.
 close match in the two distributions, especially in the tails of the 
 distributions where we are obtaining the p-values.
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-14-1.png" alt="(ref:fig2-14)" width="576" />
-<p class="caption">(\#fig:Figure2-14)(ref:fig2-14)</p>
-</div>
+![(\#fig:Figure2-14)(ref:fig2-14)](02-reintroductionToStatistics_files/figure-latex/Figure2-14-1.pdf) 
 
 \indent In your previous statistics course, you might have used an applet or 
 a table to find p-values such as what was provided in the previous R output. 
@@ -2251,7 +2215,7 @@ diagnostics later, but the boxplots and beanplots are a good place to start to
 help you look for skews or outliers, which were both present here. If you find 
 skew and/or outliers, that would suggest a problem with the assumption of 
 normality as normal distributions
-\index{normal distribution}
+\index{normal distribution} \index{outlier} \index{skew} 
 are symmetric and extreme observations occur 
 very rarely. 
 
@@ -2300,7 +2264,7 @@ In every chapter, the first example, used to motivate and explain
 the methods, is followed with a "worked" example where we focus just on the 
 results. In a 
 previous semester, some of the STAT 217 students (***n***=79) provided 
-information on their *Sex*, *Age*, and current cumulative *GPA*. We might be
+information on their *Sex*^[Only male and female were provided as options on the survey.], *Age*, and current cumulative *GPA*. We might be
 interested in whether Males and Females had different average GPAs. First, 
 we can take a look at the difference in the responses by groups based on the
 output and as displayed in Figure \@ref(fig:Figure2-15). 
@@ -2336,10 +2300,7 @@ favstats(GPA~Sex, data=s217)
 
 (ref:fig2-15) Side-by-side boxplot and beanplot of GPAs of STAT 217 students by sex.
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-15-1.png" alt="(ref:fig2-15)" width="480" />
-<p class="caption">(\#fig:Figure2-15)(ref:fig2-15)</p>
-</div>
+![(\#fig:Figure2-15)(ref:fig2-15)](02-reintroductionToStatistics_files/figure-latex/Figure2-15-1.pdf) 
 
 
 ```r
@@ -2403,16 +2364,13 @@ Tstar <- matrix(NA, nrow=B)
 for (b in (1:B)){
   Tstar[b] <- t.test(GPA~shuffle(Sex), data=s217, var.equal=T)$statistic
 }
-pdata(abs(Tstar), abs(Tobs), lower.tail=F)
+pdata(abs(Tstar), abs(Tobs), lower.tail=F)[[1]]
 ```
 
 (ref:fig2-16) Histogram and density curve of permutation distribution of test
 statistic for STAT 217 GPAs.
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-16-1.png" alt="(ref:fig2-16)" width="960" />
-<p class="caption">(\#fig:Figure2-16)(ref:fig2-16)</p>
-</div>
+![(\#fig:Figure2-16)(ref:fig2-16)](02-reintroductionToStatistics_files/figure-latex/Figure2-16-1.pdf) 
 
 
 ```r
@@ -2609,10 +2567,7 @@ using bootstrapping methods.
 (ref:fig2-17) Counts of number of times of observation (or not observed for 
 times re-sampled of 0) for two bootstrap samples. 
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-17-1.png" alt="(ref:fig2-17)" width="480" />
-<p class="caption">(\#fig:Figure2-17)(ref:fig2-17)</p>
-</div>
+![(\#fig:Figure2-17)(ref:fig2-17)](02-reintroductionToStatistics_files/figure-latex/Figure2-17-1.pdf) 
 
 \indent The main point of this exploration was to see that each run of the
 ``resample`` function provides a new version of the data set. Repeating this 
@@ -2665,10 +2620,7 @@ favstats(Tstar)
 difference in sample mean ``Years`` with vertical line for the observed 
 difference in the means of 1.84 years.
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-18-1.png" alt="(ref:fig2-18)" width="960" />
-<p class="caption">(\#fig:Figure2-18)(ref:fig2-18)</p>
-</div>
+![(\#fig:Figure2-18)(ref:fig2-18)](02-reintroductionToStatistics_files/figure-latex/Figure2-18-1.pdf) 
 
 
 ```r
@@ -2758,10 +2710,7 @@ distribution residing in ``Tstar``.
 (ref:fig2-19) Histogram and density curve of bootstrap distribution with 
 95% bootstrap confidence intervals displayed (vertical lines).
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-19-1.png" alt="(ref:fig2-19)" width="960" />
-<p class="caption">(\#fig:Figure2-19)(ref:fig2-19)</p>
-</div>
+![(\#fig:Figure2-19)(ref:fig2-19)](02-reintroductionToStatistics_files/figure-latex/Figure2-19-1.pdf) 
 
 
 ```r
@@ -2864,10 +2813,7 @@ area in the middle.
 (ref:fig2-20) Plot of $t(73)$ with cut-offs for putting 95% of distribution in 
 the middle. 
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-20-1.png" alt="(ref:fig2-20)" width="480" />
-<p class="caption">(\#fig:Figure2-20)(ref:fig2-20)</p>
-</div>
+![(\#fig:Figure2-20)(ref:fig2-20)](02-reintroductionToStatistics_files/figure-latex/Figure2-20-1.pdf) 
 
 For 95% confidence intervals, the multiplier is going to be close to 2 and 
 anything else is a sign of a mistake. We can use R to get the multipliers for
@@ -3192,10 +3138,7 @@ difference in sample mean GPAs (male minus female) with observed difference
 (solid vertical line) and quantiles that delineate the 90% confidence intervals
 (dashed vertical lines). 
 
-<div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-21-1.png" alt="(ref:fig2-21)" width="960" />
-<p class="caption">(\#fig:Figure2-21)(ref:fig2-21)</p>
-</div>
+![(\#fig:Figure2-21)(ref:fig2-21)](02-reintroductionToStatistics_files/figure-latex/Figure2-21-1.pdf) 
 
 
 ```r
@@ -3268,61 +3211,61 @@ The main components of R code used in this chapter follow with components to
 modify in lighter and/or ALL CAPS text, remembering that any R packages mentioned 
 need to be installed and loaded for this code to have a chance of working:
 
-* **summary(<font color='red'>DATASETNAME</font>)**
+* **summary(\textcolor{red}{DATASETNAME})**
 
     * Provides numerical summaries of all variables in the data set. 
     \index{\texttt{summary()}|textbf}
 
-* **t.test(<font color='red'>Y</font> ~ <font color='red'>X</font>, 
-data=<font color='red'>DATASETNAME</font>, conf.level=0.95)**
+* **t.test(\textcolor{red}{Y} ~ \textcolor{red}{X}, 
+data=\textcolor{red}{DATASETNAME}, conf.level=0.95)**
 
     * Provides two-sample t-test test statistic, df, p-value, and 95% 
     confidence interval. \index{\texttt{t.test()}|textbf}
     
-* **2``*``pt(abs(<font color='red'>Tobs</font>), df=<font color='red'>DF</font>, lower.tail=F)**
+* **2``*``pt(abs(\textcolor{red}{Tobs}), df=\textcolor{red}{DF}, lower.tail=F)**
 
     * Finds the two-sided test p-value for an observed 2-sample t-test 
     statistic of ``Tobs``. \index{\texttt{pt()}|textbf}
 
-* **hist(<font color='red'>DATASETNAME\$Y</font>)**
+* **hist(\textcolor{red}{DATASETNAME\$Y})**
 
     * Makes a histogram of a variable named ``Y`` from the data set of 
     interest. 
     
-* **boxplot(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>)**
+* **boxplot(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME})**
 
     * Makes a boxplot of a variable named Y for groups in X from the data set. 
     
-* **beanplot(<font color='red'>Y</font>~<font color='red'>X</font>, 
-data=<font color='red'>DATASETNAME</font>, log="", col="lightblue", method="jitter")**
+* **beanplot(\textcolor{red}{Y}~\textcolor{red}{X}, 
+data=\textcolor{red}{DATASETNAME}, log="", col="lightblue", method="jitter")**
 
     * Requires the ``beanplot`` package is loaded. 
     
     * Makes a beanplot of a variable named Y for groups in X from the data set.     \index{\texttt{beanplot()}|textbf}
     
-* **mean(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>); sd(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>)** 
+* **mean(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME}); sd(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME})** 
 
     * This usage of ``mean`` and ``sd`` requires the ``mosaic`` package.
 
     * Provides the mean and sd of responses of Y for each group described in X. 
     
 
-* **favstats(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>)** 
+* **favstats(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME})** 
 
     * Provides numerical summaries of Y by groups described in X. 
 
-* **Tobs ``<-`` t.test(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>, var.equal=T)\$statistic; Tobs  
+* **Tobs ``<-`` t.test(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME}, var.equal=T)\$statistic; Tobs  
 B ``<-`` 1000  
 Tstar ``<-`` matrix(NA, nrow=B)  
 for (b in (1:B)){  
-    Tstar[b] ``<-`` t.test(<font color='red'>Y</font>~shuffle(<font color='red'>X</font>), data=<font color='red'>DATASETNAME</font>, var.equal=T)\$statistic  
+    Tstar[b] ``<-`` t.test(\textcolor{red}{Y}~shuffle(\textcolor{red}{X}), data=\textcolor{red}{DATASETNAME}, var.equal=T)\$statistic  
 }**
 
     * Code to run a ``for`` loop to generate 1000 permuted versions of the test
     statistic using the ``shuffle`` function and keep track of the results in 
     ``Tstar`` 
     
-* **pdata(Tstar, abs(<font color='red'>Tobs</font>, lower.tail=F)**
+* **pdata(Tstar, abs(\textcolor{red}{Tobs}), lower.tail=F)[[1]]**
 
     * Finds the proportion of the permuted test statistics in Tstar that are 
     less than -|Tobs| or greater than |Tobs|, useful for finding the two-sided 
@@ -3330,11 +3273,11 @@ for (b in (1:B)){
 
 \newpage
 
-* **Tobs ``<-`` diffmean(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>, var.equal=T)\$statistic; Tobs  
+* **Tobs ``<-`` diffmean(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME}, var.equal=T)\$statistic; Tobs  
 B ``<-`` 1000  
 Tstar ``<-`` matrix(NA, nrow=B)  
 for (b in (1:B)){  
-    Tstar[b] ``<-`` diffmean(<font color='red'>Y</font>~<font color='red'>X</font>, data=resample(<font color='red'>DATASETNAME</font>))  
+    Tstar[b] ``<-`` diffmean(\textcolor{red}{Y}~\textcolor{red}{X}, data=resample(\textcolor{red}{DATASETNAME}))  
 }**
 
     * Code to run a ``for`` loop to generate 1000 bootstrapped versions of the 

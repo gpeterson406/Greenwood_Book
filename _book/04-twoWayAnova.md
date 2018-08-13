@@ -141,7 +141,7 @@ is a desired attribute of all studies.
 \index{power}
 It is also important to make sure that 
 you obtain multiple observations at each combination of the treatment levels, 
-which are called ***replicates***. Having replicate measurements allows 
+which are called ***replicates***. \index{replicate} Having replicate measurements allows 
 estimation of the mean for each combination of the treatment levels as well 
 as estimation and testing for an interaction.
 \index{interaction!Two-Way ANOVA}
@@ -285,10 +285,7 @@ beanplot(responses~brand*drops, data=pt, side="b",
 legend("topright", bty="n", c("B1","B2"), fill=c("lightblue","white"))
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-1-1.png" alt="(ref:fig4-1)" width="480" />
-<p class="caption">(\#fig:Figure4-1)(ref:fig4-1)</p>
-</div>
+![(\#fig:Figure4-1)(ref:fig4-1)](04-twoWayAnova_files/figure-latex/Figure4-1-1.pdf) 
 
 \indent The beanplots can't handle situations where both variables have more than two 
 levels -- we need a simpler display that just focuses on the means at the 
@@ -319,10 +316,7 @@ everything clear.
 intplot(responses~brand*drops, data=pt)
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-2-1.png" alt="(ref:fig4-2)" width="960" />
-<p class="caption">(\#fig:Figure4-2)(ref:fig4-2)</p>
-</div>
+![(\#fig:Figure4-2)(ref:fig4-2)](04-twoWayAnova_files/figure-latex/Figure4-2-1.pdf) 
 
 Interaction plots can always be made two different ways by switching the order 
 of the variables. Figure \@ref(fig:Figure4-2) contains ``Drops`` on the x-axis 
@@ -338,10 +332,7 @@ but not always. Try both and decide on the one that you like best.
 intplot(responses~drops*brand, data=pt)
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-3-1.png" alt="(ref:fig4-3)" width="960" />
-<p class="caption">(\#fig:Figure4-3)(ref:fig4-3)</p>
-</div>
+![(\#fig:Figure4-3)(ref:fig4-3)](04-twoWayAnova_files/figure-latex/Figure4-3-1.pdf) 
 
 The formula in this function builds on our previous notation and now we include
 both predictor variables with an "``*``" between them. Using an asterisk between 
@@ -412,10 +403,7 @@ interaction appears to be warranted.
 intplotarray(responses~drops*brand, data=pt)
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-4-1.png" alt="(ref:fig4-4)" width="960" />
-<p class="caption">(\#fig:Figure4-4)(ref:fig4-4)</p>
-</div>
+![(\#fig:Figure4-4)(ref:fig4-4)](04-twoWayAnova_files/figure-latex/Figure4-4-1.pdf) 
 
 
 
@@ -432,10 +420,7 @@ levels, or any interaction between them.
 
 (ref:fig4-5) Interaction plots of four possible scenarios in the paper towel study.
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-5-1.png" alt="(ref:fig4-5)" width="624" />
-<p class="caption">(\#fig:Figure4-5)(ref:fig4-5)</p>
-</div>
+![(\#fig:Figure4-5)(ref:fig4-5)](04-twoWayAnova_files/figure-latex/Figure4-5-1.pdf) 
 
 \indent Scenario 2 (Figure \@ref(fig:Figure4-5) panel (b))
 incorporates differences based on factor A (here that is ``Brand``) but no real 
@@ -476,10 +461,7 @@ of the results in Figure \@ref(fig:Figure4-2).
 (ref:fig4-6) Interaction plot of Scenario 5 where it appears that an 
 interaction is present. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-6-1.png" alt="(ref:fig4-6)" width="432" />
-<p class="caption">(\#fig:Figure4-6)(ref:fig4-6)</p>
-</div>
+![(\#fig:Figure4-6)(ref:fig4-6)](04-twoWayAnova_files/figure-latex/Figure4-6-1.pdf) 
 
 \indent The typical modeling protocol is to start with assuming that Scenario 5 is a possible
 description of the results, related to fitting what is called the 
@@ -656,8 +638,7 @@ A:B (interaction)                    $(J-1)(K-1)$                           $\te
 
 Error                                $N-JK$                                 $\text{SS}_E$                                 $\text{MS}_E=\text{SS}_E/\text{df}_E$                                          
 
-<b><font                             $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                                  
-color='red'>Total</font></b>                                                                                                                                                                             
+\textcolor{red}{\textbf{Total}}      $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                                  
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table: (\#tab:Table4-1) (ref:tab4-1)
@@ -674,8 +655,7 @@ B                                    $K-1$                                  $\te
 
 Error                                $N-J-K+1$                              $\text{SS}_E$                                 $\text{MS}_E=\text{SS}_E/\text{df}_E$                              
 
-<b><font                             $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                      
-color='red'>Total</font></b>                                                                                                                                                                 
+\textcolor{red}{\textbf{Total}}      $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                      
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table: (\#tab:Table4-2) (ref:tab4-2)
@@ -758,10 +738,7 @@ for the means instead of the 1 standard error used above that was calculated usi
 
 (ref:fig4-7) Plot of estimated results of interaction model for the paper towel performance data. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-7-1.png" alt="(ref:fig4-7)" width="576" />
-<p class="caption">(\#fig:Figure4-7)(ref:fig4-7)</p>
-</div>
+![(\#fig:Figure4-7)(ref:fig4-7)](04-twoWayAnova_files/figure-latex/Figure4-7-1.pdf) 
 
 \indent In the absence of evidence to include the
 interaction, the model should be simplified to the additive model and the interpretation
@@ -956,10 +933,7 @@ require(effects)
 plot(allEffects(m2))
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-8-1.png" alt="(ref:fig4-8)" width="480" />
-<p class="caption">(\#fig:Figure4-8)(ref:fig4-8)</p>
-</div>
+![(\#fig:Figure4-8)(ref:fig4-8)](04-twoWayAnova_files/figure-latex/Figure4-8-1.pdf) 
 
 ## Guinea pig tooth growth analysis with Two-Way ANOVA	{#section4-4}
 
@@ -974,10 +948,7 @@ Figure \@ref(fig:Figure4-9).
 
 (ref:fig4-9) Beanplot and interaction plot of the odontoblast growth data set.
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-9-1.png" alt="(ref:fig4-9)" width="576" />
-<p class="caption">(\#fig:Figure4-9)(ref:fig4-9)</p>
-</div>
+![(\#fig:Figure4-9)(ref:fig4-9)](04-twoWayAnova_files/figure-latex/Figure4-9-1.pdf) 
 
 
 ```r
@@ -1141,10 +1112,7 @@ tests and estimates for *Dose* and *Delivery method*.
         plot(TG2, pch=16) 
         ```
         
-        <div class="figure">
-        <img src="04-twoWayAnova_files/figure-html/Figure4-10-1.png" alt="Diagnostic plots for the interaction model for odontoblast         growth interaction model." width="960" />
-        <p class="caption">(\#fig:Figure4-10)Diagnostic plots for the interaction model for odontoblast         growth interaction model.</p>
-        </div>
+        ![(\#fig:Figure4-10)Diagnostic plots for the interaction model for odontoblast         growth interaction model.](04-twoWayAnova_files/figure-latex/Figure4-10-1.pdf) 
 
     * Normality of residuals:
     
@@ -1267,17 +1235,11 @@ our results.
 
 (ref:fig4-11) Term-plot for the estimated interaction for the Odontoblast Growth data. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-11-1.png" alt="(ref:fig4-11)" width="480" />
-<p class="caption">(\#fig:Figure4-11)(ref:fig4-11)</p>
-</div>
+![(\#fig:Figure4-11)(ref:fig4-11)](04-twoWayAnova_files/figure-latex/Figure4-11-1.pdf) 
 
 (ref:fig4-12) Interaction plot for Odontoblast data with added CLD from Tukey's HSD. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-12-1.png" alt="(ref:fig4-12)" width="960" />
-<p class="caption">(\#fig:Figure4-12)(ref:fig4-12)</p>
-</div>
+![(\#fig:Figure4-12)(ref:fig4-12)](04-twoWayAnova_files/figure-latex/Figure4-12-1.pdf) 
 
 
 ```r
@@ -1294,7 +1256,7 @@ HSD results (specifically the CLD) can be added to the original interaction
 plot by turning on the ``cld=T`` option in the ``intplot`` function as seen in 
 Figure \@ref(fig:Figure4-12). Sometimes it is hard to see the letters and so
 there is also a ``cldshift=...`` option to move the letters up or down, here a 
-value of 1 seemed to work. 
+value of 1 seemed to work. \index{Tukey's HSD} \index{compact letter display}
 \index{interaction plot}
 \index{\texttt{intplot()}}
 
@@ -1329,7 +1291,7 @@ question measured on an ***ordinal*** 1 to 5 scale, with higher values
 corresponding to more positive responses about $\underline{\text{going into debt}}$
 of various kinds. The ordered scale on surveys that try to elicit your opinions on
 topics with scales from 1 to 5 or 1 to 7 or even, sometimes, 1 to 10 is called
-a ***Likert scale*** [@Likert1932]. It is not a quantitative scale and really 
+a ***Likert scale*** [@Likert1932]. \index{ordinal} It is not a quantitative scale and really 
 should be handled more carefully than taking an average of a set responses. That 
 said, it is extremely common practice in social science research to treat ordinal
 responses as if they are quantitative and take the average of many of them to
@@ -1387,10 +1349,7 @@ debtc <- na.omit(debt)
 intplotarray(prodebt~cigbuy*incomegp, data=debtc, col=c(1,3,4,5,6), lwd=2)
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-13-1.png" alt="(ref:fig4-13)" width="960" />
-<p class="caption">(\#fig:Figure4-13)(ref:fig4-13)</p>
-</div>
+![(\#fig:Figure4-13)(ref:fig4-13)](04-twoWayAnova_files/figure-latex/Figure4-13-1.pdf) 
 
 \indent As in other situations, and especially
 with observational studies where a single large sample is analyzed, it is
@@ -1478,10 +1437,7 @@ par(mfrow=c(2,2))
 plot(debt1)
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-14-1.png" alt="(ref:fig4-14)" width="960" />
-<p class="caption">(\#fig:Figure4-14)(ref:fig4-14)</p>
-</div>
+![(\#fig:Figure4-14)(ref:fig4-14)](04-twoWayAnova_files/figure-latex/Figure4-14-1.pdf) 
  
 \newpage
 
@@ -1517,10 +1473,7 @@ plot(debt1)
     plot(debt1r)
     ```
     
-    <div class="figure">
-    <img src="04-twoWayAnova_files/figure-html/Figure4-15-1.png" alt="Diagnostic plot for ``prodebt`` by income group and buy   cigarettes/not" width="960" />
-    <p class="caption">(\#fig:Figure4-15)Diagnostic plot for ``prodebt`` by income group and buy   cigarettes/not</p>
-    </div>
+    ![(\#fig:Figure4-15)Diagnostic plot for ``prodebt`` by income group and buy   cigarettes/not](04-twoWayAnova_files/figure-latex/Figure4-15-1.pdf) 
 
     * Constant Variance:
     
@@ -1604,10 +1557,7 @@ panel for income group and the right panel for buying cigarettes or not
 plot(allEffects(debt1r))
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-16-1.png" alt="(ref:fig4-16)" width="960" />
-<p class="caption">(\#fig:Figure4-16)(ref:fig4-16)</p>
-</div>
+![(\#fig:Figure4-16)(ref:fig4-16)](04-twoWayAnova_files/figure-latex/Figure4-16-1.pdf) 
 
 \indent The estimated coefficients can also be
 interesting to interpret for the additive model. Here are the model summary coefficients:
@@ -1683,10 +1633,7 @@ groups on the x-axis and different lines for cigarette buyers (1) or not (0).
 Panel (b) displays the different income groups as lines with the cigarette
 buying status on the x-axis. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-17-1.png" alt="(ref:fig4-17)" width="576" />
-<p class="caption">(\#fig:Figure4-17)(ref:fig4-17)</p>
-</div>
+![(\#fig:Figure4-17)(ref:fig4-17)](04-twoWayAnova_files/figure-latex/Figure4-17-1.pdf) 
 
 \newpage
 
@@ -1706,7 +1653,7 @@ normality and equal variance).
 
 4. If the interaction test has a small p-value, that is your main result. Focus on
 the interaction plot from (1) to fully understand the results, adding Tukey's
-HSD results to see which means of the combinations of levels are detected as
+HSD \index{Tukey's HSD} results to see which means of the combinations of levels are detected as
 being different. 
 
 5. If the interaction is not considered important, then re-fit the model without
@@ -1739,6 +1686,7 @@ degrees of freedom show that we have nothing left for the error degrees of
 freedom and so we have to drop the interaction and call that potential
 interaction variability "error". 
 \index{degrees of freedom}
+\index{replicate}
 
 \indent We can still perform an analysis of the
 responses but an issue occurs with trying to estimate the interaction 
@@ -1774,15 +1722,12 @@ some interesting interactions present. But remember now that there is only a
 single observation at each combination of the brands and water levels so there
 is not much power to detect differences in this sort of situation and no replicates
 at any combinations of levels that allow estimation of SEs so no bands are produced in the
-plot. 
+plot. \index{replicate}
 \index{power}
 
 (ref:fig4-18) Interaction plot in paper towel data set with no replication. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-18-1.png" alt="(ref:fig4-18)" width="480" />
-<p class="caption">(\#fig:Figure4-18)(ref:fig4-18)</p>
-</div>
+![(\#fig:Figure4-18)(ref:fig4-18)](04-twoWayAnova_files/figure-latex/Figure4-18-1.pdf) 
 
 
 ```r
@@ -1836,7 +1781,7 @@ so this is interaction between the variables. We are not able to test for an
 interaction so must rely on the interaction plot to assess whether an interaction 
 might be present. Figure \@ref(fig:Figure4-18) suggests there might be an 
 interaction in these data (the
-two brands lines cross noticeably suggesting non-parallel lines).
+two brands' lines cross noticeably suggesting non-parallel lines).
 \index{non-parallel lines}
 So in this
 case, assuming no interaction is present is hard to justify. But if we proceed
@@ -1867,7 +1812,7 @@ ANOVA table. Neither main effect had a small p-value
 *Brand*: $F(1,2)=0.65, \text{ p-value}=0.51$) in the additive model. To 
 get small p-values with the small sample sizes that unreplicated designs would generate, the differences would need to be
 **very** large because the residual degrees of freedom have become very small.
-\index{degrees of freedom}
+\index{degrees of freedom} \index{replicate}
 The term-plots in Figure \@ref(fig:Figure4-19) show that the
 differences among the levels are small relative to the residual variability as
 seen in the error bars around each point estimate. 
@@ -1880,10 +1825,7 @@ replication.
 plot(allEffects(norep1))
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-19-1.png" alt="(ref:fig4-19)" width="480" />
-<p class="caption">(\#fig:Figure4-19)(ref:fig4-19)</p>
-</div>
+![(\#fig:Figure4-19)(ref:fig4-19)](04-twoWayAnova_files/figure-latex/Figure4-19-1.pdf) 
 
 \indent Hopefully by pushing the limits there
 are two conclusions available from this section. First, replication is
@@ -1966,8 +1908,8 @@ modify in lighter and/or ALL CAPS text, remembering that any R
 packages mentioned need to be installed and loaded for this code to have a
 chance of working:
 
-* **tally(<font color='red'>A</font>~<font color='red'>B</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **tally(\textcolor{red}{A}~\textcolor{red}{B},
+data=\textcolor{red}{DATASETNAME})**
 
     * Requires the ``mosaic`` package be loaded. 
     
@@ -1975,15 +1917,15 @@ data=<font color='red'>DATASETNAME</font>)**
     predictor variables A and B, used to check for balance and understand sample 
     sizes in each combination. \index{\texttt{tally()}|textbf}
     
-* **<font color='red'>DATASETNAME</font>&#36;<font color='red'>VARIABLENAME</font> ``<-`` 
-factor(<font color='red'>DATASETNAME</font>&#36;<font color='red'>VARIABLENAME</font>)**
+* **\textcolor{red}{DATASETNAME}&#36;\textcolor{red}{VARIABLENAME} ``<-`` 
+factor(\textcolor{red}{DATASETNAME}&#36;\textcolor{red}{VARIABLENAME})**
 
     * Use the ``factor`` function on any numerically coded
     explanatory variable where the numerical codes represent levels of a
     categorical variable. \index{\texttt{factor()}|textbf}
     
-* **intplot(<font color='red'>Y</font>~<font color='red'>A</font>``*``<font color='red'>B</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **intplot(\textcolor{red}{Y}~\textcolor{red}{A}``*``\textcolor{red}{B},
+data=\textcolor{red}{DATASETNAME})**
 
     * Download and install using: 
     
@@ -1991,8 +1933,8 @@ data=<font color='red'>DATASETNAME</font>)**
     
     * Provides interaction plot. \index{\texttt{intplot()}|textbf}
     
-* **intplotarray(<font color='red'>Y</font>~<font color='red'>A</font>``*``<font color='red'>B</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **intplotarray(\textcolor{red}{Y}~\textcolor{red}{A}``*``\textcolor{red}{B},
+data=\textcolor{red}{DATASETNAME})**
 
     * Download and install using: 
     
@@ -2001,9 +1943,9 @@ data=<font color='red'>DATASETNAME</font>)**
     * Provides interaction plot array that makes interaction plots switching explanatory variable roles and makes beanplots of the main effects.
     \index{\texttt{intplotarray()}|textbf}
     
-* **<font color='red'>INTERACTIONMODELNAME</font> ``<-`` 
-lm(<font color='red'>Y</font>~<font color='red'>A</font>``*``<font color='red'>B</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **\textcolor{red}{INTERACTIONMODELNAME} ``<-`` 
+lm(\textcolor{red}{Y}~\textcolor{red}{A}``*``\textcolor{red}{B},
+data=\textcolor{red}{DATASETNAME})**
 
     * Fits the interaction model with main effects for A and B and an 
     interaction between them.
@@ -2011,9 +1953,9 @@ data=<font color='red'>DATASETNAME</font>)**
     * This is the first model that should be fit in Two-Way ANOVA 
     modeling situations.
     
-* **<font color='red'>ADDITIVEMODELNAME</font> ``<-``
-lm(<font color='red'>Y</font>~<font color='red'>A</font>+<font color='red'>B</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **\textcolor{red}{ADDITIVEMODELNAME} ``<-``
+lm(\textcolor{red}{Y}~\textcolor{red}{A}+\textcolor{red}{B},
+data=\textcolor{red}{DATASETNAME})**
 
     * Fits the additive model with only main effects for A and B but no 
     interaction between them.
@@ -2021,12 +1963,12 @@ data=<font color='red'>DATASETNAME</font>)**
     * Should only be used if the interaction has been decided to be 
     unimportant using a test for the interaction.
     
-* **summary(<font color='red'>MODELNAME</font>)**
+* **summary(\textcolor{red}{MODELNAME})**
 
     * Generates model summary information including the estimated model coefficients, 
     SEs, t-tests, and p-values. 
 
-* **Anova(<font color='red'>MODELNAME</font>)** 
+* **Anova(\textcolor{red}{MODELNAME})** 
 
     * Requires the ``car`` package to be loaded.
     
@@ -2037,12 +1979,12 @@ data=<font color='red'>DATASETNAME</font>)**
 
 \newpage
 
-* **par(mfrow=c(2,2)); plot(<font color='red'>MODELNAME</font>)**
+* **par(mfrow=c(2,2)); plot(\textcolor{red}{MODELNAME})**
 
     * Generates four diagnostic plots including the Residuals vs Fitted and 
     Normal Q-Q plot. 
     
-* **plot(allEffects(<font color='red'>MODELNAME</font>))**
+* **plot(allEffects(\textcolor{red}{MODELNAME}))**
     
     * Requires the ``effects`` package be loaded. 
 

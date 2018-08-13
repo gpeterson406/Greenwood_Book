@@ -74,10 +74,9 @@ The ``lm`` function takes
 care of finding the least squares coefficients using a very sophisticated
 algorithm^[If you take advanced applied mathematics courses, you can learn
 more about the algorithms being used by ``lm``.
-\index{\texttt{lm()}} 
 Everyone else only cares 
 about the algorithms when they don't work -- which is usually due to the
-user's inputs in these models not the algorithm itself.]. The estimated 
+user's inputs in these models not the algorithm itself.].\index{\texttt{lm()}} The estimated 
 regression equation it returns is:
 
 $$\hat{y}_i = b_0 + b_1x_{1i} +b_2x_{2i}+\ldots+b_Kx_{Ki}$$
@@ -113,10 +112,7 @@ pairs.panels(snotel2[,-c(1:2)], ellipse=F,
              main="Scatterplot matrix of SNOTEL Data")
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-1-1.png" alt="(ref:fig8-1)" width="672" />
-<p class="caption">(\#fig:Figure8-1)(ref:fig8-1)</p>
-</div>
+![(\#fig:Figure8-1)(ref:fig8-1)](08-multipleLinearRegression_files/figure-latex/Figure8-1-1.pdf) 
 
 It appears that there are many strong linear relationships between the variables,
 with *Elevation* and *Snow Depth* having the largest magnitude, ***r*** = 0.80.
@@ -153,10 +149,7 @@ snow deposition and retention).
 SLR model for Snow Depth with only Elevation as the predictor.
 \index{R packages!\textbf{effects}}
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-2-1.png" alt="(ref:fig8-2)" width="480" />
-<p class="caption">(\#fig:Figure8-2)(ref:fig8-2)</p>
-</div>
+![(\#fig:Figure8-2)(ref:fig8-2)](08-multipleLinearRegression_files/figure-latex/Figure8-2-1.pdf) 
 
 Based on the model summaries provided below, the three estimated SLR models 
 are:
@@ -214,17 +207,11 @@ compared to the other models.
 
 (ref:fig8-3a) Plot of the estimated SLR model using only Min Temp as predictor. 
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-3a-1.png" alt="(ref:fig8-3a)" width="480" />
-<p class="caption">(\#fig:Figure8-3a)(ref:fig8-3a)</p>
-</div>
+![(\#fig:Figure8-3a)(ref:fig8-3a)](08-multipleLinearRegression_files/figure-latex/Figure8-3a-1.pdf) 
 
 (ref:fig8-3b) Plot of the estimated SLR model using only Max Temp as predictor.
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-3b-1.png" alt="(ref:fig8-3b)" width="480" />
-<p class="caption">(\#fig:Figure8-3b)(ref:fig8-3b)</p>
-</div>
+![(\#fig:Figure8-3b)(ref:fig8-3b)](08-multipleLinearRegression_files/figure-latex/Figure8-3b-1.pdf) 
 
 
 ```r
@@ -359,10 +346,7 @@ summary(m4)
 plot(allEffects(m4), main="MLR model with Elev, Min & Max Temps")
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-4-1.png" alt="(ref:fig8-4)" width="960" />
-<p class="caption">(\#fig:Figure8-4)(ref:fig8-4)</p>
-</div>
+![(\#fig:Figure8-4)(ref:fig8-4)](08-multipleLinearRegression_files/figure-latex/Figure8-4-1.pdf) 
 
 Based on the output, the estimated MLR model is
 
@@ -441,7 +425,7 @@ validity conditions. For MLR, they are similar to those for SLR:
     
     * This is not an assumption about the predictor variables!
 
-* **Linearity of relationship (**<b><font color='red'>NEW VERSION FOR MLR!</font></b>**):**
+* **Linearity of relationship (**\textcolor{red}{\textbf{NEW VERSION FOR MLR!}}**):**
 
     * Linearity is assumed between the response variable and **each**
     explanatory variable ($y$ and each $x$).
@@ -467,7 +451,7 @@ validity conditions. For MLR, they are similar to those for SLR:
     * Issues here do not mean we cannot proceed with a given model, but it can
     impact our ability to trust and interpret the estimated terms.
     
-    * Check a scatterplot or correlation matrix to assess the potential for 
+    * Check a scatterplot or correlation matrix \index{correlation matrix} to assess the potential for 
     shared information in different predictor variables.
     
     * Use the diagnostic measure called a ***variance inflation factor***
@@ -572,13 +556,10 @@ par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(m4, sub.caption="Diagnostics for m4")
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-5-1.png" alt="(ref:fig8-5)" width="960" />
-<p class="caption">(\#fig:Figure8-5)(ref:fig8-5)</p>
-</div>
+![(\#fig:Figure8-5)(ref:fig8-5)](08-multipleLinearRegression_files/figure-latex/Figure8-5-1.pdf) 
 
 
-* **Linearity of relationship (**<b><font color='red'>NEW VERSION FOR MLR!</font></b>**):**
+* **Linearity of relationship (**\textcolor{red}{\textbf{NEW VERSION FOR MLR!}}**):**
 
     * Make plots of the response versus each explanatory variable:
     
@@ -718,7 +699,7 @@ $$\begin{array}{rl}
 0.505\cdot\text{MinTemp}_{10} - 0.562\cdot\text{MaxTemp}_{10} \\
 & = -10.51 + 0.0123*\boldsymbol{5600} -0.505*\boldsymbol{28} - 
 0.562*\boldsymbol{36} \\
-& = 23.998 \text{ inches,}
+& = 23.998 \text{ inches.}
 \end{array}$$
 
 The observed snow depth here was $y_{10} = 14.0$ inches so the observed
@@ -791,10 +772,7 @@ data set (n=24).
 plot(allEffects(m5), main="MLR model with NE Ent. Removed")
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-6-1.png" alt="(ref:fig8-6)" width="960" />
-<p class="caption">(\#fig:Figure8-6)(ref:fig8-6)</p>
-</div>
+![(\#fig:Figure8-6)(ref:fig8-6)](08-multipleLinearRegression_files/figure-latex/Figure8-6-1.pdf) 
 
 \indent The estimated MLR model with $n=24$ after removing the influential 
 "NE Entrance" observation is
@@ -844,7 +822,7 @@ from it.
 for the model fit to the data set without NE Entrance (now $n=24$) reveals a new 
 point that is somewhat influential (point 22 in the data set has Cook's D 
 $\approx$ 0.5). It is for a location called "Bloody
-$\require{color}\colorbox{black}{Redact.}$^[The site name is redacted to protect
+$\colorbox{black}{Redact.}$^[The site name is redacted to protect
 the innocence of the reader. More information on this site, located in
 Beaverhead County, is available at
 http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt.] which has a
@@ -875,10 +853,7 @@ par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(m5, sub.caption="Diagnostics for m5")
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-7-1.png" alt="(ref:fig8-7)" width="960" />
-<p class="caption">(\#fig:Figure8-7)(ref:fig8-7)</p>
-</div>
+![(\#fig:Figure8-7)(ref:fig8-7)](08-multipleLinearRegression_files/figure-latex/Figure8-7-1.pdf) 
 
 (ref:fig8-8) Diagnostic plots for MLR for Snow Depth based on Elevation, 
 Min Temp and Max Temp with two observations removed ($n=23$). 
@@ -906,10 +881,7 @@ Min Temp and Max Temp with two observations removed ($n=23$).
 ## F-statistic:  36.9 on 3 and 19 DF,  p-value: 4.003e-08
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-8-1.png" alt="(ref:fig8-8)" width="960" />
-<p class="caption">(\#fig:Figure8-8)(ref:fig8-8)</p>
-</div>
+![(\#fig:Figure8-8)(ref:fig8-8)](08-multipleLinearRegression_files/figure-latex/Figure8-8-1.pdf) 
 
 
 This worry-some observation is located in the 22^nd^ row of the
@@ -928,7 +900,7 @@ snotel2[22,]
 ```
 
 With the removal of both the "Northeast Entrance" and "Bloody
-$\require{color}\colorbox{black}{Redact.}$" sites, there are $n=23$ observations
+$\colorbox{black}{Redact.}$" sites, there are $n=23$ observations
 remaining. This model (``m6``) seems to contain residual diagnostics (Figure
 \@ref(fig:Figure8-8)) that are finally generally reasonable. 
 
@@ -968,10 +940,7 @@ Min Temp and Max Temp with two observations removed.
 plot(allEffects(m6), main="MLR model with n=23")
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-9-1.png" alt="(ref:fig8-9)" width="768" />
-<p class="caption">(\#fig:Figure8-9)(ref:fig8-9)</p>
-</div>
+![(\#fig:Figure8-9)(ref:fig8-9)](08-multipleLinearRegression_files/figure-latex/Figure8-9-1.pdf) 
 
 ## Interpretation of MLR terms	{#section8-3}
 
@@ -1067,10 +1036,7 @@ term-plot's scaling.
 (ref:fig8-10) Term-plot for Elevation "by-hand", holding temperature 
 variables constant at their means. 
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-10-1.png" alt="(ref:fig8-10)" width="576" />
-<p class="caption">(\#fig:Figure8-10)(ref:fig8-10)</p>
-</div>
+![(\#fig:Figure8-10)(ref:fig8-10)](08-multipleLinearRegression_files/figure-latex/Figure8-10-1.pdf) 
 
 
 ```r
@@ -1099,7 +1065,7 @@ syntax of ``rep(numbertorepeat, #oftimes).``] to repeat the means of the
 temperatures for each of elevation values we need to make the plot. The code
 creates a specific version of the predictor variables to force the ``predict``
 function to provide fitted values and CIs across different elevations with
-temperatures held constant that is stored in ``newdata1``. 
+temperatures held constant that is stored in ``newdata1``. \index{\texttt{seq()}} \index{\texttt{rep()}}
 
 
 ```r
@@ -1271,7 +1237,7 @@ maybe only keeping the best ones, this is very different from picking one model
 (and tests) *a priori* and just exploring that result. 
 
 \indent As in SLR, we can use the ***R***^2^ (the ***coefficient of
-determination***) to measure the percentage of the variation in the
+determination***) \index{R-squared} to measure the percentage of the variation in the
 response variable that the model explains. In MLR, it is important to remember
 that ***R***^2^ is now an overall
 measure for the model and not specific to a single variable. It is comparable to
@@ -1304,7 +1270,7 @@ for SLR or MLR.
 
 \indent However, there is an adjustment to the ***R***^2^ measure that makes it
 useful for selecting among models. The measure is called the ***adjusted***
-***R***^2^. The $\boldsymbol{R}^2_{\text{adjusted}}$ measure adds a
+***R***^2^. \index{R-squared!adjusted} The $\boldsymbol{R}^2_{\text{adjusted}}$ measure adds a
 penalty for adding more variables to the model, providing the potential for this
 measure to decrease if the extra variables do not really benefit the model. The
 measure is calculated as
@@ -1489,10 +1455,7 @@ regression models that can result in common mistakes.
     between *Elevation* and *Max.Temp* with higher elevations being strongly
     associated with lower temperatures. 
 
-    <div class="figure">
-    <img src="08-multipleLinearRegression_files/figure-html/Figure8-11-1.png" alt="Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data." width="480" />
-    <p class="caption">(\#fig:Figure8-11)Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data.</p>
-    </div>
+    ![(\#fig:Figure8-11)Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data.](08-multipleLinearRegression_files/figure-latex/Figure8-11-1.pdf) 
 
 * **Don't think that the sign of a coefficient is special...**
 
@@ -1520,10 +1483,7 @@ regression models that can result in common mistakes.
     round(cor(snotel2[-c(9,22),3:6]),2)
     ```
     
-    <div class="figure">
-    <img src="08-multipleLinearRegression_files/figure-html/Figure8-12-1.png" alt="Plot of correlation matrix in the snow depth data set with influential points removed" width="624" />
-    <p class="caption">(\#fig:Figure8-12)Plot of correlation matrix in the snow depth data set with influential points removed</p>
-    </div>
+    ![(\#fig:Figure8-12)Plot of correlation matrix in the snow depth data set with influential points removed](08-multipleLinearRegression_files/figure-latex/Figure8-12-1.pdf) 
     
     ```
     ##            Max.Temp Min.Temp Elevation Snow.Depth
@@ -1535,7 +1495,7 @@ regression models that can result in common mistakes.
     
     The predictors all share at least moderately strong linear relationships. For
     example, the $\boldsymbol{r}=-0.91$ between *Min.Temp* and *Elevation*
-    suggests
+    suggests \index{correlation matrix} 
     that they contain very similar information and that extends to other pairs of
     variables as well. When variables share information, their addition to models
     may not improve the performance of the model and actually can make the
@@ -1558,7 +1518,7 @@ regression models that can result in common mistakes.
     in the model using what are called ***Variance Inflation Factors*** (or 
     ***VIFs***). 
 
-\indent  <strong><em>VIFs</em></strong> provide a way to assess the multicollinearity in the MLR model that
+\indent  \emph{\textbf{VIFs}} provide a way to assess the multicollinearity in the MLR model that
 is caused by including specific variables. \index{VIF} The amount of information that is
 shared between a single explanatory variable and the others can be found by
 regressing that variable on the others and calculating ***R***^2^
@@ -1567,7 +1527,7 @@ for that model. The code for this regression is something like:
 \index{\texttt{lm()}}
 The 
 $1-\boldsymbol{R}^2$ from this regression is the amount of independent 
-information in *X1* that is not explained by the other variables in the model.
+information in *X1* that is not explained by the other variables in the model. \index{R-squared} 
 The VIF for each variable is defined using this quantity as
 $\textbf{VIF}_{\boldsymbol{k}}\boldsymbol{=1/(1-R^2_k)}$ for variable $k$.
 If there is no shared information $(\boldsymbol{R}^2=0)$, then the VIF will be
@@ -1921,8 +1881,8 @@ last row of the model summary is:
 ## F-statistic: 56.43 on 2 and 20 DF,  p-value: 5.979e-09
 ```
 This test is called the ***overall F-test*** in MLR and is very similar to
-the $F$-test in a reference-coded One-Way ANOVA model.
-\index{overall @$F$-test}
+the $F$-test in a reference-coded One-Way ANOVA model. 
+\index{@$F$-test!overall}
 It tests the null
 hypothesis that involves setting every coefficient except the y-intercept to
 0 (so all the slope coefficients equal 0). We saw this reduced model in the
@@ -2021,10 +1981,7 @@ require(psych)
 pairs.panels(satGPA[,-4], ellipse=F, col="red", lwd=2)
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-13-1.png" alt="(ref:fig8-13)" width="672" />
-<p class="caption">(\#fig:Figure8-13)(ref:fig8-13)</p>
-</div>
+![(\#fig:Figure8-13)(ref:fig8-13)](08-multipleLinearRegression_files/figure-latex/Figure8-13-1.pdf) 
 
 There are positive relationships in Figure \@ref(fig:Figure8-13) among all the
 pre-college measures and the *college GPA* but none are above the moderate
@@ -2105,10 +2062,7 @@ par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(gpa1, sub.caption="Diagnostics for GPA model with SATV and SATM")
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-14-1.png" alt="(ref:fig8-14)" width="960" />
-<p class="caption">(\#fig:Figure8-14)(ref:fig8-14)</p>
-</div>
+![(\#fig:Figure8-14)(ref:fig8-14)](08-multipleLinearRegression_files/figure-latex/Figure8-14-1.pdf) 
 
 1. Hypotheses of interest:
 
@@ -2161,7 +2115,7 @@ plot(gpa1, sub.caption="Diagnostics for GPA model with SATV and SATM")
         more than two predictors, each variable can have a different VIF
         value.]. This suggests that both SEs are about 13% larger than they
         otherwise would have been due to shared information between the two
-        predictor variables.
+        predictor variables. \index{VIF}
         
         
         ```r
@@ -2262,7 +2216,7 @@ violated and so the inferences from our model should be relatively trustworthy.
     are also limited to students who stayed in school long enough to get a 
     *GPA* from their first year of college at this university. 
 
-\indent The model seems to valid and have predictors with small p-values, but note how much of the variation is not explained by the model. It only explains 21.22% of the variation in the responses. So we found evidence that these variables are useful in predicting the responses, but are they useful enough to use for decisions on admitting students? By quantifying
+\indent The model seems to be valid and have predictors with small p-values, but note how much of the variation is not explained by the model. It only explains 21.22% \index{R-squared} of the variation in the responses. So we found evidence that these variables are useful in predicting the responses, but are they useful enough to use for decisions on admitting students? By quantifying
 the size of the estimated results, we can add to the information about how potentially useful this model might be. The estimated MLR model is
 
 $$\widehat{\text{FYGPA}}_i=0.00737+0.0254\cdot\text{SATV}_i
@@ -2277,7 +2231,7 @@ it is often easier to assess "practical" importance of the results by considerin
 how much change this implies over the range of observed predictor values. 
 
 \indent The term-plots (Figure \@ref(fig:Figure8-15)) provide a visualization of the
-"size" of the differences in the response variable explained by each predictor.
+"size" of the differences in the response variable explained by each predictor. \index{effects plot}
 The *SATV* term-plot shows that for the range of percentiles from around the
 30^th^ percentile to the 70^th^ percentile, the mean first 
 year *GPA* is predicted to go from approximately 1.9 to 3.0. That is a pretty
@@ -2305,10 +2259,7 @@ plot(allEffects(gpa1))
 (ref:fig8-15) Term-plots for the $\text{FYGPA}\sim\text{SATV} + \text{SATM}$
 model.
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-15-1.png" alt="(ref:fig8-15)" width="576" />
-<p class="caption">(\#fig:Figure8-15)(ref:fig8-15)</p>
-</div>
+![(\#fig:Figure8-15)(ref:fig8-15)](08-multipleLinearRegression_files/figure-latex/Figure8-15-1.pdf) 
 
 \indent These plots also inform the types of students attending this university and
 successfully completing the first year of school. This seems like a good, but
@@ -2450,10 +2401,7 @@ lines(dm1$SATM, pm1$lwr, col="grey", lty=3, lwd=3)
 lines(dm1$SATM, pm1$upr, col="grey", lty=3, lwd=3)
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-16-1.png" alt="(ref:fig8-16)" width="960" />
-<p class="caption">(\#fig:Figure8-16)(ref:fig8-16)</p>
-</div>
+![(\#fig:Figure8-16)(ref:fig8-16)](08-multipleLinearRegression_files/figure-latex/Figure8-16-1.pdf) 
 
 \sectionmark{Different intercepts for different groups}
 
@@ -2463,7 +2411,7 @@ lines(dm1$SATM, pm1$upr, col="grey", lty=3, lwd=3)
 
 One of the implicit assumptions up to this point was that the models were being
 applied to a single homogeneous population.
-\index{assumptions}
+\index{assumptions} \index{indicator}
 In many cases, we take a sample
 from a population but that overall group is likely a combination of individuals from
 different sub-populations. For example, the SAT study was interested in all
@@ -2512,10 +2460,10 @@ to assess whether things are "really" different between the two groups.
 
 ```r
 require(car)
-scatterplot(FYGPA~SATV|sex, lwd=3, data=satGPA, spread=F,
-            smooth=F, main="Scatterplot of GPA vs SATV by Sex")
-scatterplot(FYGPA~SATM|sex, lwd=3, data=satGPA, spread=F,
-            smooth=F, main="Scatterplot of GPA vs SATM by Sex")
+scatterplot(FYGPA~SATV|sex, lwd=3, data=satGPA, smooth=F,
+            main="Scatterplot of GPA vs SATV by Sex")
+scatterplot(FYGPA~SATM|sex, lwd=3, data=satGPA, smooth=F,
+            main="Scatterplot of GPA vs SATM by Sex")
 ```
 
 \indent To fit one model to a data set that contain multiple groups, we need a way of
@@ -2528,7 +2476,7 @@ put in "numbers" as predictors, we create what are called
 that are made up of 0s and 1s, with the 0 reflecting one category and 1 the
 other, changing depending on the category of the individual in the data set. The
 ``lm`` function does this whenever a
-categorical variable is used as an explanatory variable.
+categorical variable is used as an explanatory variable. \index{indicator}
 \index{\texttt{lm()}}
 It sets up the indicator
 variables using a baseline category (gets coded as a 0) and the deviation
@@ -2570,17 +2518,11 @@ summary(SATSex1)
 
 (ref:fig8-17) Plot of FYGPA vs SATV by Sex of students.
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="(ref:fig8-17)" width="960" />
-<p class="caption">(\#fig:Figure8-17)(ref:fig8-17)</p>
-</div>
+![(\#fig:Figure8-17)(ref:fig8-17)](08-multipleLinearRegression_files/figure-latex/Figure8-17-1.pdf) 
 
 (ref:fig8-18) Plot of FYGPA vs SATM by Sex of students.
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-18-1.png" alt="(ref:fig8-18)" width="960" />
-<p class="caption">(\#fig:Figure8-18)(ref:fig8-18)</p>
-</div>
+![(\#fig:Figure8-18)(ref:fig8-18)](08-multipleLinearRegression_files/figure-latex/Figure8-18-1.pdf) 
 
 The ``SEX `` row contains information that the linear model chose *MALE* as
 the baseline category and *FEMALE* as the deviation category since *MALE* does
@@ -2679,7 +2621,7 @@ works this out step-by-step, simplifying the MLR into two SLRs:
     * $= 0.216 + 0.0386\cdot\text{SATM}_i + 0.313$ (combine "like" terms to
     simplify the equation)
     
-    * $= 0.529 + 0.0386\cdot\text{SATM}_i$
+    * $= 0.529 + 0.0386\cdot\text{SATM}_i$ \index{indicator}
     
 In this situation, we then end up with two SLR models that relate *SATM* to 
 *GPA*, one model for *males* 
@@ -2710,10 +2652,7 @@ Figure \@ref(fig:Figure8-18).
 (ref:fig8-19) Plot of estimated model for *FYGPA* vs *SATM* by *SEX* of 
 students (female line is thicker red line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group.
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-19-1.png" alt="(ref:fig8-19)" width="576" />
-<p class="caption">(\#fig:Figure8-19)(ref:fig8-19)</p>
-</div>
+![(\#fig:Figure8-19)(ref:fig8-19)](08-multipleLinearRegression_files/figure-latex/Figure8-19-1.pdf) 
 
 \indent Remember that ``lm`` selects baseline categories typically based on the
 alphabetical order of the levels of the categorical variable. Here, the ``SEX``
@@ -2721,7 +2660,7 @@ variable started with a coding of 1 and 2 and retained that
 order even with the recoding of levels that we created to give it more explicit
 names. Because we allow ``lm`` to create indicator variables for us, the main
 thing you need to do is explore the model summary and look for the hint at the
-baseline level that is not displayed after the name of the categorical variable. 
+baseline level that is not displayed after the name of the categorical variable. \index{indicator}
 
 \indent We can also work out the impacts of adding an indicator variable to the model
 in general in the theoretical model with a single quantitative predictor $x_i$
@@ -2766,15 +2705,12 @@ require(effects)
 plot(allEffects(SATSex1))
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-20-1.png" alt="(ref:fig8-20)" width="576" />
-<p class="caption">(\#fig:Figure8-20)(ref:fig8-20)</p>
-</div>
+![(\#fig:Figure8-20)(ref:fig8-20)](08-multipleLinearRegression_files/figure-latex/Figure8-20-1.pdf) 
 
 \indent The model summary and confidence intervals provide some potential interesting
 inferences in these models. Again, these are just applications of MLR methods
 we have already seen except that the definition of one of the variables is
-"different" using the indicator coding idea. For the same model, the ``SEX``
+"different" using the indicator coding idea. \index{indicator} For the same model, the ``SEX``
 coefficient can be used to generate inferences for differences in the mean the
 groups, controlling for their *SATM* scores. 
 
@@ -2833,7 +2769,7 @@ subjects experienced no further exposure to the noise tone until the final
 sensitivity measures were taken). Then the *DU* was measured again (variable
 called ``du2``). One would expect that there would be a relationship between the
 upper tolerance levels of the subjects before and after treatment. But
-maybe the treatments impact that relationship? We can use our indicator
+maybe the treatments impact that relationship? We can use our indicator \index{indicator}
 approach to see if the treatments provide a shift to higher tolerances after
 accounting for the relationship between the two measurements^[Models like this with a categorical variable and quantitative variable are often called *ANCOVA* or *analysis of covariance* models but really are just versions of our linear models we've been using throughout this material.]. The scatterplot^[Note that we employed some specific options in the ``legend`` option to get the legend to fit on this scatterplot better. Usually you can avoid this but the ``coords`` option defined a location and the ``columns`` option made it a two column legend.]
 of the results in Figure \@ref(fig:Figure8-21) shows some variation in the
@@ -2875,14 +2811,11 @@ scatterplot(du2~du1|treatment, data=Headache, smooth=F, lwd=2,
             legend=list(coords="topleft",columns=2))
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-21-1.png" alt="(ref:fig8-21)" width="960" />
-<p class="caption">(\#fig:Figure8-21)(ref:fig8-21)</p>
-</div>
+![(\#fig:Figure8-21)(ref:fig8-21)](08-multipleLinearRegression_files/figure-latex/Figure8-21-1.pdf) 
 
 
 \indent This data set contains a categorical variable with 4 levels. To go beyond two
-groups, we have to add more than one indicator variable, defining three
+groups, we have to add more than one indicator variable, \index{indicator} defining three
 indicators to turn on (1) or off (0) for three of the levels of the variable
 with the same reference level used for all the indicators. For this example, 
 the *T1 Treatment* group is chosen as the baseline group so it sort of hides in
@@ -2900,51 +2833,43 @@ original variable (``treatment``) in the following output. The bolded
 observations show each of the indicators being "turned on". For *T1*, all the
 indicators stay at 0. 
 
+\newpage
 
 
------------------------------------------
-  Treatment    I_T2    I_T3    I_Control 
-------------- ------- ------- -----------
-   **T3**      **0**   **1**     **0**   
 
-   **T1**      **0**   **0**     **0**   
 
-     T1          0       0         0     
-
-     T3          0       1         0     
-
-     T3          0       1         0     
-
-     T3          0       1         0     
-
-   **T2**      **1**   **0**     **0**   
-
-     T1          0       0         0     
-
-     T1          0       0         0     
-
-     T3          0       1         0     
-
-     T3          0       1         0     
-
-     T2          1       0         0     
-
-     T3          0       1         0     
-
-     T1          0       0         0     
-
-     T3          0       1         0     
-
- **Control**   **0**   **0**     **1**   
-
-     T3          0       1         0     
------------------------------------------
+\begin{tabular}{lrrr}
+\toprule
+Treatment & I\_T2 & I\_T3 & I\_Control\\
+\midrule
+T3 & 0 & 1 & 0\\
+T1 & 0 & 0 & 0\\
+T1 & 0 & 0 & 0\\
+T3 & 0 & 1 & 0\\
+T3 & 0 & 1 & 0\\
+\addlinespace
+T3 & 0 & 1 & 0\\
+T2 & 1 & 0 & 0\\
+T1 & 0 & 0 & 0\\
+T1 & 0 & 0 & 0\\
+T3 & 0 & 1 & 0\\
+\addlinespace
+T3 & 0 & 1 & 0\\
+T2 & 1 & 0 & 0\\
+T3 & 0 & 1 & 0\\
+T1 & 0 & 0 & 0\\
+T3 & 0 & 1 & 0\\
+\addlinespace
+Control & 0 & 0 & 1\\
+T3 & 0 & 1 & 0\\
+\bottomrule
+\end{tabular}
 
 
 \indent When we fit the additive model of the form ``y~x+group``, the ``lm``
 function takes the $\boldsymbol{J}$ categories and creates $\boldsymbol{J-1}$
 indicator variables.
-\index{additive model}
+\index{additive model} \index{indicator}
 The baseline level is always handled in the intercept.
 The true model will be of the form
 
@@ -3024,11 +2949,11 @@ $$\begin{array}{rl}
 &= 0.886+0.837\cdot\text{du1}_i.
 \end{array}$$
 
+\newpage
+
 * Similarly for *T3*:
 
 $$\widehat{\text{du2}}_i = 1.618 + 0.837\cdot\text{du1}_i\ .$$
-
-\newpage
 
 * Finally, for *Control*:
 
@@ -3041,10 +2966,7 @@ groups, showing the shifts in the *y*-intercepts among the groups.
 
 (ref:fig8-22) Plot of estimated noise tolerance additive model.
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-22-1.png" alt="(ref:fig8-22)" width="960" />
-<p class="caption">(\#fig:Figure8-22)(ref:fig8-22)</p>
-</div>
+![(\#fig:Figure8-22)(ref:fig8-22)](08-multipleLinearRegression_files/figure-latex/Figure8-22-1.pdf) 
 
 \indent The term-plot (Figure \@ref(fig:Figure8-23)) shows how the *T3* group
 seems to have shifted up the most relative to
@@ -3071,10 +2993,7 @@ different in different groups, like linearity or non-constant variance.
 plot(allEffects(head1))
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-23-1.png" alt="(ref:fig8-23)" width="576" />
-<p class="caption">(\#fig:Figure8-23)(ref:fig8-23)</p>
-</div>
+![(\#fig:Figure8-23)(ref:fig8-23)](08-multipleLinearRegression_files/figure-latex/Figure8-23-1.pdf) 
 
 \indent The diagnostic plots in Figure \@ref(fig:Figure8-24) provides some 
 indications of a few observations in the tails that deviate from a normal
@@ -3082,7 +3001,7 @@ distribution to having slightly heavier tails but
 only one outlier is of real concern. There is a small indication of increasing
 variability as a function of the fitted values as both the Residuals vs. Fitted
 and Scale-Location plots show some fanning out for higher values but this is a
-minor issue. There are no influential points in the data set. 
+minor issue. There are no influential points in the data set. \index{influential}
 
 (ref:fig8-24) Diagnostic plots for the additive decibel tolerance model. 
 
@@ -3093,10 +3012,7 @@ plot(head1,
      sub.caption="Plot of diagnostics for additive model with du1 and treatment for du2")
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-24-1.png" alt="(ref:fig8-24)" width="960" />
-<p class="caption">(\#fig:Figure8-24)(ref:fig8-24)</p>
-</div>
+![(\#fig:Figure8-24)(ref:fig8-24)](08-multipleLinearRegression_files/figure-latex/Figure8-24-1.pdf) 
 
 \indent The VIFs are different for categorical variables than for quantitative
 predictors in MLR. The 4 levels
@@ -3133,6 +3049,12 @@ it":
 
 ```r
 head1R <- lm(du2~du1, data=Headache)
+```
+
+\newpage
+
+
+```r
 summary(head1R)
 ```
 
@@ -3232,10 +3154,7 @@ $x=0$) is right in the center of the plot and actually interesting^[Standardizin
 (ref:fig8-25) Scatterplot for reading score versus nonverbal IQ by dyslexia
 group. 
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-25-1.png" alt="(ref:fig8-25)" width="576" />
-<p class="caption">(\#fig:Figure8-25)(ref:fig8-25)</p>
-</div>
+![(\#fig:Figure8-25)(ref:fig8-25)](08-multipleLinearRegression_files/figure-latex/Figure8-25-1.pdf) 
 
 
 ```r
@@ -3270,7 +3189,7 @@ found in a row of output with **both** variable names in it (with the indicator
 level name) with a colon between them (something like ``x:grouplevel``). As
 always, the best way to understand any
 model involving indicators is to plug in 0s or 1s for the indicator variable(s)
-and simplify the equations. 
+and simplify the equations. \index{indicator}
 
 * For any observation in the baseline group $I_{\text{CatName},i}=0$, so
 
@@ -3417,10 +3336,7 @@ plot(dys_model,
      sub.caption="Plot of diagnostics for Dyslexia Interaction model")
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-26-1.png" alt="(ref:fig8-26)" width="960" />
-<p class="caption">(\#fig:Figure8-26)(ref:fig8-26)</p>
-</div>
+![(\#fig:Figure8-26)(ref:fig8-26)](08-multipleLinearRegression_files/figure-latex/Figure8-26-1.pdf) 
 
 \indent For these models, we have relaxed an earlier assumption that data were collected
 from only one group. In
@@ -3449,10 +3365,7 @@ scatterplot(residuals(dys_model)~fitted(dys_model)|dys,
             data=dyslexic3, smooth=F)
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-27-1.png" alt="(ref:fig8-27)" width="576" />
-<p class="caption">(\#fig:Figure8-27)(ref:fig8-27)</p>
-</div>
+![(\#fig:Figure8-27)(ref:fig8-27)](08-multipleLinearRegression_files/figure-latex/Figure8-27-1.pdf) 
 
 \indent If we feel comfortable enough with the assumptions to trust the inferences here
 (this might be dangerous), then we can consider what some of the model inferences
@@ -3478,7 +3391,6 @@ larger sample size or a reading test that only a few students could get 100%
 on, the researchers might have detected a more pronounced difference in the
 slopes for the two groups. 
 
-\newpage
 
 \indent In the presence of a categorical by quantitative interaction, term-plots can
 be generated that plot the results for each group on the same display.
@@ -3500,10 +3412,7 @@ complicated of a model^[There is a way to test for a difference in the two lines
 plot(allEffects(dys_model), ci.style="bands", multiline=T)
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-28-1.png" alt="(ref:fig8-28)" width="576" />
-<p class="caption">(\#fig:Figure8-28)(ref:fig8-28)</p>
-</div>
+![(\#fig:Figure8-28)(ref:fig8-28)](08-multipleLinearRegression_files/figure-latex/Figure8-28-1.pdf) 
 
 \indent It certainly appears in the plots that IQ has a different impact on the mean
 score in the two groups (even though the p-value only provided marginal
@@ -3514,6 +3423,8 @@ off the other one, but both have the same slope. The following model summary
 and term-plots (Figure \@ref(fig:Figure8-29)) suggest the potentially
 dangerous conclusion that
 can come from assuming a common slope when that might not be the case. 
+
+\vspace{11pt}
 
 (ref:fig8-29) Term-plots for additive model for reading scores.
 
@@ -3547,10 +3458,7 @@ summary(dys_modelR)
 plot(allEffects(dys_modelR))
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-29-1.png" alt="(ref:fig8-29)" width="576" />
-<p class="caption">(\#fig:Figure8-29)(ref:fig8-29)</p>
-</div>
+![(\#fig:Figure8-29)(ref:fig8-29)](08-multipleLinearRegression_files/figure-latex/Figure8-29-1.pdf) 
 
 This model provides little to no evidence that IQ is related to reading score for all
 students ($t_{41}=1.34$, p-value=0.188) but strong evidence of a difference in the
@@ -3590,10 +3498,7 @@ summary(dys_modelR2)
 plot(allEffects(dys_modelR2))
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-30-1.png" alt="(ref:fig8-30)" width="576" />
-<p class="caption">(\#fig:Figure8-30)(ref:fig8-30)</p>
-</div>
+![(\#fig:Figure8-30)(ref:fig8-30)](08-multipleLinearRegression_files/figure-latex/Figure8-30-1.pdf) 
 
 These results, including the term-plot in Figure \@ref(fig:Figure8-30), show
 that there is evidence of a difference in the mean reading scores
@@ -3625,14 +3530,14 @@ contains...
 \indent For more than two categories in a categorical variable, the model 
 contains more
 indicators to keep track of but uses the same ideas. We have to deal with
-modifying the intercept and slope coefficients for **every** deviation group so the task is onerous but relatively repetitive.
+modifying the intercept and slope coefficients for **every** deviation group so the task is onerous but relatively repetitive. \index{indicator}
 The general model is:
 
 $$\begin{array}{rl}
 y_i=\beta_0 &+ \beta_1x_i +\beta_2I_{\text{Level }2,i}+\beta_3I_{\text{Level }3,i}
 +\cdots+\beta_JI_{\text{Level }J,i} \\
 &+\beta_{J+1}I_{\text{Level }2,i}\:x_i+\beta_{J+2}I_{\text{Level }3,i}\:x_i
-+\cdots+\beta_{2J-1}I_{\text{Level }J,i}\:x_i +\varepsilon_i\ .
++\cdots+\beta_{2J-1}I_{\text{Level }J,i}\:x_i +\varepsilon_i.\ 
 \end{array}$$
 
 Specific to the audible tolerance/headache data that had four groups. The model
@@ -3642,7 +3547,7 @@ $$\begin{array}{rl}
 \text{du2}_i = \beta_0 &+ \beta_1\cdot\text{du1}_i + \beta_2I_{T2,i} +
 \beta_3I_{T3,i} + \beta_4I_{\text{Control},i} \\
 &+ \beta_5I_{T2,i}\cdot\text{du1}_i + \beta_6I_{T3,i}\cdot\text{du1}_i
-+ \beta_7I_{\text{Control},i}\cdot\text{du1}_i+\varepsilon_i\ .
++ \beta_7I_{\text{Control},i}\cdot\text{du1}_i+\varepsilon_i.\ 
 \end{array}$$
 
 Based on the following output, the estimated general regression model is
@@ -3651,7 +3556,7 @@ $$\begin{array}{rl}
 \widehat{\text{du2}}_i = 1.33 &+ 0.733\cdot\text{du1}_i - 0.236I_{T2,i} -
 0.316I_{T3,i} - 1.091I_{\text{Control},i} \\
 &+ 0.066I_{T2,i}\cdot\text{du1}_i + 0.199I_{T3,i}\cdot\text{du1}_i
-+ 0.106I_{\text{Control},i}\cdot\text{du1}_i\ .
++ 0.106I_{\text{Control},i}\cdot\text{du1}_i.\ 
 \end{array}$$
 
 Then we could work out the specific equation for **each group** with
@@ -3663,15 +3568,12 @@ $$\begin{array}{rll}
 - 1.091*1 \\
 &&+ 0.066*0*\text{du1}_i + 0.199*0*\text{du1}_i+ 0.106*1*\text{du1}_i \\
 \widehat{\text{du2}}_i&=1.33&+0.733\cdot\text{du1}_i - 1.091 + 0.106\cdot\text{du1}_i \\
-\widehat{\text{du2}}_i&=0.239 &+ 0.839\cdot\text{du1}_i\ 
+\widehat{\text{du2}}_i&=0.239 &+ 0.839\cdot\text{du1}_i.\ 
 \end{array}$$
 
 (ref:fig8-31) Term-plot for decibel tolerance interaction model (version 1). 
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-31-1.png" alt="(ref:fig8-31)" width="672" />
-<p class="caption">(\#fig:Figure8-31)(ref:fig8-31)</p>
-</div>
+![(\#fig:Figure8-31)(ref:fig8-31)](08-multipleLinearRegression_files/figure-latex/Figure8-31-1.pdf) 
 
 \small
 
@@ -3728,10 +3630,7 @@ can't see all the groups. In these situations, it can be useful to make the term
 This plot is not printed in color because it is impossible to distinguish the
 four groups whether in color or black and white.
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-32-1.png" alt="(ref:fig8-32)" width="576" />
-<p class="caption">(\#fig:Figure8-32)(ref:fig8-32)</p>
-</div>
+![(\#fig:Figure8-32)(ref:fig8-32)](08-multipleLinearRegression_files/figure-latex/Figure8-32-1.pdf) 
 
 
 ```r
@@ -3749,6 +3648,9 @@ the choice of the baseline is arbitrary. To assess whether we really need to
 have varying slopes or intercepts with more than two groups we need to develop
 $F$-tests for the interaction part of the model. 
 
+\newpage
+
+\phantom{Make the sectionmark actually work!}
 
 \sectionmark{F-tests for MLR models with Q and C variables and interactions}
 
@@ -3767,7 +3669,7 @@ or slopes. Because of the multi-degree of freedom aspects of the use of indicato
 variables ($J-1$ variables for a $J$ level categorical variable), we have to
 develop tests that combine and assess information across multiple
 "variables" -- even though these indicators all pertain to a single original
-categorical variable. ANOVA $F$-tests did exactly
+categorical variable. \index{indicator} ANOVA $F$-tests did exactly
 this sort of thing in the One and Two-Way ANOVA models and can do that for us
 here. There are two models that we perform tests in -- the additive and the
 interaction models.
@@ -3788,14 +3690,13 @@ model higher in the tree of models) displayed in Figure \@ref(fig:Figure8-33).
 This is based on
 the assumption that we would proceed through the model, dropping terms if the
 p-values are large ("not significant" in the diagram) to arrive at a final
-model. 
+model. \index{model!nested}
 
 (ref:fig8-33) Diagram of models to consider in an interaction model. 
 
-<div class="figure">
-<img src="chapter8_files/nestedModelTree_medium.png" alt="(ref:fig8-33)" width="338" />
-<p class="caption">(\#fig:Figure8-33)(ref:fig8-33)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=9.38in]{chapter8_files/nestedModelTree_medium} \caption{(ref:fig8-33)}(\#fig:Figure8-33)
+\end{figure}
 
 \indent If the initial interaction test suggests the interaction is important, then no
 further refinement should be considered and that model should be explored (this
@@ -3859,7 +3760,7 @@ $$\begin{array}{rl}
 \text{du2}_i = \beta_0 &+ \beta_1\cdot\text{du1}_i + \beta_2I_{T2,i} +
 \beta_3I_{T3,i} + \beta_4I_{\text{Control},i} \\
 &+ \beta_5I_{T2,i}\cdot\text{du1}_i + \beta_6I_{T3,i}\cdot\text{du1}_i
-+ \beta_7I_{\text{Control},i}\cdot\text{du1}_i+\varepsilon_i
++ \beta_7I_{\text{Control},i}\cdot\text{du1}_i+\varepsilon_i.
 \end{array}$$
 
 We can re-write the previous hypotheses in one of two more specific ways:
@@ -3923,7 +3824,7 @@ variable, assessing whether different y-intercepts are needed. The additive
 model here is
 
 $$\text{du2}_i = \beta_0 + \beta_1\cdot\text{du1}_i + \beta_2I_{T2,i} +
-\beta_3I_{T3,i} + \beta_4I_{\text{Control},i} +\varepsilon_i\ .$$
+\beta_3I_{T3,i} + \beta_4I_{\text{Control},i} +\varepsilon_i.\ $$
 
 The hypotheses assessed in the ANOVA test for treatment are:
 
@@ -4175,7 +4076,7 @@ that we used before for model selection, we can revisit the *Snow Depth* data se
 with related results found in Section \@ref(section8-4) and 
 Table \@ref(tab:Table8-1). In that situation we were considering
 a "full" model that included *Elevation*, *Min.Temp*, and *Max.Temp* as potential
-predictor variables after removing two influential points. And we considered all
+predictor variables after removing two influential points. \index{influential} \index{Cook's Distance} And we considered all
 possible reduced models from that "full"^[We put quotes on "full" or sometimes
 call it the "fullish" model because we could always add more to the model, like
 interactions or other explanatory variables. So we rarely have a completely full model but
@@ -4308,10 +4209,7 @@ involved in the interaction if we don't need the interaction.
 
 (ref:fig8-34) Scatterplot of log(FEV) vs Age by smoking status.
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-34-1.png" alt="(ref:fig8-34)" width="960" />
-<p class="caption">(\#fig:Figure8-34)(ref:fig8-34)</p>
-</div>
+![(\#fig:Figure8-34)(ref:fig8-34)](08-multipleLinearRegression_files/figure-latex/Figure8-34-1.pdf) 
 
 
 ```r
@@ -4372,10 +4270,7 @@ par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(fm1, sub.caption="Diagnostics for full FEV model")
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-35-1.png" alt="(ref:fig8-35)" width="960" />
-<p class="caption">(\#fig:Figure8-35)(ref:fig8-35)</p>
-</div>
+![(\#fig:Figure8-35)(ref:fig8-35)](08-multipleLinearRegression_files/figure-latex/Figure8-35-1.pdf) 
 
 The diagnostic plots suggest that there are a few outlying points (Figure \@ref(fig:Figure8-35)) but they
 are not influential and there is no indication of violations of the normality and constant
@@ -4584,10 +4479,7 @@ confint(fm1R)
 plot(allEffects(fm1R))
 ```
 
-<div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-36-1.png" alt="(ref:fig8-36)" width="672" />
-<p class="caption">(\#fig:Figure8-36)(ref:fig8-36)</p>
-</div>
+![(\#fig:Figure8-36)(ref:fig8-36)](08-multipleLinearRegression_files/figure-latex/Figure8-36-1.pdf) 
 
 \indent Like any statistical method, the AIC works better with larger sample sizes and
 when the assumptions are met. It also will detect important variables in models
@@ -4631,7 +4523,7 @@ interactions of categorical and quantitative variables. It is useful to use the
 pertinent names for the simpler models, but at this point we could have called
 everything we are doing ***fitting linear models***. The power of the linear 
 model involves being able to add multiple predictor variables to the
-model and handle categorical predictors using indicator variables. All this
+model and handle categorical predictors using indicator variables. \index{indicator} All this
 power comes with some responsibility in that you need to know what you are
 trying to fit and how to interpret the results provided. We introduced each scenario
 working from simple to the most complicated version of the models, trying to
@@ -4656,6 +4548,7 @@ provided. Because of multicollinearity in models, you should never remove more
 than one quantitative predictor at a time or else you could remove two variables
 that are important but were "hiding" when both were included in the model.
 
+\newpage
 
 ## Summary of important R code	{#section8-16}
 
@@ -4666,51 +4559,51 @@ response variable, ``x1``, ``x2``, ..., ``xK`` are quantitative
 explanatory variables, ``group``  is a factor variable and the data are
 in ``DATASETNAME``. 
 
-* **scatterplot(<font color='red'>y</font>~<font color='red'>x1|group</font>,
-data=<font color='red'>DATASETNAME</font>, smooth=F)**
+* **scatterplot(\textcolor{red}{y}~\textcolor{red}{x1|group},
+data=\textcolor{red}{DATASETNAME}, smooth=F)**
 
     * Requires the ``car`` package.
     
     * Provides a scatterplot with a regression line for each group. 
     \index{\texttt{scatterplot()}|textbf}
 
-* **<font color='red'>MODELNAME</font> ``<-`` lm(<font color='red'>y</font>~
-<font color='red'>x1+x2+...+xK</font>, data=<font color='red'>DATASETNAME</font>)**
+* **\textcolor{red}{MODELNAME} ``<-`` lm(\textcolor{red}{y}~
+\textcolor{red}{x1+x2+...+xK}, data=\textcolor{red}{DATASETNAME})**
 
     * Estimates an MLR model using least squares with $K$ quantitative
     predictors. 
     \index{\texttt{lm()}|textbf}
 
-* **<font color='red'>MODELNAME</font> ``<-`` lm(<font color='red'>y</font>~
-<font color='red'>x1*group</font>, data=<font color='red'>DATASETNAME</font>)**
+* **\textcolor{red}{MODELNAME} ``<-`` lm(\textcolor{red}{y}~
+\textcolor{red}{x1*group}, data=\textcolor{red}{DATASETNAME})**
 
     * Estimates an interaction model between a quantitative and categorical
     variable, providing different slopes and intercepts for each group. 
 
-* **<font color='red'>MODELNAME</font> ``<-`` lm(<font color='red'>y</font>~
-<font color='red'>x1+group</font>, data=<font color='red'>DATASETNAME</font>)**
+* **\textcolor{red}{MODELNAME} ``<-`` lm(\textcolor{red}{y}~
+\textcolor{red}{x1+group}, data=\textcolor{red}{DATASETNAME})**
 
     * Estimates an additive model with a quantitative and categorical 
     variable, providing different intercepts for each group.
     
-* **summary(<font color='red'>MODELNAME</font>)**
+* **summary(\textcolor{red}{MODELNAME})**
 
     * Provides parameter estimates, overall $F$-test, ***R***^2^,
     and adjusted ***R***^2^. 
     \index{\texttt{summary()}|textbf}
 
-* **par(mfrow=c(2, 2)); plot(<font color='red'>MODELNAME</font>)**
+* **par(mfrow=c(2, 2)); plot(\textcolor{red}{MODELNAME})**
 
     * Provides four regression diagnostic plots in one plot.
 
-* **confint(<font color='red'>MODELNAME</font>, level=0.95)**
+* **confint(\textcolor{red}{MODELNAME}, level=0.95)**
 
     * Provides 95% confidence intervals for the regression model coefficients.
     
     * Change ``level`` if you want other confidence levels.
     \index{\texttt{confint()}|textbf}
 
-* **plot(allEffects(<font color='red'>MODELNAME</font>))**
+* **plot(allEffects(\textcolor{red}{MODELNAME}))**
     
     * Requires the ``effects`` package. 
     
@@ -4718,36 +4611,36 @@ data=<font color='red'>DATASETNAME</font>, smooth=F)**
     interval for the mean. 
     \index{\texttt{allEffects()}|textbf}
     
-* **vif(<font color='red'>MODELNAME</font>)**
+* **vif(\textcolor{red}{MODELNAME})**
     
     * Requires the ``car`` package. 
     
     * Provides VIFs for an MLR model. Only use in additive models - not meaningful for terms involved in interactions.
     \index{\texttt{vif()}|textbf}    
     
-* **predict(<font color='red'>MODELNAME</font>, se.fit=T)**
+* **predict(\textcolor{red}{MODELNAME}, se.fit=T)**
 
     * Provides fitted values for all observed $x\text{'s}$ with SEs for the 
     mean.
     \index{\texttt{predict()}|textbf}
     
-* **predict(<font color='red'>MODELNAME</font>, newdata=tibble(<font color='red'>x1</font>
-= <font color='red'>X1\_NEW</font>, <font color='red'>x2</font> = <font color='red'>X2\_NEW</font>, 
-<font color='red'>...</font>, <font color='red'>xK</font> = <font color='red'>XK\_NEW</font>, 
+* **predict(\textcolor{red}{MODELNAME}, newdata=tibble(\textcolor{red}{x1}
+= \textcolor{red}{X1\_NEW}, \textcolor{red}{x2} = \textcolor{red}{X2\_NEW}, 
+\textcolor{red}{...}, \textcolor{red}{xK} = \textcolor{red}{XK\_NEW}, 
 interval="confidence")**
 
     * Provides fitted value for specific values of the quantitative predictors
     with CI for the mean. 
 
-* **predict(<font color='red'>MODELNAME</font>, newdata=tibble(<font color='red'>x1</font>
-= <font color='red'>X1\_NEW</font>, <font color='red'>x2</font> = <font color='red'>X2\_NEW</font>, 
-<font color='red'>...</font>, <font color='red'>xK</font> = <font color='red'>XK\_NEW</font>, 
+* **predict(\textcolor{red}{MODELNAME}, newdata=tibble(\textcolor{red}{x1}
+= \textcolor{red}{X1\_NEW}, \textcolor{red}{x2} = \textcolor{red}{X2\_NEW}, 
+\textcolor{red}{...}, \textcolor{red}{xK} = \textcolor{red}{XK\_NEW}, 
 interval="prediction")**
 
     * Provides fitted value for specific values of the quantitative predictors 
     with PI for a new observation. 
 
-* **Anova(<font color='red'>MODELNAME</font>)**
+* **Anova(\textcolor{red}{MODELNAME})**
 
     * Requires the ``car`` package.
 
@@ -4755,14 +4648,14 @@ interval="prediction")**
     variables are included in either the additive or interaction models. 
     \index{\texttt{Anova()}|textbf}
 
-* **AIC(<font color='red'>MODELNAME\_1</font>, <font color='red'>MODELNAME\_2</font>)**
+* **AIC(\textcolor{red}{MODELNAME\_1}, \textcolor{red}{MODELNAME\_2})**
 
     * Use to get AIC results for two candidate models called ``MODELNAME_1``
     and ``MODELNAME_2``.
     \index{\texttt{AIC()}|textbf}
     
 * **options(na.action = "na.fail")  
-dredge(<font color='red'>FULL\_MODELNAME</font>, rank="AIC")**
+dredge(\textcolor{red}{FULL\_MODELNAME}, rank="AIC")**
 
     * Requires the ``MuMIn`` package.
 

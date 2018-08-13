@@ -1,7 +1,7 @@
 --- 
-title: "A Second Semester Statistics Course with R"
+title: "Intermediate Statistics with R"
 author: "Mark C Greenwood"
-date: 'Version 5.0 -- Published Fall 2018'
+date: 'Version 1.0 -- Published Fall 2018'
 output:
   bookdown::pdf_book: 
     keep_tex: yes
@@ -26,9 +26,9 @@ header-includes:
 
 
 
-# Cover {-}
 
-![](frontMatter/titlepage_2018.png)<!-- -->
+
+
 
 <!-- \frontmatter -->
 
@@ -40,7 +40,7 @@ I have intentionally taken a first person perspective at times to be able to inc
 
 The development of this text was initially supported with funding from Montana State University’s Instructional Innovation Grant Program with the grant *Towards more active learning in STAT 217*. This book was born with the goal of having a targeted presentation of topics that we cover (and few that we don’t) that minimizes cost to students and incorporates the statistical software R (and the interface RStudio) from day one and every day after that. The software is a free, open-source platform and so is dynamically changing over time. This has necessitated frequent revisions of the text. 
 
-This is Version 5.0 of the book that contains small changes to correct a few errors and R code changes from version 4.0, adds an index of terms, and some new practice problems and case-study to the final chapter. Versions 4.0 and 5.0 of the text have been created by Greta Linse Peterson of Great Lines Writing and Consulting Services (https://www.greatlineswriting.com/) who ported the book into RStudio's bookdown format and tried to edit and improve the writing in the text. Any remaining errors are the responsibility of Mark Greenwood. The book was developed during Fall 2013 and the text has continually evolved since its creation. In recent versions, updates of discussions of hypothesis testing have been made to reflect the newest thinking in the statistics education community. As a field, we are transitioning from fixed alpha, null hypothesis significance testing, to graded interpretations of evidence available from p-values. This update tries to further refine the presentation of interpretations of these hypothesis testing results. And continues to evolve and respond to changes in the R software that impact the methods and results that are provided here.
+This is Version 1.0 of the book with this title but the fifth version of most of the content. This version contains small changes to correct a few errors and R code changes from the 2017 version, adds an index of terms, and some new practice problems and case-study to the final chapter. This text has been created by Greta Linse Peterson of Great Lines Writing and Consulting Services (https://www.greatlineswriting.com/) who ported the book into RStudio's bookdown format and tried to edit and improve the writing in the text. Any remaining errors are the responsibility of Mark Greenwood. The book was developed during Fall 2013 and the text has continually evolved since its creation. In recent versions, updates of discussions of hypothesis testing have been made to reflect the newest thinking in the statistics education community. As a field, we are transitioning from fixed alpha, null hypothesis significance testing, to graded interpretations of evidence available from p-values. This update tries to further refine the presentation of interpretations of these hypothesis testing results. And continues to evolve and respond to changes in the R software that impact the methods and results that are provided here.
 
 \newpage
 
@@ -51,8 +51,10 @@ http://www.math.montana.edu/courses/s217/documents/_book/.
 
 Enjoy your journey from introductory to intermediate statistics!
  
-<img src="frontMatter/creative_commons_license.png" width="44" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=1.22in]{frontMatter/creative_commons_license} \end{center}
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
 
 

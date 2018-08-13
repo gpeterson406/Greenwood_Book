@@ -860,7 +860,7 @@ onset using more sophisticated statistical models. The main point here is to
 not accounting for the number of tests performed**^[The simplest adjustment for 
 multiple testing is using what is called a Bonferroni adjustment, 
 where you multiply all the p-values by the number of tests performed. It
-controls the chances of at least one error to be same as your Type I error rate
+controls the chances of at least one error to be the same as your Type I error rate
 for one test.].\index{type I error} 
 
 \indent Along with the confidence interval, we can also plot the estimated model 
@@ -1031,6 +1031,7 @@ for (b in (1:B)){
   Tstar[b] <- lm(meanmax~shuffle(Year), data=bozemantemps)$coef[2]
 }
 pdata(abs(Tstar), abs(Tobs), lower.tail=F)
+par(mfrow=c(1,2))
 hist(Tstar, xlim=c(-1,1)*Tobs)
 abline(v=c(-1,1)*Tobs, col="red", lwd=3)
 plot(density(Tstar), main="Density curve of Tstar", xlim=c(-1,1)*Tobs)
@@ -1088,6 +1089,7 @@ for (b in (1:B)){
 }
 quantiles <- qdata(Tstar, c(0.025,0.975))
 quantiles
+par(mfrow=c(1,2))
 hist(Tstar, labels=T, ylim=c(0,450))
 abline(v=Tobs, col="red", lwd=2)
 abline(v=quantiles$quantile, col="blue", lwd=3)

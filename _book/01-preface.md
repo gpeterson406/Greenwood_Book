@@ -82,10 +82,9 @@ types of conclusions that are appropriate based on the design of the study.
 
 (ref:fig1-1) Flow chart of methods.
 
-<div class="figure">
-<img src="chapter1_files/image002.png" alt="(ref:fig1-1)" width="661" />
-<p class="caption">(\#fig:Figure1-1)(ref:fig1-1)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=18.36in]{chapter1_files/image002} \caption{(ref:fig1-1)}(\#fig:Figure1-1)
+\end{figure}
 
 \indent We will be spending most of the semester working on methods for quantitative
 response variables (the
@@ -302,10 +301,9 @@ plots that you make and requests for "Help" on specific functions.
 
 (ref:fig1-2) Initial RStudio layout.
 
-<div class="figure">
-<img src="chapter1_files/fig1.2.png" alt="(ref:fig1-2)" width="492" />
-<p class="caption">(\#fig:Figure1-2)(ref:fig1-2)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=13.67in]{chapter1_files/fig1.2} \caption{(ref:fig1-2)}(\#fig:Figure1-2)
+\end{figure}
 
 \indent As a first interaction with R we can use it as a calculator. To do this, click near the command prompt
 (``>``) in the lower left "console" panel, type 3+4, and then hit enter. It
@@ -501,10 +499,9 @@ code (``View(treadmill``)).
 
 (ref:fig1-3) RStudio with initial data set loaded.
 
-<div class="figure">
-<img src="chapter1_files/fig1.3.png" alt="(ref:fig1-3)" width="484" />
-<p class="caption">(\#fig:Figure1-3)(ref:fig1-3)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=13.44in]{chapter1_files/fig1.3} \caption{(ref:fig1-3)}(\#fig:Figure1-3)
+\end{figure}
 
 \indent Just directly typing (or using) a line of code like this is actually the 
 other way that we can read in
@@ -592,10 +589,9 @@ section of code using the "Run" button.
 
 (ref:fig1-4) RStudio with highlighted code run.
 
-<div class="figure">
-<img src="chapter1_files/fig1.4.png" alt="(ref:fig1-4)" width="1368" />
-<p class="caption">(\#fig:Figure1-4)(ref:fig1-4)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=38.01in]{chapter1_files/fig1.4} \caption{(ref:fig1-4)}(\#fig:Figure1-4)
+\end{figure}
 
 ##Basic summary statistics, histograms, and boxplots using R {#section1-3}
 
@@ -682,10 +678,7 @@ Figure \@ref(fig:Figure1-5).
 
 (ref:fig1-5) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study, bar heights are counts.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-5-1.png" alt="(ref:fig1-5)" width="480" />
-<p class="caption">(\#fig:Figure1-5)(ref:fig1-5)</p>
-</div>
+![(\#fig:Figure1-5)(ref:fig1-5)](01-preface_files/figure-latex/Figure1-5-1.pdf) 
 
 
 \indent You can save this plot by clicking on the **Export** button found above 
@@ -699,10 +692,9 @@ processing documents.
 
 (ref:fig1-6) RStudio while in the process of copying the histogram.
 
-<div class="figure">
-<img src="chapter1_files/image010.png" alt="(ref:fig1-6)" width="960" />
-<p class="caption">(\#fig:Figure1-6)(ref:fig1-6)</p>
-</div>
+\begin{figure}[ht]
+\includegraphics[width=26.67in]{chapter1_files/image010} \caption{(ref:fig1-6)}(\#fig:Figure1-6)
+\end{figure}
 
 \indent The function ``hist`` defaults into providing a histogram on the ***frequency***
 (count) scale. In most R functions, there are the default options that will 
@@ -717,10 +709,7 @@ into each bar. Specifically, we can turn the ``labels`` option "on" by making it
 
 (ref:fig1-7) Histogram of Run Times with counts in bars labeled.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-7-1.png" alt="(ref:fig1-7)" width="384" />
-<p class="caption">(\#fig:Figure1-7)(ref:fig1-7)</p>
-</div>
+![(\#fig:Figure1-7)(ref:fig1-7)](01-preface_files/figure-latex/Figure1-7-1.pdf) 
 
 
 \indent Based on this histogram, it does not appear that there any outliers in the responses
@@ -736,7 +725,7 @@ shape of the distribution as it displays the 5-number summary and will also indi
 observations that are "far" above the middle of the observations. 
 \index{boxplot}
 R's ``boxplot`` function uses the standard rule to indicate an observation as a
-potential outlier*** if it falls more than 1.5 times the ***IQR*** 
+***potential outlier*** if it falls more than 1.5 times the ***IQR*** 
 (Inter-Quartile Range, calculated as Q3 -- Q1) below Q1 or above Q3. 
 \index{outlier}
 The potential outliers 
@@ -771,10 +760,7 @@ but worth noting.
 
 (ref:fig1-8) Boxplot of 1.5 mile Run Times.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-8-1.png" alt="(ref:fig1-8)" width="384" />
-<p class="caption">(\#fig:Figure1-8)(ref:fig1-8)</p>
-</div>
+![(\#fig:Figure1-8)(ref:fig1-8)](01-preface_files/figure-latex/Figure1-8-1.pdf) 
 
 ```r
 > boxplot(treadmill$RunTime)
@@ -790,10 +776,7 @@ be assigned into the options ``ylab`` (for y-axis) or ``main``
 
 (ref:fig1-9) Boxplot of Run Times with improved labels.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-9-1.png" alt="(ref:fig1-9)" width="384" />
-<p class="caption">(\#fig:Figure1-9)(ref:fig1-9)</p>
-</div>
+![(\#fig:Figure1-9)(ref:fig1-9)](01-preface_files/figure-latex/Figure1-9-1.pdf) 
 
 ```r
 > boxplot(treadmill$RunTime, ylab="1.5 Mile Run Time (minutes)", 
@@ -889,7 +872,7 @@ required. You can use this as a guide to finding the function names and some
 hints about options that will help you to get the code to work. You can also
 revisit the worked examples using each of the functions. 
 
-* <font color='red'>FILENAME</font> ``<-`` **read_csv(**<font color='red'>"path to csv file/FILENAME.csv"</font>**)**
+* \textcolor{red}{FILENAME} ``<-`` **read_csv(**\textcolor{red}{"path to csv file/FILENAME.csv"}**)**
 
     * Can be generated using "Import Dataset" button or by modifying this text. 
     
@@ -898,32 +881,32 @@ revisit the worked examples using each of the functions.
     
     * Imports a text file saved in the CSV format.
 
-* <font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>
+* \textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}
 
     * To access a particular variable in a tibble called DATASETNAME, use 
     a $ and then the VARIABLENAME. 
 
-* **head(**<font color='red'>DATASETNAME</font>**)**
+* **head(**\textcolor{red}{DATASETNAME}**)**
 
     * Provides a list of the first few rows of the data set for all the 
     variables in it. \index{\texttt{head()}|textbf}
 
-* **tail(**<font color='red'>DATASETNAME</font>**)**
+* **tail(**\textcolor{red}{DATASETNAME}**)**
 
     * Provides a list of the last few rows of the data set for all the 
     variables in it. \index{\texttt{tail()}|textbf}
     
-* **mean(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **mean(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Calculates the mean of the observations in a variable. 
     \index{\texttt{mean()}|textbf}
 
-* **sd(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **sd(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Calculates the standard deviation of the observations in a variable. 
     \index{\texttt{sd()}|textbf}
 
-* **favstats(**<font color='red'>DATASETNAME</font>$<font color='red'>VARIABLENAME</font>**)** 
+* **favstats(**\textcolor{red}{DATASETNAME}$\textcolor{red}{VARIABLENAME}**)** 
 
     * Requires the ``mosaic`` package to be loaded (``require(mosaic``) after
     installing the package). 
@@ -931,11 +914,11 @@ revisit the worked examples using each of the functions.
     * Provides a suite of numerical summaries of the observations in a variable.
     \index{\texttt{favstats()}|textbf}
 
-* **hist(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **hist(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Makes a histogram. \index{\texttt{hist()}|textbf}
     
-* **boxplot(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **boxplot(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
 

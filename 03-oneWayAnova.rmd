@@ -770,11 +770,11 @@ that ``Tobs`` will always be positive so no absolute values are required here.
 \index{\texttt{pdata()}}
 
 ```{r}
-pdata(Tstar, Tobs, lower.tail=F)
+pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 ```{r echo=F}
-x <- pdata(Tstar, Tobs, lower.tail=F)
+x <- pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 This provides a permutation-based p-value of `r x` and suggests marginal evidence
@@ -951,7 +951,7 @@ for (b in (1:B)){
   Tstar[b] <- anova(lm(Years~shuffle(Attr), data=MockJury))[1,4]
 }
 
-pdata(Tstar, Tobs, lower.tail=F)
+pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 ```{r eval=F}
@@ -974,7 +974,7 @@ abline(v=Tobs, col="red", lwd=3)
 ```
 
 ```{r echo=F}
-perm_pval <- pdata(Tstar, Tobs, lower.tail=F)
+perm_pval <- pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 The permutation-based p-value is `r perm_pval` which, again, matches the other 
@@ -1550,7 +1550,7 @@ start. We will use a 5% significance level.
     for (b in (1:B)){
       Tstar[b] <- anova(lm(len~shuffle(Treat), data=ToothGrowth))[1,4]
     }
-    pdata(Tstar, Tobs, lower.tail=F)
+    pdata(Tstar, Tobs, lower.tail=F)[[1]]
     hist(Tstar, xlim=c(0,Tobs+3))
     abline(v=Tobs, col="red", lwd=3)
     plot(density(Tstar), xlim=c(0,Tobs+3), main="Density curve of Tstar")

@@ -963,7 +963,7 @@ for (b in (1:B)){
   Tstar[b] <- chisq.test(tally(~shuffle(Treatment)+Improved,
                                data=Arthritis))$statistic
 }
-pdata(Tstar, Tobs, lower.tail=F)
+pdata(Tstar, Tobs, lower.tail=F)[[1]]
 hist(Tstar, xlim=c(0,Tobs+1))
 abline(v=Tobs, col="red",lwd=3)
 plot(density(Tstar), main="Density curve of Tstar",
@@ -972,7 +972,7 @@ abline(v=Tobs, col="red", lwd=3)
 ```
 
 ```{r echo=F}
-pval <- pdata(Tstar, Tobs, lower.tail=F)
+pval <- pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 For an observed $X^2$ statistic of 13.055, four out of 1,000 permutation
@@ -1428,7 +1428,7 @@ associational, depending on how the subjects ended up in the groups.].
       Tstar[b] <- chisq.test(tally(~shuffle(PARTY)+VOTEF, data=election2,
                                    margins=F))$statistic
     }
-    pdata(Tstar, Tobs, lower.tail=F)
+    pdata(Tstar, Tobs, lower.tail=F)[[1]]
     hist(Tstar)
     abline(v=Tobs, col="red", lwd=3)
     plot(density(Tstar), main="Density curve of Tstar", lwd=2)
@@ -1716,7 +1716,7 @@ single sample was taken from the population):
       Tstar[b] <- chisq.test(tally(~shuffle(liar2)+copier2,
                                    data=cheating))$statistic
     }
-    pdata(Tstar, Tobs, lower.tail=F)
+    pdata(Tstar, Tobs, lower.tail=F)[[1]]
     hist(Tstar)
     abline(v=Tobs, col="red", lwd=3)
     plot(density(Tstar), main="Density curve of Tstar", lwd=2)
@@ -1724,7 +1724,7 @@ single sample was taken from the population):
     ```
 
     ```{r echo=F}
-    pval <- pdata(Tstar, Tobs, lower.tail=F)
+    pval <- pdata(Tstar, Tobs, lower.tail=F)[[1]]
     ```
     
     * There were `r pval*10000` of $B$=10,000 permuted data 

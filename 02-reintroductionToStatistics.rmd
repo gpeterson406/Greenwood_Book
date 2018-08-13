@@ -1113,11 +1113,11 @@ of interest).
 
 
 ```{r}
-pdata(Tstar, Tobs, lower.tail=F)
+pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 ```{r echo=F}
-pval <- pdata(Tstar, Tobs, lower.tail=F)
+pval <- pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 The proportion of `r pval` tells us that `r pval*1000` of the 1,000 permuted results 
@@ -1162,11 +1162,11 @@ and ``lower.tail=T`` provides this result:
 \index{\texttt{pdata()}}
 
 ```{r}
-pdata(Tstar, -Tobs, lower.tail=T)
+pdata(Tstar, -Tobs, lower.tail=T)[[1]]
 ```
 
 ```{r echo=F}
-pval_2 <- pdata(Tstar, -Tobs, lower.tail=T)
+pval_2 <- pdata(Tstar, -Tobs, lower.tail=T)[[1]]
 ```
 
 So the p-value to test our null hypothesis of no difference in the true means 
@@ -1214,7 +1214,7 @@ of code:
 \index{\texttt{pdata()}}
 
 ```{r}
-pdata(abs(Tstar), abs(Tobs), lower.tail=F)
+pdata(abs(Tstar), abs(Tobs), lower.tail=F)[[1]]
 ```
 
 We will encourage you to think through what might constitute strong evidence 
@@ -1733,7 +1733,7 @@ for (b in (1:B)){
 ```
 
 ```{r}
-pdata(abs(Tstar), abs(Tobs), lower.tail=F)
+pdata(abs(Tstar), abs(Tobs), lower.tail=F)[[1]]
 ```
 
 ```{r eval=F}
@@ -2010,7 +2010,7 @@ Tstar <- matrix(NA, nrow=B)
 for (b in (1:B)){
   Tstar[b] <- t.test(GPA~shuffle(Sex), data=s217, var.equal=T)$statistic
 }
-perm_pval = pdata(abs(Tstar),abs(Tobs),lower.tail=F)
+perm_pval = pdata(abs(Tstar),abs(Tobs),lower.tail=F)[[1]]
 ```
 
 \indent So the test statistic was observed to be $t=2.69$ and it hopefully 
@@ -2029,7 +2029,7 @@ Tstar <- matrix(NA, nrow=B)
 for (b in (1:B)){
   Tstar[b] <- t.test(GPA~shuffle(Sex), data=s217, var.equal=T)$statistic
 }
-pdata(abs(Tstar), abs(Tobs), lower.tail=F)
+pdata(abs(Tstar), abs(Tobs), lower.tail=F)[[1]]
 ```
 
 (ref:fig2-16) Histogram and density curve of permutation distribution of test
@@ -2759,7 +2759,7 @@ for (b in (1:B)){
     statistic using the ``shuffle`` function and keep track of the results in 
     ``Tstar`` 
     
-* **pdata(Tstar, abs(`r colFmt("Tobs","red")`, lower.tail=F)**
+* **pdata(Tstar, abs(`r colFmt("Tobs","red")`, lower.tail=F)[[1]]**
 
     * Finds the proportion of the permuted test statistics in Tstar that are 
     less than -|Tobs| or greater than |Tobs|, useful for finding the two-sided 

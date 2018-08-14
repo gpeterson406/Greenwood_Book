@@ -1017,7 +1017,6 @@ set.seed(3456)
 ```{r}
 Tobs <- lm(meanmax~Year, data=bozemantemps)$coef[2]
 Tobs
-par(mfrow=c(1,2))
 B <- 1000
 Tstar <- matrix(NA, nrow=B)
 ```
@@ -1030,7 +1029,7 @@ $\pm b_1=0.56$ based on the observed estimated slope.
 for (b in (1:B)){
   Tstar[b] <- lm(meanmax~shuffle(Year), data=bozemantemps)$coef[2]
 }
-pdata(abs(Tstar), abs(Tobs), lower.tail=F)
+pdata(abs(Tstar), abs(Tobs), lower.tail=F)[[1]]
 par(mfrow=c(1,2))
 hist(Tstar, xlim=c(-1,1)*Tobs)
 abline(v=c(-1,1)*Tobs, col="red", lwd=3)
@@ -1081,7 +1080,6 @@ confidence interval and observed slope of 0.52.
 ```{r Figure7-10,fig.cap="(ref:fig7-10)",fig.height=5,fig.width=10}
 Tobs <- lm(meanmax~Year, data=bozemantemps)$coef[2]
 Tobs
-par(mfrow=c(1,2))
 B <- 1000
 Tstar <- matrix(NA, nrow=B)
 for (b in (1:B)){
@@ -1163,13 +1161,21 @@ plot(meanmaxC~Year2,data=bozemantemps,xlab="Years since 1901",
 abline(temp3$coefficients,lwd=2,col="steelblue")
 ```
 
+\vspace{11pt}
+
 ```{r}
 bozemantemps$meanmaxC <- (bozemantemps$meanmax - 32)*(5/9)
 temp3 <- lm(meanmaxC~Year2, data=bozemantemps)
+```
+
+\vspace{11pt}
+
+```{r}
 summary(temp1)
 summary(temp3)
 ```
 
+\newpage
 
 \indent `r textItalicBold("Nonlinear transformation functions")`
 are where we apply something more complicated than this
@@ -1187,6 +1193,16 @@ with $\boldsymbol{\lambda}$ being the power of the transformation of the respons
 variable and $\lambda = 0$ implying a log-transformation. Except for $\lambda = 1$, the
 transformations are all nonlinear functions of $y$.
 
+(ref:fig7-12) Scatterplots of Hectares (a) and log-Hectares 
+(b) vs Temperature.
+
+```{r Figure7-12,fig.cap="(ref:fig7-12)",fig.height=5,fig.width=10,echo=F}
+par(mfrow=c(1,2))
+plot(hectares~Temperature, data=mtfires, main="(a)",
+     ylab="Hectares", pch=16)
+plot(loghectares~Temperature, data=mtfires, main="(b)",
+     ylab="log-Hectares", pch=16)
+```
 
 (ref:tab7-1) Ladder of powers of transformations that are often used in statistical 
 modeling.
@@ -1228,10 +1244,9 @@ data for Montana. Figure \@ref(fig:Figure7-12) compares the
 relationship between these variables on the original hectares scale and the
 log-hectares scale. 
 
-(ref:fig7-12) Scatterplots of Hectares (a) and log-Hectares 
-(b) vs Temperature.
+\newpage
 
-```{r Figure7-12,fig.cap="(ref:fig7-12)",fig.height=5,fig.width=10}
+```{r eval=F}
 par(mfrow=c(1,2))
 plot(hectares~Temperature, data=mtfires, main="(a)",
      ylab="Hectares", pch=16)
@@ -1447,16 +1462,6 @@ explanatory variable, or both.
 
 **Scenario 1: log(y) vs x model:**
 
-```{r Figure7-18,fig.cap="(ref:fig7-18)",echo=F,fig.height=5,fig.width=10}
-par(mfrow=c(1,2))
-plot(loghectares~Temperature,data=mtfires, main="(a)",ylab="log-Hectares",pch=16,col="salmon")
-firem<-lm(loghectares~Temperature,data=mtfires)
-abline(lm(loghectares~Temperature,data=mtfires),lwd=2,col="darkred")
-plot(hectares~Temperature,data=mtfires, main="(b)",ylab="Hectares",pch=16,col="salmon")
-t1<-seq(from=53,to=60,length.out=30)
-lines(exp(firem$coef[1]+firem$coef[2]*t1)~t1,lwd=2,col="darkred")
-```
-
 \indent First consider the $\log(y) \sim x$ situations where the estimated model
 is of the form $\widehat{\log(y)} = b_0 + b_1x$. When only the response is
 *log*-transformed, some people call this a ***semi-log model***.
@@ -1470,7 +1475,15 @@ transformed-variables models, we need to try to "reverse" our transformation.
 If we exponentiate^[Note ``exp(x)`` is the same as $e^{(x)}$ but easier
 to read in-line and ``exp()`` is the R function name to execute this calculation.] both sides of $\log(y)=b_0 + b_1x$, we get:
 
-\newpage
+```{r Figure7-18,fig.cap="(ref:fig7-18)",echo=F,fig.height=5,fig.width=10}
+par(mfrow=c(1,2))
+plot(loghectares~Temperature,data=mtfires, main="(a)",ylab="log-Hectares",pch=16,col="salmon")
+firem<-lm(loghectares~Temperature,data=mtfires)
+abline(lm(loghectares~Temperature,data=mtfires),lwd=2,col="darkred")
+plot(hectares~Temperature,data=mtfires, main="(b)",ylab="Hectares",pch=16,col="salmon")
+t1<-seq(from=53,to=60,length.out=30)
+lines(exp(firem$coef[1]+firem$coef[2]*t1)~t1,lwd=2,col="darkred")
+```
 
 * $\exp(\log(y))=\exp(b_0 + b_1x)$, *which is*
 
@@ -1573,23 +1586,6 @@ temperature data.
 
 **Scenario 2: y vs log(x) model:**
 
-(ref:fig7-19) Plot of the observations and estimated SLR model 
-(mortality~ log(GDP)) (top) and implied model (bottom) for the 
-infant mortality data.
-
-```{r Figure7-19,fig.cap="(ref:fig7-19)",echo=F,fig.height=5,fig.width=10}
-ID1<-lm(infantMortality~log(ppgdp),data=UN)
-par(mfrow=c(1,2))
-
-plot(infantMortality~log(ppgdp),data=UN,pch=16,col="coral",xlab="log-GDP",ylab="Infant deaths/1000 births",main="(a) Infant Mortality vs log-GDP")
-abline(ID1$coef,lwd=2,col="slateblue4")
-
-plot(infantMortality~ppgdp,data=UN,pch=16,col="coral",xlab="GDP",ylab="Infant deaths/1000 births",main="(b) Infant Mortality vs GDP")
-
-ppgdp1<-seq(from=30,to=42416,length.out=100)
-lines(ID1$coef[1]+ID1$coef[2]*log(ppgdp1)~ppgdp1,lwd=2,col="slateblue4")
-```
-
 \indent When only the explanatory variable is log-transformed, it has a 
 different sort of
 impact on the regression model interpretation.
@@ -1628,6 +1624,23 @@ doubling of $x$, we expect a $b_1\log(2)$ change in the mean of $y$.
 Note that both interpretations are for the mean of the $y\text{'s}$
 since we haven't changed the $y\sim$ part of the model. 
 
+(ref:fig7-19) Plot of the observations and estimated SLR model 
+(mortality~ log(GDP)) (top) and implied model (bottom) for the 
+infant mortality data.
+
+```{r Figure7-19,fig.cap="(ref:fig7-19)",echo=F,fig.height=5,fig.width=10}
+ID1<-lm(infantMortality~log(ppgdp),data=UN)
+par(mfrow=c(1,2))
+
+plot(infantMortality~log(ppgdp),data=UN,pch=16,col="coral",xlab="log-GDP",ylab="Infant deaths/1000 births",main="(a) Infant Mortality vs log-GDP")
+abline(ID1$coef,lwd=2,col="slateblue4")
+
+plot(infantMortality~ppgdp,data=UN,pch=16,col="coral",xlab="GDP",ylab="Infant deaths/1000 births",main="(b) Infant Mortality vs GDP")
+
+ppgdp1<-seq(from=30,to=42416,length.out=100)
+lines(ID1$coef[1]+ID1$coef[2]*log(ppgdp1)~ppgdp1,lwd=2,col="slateblue4")
+```
+
 \indent While it is not a perfect model (no model is), let's consider the model
 for *infant mortality* $\sim$ *log(GDP)* in order to practice the 
 interpretation using this type of model. This model was estimated to be
@@ -1643,6 +1656,8 @@ GDP. Both versions of the model are displayed in Figure \@ref(fig:Figure7-19)
 -- one on the scale
 the SLR model was fit (panel a) and the other on the original x-scale (panel b)
 that matches these last interpretations. 
+
+\vspace{11pt}
 
 ```{r}
 ID1 <- lm(infantMortality~log(ppgdp), data=UN)
@@ -1674,6 +1689,28 @@ normality, and curvature issues.
 
 **Scenario 3: log(y)~log(x) model**
 
+\indent A final model combines log-transformations of both $x$ and $y$, combining the interpretations used in the previous two situations. This model is called the
+***log-log model*** and in some fields is also called the ***power law model***.
+\index{model!log-log}
+\index{model!power law|see {model, log-log}}
+The power-law model is usually written as $y = \beta_0x^{\beta_1}+\varepsilon$,
+where $y$ is thought to be proportional to $x$ raised to an estimated power
+of $\beta_1$ (linear if $\beta_1=1$ and quadratic if $\beta_1=2$). It is 
+one of the models that has been used in Geomorphology to model the shape of
+glaciated valley elevation profiles
+(that classic U-shape that comes with glacier-eroded mountain valleys). If you
+ignore the error term, it is possible to estimate the power-law model using our
+SLR approach. Consider the log-transformation of both sides of this equation
+starting with the power-law version:
+
+* $\log(y) = \log(\beta_0x^{\beta_1})$,
+
+* $\log(y) = \log(\beta_0) + \log(x^{\beta_1}).$ &nbsp; *Based on the rules
+for logs:* $\log(ab) = \log(a) + \log(b)$.
+
+* $\log(y) = \log(\beta_0) + \beta_1\log(x).$ &nbsp; *Based on the rules
+for logs:* $\log(x^b) = b\log(x)$.
+
 (ref:fig7-21) Plot of the observations and estimated SLR model 
 log(mortality) $\sim$ log(GDP) (left) and implied model (right) for the infant
 mortality data.
@@ -1689,30 +1726,6 @@ plot(infantMortality~ppgdp,data=UN,pch=16,col="coral",xlab="GDP",ylab="Infant de
 ppgdp1<-seq(from=30,to=42416,length.out=100)
 lines(exp(ID2$coef[1]+ID2$coef[2]*log(ppgdp1))~ppgdp1,lwd=2,col="slateblue3")
 ```
-
-\indent A final model combines log-transformations of both $x$ and $y$, combining the interpretations used in the previous two situations. This model is called the
-***log-log model*** and in some fields is also called the ***power law model***.
-\index{model!log-log}
-\index{model!power law|see {model, log-log}}
-The power-law model is usually written as $y = \beta_0x^{\beta_1}+\varepsilon$,
-where $y$ is thought to be proportional to $x$ raised to an estimated power
-of $\beta_1$ (linear if $\beta_1=1$ and quadratic if $\beta_1=2$). It is 
-one of the models that has been used in Geomorphology to model the shape of
-glaciated valley elevation profiles
-(that classic U-shape that comes with glacier-eroded mountain valleys). If you
-ignore the error term, it is possible to estimate the power-law model using our
-SLR approach. Consider the log-transformation of both sides of this equation
-starting with the power-law version:
-
-\newpage
-
-* $\log(y) = \log(\beta_0x^{\beta_1})$,
-
-* $\log(y) = \log(\beta_0) + \log(x^{\beta_1}).$ &nbsp; *Based on the rules
-for logs:* $\log(ab) = \log(a) + \log(b)$.
-
-* $\log(y) = \log(\beta_0) + \beta_1\log(x).$ &nbsp; *Based on the rules
-for logs:* $\log(x^b) = b\log(x)$.
 
 \indent So other than $\log(\beta_0)$ in the model, this looks just like our 
 regular SLR model with $x$
@@ -1764,7 +1777,6 @@ captures the severe nonlinearity in the relationship between the two variables.
 
 ```{r Figure7-22,fig.cap="(ref:fig7-22)",echo=F,fig.height=5,fig.width=10}
 ID2 <- lm(log(infantMortality)~log(ppgdp), data=UN)
-summary(ID2)
 par(mfrow=c(2,2))
 plot(ID2)
 ```
@@ -1803,6 +1815,7 @@ that the model assumptions have been met. In fact, the methods in Section \@ref(
 are some of the most sensitive results to violations of the assumptions that we
 will explore.
 
+\newpage
 
 \sectionmark{Confidence intervals and prediction intervals}
 
@@ -2013,18 +2026,15 @@ Now we can call the ``predict`` function at the values stored in
 ``beerf`` to get the CIs across that range of *Beers* values:
 
 ```{r}
-BBCI <- as.tibble(predict(m1, newdata=tibble(Beers=beerf),
-                           interval="confidence"))
+BBCI <- as.tibble(predict(m1, newdata=tibble(Beers=beerf), interval="confidence"))
 head(BBCI)
 ```
 
-\newpage
 
 And the PIs:
 
 ```{r}
-BBPI <- as.tibble(predict(m1, newdata=tibble(Beers=beerf),
-                           interval="prediction"))
+BBPI <- as.tibble(predict(m1, newdata=tibble(Beers=beerf), interval="prediction"))
 head(BBPI)
 ```
 
@@ -2106,8 +2116,23 @@ data set ended, 2015, and in 2050:
 
 ```{r}
 predict(temp1, newdata=tibble(Year=2015), interval="confidence")
+```
+
+\vspace{11pt}
+
+```{r}
 predict(temp1, newdata=tibble(Year=2015), interval="prediction")
+```
+
+\vspace{11pt}
+
+```{r}
 predict(temp1, newdata=tibble(Year=2050), interval="confidence")
+```
+
+\vspace{11pt}
+
+```{r}
 predict(temp1, newdata=tibble(Year=2050), interval="prediction")
 ```
 
@@ -2124,7 +2149,7 @@ persists. It is also
 easy to criticize the use of this model for 2050 because of its extreme amount
 of extrapolation. 
 
-
+\newpage
 
 ## Chapter summary {#section7-8}
 

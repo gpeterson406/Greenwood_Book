@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="Intermediate Statistics with R">
+
+<title>Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Beanplots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Chapter summary</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Summary of important R code</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for Prisoner Rating data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient (Optional section)</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomizing inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section3-3" class="section level2">
+<h2><span class="header-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</h2>
+<p>The previous discussion showed two ways of parameterizing models for the One-Way ANOVA model and getting estimates from output but still hasn’t addressed how to assess evidence related to whether the observed differences in the means among the groups is “real”. In this section, we develop what is called the <strong><em>ANOVA F-test</em></strong>  that provides a method of aggregating the differences among the means of 2 or more groups and testing our null hypothesis of no difference in the means vs the alternative. In order to develop the test, some additional notation is needed. The sample size in each group is denoted <span class="math inline">\(n_j\)</span> and the total sample size is <span class="math inline">\(\boldsymbol{N=\Sigma n_j = n_1 + n_2 + \ldots + n_J}\)</span> where <span class="math inline">\(\Sigma\)</span> (capital sigma) means “add up over whatever follows”. An estimated <strong><em>residual</em></strong> (<span class="math inline">\(e_{ij}\)</span>) is the difference between an observation, <span class="math inline">\(y_{ij}\)</span>, and the model estimate, <span class="math inline">\(\hat{y}_{ij} = \hat{\mu}_j\)</span>, for that observation, <span class="math inline">\(y_{ij}-\hat{y}_{ij} = e_{ij}\)</span>. It is basically what is left over that the mean part of the model (<span class="math inline">\(\hat{\mu}_{j}\)</span>) does not explain. It is also a window into how “good” the model might be because it reflects what the model was unable to explain.</p>
+<p>Consider the four different fake results for a situation with four groups (<span class="math inline">\(J=4\)</span>) displayed in Figure <a href="3-3-section3-3.html#fig:Figure3-3">2.25</a>. Which of the different results shows the most and least evidence of differences in the means? In trying to answer this, think about both how different the means are (obviously important) and how variable the results are around the mean. These situations were created to have the same means in Scenarios 1 and 2 as well as matching means in Scenarios 3 and 4. The variability around the means matches by shading (lighter or darker). In Scenarios 1 and 2, the differences in the means is smaller than in the other two results. But Scenario 2 should provide more evidence of what little difference in present than Scenario 1 because it has less variability around the means. The best situation for finding group differences here is Scenario 4 since it has the largest difference in the means and the least variability around those means. Our test statistic somehow needs to allow a comparison of the variability in the means to the overall variability to help us get results that reflect that Scenario 4 has the strongest evidence of a difference and Scenario 1 would have the least.</p>
+
+<div class="figure"><span id="fig:Figure3-3"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-3-1.png" alt="Demonstration of different amounts of difference in means relative to variability. Scenarios have same means in rows and same variance around means in columns of plot." width="576" />
+<p class="caption">
+Figure 2.25: Demonstration of different amounts of difference in means relative to variability. Scenarios have same means in rows and same variance around means in columns of plot.
+</p>
+</div>
+<p>The statistic that allows the comparison of relative amounts of variation is called the <strong><em>ANOVA F-statistic</em></strong>. It is developed using <strong><em>sums of squares</em></strong>  which are measures of total variation like those that are used in the numerator of the standard deviation (<span class="math inline">\(\Sigma_1^N(y_i-\bar{y})^2\)</span>) that took all the observations, subtracted the mean, squared the differences, and then added up the results over all the observations to generate a measure of total variability. With multiple groups, we will focus on decomposing that total variability (<strong><em>Total Sums of Squares</em></strong>) into variability among the means (we’ll call this <strong><em>Explanatory Variable</em></strong> <span class="math inline">\(\mathbf{A}\textbf{&#39;s}\)</span> <strong><em>Sums of Squares</em></strong>) and variability in the residuals  or errors (<strong><em>Error Sums of Squares</em></strong>). We define each of these quantities in the One-Way ANOVA situation as follows:</p>
+<ul>
+<li><p><span class="math inline">\(\textbf{SS}_{\textbf{Total}} =\)</span> Total Sums of Squares <span class="math inline">\(= \Sigma^J_{j=1}\Sigma^{n_j}_{i=1}(y_{ij}-\bar{\bar{y}})^2\)</span></p>
+<ul>
+<li><p>This is the total variation in the responses around the overall or <strong><em>grand mean</em></strong> (<span class="math inline">\(\bar{\bar{y}}\)</span>, the estimated mean for all the observations and available from the mean-only model).</p></li>
+<li><p>By summing over all <span class="math inline">\(n_j\)</span> observations in each group, <span class="math inline">\(\Sigma^{n_j}_{i=1}(\ )\)</span>, and then adding those results up across the groups, <span class="math inline">\(\Sigma^J_{j=1}(\ )\)</span>, we accumulate the variation across all <span class="math inline">\(N\)</span> observations.</p></li>
+<li><p>Note: this is the residual variation if the null model is used, so there is no further decomposition possible for that model.</p></li>
+<li><p>This is also equivalent to the numerator of the sample variance, <span class="math inline">\(\Sigma^{N}_{1}(y_{i}-\bar{y})^2\)</span> which is what you get when you ignore the information on the potential differences in the groups.</p></li>
+</ul></li>
+<li><p><span class="math inline">\(\textbf{SS}_{\textbf{A}} =\)</span> Explanatory Variable <em>A</em>’s Sums of Squares <span class="math inline">\(=\Sigma^J_{j=1}\Sigma^{n_j}_{i=1}(\bar{y}_{j}-\bar{\bar{y}})^2 =\Sigma^J_{j=1}n_j(\bar{y}_{j}-\bar{\bar{y}})^2\)</span></p>
+<ul>
+<li><p>This is the variation in the group means around the grand mean based on the explanatory variable <span class="math inline">\(A\)</span>.</p></li>
+<li><p>Also called sums of squares for the treatment, regression, or model.</p></li>
+</ul></li>
+<li><p><span class="math inline">\(\textbf{SS}_\textbf{E} =\)</span> Error (Residual) Sums of Squares <span class="math inline">\(=\Sigma^J_{j=1}\Sigma^{n_j}_{i=1}(y_{ij}-\bar{y}_j)^2 =\Sigma^J_{j=1}\Sigma^{n_j}_{i=1}(e_{ij})^2\)</span></p>
+<ul>
+<li><p>This is the variation in the responses around the group means.</p></li>
+<li><p>Also called the sums of squares for the residuals, with the second version of the formula showing that it is just the squared residuals added up across all the observations.</p></li>
+</ul></li>
+</ul>
+<p>The possibly surprising result given the mass of notation just presented is that the total sums of squares is <strong>ALWAYS</strong> equal to the sum of explanatory variable <span class="math inline">\(A\text{&#39;s}\)</span> sum of squares and the error sums of squares,</p>
+<p><span class="math display">\[\textbf{SS}_{\textbf{Total}} \mathbf{=} \textbf{SS}_\textbf{A} \mathbf{+} \textbf{SS}_\textbf{E}.\]</span></p>
+<p>This result is called the <strong><em>sums of squares decomposition formula</em></strong>.  The equality means that if the <span class="math inline">\(\textbf{SS}_\textbf{A}\)</span> goes up, then the <span class="math inline">\(\textbf{SS}_\textbf{E}\)</span> must go down if <span class="math inline">\(\textbf{SS}_{\textbf{Total}}\)</span> remains the same. We use these results to build our test statistic and organize this information in what is called an <strong><em>ANOVA table</em></strong>.  The ANOVA table is generated using the <code>anova</code> function applied to the reference-coded model, <code>lm2</code>:  </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury)
+<span class="kw">anova</span>(lm2)</code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Years
+##            Df  Sum Sq Mean Sq F value Pr(&gt;F)
+## Attr        2   70.94  35.469    2.77  0.067
+## Residuals 111 1421.32  12.805</code></pre>
+<p>Note that the ANOVA table has a row labelled <code>Attr</code>, which contains information for the grouping variable (we’ll generally refer to this as explanatory variable <span class="math inline">\(A\)</span> but here it is the picture group that was randomly assigned), and a row labeled <code>Residuals</code>, which is synonymous with “Error”. The Sums of Squares (SS) are available in the <code>Sum Sq</code> column. It doesn’t show a row for “Total” but the <span class="math inline">\(\textbf{SS}_{\textbf{Total}} \mathbf{=} \textbf{SS}_\textbf{A} \mathbf{+} \textbf{SS}_\textbf{E} = 1492.26\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">70.94</span> <span class="op">+</span><span class="st"> </span><span class="fl">1421.32</span></code></pre></div>
+<pre><code>## [1] 1492.26</code></pre>
+<div class="figure"><span id="fig:Figure3-4"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-4-1.png" alt="Plot of means and 95% confidence intervals for the three groups for the real Mock Jury data (a) and three different permutations of the treatment labels to the same responses in (b), (c), and (d). Note that SSTotal is always the same but the different amounts of variation associated with the means (SSA) or the errors (SSE) changes in permutation." width="576" />
+<p class="caption">
+Figure 2.26: Plot of means and 95% confidence intervals for the three groups for the real Mock Jury data (a) and three different permutations of the treatment labels to the same responses in (b), (c), and (d). Note that <code>SSTotal</code> is always the same but the different amounts of variation associated with the means (<code>SSA</code>) or the errors (<code>SSE</code>) changes in permutation.
+</p>
+</div>
+<p>It may be easiest to understand the <em>sums of squares decomposition</em> by connecting it to our permutation ideas.   In a permutation situation, the total variation (<span class="math inline">\(SS_\text{Total}\)</span>) cannot change – it is the same responses varying around the grand mean. However, the amount of variation attributed to variation among the means and in the residuals can change if we change which observations go with which group. In Figure <a href="3-3-section3-3.html#fig:Figure3-4">2.26</a> (panel a), the means, sums of squares, and 95% confidence intervals for each mean are displayed for the three treatment levels from the original prisoner rating data. Three permuted versions of the data set are summarized in panels (b), (c), and (d). The <span class="math inline">\(\text{SS}_A\)</span> is 70.9 in the real data set and between 6.5 and 40.5 in the permuted data sets. If you had to pick among the plots for the one with the most evidence of a difference in the means, you hopefully would pick panel (a). This visual “unusualness” suggests that this observed result is unusual relative to the possibilities under permutations, which are, again, the possibilities tied to having the null hypothesis being true. But note that the differences here are not that great between these three permuted data sets and the real one. It is likely that at least some might have selected panel (d) as also looking like it shows some evidence of differences (maybe not the most?) as it looks like it shows some evidence differences.</p>
+<p>One way to think about <span class="math inline">\(\textbf{SS}_\textbf{A}\)</span> is that it is a function that converts the variation in the group means into a single value. This makes it a reasonable test statistic in a permutation testing context.  By comparing the observed <span class="math inline">\(\text{SS}_A =\)</span> 70.9 to the permutation results of 6.5, 9.7, and 40.5 we see that the observed result is much more extreme than the three alternate versions. In contrast to our previous test statistics where positive and negative differences were possible, <span class="math inline">\(\text{SS}_A\)</span> is always positive with a value of 0 corresponding to no variation in the means. The larger the <span class="math inline">\(\text{SS}_A\)</span>, the more variation there is in the means. The permutation p-value for the alternative hypothesis of <strong>some</strong> (not of greater or less than!) difference in the true means of the groups will involve counting the number of permuted <span class="math inline">\(SS_A^*\)</span> results that are as large or larger than what we observed. </p>
+
+<p>To do a permutation test,  we need to be able to calculate and extract the <span class="math inline">\(\text{SS}_A\)</span> value. In the ANOVA table, it is the second number in the first row; we can use the bracket, <code>[,]</code>, referencing to extract that number from the ANOVA table that <code>anova</code> produces with <code>anova(lm(Years~Attr, data=MockJury))[1, 2]</code>. We’ll store the observed value of <span class="math inline">\(\text{SS}_A\)</span> in <code>Tobs</code>, reusing some ideas from Chapter <a href="2-chapter2.html#chapter2">2</a>. </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">anova</span>(<span class="kw">lm</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury))[<span class="dv">1</span>,<span class="dv">2</span>]; Tobs</code></pre></div>
+<pre><code>## [1] 70.93836</code></pre>
+<p>The following code performs the permutations <code>B=1,000</code> times using the <code>shuffle</code> function, builds up a vector of results in <code>Tobs</code>, and then makes a plot of the resulting permutation distribution:</p>
+
+<div class="figure"><span id="fig:Figure3-5"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-5-1.png" alt="Histogram and density curve of permutation distribution of \(\text{SS}_A\) with the observed value of \(\text{SS}_A\) displayed as a bold, vertical line. The proportion of results that are as large or larger than the observed value of \(\text{SS}_A\) provides an estimate of the p-value." width="960" />
+<p class="caption">
+Figure 2.27: Histogram and density curve of permutation distribution of <span class="math inline">\(\text{SS}_A\)</span> with the observed value of <span class="math inline">\(\text{SS}_A\)</span> displayed as a bold, vertical line. The proportion of results that are as large or larger than the observed value of <span class="math inline">\(\text{SS}_A\)</span> provides an estimate of the p-value.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B &lt;-<span class="st"> </span><span class="dv">1000</span>
+Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)
+<span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
+  Tstar[b] &lt;-<span class="st"> </span><span class="kw">anova</span>(<span class="kw">lm</span>(Years<span class="op">~</span><span class="kw">shuffle</span>(Attr), <span class="dt">data=</span>MockJury))[<span class="dv">1</span>,<span class="dv">2</span>]
+  }
+<span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">550</span>))
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</code></pre></div>
+<p>The right-skewed distribution (Figure <a href="3-3-section3-3.html#fig:Figure3-5">2.27</a>) contains the distribution of <span class="math inline">\(\text{SS}^*_A\text{&#39;s}\)</span> under permutations (where all the groups are assumed to be equivalent under the null hypothesis). While the observed result is larger than many of the <span class="math inline">\(\text{SS}^*_A\text{&#39;s}\)</span>, there are also many permuted results that are much larger than observed. The proportion of permuted results that exceed the observed value is found using <code>pdata</code> as before, except only for the area to the right of the observed result. We know that <code>Tobs</code> will always be positive so no absolute values are required here. </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdata</span>(Tstar, Tobs, <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] 0.072</code></pre>
+<p>This provides a permutation-based p-value of 0.072 and suggests marginal evidence against the null hypothesis of no difference in the true means. We would interpret this p-value as saying that there is a 7.2% chance of getting a <span class="math inline">\(\text{SS}_A\)</span> as large or larger than we observed, given that the null hypothesis is true. </p>
+<p>It ends up that some nice parametric statistical results are available (if our assumptions are met) for the ratio of estimated variances, the estimated variances are called <strong><em>Mean Squares</em></strong>.  To turn sums of squares into mean square (variance) estimates, we divide the sums of squares by the amount of free information available. For example, remember the typical variance estimator introductory statistics, <span class="math inline">\(\Sigma^N_1(y_i-\bar{y})^2/(N-1)\)</span>? Your instructor spent some time trying various approaches to explaining why we have a denominator of <span class="math inline">\(N-1\)</span>. The most useful for our purposes moving forward is that we “lose” one piece of information to estimate the mean and there are <span class="math inline">\(N\)</span> deviations around the single mean so we divide by <span class="math inline">\(N-1\)</span>. The main point is that the sums of squares were divided by something and we got an estimator for the variance, here of the observations overall.</p>
+<p>Now consider <span class="math inline">\(\text{SS}_E = \Sigma^J_{j=1}\Sigma^{n_j}_{i=1}(y_{ij}-\bar{y}_j)^2\)</span> which still has <span class="math inline">\(N\)</span> deviations but it varies around the <span class="math inline">\(J\)</span> means, so the</p>
+<p><span class="math display">\[\textbf{Mean Square Error} = \text{MS}_E = \text{SS}_E/(N-J).\]</span></p>
+<p>Basically, we lose <span class="math inline">\(J\)</span> pieces of information in this calculation because we have to estimate <span class="math inline">\(J\)</span> means. The similar calculation of the <strong><em>Mean Square for variable</em></strong> <span class="math inline">\(\mathbf{A}\)</span> (<span class="math inline">\(\text{MS}_A\)</span>) is harder to see in the formula (<span class="math inline">\(\text{SS}_A = \Sigma^J_{j=1}n_j(\bar{y}_i-\bar{\bar{y}})^2\)</span>), but the same reasoning can be used to understand the denominator for forming <span class="math inline">\(\text{MS}_A\)</span>: there are <span class="math inline">\(J\)</span> means that vary around the grand mean so</p>
+<p><span class="math display">\[\text{MS}_A = \text{SS}_A/(J-1).\]</span></p>
+<p>In summary, the two mean squares are simply:</p>
+<ul>
+<li><p><span class="math inline">\(\text{MS}_A = \text{SS}_A/(J-1)\)</span>, which estimates the variance of the group means around the grand mean.</p></li>
+<li><p><span class="math inline">\(\text{MS}_{\text{Error}} = \text{SS}_{\text{Error}}/(N-J)\)</span>, which estimates the variation of the errors around the group means.</p></li>
+</ul>
+
+<p>These results are put together using a ratio to define the <strong><em>ANOVA F-statistic</em></strong> (also called the <strong><em>F-ratio</em></strong>) as:</p>
+<p><span class="math display">\[F=\text{MS}_A/\text{MS}_{\text{Error}}.\]</span></p>
+<p>If the variability in the means is “similar” to the variability in the residuals, the statistic would have a value around 1. If that variability is similar then there would be no evidence of a difference in the means. If the <span class="math inline">\(\text{MS}_A\)</span> is much larger than the <span class="math inline">\(\text{MS}_E\)</span>, the <span class="math inline">\(F\)</span>-statistic will provide evidence against the null hypothesis. The “size” of the <span class="math inline">\(F\)</span>-statistic is formalized by finding the p-value. The <span class="math inline">\(F\)</span>-statistic, if assumptions discussed below are met and we assume the null hypothesis is true, follows what is called an <span class="math inline">\(F\)</span>-distribution.  The <strong><em>F-distribution</em></strong> is a right-skewed distribution whose shape is defined by what are called the <strong><em>numerator degrees of freedom</em></strong> (<span class="math inline">\(J-1\)</span>) and the <strong><em>denominator degrees of freedom</em></strong> (<span class="math inline">\(N-J\)</span>). These names correspond to the values that we used to calculate the mean squares and where in the <span class="math inline">\(F\)</span>-ratio each mean square was used; <span class="math inline">\(F\)</span>-distributions are denoted by their degrees of freedom using the convention of <span class="math inline">\(F\)</span> (<em>numerator df</em>, <em>denominator df</em>). Some examples of different <span class="math inline">\(F\)</span>-distributions are displayed for you in Figure <a href="3-3-section3-3.html#fig:Figure3-6">2.28</a>. </p>
+<p>The characteristics of the F-distribution can be summarized as:</p>
+<ul>
+<li><p>Right skewed,</p></li>
+<li><p>Nonzero probabilities for values greater than 0,</p></li>
+<li><p>Its shape changes depending on the <strong>numerator</strong> and <strong>denominator DF</strong>, and</p></li>
+<li><p><strong>Always use the right-tailed area for p-values.</strong></p></li>
+</ul>
+
+<div class="figure"><span id="fig:Figure3-6"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-6-1.png" alt="Density curves of four different \(F\)-distributions. Upper left is an \(F(2, 111)\), upper right is \(F(2, 10)\), lower left is \(F(6, 10)\), and lower right is \(F(6, 111)\). P-values are found using the areas to the right of the observed \(F\)-statistic value in all F-distributions. " width="480" />
+<p class="caption">
+Figure 2.28: Density curves of four different <span class="math inline">\(F\)</span>-distributions. Upper left is an <span class="math inline">\(F(2, 111)\)</span>, upper right is <span class="math inline">\(F(2, 10)\)</span>, lower left is <span class="math inline">\(F(6, 10)\)</span>, and lower right is <span class="math inline">\(F(6, 111)\)</span>. P-values are found using the areas to the right of the observed <span class="math inline">\(F\)</span>-statistic value in all F-distributions. 
+</p>
+</div>
+<p>Now we are ready to discuss an ANOVA table since we know about each of its components. Note the general format of the ANOVA table is in Table <a href="3-3-section3-3.html#tab:Table3-2">2.5</a><a href="#fn41" class="footnoteRef" id="fnref41"><sup>41</sup></a>: </p>
+
+<table>
+<caption><span id="tab:Table3-2">Table 2.5: </span> General One-Way ANOVA table.</caption>
+<colgroup>
+<col width="13%" />
+<col width="7%" />
+<col width="18%" />
+<col width="21%" />
+<col width="19%" />
+<col width="19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Source  </th>
+<th align="left">DF </th>
+<th align="left">Sums of<br />
+Squares</th>
+<th align="left">Mean Squares</th>
+<th align="left">F-ratio</th>
+<th align="left">P-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Variable A</td>
+<td align="left"><span class="math inline">\(J-1\)</span></td>
+<td align="left"><span class="math inline">\(\text{SS}_A\)</span></td>
+<td align="left"><span class="math inline">\(\text{MS}_A=\text{SS}_A/(J-1)\)</span></td>
+<td align="left"><span class="math inline">\(F=\text{MS}_A/\text{MS}_E\)</span></td>
+<td align="left">Right tail of <span class="math inline">\(F(J-1,N-J)\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Residuals</td>
+<td align="left"><span class="math inline">\(N-J\)</span></td>
+<td align="left"><span class="math inline">\(\text{SS}_E\)</span></td>
+<td align="left"><span class="math inline">\(\text{MS}_E = \text{SS}_E/(N-J)\)</span></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="left"><span class="math inline">\(N-1\)</span></td>
+<td align="left"><span class="math inline">\(\text{SS}_{\text{Total}}\)</span></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>The table is oriented to help you reconstruct the <span class="math inline">\(F\)</span>-ratio from each of its components. The output from R is similar although it does not provide the last row and sometimes switches the order of columns in different functions we will use. The R version of the table for the type of picture effect (<code>Attr</code>) with <span class="math inline">\(J=3\)</span> levels and <span class="math inline">\(N=114\)</span> observations, repeated from above, is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(lm2)</code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Years
+##            Df  Sum Sq Mean Sq F value Pr(&gt;F)
+## Attr        2   70.94  35.469    2.77  0.067
+## Residuals 111 1421.32  12.805</code></pre>
+<p>The p-value from the <span class="math inline">\(F\)</span>-distribution is 0.067.  We can verify this result using the observed <span class="math inline">\(F\)</span>-statistic of 2.77 (which came from taking the ratio of the two mean squares, F=35.47/12.8) which follows an <span class="math inline">\(F(2, 111)\)</span> distribution if the null hypothesis is true and some other assumptions are met.</p>
+<p>Using the <code>pf</code> function provides us with areas in the specified <span class="math inline">\(F\)</span>-distribution with the <code>df1</code> provided to the function as the numerator <em>df</em> and <code>df2</code> as the denominator <em>df</em> and <code>lower.tail=F</code> reflecting our desire for a right tailed area.  </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pf</span>(<span class="fl">2.77</span>, <span class="dt">df1=</span><span class="dv">2</span>, <span class="dt">df2=</span><span class="dv">111</span>, <span class="dt">lower.tail=</span>F)</code></pre></div>
+<pre><code>## [1] 0.06699803</code></pre>
+<p>The result from the <span class="math inline">\(F\)</span>-distribution using this parametric procedure is similar to the p-value obtained using permutations with the test statistic of the <span class="math inline">\(\text{SS}_A\)</span>, which was 0.067. The <span class="math inline">\(F\)</span>-statistic obviously is another potential test statistic to use as a test statistic in a permutation approach, now that we know about it. We should check that we get similar results from it with permutations as we did from using <span class="math inline">\(\text{SS}_A\)</span> as a permutation-test test statistic. The following code generates the permutation distribution  for the <span class="math inline">\(F\)</span>-statistic (Figure <a href="3-3-section3-3.html#fig:Figure3-7">2.29</a>) and assesses how unusual the observed <span class="math inline">\(F\)</span>-statistic of 2.77 was in this permutation distribution. The only change in the code involves moving from extracting <span class="math inline">\(\text{SS}_A\)</span> to extracting the <span class="math inline">\(F\)</span>-ratio which is in the 4<sup>th</sup> column of the <code>anova</code> output:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">anova</span>(<span class="kw">lm</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury))[<span class="dv">1</span>,<span class="dv">4</span>]; Tobs</code></pre></div>
+<pre><code>## [1] 2.770024</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B &lt;-<span class="st"> </span><span class="dv">1000</span>
+Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)
+<span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
+  Tstar[b] &lt;-<span class="st"> </span><span class="kw">anova</span>(<span class="kw">lm</span>(Years<span class="op">~</span><span class="kw">shuffle</span>(Attr), <span class="dt">data=</span>MockJury))[<span class="dv">1</span>,<span class="dv">4</span>]
+}
+
+<span class="kw">pdata</span>(Tstar, Tobs, <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] 0.064</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</code></pre></div>
+
+<div class="figure"><span id="fig:Figure3-7"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-7-1.png" alt="Histogram and density curve of the permutation distribution of the F-statistic with bold, vertical line for the observed value of the test statistic of 2.77." width="960" />
+<p class="caption">
+Figure 2.29: Histogram and density curve of the permutation distribution of the F-statistic with bold, vertical line for the observed value of the test statistic of 2.77.
+</p>
+</div>
+<p>The permutation-based p-value is 0.064 which, again, matches the other results closely. The first conclusion is that using a test statistic of either the <span class="math inline">\(F\)</span>-statistic or the <span class="math inline">\(\text{SS}_A\)</span> provide similar permutation results. However, we tend to favor using the <span class="math inline">\(F\)</span>-statistic because it is more commonly used in reporting ANOVA results, not because it is any better in a permutation context.</p>
+<p>It is also interesting to compare the permutation distribution for the <span class="math inline">\(F\)</span>-statistic and the parametric <span class="math inline">\(F(2, 111)\)</span> distribution (Figure <a href="3-3-section3-3.html#fig:Figure3-8">2.30</a>). They do not match perfectly but are quite similar. Some the differences around 0 are due to the behavior of the method used to create the density curve and are not really a problem for the methods. The similarity in the two curves explains why both methods give similar results. In some situations, the correspondence will not be quite so close.</p>
+
+<div class="figure"><span id="fig:Figure3-8"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-8-1.png" alt="Comparison of \(F(2, 111)\) (dashed line) and permutation distribution (solid line)." width="480" />
+<p class="caption">
+Figure 2.30: Comparison of <span class="math inline">\(F(2, 111)\)</span> (dashed line) and permutation distribution (solid line).
+</p>
+</div>
+<p>So how can we rectify this result (<span class="math inline">\(\text{p-value}\approx 0.06\)</span>) and the Chapter <a href="2-chapter2.html#chapter2">2</a> result that detected a difference between <em>Average</em> and <em>Unattractive</em> with a <span class="math inline">\(\text{p-value}\approx 0.03\)</span>? I selected the two groups to compare in Chapter <a href="2-chapter2.html#chapter2">2</a> because they were furthest apart. “Cherry-picking” the comparison that is likely to be most different creates a false sense of the real situation and inflates the Type I error rate because of the selection<a href="#fn42" class="footnoteRef" id="fnref42"><sup>42</sup></a>.   If the entire suite of pairwise comparisons are considered, this result may lose some of its luster. In other words, if we consider the suite of three pair-wise differences (and the tests) implicit in comparing all of them, we may need stronger evidence in the most different pair than a p-value of 0.033 to suggest overall differences. In this situation, the <em>Beautiful</em> and <em>Average</em> groups are not that different from each other so their difference does not contribute much to the overall <span class="math inline">\(F\)</span>-test. In Section <a href="3-6-section3-6.html#section3-6">3.6</a>, we will revisit this topic and consider a method that is statistically valid for performing all possible pair-wise comparisons that is also consistent with our overall test results.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="41">
+<li id="fn41"><p>Make sure you can work from left to right and up and down to fill in the ANOVA table given just the necessary information to determine the other components – there is always a question like this on the exam…<a href="3-3-section3-3.html#fnref41">↩</a></p></li>
+<li id="fn42"><p>This fits with a critique of p-value usage called p-hacking or publication bias – where researchers search across many results and only report their biggest differences. This biases the results to detecting results more than they should be and then when other researchers try to repeat the same studies, they fail to find similar results.<a href="3-3-section3-3.html#fnref42">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="3-2-section3-2.html"><button class="btn btn-default">Previous</button></a>
+<a href="3-4-section3-4.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="Intermediate Statistics with R">
+
+<title>Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Beanplots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Chapter summary</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Summary of important R code</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for Prisoner Rating data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient (Optional section)</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomizing inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section7-7" class="section level2">
+<h2><span class="header-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</h2>
+
+<p>Figure <a href="7-3-section7-3.html#fig:Figure7-7">2.123</a> provided a term-plot of the estimated regression line and a shaded area surrounding the estimated regression equation. Those shaded areas are based on connecting the dots on 95% confidence intervals constructed for the true mean <span class="math inline">\(y\)</span> value across all the x-values. To formalize this idea, consider a specific value of <span class="math inline">\(x\)</span>, and call it <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> (pronounced <strong>x-new</strong><a href="#fn90" class="footnoteRef" id="fnref90"><sup>90</sup></a>). Then the true mean response for this <strong><em>subpopulation</em></strong> (a subpopulation is all observations we could obtain at <span class="math inline">\(\boldsymbol{x=x_{\nu}}\)</span>) is given by <span class="math inline">\(\boldsymbol{E(Y)=\mu_\nu=\beta_0+\beta_1x_{\nu}}\)</span>. To estimate the mean response at <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span>, we plug <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> into the estimated regression equation:</p>
+<p><span class="math display">\[\hat{\mu}_{\nu} = b_0 + b_1x_{\nu}.\]</span></p>
+<p>To form the confidence interval, we appeal to our standard formula of <span class="math inline">\(\textbf{estimate} \boldsymbol{\mp t^*}\textbf{SE}_{\textbf{estimate}}\)</span>. The <strong><em>standard error for the estimated mean at any x-value</em></strong>, denoted <span class="math inline">\(\text{SE}_{\hat{\mu}_{\nu}}\)</span>, can be calculated as</p>
+<p><span class="math display">\[\text{SE}_{\hat{\mu}_{\nu}} 
+= \sqrt{\text{SE}^2_{b_1}(x_{\nu}-\bar{x})^2 + \frac{\hat{\sigma}^2}{n}}\]</span></p>
+<p>where <span class="math inline">\(\hat{\sigma}^2\)</span> is the squared residual standard error. This formula combines the variability in the slope estimate, <span class="math inline">\(\text{SE}_{b_1}\)</span>, scaled based on the distance of <span class="math inline">\(x_{\nu}\)</span> from <span class="math inline">\(\bar{x}\)</span> and the variability around the regression line, <span class="math inline">\(\hat{\sigma}^2\)</span>. Fortunately, R’s <code>predict</code> function can be used to provide these results for us and avoid doing this calculation by hand most of the time. The <strong><em>confidence interval for</em></strong> <span class="math inline">\(\boldsymbol{\mu_{\nu}}\)</span>, the population mean response at <span class="math inline">\(x_{\nu}\)</span>, is</p>
+<p><span class="math display">\[\boldsymbol{\hat{\mu}_{\nu} \mp
+t^*_{n-2}}\textbf{SE}_{\boldsymbol{\hat{\mu}_{\nu}}}.\]</span></p>
+<p>In application, these intervals get wider the further we go from the mean of the <span class="math inline">\(x\text{&#39;s}\)</span>. These have interpretations that are exactly like those for the y-intercept:</p>
+<blockquote>
+<p>For an x-value of <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span>, we are __% confident that the true mean of <strong>y</strong> is between <strong>LL</strong> and <strong>UL</strong> <strong>[<em>units of y</em>]</strong>.</p>
+</blockquote>
+<p>It is also useful to remember that this interpretation applies individually to every <span class="math inline">\(x\)</span> displayed in term-plots.</p>
+<p>A second type of interval in this situation takes on a more challenging task – to place an interval on where we think a new observation will fall, called a <strong><em>prediction interval</em></strong> (PI). This PI will need to be much wider than the CI for the mean since we need to account for both the uncertainty in the mean and the randomness in sampling a new observation from the normal distribution centered at the true mean for <span class="math inline">\(x_{\nu}\)</span>. The interval is centered at the estimated regression line (where else could we center it?) with the estimate denoted as <span class="math inline">\(\hat{y}_{\nu}\)</span> to help us see that this interval is for a <strong>new</strong> <span class="math inline">\(y\)</span> at this x-value. The <span class="math inline">\(\text{SE}_{\hat{y}_{\nu}}\)</span> incorporates the core of the previous SE calculation and adds in the variability of a new observation in <span class="math inline">\(\boldsymbol{\hat{\sigma}^2}\)</span>:</p>
+<p><span class="math display">\[\text{SE}_{\hat{y}_{\nu}} 
+= \sqrt{\text{SE}^2_{b_1}(x_{\nu}-\bar{x})^2 + \dfrac{\hat{\sigma}^2}{n} 
++ \boldsymbol{\hat{\sigma}^2}}
+= \sqrt{\text{SE}_{\hat{\mu}_{\nu}}^2 + \boldsymbol{\hat{\sigma}^2}}\]</span></p>
+<p>The __% PI is calculated as</p>
+<p><span class="math display">\[\boldsymbol{\hat{y}_{\nu} \mp t^*_{n-2}}\textbf{SE}_{\boldsymbol{\hat{y}_{\nu}}}\]</span></p>
+<p>and interpreted as:</p>
+<blockquote>
+<p>We are __% sure that a new observation at <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> will be between <strong>LL</strong> and <strong>UL</strong> <strong>[<em>units of y</em>]</strong>. Since <span class="math inline">\(\text{SE}_{\hat{y}_{\nu}} &gt; \text{SE}_{\hat{\mu}_{\nu}}\)</span>, the <strong>PI will always be wider than the CI</strong>.</p>
+</blockquote>
+<p>As in confidence intervals, we assume that a 95% PI “succeeds” – now it contains the new observation – in 95% of applications of the methods and fails the other 5% of the time. Remember that for any interval estimate, the true value is either in the interval or it is not and our confidence level essentially sets our failure rate! Because PIs push into the tails of the assumed distribution of the responses these methods are very sensitive to violations of assumptions so we need to be especially certain that we have met the assumptions to trust these results will work as advertised (at the <strong><em>nominal</em></strong> (specified) level).</p>
+<p>There are two ways to explore CIs for the mean and PIs for a new observation. The first is to focus on a specific x-value of interest. The second is to plot the results for all <span class="math inline">\(x\text{&#39;s}\)</span>. To do both of these, but especially to make plots, we want to learn to use the <code>predict</code> function. It can either produce the estimate for a particular <span class="math inline">\(x_{\nu}\)</span> and the <span class="math inline">\(\text{SE}_{\hat{\mu}_{\nu}}\)</span> or we can get it to directly calculate the CI and PI. The first way to use it is <code>predict(MODELNAME, se.fit=T)</code> which will provide fitted values and <span class="math inline">\(\text{SE}_{\hat{\mu}_{\nu}}\)</span> for all observed <span class="math inline">\(x\text{&#39;s}\)</span>. We can then use the <span class="math inline">\(\text{SE}_{\hat{\mu}_{\nu}}\)</span> to calculate <span class="math inline">\(\text{SE}_{\hat{y}_{\nu}}\)</span> and form our own PIs. If you want CIs, run <code>predict(MODELNAME, interval= &quot;confidence&quot;)</code>; if you want PIs, run <code>predict(MODELNAME, interval=&quot;prediction&quot;)</code>. If you want to do prediction at an x-value that was not in the original observations, add the option <code>newdata=tibble(XVARIABLENAME_FROM_ORIGINAL_MODEL=Xnu)</code> to the <code>predict</code> function call.</p>
+<p>Some examples of using the predict function follow<a href="#fn91" class="footnoteRef" id="fnref91"><sup>91</sup></a>. For example, it might be interesting to use the regression model to find a 95% CI and PI for the <em>Beers</em> vs <em>BAC</em> study for a student who would consume 8 beers. Four different applications of the predict function follow. Note that <code>lwr</code> and <code>upr</code> in the output depend on what we requested. The first use of <code>predict</code> just returns the estimated mean for 8 beers:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(BAC<span class="op">~</span>Beers, <span class="dt">data=</span>BB)
+<span class="kw">predict</span>(m1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Beers=</span><span class="dv">8</span>))</code></pre></div>
+<pre><code>##         1 
+## 0.1310095</code></pre>
+<p>By turning on the <code>se.fit=T</code> option, we also get the SE for the confidence interval and degrees of freedom.  Note that elements returned are labelled as <code>$fit</code>, <code>$se.fit</code>, etc. and provide some of the information to calculate CIs or PIs “by hand”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(m1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Beers=</span><span class="dv">8</span>), <span class="dt">se.fit=</span>T)</code></pre></div>
+<pre><code>## $fit
+##         1 
+## 0.1310095 
+## 
+## $se.fit
+## [1] 0.009204354
+## 
+## $df
+## [1] 14
+## 
+## $residual.scale
+## [1] 0.02044095</code></pre>
+<p>Instead of using the components of the intervals to make them, we can also directly request the CI or PI using the <code>interval=...</code> option, as in the following two lines of code.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(m1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Beers=</span><span class="dv">8</span>), <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>)</code></pre></div>
+<pre><code>##         fit       lwr       upr
+## 1 0.1310095 0.1112681 0.1507509</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(m1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Beers=</span><span class="dv">8</span>), <span class="dt">interval=</span><span class="st">&quot;prediction&quot;</span>)</code></pre></div>
+<pre><code>##         fit        lwr       upr
+## 1 0.1310095 0.08292834 0.1790906</code></pre>
+<p>Based on these results, we are 95% confident that the true mean <em>BAC</em> for 8 beers consumed is between 0.111 and 0.15 grams of alcohol per dL of blood. For a new student drinking 8 beers, we are 95% sure that the observed BAC will be between 0.083 and 0.179 g/dL. You can see from these results that the PI is much wider than the CI – it has to capture a new individual’s results 95% of the time which is much harder than trying to capture the true mean at 8 beers consumed. For completeness, we should do these same calculations “by hand”. The <code>predict(..., se.fit=T)</code> output provides almost all the pieces we need to calculate the CI and PI. The <code>$fit</code> is the <span class="math inline">\(\text{estimate} = \hat{\mu}_{\nu}=0.131\)</span>, the <code>$se.fit</code> is the SE for the estimate of the <span class="math inline">\(\text{mean} = \text{SE}_{\hat{\mu}_{\nu}}=0.0092\)</span> , <code>$df</code> is <span class="math inline">\(n-2 = 16-2=14\)</span>, and <code>$residual.scale</code> is <span class="math inline">\(\hat{\sigma}=0.02044\)</span>. So we just need the <span class="math inline">\(t^*\)</span> multiplier for 95% confidence and 14 <em>df</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">14</span>) <span class="co"># t* multiplier for 95% CI or 95% PI</span></code></pre></div>
+<pre><code>## [1] 2.144787</code></pre>
+<p>The 95% CI for the true mean at <span class="math inline">\(\boldsymbol{x_{\nu}=8}\)</span> is then:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">0.131</span> <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">2.1448</span><span class="op">*</span><span class="fl">0.0092</span></code></pre></div>
+<pre><code>## [1] 0.1112678 0.1507322</code></pre>
+<p>Which matches the previous output quite well.</p>
+<p>The 95% PI requires the calculation of <span class="math inline">\(\sqrt{\text{SE}_{\hat{\mu}_{\nu}}^2 + \boldsymbol{\hat{\sigma}^2}} = \sqrt{(0.0092)^2+(0.02044)^2}=0.0224\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="fl">0.0092</span><span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.02044</span><span class="op">^</span><span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 0.02241503</code></pre>
+<p>The 95% PI at <span class="math inline">\(\boldsymbol{x_{\nu}=8}\)</span> is</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">0.131</span> <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="fl">2.1448</span><span class="op">*</span><span class="fl">0.0224</span></code></pre></div>
+<pre><code>## [1] 0.08295648 0.17904352</code></pre>
+<p>These calculations are “fun” and informative but displaying these results for all x-values is a bit more informative about the performance of the two types of intervals and for results we might expect in this application. The calculations we just performed provide endpoints of both intervals at <code>Beers</code>= 8. To make this plot, we need to create a sequence of <em>Beers</em> values to get other results for, say from 0 to 10, using the <code>seq</code> function. The <code>from</code> and <code>to</code> define the endpoints and the <code>length.out</code> defines the resolution of the grid of equally spaced points to create. Here, 30 points is more than enough to make the confidence and prediction intervals from 0 to 10 <em>Beers</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">beerf &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">0</span>, <span class="dt">to=</span><span class="dv">10</span>, <span class="dt">length.out=</span><span class="dv">30</span>)
+<span class="kw">head</span>(beerf,<span class="dv">6</span>)</code></pre></div>
+<pre><code>## [1] 0.0000000 0.3448276 0.6896552 1.0344828 1.3793103 1.7241379</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(beerf,<span class="dv">6</span>)</code></pre></div>
+<pre><code>## [1]  8.275862  8.620690  8.965517  9.310345  9.655172 10.000000</code></pre>
+<p>Now we can call the <code>predict</code> function at the values stored in <code>beerf</code> to get the CIs across that range of <em>Beers</em> values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BBCI &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(<span class="kw">predict</span>(m1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Beers=</span>beerf), <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>))
+<span class="kw">head</span>(BBCI)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##         fit      lwr    upr
+##       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1 -0.0127   -0.0398  0.0144
+## 2 -0.00651  -0.0320  0.0190
+## 3 -0.000312 -0.0242  0.0236
+## 4  0.00588  -0.0165  0.0282
+## 5  0.0121   -0.00873 0.0329
+## 6  0.0183   -0.00105 0.0376</code></pre>
+<p>And the PIs:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BBPI &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(<span class="kw">predict</span>(m1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Beers=</span>beerf), <span class="dt">interval=</span><span class="st">&quot;prediction&quot;</span>))
+<span class="kw">head</span>(BBPI)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##         fit     lwr    upr
+##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+## 1 -0.0127   -0.0642 0.0388
+## 2 -0.00651  -0.0572 0.0442
+## 3 -0.000312 -0.0502 0.0496
+## 4  0.00588  -0.0433 0.0551
+## 5  0.0121   -0.0365 0.0606
+## 6  0.0183   -0.0296 0.0662</code></pre>
+<p>The rest of the code is just making a scatterplot and adding the five lines with a legend.</p>
+
+<div class="figure"><span id="fig:Figure7-23"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-23-1.png" alt="Estimated SLR for BAC data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals." width="960" />
+<p class="caption">
+Figure 2.139: Estimated SLR for BAC data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
+<span class="kw">plot</span>(BAC<span class="op">~</span>Beers, <span class="dt">data=</span>BB, <span class="dt">xlab=</span><span class="st">&quot;Beers&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;BAC&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">col=</span><span class="st">&quot;gold4&quot;</span>,
+     <span class="dt">main=</span><span class="st">&quot;Scatterplot of estimated regression line with 95% CI and PI&quot;</span>)
+<span class="kw">lines</span>(beerf, BBCI<span class="op">$</span>fit, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+<span class="kw">lines</span>(beerf, BBCI<span class="op">$</span>lwr, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+<span class="kw">lines</span>(beerf, BBCI<span class="op">$</span>upr, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+<span class="kw">lines</span>(beerf, BBPI<span class="op">$</span>lwr, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+<span class="kw">lines</span>(beerf, BBPI<span class="op">$</span>upr, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
+<span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Estimate&quot;</span>,<span class="st">&quot;CI&quot;</span>,<span class="st">&quot;PI&quot;</span>), <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),
+       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;grey&quot;</span>))</code></pre></div>
+<p>More importantly, note that the CI in Figure <a href="7-7-section7-7.html#fig:Figure7-23">2.139</a> clearly shows widening as we move further away from the mean of the <span class="math inline">\(x\text{&#39;s}\)</span> to the edges of the observed x-values. This reflects a decrease in knowledge of the true mean as we move away from the mean of the <span class="math inline">\(x\text{&#39;s}\)</span>. The PI also is widening slightly but not as clearly in this situation. The difference in widths in the two types of intervals becomes extremely clear when they are displayed together.</p>
+<p>Similarly, the 95% CI and PIs for the Bozeman yearly average maximum temperatures in Figure <a href="7-7-section7-7.html#fig:Figure7-24">2.140</a> provide interesting information on the uncertainty in the estimated mean temperature over time. It is also interesting to explore how many of the observations fall within the 95% prediction intervals. The PIs are for new observations, but you can see how the PIs that were constructed to contain almost all the observations in the original data set but not all of them. In fact, only 2 of the 109 observations (1.8%) fall outside the 95% PIs. Since the PI needs to be concerned with unobserved new observations it makes sense that it might contain more than 95% of the observations used to make it.</p>
+
+<div class="figure"><span id="fig:Figure7-24"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-24-1.png" alt="Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals." width="960" />
+<p class="caption">
+Figure 2.140: Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals.
+</p>
+</div>
+<p>We can also use these same methods to do a prediction for the year after the data set ended, 2015, and in 2050:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(temp1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Year=</span><span class="dv">2015</span>), <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>)</code></pre></div>
+<pre><code>##        fit     lwr      upr
+## 1 58.31967 57.7019 58.93744</code></pre>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(temp1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Year=</span><span class="dv">2015</span>), <span class="dt">interval=</span><span class="st">&quot;prediction&quot;</span>)</code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 58.31967 55.04146 61.59787</code></pre>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(temp1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Year=</span><span class="dv">2050</span>), <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>)</code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 60.15514 59.23631 61.07397</code></pre>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(temp1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">Year=</span><span class="dv">2050</span>), <span class="dt">interval=</span><span class="st">&quot;prediction&quot;</span>)</code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 60.15514 56.80712 63.50316</code></pre>
+<p>These results tell us that we are 95% confident that the true mean yearly average maximum temperature in 2015 is (or was?) between 55.04<span class="math inline">\(^\circ F\)</span> and 61.6<span class="math inline">\(^\circ F\)</span>. And we are 95% sure that the observed yearly average maximum temperature in 2015 will be (or would have been?) between 59.2<span class="math inline">\(^\circ F\)</span> and 61.1<span class="math inline">\(^\circ F\)</span>. Obviously, 2015 has occurred, but since the data were not published when the data set was downloaded in July 2016, we can probably best treat 2015 as a potential “future” observation. The results for 2050 are clearly for the future mean and a new observation in 2050. Note that up to 2014, no values of this response had been observed above 60<span class="math inline">\(^\circ F\)</span> and the predicted mean in 2050 is over 60<span class="math inline">\(^\circ F\)</span> if the trend persists. It is also easy to criticize the use of this model for 2050 because of its extreme amount of extrapolation.</p>
+
+</div>
+<div class="footnotes">
+<hr />
+<ol start="90">
+<li id="fn90"><p>This silly nomenclature was inspired by <span class="citation">De Veaux, Velleman, and Bock (<a href="#ref-DeVeaux2011">2011</a>)</span> <em>Stats: Data and Models</em> text. If you find this too cheesy, you can just call it x-vee.<a href="7-7-section7-7.html#fnref90">↩</a></p></li>
+<li id="fn91"><p>I have suppressed some of the plotting code in this and the last chapter to make “pretty” pictures - which you probably are happy to not see it until you want to make a pretty plot on your own. All the code used is available upon request.<a href="7-7-section7-7.html#fnref91">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="7-6-section7-6.html"><button class="btn btn-default">Previous</button></a>
+<a href="7-8-section7-8.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

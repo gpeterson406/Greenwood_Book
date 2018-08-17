@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="Intermediate Statistics with R">
+
+<title>Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Beanplots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Chapter summary</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Summary of important R code</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for Prisoner Rating data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient (Optional section)</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomizing inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section2-1" class="section level2">
+<h2><span class="header-section-number">2.1</span> Histograms, boxplots, and density curves</h2>
+<p>Part of learning statistics is learning to correctly use the terminology, some of which is used colloquially differently than it is used in formal statistical settings. The most commonly “misused” statistical term is <strong><em>data</em></strong>.   In statistical parlance, we want to note the plurality of data. Specifically, <strong><em>datum</em></strong> is a single measurement, possibly on multiple random variables, and so it is appropriate to say that “<strong>a datum is…</strong>”. Once we move to discussing data, we are now referring to more than one observation, again on one, or possibly more than one, random variable, and so we need to use “<strong>data are…</strong>” when talking about our observations. We want to distinguish our use of the term “data” from its more colloquial<a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a> usage that often involves treating it as singular. In a statistical setting “data” refers to measurements of our cases or units. When we summarize the results of a study (say providing the mean and SD), that information is not “data”. We used our data to generate that information. Sometimes we also use the term “data set” to refer to all our observations and this is a singular term to refer to the group of observations and this makes it really easy to make mistakes on the usage of “data”<a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a>.</p>
+<p>It is also really important to note that <strong><em>variables</em></strong> have to vary – if you measure the level of education of your subjects but all are high school graduates, then you do not have a “variable”. You may not know if you have real variability in a “variable” until you explore the results you obtained.</p>
+<p>The last, but probably most important, aspect of data is the context of the measurement. The “who, what, when, and where” of the collection of the observations is critical to the sort of conclusions we can make based on the results. The information on the study design provides information required to assess the scope of inference of the study.  Generally, remember to think about the research questions the researchers were trying to answer and whether their study actually would answer those questions. There are no formulas to help us sort some of these things out, just critical thinking about the context of the measurements.</p>
+<p>To make this concrete, consider the data collected from a study <span class="citation">(Plaster <a href="#ref-Plaster1989">1989</a>)</span> to investigate whether perceived physical attractiveness had an impact on the sentences or perceived seriousness of a crime that male jurors might give to female defendants. The researchers showed the participants in the study (men who volunteered from a prison) pictures of one of three young women. Each picture had previously been decided to be either beautiful, average, or unattractive by the researchers. Each “juror” was randomly assigned to one of three levels of this factor  (which is a categorical <em>predictor</em> or <em>explanatory</em> variable)  and then each participant rated their picture on a variety of traits such as how warm or sincere the woman appeared. Finally, they were told the women had committed a crime (also randomly assigned to either be told she committed a burglary or a swindle) and were asked to rate the seriousness of the crime and provide a suggested length of sentence. We will bypass some aspects of their research and just focus on differences in the sentence suggested among the three pictures. To get a sense of these data, let’s consider the first and last parts of the data set:</p>
+
+<table style="width:100%;">
+<caption><span id="tab:Table2-1">Table 2.1: </span> First 5 and last 7 rows of the Mock Jury data set.</caption>
+<colgroup>
+<col width="13%" />
+<col width="16%" />
+<col width="14%" />
+<col width="10%" />
+<col width="13%" />
+<col width="18%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Subject</th>
+<th align="center">Attr</th>
+<th align="center">Crime</th>
+<th align="center">Years</th>
+<th align="center">Serious</th>
+<th align="center">Independent</th>
+<th align="center">Sincere</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">Beautiful</td>
+<td align="center">Burglary</td>
+<td align="center">10</td>
+<td align="center">8</td>
+<td align="center">9</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">Beautiful</td>
+<td align="center">Burglary</td>
+<td align="center">3</td>
+<td align="center">8</td>
+<td align="center">9</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">Beautiful</td>
+<td align="center">Burglary</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">6</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">Beautiful</td>
+<td align="center">Burglary</td>
+<td align="center">1</td>
+<td align="center">3</td>
+<td align="center">9</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">Beautiful</td>
+<td align="center">Burglary</td>
+<td align="center">7</td>
+<td align="center">9</td>
+<td align="center">5</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center">108</td>
+<td align="center">Average</td>
+<td align="center">Swindle</td>
+<td align="center">3</td>
+<td align="center">3</td>
+<td align="center">5</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">109</td>
+<td align="center">Average</td>
+<td align="center">Swindle</td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">9</td>
+<td align="center">9</td>
+</tr>
+<tr class="odd">
+<td align="center">110</td>
+<td align="center">Average</td>
+<td align="center">Swindle</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center">111</td>
+<td align="center">Average</td>
+<td align="center">Swindle</td>
+<td align="center">7</td>
+<td align="center">4</td>
+<td align="center">9</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">112</td>
+<td align="center">Average</td>
+<td align="center">Swindle</td>
+<td align="center">6</td>
+<td align="center">3</td>
+<td align="center">5</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">113</td>
+<td align="center">Average</td>
+<td align="center">Swindle</td>
+<td align="center">12</td>
+<td align="center">9</td>
+<td align="center">9</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">114</td>
+<td align="center">Average</td>
+<td align="center">Swindle</td>
+<td align="center">8</td>
+<td align="center">8</td>
+<td align="center">1</td>
+<td align="center">5</td>
+</tr>
+</tbody>
+</table>
+<p>When working with data, we should always start with summarizing the sample size. We will use <strong><em>n</em></strong>  for the number of subjects in the sample and denote the population size (if available) with <strong><em>N</em></strong>.  Here, the sample size is <strong><em>n=114</em></strong>. In this situation, we do not have a random sample from a population  (these were volunteers from the population of prisoners at the particular prison) so we cannot make inferences from our sample to a larger group. But we can assess whether there is a  <strong><em>causal effect</em></strong><a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a>: if sufficient evidence is found to conclude that there is some difference in the responses across the treated groups, we can attribute those differences to the treatments applied, since the groups should be same otherwise due to the pictures being randomly assigned to the “jurors”. The story of the data set – that it was collected on prisoners – becomes pretty important in thinking about the ramifications of any results. Are male prisoners different from the population of college males or all residents of a state such as Montana? If so, then we should not assume that the detected differences, if detected, would also exist in some other group of male subjects. The lack of a random sample  makes it impossible to assume that this set of prisoners might be like other prisoners. So there are definite limitations to the inferences in the following results. But it is still interesting to see if the pictures caused a difference in the suggested mean sentences, even though the inferences are limited to this group of prisoners. If this had been an observational study (suppose that the prisoners could select one of the three pictures), then we would have to avoid any of the “causal” language that we can consider here because the pictures were not randomly assigned to the subjects. Without random assignment,  the explanatory variable of picture choice could be <strong><em>confounded</em></strong>  with another characteristic of prisoners that was related to which picture they selected and the rating they provided. Confounding is not the only reason to avoid causal statements with non-random assignment but the inability to separate the effect of other variables (measured or unmeasured) from the differences we are observing means that our inferences in these situations need to be carefully stated to avoid implying causal effects.</p>
+<p>Instead of loading this data set into R using the “Import Dataset” functionality, we can load an R  package that contains the data, making for easy access to this data set. The package called <code>heplots</code> <span class="citation">(Fox and Friendly <a href="#ref-R-heplots">2018</a>)</span> contains a data set called <code>MockJury</code> that contains the results of the study.  We also rely on the R package called <code>mosaic</code> <span class="citation">(Pruim, Kaplan, and Horton <a href="#ref-R-mosaic">2018</a><a href="#ref-R-mosaic">a</a>)</span> that was introduced previously. First (but only once), you need to install both packages, which can be done either using the Packages tab in the lower right panel of RStudio or using the <code>install.packages</code> function with quotes around the package name:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;heplots&quot;</span>)</code></pre></div>
+<p>After making sure that both packages are installed, we use the <code>require</code> function around the package name (no quotes now!) to load the package, something that you need to do any time you want to use features of a package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(heplots)
+<span class="kw">require</span>(mosaic)</code></pre></div>
+<p>When you are loading a package, R might mention a need to install other packages. If the output says that it needs a package that is unavailable, then follow the same process noted above to install that package and then repeat trying to load the package you wanted. These are called package “dependencies” and are due to one package developer relying on functions that already exist in another package.</p>
+<p>To load the data set that is available in an active package, we use the <code>data</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(MockJury)</code></pre></div>
+<p>Some data sets, like this one, will load in a different data set framework called a “data frame” (its class in R is “data.frame”). You can leave it in this format but for consistency of output, we will change it to a <em>tibble</em> using the <code>as.tibble</code> function in the code that follows. Now there will be a tibble called <code>MockJury</code> available for us to analyze and some information about it in the <strong>Environment</strong> tab. Again, we can find out more about the data set in a couple of ways. First, we can use the <code>View</code> function to provide a spreadsheet type of display in the upper left panel. Second, we can use the <code>head</code> and <code>tail</code> functions to print out the beginning and end of the data set.<br />
+</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(tibble)
+MockJury&lt;-<span class="kw">as.tibble</span>(MockJury)
+<span class="kw">View</span>(MockJury)
+<span class="kw">head</span>(MockJury)</code></pre></div>
+<pre><code>##        Attr    Crime Years Serious exciting calm independent sincere warm
+## 1 Beautiful Burglary    10       8        6    9           9       8    5
+## 2 Beautiful Burglary     3       8        9    5           9       3    5
+## 3 Beautiful Burglary     5       5        3    4           6       3    6
+## 4 Beautiful Burglary     1       3        3    6           9       8    8
+## 5 Beautiful Burglary     7       9        1    1           5       1    8
+## 6 Beautiful Burglary     7       9        1    5           7       5    8
+##   phyattr sociable kind intelligent strong sophisticated happy ownPA
+## 1       9        9    9           6      9             9     5     9
+## 2       9        9    4           9      5             5     5     7
+## 3       7        4    2           4      5             4     5     5
+## 4       9        9    9           9      9             9     9     9
+## 5       8        9    4           7      9             9     8     7
+## 6       8        9    5           8      9             9     9     9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(MockJury)</code></pre></div>
+<pre><code>##        Attr   Crime Years Serious exciting calm independent sincere warm
+## 109 Average Swindle     3       2        7    6           9       9    6
+## 110 Average Swindle     2       1        8    8           8       8    8
+## 111 Average Swindle     7       4        1    6           9       1    1
+## 112 Average Swindle     6       3        5    3           5       2    4
+## 113 Average Swindle    12       9        1    9           9       1    1
+## 114 Average Swindle     8       8        1    9           1       5    1
+##     phyattr sociable kind intelligent strong sophisticated happy ownPA
+## 109       4        7    6           8      6             5     7     2
+## 110       8        9    9           9      9             9     9     6
+## 111       1        9    4           1      1             1     1     9
+## 112       1        4    9           3      3             9     5     3
+## 113       1        9    1           9      9             1     9     1
+## 114       1        9    1           1      9             5     1     1</code></pre>
+<p>When data sets are loaded from packages, there is often extra documentation available about the data set which can be accessed using the <code>help</code> function. In this case, it will bring up a screen with information about the study and each variable that was measured.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(MockJury)</code></pre></div>
+<p>The <code>help</code> function is also useful with functions in R to help you understand options and, at the bottom of the help, see examples of using the function. </p>
+<p>With many variables in a data set, it is often useful to get some quick information about all of them; the <code>summary</code> function provides useful information whether the variables are categorical or quantitative and notes if any values were missing. </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(MockJury)</code></pre></div>
+<pre><code>##            Attr         Crime        Years           Serious     
+##  Beautiful   :39   Burglary:59   Min.   : 1.000   Min.   :1.000  
+##  Average     :38   Swindle :55   1st Qu.: 2.000   1st Qu.:3.000  
+##  Unattractive:37                 Median : 3.000   Median :5.000  
+##                                  Mean   : 4.693   Mean   :5.018  
+##                                  3rd Qu.: 7.000   3rd Qu.:6.750  
+##                                  Max.   :15.000   Max.   :9.000  
+##     exciting          calm        independent       sincere     
+##  Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+##  1st Qu.:3.000   1st Qu.:4.250   1st Qu.:5.000   1st Qu.:3.000  
+##  Median :5.000   Median :6.500   Median :6.500   Median :5.000  
+##  Mean   :4.658   Mean   :5.982   Mean   :6.132   Mean   :4.789  
+##  3rd Qu.:6.000   3rd Qu.:8.000   3rd Qu.:8.000   3rd Qu.:7.000  
+##  Max.   :9.000   Max.   :9.000   Max.   :9.000   Max.   :9.000  
+##       warm         phyattr        sociable          kind      
+##  Min.   :1.00   Min.   :1.00   Min.   :1.000   Min.   :1.000  
+##  1st Qu.:2.00   1st Qu.:2.00   1st Qu.:5.000   1st Qu.:3.000  
+##  Median :5.00   Median :5.00   Median :7.000   Median :5.000  
+##  Mean   :4.57   Mean   :4.93   Mean   :6.132   Mean   :4.728  
+##  3rd Qu.:7.00   3rd Qu.:8.00   3rd Qu.:8.000   3rd Qu.:7.000  
+##  Max.   :9.00   Max.   :9.00   Max.   :9.000   Max.   :9.000  
+##   intelligent        strong      sophisticated       happy      
+##  Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+##  1st Qu.:4.000   1st Qu.:4.000   1st Qu.:3.250   1st Qu.:3.000  
+##  Median :7.000   Median :6.000   Median :5.000   Median :5.000  
+##  Mean   :6.096   Mean   :5.649   Mean   :5.061   Mean   :5.061  
+##  3rd Qu.:8.750   3rd Qu.:7.000   3rd Qu.:7.000   3rd Qu.:7.000  
+##  Max.   :9.000   Max.   :9.000   Max.   :9.000   Max.   :9.000  
+##      ownPA      
+##  Min.   :1.000  
+##  1st Qu.:5.000  
+##  Median :6.000  
+##  Mean   :6.377  
+##  3rd Qu.:9.000  
+##  Max.   :9.000</code></pre>
+<p>If we take a few moments to explore the output we can discover some useful aspects of the data set. The output is organized by variable, providing summary information based on the type of variable, either counts by category for categorical variables (<code>Attr</code> and <code>Crime</code>) or the 5-number summary plus the mean for quantitative variables. If present, you would also get a count of missing values that are called “NAs” in R.  For the first variable, called <code>Attr</code> in the data.frame and that we might more explicitly name <em>Attractiveness</em>, we find counts of the number of subjects shown each picture: <span class="math inline">\(37\)</span> out of <span class="math inline">\(114\)</span> viewed the “Unattractive” picture, <span class="math inline">\(38\)</span> viewed “Average”, and <span class="math inline">\(39\)</span> viewed “Beautiful”. We can also see that suggested prison sentences (variable <code>Years</code>) ranged from 1 year to 15 years with a median of 3 years. It seems that all the other variables except for <em>Crime</em> (type of crime that they were told the pictured woman committed) contained responses between 1 and 9 based on rating scales from 1 = low to 9 = high.</p>
+<p>To accompany the numerical summaries, histograms and boxplots can provide some initial information on the shape of the distribution of the responses for the suggested sentences in <em>Years</em>. Figure <a href="2-1-section2-1.html#fig:Figure2-1">2.1</a> contains the histogram and boxplot of <em>Years</em>, ignoring any information on which picture the “jurors” were shown. The calls to the two plotting functions are enhanced slightly to add better labels.</p>
+
+<div class="figure"><span id="fig:Figure2-1"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-1-1.png" alt="Histogram and boxplot of suggested sentences in years." width="576" />
+<p class="caption">
+Figure 2.1: Histogram and boxplot of suggested sentences in years.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(MockJury<span class="op">$</span>Years, <span class="dt">xlab=</span><span class="st">&quot;Years&quot;</span>, <span class="dt">labels=</span>T, <span class="dt">main=</span><span class="st">&quot;Histogram of Years&quot;</span>)
+<span class="kw">boxplot</span>(MockJury<span class="op">$</span>Years, <span class="dt">ylab=</span><span class="st">&quot;Years&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Boxplot of Years&quot;</span>)</code></pre></div>
+<p>The distribution appears to have a strong right skew with three observations at 15 years flagged as potential outliers. You can only tell that there are three observations and that they are at 15 by looking at both plots – the bar around 15 years in the histogram has a count of three and the boxplot only shows a single point at 15 which is actually three tied points at exactly 15 years plotted on top of each other (we call this “overplotting”). These three observations really seem to be the upper edge of the overall pattern of a strongly right skewed distribution, so even though they are flagged in the boxplot, they really are not outside the pattern we observed so are not outliers. In real data sets, outliers are commonly encountered and the first step is to verify that they were not errors in recording (if so, fixing or removing them is easily justified). If they cannot be easily dismissed or fixed, the next step is to study their impact on the statistical analyses performed, potentially considering reporting results with and without the influential observation(s) in the results. If the analysis is unaffected by the “unusual” observations, then it matters little whether they are dropped or not. If they do affect the results, then reporting both versions of results allows the reader to judge the impacts for themselves. It is important to remember that sometimes the outliers are the most interesting part of the data set. </p>
+<p>Often when statisticians think of distributions of data, we think of the smooth underlying shape that led to the data set that is being displayed in the histogram. Instead of binning up observations and making bars in the histogram, we can estimate what is called a <strong><em>density curve</em></strong> as a smooth curve that represents the observed distribution of the responses. Density curves can sometimes help us see features of the data sets more clearly. </p>
+<p>To understand the density curve, it is useful to initially see the histogram and density curve together. The height of the density curve is scaled so that the total area under the curve<a href="#fn14" class="footnoteRef" id="fnref14"><sup>14</sup></a> is 1. To make a comparable histogram, the y-axis needs to be scaled so that the histogram is also on the “density” scale which makes the bar heights adjust so that the proportion of the total data set in each bar is represented by the area in each bar (remember that area is height times width). So the height depends on the width of the bars and the total area across all the bars has to be 1. In the <code>hist</code> function, the <code>freq=F</code> option does this required re-scaling to get density-scaled histogram bars. The density curve is added to the histogram using the R code of <code>lines(density())</code>, producing the result in Figure <a href="2-1-section2-1.html#fig:Figure2-2">2.2</a> with added modifications of options for <code>lwd</code> (line width) and <code>col</code> (color) to make the plot more interesting. You can see how the density curve somewhat matches the histogram bars but deals with the bumps up and down and edges a little differently. We can pick out the strong right skew using either display and will rarely make both together.</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(MockJury<span class="op">$</span>Years, <span class="dt">freq=</span>F, <span class="dt">xlab=</span><span class="st">&quot;Years&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Histogram of Years&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">density</span>(MockJury<span class="op">$</span>Years), <span class="dt">lwd=</span><span class="dv">3</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
+<div class="figure"><span id="fig:Figure2-2"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-2-1.png" alt="Histogram and density curve of Years data." width="480" />
+<p class="caption">
+Figure 2.2: Histogram and density curve of Years data.
+</p>
+</div>
+<p>Histograms can be sensitive to the choice of the number of bars and even the cut-offs used to define the bins for a given number of bars. Small changes in the definition of cut-offs for the bins can have noticeable impacts on the shapes observed but this does not impact density curves. We are not going to tinker with the default choices for bars in histogram as they are reasonably selected, but we can add information on the original observations being included in each bar to better understand the choices that <code>hist</code> is making. In the previous display, we can add what is called a <strong><em>rug</em></strong> to the plot, where a tick mark is made on the x-axis for each observation.  Because the responses were provided as whole years (1, 2, 3, …, 15), we need to use a graphical technique called <strong><em>jittering</em></strong> to add a little noise<a href="#fn15" class="footnoteRef" id="fnref15"><sup>15</sup></a> to each observation so all the observations at each year value do not plot as a single line.  In Figure <a href="2-1-section2-1.html#fig:Figure2-3">2.3</a>, the added tick marks on the x-axis show the approximate locations of the original observations. We can see how there are 3 observations at 15 (all were 15 and the noise added makes it possible to see them all). The limitations of the histogram arise around the 10 year sentence area where there are many responses at 10 years and just one at both 9 and 11 years, but the histogram bars sort of miss this aspect of the data set. The density curve did show a small bump at 10 years. Density curves are, however, not perfect and this one shows area for sentences less than 0 years which is not possible here.</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(MockJury<span class="op">$</span>Years, <span class="dt">freq=</span>F, <span class="dt">xlab=</span><span class="st">&quot;Years&quot;</span>,
+     <span class="dt">main=</span><span class="st">&quot;Histogram of Years with density curve and rug&quot;</span>)
+<span class="kw">lines</span>(<span class="kw">density</span>(MockJury<span class="op">$</span>Years), <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+<span class="kw">rug</span>(<span class="kw">jitter</span>(MockJury<span class="op">$</span>Years), <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure"><span id="fig:Figure2-3"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-3-1.png" alt="Histogram with density curve and rug plot of the jittered responses." width="480" />
+<p class="caption">
+Figure 2.3: Histogram with density curve and rug plot of the jittered responses.
+</p>
+</div>
+<p>The graphical tools we’ve just discussed are going to help us move to comparing the distribution of responses across more than one group. We will have two displays that will help us make these comparisons. The simplest is the <strong><em>side-by-side boxplot</em></strong>, where a boxplot is displayed for each group of interest using the same y-axis scaling.  In R, we can use its <strong><em>formula</em></strong> notation to see if the response (<code>Years</code>) differs based on the group (<code>Attr</code>) by using something like <code>Y~X</code> or, here, <code>Years~Attr</code>. We also need to tell R where to find the variables – use the last option in the command, <code>data=DATASETNAME</code> , to inform R of the tibble to look in to find the variables. In this example, <code>data=MockJury</code>. We will use the formula and <code>data=...</code> options in almost every function we use from here forward. Figure <a href="2-1-section2-1.html#fig:Figure2-4">2.4</a> contains the side-by-side boxplots showing right skew for all the groups, slightly higher median and more variability for the <em>Unattractive</em> group along with some potential outliers indicated in two of the three groups.</p>
+
+<div class="figure"><span id="fig:Figure2-4"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-4-1.png" alt="Side-by-side boxplot of Years based on picture groups." width="480" />
+<p class="caption">
+Figure 2.4: Side-by-side boxplot of Years based on picture groups.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(Years<span class="op">~</span>Attr, <span class="dt">data=</span>MockJury)</code></pre></div>
+<p>The “~” (which is read as the <em>tilde</em> symbol, which you can find in the upper left corner of your keyboard) notation will be used in two ways this semester.  The formula use in R employed previously declares that the response variable here is <em>Years</em> and the explanatory variable is <em>Attr</em>. The other use for “~” is as shorthand for “is distributed as” and is used in the context of <span class="math inline">\(Y\sim N(0,1)\)</span>, which translates (in statistics) to defining the random variable <em>Y</em> as following a Normal distribution<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a>  with mean 0 and standard deviation of 1. In the current situation, we could ask whether the <code>Years</code> variable seems like it may follow a normal distribution, in other words, is <span class="math inline">\(\text{Years}\sim N(\mu,\sigma^2)\)</span>? Since the responses are right skewed with some groups having outliers, it is not reasonable to assume that the <em>Years</em> variable for any of the three groups may follow a normal distribution (more later on the issues this creates!). Remember that <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are parameters where <span class="math inline">\(\mu\)</span> (“mu”) is our standard symbol for the <strong><em>population mean</em></strong> and that <span class="math inline">\(\sigma\)</span> (“sigma”) is the symbol of the <strong><em>population standard deviation</em></strong>.  </p>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Plaster1989">
+<p>Plaster, M. E. 1989. “Inmates as Mock Jurors: The Effects of Physical Attractiveness Upon Juridic Decisions.” Master’s thesis, Greenville, NC: East Carolina University.</p>
+</div>
+<div id="ref-R-heplots">
+<p>Fox, John, and Michael Friendly. 2018. <em>Heplots: Visualizing Hypothesis Tests in Multivariate Linear Models</em>. <a href="https://CRAN.R-project.org/package=heplots" class="uri">https://CRAN.R-project.org/package=heplots</a>.</p>
+</div>
+<div id="ref-R-mosaic">
+<p>Pruim, Randall, Daniel T. Kaplan, and Nicholas J. Horton. 2018a. <em>Mosaic: Project Mosaic Statistics and Mathematics Teaching Utilities</em>. <a href="https://CRAN.R-project.org/package=mosaic" class="uri">https://CRAN.R-project.org/package=mosaic</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="11">
+<li id="fn11"><p>You will more typically hear “data is” but that more often refers to information, sometimes even statistical summaries of data sets, than to observations collected as part of a study, suggesting the confusion of this term in the general public. We will explore a data set in Chapter <a href="5-chapter5.html#chapter5"><strong>??</strong></a> related to perceptions of this issue collected by researchers at <a href="http://fivethirtyeight.com/" class="uri">http://fivethirtyeight.com/</a>.<a href="2-1-section2-1.html#fnref11">↩</a></p></li>
+<li id="fn12"><p>Either try to remember “data is a plural word” or replace “data” with “things” in your sentence and consider whether it sounds right.<a href="2-1-section2-1.html#fnref12">↩</a></p></li>
+<li id="fn13"><p>As noted previously, we reserve the term “effect” for situations where random assignment  allows us to consider causality as the reason for the differences in the response variable among levels of the explanatory variable, but this is only the case if we find evidence against the null hypothesis of no difference in the groups.<a href="2-1-section2-1.html#fnref13">↩</a></p></li>
+<li id="fn14"><p>If you’ve taken calculus, you will know that the curve is being constructed so that the integral from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(\infty\)</span> is 1. If you don’t know calculus, think of a rectangle with area of 1 based on its height and width. These cover the same area but the top of the region wiggles.<a href="2-1-section2-1.html#fnref14">↩</a></p></li>
+<li id="fn15"><p>Jittering typically involves adding random variability to each observation that is uniformly distributed in a range determined based on the spacing of the observation. This means that if you re-run the <code>jitter</code> function, the results will change. For more details, type <code>help(jitter)</code> in the console in RStudio.<a href="2-1-section2-1.html#fnref15">↩</a></p></li>
+<li id="fn16"><p>Remember the bell-shaped curve you encountered in introductory statistics? If not, you can see some at <a href="https://en.wikipedia.org/wiki/Normal_distribution" class="uri">https://en.wikipedia.org/wiki/Normal_distribution</a><a href="2-1-section2-1.html#fnref16">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="2-chapter2.html"><button class="btn btn-default">Previous</button></a>
+<a href="2-2-section2-2.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

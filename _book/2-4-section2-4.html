@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="Intermediate Statistics with R">
+
+<title>Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Beanplots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Chapter summary</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Summary of important R code</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for Prisoner Rating data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient (Optional section)</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomizing inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section2-4" class="section level2">
+<h2><span class="header-section-number">2.4</span> Permutation testing for the two sample mean situation</h2>
+<p>In any testing situation, you must define some function of the observations that gives us a single number that addresses our question of interest. This quantity is called a <strong><em>test statistic</em></strong>. These often take on complicated forms and have names like <span class="math inline">\(t\)</span> or <span class="math inline">\(z\)</span> statistics that relate to their parametric  (named) distributions so we know where to look up <strong><em>p-values</em></strong><a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a>. In randomization settings, they can have simpler forms because we use the data set to find the distribution of the statistic and don’t need to rely on a named distribution. We will label our test statistic <strong><em>T</em></strong> (for <strong>T</strong>est statistic) unless the test statistic has a commonly used name. Since we are interested in comparing the means of the two groups, we can define</p>
+<p><span class="math display">\[T=\bar{x}_\text{Unattractive}-\bar{x}_\text{Average},\]</span></p>
+<p>which coincidentally is what the <code>diffmean</code> function provided us previously. We label our <strong><em>observed test statistic</em></strong> (the one from the original data set) as</p>
+<p><span class="math display">\[T_{obs}=\bar{x}_\text{Unattractive}-\bar{x}_\text{Average},\]</span></p>
+<p>which happened to be 1.84 years here. We will compare this result to the results for the test statistic that we obtain from permuting the group labels. To denote permuted results, we will add a * to the labels:</p>
+<p><span class="math display">\[T^*=\bar{x}_{\text{Unattractive}^*}-\bar{x}_{\text{Average}^*}.\]</span></p>
+<p>We then compare the <span class="math inline">\(T_{obs}=\bar{x}_\text{Unattractive}-\bar{x}_\text{Average} = 1.84\)</span> to the distribution of results that are possible for the permuted results (<span class="math inline">\(T^*\)</span>) which corresponds to assuming the null hypothesis is true.</p>
+<p>We need to consider lots of permutations to do a permutation test.  In contrast to your introductory statistics course where, if you did this, it was just a click away, we are going to learn what was going on under the hood. Specifically, we need a <strong><em>for loop</em></strong> in R to be able to repeatedly generate the permuted data sets and record <span class="math inline">\(T^*\)</span> for each one. Loops are a basic programming task that make randomization methods possible as well as potentially simplifying any repetitive computing task. To write a “for loop”, we need to choose how many times we want to do the loop (call that <code>B</code>) and decide on a counter to keep track of where we are at in the loops (call that <code>b</code>, which goes from 1 up to <code>B</code>). The simplest loop just involves printing out the index, <code>print(b)</code> at each step. This is our first use of curly braces, { and}, that are used to group the code we want to repeatedly run as we proceed through the loop. By typing the following code in the script window and then highlighting it all and hitting the run button, R will go through the loop 5 times, printing out the counter:</p>
+<pre><code>B &lt;- 5
+for (b in (1:B)){
+  print(b)
+}</code></pre>
+<p>Note that when you highlight and run the code, it will look about the same with “+” printed after the first line to indicate that all the code is connected when it appears in the console, looking like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="cf">for</span>(b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
+<span class="op">+</span><span class="st">   </span><span class="kw">print</span>(b)
+<span class="op">+</span><span class="st"> </span>}</code></pre></div>
+<p>When you run these three lines of code, the console will show you the following output:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">[<span class="dv">1</span>] <span class="dv">1</span>
+[<span class="dv">1</span>] <span class="dv">2</span>
+[<span class="dv">1</span>] <span class="dv">3</span>
+[<span class="dv">1</span>] <span class="dv">4</span>
+[<span class="dv">1</span>] <span class="dv">5</span></code></pre></div>
+<p>Instead of printing the counter, we want to use the loop to repeatedly compute our test statistic across B random permutations of the observations. The <code>shuffle</code> function performs permutations of the group labels relative to responses and the <code>diffmean</code> difference in the two group means in the permuted data set. For a single permutation, the combination of shuffling <code>Attr</code> and finding the difference in the means, storing it in a variable called <code>Ts</code> is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Ts &lt;-<span class="st"> </span><span class="kw">diffmean</span>(Years<span class="op">~</span><span class="kw">shuffle</span>(Attr), <span class="dt">data=</span>MockJury2)
+Ts</code></pre></div>
+<pre><code>##  diffmean 
+## -0.616643</code></pre>
+<p>And putting this inside the <code>print</code> function allows us to find the test statistic under 5 different permutations easily:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B &lt;-<span class="st"> </span><span class="dv">5</span>
+<span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
+  Ts &lt;-<span class="st"> </span><span class="kw">diffmean</span>(Years<span class="op">~</span><span class="kw">shuffle</span>(Attr), <span class="dt">data=</span>MockJury2)
+  <span class="kw">print</span>(Ts)
+}</code></pre></div>
+<pre><code>##   diffmean 
+## -0.8300142 
+##   diffmean 
+## -0.1365576 
+##    diffmean 
+## -0.08321479 
+##  diffmean 
+## 0.5035562 
+## diffmean 
+## 1.677098</code></pre>
+<p>Finally, we would like to store the values of the test statistic instead of just printing them out on each pass through the loop. To do this, we need to create a variable to store the results, let’s call it <code>Tstar</code>. We know that we need to store <code>B</code> results so will create a vector<a href="#fn23" class="footnoteRef" id="fnref23"><sup>23</sup></a> of length B, which contains B elements, full of missing values (NA) using the <code>matrix</code> function with the <code>nrow</code> option specifying the number of elements:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)
+Tstar</code></pre></div>
+<pre><code>##      [,1]
+## [1,]   NA
+## [2,]   NA
+## [3,]   NA
+## [4,]   NA
+## [5,]   NA</code></pre>
+<p>Now we can run our loop B times and store the results in <code>Tstar</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
+  Tstar[b] &lt;-<span class="st"> </span><span class="kw">diffmean</span>(Years <span class="op">~</span><span class="st"> </span><span class="kw">shuffle</span>(Attr), <span class="dt">data=</span>MockJury2)
+}
+Tstar</code></pre></div>
+<pre><code>##             [,1]
+## [1,] -0.08321479
+## [2,]  0.23684211
+## [3,] -0.24324324
+## [4,] -0.61664296
+## [5,]  0.66358464</code></pre>
+<p>Five permutations are still not enough to assess whether our <span class="math inline">\(T_{obs}\)</span> of 1.84 is unusual and we need to do many permutations to get an accurate assessment of the possibilities under the null hypothesis.  It is common practice to consider something like 1,000 permutations. The <code>Tstar</code> vector when we set <em>B</em> to be large, say <code>B=1000</code>, contains the permutation distribution  for the selected test statistic under<a href="#fn24" class="footnoteRef" id="fnref24"><sup>24</sup></a> the null hypothesis – what is called the <strong><em>null distribution</em></strong> of the statistic. The null distribution is the distribution of possible values of a statistic under the null hypothesis. We want to visualize this distribution and use it to assess how unusual our <span class="math inline">\(T_{obs}\)</span> result of 1.84 years was relative to all the possibilities under permutations (under the null hypothesis). So we repeat the loop, now with <span class="math inline">\(B=1000\)</span> and generate a histogram, density curve, and summary statistics of the results:</p>
+
+<div class="figure"><span id="fig:Figure2-9"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-9-1.png" alt="Histogram (left, with counts in bars) and density curve (right) of values of test statistic for 1,000 permutations." width="960" />
+<p class="caption">
+Figure 2.9: Histogram (left, with counts in bars) and density curve (right) of values of test statistic for 1,000 permutations.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B &lt;-<span class="st"> </span><span class="dv">1000</span>
+Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)
+<span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
+  Tstar[b] &lt;-<span class="st"> </span><span class="kw">diffmean</span>(Years<span class="op">~</span><span class="kw">shuffle</span>(Attr), <span class="dt">data=</span>MockJury2)
+}
+<span class="kw">hist</span>(Tstar, <span class="dt">label=</span>T)
+<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">favstats</span>(Tstar)</code></pre></div>
+<pre><code>##        min         Q1     median        Q3      max       mean        sd
+##  -2.910384 -0.5099573 0.07681366 0.6102418 2.530583 0.04694168 0.8497364
+##     n missing
+##  1000       0</code></pre>
+<p>Figure <a href="2-4-section2-4.html#fig:Figure2-9">2.9</a> contains visualizations of <span class="math inline">\(T^*\)</span> and the <code>favstats</code> summary provides the related numerical summaries. Our observed <span class="math inline">\(T_{obs}\)</span> of 1.84 seems fairly unusual relative to these results with only 14 <span class="math inline">\(T^*\)</span> values over 2 based on the histogram. We need to make more specific comparisons of the permuted results versus our observed result to be able to clearly decide whether our observed result is really unusual.</p>
+<p>To make the comparisons more concrete, first we can enhance the previous graphs by adding the value of the test statistic from the real data set, as shown in Figure <a href="2-4-section2-4.html#fig:Figure2-10">2.10</a>, using the <code>abline</code> function to draw a vertical line at our <span class="math inline">\(T_{obs}\)</span> value specified in the <code>v</code> (for vertical) option.</p>
+
+<div class="figure"><span id="fig:Figure2-10"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-10-1.png" alt="Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic." width="960" />
+<p class="caption">
+Figure 2.10: Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="fl">1.837</span>
+<span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p>Second, we can calculate the exact number of permuted results that were as large or larger than what we observed. To calculate the proportion of the 1,000 values that were as large or larger than what we observed, we will use the <code>pdata</code> function.  To use this function, we need to provide the distribution of values to compare to the cut-off (<code>Tstar</code>), the cut-off point (<code>Tobs</code>), and whether we want calculate the proportion that are below (left of) or above (right of) the cut-off (<code>lower.tail=F</code> option provides the proportion of values above the cutoff of interest).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdata</span>(Tstar, Tobs, <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] 0.02</code></pre>
+<p>The proportion of 0.02 tells us that 20 of the 1,000 permuted results (2%) were as large or larger than what we observed. This type of work is how we can generate <strong><em>p-values</em></strong> using permutation distributions.   P-values,  as you should remember, are the probability of getting a result as extreme as or more extreme than what we observed, <span class="math inline">\(\underline{\text{given that the null is true}}\)</span>. Finding only 20 permutations of 1,000 that were larger than our observed result suggests that it is hard to find a result like what we observed if there really were no difference, although it is not impossible.</p>
+<p>When testing hypotheses for two groups, there are two types of alternative hypotheses, one-sided or two-sided. <strong><em>One-sided tests</em></strong> involve only considering differences in one-direction (like <span class="math inline">\(\mu_1 &gt; \mu_2\)</span>) and are performed when researchers can decide <strong><em>a priori</em></strong><a href="#fn25" class="footnoteRef" id="fnref25"><sup>25</sup></a> which group should have a larger mean if there is going to be any sort of difference. In this situation, we did not know enough about the potential impacts of the pictures to know which group should be larger than the other so should do a two-sided test. It is important to remember that you can’t look at the responses to decide on the hypotheses. It is often safer and more <strong><em>conservative</em></strong><a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a> to start with a <strong><em>two-sided alternative</em></strong> (<span class="math inline">\(\mathbf{H_A: \mu_1 \ne \mu_2}\)</span>). To do a 2-sided test, find the area larger than what we observed as above. We also need to add the area in the other tail (here the left tail) similar to what we observed in the right tail. Some people suggest doubling the area in one tail but we will collect information on the number that were more as or more extreme than the same value in the other tail. In other words, we count the proportion over 1.84 and below -1.84. So we need to also find how many of the permuted results were smaller than or equal to -1.84 years to add to our previous proportion. Using <code>pdata</code> with <code>-Tobs</code> as the cut-off and <code>lower.tail=T</code> provides this result: </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdata</span>(Tstar, <span class="op">-</span>Tobs, <span class="dt">lower.tail=</span>T)[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] 0.014</code></pre>
+<p>So the p-value to test our null hypothesis of no difference in the true means between the groups is 0.02 + 0.014, providing a p-value of 0.034. Figure <a href="2-4-section2-4.html#fig:Figure2-11">2.11</a> shows both cut-offs on the histogram and density curve.</p>
+
+<div class="figure"><span id="fig:Figure2-11"></span>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-11-1.png" alt="Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (1.84) and its opposite value (-1.84) required for performing the two-sided test." width="960" />
+<p class="caption">
+Figure 2.11: Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (1.84) and its opposite value (-1.84) required for performing the two-sided test.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span>Tobs, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span>Tobs, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p>In general, the <strong><em>one-sided test p-value</em></strong>  is the proportion of the permuted results that are as extreme or more extreme than observed in the direction of the <em>alternative</em> hypothesis (lower or upper tail, remembering that this also depends on the direction of the difference taken). For the 2-sided test, the p-value  is the proportion of the permuted results that are <em>less than or equal to the negative version of the observed statistic and greater than or equal to the positive version of the observed statistic</em>. Using absolute values (| |), we can simplify this: the <strong><em>two-sided p-value</em></strong> is the <em>proportion of the |permuted statistics| that are as large or larger than |observed statistic|</em>. This will always work and finds areas in both tails regardless of whether the observed statistic is positive or negative. In R, the <code>abs</code> function provides the <strong><em>absolute value</em></strong> and we can again use <code>pdata</code> to find our p-value in one line of code: </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdata</span>(<span class="kw">abs</span>(Tstar), <span class="kw">abs</span>(Tobs), <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] 0.034</code></pre>
+<p>We will encourage you to think through what might constitute strong evidence against your null hypotheses and then discuss how strong you feel the evidence is against the null hypothesis in the p-value that you obtained. Basically, p-values present a measure of evidence against the null hypothesis,  with smaller values presenting more evidence against the null. They range from 0 to 1 and you should interpret them on a graded scale from strong evidence (close to 0) to no evidence (close 1). We will discuss the use of a fixed <strong><em>significance level</em></strong> below as it is still commonly used in many fields and is necessary to think about the theory of hypothesis testing, but, for the moment, we can conclude that there is moderate evidence against the null hypothesis presented by having a p-value of 0.034 because our observed result is somewhat rare relative to what we would expect if the null hypothesis was true. And so we would likely <strong><em>reject the null hypothesis</em></strong> and conclude (in the direction of the alternative) that there is a difference in the population means in the two groups.</p>
+<p>Before we move on, let’s note some interesting features of the permutation distribution of the difference in the sample means shown in Figure <a href="2-4-section2-4.html#fig:Figure2-11">2.11</a>. </p>
+<ol style="list-style-type: decimal">
+<li><p>It is basically centered at 0. Since we are performing permutations assuming the null model is true, we are assuming that <span class="math inline">\(\mu_1 = \mu_2\)</span> which implies that <span class="math inline">\(\mu_1 - \mu_2 = 0\)</span>. This also suggests that 0 should be the center of the permutation distribution and it was.</p></li>
+<li><p>It is approximately normally distributed. This is due to the <strong><em>Central Limit Theorem</em></strong><a href="#fn27" class="footnoteRef" id="fnref27"><sup>27</sup></a>, where the <strong><em>sampling distribution</em></strong> (distribution of all possible results for samples of this size) of the difference in sample means (<span class="math inline">\(\bar{x}_1 - \bar{x}_2\)</span>) becomes more normally distributed as the sample sizes increase. With 38 and 37 observations in the groups, we are likely to have a relatively normal looking distribution of the difference in the sample means. This result will allow us to use a parametric  method to approximate this sampling distribution under the null model if some assumptions are met, as we’ll discuss below.</p></li>
+<li><p>Our observed difference in the sample means (1.84 years) is a fairly unusual result relative to the rest of these results but there are some permuted data sets that produce more extreme differences in the sample means. When the observed differences are really large, we may not see any permuted results that are as extreme as what we observed. When <code>pdata</code> gives you 0, the p-value  should be reported to be smaller than 0.0001 (<strong>not 0!</strong>) since it happened in less than 1 in 1,000 tries but does occur once – in the actual data set.</p></li>
+<li><p>Since our null model is not specific about the direction of the difference, considering a result like ours but in the other direction (-1.84 years) needs to be included. The observed result seems to put about the same area in both tails of the distribution but it is not exactly the same. The small difference in the tails is a useful aspect of this approach compared to the parametric method discussed below as it accounts for potential asymmetry in the sampling distribution.</p></li>
+</ol>
+<p>Earlier, we decided that the p-value provided moderate evidence against the null hypothesis and that we should reject the null. In this course, you will often be allowed to use your own judgment about an appropriate significance level in a particular situation (in other words, if we forget to tell you an <span class="math inline">\(\alpha\)</span> -level, you can still make a decision based on how strong you feel the evidence was against the null based on the p-value). Remembering that the p-value is the probability  you would observe a result like you did (or more extreme), assuming the null hypothesis is true; this tells you that the smaller the p-value is, the more evidence you have against the null. Figure <a href="2-4-section2-4.html#fig:FigurePValStr">2.12</a> provides a diagram of some suggestions for the graded p-value interpretation that you can use. The next section provides a more formal review of the hypothesis testing  infrastructure, terminology, and some of things that can happen when testing hypotheses. P-values have been (validly)  criticized for the inability of studies to be reproduced, for the bias in publications to only include studies that have small p-values, and for the lack of thought that often accompanies using a fixed significance level. To alleviate some of these criticisms, we recommend reporting the strength of evidence of the result based on the p-value and also reporting and discussing the size of the estimated results (with a measure of precision of the estimated difference).</p>
+
+<div class="figure"><span id="fig:FigurePValStr"></span>
+<img src="chapter2_files/pvalueStrengths.png" alt="Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values."  />
+<p class="caption">
+Figure 2.12: Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values.
+</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="22">
+<li id="fn22"><p>P-values  are the probability of obtaining a result as extreme as or more extreme than we observed given that the null hypothesis is true.<a href="2-4-section2-4.html#fnref22">↩</a></p></li>
+<li id="fn23"><p>In statistics, vectors are one dimensional lists of numeric elements – basically a column from a matrix or our tibble.<a href="2-4-section2-4.html#fnref23">↩</a></p></li>
+<li id="fn24"><p>We often say “under” in statistics and we mean “given that the following is true”.<a href="2-4-section2-4.html#fnref24">↩</a></p></li>
+<li id="fn25"><p>This is a fancy way of saying “in advance”, here in advance of seeing the observations.<a href="2-4-section2-4.html#fnref25">↩</a></p></li>
+<li id="fn26"><p>Statistically, a conservative method is one that provides less chance of rejecting the null hypothesis in comparison to some other method or less than some pre-defined standard.<a href="2-4-section2-4.html#fnref26">↩</a></p></li>
+<li id="fn27"><p>We’ll leave the discussion of the CLT to your previous statistics coursework or an internet search. For this material, just remember that it has something to do with distributions looking more normal as the sample size increases.<a href="2-4-section2-4.html#fnref27">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="2-3-section2-3.html"><button class="btn btn-default">Previous</button></a>
+<a href="2-5-section2-5.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

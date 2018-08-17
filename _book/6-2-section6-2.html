@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="Intermediate Statistics with R">
+
+<title>Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Beanplots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Chapter summary</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Summary of important R code</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for Prisoner Rating data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient (Optional section)</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomizing inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section6-2" class="section level2">
+<h2><span class="header-section-number">6.2</span> Estimating the correlation coefficient</h2>
+<p>In terms of quantifying relationships between variables, we start with the correlation coefficient, a measure that is the same regardless of your choice of variables as explanatory or response. We measure the strength and direction of linear relationships between two quantitative variables using <strong><em>Pearson’s r</em></strong> or <strong><em>Pearson’s Product Moment Correlation Coefficient</em></strong>. For those who really like acronyms, Wikipedia even suggests calling it the PPMCC. However, its use is so ubiquitous that the lower case <strong><em>r</em></strong> or just “correlation coefficient” are often sufficient to identify that you have used the PPMCC. Some of the extra distinctions arise because there are other ways of measuring correlations in other situations (for example between two categorical variables), but we will not consider them here.</p>
+
+<p>The correlation coefficient, <strong><em>r</em></strong>, is calculated as</p>
+<p><span class="math display">\[r=\frac{1}{n-1}\sum^n_{i=1}\left(\frac{x_i-\bar{x}}{s_x}\right)
+\left(\frac{y_i-\bar{y}}{s_y}\right),\]</span></p>
+<p>where <span class="math inline">\(s_x\)</span> and <span class="math inline">\(s_y\)</span> are the standard deviations of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. This formula can also be written as</p>
+<p><span class="math display">\[r=\frac{1}{n-1}\sum^n_{i=1}z_{x_i}z_{y_i}\]</span></p>
+<p>where <span class="math inline">\(z_{x_i}\)</span> is the z-score (observation minus mean divided by standard deviation) for the <span class="math inline">\(i^{th}\)</span> observation on <span class="math inline">\(x\)</span> and <span class="math inline">\(z_{y_i}\)</span> is the z-score for the <span class="math inline">\(i^{th}\)</span> observation on <span class="math inline">\(y\)</span>. We won’t directly use this formula, but its contents inform the behavior of <strong><em>r</em></strong>. First, because it is a sum divided by (<span class="math inline">\(n-1\)</span>) it is a bit like an average – it combines information across all observations and, like the mean, is sensitive to outliers. Second, it is a dimension-less measure, meaning that it has no units attached to it. It is based on z-scores which have units of standard deviations of <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span> so the original units of measurement are cancelled out going into this calculation. This also means that changing the original units of measurement, say from Fahrenheit to Celsius or from miles to km for one or the other variable will have no impact on the correlation. Less obviously, the formula guarantees that <strong><em>r</em></strong> is between -1 and 1. It will attain -1 for a perfect negative linear relationship, 1 for a perfect positive linear relationship, and 0 for no linear relationship. We are being careful here to say <strong><em>linear relationship</em></strong> because you can have a strong nonlinear relationship with a correlation of 0. For example, consider Figure <a href="6-2-section6-2.html#fig:Figure6-2">2.93</a>.</p>
+
+<div class="figure"><span id="fig:Figure6-2"></span>
+<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-2-1.png" alt="Scatterplot of an amusing (and strong) relationship that has \(r=0\)." width="576" />
+<p class="caption">
+Figure 2.93: Scatterplot of an amusing (and strong) relationship that has <span class="math inline">\(r=0\)</span>.
+</p>
+</div>
+<p>There are some conditions for trusting the results that the correlation coefficient provides:</p>
+<ol style="list-style-type: decimal">
+<li><p>Two quantitative variables measured.</p>
+<ul>
+<li>This might seem silly, but categorical variables can be coded numerically and a meaningless correlation can be estimated if you are not careful what you correlate.</li>
+</ul></li>
+<li><p>The relationship between the variables is relatively linear.</p>
+<ul>
+<li>If the relationship is nonlinear, the correlation is meaningless since it only measures linear relationships and can be misleading if applied to a nonlinear relationship.</li>
+</ul></li>
+<li><p>There should be no outliers. </p>
+<ul>
+<li><p>The correlation is very sensitive (technically <strong><em>not resistant</em></strong>) to the impacts of certain types of outliers and you should generally avoid reporting the correlation when they are present. </p></li>
+<li><p>One option in the presence of outliers is to report the correlation with and without outliers to see how they influence the estimated correlation.</p></li>
+</ul></li>
+</ol>
+<p>The correlation coefficient is dimensionless but larger magnitude values (closer to -1 OR 1) mean stronger linear relationships. A rough interpretation scale based on experiences working with correlations follows, but this varies between fields and types of research and variables measured. It depends on the levels of correlation researchers become used to obtaining, so can even vary within fields. Use this scale until you develop your own experience:</p>
+<ul>
+<li><p><span class="math inline">\(\left|\boldsymbol{r}\right|&lt;0.3\)</span>: weak linear relationship,</p></li>
+<li><p><span class="math inline">\(0.3 &lt; \left|\boldsymbol{r}\right|&lt;0.7\)</span>: moderate linear relationship,</p></li>
+<li><p><span class="math inline">\(0.7 &lt; \left|\boldsymbol{r}\right|&lt;0.9\)</span>: strong linear relationship, and</p></li>
+<li><p><span class="math inline">\(0.9 &lt; \left|\boldsymbol{r}\right|&lt;1.0\)</span>: very strong linear relationship.</p></li>
+</ul>
+<p>And again note that this scale only relates to the <strong>linear</strong> aspect of the relationship between the variables.</p>
+<p>When we have linear relationships between two quantitative variables, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, we can obtain estimated correlations from the <code>cor</code> function either using <code>y~x</code> or by running the <code>cor</code> function<a href="#fn73" class="footnoteRef" id="fnref73"><sup>73</sup></a> on the entire data set. When you run the <code>cor</code> function on a data set it produces a <strong><em>correlation matrix</em></strong> which contains a matrix of correlations where you can triangulate the variables being correlated by the row and column names, noting that the correlation between a variable and itself is 1. A matrix of correlations is useful for comparing more than two variables, discussed below. </p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(mosaic)
+<span class="kw">cor</span>(BAC<span class="op">~</span>Beers, <span class="dt">data=</span>BB)</code></pre></div>
+<pre><code>## [1] 0.8943381</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(BB)</code></pre></div>
+<pre><code>##           Beers       BAC
+## Beers 1.0000000 0.8943381
+## BAC   0.8943381 1.0000000</code></pre>
+<p>Based on either version of using the function, we find that the correlation between <code>Beers</code> and <code>BAC</code> is estimated to be 0.89. This suggests a strong linear relationship between the two variables. Examples are about the only way to build up enough experience to become skillful in using the correlation coefficient. Some additional complications arise in more complicated studies as the next example demonstrates.</p>
+<p><span class="citation">Gude et al. (<a href="#ref-Gude2009">2009</a>)</span> explored the relationship between average summer temperature (degrees F) and area burned (natural log of hectares<a href="#fn74" class="footnoteRef" id="fnref74"><sup>74</sup></a> = log(hectares)) by wildfires in Montana from 1985 to 2007. The <strong><em>log-transformation</em></strong> is often used to reduce the impacts of really large observations with non-negative (strictly greater than 0) variables (more on <strong><em>transformations</em></strong> and their impacts on regression models in Chapter <a href="7-chapter7.html#chapter7"><strong>??</strong></a>).  Based on your experiences with the wildfire season in Montana and before analyzing the data, I’m sure you would assume that summer temperature explains the area burned by wildfires. But could it be that more fires are related to having warmer summers? That second direction is unlikely on a state-wide scale but could apply at a particular weather station that is near a fire. There is another option – some other variable is affecting both variables. For example, drier summers might be the real explanatory variable that is related to having both warm summers and lots of fires. These variables are also being measured over time making them examples of <strong><em>time series</em></strong>. In this situation, if there are changes over time, they might be attributed to climate change. So there are really three relationships to explore with the variables measured here (remembering that the full story might require measuring even more!): log-area burned versus temperature, temperature versus year, and log-area burned versus year.</p>
+<p>With more than two variables, we can use the <code>cor</code> function on all the variables and end up getting a matrix of correlations or, simply, the <strong><em>correlation matrix</em></strong>.  If you triangulate the row and column labels, that cell provides the correlation between that pair of variables. For example, in the first row (<code>Year</code>) and the last column (<code>loghectares</code>), you can find that the correlation coefficient is <strong><em>r</em></strong>=0.362. Note the symmetry in the matrix around the diagonal of 1’s – this further illustrates that correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> does not depend on which variable is viewed as the “response”. The estimated correlation between <code>Temperature</code> and <code>Year</code> is -0.004 and the correlation between <code>loghectares</code> (<em>log-hectares burned</em>) and <code>Temperature</code> is 0.81. So <code>Temperature</code> has almost no linear change over time. And there is a strong linear relationship between <code>loghectares</code> and <code>Temperature</code>. So it appears that temperatures may be related to log-area burned but that the trend over time in both is less clear (at least the linear trends).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtfires &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/climateR2.csv&quot;</span>)
+<span class="co"># natural log transformation of area burned</span>
+mtfires<span class="op">$</span>loghectares &lt;-<span class="st"> </span><span class="kw">log</span>(mtfires<span class="op">$</span>hectares) 
+
+<span class="co">#Cuts the original hectares data so only log-scale version in tibble</span>
+mtfiresR &lt;-<span class="st"> </span>mtfires[,<span class="op">-</span><span class="dv">3</span>] 
+<span class="kw">cor</span>(mtfiresR)</code></pre></div>
+<pre><code>##                   Year Temperature loghectares
+## Year         1.0000000  -0.0037991   0.3617789
+## Temperature -0.0037991   1.0000000   0.8135947
+## loghectares  0.3617789   0.8135947   1.0000000</code></pre>
+<p>The correlation matrix alone is misleading – we need to explore scatterplots to check for nonlinear relationships, outliers, and clustering of observations that may be distorting the numerical measure of the linear relationship.  The <code>pairs.panels</code> function from the <code>psych</code> package <span class="citation">(Revelle <a href="#ref-R-psych">2018</a>)</span> combines the numerical correlation information and scatterplots in one display.  There are some options to turn off for the moment but it is an easy function to use to get lots of information in one place. As in the correlation matrix, you triangulate the variables for the pairwise relationship. The upper right panel of Figure <a href="6-2-section6-2.html#fig:Figure6-3">2.94</a> displays a correlation of 0.36 for <code>Year</code> and <code>loghectares</code> and the lower left panel contains the scatterplot with <code>Year</code> on the x-axis and <code>loghectares</code> on the y-axis. The correlation between <code>Year</code> and <code>Temperature</code> is really small, both in magnitude and in display, but appears to be nonlinear (it goes down between 1985 and 1995 and then goes back up), so the correlation coefficient doesn’t mean much here since it just measures the overall linear relationship. We might say that this is a moderate strength (moderately “clear”) curvilinear relationship. In terms of the underlying climate process, it suggests a decrease in summer temperatures between 1985 and 1995 and then an increase in the second half of the data set.</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(psych) 
+<span class="kw">pairs.panels</span>(mtfiresR, <span class="dt">ellipses=</span>F, <span class="dt">scale=</span>T, <span class="dt">smooth=</span>F, <span class="dt">col=</span><span class="dv">0</span>)</code></pre></div>
+<div class="figure"><span id="fig:Figure6-3"></span>
+<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-3-1.png" alt="Scatterplot matrix of Montana fires data." width="576" />
+<p class="caption">
+Figure 2.94: Scatterplot matrix of Montana fires data.
+</p>
+</div>
+<p>As one more example, the Australian Institute of Sport collected data on 102 male and 100 female athletes that are available in the <code>ais</code> data set from the <code>alr3</code> package (<span class="citation">Weisberg (<a href="#ref-R-alr3">2018</a>)</span>, <span class="citation">Weisberg (<a href="#ref-Weisberg2005">2005</a>)</span>).  They measured a variety of variables including the athlete’s Hematocrit (<code>Hc</code>, units of percentage of red blood cells in the blood), Body Fat Percentage (<code>Bfat</code>, units of percentage of total body weight), and height (<code>Ht</code>, units of cm). Eventually we might be interested in predicting <code>Hc</code> based on the other variables, but for now the associations are of interest.</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(alr3)
+<span class="kw">data</span>(ais)
+<span class="kw">require</span>(tibble)
+ais &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(ais)
+aisR &lt;-<span class="st"> </span>ais[,<span class="kw">c</span>(<span class="st">&quot;Ht&quot;</span>,<span class="st">&quot;Hc&quot;</span>,<span class="st">&quot;Bfat&quot;</span>)]
+<span class="kw">summary</span>(aisR)</code></pre></div>
+<pre><code>##        Ht              Hc             Bfat       
+##  Min.   :148.9   Min.   :35.90   Min.   : 5.630  
+##  1st Qu.:174.0   1st Qu.:40.60   1st Qu.: 8.545  
+##  Median :179.7   Median :43.50   Median :11.650  
+##  Mean   :180.1   Mean   :43.09   Mean   :13.507  
+##  3rd Qu.:186.2   3rd Qu.:45.58   3rd Qu.:18.080  
+##  Max.   :209.4   Max.   :59.70   Max.   :35.520</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairs.panels</span>(aisR, <span class="dt">scale=</span>T, <span class="dt">ellipse=</span>F, <span class="dt">smooth=</span>F, <span class="dt">col=</span><span class="dv">0</span>)</code></pre></div>
+<div class="figure"><span id="fig:Figure6-4"></span>
+<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-4-1.png" alt="Scatterplot matrix of athlete data." width="576" />
+<p class="caption">
+Figure 2.95: Scatterplot matrix of athlete data.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(aisR)</code></pre></div>
+<pre><code>##              Ht         Hc       Bfat
+## Ht    1.0000000  0.3711915 -0.1880217
+## Hc    0.3711915  1.0000000 -0.5324491
+## Bfat -0.1880217 -0.5324491  1.0000000</code></pre>
+<p><code>Ht</code> (<em>Height</em>) and <code>Hc</code> (<em>Hematocrit</em>) have a moderate positive relationship that may contain a slight nonlinearity. It also contains one clear outlier for a middle height athlete (around 175 cm) with an <code>Hc</code> of close to 60% (a result that is extremely high). One might wonder about whether this athlete has been doping or if that measurement involved a recording error. We should consider removing that observation to see how our results might change without it impacting the results. For the relationship between <code>Bfat</code> (<em>body fat</em>) and <code>Hc</code> (<em>hematocrit</em>), that same high <code>Hc</code> value is a clear outlier. There is also a high <code>Bfat</code> (<em>body fat</em>) athlete (35%) with a somewhat low <code>Hc</code> value. This also might be influencing our impressions so we will remove both “unusual” values and remake the plot. The two offending observations were found for individuals numbered 56 and 166 in the data set:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aisR[<span class="kw">c</span>(<span class="dv">56</span>,<span class="dv">166</span>),]</code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##      Ht    Hc  Bfat
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  180.  37.6 35.5 
+## 2  175.  59.7  9.56</code></pre>
+<p>We can create a reduced version of the data (<code>aisR2</code>) by removing those two rows using <code>[-c(56, 166),]</code> and then remake the plot:</p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aisR2 &lt;-<span class="st"> </span>aisR[<span class="op">-</span><span class="kw">c</span>(<span class="dv">56</span>,<span class="dv">166</span>),] <span class="co">#Removes observations in rows 56 and 166</span>
+<span class="kw">pairs.panels</span>(aisR2, <span class="dt">scale=</span>T, <span class="dt">ellipse=</span>F, <span class="dt">smooth=</span>F, <span class="dt">col=</span><span class="dv">0</span>)</code></pre></div>
+<div class="figure"><span id="fig:Figure6-5"></span>
+<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-5-1.png" alt="Scatterplot matrix of athlete data with two potential outliers removed. " width="576" />
+<p class="caption">
+Figure 2.96: Scatterplot matrix of athlete data with two potential outliers removed. 
+</p>
+</div>
+<p>After removing these two unusual observations, the relationships between the variables are more obvious (Figure <a href="6-2-section6-2.html#fig:Figure6-5">2.96</a>). There is a moderate strength, relatively linear relationship between <em>Height</em> and <em>Hematocrit</em>. There is almost no relationship between <em>Height</em> and <em>Body Fat %</em> <span class="math inline">\((\boldsymbol{r}=-0.20)\)</span>. There is a negative, moderate strength, somewhat curvilinear relationship between <em>Hematocrit</em> and <em>Body Fat %</em> <span class="math inline">\((\boldsymbol{r}=-0.54)\)</span>. As hematocrit increases initially, the body fat percentage decreases but at a certain level (around 45% for <code>Hc</code>), the body fat percentage seems to level off. Interestingly, it ended up that removing those two outliers had only minor impacts on the estimated correlations – this will not always be the case.</p>
+<p>Sometimes we want to just be able to focus on the correlations, assuming we trust that the correlation is a reasonable description of the results between the variables. To make it easier to see patterns of positive and negative correlations, we can employ a different version of the same display from the <code>corrplot</code> package <span class="citation">(Wei and Simko <a href="#ref-R-corrplot">2017</a>)</span>.  In this case (Figure <a href="6-2-section6-2.html#fig:Figure6-6">2.97</a>), it tells much the same story but also allows the viewer to easily distinguish both size and direction and read off the numerical correlations if desired. </p>
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(corrplot)
+<span class="kw">corrplot.mixed</span>(<span class="kw">cor</span>(aisR2), <span class="dt">upper.col=</span><span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;orange&quot;</span>),<span class="dt">lower.col=</span><span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;orange&quot;</span>))</code></pre></div>
+<div class="figure"><span id="fig:Figure6-6"></span>
+<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-6-1.png" alt="Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations." width="336" />
+<p class="caption">
+Figure 2.97: Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations.
+</p>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Gude2009">
+<p>Gude, Patricia H., J. Anthony Cookson, Mark C. Greenwood, and Mark Haggerty. 2009. “Homes in Wildfire-Prone Areas: An Empirical Analysis of Wildfire Suppression Costs and Climate Change.” <a href="www.headwaterseconomics.org" class="uri">www.headwaterseconomics.org</a>.</p>
+</div>
+<div id="ref-R-psych">
+<p>Revelle, William. 2018. <em>Psych: Procedures for Psychological, Psychometric, and Personality Research</em>. <a href="https://CRAN.R-project.org/package=psych" class="uri">https://CRAN.R-project.org/package=psych</a>.</p>
+</div>
+<div id="ref-R-alr3">
+<p>Weisberg, Sanford. 2018. <em>Alr3: Data to Accompany Applied Linear Regression 3rd Edition</em>. <a href="https://CRAN.R-project.org/package=alr3" class="uri">https://CRAN.R-project.org/package=alr3</a>.</p>
+</div>
+<div id="ref-Weisberg2005">
+<p>Weisberg, Sanford. 2005. <em>Applied Linear Regression, Third Edition</em>. Hoboken, NJ: Wiley.</p>
+</div>
+<div id="ref-R-corrplot">
+<p>Wei, Taiyun, and Viliam Simko. 2017. <em>Corrplot: Visualization of a Correlation Matrix</em>. <a href="https://CRAN.R-project.org/package=corrplot" class="uri">https://CRAN.R-project.org/package=corrplot</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="73">
+<li id="fn73"><p>This interface with the <code>cor</code> function only works after you load the <code>mosaic</code> package.<a href="6-2-section6-2.html#fnref73">↩</a></p></li>
+<li id="fn74"><p>The natural log (<span class="math inline">\(\log_e\)</span> or <span class="math inline">\(\ln\)</span>) is used in statistics so much that the function in R <code>log</code> actually takes the natural log and if you want a <span class="math inline">\(\log_{10}\)</span> you have to use the function <code>log10</code>. When statisticians say log we mean natural log.<a href="6-2-section6-2.html#fnref74">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="6-1-section6-1.html"><button class="btn btn-default">Previous</button></a>
+<a href="6-3-section6-3.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

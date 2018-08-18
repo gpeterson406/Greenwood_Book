@@ -1108,8 +1108,7 @@ not happening much for the subjects in the control group. The violation of the i
 
 ```r
 require(readr)
-epworthdata <- 
-read_csv("http://www.math.montana.edu/courses/s217/documents/epworthdata.csv")
+epworthdata <- read_csv("http://www.math.montana.edu/courses/s217/documents/epworthdata.csv")
 epworthdata$Time <- factor(epworthdata$Time)
 levels(epworthdata$Time) <- c("Pre" , "Post")
 epworthdata$Group <- factor(epworthdata$Group)

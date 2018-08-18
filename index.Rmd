@@ -10,7 +10,12 @@ output:
     css: toc.css
     toc: yes
     mathjax: default
-  bookdown::gitbook: default
+  bookdown::gitbook:
+    config:
+      toolbar:
+        position: fixed
+      download: ["pdf"]
+      sharing: no
 documentclass: book
 link-citations: yes
 github-repo: gpeterson406/Greenwood_Book

@@ -86,6 +86,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -98,6 +99,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">Intermediate Statistics with R</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover</a></li>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
 <li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
@@ -217,6 +221,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.6" data-path="chapter9.html"><a href="chapter9.html#section9-6"><i class="fa fa-check"></i><b>9.6</b> General summary</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -729,8 +736,7 @@ Figure 9.11: Diagnostic plots for the top AIC model.
 <p>The data set was not initially provided by the researchers, but they did provide a plot very similar to Figure <a href="chapter9.html#fig:Figure9-12">9.12</a>. Since this is last section of the book, I am going to use a new package to make the plot, <code>qplot</code> from the <code>ggplot2</code> package <span class="citation">(Wickham et al. <a href="#ref-R-ggplot2">2018</a>)</span>, that violates one of the rules used for R functions to this point - it doesn’t have a formula interface.  The <code>viridis</code> package <span class="citation">(Garnier <a href="#ref-R-viridis">2018</a>)</span> was used to specify the colors in the plot.  If you continue much further in learning to use R, you will see the benefits of some other functions and styles of functions. You will also likely run into the <code>ggplot2</code> package, which is part of the “tidyverse” and has been developed to implement sophisticated graphics. For more on this, you can visit <a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a> and the related book by Hadley Wickham, who orks for RStudio. We could have used <code>ggplot2</code> to make every graph in the book, but elected to focus on functions that rely on formula interfaces. For now, I am going to use it to make Figure <a href="chapter9.html#fig:Figure9-12">9.12</a> with the <code>qplot</code> function that allows me to display a line for each subject over the two time points (pre and post) of observation and indicate which group the subjects were assigned to. This allows us to see the variation at a given time across subjects and changes over time, which is critical here as this shows clearly why we had a violation of the independence assumption in these data. In the plot, you can see that there are not clear differences in the two groups at the “Pre” time but that treated group seems to have most of the lines go down to lower sleepiness ratings and that this is not happening much for the subjects in the control group. The violation of the independence assumption is diagnosable from the study design (two observations on each subject). The plot allows us to go further and see that many subjects had similar Epworth scores from pre to post (high in pre, generally high in post) once we account for systemtic changes in the treated subjects.</p>
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(readr)
-epworthdata &lt;-<span class="st"> </span>
-<span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/epworthdata.csv&quot;</span>)
+epworthdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/epworthdata.csv&quot;</span>)
 epworthdata<span class="op">$</span>Time &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Time)
 <span class="kw">levels</span>(epworthdata<span class="op">$</span>Time) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Pre&quot;</span> , <span class="st">&quot;Post&quot;</span>)
 epworthdata<span class="op">$</span>Group &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Group)
@@ -929,17 +935,7 @@ Figure 9.13: Term-plot of Time by Group interaction, results are from model that
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
-"linkedin": false,
-"weibo": false,
-"instapper": false,
-"vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
@@ -949,9 +945,12 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Greenwood_Book.pdf"],
 "toc": {
 "collapse": "subsection"
+},
+"toolbar": {
+"position": "fixed"
 }
 });
 });

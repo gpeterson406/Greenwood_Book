@@ -405,7 +405,7 @@ plot(allEffects(lm2))
 \indent In order to assess evidence for having different means for the groups, we will 
 compare either of the previous models (cell-means or reference-coded) to a null 
 model based on the null hypothesis ($H_0: \mu_1 = \ldots = \mu_J$) which implies a
-model of $\color{red}{y_{ij} = \mu_j}+\varepsilon_{ij}$ in the cell-means version 
+model of $\color{red}{y_{ij} = \mu+\varepsilon_{ij}}$ in the cell-means version 
 where ${\color{red}{\mu}}$ is a common mean for all the observations. We will call 
 this the `r colFmtBold("mean-only","red")` model since it only has a single mean 
 in it. In the reference-coded version of the model, we have a null hypothesis that
@@ -2008,7 +2008,7 @@ groups are detected as being different and are displayed as belonging to
 different groups. *Beautiful* picture responses are not detected as different
 from the other two groups.
 
-```{r Figure3-23, fig.cap="(ref:fig3-23)"}
+```{r Figure3-23, fig.cap="(ref:fig3-23)", echo=F}
 old.par <- par(mai=c(0.5,1,1,1))
 beanplot(Years~Attr, data=MockJury, log="", col="white", method="jitter")
 text(c(1), c(5.3),"ab", col="blue", cex=1.5)

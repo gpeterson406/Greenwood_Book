@@ -1,7 +1,8 @@
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
-    after_body: 
+    before_body: frontmatterCode.tex
+    after_body: appendix.tex
   latex_engine: pdflatex
   citation_package: natbib
   keep_tex: yes
@@ -11,7 +12,12 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">A Second Semester Statistics Couse with R</a></li>
+        <li><a href="./">Intermediate Statistics with R</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
+      collapse: subsection
+    toolbar:
+        position: fixed
+    download: ["pdf"]
+    sharing: no
+      

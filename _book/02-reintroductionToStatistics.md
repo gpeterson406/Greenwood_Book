@@ -10,7 +10,7 @@ tablenos-cleveref: On
 tablenos-plus-name: Tab.
 ---
 
-#(R)e-Introduction to statistics {#chapter2}
+# (R)e-Introduction to statistics {#chapter2}
 
 
 
@@ -1612,7 +1612,7 @@ estimated results (with a measure of precision of the estimated difference).
 evidence based on gradient of p-values.
 
 <div class="figure">
-<img src="chapter2_files/pvalueStrengths.png" alt="(ref:figPValStr)"  />
+<img src="chapter2_files/pvalueStrengths.png" alt="(ref:figPValStr)" width="800" />
 <p class="caption">(\#fig:FigurePValStr)(ref:figPValStr)</p>
 </div>
 

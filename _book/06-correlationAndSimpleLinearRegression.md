@@ -868,8 +868,8 @@ quantiles
 
 ```
 ##        quantile     p
-## 2.5%  0.7531517 0.025
-## 97.5% 0.9524785 0.975
+## 2.5%  0.7580836 0.025
+## 97.5% 0.9532646 0.975
 ```
 
 ```r
@@ -1031,8 +1031,8 @@ observed correlation (bold line) and bounds for the 95% confidence interval
 
 ```
 ##        quantile     p
-## 2.5%  0.7017769 0.025
-## 97.5% 0.8203489 0.975
+## 2.5%  0.7054866 0.025
+## 97.5% 0.8200069 0.975
 ```
 
 ```
@@ -1040,9 +1040,9 @@ observed correlation (bold line) and bounds for the 95% confidence interval
 ```
 
 ```
-##       quantile     p
-## 2.5%  0.752252 0.025
-## 97.5% 0.827492 0.975
+##        quantile     p
+## 2.5%  0.7499070 0.025
+## 97.5% 0.8285054 0.975
 ```
 
 <div class="figure">
@@ -1309,7 +1309,7 @@ predictor variable.
 (ref:fig6-14) Diagram of interpretation of slope coefficients.
 
 <div class="figure">
-<img src="chapter6_files/image047.png" alt="(ref:fig6-14)"  />
+<img src="chapter6_files/image047.png" alt="(ref:fig6-14)" width="583" />
 <p class="caption">(\#fig:Figure6-14)(ref:fig6-14)</p>
 </div>
 
@@ -1488,7 +1488,7 @@ line and produced a smaller sum of squared residuals than the guessed thinner
 (black) line.
 
 <div class="figure">
-<img src="chapter6_files/image063.png" alt="(ref:fig6-17)"  />
+<img src="chapter6_files/image063.png" alt="(ref:fig6-17)" width="440" />
 <p class="caption">(\#fig:Figure6-17)(ref:fig6-17)</p>
 </div>
 

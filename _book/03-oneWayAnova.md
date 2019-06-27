@@ -5,7 +5,7 @@ output:
     keep_tex: yes
 ---
 
-#One-Way ANOVA {#chapter3}
+# One-Way ANOVA {#chapter3}
 
 
 
@@ -114,7 +114,7 @@ situation (and model) where all the groups have the same mean. Specifically,
 the ***null hypothesis*** in the general situation with $J$ groups 
 ($J\ge 2$) is to have all the $\underline{\text{true}}$ group means equal, 
 
-$$H_0:\mu_1 = \ldots \mu_J.$$
+$$H_0:\mu_1 = \ldots = \mu_J.$$
 
 This defines a model where all the groups have the same mean so it can be 
 defined in terms of a single mean, $\mu$, for the $i^{th}$ observation from 
@@ -232,12 +232,12 @@ new ideas:
 
 <b><font color='red'>Cell Means Version</font></b>
 
-* $H_0: {\color{red}{\mu_1=\ldots\mu_J}}$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+* $H_0: {\color{red}{\mu_1= \ldots = \mu_J}}$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp; $H_A: {\color{red}{\text{ Not all } \mu_j \text{ equal}}}$
 
 * Null hypothesis in words: No difference in the true means between the groups. 
 
-* Null model: $y_{ij} = \mu_j+\varepsilon_{ij}$ \index{model!null!cell-means}
+* Null model: $y_{ij} = \mu+\varepsilon_{ij}$ \index{model!null!cell-means}
 
 * Alternative hypothesis in words: At least one of the true means differs between 
 the groups. 
@@ -247,7 +247,7 @@ the groups.
 
 <b><font color='purple'>Reference-coded Version</font></b>
 
-* $H_0: \color{purple}{\boldsymbol{\tau_2 \ldots \tau_J = 0}}$
+* $H_0: \color{purple}{\boldsymbol{\tau_2 = \ldots = \tau_J = 0}}$
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 $H_A: \color{purple}{\text{ Not all } \tau_j \text{ equal 0}}$
 
@@ -415,7 +415,7 @@ plot(allEffects(lm2))
 \indent In order to assess evidence for having different means for the groups, we will 
 compare either of the previous models (cell-means or reference-coded) to a null 
 model based on the null hypothesis ($H_0: \mu_1 = \ldots = \mu_J$) which implies a
-model of $\color{red}{y_{ij} = \mu_j}+\varepsilon_{ij}$ in the cell-means version 
+model of $\color{red}{y_{ij} = \mu+\varepsilon_{ij}}$ in the cell-means version 
 where ${\color{red}{\mu}}$ is a common mean for all the observations. We will call 
 this the <b><font color='red'>mean-only</font></b> model since it only has a single mean 
 in it. In the reference-coded version of the model, we have a null hypothesis that
@@ -626,7 +626,7 @@ with which group. In Figure \@ref(fig:Figure3-4) (panel a), the means, sums of
 squares, and 95% confidence intervals for each mean are displayed for the three
 treatment levels from the original prisoner rating data. Three permuted versions 
 of the data set are summarized in panels (b), (c), and (d). The $\text{SS}_A$ is 70.9 
-in the real data set and between 6.5 and 40.5 in the permuted data sets.
+in the real data set and between 3.7 and 27.5 in the permuted data sets.
 If you had 
 to pick among the plots for the one with the most evidence of a difference in the
 means, you hopefully would pick panel (a). This visual "unusualness" suggests
@@ -644,7 +644,7 @@ reasonable test statistic in a permutation testing context.
 \index{permutation!test}
 By comparing the 
 observed $\text{SS}_A =$ 70.9 to the permutation results of 
-6.5, 9.7, and 40.5 we see 
+20.3, 27.5, and 3.7 we see 
 that the observed result is much more extreme than the three alternate versions. 
 In contrast to our previous test statistics where positive and negative 
 differences were possible, $\text{SS}_A$ is always positive with a value of 0 
@@ -723,14 +723,14 @@ pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 ```
-## [1] 0.072
+## [1] 0.067
 ```
 
 
 
-This provides a permutation-based p-value of 0.072 and suggests marginal evidence
+This provides a permutation-based p-value of 0.067 and suggests marginal evidence
 against the null hypothesis of no difference in the true means. We would interpret 
-this p-value as saying that there is a 7.2% chance of getting a $\text{SS}_A$
+this p-value as saying that there is a 6.7% chance of getting a $\text{SS}_A$
 as large or larger than we observed, given that the null hypothesis is true.
 \index{p-value!interpretation of}
 
@@ -917,7 +917,7 @@ pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 ```
-## [1] 0.064
+## [1] 0.062
 ```
 
 
@@ -939,7 +939,7 @@ statistic of 2.77.
 
 
 
-The permutation-based p-value is 0.064 which, again, matches the other 
+The permutation-based p-value is 0.062 which, again, matches the other 
 results closely. The first conclusion is that using a test statistic of either 
 the $F$-statistic or the $\text{SS}_A$ provide similar permutation results.
 However, we tend to favor using the $F$-statistic because it is more commonly used 
@@ -1916,27 +1916,27 @@ confint(Tm2)
 ## 
 ## Fit: lm(formula = len ~ Treat, data = ToothGrowth)
 ## 
-## Quantile = 2.9545
+## Quantile = 2.9534
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                      Estimate lwr      upr     
-## VC.0.5 - OJ.0.5 == 0  -5.2500 -10.0482  -0.4518
-## OJ.1 - OJ.0.5 == 0     9.4700   4.6718  14.2682
-## VC.1 - OJ.0.5 == 0     3.5400  -1.2582   8.3382
-## OJ.2 - OJ.0.5 == 0    12.8300   8.0318  17.6282
-## VC.2 - OJ.0.5 == 0    12.9100   8.1118  17.7082
-## OJ.1 - VC.0.5 == 0    14.7200   9.9218  19.5182
-## VC.1 - VC.0.5 == 0     8.7900   3.9918  13.5882
-## OJ.2 - VC.0.5 == 0    18.0800  13.2818  22.8782
-## VC.2 - VC.0.5 == 0    18.1600  13.3618  22.9582
-## VC.1 - OJ.1 == 0      -5.9300 -10.7282  -1.1318
-## OJ.2 - OJ.1 == 0       3.3600  -1.4382   8.1582
-## VC.2 - OJ.1 == 0       3.4400  -1.3582   8.2382
-## OJ.2 - VC.1 == 0       9.2900   4.4918  14.0882
-## VC.2 - VC.1 == 0       9.3700   4.5718  14.1682
-## VC.2 - OJ.2 == 0       0.0800  -4.7182   4.8782
+## VC.0.5 - OJ.0.5 == 0  -5.2500 -10.0464  -0.4536
+## OJ.1 - OJ.0.5 == 0     9.4700   4.6736  14.2664
+## VC.1 - OJ.0.5 == 0     3.5400  -1.2564   8.3364
+## OJ.2 - OJ.0.5 == 0    12.8300   8.0336  17.6264
+## VC.2 - OJ.0.5 == 0    12.9100   8.1136  17.7064
+## OJ.1 - VC.0.5 == 0    14.7200   9.9236  19.5164
+## VC.1 - VC.0.5 == 0     8.7900   3.9936  13.5864
+## OJ.2 - VC.0.5 == 0    18.0800  13.2836  22.8764
+## VC.2 - VC.0.5 == 0    18.1600  13.3636  22.9564
+## VC.1 - OJ.1 == 0      -5.9300 -10.7264  -1.1336
+## OJ.2 - OJ.1 == 0       3.3600  -1.4364   8.1564
+## VC.2 - OJ.1 == 0       3.4400  -1.3564   8.2364
+## OJ.2 - VC.1 == 0       9.2900   4.4936  14.0864
+## VC.2 - VC.1 == 0       9.3700   4.5736  14.1664
+## VC.2 - OJ.2 == 0       0.0800  -4.7164   4.8764
 ```
 
 ```r
@@ -2094,15 +2094,15 @@ confint(Tm2)
 ## 
 ## Fit: lm(formula = Years ~ Attr, data = MockJury)
 ## 
-## Quantile = 2.3752
+## Quantile = 2.3756
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                               Estimate lwr     upr    
-## Average - Beautiful == 0      -0.3596  -2.2970  1.5777
-## Unattractive - Beautiful == 0  1.4775  -0.4731  3.4281
-## Unattractive - Average == 0    1.8371  -0.1259  3.8002
+## Average - Beautiful == 0      -0.3596  -2.2973  1.5780
+## Unattractive - Beautiful == 0  1.4775  -0.4734  3.4284
+## Unattractive - Average == 0    1.8371  -0.1262  3.8005
 ```
 
 ```r
@@ -2136,15 +2136,15 @@ confint(Tm2, level=0.9)
 ## 
 ## Fit: lm(formula = Years ~ Attr, data = MockJury)
 ## 
-## Quantile = 2.0739
+## Quantile = 2.0737
 ## 90% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                               Estimate lwr     upr    
-## Average - Beautiful == 0      -0.3596  -2.0513  1.3320
-## Unattractive - Beautiful == 0  1.4775  -0.2257  3.1806
-## Unattractive - Average == 0    1.8371   0.1231  3.5512
+## Average - Beautiful == 0      -0.3596  -2.0511  1.3318
+## Unattractive - Beautiful == 0  1.4775  -0.2255  3.1805
+## Unattractive - Average == 0    1.8371   0.1233  3.5510
 ```
 
 ```r
@@ -2189,15 +2189,15 @@ confint(Tm2, level=0.9)
 ## 
 ## Fit: lm(formula = Years ~ Attr, data = MockJury)
 ## 
-## Quantile = 2.0738
+## Quantile = 2.0737
 ## 90% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                               Estimate lwr     upr    
 ## Average - Beautiful == 0      -0.3596  -2.0511  1.3318
-## Unattractive - Beautiful == 0  1.4775  -0.2255  3.1805
-## Unattractive - Average == 0    1.8371   0.1232  3.5510
+## Unattractive - Beautiful == 0  1.4775  -0.2255  3.1804
+## Unattractive - Average == 0    1.8371   0.1233  3.5509
 ```
 
 
@@ -2222,15 +2222,6 @@ family-wise significance level Tukey's HSD. *Average* and *Unattractive* picture
 groups are detected as being different and are displayed as belonging to
 different groups. *Beautiful* picture responses are not detected as different
 from the other two groups.
-
-
-```r
-old.par <- par(mai=c(0.5,1,1,1))
-beanplot(Years~Attr, data=MockJury, log="", col="white", method="jitter")
-text(c(1), c(5.3),"ab", col="blue", cex=1.5)
-text(c(2), c(5.1),"a", col="green", cex=1.5)
-text(c(3), c(6.8),"b", col="red", cex=1.5)
-```
 
 <div class="figure">
 <img src="03-oneWayAnova_files/figure-html/Figure3-23-1.png" alt="(ref:fig3-23)" width="480" />

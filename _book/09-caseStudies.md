@@ -49,7 +49,7 @@ $$y_i = \beta_0 + \beta_1I_{\text{Level }2,i} + \beta_2I_{\text{Level }3,i} +
 (ref:fig9-1) Schematic of methods covered. 
 
 <div class="figure">
-<img src="chapter9_files/image002.png" alt="(ref:fig9-1)"  />
+<img src="chapter9_files/image002.png" alt="(ref:fig9-1)" width="661" />
 <p class="caption">(\#fig:Figure9-1)(ref:fig9-1)</p>
 </div>
 

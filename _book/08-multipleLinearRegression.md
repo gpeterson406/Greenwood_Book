@@ -655,7 +655,7 @@ snotel2[c(9,10),]
 ```
 ## # A tibble: 2 x 6
 ##      ID Station            Max.Temp Min.Temp Elevation Snow.Depth
-##   <int> <chr>                 <int>    <int>     <int>      <dbl>
+##   <dbl> <chr>                 <dbl>    <dbl>     <dbl>      <dbl>
 ## 1    18 Northeast Entrance       45       28      7350       11.2
 ## 2    53 Combination              36       28      5600       14
 ```
@@ -922,7 +922,7 @@ snotel2[22,]
 ```
 ## # A tibble: 1 x 6
 ##      ID Station          Max.Temp Min.Temp Elevation Snow.Depth
-##   <int> <fct>               <int>    <int>     <int>      <dbl>
+##   <dbl> <fct>               <dbl>    <dbl>     <dbl>      <dbl>
 ## 1    36 Bloody [Redact.]       39       26      7550       27.2
 ```
 
@@ -3787,7 +3787,7 @@ model. \index{model!nested}
 (ref:fig8-33) Diagram of models to consider in an interaction model. 
 
 <div class="figure">
-<img src="chapter8_files/nestedModelTree_medium.png" alt="(ref:fig8-33)"  />
+<img src="chapter8_files/nestedModelTree_medium.png" alt="(ref:fig8-33)" width="338" />
 <p class="caption">(\#fig:Figure8-33)(ref:fig8-33)</p>
 </div>
 

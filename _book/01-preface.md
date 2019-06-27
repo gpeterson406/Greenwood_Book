@@ -5,7 +5,7 @@ output:
 ---
 \mainmatter
 
-#Preface {#chapter1}
+# Preface {#chapter1}
 
 
 
@@ -83,7 +83,7 @@ types of conclusions that are appropriate based on the design of the study.
 (ref:fig1-1) Flow chart of methods.
 
 <div class="figure">
-<img src="chapter1_files/image002.png" alt="(ref:fig1-1)"  />
+<img src="chapter1_files/image002.png" alt="(ref:fig1-1)" width="661" />
 <p class="caption">(\#fig:Figure1-1)(ref:fig1-1)</p>
 </div>
 
@@ -303,7 +303,7 @@ plots that you make and requests for "Help" on specific functions.
 (ref:fig1-2) Initial RStudio layout.
 
 <div class="figure">
-<img src="chapter1_files/fig1.2.png" alt="(ref:fig1-2)"  />
+<img src="chapter1_files/fig1.2.png" alt="(ref:fig1-2)" width="492" />
 <p class="caption">(\#fig:Figure1-2)(ref:fig1-2)</p>
 </div>
 
@@ -502,7 +502,7 @@ code (``View(treadmill``)).
 (ref:fig1-3) RStudio with initial data set loaded.
 
 <div class="figure">
-<img src="chapter1_files/fig1.3.png" alt="(ref:fig1-3)"  />
+<img src="chapter1_files/fig1.3.png" alt="(ref:fig1-3)" width="484" />
 <p class="caption">(\#fig:Figure1-3)(ref:fig1-3)</p>
 </div>
 
@@ -593,7 +593,7 @@ section of code using the "Run" button.
 (ref:fig1-4) RStudio with highlighted code run.
 
 <div class="figure">
-<img src="chapter1_files/fig1.4.png" alt="(ref:fig1-4)"  />
+<img src="chapter1_files/fig1.4.png" alt="(ref:fig1-4)" width="1368" />
 <p class="caption">(\#fig:Figure1-4)(ref:fig1-4)</p>
 </div>
 
@@ -700,7 +700,7 @@ processing documents.
 (ref:fig1-6) RStudio while in the process of copying the histogram.
 
 <div class="figure">
-<img src="chapter1_files/image010.png" alt="(ref:fig1-6)"  />
+<img src="chapter1_files/image010.png" alt="(ref:fig1-6)" width="960" />
 <p class="caption">(\#fig:Figure1-6)(ref:fig1-6)</p>
 </div>
 

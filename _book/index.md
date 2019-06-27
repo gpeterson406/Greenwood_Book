@@ -33,7 +33,7 @@ header-includes:
 
 # Cover {-}
 
-![](frontMatter/titlepage_2018.png)<!-- -->
+<img src="frontMatter/titlepage_2018.png" width="676" />
 
 <!-- \frontmatter -->
 
@@ -56,7 +56,7 @@ http://www.math.montana.edu/courses/s217/documents/_book/.
 
 Enjoy your journey from introductory to intermediate statistics!
  
-<img src="frontMatter/creative_commons_license.png" style="display: block; margin: auto;" />
+<img src="frontMatter/creative_commons_license.png" width="44" style="display: block; margin: auto;" />
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 

@@ -113,7 +113,7 @@ BAC model has a residual SE of 0.02 but had many fewer observations at each
 centered at the regression line.
 
 <div class="figure">
-<img src="chapter7_files/image029small.png" alt="(ref:fig7-1)"  />
+<img src="chapter7_files/image029small.png" alt="(ref:fig7-1)" width="109" />
 <p class="caption">(\#fig:Figure7-1)(ref:fig7-1)</p>
 </div>
 
@@ -155,7 +155,7 @@ The next sections develop those inferential tools.
 variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set.
 
 <div class="figure">
-<img src="chapter7_files/image034.png" alt="(ref:fig7-3)"  />
+<img src="chapter7_files/image034.png" alt="(ref:fig7-3)" width="557" />
 <p class="caption">(\#fig:Figure7-3)(ref:fig7-3)</p>
 </div>
 
@@ -204,7 +204,7 @@ confidence interval***:
 coefficient for a 1 unit increase in $x$.
 
 <div class="figure">
-<img src="chapter7_files/image045.png" alt="(ref:fig7-4)"  />
+<img src="chapter7_files/image045.png" alt="(ref:fig7-4)" width="210" />
 <p class="caption">(\#fig:Figure7-4)(ref:fig7-4)</p>
 </div>
 
@@ -1265,8 +1265,8 @@ quantiles
 
 ```
 ##         quantile     p
-## 2.5%  0.04331326 0.025
-## 97.5% 0.06195345 0.975
+## 2.5%  0.04326952 0.025
+## 97.5% 0.06131044 0.975
 ```
 
 ```r

@@ -1,7 +1,7 @@
 --- 
 title: "Intermediate Statistics with R"
 author: "Mark C Greenwood"
-date: 'Version 1.0 -- Published Fall 2018'
+subtitle: 'Version 1.0 -- Published Fall 2018'
 output:
   bookdown::pdf_book: 
     keep_tex: yes

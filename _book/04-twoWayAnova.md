@@ -1759,7 +1759,7 @@ ptR
 ```
 ## # A tibble: 6 x 4
 ##   brand drops responses dropsf
-##   <fct> <int>     <dbl> <fct> 
+##   <fct> <dbl>     <dbl> <fct> 
 ## 1 B1       10     1.91  10    
 ## 2 B2       10     3.05  10    
 ## 3 B1       20     0.774 20    

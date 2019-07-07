@@ -338,7 +338,7 @@ samples or subjects assigned to R groups. Independence testing involves a
 single random sample and measurements on two categorical variables. 
 
 <div class="figure">
-<img src="chapter5_files/image027.png" alt="(ref:fig5-3)"  />
+<img src="chapter5_files/image027.png" alt="(ref:fig5-3)" width="479" />
 <p class="caption">(\#fig:Figure5-3)(ref:fig5-3)</p>
 </div>
 
@@ -957,8 +957,8 @@ Arthpermtable
 ```
 ##              Improved
 ## PermTreatment None Some Marked
-##       Placebo   20    7     16
-##       Treated   22    7     12
+##       Placebo   22    6     15
+##       Treated   20    8     13
 ```
 
 ```r
@@ -970,7 +970,7 @@ chisq.test(Arthpermtable)
 ## 	Pearson's Chi-squared test
 ## 
 ## data:  Arthpermtable
-## X-squared = 0.6194, df = 2, p-value = 0.7337
+## X-squared = 0.47646, df = 2, p-value = 0.788
 ```
 
 (ref:fig5-8) Stacked bar charts of four permuted Arthritis data sets 
@@ -1015,7 +1015,7 @@ pdata(Tstar, Tobs, lower.tail=F)[[1]]
 ```
 
 ```
-## [1] 0.004
+## [1] 0.002
 ```
 
 ```r
@@ -1035,7 +1035,7 @@ abline(v=Tobs, col="red", lwd=3)
 
 For an observed $X^2$ statistic of 13.055, four out of 1,000 permutation
 results matched or exceeded this value (``pdata`` returned a value of 
-0.004). 
+0.002). 
 \index{\texttt{pdata()}}
 This suggests that our observed result is quite extreme 
 relative to the null
@@ -1959,7 +1959,7 @@ single sample was taken from the population):
     ```
     
     ```
-    ## [1] 0.017
+    ## [1] 0.0174
     ```
     
     ```r
@@ -1976,17 +1976,17 @@ single sample was taken from the population):
 
     
     
-    * There were 170 of $B$=10,000 permuted data 
+    * There were 174 of $B$=10,000 permuted data 
     sets that produced as large or larger
     $X^{2*}\text{'s}$ than the observed as displayed in 
     Figure \@ref(fig:Figure5-22), so we report that the p-value was 
-    0.017 using the permutation approach, which was slightly larger than the 
+    0.0174 using the permutation approach, which was slightly larger than the 
     result provided by the parametric method. 
 
 5. **Make a decision:**
 
-    * With a p-value of 0.017, we can say that there is a 
-    1.7% chance of observing a configuration like ours or more
+    * With a p-value of 0.0174, we can say that there is a 
+    1.74% chance of observing a configuration like ours or more
     extreme if the null hypothesis is true. So I would say that there is strong evidence against the null hypothesis but you might rate this as closer to moderate evidence. 
 
 6. **Write a conclusion and scope of inference:**

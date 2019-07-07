@@ -5,7 +5,7 @@ output:
 ---
 \mainmatter
 
-#Preface {#chapter1}
+# Preface {#chapter1}
 
 
 
@@ -44,7 +44,7 @@ course, we will start to handle more complex situations (many explanatory
 variables) and will provide some tools for graphical explorations to complement
 the more sophisticated statistical models required to handle these situations. 
 
-##Overview of methods {#section1-1}
+## Overview of methods {#section1-1}
 
 After you are introduced to basic statistical ideas, a wide array of statistical methods become
 available. The methods explored here focus on assessing (estimating and testing
@@ -83,7 +83,7 @@ types of conclusions that are appropriate based on the design of the study.
 (ref:fig1-1) Flow chart of methods.
 
 <div class="figure">
-<img src="chapter1_files/image002.png" alt="(ref:fig1-1)"  />
+<img src="chapter1_files/image002.png" alt="(ref:fig1-1)" width="661" />
 <p class="caption">(\#fig:Figure1-1)(ref:fig1-1)</p>
 </div>
 
@@ -227,7 +227,7 @@ situations where you are expected to be able to identify an appropriate
 analysis, do the calculations for a given data set, and then effectively
 communicate interpretations for the methods discussed here. 
 
-##Getting started in R {#section1-2}
+## Getting started in R {#section1-2}
 
 You will need to download the statistical software package called R and an enhanced interface to R called
 RStudio [@RStudio]. They are open source and free to download and use
@@ -303,7 +303,7 @@ plots that you make and requests for "Help" on specific functions.
 (ref:fig1-2) Initial RStudio layout.
 
 <div class="figure">
-<img src="chapter1_files/fig1.2.png" alt="(ref:fig1-2)"  />
+<img src="chapter1_files/fig1.2.png" alt="(ref:fig1-2)" width="492" />
 <p class="caption">(\#fig:Figure1-2)(ref:fig1-2)</p>
 </div>
 
@@ -502,7 +502,7 @@ code (``View(treadmill``)).
 (ref:fig1-3) RStudio with initial data set loaded.
 
 <div class="figure">
-<img src="chapter1_files/fig1.3.png" alt="(ref:fig1-3)"  />
+<img src="chapter1_files/fig1.3.png" alt="(ref:fig1-3)" width="484" />
 <p class="caption">(\#fig:Figure1-3)(ref:fig1-3)</p>
 </div>
 
@@ -593,11 +593,11 @@ section of code using the "Run" button.
 (ref:fig1-4) RStudio with highlighted code run.
 
 <div class="figure">
-<img src="chapter1_files/fig1.4.png" alt="(ref:fig1-4)"  />
+<img src="chapter1_files/fig1.4.png" alt="(ref:fig1-4)" width="1368" />
 <p class="caption">(\#fig:Figure1-4)(ref:fig1-4)</p>
 </div>
 
-##Basic summary statistics, histograms, and boxplots using R {#section1-3}
+## Basic summary statistics, histograms, and boxplots using R {#section1-3}
 
 For the following material, you will need to install and load the ``mosaic`` package [@R-mosaic]. 
 
@@ -700,7 +700,7 @@ processing documents.
 (ref:fig1-6) RStudio while in the process of copying the histogram.
 
 <div class="figure">
-<img src="chapter1_files/image010.png" alt="(ref:fig1-6)"  />
+<img src="chapter1_files/image010.png" alt="(ref:fig1-6)" width="960" />
 <p class="caption">(\#fig:Figure1-6)(ref:fig1-6)</p>
 </div>
 
@@ -855,7 +855,7 @@ re-running that code. If you find that you have lots of "stuff" in your
 workspace because you accidentally saved your workspace, just run ``rm(list = ls())``. 
 It will delete all the data sets from your workspace. 
 
-##Chapter summary {#section1-4}
+## Chapter summary {#section1-4}
 
 This chapter covered getting R and RStudio downloaded and some basics of working with
 R via RStudio. You should be able to read a data set into R and run some basic
@@ -941,7 +941,7 @@ revisit the worked examples using each of the functions.
 
 
 
-##Practice problems {#section1-6}
+## Practice problems {#section1-6}
 
 In each chapter, the last section contains some questions for you to complete
 to make sure you understood the

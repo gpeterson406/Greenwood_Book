@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="6.4 Randomization-based inferences for the slope coefficient | Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="6.4 Randomization-based inferences for the slope coefficient | Intermediate Statistics with R">
+
+<title>6.4 Randomization-based inferences for the slope coefficient | Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li class="has-sub"><a href="acknowledgments.html#acknowledgments">Acknowledgments</a><ul>
+<li><a href="0-1-section1-5.html#section1-5"><span class="toc-section-number">0.1</span> Summary of important R code</a></li>
+</ul></li>
+<li class="has-sub"><a href="1-chapter2.html#chapter2"><span class="toc-section-number">1</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="1-1-section2-1.html#section2-1"><span class="toc-section-number">1.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="1-2-section2-2.html#section2-2"><span class="toc-section-number">1.2</span> Pirate-plots</a></li>
+<li><a href="1-3-section2-3.html#section2-3"><span class="toc-section-number">1.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="1-4-section2-4.html#section2-4"><span class="toc-section-number">1.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="1-5-section2-5.html#section2-5"><span class="toc-section-number">1.5</span> Hypothesis testing (general)</a></li>
+<li><a href="1-6-section2-6.html#section2-6"><span class="toc-section-number">1.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="1-7-section2-7.html#section2-7"><span class="toc-section-number">1.7</span> Second example of permutation tests</a></li>
+<li><a href="1-8-section2-8.html#section2-8"><span class="toc-section-number">1.8</span> Reproducibility Crisis: Moving beyond p &lt; 0.05, publication bias, and multiple testing issues</a></li>
+<li><a href="1-9-section2-9.html#section2-9"><span class="toc-section-number">1.9</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="1-10-section2-10.html#section2-10"><span class="toc-section-number">1.10</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="1-11-section2-11.html#section2-11"><span class="toc-section-number">1.11</span> Chapter summary</a></li>
+<li><a href="1-12-section2-12.html#section2-12"><span class="toc-section-number">1.12</span> Summary of important R code</a></li>
+<li><a href="1-13-section2-13.html#section2-13"><span class="toc-section-number">1.13</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter3.html#chapter3"><span class="toc-section-number">2</span> One-Way ANOVA</a><ul>
+<li><a href="2-1-section3-1.html#section3-1"><span class="toc-section-number">2.1</span> Situation</a></li>
+<li><a href="2-2-section3-2.html#section3-2"><span class="toc-section-number">2.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="2-3-section3-3.html#section3-3"><span class="toc-section-number">2.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="2-4-section3-4.html#section3-4"><span class="toc-section-number">2.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="2-5-section3-5.html#section3-5"><span class="toc-section-number">2.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="2-6-section3-6.html#section3-6"><span class="toc-section-number">2.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="2-7-section3-7.html#section3-7"><span class="toc-section-number">2.7</span> Pair-wise comparisons for the Overtake data</a></li>
+<li><a href="2-8-section3-8.html#section3-8"><span class="toc-section-number">2.8</span> Chapter summary</a></li>
+<li><a href="2-9-section3-9.html#section3-9"><span class="toc-section-number">2.9</span> Summary of important R code</a></li>
+<li><a href="2-10-section3-10.html#section3-10"><span class="toc-section-number">2.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter4.html#chapter4"><span class="toc-section-number">3</span> Two-Way ANOVA</a><ul>
+<li><a href="3-1-section4-1.html#section4-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section4-2.html#section4-2"><span class="toc-section-number">3.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="3-3-section4-3.html#section4-3"><span class="toc-section-number">3.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="3-4-section4-4.html#section4-4"><span class="toc-section-number">3.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="3-5-section4-5.html#section4-5"><span class="toc-section-number">3.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="3-6-section4-6.html#section4-6"><span class="toc-section-number">3.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs and Estimability</a></li>
+<li><a href="3-7-section4-7.html#section4-7"><span class="toc-section-number">3.7</span> Chapter summary</a></li>
+<li><a href="3-8-section4-8.html#section4-8"><span class="toc-section-number">3.8</span> Summary of important R code</a></li>
+<li><a href="3-9-section4-9.html#section4-9"><span class="toc-section-number">3.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter5.html#chapter5"><span class="toc-section-number">4</span> Chi-square tests</a><ul>
+<li><a href="4-1-section5-1.html#section5-1"><span class="toc-section-number">4.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="4-2-section5-2.html#section5-2"><span class="toc-section-number">4.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="4-3-section5-3.html#section5-3"><span class="toc-section-number">4.3</span> Independence test hypotheses</a></li>
+<li><a href="4-4-section5-4.html#section5-4"><span class="toc-section-number">4.4</span> Models for R by C tables</a></li>
+<li><a href="4-5-section5-5.html#section5-5"><span class="toc-section-number">4.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="4-6-section5-6.html#section5-6"><span class="toc-section-number">4.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="4-7-section5-7.html#section5-7"><span class="toc-section-number">4.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="4-8-section5-8.html#section5-8"><span class="toc-section-number">4.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="4-9-section5-9.html#section5-9"><span class="toc-section-number">4.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="4-10-section5-10.html#section5-10"><span class="toc-section-number">4.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="4-11-section5-11.html#section5-11"><span class="toc-section-number">4.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="4-12-section5-12.html#section5-12"><span class="toc-section-number">4.12</span> Chapter summary</a></li>
+<li><a href="4-13-section5-13.html#section5-13"><span class="toc-section-number">4.13</span> Summary of important R commands</a></li>
+<li><a href="4-14-section5-14.html#section5-14"><span class="toc-section-number">4.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter6.html#chapter6"><span class="toc-section-number">5</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="5-1-section6-1.html#section6-1"><span class="toc-section-number">5.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="5-2-section6-2.html#section6-2"><span class="toc-section-number">5.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="5-3-section6-3.html#section6-3"><span class="toc-section-number">5.3</span> Relationships between variables by groups</a></li>
+<li><a href="5-4-section6-4.html#section6-4"><span class="toc-section-number">5.4</span> Inference for the correlation coefficient</a></li>
+<li><a href="5-5-section6-5.html#section6-5"><span class="toc-section-number">5.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="5-6-section6-6.html#section6-6"><span class="toc-section-number">5.6</span> Describing relationships with a regression model</a></li>
+<li><a href="5-7-section6-7.html#section6-7"><span class="toc-section-number">5.7</span> Least Squares Estimation</a></li>
+<li><a href="5-8-section6-8.html#section6-8"><span class="toc-section-number">5.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="5-9-section6-9.html#section6-9"><span class="toc-section-number">5.9</span> Outliers: leverage and influence</a></li>
+<li><a href="5-10-section6-10.html#section6-10"><span class="toc-section-number">5.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="5-11-section6-11.html#section6-11"><span class="toc-section-number">5.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="5-12-section6-12.html#section6-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section6-13.html#section6-13"><span class="toc-section-number">5.13</span> Summary of important R code</a></li>
+<li><a href="5-14-section6-14.html#section6-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter7.html#chapter7"><span class="toc-section-number">6</span> Simple linear regression inference</a><ul>
+<li><a href="6-1-section7-1.html#section7-1"><span class="toc-section-number">6.1</span> Model</a></li>
+<li><a href="6-2-section7-2.html#section7-2"><span class="toc-section-number">6.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="6-3-section7-3.html#section7-3"><span class="toc-section-number">6.3</span> Bozeman temperature trend</a></li>
+<li><a href="6-4-section7-4.html#section7-4"><span class="toc-section-number">6.4</span> Randomization-based inferences for the slope coefficient</a></li>
+<li><a href="6-5-section7-5.html#section7-5"><span class="toc-section-number">6.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="6-6-section7-6.html#section7-6"><span class="toc-section-number">6.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="6-7-section7-7.html#section7-7"><span class="toc-section-number">6.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="6-8-section7-8.html#section7-8"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6-9-section7-9.html#section7-9"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6-10-section7-10.html#section7-10"><span class="toc-section-number">6.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter8.html#chapter8"><span class="toc-section-number">7</span> Multiple linear regression</a><ul>
+<li><a href="7-1-section8-1.html#section8-1"><span class="toc-section-number">7.1</span> Going from SLR to MLR</a></li>
+<li><a href="7-2-section8-2.html#section8-2"><span class="toc-section-number">7.2</span> Validity conditions in MLR</a></li>
+<li><a href="7-3-section8-3.html#section8-3"><span class="toc-section-number">7.3</span> Interpretation of MLR terms</a></li>
+<li><a href="7-4-section8-4.html#section8-4"><span class="toc-section-number">7.4</span> Comparing multiple regression models</a></li>
+<li><a href="7-5-section8-5.html#section8-5"><span class="toc-section-number">7.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="7-6-section8-6.html#section8-6"><span class="toc-section-number">7.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="7-7-section8-7.html#section8-7"><span class="toc-section-number">7.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="7-8-section8-8.html#section8-8"><span class="toc-section-number">7.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="7-9-section8-9.html#section8-9"><span class="toc-section-number">7.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="7-10-section8-10.html#section8-10"><span class="toc-section-number">7.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="7-11-section8-11.html#section8-11"><span class="toc-section-number">7.11</span> Different slopes and different intercepts</a></li>
+<li><a href="7-12-section8-12.html#section8-12"><span class="toc-section-number">7.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="7-13-section8-13.html#section8-13"><span class="toc-section-number">7.13</span> AICs for model selection</a></li>
+<li><a href="7-14-section8-14.html#section8-14"><span class="toc-section-number">7.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="7-15-section8-15.html#section8-15"><span class="toc-section-number">7.15</span> Chapter summary</a></li>
+<li><a href="7-16-section8-16.html#section8-16"><span class="toc-section-number">7.16</span> Summary of important R code</a></li>
+<li><a href="7-17-section8-17.html#section8-17"><span class="toc-section-number">7.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter9.html#chapter9"><span class="toc-section-number">8</span> Case studies</a><ul>
+<li><a href="8-1-section9-1.html#section9-1"><span class="toc-section-number">8.1</span> Overview of material covered</a></li>
+<li><a href="8-2-section9-2.html#section9-2"><span class="toc-section-number">8.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="8-3-section9-3.html#section9-3"><span class="toc-section-number">8.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="8-4-section9-4.html#section9-4"><span class="toc-section-number">8.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="8-5-section9-5.html#section9-5"><span class="toc-section-number">8.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="8-6-section9-6.html#section9-6"><span class="toc-section-number">8.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section7-4" class="section level2">
+<h2><span class="header-section-number">6.4</span> Randomization-based inferences for the slope coefficient</h2>
+<p>Exploring permutation testing in SLR provides an opportunity to gauge the observed
+relationship against the sorts of relationships we would expect to see if there
+was no linear relationship between the variables. If the relationship is linear
+(not curvilinear) and the null hypothesis of <span class="math inline">\(\beta_1=0\)</span> is true, then any
+configuration of the responses relative to the
+predictor variable’s values is as good as any other.
+
+Consider the four scatterplots of
+the Bozeman temperature data versus <code>Year</code> and permuted versions of <code>Year</code>
+in Figure <a href="6-3-section7-3.html#fig:Figure7-7">1.131</a>. First, think about which of the panels you
+think present the most
+evidence of a linear relationship between <code>Year</code> and <code>Temperature</code>?</p>
+<p>(ref:fig7-8) Plot of the <code>Temperature</code> responses versus four versions of
+<code>Year</code>, three of which are permutations of the Year variable relative
+to the Temperatures.</p>
+<div class="figure"><span id="fig:Figure7-8"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-8-1.png" alt="(ref:fig7-8)" width="768" />
+<p class="caption">
+Figure 1.132: (ref:fig7-8)
+</p>
+</div>
+<p>Hopefully you can see that panel (c) contains the most clear linear
+relationship among the choices. The plot in
+panel (c) is actually the real data set and pretty clearly presents itself as
+“different” from the other results. When we have small p-values, the real data
+set will be clearly different from the permuted results because it will be
+almost impossible to find a permuted data set that can attain as large a slope
+coefficient as was observed in the real data set<a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a>. This result ties back into our original interests
+in this climate change research
+situation – does our result look like it is different from what could have been
+observed just by chance if there were no linear relationship between <span class="math inline">\(x\)</span>
+and <span class="math inline">\(y\)</span>? It seems unlikely…</p>
+<p>Repeating this permutation process and tracking the estimated slope
+coefficients, as <span class="math inline">\(T^*\)</span>, provides another method to obtain a p-value in
+SLR applications. This could also be performed on the <span class="math inline">\(t\)</span>-statistic for
+the slope coefficient and would provide the same p-values but the sampling
+distribution would have a
+different x-axis scaling. In this situation, the observed slope of 0.052 is
+really far from any possible values that can be obtained using permutations as
+shown in Figure <a href="6-4-section7-4.html#fig:Figure7-9">1.133</a>. The p-value would be reported as
+<span class="math inline">\(&lt;0.001\)</span> for the two-sided permutation test.</p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb615-1" title="1">Tobs &lt;-<span class="st"> </span><span class="kw">lm</span>(meanmax<span class="op">~</span>Year, <span class="dt">data=</span>bozemantemps)<span class="op">$</span>coef[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb615-2" title="2">Tobs</a></code></pre></div>
+<pre><code>##       Year 
+## 0.05244213</code></pre>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb617-1" title="1">B &lt;-<span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb617-2" title="2">Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</a></code></pre></div>
+<p>(ref:fig7-9) Permutation distribution of the slope coefficient in the
+Bozeman temperature linear regression model with bold vertical lines at
+<span class="math inline">\(\pm b_1=0.56\)</span> based on the observed estimated slope.</p>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb618-1" title="1"><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</a>
+<a class="sourceLine" id="cb618-2" title="2">  Tstar[b] &lt;-<span class="st"> </span><span class="kw">lm</span>(meanmax<span class="op">~</span><span class="kw">shuffle</span>(Year), <span class="dt">data=</span>bozemantemps)<span class="op">$</span>coef[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb618-3" title="3">}</a>
+<a class="sourceLine" id="cb618-4" title="4"><span class="kw">pdata</span>(<span class="kw">abs</span>(Tstar), <span class="kw">abs</span>(Tobs), <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb620-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb620-2" title="2"><span class="kw">hist</span>(Tstar, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span>Tobs)</a>
+<a class="sourceLine" id="cb620-3" title="3"><span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb620-4" title="4"><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span>Tobs)</a>
+<a class="sourceLine" id="cb620-5" title="5"><span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure7-9"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-9-1.png" alt="(ref:fig7-9)" width="960" />
+<p class="caption">
+Figure 1.133: (ref:fig7-9)
+</p>
+</div>
+<p>One other interesting aspect of exploring the permuted data sets as in
+Figure <a href="6-4-section7-4.html#fig:Figure7-8">1.132</a> is that the outlier
+in the late 1930s “disappears” in the permuted data sets because there were
+many other observations that were that warm, just none that happened around
+that time of the century in the real data set. This reinforces the evidence for
+changes over time that seem to be present in these data – old unusual years
+don’t look unusual in more recent years (which is a pretty concerning result).</p>
+<p>The permutation approach can be useful in situations where the normality assumption
+is compromised, but there are no influential points. In these situations, we
+might find more trustworthy p-values using permutations but only if we are
+working with an initial estimated regression equation that we generally trust.
+I personally like the permutation approach as a way of explaining what a p-value
+is actually measuring – the chance of seeing something like what we saw, or
+more extreme, if the null is true.
+
+
+And the previous scatterplots show what the
+“by chance” versions of this relationship might look like.</p>
+<p>In a similar situation where we want to focus on confidence intervals for slope
+coefficients but are not completely comfortable with the normality assumption,
+it is also possible to generate bootstrap confidence intervals by sampling with
+replacement from the data set. This idea was introduced in
+Sections <a href="1-8-section2-8.html#section2-8">1.8</a> and <a href="1-9-section2-9.html#section2-9">1.9</a>. This provides a 95%
+bootstrap confidence interval from 0.433 to 0.61,
+which almost exactly matches the parametric <span class="math inline">\(t\)</span>-based confidence interval. The
+bootstrap distributions are very symmetric (Figure <a href="6-4-section7-4.html#fig:Figure7-10">1.134</a>).
+The interpretation is
+the same and this result reinforces the other assessments that the parametric
+approach is not unreasonable here except possibly for the independence assumption. These randomization approaches provide no robustness against violations of the independence assumption. </p>
+<p>(ref:fig7-10) Bootstrap distribution of the slope coefficient in the Bozeman
+temperature linear regression model with bold vertical lines delineating the 95%
+confidence interval and observed slope of 0.52.</p>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb621-1" title="1">Tobs &lt;-<span class="st"> </span><span class="kw">lm</span>(meanmax<span class="op">~</span>Year, <span class="dt">data=</span>bozemantemps)<span class="op">$</span>coef[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb621-2" title="2">Tobs</a></code></pre></div>
+<pre><code>##       Year 
+## 0.05244213</code></pre>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb623-1" title="1">B &lt;-<span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb623-2" title="2">Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</a>
+<a class="sourceLine" id="cb623-3" title="3"><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</a>
+<a class="sourceLine" id="cb623-4" title="4">  Tstar[b] &lt;-<span class="st"> </span><span class="kw">lm</span>(meanmax<span class="op">~</span>Year, <span class="dt">data=</span><span class="kw">resample</span>(bozemantemps))<span class="op">$</span>coef[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb623-5" title="5">}</a>
+<a class="sourceLine" id="cb623-6" title="6">quantiles &lt;-<span class="st"> </span><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</a>
+<a class="sourceLine" id="cb623-7" title="7">quantiles</a></code></pre></div>
+<pre><code>##         quantile     p
+## 2.5%  0.04326952 0.025
+## 97.5% 0.06131044 0.975</code></pre>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb625-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb625-2" title="2"><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">200</span>))</a>
+<a class="sourceLine" id="cb625-3" title="3"><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb625-4" title="4"><span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb625-5" title="5"><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)</a>
+<a class="sourceLine" id="cb625-6" title="6"><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb625-7" title="7"><span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure7-10"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-10-1.png" alt="(ref:fig7-10)" width="960" />
+<p class="caption">
+Figure 1.134: (ref:fig7-10)
+</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="104">
+<li id="fn104"><p>It took many permutations
+to get competitor plots this close to the real data set and they really
+aren’t that close.<a href="6-4-section7-4.html#fnref104" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="6-3-section7-3.html"><button class="btn btn-default">Previous</button></a>
+<a href="6-5-section7-5.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

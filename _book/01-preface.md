@@ -65,9 +65,9 @@ variables measured.
 view of the methods we will consider, 
 there are basically two scenarios -- one when the response is quantitative and
 one when the response is categorical. Examples of quantitative responses we will
-see later involve *suggested jail sentence* (in years) and *body fat* (percentage). 
+see later involve *passing distance of cars for a bicycle rider* (in centimeters (cm)) and *body fat* (percentage). 
 Examples of categorical variables include *improvement* (none, some, or marked) 
-in a clinical trial or whether a student has turned in copied work 
+in a clinical trial related to arthritis symptoms or whether a student has turned in copied work 
 (never, done this on an exam or paper, or both). There are going to be some more
 nuanced aspects to all these analyses as the complexity of both sides of Figure
 \@ref(fig:Figure1-1) suggest, but note that near the bottom, each tree converges 
@@ -176,12 +176,12 @@ predictor, we revisit the idea of an interaction.
 It allows us to consider situations
 where the estimated relationship between a quantitative predictor and the 
 mean response
-varies among different levels of the categorical variable. 
+varies among different levels of the categorical variable. In Chapter \@ref(chapter9), case studies show connections among all the methods used for quantitative responses and that they are all just linear models \index{model!linear}. We also show how the methods discussed can be applied to a suite of new problems and how that relates to further extensions of the methods.
 
 \indent By the end of Chapter \@ref(chapter9) you should be able to identify, perform 
 using the statistical software R [@R-base], and interpret the results from each of these methods. There
 is a lot to learn, but many of the tools for using R and interpreting results
-of the analyses accumulate and repeat during the semester. If you work hard to
+of the analyses accumulate and repeat throughout the textbook. If you work hard to
 understand the initial methods, it will help you when the methods get more
 complicated. You will likely feel like you are just starting to learn how to
 use R at the end of the semester and for learning a new language that is
@@ -224,7 +224,7 @@ population.
 Regression models, as well as to handle Chi-square testing situations. 
 Together, this should prepare you for future statistics courses or for other
 situations where you are expected to be able to identify an appropriate
-analysis, do the calculations for a given data set, and then effectively
+analysis, do the calculations and required graphics using the data set, and then effectively
 communicate interpretations for the methods discussed here. 
 
 ## Getting started in R {#section1-2}
@@ -243,7 +243,7 @@ even though the interface will be a new experience. Do not expect to master R
 quickly -- it takes years (sorry!) even if you know the statistical methods
 being used. We will try to keep all your interactions with R code in a similar
 code format and that should help you in learning how to use R as we move
-through various methods. We will also usually provide you with example code. Everyone
+through various methods. We will also often provide you with example code. Everyone
 that learns R starts with copying other people's code and then making changes
 for specific applications -- so expect to go back to examples from the text and focus
 on learning how to modify that code to work for your particular data set. Only
@@ -253,19 +253,19 @@ more sophisticated things with R, allowing us to compare quantitative responses
 from two groups, make some graphical displays, do hypothesis testing \index{hypothesis testing} and create
 confidence intervals in a couple of different ways. 
 
-\indent You will have two downloading activities to complete before you can do anything
-more than read this book^[I recorded a video that walks through getting R and RStudio installed on a PC available in the digital version [**here**](https://montana.techsmithrelay.com/J1Ww). If you want to see them installed on a mac, you can try [**this version**](https://www.youtube.com/watch?v=GFImMj1lMRI). Or for either version, try searching YouTube for "How to install R and RStudio".
+\indent You will have two^[There is a cloud version of R Studio available at https://rstudio.cloud/ if you want to avoid these steps. We still recommend following the steps to be able to work locally but try this option if you have any issues with the installation process.] downloading activities to complete before you can do anything
+more than read this book^[I recorded a video that walks through getting R and RStudio installed on a PC available [**in a recorded video**](https://montana.techsmithrelay.com/J1Ww). If you want to see them installed on a mac, you can try [**this video on youtube**](https://www.youtube.com/watch?v=GFImMj1lMRI). Or for either version, try searching YouTube for "How to install R and RStudio".
 ]. First, you need to download R. It is the engine that will do all the computing
 for us, but you will only interact with it once. Go to http://cran.rstudio.com
 and click on the "**Download R for...**" button that
 corresponds to your operating system. On the next page, click on "**base**" and then it will take you 
 to a screen to download the most current version of R that is compiled for your
-operating system, something like "**Download R 3.5.1 for Windows**". Click on that link and then open 
+operating system, something like "**Download R 3.6.0 for Windows**". Click on that link and then open 
 the file you downloaded. You will need to select your preferred language (choose English so your  instructor can help you), then hit "**Next**"
 until it starts to unpack and install the program (all the base settings will be fine). After you hit "**Finish**" you will not do anything further with R directly. 
 
 \indent Second, you need to download RStudio. It is an enhanced interface that will make interacting with
-R less frustrating. To download RStudio, go near the bottom of  https://www.rstudio.com/products/rstudio/download/ and select the correct version under
+R less frustrating and allow you to directly create reports that include the code and output. To download RStudio, go near the bottom of  https://www.rstudio.com/products/rstudio/download/ and select the correct version under
 "Installers for Supported Platforms" for your operating system. Download and
 then install RStudio using the installer. From this point forward, you should only
 open RStudio; it provides your interface with R. Note that both R and RStudio
@@ -273,8 +273,8 @@ are updated frequently (up to four times a year) and if you downloaded either
 more than a few months previously, you should download the up-to-date versions, 
 especially if something you are trying to do is not working. Sometimes code
 will not work in older versions of R and sometimes old code won't work in new
-versions of R.^[The need to keep the code up-to-date as R continues to evolve is one reason that this book is locally published and that this is the 5^th^ version in
-five years...]
+versions of R.^[The need to keep the code up-to-date as R continues to evolve is one reason that this book is locally published and that this is the 6^th^ time it has been revised in
+six years...]
  
 \indent To get started, we can complete some basic tasks in R using the RStudio
 interface. When you open RStudio, you will see a screen like Figure 
@@ -604,7 +604,7 @@ For the following material, you will need to install and load the ``mosaic`` pac
 \index{R packages!\textbf{mosaic}}
 
 ```r
-> require(mosaic)
+> library(mosaic)
 ```
 
 It provides a suite of enhanced functions to aid our initial explorations. With RStudio running, the ``mosaic`` package loaded, a place to write and
@@ -816,13 +816,12 @@ into the typesetting program. There is another way
 to use RStudio where you can have it compile the results (both output and
 figures) directly into a document together with the code that generated it, 
 using what is called R Markdown (http://shiny.rstudio.com/articles/rmarkdown.html). 
-It adds some additional setup
-complexity we want to avoid for now but is basically what we used to prepare this book. 
-The main reason to mention this is that you will see a
-change in formatting of the R code and output from here forward as you will no
+It is basically what we used to prepare this book and what you should learn to use to do your work. 
+From here forward, you will see a
+change in formatting of the R code and output as you will no
 longer see the command prompt (">") with the code. The output will be
 flagged by having two "##"'s before it. For example, the summary statistics for
-the *RunTime* variable from ``favstats`` function would look like:
+the *RunTime* variable from ``favstats`` function would look like when run using R Markdown:
 
 
 ```r
@@ -834,16 +833,18 @@ favstats(treadmill$RunTime)
 ##  8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0
 ```
 
-\indent Statisticians (and other scientists) are starting to use these methods 
+\indent Statisticians (and other scientists) are starting to use R Markdown and similar methods 
 because they provide what is called "Reproducible
 research" [@Gandrud2015] where all the code and output it produced are
 available in a single place. This allows different researchers to run and verify
-results or the original researchers to revisit their earlier work at a later
+results (so "reproducible results") or the original researchers to revisit their earlier work at a later
 date and recreate all their results exactly. Scientific publications are currently
-encouraging researchers to work in this way and may someday require it. In this
-book, we focus on the R code and show the results from running it, but you may
-want to consider exploring these alternative options. Ask your instructor to show 
-you this way of working and see if you like it better than copying and pasting everything.
+encouraging researchers to work in this way and may someday require it. The term ***reproducible*** can also be related to whether repeated studies get the same result (also called ***replication***) - further discussion of these terms and the implications for scientific research are discussed in Chapter XX.
+
+\indent In order to get some practice using R Markdown, there are two options. First, try to create a sample document in this format using File -> New File -> R Markdown... Choose a title for your file and select the "Word" option. This will create a new file in the XXX window. Save that file to your computer. Then you can use the "Knit" button to have RStudio run the code and create a word document with the results. R Markdown documents contain basically two components, "code chunks" that contain your code and places where you can write descriptions and interpretations of those results. The code chunks can be inserted using the "Insert" button and select the "R" option. Then write your code in between the ```{r} and ``` lines. Once you do this, you can test your code using the triangle on the right side of the code chunk to run that chunk. Keep your write up outside of these code chunks. Once you think your code and writing is done, you can use the "Knit" button to try to compile the file. As you are learning, you may find this challenging, so start with trying to review the sample document and 
+
+
+
 
 \indent Finally, when you are done with your work and attempt to exit out of RStudio, 
 it will

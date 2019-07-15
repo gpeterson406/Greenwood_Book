@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="3.4 ANOVA model diagnostics including QQ-plots | Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="3.4 ANOVA model diagnostics including QQ-plots | Intermediate Statistics with R">
+
+<title>3.4 ANOVA model diagnostics including QQ-plots | Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Pirate-plots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Reproducibility Crisis: Moving beyond p &lt; 0.05, publication bias, and multiple testing issues</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Chapter summary</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Summary of important R code</a></li>
+<li><a href="2-13-section2-13.html#section2-13"><span class="toc-section-number">2.13</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for the Overtake data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs and Estimability</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section3-4" class="section level2">
+<h2><span class="header-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</h2>
+<p>The requirements for a One-Way ANOVA <span class="math inline">\(F\)</span>-test are similar to those discussed in
+Chapter <a href="2-chapter2.html#chapter2">2</a>, except that there are now <span class="math inline">\(J\)</span> groups instead of only 2.
+Specifically, the linear model assumes:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Independent observations</strong>,</p></li>
+<li><p><strong>Equal variances</strong>, and</p></li>
+<li><p><strong>Normal distributions</strong>.</p></li>
+</ol>
+<p>For assessing equal variances across the groups, it is best to use plots to assess this. We can use pirate-plots to compare the spreads of the
+groups, which were provided in Figure <a href="3-1-section3-1.html#fig:Figure3-1">2.28</a>. The spreads (both in terms of extrema and rest of the distributions) should look relatively similar across the groups for you to suggest that there is not evidence of a
+problem with this assumption. You should start with noting how clear or big the
+violation of the conditions might be but remember that there will always be some
+differences in the variation among groups even if the true variability is exactly
+equal in the populations. In addition to our direct plotting, there are some
+diagnostic plots available from the <code>lm</code> function that can help us more
+clearly assess potential violations of the assumptions.
+</p>
+<p>We can obtain a suite of four diagnostic plots by using the <code>plot</code> function on
+any linear model object that we have fit. To get all the plots together in four
+panels we need to add the <code>par(mfrow=c(2,2))</code> command to tell R to make a graph
+with 4 panels<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a>.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb239-2" title="2"><span class="kw">plot</span>(lm2, <span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
+<p>There are two plots in Figure <a href="3-4-section3-4.html#fig:Figure3-9">2.36</a> with useful information for assessing the
+equal variance assumption. The “Residuals vs Fitted” panel in the top left panel displays the residuals <span class="math inline">\((e_{ij} = y_{ij}-\hat{y}_{ij})\)</span> on the y-axis and the fitted values
+<span class="math inline">\((\hat{y}_{ij})\)</span> on the x-axis.
+
+This allows you to see if the variability of the
+observations differs across the groups as a function of the mean of the groups,
+because all the observations in the same group get the same fitted value – the
+mean of the group. In this plot, the points seem to have fairly similar spreads
+at the fitted values for the seven groups with fitted values at 114 up to 122 cm.
+The “Scale-Location” plot in the lower left panel has the same x-axis of fitted values but the
+y-axis contains the square-root of the absolute value of the standardized
+residuals.
+
+The standardization scales the residuals to have a variance
+of 1 so help you in other displays to get a sense of how many standard deviations
+you are away from the mean in the residual distribution. The absolute value transforms all the residuals into a magnitude
+scale (removing direction) and the square-root helps you see differences in
+variability more accurately. The visual assessment is
+similar in the two plots – you want to consider whether it appears that the
+groups have somewhat similar or noticeably different amounts of variability. If
+you see a clear funnel shape (narrow (less variability) on the left or right and wide (more variability) at the right or left) in the Residuals vs Fitted
+
+and/or an increase or decrease
+in the height of the upper edge of points in the Scale-Location plot that may indicate a
+violation of the constant variance assumption.
+
+Remember that some variation
+across the groups is expected, does not suggest a violation of a validity conditions, and means that you can proceed with trusting your inferences, but large differences in the spread are problematic for all the procedures that involve linear models. When discussing
+these results, you want to discuss how clearly the differences in variation are
+and whether that shows a <em>clear</em> violation of the condition of equal variance
+for all observations. Like in hypothesis testing, you can never prove that an assumption is true based on a plot “looking OK”, but you can say that there is no
+clear evidence that the condition is violated!
+</p>
+
+<div class="figure"><span id="fig:Figure3-9"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-9-1.png" alt="Default diagnostic plots for the full overtake data linear model." width="960" />
+<p class="caption">
+Figure 2.36: Default diagnostic plots for the full overtake data linear model.
+</p>
+</div>
+<p>The linear model also assumes that all the random errors (<span class="math inline">\(\varepsilon_{ij}\)</span>) follow a
+normal distribution. To gain insight into the validity of this assumption, we
+can explore the original observations as displayed in the pirate-plots, mentally
+subtracting off the differences in the means and focusing on the shapes of the
+distributions of observations in each group. Each group should look approximately normal to avoid a concern on this assumption. These plots are especially good for
+assessing whether there is a skew or are outliers present in each group.   If either skew or clear outliers are present,
+by definition, the normality assumption is violated. But our assumption is
+about the distribution of all the errors after removing the differences
+in the means and so we want an overall assessment technique to understand how
+reasonable our assumption might be overall for our model. The residuals from the entire
+
+model provide us with estimates of the random errors and if the normality
+assumption is met, then the residuals all-together should approximately follow a
+normal distribution.  The <strong><em>Normal QQ-Plot</em></strong> in the upper right panel of
+Figure <a href="3-4-section3-4.html#fig:Figure3-9">2.36</a> also provides a direct visual assessment of how well our
+residuals match what we would expect from a normal distribution. Outliers, skew,
+heavy and light-tailed aspects of distributions (all violations of normality)
+show up in this plot once you learn to read it – which is our next task. To
+make it easier to read QQ-plots, it is nice to start with just considering
+histograms and/or density plots of the residuals and to see how that maps into
+this new display. We can obtain the residuals from the linear model using the
+<code>residuals</code> function  on any linear model object. Figure <a href="3-4-section3-4.html#fig:Figure3-10">2.37</a> makes both a histogram and density curve of these residuals. It shows that they have a subtle right skew present (right half of the distribution is a little more spread out than the left, so the skew is to the right) once we accounted for the different means in the groups but there are no apparent outliers.</p>
+
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb240-2" title="2">eij &lt;-<span class="st"> </span><span class="kw">residuals</span>(lm2)</a>
+<a class="sourceLine" id="cb240-3" title="3"><span class="kw">hist</span>(eij, <span class="dt">main=</span><span class="st">&quot;Histogram of residuals&quot;</span>)</a>
+<a class="sourceLine" id="cb240-4" title="4"><span class="kw">plot</span>(<span class="kw">density</span>(eij), <span class="dt">main=</span><span class="st">&quot;Density plot of residuals&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Density&quot;</span>,</a>
+<a class="sourceLine" id="cb240-5" title="5">     <span class="dt">xlab=</span><span class="st">&quot;Residuals&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure3-10"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-10-1.png" alt="Histogram and density curve of the linear model raw residuals from the overtake data linear model." width="960" />
+<p class="caption">
+Figure 2.37: Histogram and density curve of the linear model raw residuals from the overtake data linear model.
+</p>
+</div>
+<p>A Quantile-Quantile plot (<strong><em>QQ-plot</em></strong>)
+
+shows the “match” of an observed
+distribution with a theoretical distribution, almost always the normal
+distribution. They are also known as Quantile Comparison, Normal Probability,
+or Normal Q-Q plots, with the last two names being specific to comparing
+results to a normal distribution. In this version<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>, the QQ-plots display the value of
+observed percentiles in the residual distribution on the y-axis versus the
+percentiles of a theoretical normal distribution on the x-axis. If the
+observed <strong>distribution of the residuals matches the shape of the normal distribution, then the plotted points should follow a 1-1 relationship.</strong>
+If the points follow the displayed straight line then that suggests that the
+residuals have a similar shape to a normal distribution. Some variation is
+expected around the line and some patterns of deviation are worse
+than others for our models, so you need to go beyond saying “it does not match
+a normal distribution”. It is best to be specific about the type of deviation
+you are detecting and how clear or obvious that deviation is. And to do that, we need to practice interpreting some
+QQ-plots.</p>
+<p>The QQ-plot of the linear model residuals from Figure <a href="3-4-section3-4.html#fig:Figure3-9">2.36</a> is extracted and enhanced a little to make Figure <a href="3-4-section3-4.html#fig:Figure3-11">2.38</a> so we
+can just focus on it.
+
+We know from looking at the histogram that this is a
+(very) slightly right skewed distribution. Either version of the QQ-plots we will work with place the observed residuals on the y-axis and the expected results for a normal distribution on the x-axis. In some plots, the <strong><em>standardized</em></strong><a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a> <strong><em>residuals</em></strong> are used (Figure <a href="3-4-section3-4.html#fig:Figure3-9">2.36</a>) and in others the raw residuals are used (Figure <a href="3-4-section3-4.html#fig:Figure3-11">2.38</a>) to compare the residual distribution to a normal one. Both the upper and lower tails (upper tail in the upper right and the lower tail in the lower right of the plot) show some separation from the 1-1 line. The separation in the upper tail is more clear and these positive residuals are higher than the line “predicts” if the distribution had been normal. Being higher than the line in the right tail means being bigger than expected and so more spread out in that direction than a normal distribution should be. The left tail for the negative residuals also shows some separation from the line to have more extreme (here more negative) than expected, suggesting a little extra spread in the lower tail than suggested by a normal distribution. If the two sides had been similarly far from the 1-1 line, then we would have a symmetric and <strong><em>heavy-tailed</em></strong> distribution. Here, the slight difference in the two sides suggests that the right tail is more spread out than the left and we should be concerned about a minor violation of the normality assumption. If the distribution had followed the
+normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose – this is not the software identifying outliers or other problematic points – that is your responsibility to assess using these plots. For example, the point “2709” is identified in Figures <a href="3-4-section3-4.html#fig:Figure3-9">2.36</a> and <a href="3-4-section3-4.html#fig:Figure3-11">2.38</a> (the 2709<sup>th</sup>
+observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a <em>novice</em> vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the <code>fitted</code> function on the estimated <code>lm</code> – which here is just the sample mean of the group of the observations (<em>novice</em>) of 116.94 cm. The residual is stored in the 2,709<sup>th</sup> value of <code>eij</code> or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the <code>Distance</code> variable), it is not too surprising that it ends up as the largest positive residual. index{} </p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1">dd[<span class="dv">2709</span>,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)]</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   Condition Distance
+##   &lt;fct&gt;        &lt;dbl&gt;
+## 1 novice         274</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1"><span class="kw">fitted</span>(lm2)[<span class="dv">2709</span>]</a></code></pre></div>
+<pre><code>##     2709 
+## 116.9405</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1">eij[<span class="dv">2709</span>]</a></code></pre></div>
+<pre><code>##     2709 
+## 157.0595</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1"><span class="dv">274</span><span class="fl">-116.9405</span></a></code></pre></div>
+<pre><code>## [1] 157.0595</code></pre>
+
+<div class="figure"><span id="fig:Figure3-11"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-11-1.png" alt="QQ-plot of residuals from overtake data linear model." width="576" />
+<p class="caption">
+Figure 2.38: QQ-plot of residuals from overtake data linear model.
+</p>
+</div>
+<p>Generally, when both tails deviate on the same side of the line (forming a
+sort of quadratic curve, especially in more extreme cases), that is evidence
+of a clearly skewed residual distribution (the one above has a very minor skew so this does not occur). To see some different potential shapes in QQ-plots, six different
+data sets are displayed in Figures <a href="3-4-section3-4.html#fig:Figure3-12">2.39</a> and <a href="3-4-section3-4.html#fig:Figure3-13">2.40</a>.
+In each row, a QQ-plot and associated density curve are displayed. If the points
+form a pattern where all are above the 1-1 line in the lower and upper tails as in
+Figure <a href="3-4-section3-4.html#fig:Figure3-12">2.39</a>(a), then the pattern is a right skew, more
+extreme and easy to see than in the previous real data set.   If the points form a pattern where they are below the 1-1 line in both
+tails as in Figure <a href="3-4-section3-4.html#fig:Figure3-12">2.39</a>(c), then the pattern is identified as a
+left skew. Skewed residual distributions (either direction) are problematic for
+models that assume normally distributed responses but not necessarily for our
+permutation approaches if all the groups have similar skewed shapes. The other
+problematic pattern is to have more spread than a normal curve as in
+Figure <a href="3-4-section3-4.html#fig:Figure3-12">2.39</a>(e) and (f). This shows up with the points being
+below the line in the left tail (more extreme negative than expected by the normal)
+and the points being above the line for the right tail (more extreme positive
+than the normal predicts).  We call these distributions <strong><em>heavy-tailed</em></strong>
+which can manifest as distributions with outliers in both tails or just a bit
+more spread out than a normal distribution. Heavy-tailed residual distributions
+can be problematic for our models as the variation is greater than what the normal
+distribution can account for and our methods might under-estimate the
+variability in the results. The opposite pattern with the left tail above the
+line and the right tail below the line suggests less spread (<strong><em>light-tailed</em></strong>)
+than a normal as in Figure <a href="3-4-section3-4.html#fig:Figure3-12">2.39</a>(g) and (h). This pattern is
+relatively harmless and you can proceed with methods that assume normality safely
+as they will just be a little conservative. For any of the patterns, you would
+note a potential violation of the normality assumption and then proceed to
+describe the type of violation and how clear or extreme it seems to be. </p>
+<p>(ref:fig3-12) QQ-plots and density curves of four simulated distributions with
+different shapes.</p>
+<div class="figure"><span id="fig:Figure3-12"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-12-1.png" alt="(ref:fig3-12)" width="576" />
+<p class="caption">
+Figure 2.39: (ref:fig3-12)
+</p>
+</div>
+<p>Finally, to help you calibrate expectations for data that are actually normally
+distributed, two data sets simulated from normal distributions are displayed in
+Figure <a href="3-4-section3-4.html#fig:Figure3-13">2.40</a>. Note how neither follows the line exactly but
+that the overall pattern matches fairly well. <strong>You have to allow for some variation from the line in real data sets</strong> and focus on when there are really
+noticeable issues in the distribution of the residuals such as those
+displayed above. Again, you will never be able to prove that you have normally
+distributed residuals even if the residuals are all exactly on the line, but if
+you see QQ-plots as in Figure <a href="3-4-section3-4.html#fig:Figure3-12">2.39</a> you can determine that there is clear evidence of violations of the normality assumption.
+  </p>
+
+<div class="figure"><span id="fig:Figure3-13"></span>
+<img src="03-oneWayAnova_files/figure-html/Figure3-13-1.png" alt="Two more simulated data sets, both generated from normal distributions." width="576" />
+<p class="caption">
+Figure 2.40: Two more simulated data sets, both generated from normal distributions.
+</p>
+</div>
+<p>The last issues with assessing the assumptions in an ANOVA relates to
+situations where the methods are more or less <strong><em>resistant</em></strong><a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a> to violations of assumptions.
+
+In simulation studies of the performance of the <span class="math inline">\(F\)</span>-test, researchers
+have found that the
+parametric ANOVA <span class="math inline">\(F\)</span>-test is more resistant to violations of the assumptions of
+the normality and equal variance assumptions if the design is balanced.
+
+A <strong><em>balanced design</em></strong> occurs when each group is measured the same number of
+times. The resistance decreases as the data set becomes less balanced, as the
+sample sizes in the groups are more different, so having close to balance is
+preferred to a more imbalanced situation if there is a choice available. There
+is some intuition available here – it makes some sense that you would have better
+results in comparing groups if the information available is similar in all the
+groups and none are relatively under-represented. We can check the number of
+observations in each group to see if they are equal or similar using the
+<code>tally</code> function from the <code>mosaic</code> package. This function is useful for
+being able to get counts of observations, especially for cross-classifying
+observations on two variables that is used in Chapter <a href="5-chapter5.html#chapter5"><strong>??</strong></a>. For just
+a single variable, we use <code>tally(~x, data=...)</code>:
+</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="kw">require</span>(mosaic)</a>
+<a class="sourceLine" id="cb249-2" title="2"><span class="kw">tally</span>(<span class="op">~</span>Condition, <span class="dt">data=</span>dd)</a></code></pre></div>
+<pre><code>## Condition
+##  casual commute   hiviz  novice  police  polite   racer 
+##     779     857     737     807     790     868     852</code></pre>
+<p>So the sample sizes do vary among the groups and the design is not
+balanced, but all the sample sizes are between 737 and 868 so it is (in percentage terms at least) not too far from balanced. It is better then having, say, 50 in on group and 1,200 in another. This
+tells us that the <span class="math inline">\(F\)</span>-test should have some resistance to violations of
+assumptions. We also get more resistance to violation of assumptions as our sample sizes increase. With such as large data set here and only minor concerns with the normality assumption, the inferences generated for the means should be trustworthy and we will get similar results from parametric and nonparametric procedures. If we had only 15 observations per group and a slightly skewed residual distribution, then we might want to appeal to the permutation approach to have more trustworthy results, even if the design were balanced.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="57">
+<li id="fn57"><p>We have been using this function quite a bit to make multi-panel
+graphs but did not show you that line of code. But you need to use this command
+for linear model diagnostics or you won’t get the plots we want from the model.
+And you really just need <code>plot(lm2)</code> but the <code>pch=16</code> option makes it easier
+to see some of the points in the plots.<a href="3-4-section3-4.html#fnref57" class="footnote-back">↩</a></p></li>
+<li id="fn58"><p>Along with multiple names,
+there is variation of what is plotted on the x and y axes, the scaling of
+the values plotted, and even the way the line is chosen to represent the 1-1 relationship, increasing the challenge of interpreting QQ-plots. We are
+consistent about the x and y axis choices throughout this book and how the line is drawn but different versions of
+these plots do vary in what is presented, so be careful with using QQ-plots.<a href="3-4-section3-4.html#fnref58" class="footnote-back">↩</a></p></li>
+<li id="fn59"><p>Here this means re-scaled so that they should have similar
+scaling to a standard normal with mean 0 and standard deviation 1. This does
+not change the shape of the distribution but can make outlier identification
+simpler – having a standardized residual more extreme than 5 or -5 would
+suggest a deviation from normality since we rarely see values that many
+standard deviations from the mean in a normal distribution. But mainly focus
+on the pattern in points in the QQ-plot and whether it matches the 1-1 line that is being plotted.<a href="3-4-section3-4.html#fnref59" class="footnote-back">↩</a></p></li>
+<li id="fn60"><p>A resistant
+procedure is one that is not severely impacted by a particular violation of an
+assumption. For example, the median is resistant to the impact of
+an outlier. But the mean is not a resistant measure as changing the value
+of a single point changes the mean.<a href="3-4-section3-4.html#fnref60" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="3-3-section3-3.html"><button class="btn btn-default">Previous</button></a>
+<a href="3-5-section3-5.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

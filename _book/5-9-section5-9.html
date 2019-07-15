@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="5.9 Political party and voting results: Complete analysis | Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="5.9 Political party and voting results: Complete analysis | Intermediate Statistics with R">
+
+<title>5.9 Political party and voting results: Complete analysis | Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Pirate-plots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Reproducibility Crisis: Moving beyond p &lt; 0.05, publication bias, and multiple testing issues</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Chapter summary</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Summary of important R code</a></li>
+<li><a href="2-13-section2-13.html#section2-13"><span class="toc-section-number">2.13</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for the Overtake data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs and Estimability</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section5-9" class="section level2">
+<h2><span class="header-section-number">5.9</span> Political party and voting results: Complete analysis</h2>
+<p>As introduced in Section <a href="5-3-section5-3.html#section5-3">5.3</a>, a national random sample
+of voters was obtained
+related to the 2000 Presidential Election with the party affiliations and
+voting results recorded for each subject. The data are available in
+<code>election</code> in the <code>poLCA</code> package <span class="citation">(Linzer and Lewis. <a href="#ref-R-poLCA" role="doc-biblioref">2014</a>)</span>. It
+is always good to start with a bit of data exploration with a tableplot,
+displayed in Figure <a href="5-9-section5-9.html#fig:Figure5-13">2.84</a>.
+
+Many of the lines of code here
+are just for making
+sure that R is treating the categorical variables that were coded numerically
+as categorical variables.</p>
+<p>(ref:fig5-13) Tableplot of vote, party affiliation, education, and
+gender from election survey data. Note that
+missing observations are present in all variables except for <code>Gender</code>. Education is coded
+from 1 to 7 with higher values related to higher educational attainment. <code>Gender</code>
+code 1 is for male and 2 is for female.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1">election<span class="op">$</span>VOTEF &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>VOTE3)</a>
+<a class="sourceLine" id="cb421-2" title="2">election<span class="op">$</span>PARTY &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>PARTY)</a>
+<a class="sourceLine" id="cb421-3" title="3">election<span class="op">$</span>EDUC &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>EDUC)</a>
+<a class="sourceLine" id="cb421-4" title="4">election<span class="op">$</span>GENDER &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>GENDER)</a>
+<a class="sourceLine" id="cb421-5" title="5"><span class="kw">levels</span>(election<span class="op">$</span>VOTEF) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Gore&quot;</span>,<span class="st">&quot;Bush&quot;</span>,<span class="st">&quot;Other&quot;</span>)</a>
+<a class="sourceLine" id="cb421-6" title="6"><span class="kw">options</span>(<span class="dt">ffbatchbytes =</span> <span class="dv">1024</span><span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">128</span>); <span class="kw">options</span>(<span class="dt">ffmaxbytes =</span> <span class="dv">1024</span><span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">128</span> <span class="op">*</span><span class="st"> </span><span class="dv">32</span>) <span class="co"># Required options to avoid error when running on a PC, should have no impact on other platforms</span></a>
+<a class="sourceLine" id="cb421-7" title="7"><span class="kw">tableplot</span>(election, <span class="dt">select=</span><span class="kw">c</span>(VOTEF,PARTY,EDUC,GENDER),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</a></code></pre></div>
+<div class="figure"><span id="fig:Figure5-13"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-13-1.png" alt="(ref:fig5-13)" width="960" />
+<p class="caption">
+Figure 2.84: (ref:fig5-13)
+</p>
+</div>
+<p>In Figure <a href="5-9-section5-9.html#fig:Figure5-13">2.84</a>, we can see many missing <code>VOTEF</code>
+responses but also some missingness in <code>PARTY</code> and <code>EDUC</code>
+(<em>Education</em>) status. While we don’t know
+too much about why people didn’t respond on the Vote question – they could have
+been unwilling to answer it or may not have voted. It looks like those subjects
+have more of the lower education level responses (more dark colors, especially level 2 of education) than in the responders to this question. There are many “middle” ratings
+in the party affiliation responses for the missing <code>VOTEF</code> responses,
+suggesting that independents were less likely to answer the question in the
+survey for whatever reason. Even though this comes with concerns about who these results actually apply to (likely not the population that was sampled from), we want to focus on those that did respond in
+<code>VOTEF</code>, so will again use <code>na.omit</code> to clean out any subjects with any
+missing responses on these four variables and remake this plot
+(Figure <a href="5-9-section5-9.html#fig:Figure5-14">2.85</a>). The code also adds the <code>sort</code> option to the
+<code>tableplot</code> function call that provides an easy way to sort the data set
+based on other variables.
+
+It is interesting, for example, to sort the
+responses by <em>Education</em> level and explore the differences in other variables.
+These explorations are omitted here but easily available by changing the
+sorting column from 1 to <code>sort=3</code> or <code>sort=EDUC</code>. Figure <a href="5-9-section5-9.html#fig:Figure5-14">2.85</a> shows us that there are clear differences
+in party affiliation based on voting for <em>Bush</em>, <em>Gore</em>, or
+<em>Other</em>. It is harder to see if there are differences in education level or gender
+based on the voting status in this plot, but, as noted above, sorting on these
+other variables can sometimes help to see other relationships between
+variables.</p>
+
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1">election2 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(election[,<span class="kw">c</span>(<span class="st">&quot;VOTEF&quot;</span>,<span class="st">&quot;PARTY&quot;</span>,<span class="st">&quot;EDUC&quot;</span>,<span class="st">&quot;GENDER&quot;</span>)])</a>
+<a class="sourceLine" id="cb422-2" title="2"><span class="kw">tableplot</span>(election2, <span class="dt">select=</span><span class="kw">c</span>(VOTEF,PARTY,EDUC,GENDER), <span class="dt">sort=</span><span class="dv">1</span>,<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</a></code></pre></div>
+<div class="figure"><span id="fig:Figure5-14"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-14-1.png" alt="Tableplot of election data with subjects without any missing responses (complete cases)." width="960" />
+<p class="caption">
+Figure 2.85: Tableplot of election data with subjects without any missing responses (complete cases).
+</p>
+</div>
+<p>Focusing on the party affiliation and voting results, the appropriate
+analysis is with
+an Independence test because a single random sample was obtained from the population.
+The total sample size for the complete responses was <span class="math inline">\(N=\)</span> 1,149
+(out of the original 1,785 subjects). Because this is an Independence test,
+the mosaic plot is the appropriate display of the results,
+which was provided in Figure <a href="5-3-section5-3.html#fig:Figure5-5">2.76</a>.</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" title="1">electable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>PARTY<span class="op">+</span>VOTEF, <span class="dt">data=</span>election2)</a>
+<a class="sourceLine" id="cb423-2" title="2">electable</a></code></pre></div>
+<pre><code>##      VOTEF
+## PARTY Gore Bush Other
+##     1  238    6     2
+##     2  151   18     1
+##     3  113   31    13
+##     4   37   36    11
+##     5   21  124    12
+##     6   20  121     2
+##     7    3  188     1</code></pre>
+<p>There is a potential for bias in some polls because of the methods used
+to find and contact people. As
+U.S. residents have transitioned from land-lines to cell phones, the early
+adopting cell phone users were often excluded from political polling. These
+policies are being reconsidered to adapt to the decline in residential phone
+lines and most polling organizations now include cell phone numbers in their
+list of potential respondents. This study may have some bias regarding who was
+considered as part of the population of interest and who was actually found
+that was willing to respond to their questions. We don’t have much information
+here but biases arising from unobtainable members of populations are a potential
+issue in many studies, especially when questions tend toward more sensitive
+topics. We can make inferences here to people that were willing to respond to
+the request to answer the survey but should be cautious in extending it to all
+Americans or even voters in the year 2000. When we say “population” below, this
+nuanced discussion is what we mean. Because the political party is not randomly
+assigned to the subjects, we cannot make causal inferences for political
+affiliation causing different voting patterns<a href="#fn87" class="footnote-ref" id="fnref87"><sup>87</sup></a>.</p>
+<p>Here are our 6+ steps applied to this example:</p>
+<ol start="0" style="list-style-type: decimal">
+<li><p>The desired RQ is about assessing the relationship between part affiliation and vote choice, but this is constrained by the large rate of non-response in this data set. This is an Independence test and so the tableplot and mosaic plot are good visualizations to consider and the <span class="math inline">\(X^2\)</span>-statistic will be used.</p></li>
+<li><p><strong>Hypotheses:</strong></p>
+<ul>
+<li><p><span class="math inline">\(H_0\)</span>: There is no relationship between the party affiliation
+(7 levels) and voting results (<em>Bush</em>, <em>Gore</em>, <em>Other</em>) in the
+population.</p></li>
+<li><p><span class="math inline">\(H_A\)</span>: There is a relationship between the party affiliation
+(7 levels) and voting results (<em>Bush</em>, <em>Gore</em>, <em>Other</em>) in the
+population.</p></li>
+</ul></li>
+<li><p><strong>Plot the data and assess validity conditions:</strong>
+</p>
+<ul>
+<li><p>Independence:</p>
+<ul>
+<li>There is no indication of an issue with this assumption since each subject is
+measured only once in the table. No other information suggests
+a potential issue since a random sample was taken from presumably
+a large national population and we have no information that could suggest dependencies among observations.</li>
+</ul></li>
+<li><p>All expected cell counts larger than 5 to use the parametric
+<span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution to find p-values:</p>
+<ul>
+<li>We need to generate a table of expected cell counts to be
+able to check this condition:</li>
+</ul>
+<p></p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" title="1"><span class="kw">chisq.test</span>(electable)<span class="op">$</span>expected</a></code></pre></div>
+<pre><code>## Warning in chisq.test(electable): Chi-squared approximation may be
+## incorrect</code></pre>
+<pre><code>##      VOTEF
+## PARTY      Gore      Bush    Other
+##     1 124.81984 112.18799 8.992167
+##     2  86.25762  77.52829 6.214099
+##     3  79.66144  71.59965 5.738903
+##     4  42.62141  38.30809 3.070496
+##     5  79.66144  71.59965 5.738903
+##     6  72.55788  65.21497 5.227154
+##     7  97.42037  87.56136 7.018277</code></pre>
+<ul>
+<li><p>When we request the expected cell counts, R tries to help
+us with a warning message if the expected cell counts might
+be small, as in this situation.</p></li>
+<li><p>There is one expected cell count below 5 for <code>Party</code> = 4
+who voted <em>Other</em> with an expected cell count of 3.07, so
+the condition is violated and the permutation approach
+should be used to obtain more trustworthy p-values. The
+conditions are met for performing a permutation test.</p></li>
+</ul></li>
+</ul></li>
+<li><p><strong>Calculate the test statistic and p-value:</strong></p>
+<ul>
+<li>The test statistic is best calculated by the <code>chisq.test</code> function since there
+are 21 cells and many potential places for a calculation error if
+performed by hand.</li>
+</ul>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" title="1"><span class="kw">chisq.test</span>(electable)</a></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  electable
+## X-squared = 762.81, df = 12, p-value &lt; 2.2e-16</code></pre>
+<ul>
+<li><p>The observed <span class="math inline">\(X^2\)</span> statistic is 762.81.</p></li>
+<li><p>The parametric p-value is &lt; 2.2e-16 from the R output which
+would be reported as &lt; 0.0001. This was based on a
+<span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with <span class="math inline">\((7-1)*(3-1) = 12\)</span>
+degrees of freedom displayed in Figure <a href="5-9-section5-9.html#fig:Figure5-15">2.86</a>.
+Note that the observed test statistic of 762.81 was off the plot
+to the right which reflects how little area is to the right of
+that value in the distribution.</p></li>
+</ul>
+<div class="figure"><span id="fig:Figure5-15"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-15-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 12 degrees of freedom." width="288" />
+<p class="caption">
+Figure 2.86: Plot of <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with 12 degrees of freedom.
+</p>
+</div>
+<ul>
+<li>If you want to repeat this calculation directly you get a similarly
+tiny value that R reports as 1.5e-155. Again, reporting less than
+0.0001 is just fine.</li>
+</ul>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1"><span class="kw">pchisq</span>(<span class="fl">762.81</span>, <span class="dt">df=</span><span class="dv">12</span>, <span class="dt">lower.tail=</span>F)</a></code></pre></div>
+<pre><code>## [1] 1.553744e-155</code></pre>
+<ul>
+<li>But since the expected cell count condition is violated, we should
+use permutations as implemented in the following code to provide a more trustworthy p-value:</li>
+</ul>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" title="1">Tobs &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(electable)<span class="op">$</span>statistic; Tobs</a></code></pre></div>
+<pre><code>## X-squared 
+##  762.8095</code></pre>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb434-2" title="2">B &lt;-<span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb434-3" title="3">Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</a>
+<a class="sourceLine" id="cb434-4" title="4"><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</a>
+<a class="sourceLine" id="cb434-5" title="5">  Tstar[b] &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="kw">tally</span>(<span class="op">~</span><span class="kw">shuffle</span>(PARTY)<span class="op">+</span>VOTEF, <span class="dt">data=</span>election2,</a>
+<a class="sourceLine" id="cb434-6" title="6">                               <span class="dt">margins=</span>F))<span class="op">$</span>statistic</a>
+<a class="sourceLine" id="cb434-7" title="7">}</a>
+<a class="sourceLine" id="cb434-8" title="8"><span class="kw">pdata</span>(Tstar, Tobs, <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" title="1"><span class="kw">hist</span>(Tstar)</a>
+<a class="sourceLine" id="cb436-2" title="2"><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb436-3" title="3"><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb436-4" title="4"><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure5-16"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-16-1.png" alt="Permutation distribution of $X^2$ for the election data. Observed value of 763 not displayed." width="480" />
+<p class="caption">
+Figure 2.87: Permutation distribution of <span class="math inline">\(X^2\)</span> for the election data. Observed value of 763 not displayed.
+</p>
+</div>
+<ul>
+<li>The last results tells us that there were no permuted data sets
+that produced larger <span class="math inline">\(X^2\text{&#39;s}\)</span> than the observed <span class="math inline">\(X^2\)</span> in 1,000
+permutations, so we report that the <strong>p-value was less than 0.001</strong>
+using the permutation approach. The permutation distribution in
+Figure <a href="5-9-section5-9.html#fig:Figure5-16">2.87</a> contains no results over 40, so the
+observed configuration was really far from the null
+hypothesis of no relationship between party status and voting.</li>
+</ul></li>
+<li><p><strong>Conclusion:</strong></p>
+<ul>
+<li>There is strong evidence against the null hypothesis of no relationship between party affiliation and voting
+results in the population (<span class="math inline">\(X^2\)</span>=762.81, p-value&lt;0.001), so we would conclude that there is a relationship between party affiliation and voting results.</li>
+</ul></li>
+<li><p><strong>Size:</strong></p>
+<ul>
+<li>We can add insight into the results by exploring the
+standardized residuals. The numerical results are obtained using <code>chisq.test(electable)$residuals</code> and visually using <code>mosaicplot(electable, shade=T)</code> in Figure <a href="5-9-section5-9.html#fig:Figure5-17">2.88</a>. The standardized residuals show some clear sources of the differences from the results expected if there were no relationship present. The largest
+contributions are found in the highest democrat category (<code>PARTY</code> = 1)
+where the standardized residual for <em>Gore</em> is 10.13 and for <em>Bush</em>
+is -10.03, showing much higher than expected (under <span class="math inline">\(H_0\)</span>) counts for Gore
+voters and much lower than expected (under <span class="math inline">\(H_0\)</span>) for Bush.
+Similar results in the opposite direction are found in the strong
+republicans (<code>PARTY</code> = 7). Note how the brightest shade of blue in
+Figure <a href="5-9-section5-9.html#fig:Figure5-17">2.88</a> shows up for much higher than expected
+results and the brighter red for results in the other direction,
+where observed counts were
+much lower than expected. When there are many large standardized residuals, it
+is OK to focus on the largest results but remember that some of the
+intermediate deviations, or lack thereof, could also be interesting. For
+example, the Gore voters from <code>PARTY</code> = 3 had a standardized residual
+of 3.75 but the <code>PARTY</code> = 5 voters for Bush had a standardized residual
+of 6.17. So maybe Gore didn’t have
+as strong of support from his center-leaning supporters as Bush was able to
+obtain from the same voters on the other side of the middle? Exploring the relative proportion of each vertical bar in the response categories is also interesting to see the proportions of each level of party affiliation and how they voted. A political
+scientist would easily obtain many more (useful) theories based on this combination of results.</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" title="1"><span class="kw">chisq.test</span>(electable)<span class="op">$</span>residuals <span class="co">#(Obs - expected)/sqrt(expected)</span></a></code></pre></div>
+<pre><code>##      VOTEF
+## PARTY        Gore        Bush       Other
+##     1  10.1304439 -10.0254117  -2.3317373
+##     2   6.9709179  -6.7607252  -2.0916557
+##     3   3.7352759  -4.7980730   3.0310127
+##     4  -0.8610559  -0.3729136   4.5252413
+##     5  -6.5724708   6.1926811   2.6135809
+##     6  -6.1701472   6.9078679  -1.4115200
+##     7  -9.5662296  10.7335798  -2.2717310</code></pre>
+<p>(ref:fig5-17) Mosaic plot with shading based on standardized residuals
+for the election data.</p>
+<div class="figure"><span id="fig:Figure5-17"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-17-1.png" alt="(ref:fig5-17)" width="480" />
+<p class="caption">
+Figure 2.88: (ref:fig5-17)
+</p>
+</div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" title="1"><span class="co">#Adds information on the size of the residuals</span></a>
+<a class="sourceLine" id="cb439-2" title="2"><span class="kw">mosaicplot</span>(electable, <span class="dt">shade=</span>T) </a></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li><p><strong>Scope of inference:</strong></p>
+<ul>
+<li>The results are not causal since no random assignment was present but they do apply to the population
+of voters in the 2000 election that were able to be contacted by those
+running the poll and who would be willing to answer all the questions and actually voted.</li>
+</ul></li>
+</ol>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-poLCA">
+<p>Linzer, Drew, and Jeffrey Lewis. 2014. <em>PoLCA: Polytomous Variable Latent Class Analysis</em>. <a href="https://CRAN.R-project.org/package=poLCA">https://CRAN.R-project.org/package=poLCA</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="87">
+<li id="fn87"><p>Independence tests can’t
+be causal by their construction. Homogeneity tests could be causal or just
+associational, depending on how the subjects ended up in the groups.<a href="5-9-section5-9.html#fnref87" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="5-8-section5-8.html"><button class="btn btn-default">Previous</button></a>
+<a href="5-10-section5-10.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

@@ -35,15 +35,15 @@ the difference between *no improvement* and *some improvement* is not
 necessarily the same as the difference between *some* and *marked improvement*. 
 If it is treated numerically, then the differences between levels are assumed to be the same
 unless a different coding scheme is used (say 1, 2, and 5). It is better to
-treat these types of responses as being in one of the three categories and use
+treat this type of responses as being in one of the three categories and use
 statistical methods that don't make unreasonable and arbitrary assumptions about what the
 numerical coding might mean. The study being performed here involved subjects
 randomly assigned to either a treatment or a placebo (control) group and we
 want to address research questions similar to those considered in 
 Chapters \@ref(chapter2) and \@ref(chapter3) --
-assessing differences among two or more groups. With quantitative
+assessing differences in a response variable among two or more groups. With quantitative
 responses, the differences in the distributions are parameterized via the means
-of the groups and we used 2-sample mean or ANOVA hypotheses and tests. With
+of the groups and we used linear models. With
 categorical responses, the focus is on the probabilities of getting responses in
 each category and whether they differ among the groups. 
 
@@ -52,11 +52,10 @@ applied to some examples of
 studies these methods can be used to analyze. Graphical techniques provide
 opportunities for assessing specific patterns in variables, relationships
 between variables, and for generally understanding the responses obtained. 
-There are many different types of plots and each can enhance certain features
-of data. We will start with a "fun" display, called a *tableplot*, to help us
+There are many different types of plots and each can elucidate certain features
+of data. The *tableplot*, briefly introduced in Chapter \@ref(chapter4), is a great and often fun starting point for working with data sets that contain categorical variables. We will start here with using it to help us
 understand some aspects of the results from a double-blind randomized clinical
-trial investigating a treatment for rheumatoid arthritis that has the
-categorical response variable introduced previously.
+trial investigating a treatment for rheumatoid arthritis.
 \index{tableplot}
 These data are available
 in the ``Arthritis`` data set available in the ``vcd`` package [@R-vcd].
@@ -65,39 +64,27 @@ There were $n=84$ subjects, with some demographic
 information recorded
 along with the ``Treatment`` status (*Treated*, *Placebo*) and whether the 
 patients' arthritis symptoms ``Improved`` (with levels of *None*, *Some*, 
-and *Marked*). 
-
-\indent The ``tableplot`` function from the ``tabplot`` package [@R-tabplot]
-displays bars for each response in a row^[In larger data sets, 
-multiple subjects are displayed in each row as proportions of
-the rows in each category.] based on the 
-category of responses or as a bar with the height corresponding
-the value of quantitative variables^[Quantitative variables are displayed with
-boxplot-like bounds to describe the variability in the variable for that row of 
-responses for larger data sets.].
-\index{\texttt{tableplot()}}
-\index{R packages!\textbf{tabplot}}
-It also plots a red cell if the
-observations were missing on a particular variable. The plot can be obtained
-simply as ``tableplot(DATASETNAME)``. But when using ``tableplot``, we may 
-not want to display everything in the tibble and often just select some 
+and *Marked*). When using ``tableplot``, we may 
+not want to display everything in the tibble and can just select some 
 of the variables. We use ``Treatment``, ``Improved``, ``Gender``, and ``Age``
 in the ``select=...`` option with a ``c()`` and commas between the names of 
 the variables we want to display as shown below. The first one in the list is also the one that
-the data are sorted on. The ``pals=list("BrBG")`` option specifies a color palette for the plot that is color-blind friendly.
-\index{R packages!\textbf{RColorBrewer}}
+the data are sorted on and is what we want here -- to start with sorting observations based on ``Treatment`` status. 
+
+
 
 (ref:fig5-1) Tableplot of the arthritis data set. 
 
 
 ```r
-require(vcd)
+library(vcd)
 data(Arthritis) #Double-blind clinical trial with treatment and control groups
-require(tibble)
-Arthritis <- as.tibble(Arthritis)
+library(tibble)
+Arthritis <- as_tibble(Arthritis)
 #Homogeneity example
-require(tabplot)
-require(RColorBrewer)
+library(tabplot)
+library(RColorBrewer)
+options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) # Options needed to prevent errors on PC
 tableplot(Arthritis,select=c(Treatment,Improved,Sex,Age),pals=list("BrBG"))
 ```
 
@@ -161,7 +148,7 @@ placebo group.
 
 
 ```r
-require(mosaic)
+library(mosaic)
 tally(~Treatment+Improved, data=Arthritis, margins=T)
 ```
 
@@ -256,7 +243,7 @@ version of the table.
 In this application, it shows how the proportions seem to be different among categories of *Improvement* between the placebo and treatment groups. This matches the previous thoughts on
 these data, but now a difference of marked improvement of 16% vs 51% is more
 clearly a big difference. We can also display this result using a 
-***stacked bar-chart*** that displays the same information using the ``plot``
+***stacked bar-chart*** \index{stacked bar chart} that displays the same information using the ``plot``
 function with a ``y~x`` formula:
 
 (ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is 
@@ -305,7 +292,7 @@ table is formed based on responses on two categorical variables.
 \index{contingency table}
 When one
 sample is collected and analyzed using a contingency table, the appropriate
-analysis is called an ***Independence*** or ***Association test***.
+analysis is called a Chi-square test of ***Independence*** or ***Association***.
 \index{Chi-Square Test!Independence Test}
 In this
 situation, it is not necessary to have variables that are clearly classified
@@ -344,13 +331,13 @@ single random sample and measurements on two categorical variables.
 
 \indent You will discover that the test statistics are the same for both methods, 
 which can create some desire
-to assume that the differences in the data collection doesn't matter. In
+to assume that the differences in the data collection don't matter. In
 Homogeneity designs, the sample size in each group
 $(\mathbf{n_{1\bullet}},\mathbf{n_{2\bullet},\ldots,\mathbf{n_{R\bullet}}})$
-is fixed.
+is fixed (researcher chooses the size of each group).
 \index{Chi-Square Test!Homogeneity Test}
 In Independence situations, the total sample size $\mathbf{N}$ is
-fixed but all the $\mathbf{n_{r\bullet}}\text{'s}$ are random.
+fixed but all the $\mathbf{n_{r\bullet}}\text{'s}$ are random (we need the data set to know how many are in each group).
 \index{Chi-Square Test!Independence Test}
 These
 differences impact the graphs, hypotheses, and conclusions used even though
@@ -364,8 +351,8 @@ If we define some additional notation, we can then define hypotheses that allow 
 to assess evidence related to whether the treatment "matters" in Homogeneity
 situations.
 \index{Chi-Square Test!Homogeneity Test}
-This situation is similar to what we did in the One-Way ANOVA
-situation with quantitative responses in Chapter \@ref(chapter3) but the parameters now
+This situation is similar to what we did in the One-Way ANOVA (Chapter \@ref(chapter3))
+situation with quantitative responses but the parameters now
 relate to proportions in the response variable categories across the groups. 
 First we can define the conditional population proportions in level $c$ (column 
 $c=1,\ldots,C$) of group $r$ (row $r=1,\ldots,R$) as $p_{rc}$. 
@@ -442,7 +429,7 @@ same just that the distribution needs
 to be the same across the groups. The null hypothesis does *not*
 require that all three response categories (*none*, *some*, *marked*) be equally 
 likely. It assumes
-that whatever the distribution of proportions is across these three levels that
+that whatever the distribution of proportions is across these three levels of the response that
 there is no difference in that distribution between the explanatory variable
 (here treated/placebo) groups. Figure \@ref(fig:Figure5-4) shows an example of a 
 situation where
@@ -480,7 +467,7 @@ $\mathbf{y}$ **in the population.**
 
 \indent To illustrate a test of independence, consider an example involving 
 data from a national random sample
-taken prior to the 2000 US elections from the data set ``election``
+taken prior to the 2000 U.S. elections from the data set ``election``
 from the package ``poLCA`` (@R-poLCA, @Linzer2011). Each respondent's
 democratic-republican partisan identification was collected, 
 provided in the ``PARTY`` variable for measurements on a seven-point 
@@ -490,7 +477,7 @@ scale from (1) *Strong Democrat*, (2) *Weak Democrat*,
 (7) *Strong Republican*. The ``VOTEF`` variable that is created below 
 will contain the candidate that the participants voted for (the data set was
 originally coded with 1, 2, and 3 for the candidates and we replaced those
-levels with the candidate names). The contingency table shows some expected
+``levels`` \index{\texttt{levels}} with the candidate names). The contingency table shows some expected
 results, that individuals with strong party affiliations tend to vote for the
 party nominee with strong support for Gore in the democrats 
 (``PARTY`` = 1 and 2) and strong support for Bush in the republicans
@@ -505,19 +492,19 @@ one variable for a person,
 say that they voted for Gore, informs the types of responses that you would
 expect for that person, here that they are likely affiliated with the Democratic
 Party. When there is no relationship (the null hypothesis here), knowing the
-level of one variable is not informative about the level of the other variable. 
+level of one variable is not informative about the level of the other variable.
 
 
 ```r
-require(poLCA)
+library(poLCA)
 # 2000 Survey - use package="" because other data sets in R have same name
 data(election, package="poLCA") 
-election <- as.tibble(election)
+election <- as_tibble(election)
 # Subset variables and remove missing values
 election2 <- na.omit(election[,c("PARTY","VOTE3")])
 election2$VOTEF <- factor(election2$VOTE3)
-levels(election2$VOTEF) <- c("Gore","Bush","Other")
-levels(election2$VOTEF)
+levels(election2$VOTEF) <- c("Gore","Bush","Other") #Replace 1,2,3 with meaningful names
+levels(election2$VOTEF) #Check new names of levels in VOTEF
 ```
 
 ```
@@ -525,7 +512,7 @@ levels(election2$VOTEF)
 ```
 
 ```r
-electable <- tally(~PARTY+VOTEF, data=election2)
+electable <- tally(~PARTY+VOTEF, data=election2) #Contingency table
 electable
 ```
 
@@ -565,10 +552,10 @@ the levels of x) that might be hard to justify. Our summaries in these
 situations are the contingency table (``tally(~var1+var2, data=DATASETNAME)``)
 and a new graph called a ***mosaic plot*** (using the ``mosaicplot`` 
 function). 
-\index{\texttt{tally()}}
+\index{\texttt{mosaicplot()}}
 
 \indent Mosaic plots display a box for each cell count whose area corresponds 
-to the proportion of the total data set that is in that cell 
+to the proportion of the *total* data set that is in that cell 
 $(n_{rc}/\mathbf{N})$. In some cases, the bars can be short or narrow 
 if proportions of the total are small and the labels can be
 hard to read but the same bars or a single line exist for each category of the
@@ -595,7 +582,7 @@ party affiliation. Comparing the size of the 4s & *Other* segment
 with the 3s & *Other* segment, one should conclude that the 3s & *Other*
 segment is a slightly larger portion of the total data set. There is 
 generally a gradient of decreasing/increasing voting rates for the 
-two primary candidates
+two main party candidates
 across the party affiliations, but there are a few exceptions. For 
 example, the
 proportion of *Gore* voters goes up slightly between the ``PARTY`` 
@@ -656,7 +643,7 @@ like if the null hypothesis of no relationship were true.
 ## Models for R by C tables	{#section5-4}
 
 This section is very short in this chapter because we really do not use any 
-"models" in this material. There are some complicated
+"models" in this Chapter. There are some complicated
 statistical models that can be employed in these situations, but they are
 beyond the scope of this book. What we do have in this situation is our
 original data summary in the form of a contingency table, graphs of the results
@@ -686,7 +673,7 @@ variability and that is what is happening here even though it doesn't
 look like the standardization you are used to with continuous variables.]
 the difference between the observed and expected counts by the square-root of
 the expected count.
-\index{parametric}
+\index{parametric} \index{Chi-square test} 
 The  $\mathbf{X^2}$ ***statistic*** is based on
 the sum of squared standardized differences, 
 
@@ -698,7 +685,7 @@ table of the square of the difference between observed and expected
 cell counts divided by the square root of the
 expected cell count. To calculate this test statistic, it useful to start with
 a table of expected cell counts to go with our contingency table of observed
-counts. The expected cell counts are easiest to understand in the 
+counts. \index{expected cell count} The expected cell counts are easiest to understand in the 
 homogeneity situation but are calculated the same in either scenario. 
 
 \indent The idea underlying finding the ***expected cell counts*** is to find 
@@ -767,7 +754,7 @@ Table: (\#tab:Table5-3) (ref:tab5-3)
 
 \indent Of course, using R can help us avoid tedium like this... The main 
 engine for results in this chapter is the ``chisq.test``
-function. It operates on a table of
+function. \index{\texttt{chisq.test()}} It operates on a table of
 counts that has been produced **without row or column totals**. 
 
 \newpage
@@ -808,7 +795,7 @@ chisq.test(Arthtable)$expected
 attention to calculating the test
 statistic. It is possible to lay out the "contributions" to the 
 $X^2$ statistic in a table format, allowing a simple way to finally 
-calculate the statistic without losing any numbers. For  **each cell**
+calculate the statistic without losing any information. For  **each cell**
 we need to find 
 
 $$(\text{observed}-\text{expected})/\sqrt{\text{expected}}),$$
@@ -836,7 +823,7 @@ $={\color{red}{2.616+0.004+3.752+2.744+0.004+3.935}}=13.055$
 
 \indent Our favorite function in this chapter, ``chisq.test``, does not provide 
 the contributions to the $X^2$ statistic directly. It provides a related 
-quantity called the 
+quantity called the \index{Chi-square test!standardized residual}
 
 $$\textbf{standardized residual}=\left(\frac{\text{Observed}_i -
 \text{Expected}_i}{\sqrt{\text{Expected}_i}}\right),$$
@@ -892,7 +879,7 @@ chisq.test(Arthtable)
 ## X-squared = 13.055, df = 2, p-value = 0.001463
 ```
 
-\indent The ``chisq.test`` function reports a p-value by
+\indent The ``chisq.test`` \index{\texttt{chisq.test()}} function reports a p-value by
 default. Before we discover how it got that result, we can rely on our
 permutation methods to obtain a distribution for the $X^2$ statistic
 under the null hypothesis. As in Chapters \@ref(chapter2) and \@ref(chapter3),
@@ -916,7 +903,7 @@ $X^2$ calculated using the formula above.
 Like the $F$-statistic, it ends up
 that only results in the right tail of this distribution are desirable for 
 finding evidence against the null hypothesis
-because all the values have to be positive. You can see this by observing that
+because all the values showing deviation from the null in any direction going into the statistic have to be positive. You can see this by observing that
 values of the $X^2$ statistic close to 0 are generated when the
 observed values are close to the expected values and that sort of result should
 not be used to find evidence against the null. When the observed and expected
@@ -932,7 +919,7 @@ see minimal differences between the treatment and placebo groups showing up in
 the stacked bar-chart. Three other permuted data sets are displayed in 
 Figure \@ref(fig:Figure5-8) showing the variability in results in 
 permutations but that none get close
-to showing the differences in the bars observed in the real data set. 
+to showing the differences in the bars observed in the real data set in Figure \@ref(fig:Figure5-2). 
 
 
 
@@ -986,8 +973,8 @@ we need to collect up the test statistics ($X^{2*}$) in many of these permuted
 results. The code is similar to permutation tests in Chapters 
 \@ref(chapter2) and \@ref(chapter3) except
 that each permutation generates a new contingency table that is summarized and
-provided to ``chisq.test `` to analyze. We again extract the 
-``$statistic``. 
+provided to ``chisq.test `` to analyze. We extract the 
+``$statistic`` attribute of the results from running ``chisq.test``. 
 \index{permutation!distribution}
 
 (ref:fig5-9) Permutation distribution for the $X^2$ statistic for 
@@ -1033,9 +1020,9 @@ abline(v=Tobs, col="red", lwd=3)
 
 
 
-For an observed $X^2$ statistic of 13.055, four out of 1,000 permutation
+For an observed $X^2$ statistic of 13.055, two out of 1,000 permutation
 results matched or exceeded this value (``pdata`` returned a value of 
-0.002). 
+0.002) as displayed in Figure \@ref(fig:Figure5-9). 
 \index{\texttt{pdata()}}
 This suggests that our observed result is quite extreme 
 relative to the null
@@ -1060,7 +1047,7 @@ observations that are independent of one another. One way that a violation of
 independence can sometimes occur in this situation is when a single subject
 shows up in the table more than once. For example, if a single individual
 completes a survey more than once and those results are reported as if they
-came from $N$ independent individuals.
+came from $N$ independent individuals. 
 Be careful about this as it is really easy to make tables of poorly collected
 or non-independent observations and then consider them for these analyses. Poor
 data still lead to poor conclusions even if you have fancy new statistical
@@ -1149,7 +1136,7 @@ We'll see more examples of the $\boldsymbol{\chi^2}$-distributions
 in each of the examples that follow. 
 
 (ref:fig5-10) $\boldsymbol{\chi^2}$-distribution with two degrees of 
-freedom with 13.1 indicated with a vertical line. 
+freedom with the observed statistic of 13.1 indicated with a vertical line. 
 
 <div class="figure">
 <img src="05-chiSquaredTests_files/figure-html/Figure5-10-1.png" alt="(ref:fig5-10)" width="480" />
@@ -1159,21 +1146,18 @@ freedom with 13.1 indicated with a vertical line.
 \indent A small side note about sample sizes is warranted here. In 
 contingency tables, especially those based
 on survey data, it is common to have large overall sample sizes ($N$). 
-With large sample sizes, it becomes easy to reject the null the 
-hypothesis, even when the "distance" from the null
-is relatively minor and possibly unimportant. By this we mean that it might be possible to reject the
-null hypothesis even if the observed proportions are a small practical distance
+With large sample sizes, it becomes easy to find strong evidence against the null hypothesis, even when the "distance" from the null
+is relatively minor and possibly unimportant. By this we mean that the observed proportions are a small practical distance
 from the situation described in the null. After obtaining a small p-value, we
 need to consider whether we have obtained ***practical significance***
 (or maybe better described as ***practical importance***) to 
 accompany our discussion 
-of rejecting the null hypothesis. Whether a result is large enough to
+of strong evidence against the null hypothesis. Whether a result is large enough to
 be of practical
 importance can only be judged by knowing something about the situation we are
 studying and by providing a good summary of our results to allow experts to
-assess the size and importance of the result. "Statistical significance" (what
-our tests address) is just a first step in any situation although many
-researchers are so happy to see small p-values that this is their last step. 
+assess the size and importance of the result.  Unfortunately, many
+researchers are so happy to see small p-values that this is their last step. We encountered a similar situation in the car overtake distance data set where a large sample size provided a data set that had a small p-value and possibly minor differences in the means driving it.   
 
 \indent If we revisit our observed results, re-plotted in Figure \@ref(fig:Figure5-11)
 since Figure \@ref(fig:Figure5-2) is many pages
@@ -1181,7 +1165,7 @@ earlier, knowing that we have strong evidence against the null hypothesis
 of no difference between *Placebo* and *Treated* groups, what can we 
 say about the effectiveness of the arthritis medication? It seems that there is a real and important increase in the proportion 
 of patients getting improvement (*Some* or *Marked*). If the differences 
-"looked" smaller, even with a small p-value you might not recommend someone take the drug...
+"looked" smaller, even with a small p-value you^[Doctors are faced with this exact dilemma -- with little more training than you have now in statistics, they read a result like this in a paper and used to be encouraged to focus on the p-value to decide about treatment recommendations. Would you recommend the treatment here just based on the small p-value? Would having Figure \@ref(fig:Figure5-11) to go with the small p-value help you make a more educated decision? Now the recommendations are starting to move past just focusing on the p-values and thinking about the practical importance and size of the differences. The potential benefits of a treatment need to be balanced with risks of complications too, but that takes us back into discussing having multiple analyses in the same study (treatment improvement, complications/not, etc.).] might not recommend someone take the drug...
 
 (ref:fig5-11) Stacked bar chart of the Arthritis data comparing 
 *Treated* and *Placebo*.
@@ -1235,7 +1219,7 @@ of results are shown for the Arthritis data table:
 
 (ref:fig5-12) Mosaic plot of the Arthritis data with large standardized 
 residuals indicated (actually, there were none that were indicated 
-because all were less than 2).
+because all were less than 2). Note that dashed borders correspond to negative standardized residuals (observed less than expected) and solid borders are positive standardized residuals (observed more than expected).
 
 
 ```
@@ -1261,11 +1245,10 @@ magnitude so Figure \@ref(fig:Figure5-12) isn't
 too helpful but this type of plot is in other examples. The largest
 contributions to the $X^2$ statistic come from the *Placebo* and *Treated*
 groups in the *Marked* improvement cells. Those standardized residuals 
-are -1.94 and 1.98 (both really close to 2), showing that *placebo* 
+are -1.94 and 1.98 (both really close to 2), showing that the *placebo* 
 group had  **noticeably fewer** *Marked* improvement  
 **results than expected** and the *Treated* group **had noticeably more**
-*Marked* improvement responses **than expected if the null hypothesis
-was true**. Similarly but with smaller magnitudes, there were more *None*
+*Marked* improvement responses **than expected if the null hypothesis was true**. Similarly but with smaller magnitudes, there were more *None*
 results than expected in the *Placebo* group and fewer *None* results 
 than expected in the *Treated* group. The standardized residuals were 
 very small in the two cells for the *Some* improvement category, showing 
@@ -1283,8 +1266,8 @@ completing an analysis.
 is based on the Independence or Homogeneity hypotheses 
 (Section \@ref(section5-1)).
 
-2. Make a contingency table and get a general sense of response patterns.
-Pay attention to "small" counts, especially cells with 0 counts.
+2. Make contingency table and get a general sense of response patterns.
+Pay attention to "small" counts, especially cells with 0 counts. 
 
     a. If there are many small count cells, consider combining categories 
     on one or both variables to make a new variable with fewer categories 
@@ -1299,7 +1282,7 @@ describe the pattern of responses.
     b. For Independence, make a mosaic plot.
     
     c. Consider a more general exploration using a tableplot if other 
-    variables were measured to check for confounding and other interesting multi-variable relationships. 
+    variables were measured to check for confounding and other interesting multi-variable relationships. Also check for missing data if you have not done this before.
     
 4. Conduct the 6+ steps of the appropriate type of hypothesis test.
 
@@ -1309,11 +1292,11 @@ describe the pattern of responses.
     approaches are acceptable.
     
 5. Explore the standardized residuals for the "source" of any evidence 
-against the null.
+against the null -- this can be the start of your "size" discussion. 
 
     a. Tie the interpretation of the "large" standardized residuals 
     and their direction (above or below expected under the
-    null) back into the original data display. Work to find a story 
+    null) back into the original data display (this really gets to "size"). Work to find a story 
     for the pattern of responses. If little evidence is found against the null, there is not much to do here.
 
 ## Political party and voting results: Complete analysis	{#section5-9}
@@ -1333,8 +1316,8 @@ as categorical variables.
 
 (ref:fig5-13) Tableplot of vote, party affiliation, education, and 
 gender from election survey data. Note that
-missing observations are present in three of four variables. Education is coded
-from 1 to 7 with higher values related to higher educational attainment. Sex
+missing observations are present in all variables except for ``Gender``. Education is coded
+from 1 to 7 with higher values related to higher educational attainment. ``Gender``
 code 1 is for male and 2 is for female.
 
 
@@ -1344,6 +1327,7 @@ election$PARTY <- factor(election$PARTY)
 election$EDUC <- factor(election$EDUC)
 election$GENDER <- factor(election$GENDER)
 levels(election$VOTEF) <- c("Gore","Bush","Other")
+options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) # Required options to avoid error when running on a PC, should have no impact on other platforms
 tableplot(election, select=c(VOTEF,PARTY,EDUC,GENDER),pals=list("BrBG"))
 ```
 
@@ -1357,11 +1341,10 @@ responses but also some missingness in ``PARTY`` and ``EDUC``
 (*Education*) status. While we don't know
 too much about why people didn't respond on the Vote question -- they could have
 been unwilling to answer it or may not have voted. It looks like those subjects
-have more of the lower education level responses (more dark green, brown, and
-purple) than in the responders to this question. There are many "middle" ratings
-(orange) in the party affiliation responses for the missing ``VOTEF`` responses, 
+have more of the lower education level responses (more dark colors, especially level 2 of education) than in the responders to this question. There are many "middle" ratings
+ in the party affiliation responses for the missing ``VOTEF`` responses, 
 suggesting that independents were less likely to answer the question in the
-survey for whatever reason. We want to focus on those that did respond in 
+survey for whatever reason. Even though this comes with concerns about who these results actually apply to (likely not the population that was sampled from), we want to focus on those that did respond in 
 ``VOTEF``, so will again use ``na.omit`` to clean out any subjects with any
 missing responses on these four variables and remake this plot 
 (Figure \@ref(fig:Figure5-14)). The code also adds the ``sort`` option to the
@@ -1371,7 +1354,7 @@ based on other variables.
 It is interesting, for example, to sort the
 responses by *Education* level and explore the differences in other variables.
 These explorations are omitted here but easily available by changing the
-sorting column from 1 to ``sort=3``. Figure \@ref(fig:Figure5-14) shows us that there are clear differences
+sorting column from 1 to ``sort=3`` or ``sort=EDUC``. Figure \@ref(fig:Figure5-14) shows us that there are clear differences
 in party affiliation based on voting for *Bush*, *Gore*, or
 *Other*. It is harder to see if there are differences in education level or gender
 based on the voting status in this plot, but, as noted above, sorting on these
@@ -1421,7 +1404,7 @@ electable
 
 \indent There is a potential for bias in some polls because of the methods used 
 to find and contact people. As
-US residents have transitioned from land-lines to cell phones, the early
+U.S. residents have transitioned from land-lines to cell phones, the early
 adopting cell phone users were often excluded from political polling. These
 policies are being reconsidered to adapt to the decline in residential phone
 lines and most polling organizations now include cell phone numbers in their
@@ -1439,6 +1422,10 @@ affiliation causing different voting patterns^[Independence tests can't
 be causal by their construction. Homogeneity tests could be causal or just
 associational, depending on how the subjects ended up in the groups.].
 
+Here are our 6+ steps applied to this example:
+
+0. The desired RQ is about assessing the relationship between part affiliation and vote choice, but this is constrained by the large rate of non-response in this data set. This is an Independence test and so the tableplot and mosaic plot are good visualizations to consider and the $X^2$-statistic will be used.
+
 1. **Hypotheses:**
 
     * $H_0$: There is no relationship between the party affiliation 
@@ -1449,12 +1436,12 @@ associational, depending on how the subjects ended up in the groups.].
     (7 levels) and voting results (*Bush*, *Gore*, *Other*) in the 
     population. 
 
-2. **Validity conditions:** 
+2. **Plot the data and assess validity conditions:** 
 \index{validity conditions!Chi-square Test}
 
     * Independence:
     
-        * This assumption is presumed to be met since each subject is 
+        * There is no indication of an issue with this assumption since each subject is 
         measured only once in the table. No other information suggests 
         a potential issue since a random sample was taken from presumably 
         a large national population and we have no information that could suggest dependencies among observations.
@@ -1494,14 +1481,14 @@ associational, depending on how the subjects ended up in the groups.].
         be small, as in this situation.
         
         * There is one expected cell count below 5 for ``Party`` = 4
-        who voted *Other* with an expected cell count of 3.102, so
+        who voted *Other* with an expected cell count of 3.07, so
         the condition is violated and the permutation approach
         should be used to obtain more trustworthy p-values. The 
         conditions are met for performing a permutation test.
         
-3. **Calculate the test statistic:**
+3. **Calculate the test statistic and p-value:**
 
-    * This is best performed by the ``chisq.test`` function since there 
+    * The test statistic is best calculated by the ``chisq.test`` function since there 
     are 21 cells and many potential places for a calculation error if 
     performed by hand.
     
@@ -1520,8 +1507,6 @@ associational, depending on how the subjects ended up in the groups.].
     
     * The observed $X^2$ statistic is 762.81.
     
-4. **Find the p-value:**
-
     * The parametric p-value is < 2.2e-16 from the R output which 
     would be reported as < 0.0001. This was based on a
     $\boldsymbol{\chi^2}$-distribution with $(7-1)*(3-1) = 12$
@@ -1549,8 +1534,7 @@ associational, depending on how the subjects ended up in the groups.].
     ```
 
     * But since the expected cell count condition is violated, we should 
-    use permutations as implemented in the following code to provide a 
-    trustworthy p-value:
+    use permutations as implemented in the following code to provide a more trustworthy p-value:
 
     
     ```r
@@ -1598,24 +1582,34 @@ associational, depending on how the subjects ended up in the groups.].
     hypothesis of no relationship between party status and voting. 
 
     
-5. **Make a decision:**
+4. **Conclusion:**
 
-    * With a p-value less than 0.001, we can say that there is almost 
-    no chance of observing a configuration like ours or more extreme 
-    if the null hypothesis is true. So there is very strong evidence against the null
-    hypothesis. 
+    * There is strong evidence against the null hypothesis of no relationship between party affiliation and voting 
+    results in the population ($X^2$=762.81, p-value<0.001), so we would conclude that there is a relationship between party affiliation and voting results.
 
-6. **Write a conclusion and scope of inference:**
+5. **Size:**
 
-    * There is strong evidence that there is a relationship between party affiliation and voting 
-    results in the population. The results are not causal since no random
-    assignment was present but they do apply to the population
-    of voters in the 2000 election that were able to be contacted by those 
-    running the poll and who would be willing to answer all the questions 
-    and voted. 
 
-We can add a little more refinement to the results by exploring the 
-standardized residuals. The numerical results are obtained using:
+    * We can add insight into the results by exploring the 
+standardized residuals. The numerical results are obtained using ``chisq.test(electable)$residuals`` and visually using ``mosaicplot(electable, shade=T)`` in Figure \@ref(fig:Figure5-17). The standardized residuals show some clear sources of the differences from the results expected if there were no relationship present. The largest
+contributions are found in the highest democrat category (``PARTY`` = 1)
+where the standardized residual for *Gore* is 10.13 and for *Bush*
+is -10.03, showing much higher than expected (under $H_0$) counts for Gore
+voters and much lower than expected (under $H_0$) for Bush. 
+Similar results in the opposite direction are found in the strong 
+republicans (``PARTY`` = 7). Note how the brightest shade of blue in 
+Figure \@ref(fig:Figure5-17) shows up for much higher than expected 
+results and the brighter red for results in the other direction, 
+where observed counts were
+much lower than expected. When there are many large standardized residuals, it
+is OK to focus on the largest results but remember that some of the
+intermediate deviations, or lack thereof, could also be interesting. For
+example, the Gore voters from ``PARTY`` = 3 had a standardized residual 
+of 3.75 but the ``PARTY`` = 5 voters for Bush had a standardized residual
+of 6.17. So maybe Gore didn't have
+as strong of support from his center-leaning supporters as Bush was able to
+obtain from the same voters on the other side of the middle? Exploring the relative proportion of each vertical bar in the response categories is also interesting to see the proportions of each level of party affiliation and how they voted. A political
+scientist would easily obtain many more (useful) theories based on this combination of results. 
 
 
 ```r
@@ -1634,10 +1628,9 @@ chisq.test(electable)$residuals #(Obs - expected)/sqrt(expected)
 ##     7  -9.5662296  10.7335798  -2.2717310
 ```
 
-And visually using:
 
 (ref:fig5-17) Mosaic plot with shading based on standardized residuals
-for the election
+for the election data.
 
 <div class="figure">
 <img src="05-chiSquaredTests_files/figure-html/Figure5-17-1.png" alt="(ref:fig5-17)" width="480" />
@@ -1650,29 +1643,12 @@ for the election
 mosaicplot(electable, shade=T) 
 ```
 
-\indent In this example, the standardized residuals show some clear sources 
-of the differences from the
-results expected if there were no relationship present. The largest
-contributions are found in the highest democrat category (``PARTY`` = 1)
-where the standardized residual for *Gore* is 10.13 and for *Bush*
-is -10.03, showing much higher than expected (under $H_0$) counts for Gore
-voters and much lower than expected (under $H_0$) for Bush. 
-Similar results in the opposite direction are found in the strong 
-republicans (``PARTY`` = 7). Note how the brightest shade of blue in 
-Figure \@ref(fig:Figure5-17) shows up for much higher than expected 
-results and the brighter red for results in the other direction, 
-where observed counts were
-much lower than expected. When there are many large standardized residuals, it
-is OK to focus on the largest results but remember that some of the
-intermediate deviations, or lack thereof, could also be interesting. For
-example, the Gore voters from ``PARTY`` = 3 had a standardized residual 
-of 3.75 but the ``PARTY`` = 5 voters for Bush had a standardized residual
-of 6.17. So maybe Gore didn't have
-as strong of support from his center-leaning supporters as Bush was able to
-obtain from the same voters on the other side of the middle? A political
-scientist would easily obtain many more (useful) theories, especially once they
-understood the additional information provided by exploring the standardized
-residuals. 
+
+6. **Scope of inference:**
+
+    * The results are not causal since no random assignment was present but they do apply to the population
+    of voters in the 2000 election that were able to be contacted by those 
+    running the poll and who would be willing to answer all the questions and actually voted. 
 
 ## Is cheating and lying related in students?	{#section5-10}
 
@@ -1699,16 +1675,14 @@ variables are treated categorically by applying the ``factor`` function.
 
 
 ```r
-require(poLCA)
+library(poLCA)
 data(cheating) #Survey of students
-cheating <- as.tibble(cheating)
+cheating <- as_tibble(cheating)
 cheating$LIEEXAM <- factor(cheating$LIEEXAM)
 cheating$LIEPAPER <- factor(cheating$LIEPAPER)
 cheating$FRAUD <- factor(cheating$FRAUD)
 cheating$COPYEXAM <- factor(cheating$COPYEXAM)
 cheating$GPA <- factor(cheating$GPA)
-par(mfrow=c(1,1))
-require(tabplot)
 tableplot(cheating, sort=GPA,pals=list("BrBG"))
 ```
 
@@ -1745,7 +1719,7 @@ involved.
 \indent To simplify the results, combining the two groups of variables
 into the four possible combinations on
 each has the potential to simplify the results -- or at least allow exploration
-of additional research questions. In the tableplot in 
+of additional research questions. The ``interaction`` function is used to create two new variables that have four levels that are combinations of the different options from none to both of each type (*copier* and *liar*). In the tableplot in 
 Figure \@ref(fig:Figure5-19), you can see
 the four categories for each, starting with no bad behavior of either type
 (which is fortunately the most popular response on both variables!). For each
@@ -1753,7 +1727,7 @@ variable, there are students who admitted to one of the two violations and some
 that did both. The ``liar`` variable has categories of *None*, *ExamLie*,
 *PaperLie*, and *LieBoth*. The ``copier`` variable has categories of *None*,
 *PaperCheat*, *ExamCheat*, and *PaperExamCheat* (for doing both). The last 
-category for ``copier`` (plotted as an orange color) seems to mostly occur at
+category for ``copier`` seems to mostly occur at
 the top of the plot which is where the students who had lied to get out of things
 reside, so maybe there is a relationship between those two types of behaviors?
 On the other hand, for the students who have never lied, quite a few had
@@ -1761,7 +1735,7 @@ cheated on exams. The contingency table can help us dig further into the
 hypotheses related to the Chi-square test of Independence that is appropriate
 in this situation. \index{Chi-Square Test!Independence Test}
 
-(ref:fig5-19) Tableplot of new variables liar and copier that allow 
+(ref:fig5-19) Tableplot of new variables ``liar` and ``copier`` that allow 
 exploration of relationships between different types of lying and 
 cheating behaviors.
 
@@ -1804,7 +1778,7 @@ number of counts in the combinations, we combined the single behavior only level
 into "*either*" categories and left the *none* and *both* categories for each
 variable. This creates two new variables called ``liar2`` and ``copier2``
 (tableplot in Figure \@ref(fig:Figure5-20)). The code to create these 
-variables and make the plot is below.
+variables and make the plot is below which employs the ``levels`` function to assign the same label to two different levels from the original list. \index{\texttt{levels()}}
 
 (ref:fig5-20) Tableplot of lying and copying variables after combining 
 categories. 
@@ -1840,7 +1814,9 @@ cheatlietable
 This $3\times 3$ table is more manageable and has few really small 
 cells so we will proceed with the 6+ steps of hypothesis
 testing applied to these data using the Independence testing methods (again a
-single sample was taken from the population):
+single sample was taken from the population so that is the appropriate procedure to employ):
+
+0. The RQ is about relationships between lying to instructors and cheating and these questions, after some work and simplifications, allow us to address a version of that RQ even though it might not be the one that we started with. The tableplots help to visualize the results and the $X^2$-statistic will be used to do the hypothesis test.
 
 1. **Hypotheses:**
 
@@ -1854,10 +1830,10 @@ single sample was taken from the population):
 
     * Independence:
     
-        * This assumption is presumed to be met since each subject
+        * There is no indication of a violation of this assumption since each subject
         is measured only once in the table. No other information 
         suggests a potential issue but we don't have much 
-        information on how these subjects were obtained.
+        information on how these subjects were obtained. What happens if we had sampled from students in different sections of a multi-section course and one of the sections had recently had a cheating scandal that impacted many students in that section?
         
     * All expected cell counts larger than 5 (required to use
     $\chi^2$-distribution to find p-values):
@@ -1885,9 +1861,9 @@ single sample was taken from the population):
         so the condition is violated and a permutation approach 
         should be used to obtain more trustworthy p-values.
 
-3. **Calculate the test statistic:**
+3. **Calculate the test statistic and p-value:**
 
-    * Use ``chisq.test`` although this table is small enough to do 
+    * Use ``chisq.test`` to obtain the test statistic, although this table is small enough to do 
     by hand if you want the practice -- see if you can find a similar answer
     to what the function provides:
 
@@ -1906,8 +1882,6 @@ single sample was taken from the population):
 
     * The $X^2$ statistic is 13.24.
     
-4. **Find the p-value:**
-
     * The parametric p-value is 0.0102 from the R output. This was based
     on a $\chi^2$-distribution with $(3-1)*(3-1) = 4$ degrees of freedom 
     that is displayed in Figure \@ref(fig:Figure5-21). Remember that this 
@@ -1983,26 +1957,14 @@ single sample was taken from the population):
     0.0174 using the permutation approach, which was slightly larger than the 
     result provided by the parametric method. 
 
-5. **Make a decision:**
+4. **Conclusion:**
 
-    * With a p-value of 0.0174, we can say that there is a 
-    1.74% chance of observing a configuration like ours or more
-    extreme if the null hypothesis is true. So I would say that there is strong evidence against the null hypothesis but you might rate this as closer to moderate evidence. 
-
-6. **Write a conclusion and scope of inference:**
-
-    * There is strong evidence to conclude that there is a 
-    relationship between lying and copying behavior in the population 
-    of students. There is no causal inference possible here since 
-    neither variable was randomly assigned (really neither is 
-    explanatory or response here either) but we can extend the
-    inferences to the population of students that these were selected 
-    from that would be willing to reveal their GPA (see initial 
-    discussion related to some differences in students that wouldn't
-    answer that question). 
-
-The standardized residuals can help us more fully understand this result 
--- the mosaic plot only had one cell shaded and so wasn't needed here. 
+    * There is strong evidence against the null hypothesis of no relationship between lying and copying behavior in the population 
+    of students ($X^2$-statistic=13.24, permutation p-value of 0.0174), so conclude that there is a relationship between lying and copying behavior at the university in the population of students studied. 
+    
+5. **Size:**
+    
+    * The standardized residuals can help us more fully understand this result -- the mosaic plot only had one cell shaded and so wasn't needed here. 
 
 
 ```r
@@ -2017,18 +1979,23 @@ chisq.test(cheatlietable)$residuals
 ##   LieBoth     -0.7047165   0.6271633  1.7507524
 ```
 
-There is really only one large standardized residual for the *ExamorPaper*
-liars and the *CopyBoth* copiers, with a much larger observed value than
-expected of 2.48. The only other medium-sized standardized residuals came
-from the *CopyBoth* copiers column with fewer than expected students in the 
-*None* category and more than expected in the *LieBoth* type of lying 
-category. So we are seeing more than expected that lied somehow and copied 
--- we can say this suggests that the students who lie tend to copy too!
+    * There is really only one large standardized residual for the *ExamorPaper* liars and the *CopyBoth* copiers, with a much larger observed value than expected of 2.48. The only other medium-sized standardized residuals came from the *CopyBoth* copiers column with fewer than expected students in the *None* category and more than expected in the *LieBoth* type of lying category. So we are seeing more than expected that lied somehow and copied -- we can say this suggests that the students who lie tend to copy too!
+    
+
+6. **Scope of inference:**
+
+    * There is no causal inference possible here since 
+    neither variable was randomly assigned (really neither is 
+    explanatory or response here either) but we can extend the
+    inferences to the population of students that these were selected 
+    from that would be willing to reveal their GPA (see initial 
+    discussion related to some differences in students that wouldn't
+    answer that question). 
 
 ## Analyzing a stratified random sample of California schools	{#section5-11}
 
 In recent decades, there has been a push for quantification of school performance
-and tying financial punishment and rewards to growth in these metrics. One
+and tying financial punishment and rewards to growth in these metrics both for schools and for teachers. One
 example is the API (Academic Performance Index) in California that is based
 mainly on student scores on standardized tests. It ranges between 200 and 1000
 and year to year changes are of interest to assess "performance" of schools --
@@ -2038,7 +2005,7 @@ metric might differ between different levels of schools. Maybe it is easier or
 harder for elementary, middle, or high schools to attain growth? The researcher
 has a list of most of the schools in the state of each level that are using a
 database that the researcher has access to. In order to assess this question, 
-the researcher takes a stratified random sample^[A stratified random sample
+the researcher takes a ***stratified random sample***^[A stratified random sample
 involves taking a simple random sample from each group or strata of the
 population.
 \index{random sampling}
@@ -2050,19 +2017,18 @@ $n_{\text{elementary}}=100$ schools from the population of 4421 elementary
 schools, $n_{\text{middle}}=50$ from the population of 1018 middle schools,
 and $n_{\text{high}}=50$ from the population of 755 high
 schools. These data are available in the ``survey`` package [@R-survey]
-and the api data object that loads both ``apipop`` (population) and ``apistrat`` (stratified random sample) data sets.
+and the ``api`` data object that loads both ``apipop`` (population) and ``apistrat`` (stratified random sample) data sets.
 \index{R packages!\textbf{survey}}
 The ``growth`` (change!) in 
 API scores for the schools between 1999 and
 2000 (taken as the year 2000 score minus 1999 score) is used as the response
-variable. The boxplot and beanplot of the growth scores are displayed in Figure
+variable. The pirate-plot of the growth scores are displayed in Figure
 \@ref(fig:Figure5-23). They suggest some differences in the growth 
-rates among the different
-levels. There are also a few schools flagged as being possible outliers. 
+rates among the different levels. There are also a few schools flagged as being possible outliers. 
 
 
 ```r
-require(survey)
+library(survey)
 data(api)
 apistrat <- as.tibble(apistrat)
 apipop <- as.tibble(apipop)
@@ -2085,7 +2051,7 @@ tally(~stype, data=apistrat) #Sample counts
 ## 100  50  50
 ```
 
-(ref:fig5-23) Boxplot and beanplot of the API growth scores by level 
+(ref:fig5-23) Pirate-plot of the API growth scores by level 
 of school in the ``stype`` variable (coded E for elementary, M for Middle, and H for High school).
 
 <div class="figure">
@@ -2095,24 +2061,20 @@ of school in the ``stype`` variable (coded E for elementary, M for Middle, and H
 
 
 ```r
-par(mfrow=c(1,2))
-boxplot(growth~stype, data=apistrat, ylab="Growth", ylim=c(-55,160))
-beanplot(growth~stype, data=apistrat, log="", col="beige",
-         method="jitter", ylim=c(-55,160))
+pirateplot(growth~stype, data=apistrat, inf.method="ci")
 ```
 
 \indent The One-Way ANOVA $F$-test, provided below, suggests
-evidence of some difference in the true mean growth scores among the different
+strong evidence against the null hypothesis of no difference in the true mean growth scores among the different
 types of schools ($F(2,197)=23.56,\text{ p-value}<0.0001$). But the 
 residuals from this model displayed in the QQ-Plot in 
-Figure \@ref(fig:Figure5-24) contain a slightly long right tail, 
+Figure \@ref(fig:Figure5-24) contain a slightly long right tail and short left tail, 
 suggesting a right skewed
 distribution for the residuals. In a high-stakes situation such as this, 
 reporting results with violations of the assumptions probably would not be
 desirable, so another approach is needed. The permutation methods would be
 justified here but there is another "simpler" option available using our new 
 Chi-square analysis methods. 
-
 
 
 (ref:fig5-24) QQ-plot of standardized residuals from the One-Way ANOVA
@@ -2150,7 +2112,7 @@ variable into a set of ordered categories and apply a Chi-square test, we can
 proceed without concern about the lack of normality in the residuals of the
 ANOVA model.
 \index{residuals}
-\index{Chi-Square Test}
+\index{Chi-Square Test} 
 To create these bins, a simple idea would be to use the quartiles
 to generate the response variable categories, binning the quantitative
 responses into groups for the lowest 25%, second 25%, third 25%, and highest
@@ -2172,7 +2134,7 @@ favstats(~growth, data=apistrat)
 The ``cut`` function can provide the binned variable if it is provided
 with the end-points of the desired intervals to
 create new categories with those names in a new variable called 
-``growthcut``. 
+``growthcut``. \index{\texttt{cut()}}
 
 
 ```r
@@ -2279,7 +2241,7 @@ chisq.test(growthtable)$expected
 ```
 
 The smallest expected count is 12.25, occurring in four different cells,
-so the assumptions for using the parametric approach are met. 
+so we can use the parametric approach. 
 
 
 ```r
@@ -2296,13 +2258,11 @@ chisq.test(growthtable)
 
 The observed test statistic is $X^2=38.67$ and, based on a 
 $\boldsymbol{\chi^2}(6)$ distribution, the p-value is 0.0000008. This p-value
-suggests that there is very strong evidence
-of some difference in the distribution of API growth of schools among
+suggests that there is very strong evidence against the null hypothesis of no difference in the distribution of API growth of schools among
 *Elementary*, *Middle* and *High School* in the population of schools in 
-California between 1999 and 2000. So we can conclude that there is very strong evidence 
-of some difference in the population (California
-schools) because the schools were randomly selected from all the California
-schools but because the level of schools, obviously, cannot be randomly
+California between 1999 and 2000, and can conclude that there is some difference in the population (California
+schools). Because the schools were randomly selected from all the California
+schools we can make valid inferences to all the schools but because the level of schools, obviously, cannot be randomly
 assigned, we cannot say that level of school causes these differences. 
 
 \indent The standardized residuals can enhance this interpretation, displayed in 
@@ -2369,7 +2329,7 @@ the Independence and Homogeneity
 tests. The appropriate analysis is determined based on the data collection
 methodology. The parametric Chi-square distribution for which these tests are
 named is appropriate when the expected cell counts are large enough (related to
-having a large enough overall sample). When this condition is violated, the
+having a large enough overall sample). When the expected cell count condition is violated, the
 permutation approach can provide valuable inferences in these situations in
 most situations. 
 
@@ -2385,7 +2345,7 @@ hypothesis, independence or homogeneity. After assessing evidence against the nu
 contributed to the deviations from the null hypothesis. The standardized
 residuals provide that information. Graphing them in a mosaic plot makes for a
 fun display to identify the large residuals and often allows you to better
-understand the results. This should tie back into the original data display and
+understand the results. This should tie back into the original data display (tableplot, stacked bar-chart or mosaic plot) and
 contingency table where you identified initial patterns and help to tell the story of the results. 
 
 \newpage
@@ -2548,16 +2508,16 @@ correct usage*, (``isare``), *have you thought about this issue*
 (``careabout``) with four levels from *Not at all* to *A lot*. The following
 code loads their data set after missing responses were removed, does a
 little re-ordering of factor levels to help make the results easier to 
-understand, and makes a tableplot to get a general sense of the results 
+understand, and makes a tableplot (Figure \@ref(fig:Figure5-27)) to get a general sense of the results 
 including information on the respondents' gender, age, income, and education. 
 
 (ref:fig5-27) Tableplot of data from "data-is-vs-data-are" survey, sorted by "CareAbout" responses. 
 
 
 ```r
-require(readr)
+library(readr)
 csd <- read_csv("http://www.math.montana.edu/courses/s217/documents/csd.csv")
-require(tabplot)
+library(tabplot)
 #Need to make it explicit that these are factor variables
 csd$careabout <- factor(csd$careabout) 
 #Reorders factor levels to be in "correct" order
@@ -2603,3 +2563,42 @@ more about this?
 We might be fighting a losing battle on "data is a plural word", but since we
 are in the group that cares a lot about this, we are going to keep trying...
 --------------------------------------------------------------------------------
+
+We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``dd$Distance<=100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar-chat in Figure \@ref(fig:Figure5-28) is provided.
+
+(ref:fig5-28) Stacked bar-chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit. 
+
+
+```r
+dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
+dd$Condition <- factor(dd$Condition)
+dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
+dd$Close <- factor(ifelse(dd$Distance<=100, "close", "notclose"))
+
+plot(Close ~ Condition2, data=dd)
+```
+
+<div class="figure">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-28-1.png" alt="(ref:fig5-28)" width="576" />
+<p class="caption">(\#fig:Figure5-28)(ref:fig5-28)</p>
+</div>
+
+```r
+table1 <- tally(Close ~ Condition2, data=dd)
+
+chisq.test(table1)
+```
+
+```
+## 
+## 	Pearson's Chi-squared test
+## 
+## data:  table1
+## X-squared = 30.861, df = 6, p-value = 2.695e-05
+```
+
+5.13. This is a Homogeneity test situation. Why?
+
+5.14. Perform the 6+ steps of the hypothesis test using the provided results.
+
+5.15. Explain how these results are consistent with the One-Way ANOVA test but also address a different research question.

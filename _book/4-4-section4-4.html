@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="4.4 Guinea pig tooth growth analysis with Two-Way ANOVA | Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="4.4 Guinea pig tooth growth analysis with Two-Way ANOVA | Intermediate Statistics with R">
+
+<title>4.4 Guinea pig tooth growth analysis with Two-Way ANOVA | Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Pirate-plots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Reproducibility Crisis: Moving beyond p &lt; 0.05, publication bias, and multiple testing issues</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Chapter summary</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Summary of important R code</a></li>
+<li><a href="2-13-section2-13.html#section2-13"><span class="toc-section-number">2.13</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for the Overtake data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs and Estimability</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section4-4" class="section level2">
+<h2><span class="header-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</h2>
+<p>The effects of dosage and delivery method of ascorbic acid on Guinea Pig
+odontoblast growth was analyzed as a One-Way ANOVA in Section <a href="3-5-section3-5.html#section3-5">3.5</a>
+by assessing evidence of any difference in the
+means of any of the six combinations of dosage method (Vit C capsule vs Orange Juice) and
+three dosage amounts (0.5, 1, and 2 mg/day). Now we will consider the dosage
+and delivery methods as two separate variables and explore their potential
+interaction. A pirate-plot and interaction plot are provided in
+Figure <a href="4-4-section4-4.html#fig:Figure4-10">2.58</a>.</p>
+
+<div class="figure"><span id="fig:Figure4-10"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-10-1.png" alt="Pirate-plot and interaction plot of the odontoblast growth data set." width="576" />
+<p class="caption">
+Figure 2.58: Pirate-plot and interaction plot of the odontoblast growth data set.
+</p>
+</div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"><span class="kw">data</span>(ToothGrowth)</a>
+<a class="sourceLine" id="cb335-2" title="2"><span class="kw">require</span>(tibble)</a>
+<a class="sourceLine" id="cb335-3" title="3">ToothGrowth &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(ToothGrowth)</a>
+<a class="sourceLine" id="cb335-4" title="4"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb335-5" title="5"><span class="kw">pirateplot</span>(len <span class="op">~</span><span class="st"> </span>supp<span class="op">*</span>dose, <span class="dt">data=</span>ToothGrowth, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">35</span>),</a>
+<a class="sourceLine" id="cb335-6" title="6">         <span class="dt">main=</span><span class="st">&quot;Pirate-plot&quot;</span>,  <span class="dt">xlab=</span><span class="st">&quot;Dosage&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Odontoblast Growth&quot;</span>, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>)</a>
+<a class="sourceLine" id="cb335-7" title="7"><span class="kw">intplot</span>(len<span class="op">~</span>supp<span class="op">*</span>dose, <span class="dt">data=</span>ToothGrowth, <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), </a>
+<a class="sourceLine" id="cb335-8" title="8">        <span class="dt">main=</span><span class="st">&quot;Interaction Plot&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">35</span>))</a></code></pre></div>
+<p>It appears that the effect of method changes based on the dosage as the
+interaction plot seems to show some evidence of non-parallel lines.
+
+Actually,
+it appears that the effect of delivery method is parallel for doses 0.5 and 1.0
+mg/day but that the effect of delivery method changes for 2 mg/day.</p>
+<p>We can use the ANOVA <span class="math inline">\(F\)</span>-test for an interaction to assess whether we think the
+interaction is “real” relative to the variability in the responses.
+
+That is, is it larger than we would expect due to natural variation in the
+data? If yes, then we think it is a real effect and we should account for it. The
+following code fits the interaction model and provides an ANOVA table.</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" title="1">TG1 &lt;-<span class="st"> </span><span class="kw">lm</span>(len<span class="op">~</span>supp<span class="op">*</span>dose, <span class="dt">data=</span>ToothGrowth)</a>
+<a class="sourceLine" id="cb336-2" title="2"><span class="kw">Anova</span>(TG1)</a></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: len
+##            Sum Sq Df  F value    Pr(&gt;F)
+## supp       205.35  1  12.3170 0.0008936
+## dose      2224.30  1 133.4151 &lt; 2.2e-16
+## supp:dose   88.92  1   5.3335 0.0246314
+## Residuals  933.63 56</code></pre>
+<p>The R output is reporting an interaction test result of <span class="math inline">\(F(1,56)=5.3\)</span> with
+a p-value of 0.025. But this should raise a red flag since the numerator
+degrees of freedom are not what we should expect based on Table <a href="4-3-section4-3.html#tab:Table4-1">2.5</a> of <span class="math inline">\((K-1)*(J-1) = (2-1)*(3-1)=2\)</span>.
+
+This brings up an issue in R when working
+with categorical variables. If the levels of a categorical variable are entered
+numerically, R will treat them as quantitative variables and not split out the
+different levels of the categorical variable. To make sure that R treats
+categorical variables the correct way, we should use the <code>factor</code>
+function on any variables that are categorical but are coded numerically in the
+data set. The following code creates a new variable called <code>dosef</code>
+using the <code>factor</code> function that will help us obtain correct results from the linear
+model.
+
+The re-run of the ANOVA table provides the correct analysis and the
+expected <span class="math inline">\(df\)</span> for the two rows of output involving <code>dosef</code>:</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" title="1">ToothGrowth<span class="op">$</span>dosef &lt;-<span class="st"> </span><span class="kw">factor</span>(ToothGrowth<span class="op">$</span>dose)</a>
+<a class="sourceLine" id="cb338-2" title="2">TG2 &lt;-<span class="st"> </span><span class="kw">lm</span>(len<span class="op">~</span>supp<span class="op">*</span>dosef, <span class="dt">data=</span>ToothGrowth)</a>
+<a class="sourceLine" id="cb338-3" title="3"><span class="kw">Anova</span>(TG2)</a></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: len
+##             Sum Sq Df F value    Pr(&gt;F)
+## supp        205.35  1  15.572 0.0002312
+## dosef      2426.43  2  92.000 &lt; 2.2e-16
+## supp:dosef  108.32  2   4.107 0.0218603
+## Residuals   712.11 54</code></pre>
+<p>The ANOVA <span class="math inline">\(F\)</span>-test for an interaction between supplement type and dosage level is
+<span class="math inline">\(F(2,54)= 4.107\)</span> with a p-value of 0.022. So there is moderate to strong evidence against the null hypothesis of no interaction between <em>Dosage</em> and <em>Delivery method</em>, so we would likely conclude that there is an interaction present that we should discuss and this supports a changing effect on odontoblast growth of dosage based on the delivery
+method in these Guinea Pigs.</p>
+<p>Any similarities between this correct
+result and the previous WRONG result are coincidence. I once
+attended a Master’s thesis defense where the results from a similar model were not as
+expected (small p-values in places they didn’t expect and large p-values in
+places where they thought differences existed based on past results and plots of the data). During the presentation, the student
+showed some ANOVA tables and the four level categorical variable had 1 numerator
+<span class="math inline">\(df\)</span> in all ANOVA tables. The student
+passed with <em>major</em> revisions but had to re-run <strong>all</strong> the results and re-write
+<strong>all</strong> the conclusions…
+
+So be careful to check the ANOVA results (<span class="math inline">\(df\)</span>
+and for the right number of expected model coefficients) to make
+sure they match your expectations. This is one reason why you will be learning
+to fill in ANOVA tables based on information about the study so that you can be
+prepared to detect when your code has let you down<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a>. It
+is also a great reason to explore term-plots and coefficient interpretations as
+that can also help diagnose errors in model construction.</p>
+<p>Getting back to the previous results, we now have enough background information
+to more formally write up a
+focused interpretation of these results. The 6+ hypothesis testing steps in
+this situation would be focused on first identifying that the best analysis
+here is as a Two-Way ANOVA situation (these data were analyzed in
+Chapter <a href="3-chapter3.html#chapter3"><strong>??</strong></a> as
+a One-Way ANOVA but this version is likely better because it can explore whether there
+is an interaction between delivery method and dosage).
+
+We will focus on assessing the interaction. If
+the interaction had been dropped, we would have reported the test results for the
+interaction, then re-fit the additive model and used it to explore the main effect
+tests and estimates for <em>Dose</em> and <em>Delivery method</em>. But since we are inclined to retain the interaction component in the model, the steps focus on the interaction.</p>
+
+<ol start="0" style="list-style-type: decimal">
+<li><p>The RQ is whether there is an interaction of dosage and delivery method on odontoblast growth. Data were collected at all combinations of these predictor variables on the size of the cells, so they can address the size of the cells in these condition combinations. The interaction <span class="math inline">\(F\)</span>-test will be used to assess the research question.</p></li>
+<li><p><strong>Hypotheses:</strong></p>
+<ul>
+<li><p><span class="math inline">\(H_0\)</span>: No interaction between <em>Delivery method</em> and <em>Dose</em> on odontoblast
+growth in population of guinea pigs</p>
+<p><span class="math inline">\(\Leftrightarrow\)</span> All <span class="math inline">\(\omega_{jk}\text{&#39;s}=0\)</span>.</p></li>
+<li><p><span class="math inline">\(H_A\)</span>: Interaction between <em>Delivery method</em> and <em>Dose</em> on odontoblast
+growth in population of guinea pigs</p>
+<p><span class="math inline">\(\Leftrightarrow\)</span> At least one <span class="math inline">\(\omega_{jk}\ne 0\)</span>.</p></li>
+</ul></li>
+<li><p><strong>Plot the data and assess validity conditions:</strong>
+</p>
+<ul>
+<li><p>Independence: </p>
+<ul>
+<li>There is no indication of an issue with this assumption because we don’t know of a
+reason why the independence of the measurements of odontoblast growth of
+across the guinea pigs as studied might be violated.</li>
+</ul></li>
+<li><p>Constant variance:</p>
+<ul>
+<li><p>To assess this assumption, we can use the pirate-plot in Figure <a href="4-4-section4-4.html#fig:Figure4-10">2.58</a>, the diagnostic plots in
+Figure <a href="4-4-section4-4.html#fig:Figure4-11">2.59</a>, and by adding the partial residuals to the term-plot<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a> as shown in <a href="4-4-section4-4.html#fig:Figure4-12">2.60</a>.</p></li>
+<li><p>In the Residuals vs Fitted and the Scale-Location plots, the
+differences in variability among the groups (see the different
+x-axis positions for each group’s fitted values) is minor, so
+there is not strong evidence of a problem with the equal variance
+assumption. Similarly, the original pirate-plots and adding the partial residuals to the term-plot do not highlight big differences in variability at any of the combinations of the predictors, so do not suggest clear issues with this assumption.
+ </p></li>
+</ul>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb340-2" title="2"><span class="kw">plot</span>(TG2, <span class="dt">pch=</span><span class="dv">16</span>) </a></code></pre></div>
+<div class="figure"><span id="fig:Figure4-11"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-11-1.png" alt="Diagnostic plots for the interaction model for odontoblast growth interaction model." width="960" />
+<p class="caption">
+Figure 2.59: Diagnostic plots for the interaction model for odontoblast growth interaction model.
+</p>
+</div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(TG2, <span class="dt">residuals =</span> T, <span class="dt">x.var=</span><span class="st">&quot;dosef&quot;</span>)) </a></code></pre></div>
+<div class="figure"><span id="fig:Figure4-12"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-12-1.png" alt="Term-plot for odontoblast growth interaction model with partial residuals added." width="960" />
+<p class="caption">
+Figure 2.60: Term-plot for odontoblast growth interaction model with partial residuals added.
+</p>
+</div></li>
+<li><p>Normality of residuals:</p>
+<ul>
+<li>The QQ-Plot in Figure <a href="4-4-section4-4.html#fig:Figure4-11">2.59</a> does not suggest a
+problem with this assumption. </li>
+</ul></li>
+</ul></li>
+</ol>
+<p>Note that these diagnostics and conclusions are the same as in Section <a href="3-5-section3-5.html#section3-5">3.5</a> because the interaction model and the One-Way ANOVA model with all six combinations of the levels of the two variables fit exactly the same. But the RQ that we can address differs due to the different model parameterizations.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p><strong>Calculate the test statistic and p-value for the interaction test.</strong></p>
+<p></p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" title="1">TG2 &lt;-<span class="st"> </span><span class="kw">lm</span>(len<span class="op">~</span>supp<span class="op">*</span>dosef, <span class="dt">data=</span>ToothGrowth)</a>
+<a class="sourceLine" id="cb342-2" title="2"><span class="kw">Anova</span>(TG2) </a></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: len
+##             Sum Sq Df F value    Pr(&gt;F)
+## supp        205.35  1  15.572 0.0002312
+## dosef      2426.43  2  92.000 &lt; 2.2e-16
+## supp:dosef  108.32  2   4.107 0.0218603
+## Residuals   712.11 54</code></pre>
+<ul>
+<li><p>The test statistic is <span class="math inline">\(F(2,54)=4.107\)</span> with a p-value of 0.0219</p></li>
+<li><p>To find this p-value directly in R from the test statistic value and <span class="math inline">\(F\)</span>-distribution, we can use the <code>pf</code> function.
+</p></li>
+</ul>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" title="1"><span class="kw">pf</span>(<span class="fl">4.107</span>, <span class="dt">df1=</span><span class="dv">2</span>, <span class="dt">df2=</span><span class="dv">54</span>, <span class="dt">lower.tail=</span>F)</a></code></pre></div>
+<pre><code>## [1] 0.0218601</code></pre></li>
+<li><p><strong>Conclusion based on p-value:</strong></p>
+<ul>
+<li>With a p-value of 0.0219, there is about a 2.19% chance we would observe an interaction like
+we did (or more extreme) if none were truly present. This provides moderate to strong
+evidence against the null hypothesis of no interaction between delivery
+method and dosage on odontoblast growth so we would retain the interaction in the model.</li>
+</ul></li>
+<li><p><strong>Size of differences:</strong></p>
+<ul>
+<li>See discussion below.</li>
+</ul></li>
+<li><p><strong>Scope of Inference:</strong></p>
+<ul>
+<li>Based on the random assignment of treatment levels, causal inference is possible but because the guinea pigs were not randomly selected, the inferences only pertain to these guinea pigs.</li>
+</ul></li>
+</ol>
+<p>In a Two-Way ANOVA, we need to go a little further to get to the final “size” interpretations since the models are more complicated. When there is an
+interaction present, we should focus on the term-plot of
+the interaction model for an interpretation of the form and pattern of the
+interaction.
+
+If the interaction were unimportant, then the hypotheses and
+results should focus on the additive model results, especially the estimated
+model coefficients. To see why we don’t usually discuss all the estimated
+model coefficients in an interaction model, the six coefficients for this model are
+provided:</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" title="1"><span class="kw">summary</span>(TG2)<span class="op">$</span>coefficients</a></code></pre></div>
+<pre><code>##               Estimate Std. Error    t value     Pr(&gt;|t|)
+## (Intercept)      13.23   1.148353 11.5208468 3.602548e-16
+## suppVC           -5.25   1.624017 -3.2327258 2.092470e-03
+## dosef1            9.47   1.624017  5.8312215 3.175641e-07
+## dosef2           12.83   1.624017  7.9001660 1.429712e-10
+## suppVC:dosef1    -0.68   2.296706 -0.2960762 7.683076e-01
+## suppVC:dosef2     5.33   2.296706  2.3207148 2.410826e-02</code></pre>
+<p>There are two <span class="math inline">\(\hat{\omega}_{jk}\text{&#39;s}\)</span> in the results, related to modifying the
+estimates for doses of 1 (-0.68) and 2
+(5.33) for the Vitamin C group. If you want to re-construct the fitted values
+from the model that are displayed in Figure <a href="4-4-section4-4.html#fig:Figure4-13">2.61</a>, you have
+to look for any
+coefficients that are “turned on” for a combination of levels of interest. For
+example, for the OJ group (solid line), the
+dosage of 0.5 mg/day
+has an estimate of an average growth of approximately 13 mm. This is the
+baseline group, so the model estimate for an observation in the OJ and 0.5 mg/day
+dosage is simply <span class="math inline">\(\hat{y}_{i,\text{OJ},0.5mg}=\hat{\alpha}=13.23\)</span> microns.
+For the OJ and 2 mg/day dosage estimate that has a value over 25 microns in the
+plot, the model incorporates the deviation for the 2 mg/day dosage:
+<span class="math inline">\(\hat{y}_{i,\text{OJ},2mg}=\hat{\alpha} + \hat{\tau}_{2mg}=13.23 + 12.83 = 26.06\)</span>
+microns. For the Vitamin C group, another coefficient becomes involved from its “main
+effect”. For the VC and 0.5 mg dosage level, the estimate is approximately 8 microns.
+The pertinent model components are
+<span class="math inline">\(\hat{y}_{i,\text{VC},0.5mg}=\hat{\alpha} + \hat{\gamma}_{\text{VC}}=13.23 + (-5.25) = 7.98\)</span>
+microns. Finally, when we consider non-baseline results for both groups, three
+coefficients are required to reconstruct the results in the plot. For example,
+the estimate for the VC, 1 mg dosage is
+<span class="math inline">\(\hat{y}_{i,\text{VC},1mg}=\hat{\alpha} + \hat{\tau}_{1mg} + \hat{\gamma}_{\text{VC}} + \hat{\omega}_{\text{VC},1mg} = 13.23 + 9.47 + (-5.25) +(-0.68)= 16.77\)</span> microns. We usually will by-pass all this
+fun(!) with the coefficients in an interaction model and go from the ANOVA
+interaction test to focusing on the pattern of the responses in the interaction
+plot or going to the simpler additive model, but it is good to know that there are still model coefficients driving
+our results even if there are too many to be easily interpreted.</p>
+
+<div class="figure"><span id="fig:Figure4-13"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-13-1.png" alt="Term-plot for the estimated interaction for the Odontoblast Growth data using the multiline=T and ci.style="bars" options." width="480" />
+<p class="caption">
+Figure 2.61: Term-plot for the estimated interaction for the Odontoblast Growth data using the <code>multiline=T</code> and <code>ci.style="bars"</code> options.
+</p>
+</div>
+
+<div class="figure"><span id="fig:Figure4-14"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-14-1.png" alt="Interaction plot for Odontoblast data with added CLD from Tukey’s HSD." width="960" />
+<p class="caption">
+Figure 2.62: Interaction plot for Odontoblast data with added CLD from Tukey’s HSD.
+</p>
+</div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(TG2), <span class="dt">grid=</span>T, <span class="dt">multiline=</span>T, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">ci.style=</span><span class="st">&quot;bars&quot;</span>)</a></code></pre></div>
+<p>Given the presence of an important
+interaction, then the final step in the interpretation here is to interpret the
+results in the interaction plot or term-plot of the interaction model,
+supported by the p-value suggesting a different effect of
+supplement type based on the dosage level. To supplement this even more,
+knowing which combinations of levels differ can enhance our discussion. Tukey’s
+HSD results (specifically the CLD) can be added to the original interaction
+plot by turning on the <code>cld=T</code> option in the <code>intplot</code> function as seen in
+Figure <a href="4-4-section4-4.html#fig:Figure4-14">2.62</a>. Sometimes it is hard to see the letters and so
+there is also a <code>cldshift=...</code> option to move the letters up or down; here a
+value of 1 seemed to work.  
+
+</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" title="1"><span class="kw">intplot</span>(len<span class="op">~</span>supp<span class="op">*</span>dose, <span class="dt">data=</span>ToothGrowth, <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">cldshift=</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb349-2" title="2">        <span class="dt">cld=</span>T, <span class="dt">main=</span><span class="st">&quot;Interaction Plot with CLD&quot;</span>)</a></code></pre></div>
+<p>The “size” interpretation of the previous hypothesis test result could be something like the following: Generally increasing the dosage increases the mean growth except for
+the 2 mg/day dosage level where the increase levels off in the OJ group (OJ 1
+and 2 mg/day are not detectably different) and the differences between the two
+delivery methods disappear at the highest dosage level. But for 0.5 and 1 mg/day
+dosages, OJ is clearly better than VC by about 10 microns of growth on average.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="77">
+<li id="fn77"><p>Just so you don’t think
+that perfect R code should occur on the first try, we
+have all made similarly serious coding mistakes even after accumulating more
+than decade of experience with R. It is finding those mistakes (in time) that matters.<a href="4-4-section4-4.html#fnref77" class="footnote-back">↩</a></p></li>
+<li id="fn78"><p>To get <code>dosef</code> on the x-axis in the plot, the <code>x.var="dosef"</code> option was employed to force the <em>Dose</em> to be the variable on the x-axis.<a href="4-4-section4-4.html#fnref78" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="4-3-section4-3.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-5-section4-5.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

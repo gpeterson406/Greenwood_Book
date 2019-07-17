@@ -292,7 +292,7 @@ a reasonable next step.
 
 Basically this establishes a set of <strong><em>nested models</em></strong>
 (each model is a reduced version of another more complicated
-model higher in the tree of models) displayed in Figure <a href="8-12-section8-12.html#fig:Figure8-33">2.182</a>.
+model higher in the tree of models and we can move down the tree by setting a set of slope coefficients to 0) displayed in Figure <a href="8-12-section8-12.html#fig:Figure8-33">2.185</a>.
 This is based on
 the assumption that we would proceed through the model, dropping terms if the
 p-values are large (“not significant” in the diagram) to arrive at a final
@@ -301,7 +301,7 @@ model. </p>
 <div class="figure"><span id="fig:Figure8-33"></span>
 <img src="chapter8_files/nestedModelTree_medium.png" alt="Diagram of models to consider in an interaction model." width="338" />
 <p class="caption">
-Figure 2.182: Diagram of models to consider in an interaction model.
+Figure 2.185: Diagram of models to consider in an interaction model.
 </p>
 </div>
 <p>If the initial interaction test suggests the interaction is important, then no
@@ -326,16 +326,16 @@ is being fit. If that final variable has a
 large p-value in either model, it can be removed and all that is left to
 describe the responses is a mean-only model. Otherwise the single variable
 model is the final model. Usually we will not have to delve deeply into this
-tree of models, but it is good to consider the potential paths that an analysis
-could involve before it is started.</p>
-<p>To perform the first test (after checking that assumptions are met, of
+tree of models and might stop earlier in the tree if that fully addresses our research question, but it is good to consider the potential paths that an analysis
+could involve before it is started if model refinement is being considered.</p>
+<p>To perform the first test (after checking that assumptions are not problematic, of
 course),
 we can apply the <code>Anova</code> function from the <code>car</code> package to an interaction
-model<a href="#fn134" class="footnote-ref" id="fnref134"><sup>134</sup></a>.
+model<a href="#fn135" class="footnote-ref" id="fnref135"><sup>135</sup></a>.
 
 It will provide three tests, one for each variable by themselves, which are not
 too interesting, and then the interaction test. This will result in an
-<span class="math inline">\(F\)</span>-statistic that, if the assumptions are met, will follow an
+<span class="math inline">\(F\)</span>-statistic that, if the assumptions are true, will follow an
 <span class="math inline">\(F(J-1, n-2J)\)</span>-distribution
 under the null hypothesis. This tests
 the hypotheses:</p>
@@ -356,10 +356,10 @@ detail.</p>
 second noise tolerance measurement (<em>du2</em>) as a function of the interaction
 between <em>Treatment</em> and initial noise tolerance (<em>du1</em>) is</p>
 <p><span class="math display">\[\begin{array}{rl}
-\text{du2}_i = \beta_0 &amp;+ \beta_1\cdot\text{du1}_i + \beta_2I_{T2,i} +
-\beta_3I_{T3,i} + \beta_4I_{\text{Control},i} \\
-&amp;+ \beta_5I_{T2,i}\cdot\text{du1}_i + \beta_6I_{T3,i}\cdot\text{du1}_i
-+ \beta_7I_{\text{Control},i}\cdot\text{du1}_i+\varepsilon_i.
+\text{du2}_i = \beta_0 &amp;+ \beta_1\cdot\text{du1}_i + \beta_2I_{T1,i} +
+\beta_3I_{T2,i} + \beta_4I_{T3,i} \\
+&amp;+ \beta_5I_{T1,i}\cdot\text{du1}_i + \beta_6I_{T2,i}\cdot\text{du1}_i
++ \beta_7I_{T3,i}\cdot\text{du1}_i+\varepsilon_i.
 \end{array}\]</span></p>
 <p>We can re-write the previous hypotheses in one of two more specific ways:</p>
 <ul>
@@ -390,10 +390,9 @@ for the test statistic under the null hypothesis.
 
 The p-value from this
 distribution is 0.515, showing little to no evidence against
-the null hypothesis. The conclusion is that there is insufficient evidence to
-claim that the slope coefficient for <em>du1</em> in explaining <em>du2</em> is different for
+the null hypothesis, so does not suggest that the slope coefficient for <em>du1</em> in explaining <em>du2</em> is different for
 at least one of the <em>Treatment</em> groups in the population.</p>
-<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb801-1" title="1"><span class="kw">Anova</span>(head2)</a></code></pre></div>
+<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb808-1" title="1"><span class="kw">Anova</span>(head2)</a></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: du2
@@ -402,7 +401,7 @@ at least one of the <em>Treatment</em> groups in the population.</p>
 ## treatment       23.90  3   1.7265 0.1672
 ## du1:treatment   10.63  3   0.7679 0.5150
 ## Residuals      415.27 90</code></pre>
-<p>Without evidence to support an interaction, we should consider both the
+<p>Without evidence to support using an interaction, we should consider both the
 quantitative and categorical variables in an additive model. The ANOVA table
 for the additive model contains two interesting tests.
 
@@ -411,8 +410,8 @@ One test is for the
 quantitative variable discussed previously. The other is for the categorical
 variable, assessing whether different y-intercepts are needed. The additive
 model here is</p>
-<p><span class="math display">\[\text{du2}_i = \beta_0 + \beta_1\cdot\text{du1}_i + \beta_2I_{T2,i} +
-\beta_3I_{T3,i} + \beta_4I_{\text{Control},i} +\varepsilon_i.\ \]</span></p>
+<p><span class="math display">\[\text{du2}_i = \beta_0 + \beta_1\cdot\text{du1}_i + \beta_2I_{T1,i} +
+\beta_3I_{T2,i} + \beta_4I_{T3,i} +\varepsilon_i.\ \]</span></p>
 <p>The hypotheses assessed in the ANOVA test for treatment are:</p>
 <ul>
 <li><p><span class="math inline">\(H_0:\)</span> The y-intercept for the model with <em>du1</em> is the same for all four
@@ -441,14 +440,13 @@ in the population.</li>
 For this example, the
 test statistic for <em>Treatment</em> follows an <span class="math inline">\(F(3, 93)\)</span>-distribution under the null
 hypothesis. The observed test statistic has a value of 1.74, generating a p-value
-of 0.164. So we would fail to reject the null hypothesis and conclude that there
-is little to no evidence to support the conclusion of some difference in y-intercepts
+of 0.164. So we would find weak evidence against the null hypothesis and so does not suggest some difference in y-intercepts
 between the <em>treatment</em> groups, in a model with <em>du1</em>, in the population. We
 could interpret this in the fashion we used initially in MLR by stating this
-result as: there is little to no evidence of a difference in the mean <em>du2</em> for the
+result as: there is little evidence against the null hypothesis of no difference in the mean <em>du2</em> for the
 <em>Treatment</em> groups after controlling for <em>du1</em>.</p>
-<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb803-1" title="1">head1 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">+</span>treatment, <span class="dt">data=</span>Headache)</a>
-<a class="sourceLine" id="cb803-2" title="2"><span class="kw">Anova</span>(head1)</a></code></pre></div>
+<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb810-1" title="1">head1 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">+</span>treatment, <span class="dt">data=</span>Headache)</a>
+<a class="sourceLine" id="cb810-2" title="2"><span class="kw">Anova</span>(head1)</a></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: du2
@@ -456,14 +454,14 @@ result as: there is little to no evidence of a difference in the mean <em>du2</e
 ## du1       1197.8  1 261.5491 &lt;2e-16
 ## treatment   23.9  3   1.7395 0.1643
 ## Residuals  425.9 93</code></pre>
-<p>In the same ANOVA table, there is a test for the <em>du1</em> effect. This tests
+<p>In the same ANOVA table, there is a test for the <em>du1</em> model component. This tests
 <span class="math inline">\(H_0: \beta_1=0\)</span> vs <span class="math inline">\(H_A: \beta_1\ne 0\)</span> in a model with different y-intercepts
-estimated for the different groups. If we remove this term from the model, all
+for the different treatment groups. If we remove this term from the model, all
 we are left with is different
 y-intercepts for the groups. A model just with different y-intercepts is typically
-called a One-Way ANOVA model. Here, there is evidence that the quantitative
+called a One-Way ANOVA model. Here, there it appears that the quantitative
 variable is needed in the model after controlling for the different
-y-intercepts for different treatments. Note that this interpretation retains
+y-intercepts for different treatments since it has a small p-value (<span class="math inline">\(F\)</span>(1,93)=261.55 or <span class="math inline">\(t\)</span>(93)=16.172, p-value&lt;0.0001). Note that this interpretation retains
 the conditional wording regardless of whether the other variable had a small
 p-value or it did not. If you want an unconditional interpretation for a variable, then you
 will need to refit the model without the other variable(s) after deciding that
@@ -471,11 +469,11 @@ they are not important.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="134">
-<li id="fn134"><p>We could also use the <code>anova</code> function to do this but using <code>Anova</code>
+<ol start="135">
+<li id="fn135"><p>We could also use the <code>anova</code> function to do this but using <code>Anova</code>
 throughout this material provides the answers we want in the additive model and
 it has no impact for the only test of interest in the interaction model since
-the interaction is the last component in the model.<a href="8-12-section8-12.html#fnref134" class="footnote-back">↩</a></p></li>
+the interaction is the last component in the model.<a href="8-12-section8-12.html#fnref135" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

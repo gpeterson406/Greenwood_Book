@@ -297,9 +297,8 @@ one model over another. </p>
 <li><p>One model predicts/explains the responses better than the others
 (<strong><em>R</em></strong><sup>2</sup>).</p></li>
 <li><p><em>a priori</em> reasons to “use” a particular model, for example in a designed
-experiment or it includes variable(s) whose slopes need to be estimated to find
-interesting results (even if the variables are not “important” in the model).</p></li>
-<li><p>Model selection “criteria” suggest one model is better than the others<a href="#fn119" class="footnote-ref" id="fnref119"><sup>119</sup></a>.</p></li>
+experiment or it includes variable(s) whose estimated slopes directly address the research question(s), even if the variables are not “important” in the model.</p></li>
+<li><p>Model selection “criteria” suggest one model is better than the others<a href="#fn121" class="footnote-ref" id="fnref121"><sup>121</sup></a>.</p></li>
 </ol>
 <p>It is OK to consider multiple reasons to select a model but it is dangerous to
 “shop” for a model across many possible models – a practice which is sometimes
@@ -382,9 +381,9 @@ the responses used change.</p>
 <span class="math inline">\(\boldsymbol{R}^2_{\text{adjusted}}\)</span>
 are available. Make sure you are able to pick out the correct one. For the
 reduced data set (<span class="math inline">\(n=23\)</span>) <em>Snow Depth</em> models, the pertinent part of the model
-summary for the model with all three predictors is the last three lines:</p>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb724-1" title="1">m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</a>
-<a class="sourceLine" id="cb724-2" title="2"><span class="kw">summary</span>(m6)</a></code></pre></div>
+summary for the model with all three predictors is in the last three lines:</p>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb725-1" title="1">m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</a>
+<a class="sourceLine" id="cb725-2" title="2"><span class="kw">summary</span>(m6)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel2[-c(9, 
@@ -503,10 +502,10 @@ modeling situations; that measure is called the <strong><em>AIC</em></strong>.</
 </div>
 <div class="footnotes">
 <hr />
-<ol start="119">
-<li id="fn119"><p>Also
+<ol start="121">
+<li id="fn121"><p>Also
 see Section <a href="8-13-section8-13.html#section8-13">8.13</a> for another method of picking among different
-models.<a href="8-4-section8-4.html#fnref119" class="footnote-back">↩</a></p></li>
+models.<a href="8-4-section8-4.html#fnref121" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

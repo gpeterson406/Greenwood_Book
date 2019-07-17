@@ -263,7 +263,7 @@ img {
 <div class="col-sm-12">
 <div id="section8-5" class="section level2">
 <h2><span class="header-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</h2>
-<p>There are some important issues to remember<a href="#fn120" class="footnote-ref" id="fnref120"><sup>120</sup></a> when interpreting
+<p>There are some important issues to remember<a href="#fn122" class="footnote-ref" id="fnref122"><sup>122</sup></a> when interpreting
 regression models that can result in common mistakes.</p>
 <ul>
 <li><p><strong>Don’t claim to “hold everything constant” for a single individual</strong>:</p>
@@ -300,7 +300,7 @@ the design of the study.</p></li>
 <p>It is harder to know if you are doing extrapolation in MLR since you could be
 in a region of the <span class="math inline">\(x\text{&#39;s}\)</span> that no observations were obtained. Suppose we
 want to predict the <em>Snow Depth</em> for an <em>Elevation</em> of 6000 and <em>Max.Temp</em>
-of 30. Is this extrapolation based on Figure <a href="8-5-section8-5.html#fig:Figure8-11">2.160</a>? In other
+of 30. Is this extrapolation based on Figure <a href="8-5-section8-5.html#fig:Figure8-11">2.161</a>? In other
 words, can you find any observations “nearby” in the plot of the two
 variables together? What about an <em>Elevation</em> of 6000 and a <em>Max.Temp</em> of
 40? The first prediction is in a different proximity to observations than
@@ -310,13 +310,13 @@ and the problem grows as the number of dimensions to search increases… In
 fact, in complicated MLR models we typically do not know whether there are
 observations “nearby” if we are doing predictions for unobserved
 combinations of our predictors. Note that Figure
-<a href="8-5-section8-5.html#fig:Figure8-11">2.160</a> also reinforces our potential collinearity problem
+<a href="8-5-section8-5.html#fig:Figure8-11">2.161</a> also reinforces our potential collinearity problem
 between <em>Elevation</em> and <em>Max.Temp</em> with higher elevations being strongly
 associated with lower temperatures.</p>
 <div class="figure"><span id="fig:Figure8-11"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-11-1.png" alt="Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data." width="480" />
 <p class="caption">
-Figure 2.160: Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data.
+Figure 2.161: Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data.
 </p>
 </div></li>
 <li><p><strong>Don’t think that the sign of a coefficient is special…</strong></p>
@@ -327,20 +327,20 @@ conditionality of the relationships being estimated in MLR and the potential
 for sharing of information in the predictors when it is present.</p></li>
 <li><p><strong>Multicollinearity in MLR models:</strong></p>
 <p>When explanatory variables are not independent (related) to one another, then
-including one variable will have an impact on the other variable. Consider the
+including/excluding one variable will have an impact on the other variable. Consider the
 correlations among the predictors in the SNOTEL data set or visually displayed
-in Figure <a href="8-5-section8-5.html#fig:Figure8-12">2.161</a>:
+in Figure <a href="8-5-section8-5.html#fig:Figure8-12">2.162</a>:
 
 </p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb726-1" title="1"><span class="kw">library</span>(corrplot)</a>
-<a class="sourceLine" id="cb726-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb726-3" title="3"><span class="kw">corrplot.mixed</span>(<span class="kw">cor</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>]), <span class="dt">upper.col=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>),</a>
-<a class="sourceLine" id="cb726-4" title="4">               <span class="dt">lower.col=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>))</a>
-<a class="sourceLine" id="cb726-5" title="5"><span class="kw">round</span>(<span class="kw">cor</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>]),<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb727-1" title="1"><span class="kw">library</span>(corrplot)</a>
+<a class="sourceLine" id="cb727-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb727-3" title="3"><span class="kw">corrplot.mixed</span>(<span class="kw">cor</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>]), <span class="dt">upper.col=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>),</a>
+<a class="sourceLine" id="cb727-4" title="4">               <span class="dt">lower.col=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>))</a>
+<a class="sourceLine" id="cb727-5" title="5"><span class="kw">round</span>(<span class="kw">cor</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>]),<span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure8-12"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-12-1.png" alt="Plot of correlation matrix in the snow depth data set with influential points removed" width="624" />
 <p class="caption">
-Figure 2.161: Plot of correlation matrix in the snow depth data set with influential points removed
+Figure 2.162: Plot of correlation matrix in the snow depth data set with influential points removed
 </p>
 </div>
 <pre><code>##            Max.Temp Min.Temp Elevation Snow.Depth
@@ -382,20 +382,19 @@ for that model. The code for this regression is something like:
 
 The
 <span class="math inline">\(1-\boldsymbol{R}^2\)</span> from this regression is the amount of independent
-information in <em>X1</em> that is not explained by the other variables in the model. 
+information in <em>X1</em> that is not explained by (or related to) the other variables in the model. 
 The VIF for each variable is defined using this quantity as
 <span class="math inline">\(\textbf{VIF}_{\boldsymbol{k}}\boldsymbol{=1/(1-R^2_k)}\)</span> for variable <span class="math inline">\(k\)</span>.
 If there is no shared information <span class="math inline">\((\boldsymbol{R}^2=0)\)</span>, then the VIF will be
 1. But if the information is completely shared with other variables
 <span class="math inline">\((\boldsymbol{R}^2=1)\)</span>, then the VIF goes to infinity (1/0). Basically, large
 VIFs are bad, with the rule of thumb that values over 5 or 10 are considered
-“large” values indicating high multicollinearity in the model for that particular
-variable. We use this scale to determine if multicollinearity is a problem for a
-variable of interest. Additionally, the <span class="math inline">\(\boldsymbol{\sqrt{\textbf{VIF}_k}}\)</span> is
+“large” values indicating high or extreme multicollinearity in the model for that particular
+variable. We use this scale to determine if multicollinearity is a definite problem for a
+variable of interest. But any value of the VIF over 1 indicates some amount of multicollinearity is present. Additionally, the <span class="math inline">\(\boldsymbol{\sqrt{\textbf{VIF}_k}}\)</span> is
 also very interesting as it is the number of times larger than the SE for the
 slope for variable <span class="math inline">\(k\)</span> is due to collinearity with other variables in the model.
-This is the most useful scale to understand VIFs even though the rules of thumb
-are on the original scale. An example will show how to easily get these results
+This is the most useful scale to understand VIFs and allows you to make your own assessment of whether you think the multicollinearity is “important” based on how inflated the SEs are in a particular situation. An example will show how to easily get these results
 and where the results come from.</p>
 <p>In general, the easy way to obtain VIFs is using the <code>vif</code> function from the
 <code>car</code> package (<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-carData" role="doc-biblioref">2018</a>)</span>, <span class="citation">Fox (<a href="#ref-Fox2003" role="doc-biblioref">2003</a>)</span>).
@@ -404,22 +403,22 @@ It has the advantage of also providing a reasonable
 result when we include categorical variables in models
 (Sections <a href="8-9-section8-9.html#section8-9">8.9</a> and <a href="8-11-section8-11.html#section8-11">8.11</a>) over some other sources of this information in R. We apply the <code>vif</code>
 function directly to a model of interest and it generates values for each explanatory variable.</p>
-<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb728-1" title="1"><span class="kw">library</span>(car)</a>
-<a class="sourceLine" id="cb728-2" title="2"><span class="kw">vif</span>(m6)</a></code></pre></div>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb729-1" title="1"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb729-2" title="2"><span class="kw">vif</span>(m6)</a></code></pre></div>
 <pre><code>## Elevation  Min.Temp  Max.Temp 
 ##  8.164201  5.995301  3.350914</code></pre>
-<p>Not surprisingly, there is an indication of problems with multicollinearity in
+<p>Not surprisingly, there is an indication of extreme problems with multicollinearity in
 two of the three variables in the model with the largest issues identified for
 <em>Elevation</em> and <em>Min.Temp</em>. Both of their VIFs exceed 5 indicating large
 multicollinearity problems. On the square-root scale, the VIFs show more
 interpretation utility.</p>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb730-1" title="1"><span class="kw">sqrt</span>(<span class="kw">vif</span>(m6))</a></code></pre></div>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb731-1" title="1"><span class="kw">sqrt</span>(<span class="kw">vif</span>(m6))</a></code></pre></div>
 <pre><code>## Elevation  Min.Temp  Max.Temp 
 ##  2.857307  2.448530  1.830550</code></pre>
 <p>The result for <em>Elevation</em> of 2.86 suggests that the SE for <em>Elevation</em> is 2.86
 times larger than it should be because of multicollinearity with other variables
 in the model. Similarly, the <em>Min.Temp</em> SE is 2.45 times larger and the
-<em>Max.Temp</em> SE is 1.83 times larger. All of this generally suggests issues with
+<em>Max.Temp</em> SE is 1.83 times larger. Even the result for <em>Max.Temp</em> suggests an issue with multicollinearity even though it is below the cut-off for noting extreme issues with shared information. All of this generally suggests issues with
 multicollinearity in the model and that we need to be cautious in interpreting
 any slope coefficients from this model because they are all being impacted by shared information in the predictor variables.</p>
 <p>In order to see how the VIF is calculated for <em>Elevation</em>, we need to
@@ -428,9 +427,9 @@ fit to find the percentage of variation in elevation explained by the temperatur
 variables. It ends up being 0.8775 – so a high percentage of <em>Elevation</em> can be
 explained by the linear model using min and max temperatures.</p>
 
-<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb732-1" title="1"><span class="co">#VIF calc:</span></a>
-<a class="sourceLine" id="cb732-2" title="2">elev1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Elevation<span class="op">~</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</a>
-<a class="sourceLine" id="cb732-3" title="3"><span class="kw">summary</span>(elev1)</a></code></pre></div>
+<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb733-1" title="1"><span class="co">#VIF calc:</span></a>
+<a class="sourceLine" id="cb733-2" title="2">elev1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Elevation<span class="op">~</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</a>
+<a class="sourceLine" id="cb733-3" title="3"><span class="kw">summary</span>(elev1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Elevation ~ Min.Temp + Max.Temp, data = snotel2[-c(9, 
@@ -452,13 +451,13 @@ explained by the linear model using min and max temperatures.</p>
 
 <p>Using this result, we can calculate</p>
 <p><span class="math display">\[\text{VIF}_{\text{elevation}} = \dfrac{1}{1-R^2_{\text{elevation}}} = \dfrac{1}{1-0.8775} = \dfrac{1}{0.1225} = 8.16\]</span></p>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb734-1" title="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.8775</span></a></code></pre></div>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb735-1" title="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.8775</span></a></code></pre></div>
 <pre><code>## [1] 0.1225</code></pre>
-<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb736-1" title="1"><span class="dv">1</span><span class="op">/</span><span class="fl">0.1225</span></a></code></pre></div>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb737-1" title="1"><span class="dv">1</span><span class="op">/</span><span class="fl">0.1225</span></a></code></pre></div>
 <pre><code>## [1] 8.163265</code></pre>
-<p>Note that when we observe small VIFs, that provides us with confidence that
+<p>Note that when we observe small VIFs (close to 1), that provides us with confidence that
 multicollinearity is not causing problems under the surface of
-a particular MLR model. And that we can’t use the VIFs to do anything about
+a particular MLR model. Also note that we can’t use the VIFs to do anything about
 multicollinearity in the models – it is just a diagnostic to understand the
 magnitude of the problem.</p>
 </div>
@@ -473,9 +472,9 @@ magnitude of the problem.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="120">
-<li id="fn120"><p>This section was inspired by a
-similar section from <span class="citation">De Veaux, Velleman, and Bock (<a href="#ref-DeVeaux2011" role="doc-biblioref">2011</a>)</span>.<a href="8-5-section8-5.html#fnref120" class="footnote-back">↩</a></p></li>
+<ol start="122">
+<li id="fn122"><p>This section was inspired by a
+similar section from <span class="citation">De Veaux, Velleman, and Bock (<a href="#ref-DeVeaux2011" role="doc-biblioref">2011</a>)</span>.<a href="8-5-section8-5.html#fnref122" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

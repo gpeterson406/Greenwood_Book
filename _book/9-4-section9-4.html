@@ -289,7 +289,7 @@ diversity was different between the <em>Triassic/Jurassic</em> (grouped together
 considered models that included two different versions of sampling effort
 variables and one for the comparisons of periods (an indicator variable
 <em>TJK</em>=0 if the observation is in <em>Triassic</em> or <em>Jurassic</em> or 1 if in
-<em>Cretaceous</em>).  They <em>log-e</em> transformed all their quantitative variables
+<em>Cretaceous</em>), which are more explicitly coded below.  They <em>log-e</em> transformed all their quantitative variables
 because the untransformed variables created diagnostic issues including
 influential points.  They explored a model just based on the <em>DBC</em>
 predictor<a href="#fn145" class="footnote-ref" id="fnref145"><sup>145</sup></a> and they analyzed the residuals from that model to see if the
@@ -310,10 +310,20 @@ the formations version of the quantitative predictor variable and that the
 research questions involve whether <em>DBF</em> or <em>DBC</em> are better predictor
 variables.</p>
 
+<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb866-1" title="1">bm &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/bensonmanion.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb866-2" title="2">bm2 &lt;-<span class="st"> </span>bm[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span><span class="op">:</span><span class="dv">10</span>)]</a>
+<a class="sourceLine" id="cb866-3" title="3">bm<span class="op">$</span>logSpecies &lt;-<span class="st"> </span><span class="kw">log</span>(bm<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb866-4" title="4">bm<span class="op">$</span>logDBCs &lt;-<span class="st"> </span><span class="kw">log</span>(bm<span class="op">$</span>DBCs)</a>
+<a class="sourceLine" id="cb866-5" title="5">bm<span class="op">$</span>logDBFs &lt;-<span class="st"> </span><span class="kw">log</span>(bm<span class="op">$</span>DBFs)</a>
+<a class="sourceLine" id="cb866-6" title="6">bm<span class="op">$</span>TJK &lt;-<span class="st"> </span><span class="kw">factor</span>(bm<span class="op">$</span>TJK)</a>
+<a class="sourceLine" id="cb866-7" title="7"><span class="kw">levels</span>(bm<span class="op">$</span>TJK) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Trias_Juras&quot;</span>,<span class="st">&quot;Cretaceous&quot;</span>)</a>
+<a class="sourceLine" id="cb866-8" title="8"><span class="kw">library</span>(car); <span class="kw">library</span>(viridis)</a>
+<a class="sourceLine" id="cb866-9" title="9"><span class="kw">scatterplot</span>(logSpecies<span class="op">~</span>logDBCs<span class="op">|</span>TJK, <span class="dt">data=</span>bm, <span class="dt">smooth=</span>T,</a>
+<a class="sourceLine" id="cb866-10" title="10">            <span class="dt">main=</span><span class="st">&quot;Scatterplot of log-diversity vs log-DBCs by period&quot;</span>, <span class="dt">legend=</span><span class="kw">list</span>(<span class="dt">coords=</span><span class="st">&quot;topleft&quot;</span>,<span class="dt">columns=</span><span class="dv">1</span>), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">7</span>)[<span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">1</span>)])</a></code></pre></div>
 <div class="figure"><span id="fig:Figure9-10"></span>
-<img src="09-caseStudies_files/figure-html/Figure9-10-1.png" alt="Scatterplot of log-biodiversity vs log-DBCs by TJK (TJK=1 for Cretaceous)." width="960" />
+<img src="09-caseStudies_files/figure-html/Figure9-10-1.png" alt="Scatterplot of log-biodiversity vs log-DBCs by TJK." width="960" />
 <p class="caption">
-Figure 2.195: Scatterplot of log-biodiversity vs log-DBCs by TJK (TJK=1 for <em>Cretaceous</em>).
+Figure 2.200: Scatterplot of <em>log-biodiversity</em> vs <em>log-DBCs</em> by <em>TJK</em>.
 </p>
 </div>
 <p>The following results will allow us to explore models similar to theirs. One
@@ -336,11 +346,11 @@ Figure 2.195: Scatterplot of log-biodiversity vs log-DBCs by TJK (TJK=1 for <em>
 <p>Both versions of the models (based on <em>DBF</em> or <em>DBC</em>) start with an MLR model
 with a quantitative variable and two slopes. We can obtain some of the needed
 model selection results from the first full model using:</p>
-<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb857-1" title="1">bd1 &lt;-<span class="st"> </span><span class="kw">lm</span>(logSpecies<span class="op">~</span>logDBCs<span class="op">+</span>TJK, <span class="dt">data=</span>bm)</a>
-<a class="sourceLine" id="cb857-2" title="2"><span class="kw">require</span>(MuMIn)</a>
-<a class="sourceLine" id="cb857-3" title="3"><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>)</a>
-<a class="sourceLine" id="cb857-4" title="4"><span class="kw">dredge</span>(bd1, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </a>
-<a class="sourceLine" id="cb857-5" title="5">       <span class="dt">extra=</span><span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</a></code></pre></div>
+<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb867-1" title="1">bd1 &lt;-<span class="st"> </span><span class="kw">lm</span>(logSpecies<span class="op">~</span>logDBCs<span class="op">+</span>TJK, <span class="dt">data=</span>bm)</a>
+<a class="sourceLine" id="cb867-2" title="2"><span class="kw">library</span>(MuMIn)</a>
+<a class="sourceLine" id="cb867-3" title="3"><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>)</a>
+<a class="sourceLine" id="cb867-4" title="4"><span class="kw">dredge</span>(bd1, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </a>
+<a class="sourceLine" id="cb867-5" title="5">       <span class="dt">extra=</span><span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</a></code></pre></div>
 <pre><code>## Global model call: lm(formula = logSpecies ~ logDBCs + TJK, data = bm)
 ## ---
 ## Model selection table 
@@ -351,9 +361,9 @@ model selection results from the first full model using:</p>
 ## 3  2.5300          + 0.004823 -0.03664  3 -23.893 53.8 20.48  0.000
 ## Models ranked by AIC(x)</code></pre>
 <p>And from the second model:</p>
-<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb859-1" title="1">bd2 &lt;-<span class="st"> </span><span class="kw">lm</span>(logSpecies<span class="op">~</span>logDBFs<span class="op">+</span>TJK, <span class="dt">data=</span>bm)</a>
-<a class="sourceLine" id="cb859-2" title="2"><span class="kw">dredge</span>(bd2, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>,</a>
-<a class="sourceLine" id="cb859-3" title="3">       <span class="dt">extra=</span><span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</a></code></pre></div>
+<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb869-1" title="1">bd2 &lt;-<span class="st"> </span><span class="kw">lm</span>(logSpecies<span class="op">~</span>logDBFs<span class="op">+</span>TJK, <span class="dt">data=</span>bm)</a>
+<a class="sourceLine" id="cb869-2" title="2"><span class="kw">dredge</span>(bd2, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>,</a>
+<a class="sourceLine" id="cb869-3" title="3">       <span class="dt">extra=</span><span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</a></code></pre></div>
 <pre><code>## Global model call: lm(formula = logSpecies ~ logDBFs + TJK, data = bm)
 ## ---
 ## Model selection table 
@@ -365,11 +375,10 @@ model selection results from the first full model using:</p>
 ## Models ranked by AIC(x)</code></pre>
 <p>The top AIC model is
 <span class="math inline">\(\log{(\text{count})}_i=\beta_0 + \beta_1\cdot\log{(\text{DBC})}_i + \beta_2I_{\text{TJK},i} + \varepsilon_i\)</span>
-with an AIC of 33.3. The next best
-model was <span class="math inline">\(\log{(\text{count})}_i=\beta_0 + \beta_1\cdot\log{(\text{DBF})}_i + \beta_2I_{\text{TJK},i} + \varepsilon_i\)</span>
-with an AIC of 36.8, so 3.5 AIC units worse than the top model. We put these
+with an AIC of 33.3. The next best ranked model on AICs was <span class="math inline">\(\log{(\text{count})}_i=\beta_0 + \beta_1\cdot\log{(\text{DBF})}_i + \beta_2I_{\text{TJK},i} + \varepsilon_i\)</span>
+with an AIC of 36.8, so 3.5 AIC units worse than the top model and so there is clear evidence to support the <code>DBC+TJK</code> model over the best version with <code>DBF</code> and all others. We put these
 two runs of results together in Table <a href="9-4-section9-4.html#tab:Table9-1">2.14</a>, re-computing all the
-AICs based on the top model from the first full model considered.</p>
+AICs based on the top model from the first full model considered to make it easier to see this.</p>
 
 <table style="width:100%;">
 <caption><span id="tab:Table9-1">Table 2.14: </span> Model comparison table.</caption>
@@ -458,46 +467,45 @@ differences in the stages captured by <em>TJK</em> can be more clearly observed.
 <p>So the top model in our (correct) results<a href="#fn148" class="footnote-ref" id="fnref148"><sup>148</sup></a> suggests that
 <em>log(DBC)</em> is important as well as different intercepts for the two periods. We can interrogate
 this model further but we should check the diagnostics (Figure
-<a href="9-4-section9-4.html#fig:Figure9-11">2.196</a>) and consider our model
-assumptions first as AICs are not valid if the model assumptions are not met.</p>
+<a href="9-4-section9-4.html#fig:Figure9-11">2.201</a>) and consider our model
+assumptions first as AICs are not valid if the model assumptions are clearly violated.</p>
 
-<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb861-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb861-2" title="2"><span class="kw">plot</span>(bd1)</a></code></pre></div>
+<div class="sourceCode" id="cb871"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb871-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb871-2" title="2"><span class="kw">plot</span>(bd1, <span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure9-11"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-11-1.png" alt="Diagnostic plots for the top AIC model." width="960" />
 <p class="caption">
-Figure 2.196: Diagnostic plots for the top AIC model.
+Figure 2.201: Diagnostic plots for the top AIC model.
 </p>
 </div>
-<p>The constant variance and assessment of influence do not suggest any real
-problems with those assumptions. The normality assumption is possibly violated but shows lighter
+<p>The constant variance, linearity, and assessment of influence do not suggest any problems with those assumptions. This is reinforced in the partial residuals in Figure <a href="9-4-section9-4.html#fig:Figure9-11X">2.202</a>. The normality assumption is possibly violated but shows lighter
 tails than expected from a normal distribution and so should cause few
 problems with inferences (we would be looking for an answer of “yes, there is a
-violation of the normality assumption but, for a bonus point, that problem is
+violation of the normality assumption but that problem is
 minor because the pattern is not the problematic type of violation
-because…”). The other assumption that <strong>is violated for all our models</strong> is
+because both the upper and lower tails are shorter than expected from a normal distribution”). The other assumption that <strong>is violated for all our models</strong> is
 that the observations are independent. Between neighboring stages in time,
 there would likely be some sort of relationship in the biodiversity so
-we should not assume that the observations are independent (this is a
-<strong><em>time series</em></strong> of observations). The authors acknowledged this issue but
+we should not assume that the observations are independent (this is another
+<strong><em>time series</em></strong> of observations).  The authors acknowledged this issue but
 unskillfully attempted to deal with it. Because an interaction was not
 considered in any of the models, there also is an assumption that the results
 are parallel enough for the two groups. The scatterplot in Figure
-<a href="9-4-section9-4.html#fig:Figure9-10">2.195</a> suggests that using parallel lines for the two
+<a href="9-4-section9-4.html#fig:Figure9-10">2.200</a> suggests that using parallel lines for the two
 groups is probably reasonable but a full assessment really should also explore
-that fully to verify that there is no support for an interaction.</p>
+that fully to verify that there is no support for an interaction which would relate to different impacts of sampling efforts on the response across the levels of <em>TJK</em>.</p>
 <p>Ignoring the violation of the independence assumption, we are otherwise OK to
 explore the model more and see what it tells us about biodiversity of
 <em>Sauropodomorphs</em>. The top model is estimated to be
 <span class="math inline">\(\log{(\widehat{\text{count}})}_i=-1.089 + 0.724\cdot\log{(\text{DBC})}_i -0.75I_{\text{TJK},i}\)</span>.
-This suggests that for the early observations (<em>TJK</em>=0), the model is
+This suggests that for the early observations (<em>TJK</em>=<em>Trias_Juras</em>), the model is
 <span class="math inline">\(\log{(\widehat{\text{count}})}_i=-1.089 + 0.724\cdot\log{(\text{DBC})}_i\)</span>
-and for the Cretaceous period (<em>TJK</em>=1), the model is
+and for the Cretaceous period (<em>TJK</em>=<em>Cretaceous</em>), the model is
 <span class="math inline">\(\log{(\widehat{\text{count}})}_i=-1.089 + -0.75+0.724\cdot\log{(\text{DBC})}_i\)</span>
 which simplifies to <span class="math inline">\(\log{(\widehat{\text{count}})}_i=-1.84 + 0.724\cdot\log{(\text{DBC})}_i\)</span>. This suggests that the sampling efforts
 have the same impacts on all observations and having an increase in <em>logDBCs</em>
 is associated with increases in the mean <em>log-biodiversity</em>. Specifically, for
-a 1 log-count increase in the <em>log-DBCs</em>, we expect, on average, to have a
+a 1 log-count increase in the <em>log-DBCs</em>, we estimate, on average, to have a
 0.724 log-count change in the mean log-biodiversity, after accounting for
 different intercepts for the two periods considered. We could also translate
 this to the original count scale but will leave it as is, because their real
@@ -511,7 +519,7 @@ suggests <span class="math inline">\(\exp(-0.76)=0.47\)</span> times (53% drop i
 per stage for Cretaceous versus the prior time period, after correcting for
 log-sampling effort in each stage.</p>
 
-<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb862-1" title="1"><span class="kw">summary</span>(bd1)</a></code></pre></div>
+<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb872-1" title="1"><span class="kw">summary</span>(bd1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logSpecies ~ logDBCs + TJK, data = bm)
@@ -521,14 +529,22 @@ log-sampling effort in each stage.</p>
 ## -0.6721 -0.3955  0.1149  0.2999  0.6158 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)  -1.0887     0.6533  -1.666   0.1092
-## logDBCs       0.7243     0.1288   5.622 1.01e-05
-## TJK1         -0.7598     0.2229  -3.409   0.0024
+##               Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)    -1.0887     0.6533  -1.666   0.1092
+## logDBCs         0.7243     0.1288   5.622 1.01e-05
+## TJKCretaceous  -0.7598     0.2229  -3.409   0.0024
 ## 
 ## Residual standard error: 0.4185 on 23 degrees of freedom
 ## Multiple R-squared:  0.5809, Adjusted R-squared:  0.5444 
 ## F-statistic: 15.94 on 2 and 23 DF,  p-value: 4.54e-05</code></pre>
+
+<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb874-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(bd1, <span class="dt">residuals=</span>T), <span class="dt">grid=</span>T)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure9-11X"></span>
+<img src="09-caseStudies_files/figure-html/Figure9-11X-1.png" alt="Term-plots for the top AIC model with partial residuals." width="960" />
+<p class="caption">
+Figure 2.202: Term-plots for the top AIC model with partial residuals.
+</p>
+</div>
 <p>Their study shows some interesting contrasts between methods. They tried to use
 AIC-based model selection methods across all the models but then used p-values
 to really make their final conclusions. This presents a philosophical
@@ -542,9 +558,8 @@ the direct comparison of</p>
 <p>exploring whether <em>DBC</em> or <em>DBF</em> is “better” with <em>TJK</em> in the model. There
 is no hypothesis test to compare these two models because one is not <strong><em>nested</em></strong>
 in the other – <strong>it is not possible to get from one model to the other by
-setting one or more slope coefficients to 0 so we can’t test our way from one
-model to the other one</strong>. The AICs suggest that the model with <em>DBC</em> and <em>TJK</em> is
-better than the model with <em>DBF</em> and <em>TJK</em>, so that helps us make that decision.
+setting one or more slope coefficients to 0 so we can’t hypothesis test our way from one
+model to the other one</strong>. The AICs suggest strong support for the model with <em>DBC</em> and <em>TJK</em> as compared to the model with <em>DBF</em> and <em>TJK</em>, so that helps us make that decision.
 After that step, we could rely on <span class="math inline">\(t\)</span>-tests or ANOVA <span class="math inline">\(F\)</span>-tests to decide whether
 further refinement is suggested/possible for the model with <em>DBC</em> and <em>TJK</em>. This
 would provide the direct inferences that they probably want and are trying to
@@ -553,14 +568,14 @@ obtain from AICs along with p-values in their paper.</p>
 statistical methods designed for modeling responses that are counts of events
 or things, especially those whose measurements change as a function of sampling
 effort; models called <strong><em>Poisson rate models</em></strong> would be ideal for their
-application. The other aspect of the biodiversity that they measured
+application which are also special cases of the generalized linear models noted in the extensions for modeling categorical responses. The other aspect of the biodiversity that they measured
 for each stage was the duration of the stage. They never incorporated that
 information and it makes sense given their interests in comparing biodiversity
 across stages, not understanding why more or less biodiversity might occur. But
 other researchers might want to estimate the biodiversity after also
 controlling for the length of time that the stage lasted and the sampling
 efforts involved in detecting the biodiversity of each stage, models that are
-only a few steps away from those considered here. In general, this study
+only a few steps away from those considered here. In general, this paper
 presents some of the pitfalls of attempting to use advanced statistical methods
 as well as hinting at the benefits. The statistical models are the only way to
 access the results of interest; inaccurate usage of statistical models can
@@ -588,7 +603,7 @@ under-reported, mis-applied, or mis-interpreted statistical methods and
 results. One of the reasons that I wanted to write this book was to help more
 people move from basic statistical knowledge to correct use of intermediate
 statistical methods and beginning to see the potential in more advanced
-statistical methods. It has taken me many years of being a statistician just to
+statistical methods. It took me many years of being a statistician (after getting a PhD) just to
 feel armed for battle when confronted with new applications and two stat
 courses are not enough to get you there, but you have to start somewhere. You
 are only maybe two or three hundred hours into your 10,000 hours required for mastery.

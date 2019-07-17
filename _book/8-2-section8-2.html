@@ -303,7 +303,7 @@ Revisit the scatterplots to identify the source of the issue.
 </ul></li>
 <li><p>Examine partial residuals and smoothing line in term-plots.</p>
 <ul>
-<li>Turning on the <code>residuals=T</code> option in the effects plot allows direct assessment of residuals vs each predictor after accounting for others. Look for clear patterns in the partial residuals<a href="#fn115" class="footnote-ref" id="fnref115"><sup>115</sup></a> that the smoothing line is also following for potential issues with the linearity assumption.</li>
+<li>Turning on the <code>residuals=T</code> option in the effects plot allows direct assessment of residuals vs each predictor after accounting for others. Look for clear patterns in the partial residuals<a href="#fn116" class="footnote-ref" id="fnref116"><sup>116</sup></a> that the smoothing line is also following for potential issues with the linearity assumption.</li>
 </ul></li>
 </ol></li>
 </ul></li>
@@ -355,7 +355,7 @@ influence of each observation.</p>
 </ul></li>
 </ul></li>
 </ul>
-<p>While not a condition for use of the methods, a note about RA and RS is useful
+<p>While not a condition for use of the methods, a note about random assignment and random sampling is useful
 here in considering the scope of inference of any results.
 
 To make inferences
@@ -387,7 +387,7 @@ population and the sites are spread around the mountains in Montana. Many
 people would find it to be reasonable to assume that the sites are
 independent of one another but others would be worried that sites closer
 together in space might be more similar than they are to far-away
-observations (this is called <strong><em>spatial correlation</em></strong>). I have
+observations (this is called <strong><em>spatial correlation</em></strong>).  I have
 been in a heated discussion with statistics colleagues about whether
 spatial dependency should be considered or if it is valid to ignore it in
 this sort of situation. It is certainly possible to be concerned about
@@ -396,16 +396,16 @@ methods to actually assess whether there is spatial dependency in these data. Ev
 and then explore the results. When data are collected across space, you should note that there might be some sort of spatial dependency that <em>could</em> violate the independence assumption.</li>
 </ul></li>
 </ul>
-<p>We need our diagnostic plots to assess the remaining assumptions.
+<p>To assess the remaining assumptions, we can use our diagnostic plots.
 
 The same code
 as before will provide diagnostic plots. There is some extra code
-(<code>par(...)</code>) added to allow us to add labels to the plots to know which model
-is being displayed since we have so many to discuss here.</p>
+(<code>par(...)</code>) added to allow us to add labels to the plots (<code>sub.caption="..."</code>) to know which model
+is being displayed since we have so many to discuss here. We can also employ a new approach, which is to simulate new observations from the model and make plots to compare simulated data sets to what was observed. The <code>simulate</code> function from Chapter <a href="2-chapter2.html#chapter2">2</a>  can be used to generate new observations from the model based on the estimated coefficients and where we know that the assumptions are true. If the simulated data and the observed data are very different, then the model is likely dangerous to use for inferences because of this mis-match. This method can be used to assess the linearity, constant variance, normality of residuals, and influential points aspects of the model. It is not something used in every situation, but is especially helpful if you are struggling to decide if what you are seeing in the diagnostics is just random variability or is really a clear issue. The regular steps in assessing each assumption are discussed first.</p>
 <p>(ref:fig8-5) Diagnostic plots for model m4:
 <span class="math inline">\(\text{Snow.Depth}\sim \text{Elevation} + \text{Min.Temp} + \text{Max.Temp}\)</span>.</p>
 <div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb695-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb695-2" title="2"><span class="kw">plot</span>(m4, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m4&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb695-2" title="2"><span class="kw">plot</span>(m4, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m4&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure8-5"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-5-1.png" alt="(ref:fig8-5)" width="960" />
 <p class="caption">
@@ -505,7 +505,7 @@ is found using the estimated model with</p>
 <p>but the observed snow depth was actually <span class="math inline">\(y_9=11.2\)</span> inches. The observed <strong><em>residual</em></strong> is then</p>
 <p><span class="math display">\[e_9=y_9-\hat{y}_9 = 11.2-40.465 = -29.265 \text{ inches.}\]</span></p>
 <p>So the model “misses” the snow depth by over 29 inches with the model suggesting
-over 40 inches of snow but only 11 inches actually being present<a href="#fn116" class="footnote-ref" id="fnref116"><sup>116</sup></a>.</p>
+over 40 inches of snow but only 11 inches actually being present<a href="#fn117" class="footnote-ref" id="fnref117"><sup>117</sup></a>.</p>
 <div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb698-1" title="1"><span class="fl">-10.51</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.0123</span><span class="op">*</span><span class="dv">7350</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.505</span><span class="op">*</span><span class="dv">28</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.562</span><span class="op">*</span><span class="dv">45</span></a></code></pre></div>
 <pre><code>## [1] 40.465</code></pre>
 <div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb700-1" title="1"><span class="fl">11.2</span> <span class="op">-</span><span class="st"> </span><span class="fl">40.465</span></a></code></pre></div>
@@ -618,7 +618,7 @@ from it.</p>
 for the model fit to the data set without NE Entrance (now <span class="math inline">\(n=24\)</span>) reveals a new
 point that is somewhat influential (point 22 in the data set has Cook’s D
 <span class="math inline">\(\approx\)</span> 0.5). It is for a location called "Bloody
-<span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span><a href="#fn117" class="footnote-ref" id="fnref117"><sup>117</sup></a> which has a
+<span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span><a href="#fn118" class="footnote-ref" id="fnref118"><sup>118</sup></a> which has a
 leverage of nearly 0.2 and a standardized residual of nearly -3.
 This point did not show up as influential in the original version of the data
 set with the same model but it is now. It also shows up as a potential outlier.
@@ -635,7 +635,7 @@ observation to be able to work towards a model that is fully trustworthy.</p>
 Min Temp and Max Temp with Northeast entrance observation removed from
 data set.</p>
 <div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb709-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb709-2" title="2"><span class="kw">plot</span>(m5, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m5&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb709-2" title="2"><span class="kw">plot</span>(m5, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m5&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure8-7"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-7-1.png" alt="(ref:fig8-7)" width="960" />
 <p class="caption">
@@ -683,7 +683,7 @@ remaining. This model (<code>m6</code>) seems to contain residual diagnostics (F
 <div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb713-1" title="1">m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</a>
 <a class="sourceLine" id="cb713-2" title="2"><span class="kw">summary</span>(m6)</a>
 <a class="sourceLine" id="cb713-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb713-4" title="4"><span class="kw">plot</span>(m6, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m6&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb713-4" title="4"><span class="kw">plot</span>(m6, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m6&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
 <p>It is hard to suggest that there any curvature issues and the slight variation
 in the Scale-Location plot is mostly
 due to few observations with fitted values around 30 happening to be well
@@ -711,19 +711,36 @@ Min Temp and Max Temp with two observations removed.</p>
 Figure 2.158: (ref:fig8-9)
 </p>
 </div>
+<p>As a final assessment of this model, we can consider simulating a set of <span class="math inline">\(n=23\)</span> responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called <code>SimulatedSnow</code> in the following codechunk. Figure <a href="8-2-section8-2.html#fig:Figure8-9X1">2.159</a> uses the <code>plot</code> function to just focus on the relationship of the original (<code>Snow.Depth</code>) and new (fake) responses (<code>SimulatedSnow</code>) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions for the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.</p>
+
+<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb715-1" title="1"><span class="kw">set.seed</span>(<span class="dv">307</span>)</a>
+<a class="sourceLine" id="cb715-2" title="2">snotel_final &lt;-<span class="st"> </span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]</a>
+<a class="sourceLine" id="cb715-3" title="3">snotel_final<span class="op">$</span>SimulatedSnow &lt;-<span class="st"> </span><span class="kw">simulate</span>(m6)[[<span class="dv">1</span>]] <span class="co">#Creates first set of simulated responses</span></a>
+<a class="sourceLine" id="cb715-4" title="4"></a>
+<a class="sourceLine" id="cb715-5" title="5"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb715-6" title="6"><span class="kw">plot</span>(Snow.Depth<span class="op">~</span>Elevation <span class="op">+</span><span class="st"> </span>Max.Temp <span class="op">+</span><span class="st"> </span>Min.Temp, <span class="dt">data=</span>snotel_final, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">main=</span><span class="st">&quot;Real Responses&quot;</span>)</a>
+<a class="sourceLine" id="cb715-7" title="7"><span class="kw">plot</span>(SimulatedSnow<span class="op">~</span>Elevation <span class="op">+</span><span class="st"> </span>Max.Temp <span class="op">+</span><span class="st"> </span>Min.Temp, <span class="dt">data=</span>snotel_final, <span class="dt">pch=</span><span class="dv">17</span>, <span class="dt">main=</span><span class="st">&quot;First Simulated Responses&quot;</span>, <span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>)</a>
+<a class="sourceLine" id="cb715-8" title="8">snotel_final<span class="op">$</span>SimulatedSnow &lt;-<span class="st"> </span><span class="kw">simulate</span>(m6)[[<span class="dv">1</span>]] <span class="co">#Creates a second set of simulared responses in the same variable name</span></a>
+<a class="sourceLine" id="cb715-9" title="9"><span class="kw">plot</span>(SimulatedSnow<span class="op">~</span>Elevation <span class="op">+</span><span class="st"> </span>Max.Temp <span class="op">+</span><span class="st"> </span>Min.Temp, <span class="dt">data=</span>snotel_final, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">main=</span><span class="st">&quot;Second Simulated Responses&quot;</span>, <span class="dt">col=</span><span class="st">&quot;skyblue&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure8-9X1"></span>
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-9X1-1.png" alt="Plot of the original responses versus the three predictors (\(n\)=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows." width="768" />
+<p class="caption">
+Figure 2.159: Plot of the original responses versus the three predictors (<span class="math inline">\(n\)</span>=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows.
+</p>
+</div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="115">
-<li id="fn115"><p>I have not given you a formula for calculating partial residuals. We will leave that for more advanced material.<a href="8-2-section8-2.html#fnref115" class="footnote-back">↩</a></p></li>
-<li id="fn116"><p>Imagine
+<ol start="116">
+<li id="fn116"><p>I have not given you a formula for calculating partial residuals. We will leave that for more advanced material.<a href="8-2-section8-2.html#fnref116" class="footnote-back">↩</a></p></li>
+<li id="fn117"><p>Imagine
 showing up to a ski area expecting a 40 inch base and there only being
 11 inches. I’m sure ski areas are always more accurate than this model in their
-reporting of amounts of snow on the ground…<a href="8-2-section8-2.html#fnref116" class="footnote-back">↩</a></p></li>
-<li id="fn117"><p>The site name is redacted to protect
+reporting of amounts of snow on the ground…<a href="8-2-section8-2.html#fnref117" class="footnote-back">↩</a></p></li>
+<li id="fn118"><p>The site name is redacted to protect
 the innocence of the reader. More information on this site, located in
 Beaverhead County, is available at
-<a href="http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt" class="uri">http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt</a>.<a href="8-2-section8-2.html#fnref117" class="footnote-back">↩</a></p></li>
+<a href="http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt" class="uri">http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt</a>.<a href="8-2-section8-2.html#fnref118" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

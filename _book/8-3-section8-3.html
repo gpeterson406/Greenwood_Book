@@ -268,7 +268,7 @@ we can formally discuss
 interpretations of the slope coefficients and how the term-plots
 (Figure <a href="8-2-section8-2.html#fig:Figure8-9">2.158</a>) aid
 our interpretations. Term-plots in MLR are constructed by holding all the other
-variables at their mean and generating predictions and 95% CIs for the mean
+quantitative variables<a href="#fn119" class="footnote-ref" id="fnref119"><sup>119</sup></a> at their mean and generating predictions and 95% CIs for the mean
 response across the levels of observed values for each predictor variable. This
 idea also helps us to work towards interpretations of each term in an MLR
 model. For example, for <em>Elevation</em>,
@@ -282,22 +282,22 @@ variables to predict <em>Snow Depth</em> for different <em>Elevations</em>. The 
 convention is to hold the “other” variables at their means to
 generate these plots. This tactic also provides a way of interpreting each
 slope coefficient. Specifically, we can interpret the <em>Elevation</em> slope as:
-For a 1 foot increase in <em>Elevation</em>, we expect the mean <em>Snow Depth</em> to
+For a 1 foot increase in <em>Elevation</em>, we estimate the mean <em>Snow Depth</em> to
 increase by 0.0269 inches, holding the minimum and maximum temperatures
 constant. More generally, the <strong><em>slope interpretation in an MLR</em></strong> is:
 </p>
 <blockquote>
 <p>For a 1 <strong>[<em>units of <span class="math inline">\(\boldsymbol{x_k}\)</span></em>]</strong> increase in
-<span class="math inline">\(\boldsymbol{x_k}\)</span>, we expect the mean of <span class="math inline">\(\boldsymbol{y}\)</span> to change by
+<span class="math inline">\(\boldsymbol{x_k}\)</span>, we estimate the mean of <span class="math inline">\(\boldsymbol{y}\)</span> to change by
 <span class="math inline">\(\boldsymbol{b_k}\)</span> <strong>[<em>units of y</em>]</strong>, after controlling for
 <strong>[list of other explanatory variables in model]</strong>.</p>
 </blockquote>
 <p>To make this more concrete, we can recreate some points in the Elevation
 term-plot. To do this, we first need the mean of the “other” predictors,
 <em>Min.Temp</em> and <em>Max.Temp</em>.</p>
-<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb715-1" title="1"><span class="kw">mean</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]<span class="op">$</span>Min.Temp)</a></code></pre></div>
+<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb716-1" title="1"><span class="kw">mean</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]<span class="op">$</span>Min.Temp)</a></code></pre></div>
 <pre><code>## [1] 27.82609</code></pre>
-<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb717-1" title="1"><span class="kw">mean</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]<span class="op">$</span>Max.Temp)</a></code></pre></div>
+<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb718-1" title="1"><span class="kw">mean</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]<span class="op">$</span>Max.Temp)</a></code></pre></div>
 <pre><code>## [1] 36.3913</code></pre>
 <p>We can put these values into the MLR equation and simplify it by combining like terms, to
 an equation that is in terms of
@@ -325,7 +325,7 @@ depth of <span class="math inline">\(-140.69 + 0.0269*6000 = 20.71\)</span> inch
 <li><p>For an elevation of 8000 at the average temperatures, we predict a mean snow
 depth of <span class="math inline">\(-140.69 + 0.0269*8000 = 74.51\)</span> inches.</p></li>
 </ul>
-<p>We can plot this information (Figure <a href="8-3-section8-3.html#fig:Figure8-10">2.159</a>) using the <code>plot</code>
+<p>We can plot this information (Figure <a href="8-3-section8-3.html#fig:Figure8-10">2.160</a>) using the <code>plot</code>
 function to show the points we calculated and the <code>lines</code> function to add
 a line that connects the dots. In the <code>plot</code> function, we used the
 <code>ylim=...</code> option to make the scaling on the y-axis match the previous
@@ -335,15 +335,15 @@ variables constant at their means.</p>
 <div class="figure"><span id="fig:Figure8-10"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-10-1.png" alt="(ref:fig8-10)" width="576" />
 <p class="caption">
-Figure 2.159: (ref:fig8-10)
+Figure 2.160: (ref:fig8-10)
 </p>
 </div>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb719-1" title="1"><span class="co">#Making own effect plot:</span></a>
-<a class="sourceLine" id="cb719-2" title="2">elevs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5000</span>,<span class="dv">6000</span>,<span class="dv">8000</span>)</a>
-<a class="sourceLine" id="cb719-3" title="3">snowdepths &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">6.19</span>,<span class="fl">20.71</span>,<span class="fl">74.51</span>)</a>
-<a class="sourceLine" id="cb719-4" title="4"><span class="kw">plot</span>(snowdepths<span class="op">~</span>elevs, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">90</span>), <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>,</a>
-<a class="sourceLine" id="cb719-5" title="5">     <span class="dt">main=</span><span class="st">&quot;Effect plot of elevation by hand&quot;</span>)</a>
-<a class="sourceLine" id="cb719-6" title="6"><span class="kw">lines</span>(snowdepths<span class="op">~</span>elevs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb720-1" title="1"><span class="co">#Making own effect plot:</span></a>
+<a class="sourceLine" id="cb720-2" title="2">elevs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5000</span>,<span class="dv">6000</span>,<span class="dv">8000</span>)</a>
+<a class="sourceLine" id="cb720-3" title="3">snowdepths &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">6.19</span>,<span class="fl">20.71</span>,<span class="fl">74.51</span>)</a>
+<a class="sourceLine" id="cb720-4" title="4"><span class="kw">plot</span>(snowdepths<span class="op">~</span>elevs, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">90</span>), <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb720-5" title="5">     <span class="dt">main=</span><span class="st">&quot;Effect plot of elevation by hand&quot;</span>)</a>
+<a class="sourceLine" id="cb720-6" title="6"><span class="kw">lines</span>(snowdepths<span class="op">~</span>elevs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a></code></pre></div>
 <p>Note that we only needed 2 points to
 define the line but need a denser grid of elevations if we want to add the 95%
 CIs for the true mean snow depth across the different elevations since they
@@ -353,15 +353,15 @@ function for the MLR, again holding the temperatures at their
 mean values. The <code>predict</code> function is sensitive and needs the same variable
 names as used in the original model fitting to work. First we create a “new”
 data set using the <code>seq</code> function to generate the desired grid of
-elevations and the <code>rep</code> function<a href="#fn118" class="footnote-ref" id="fnref118"><sup>118</sup></a> to repeat the means of the
+elevations and the <code>rep</code> function<a href="#fn120" class="footnote-ref" id="fnref120"><sup>120</sup></a> to repeat the means of the
 temperatures for each of elevation values we need to make the plot. The code
 creates a specific version of the predictor variables to force the <code>predict</code>
 function to provide fitted values and CIs across different elevations with
 temperatures held constant that is stored in <code>newdata1</code>.  </p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb720-1" title="1">elevs &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">5000</span>, <span class="dt">to=</span><span class="dv">8000</span>, <span class="dt">length.out=</span><span class="dv">30</span>)</a>
-<a class="sourceLine" id="cb720-2" title="2">newdata1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Elevation=</span>elevs, <span class="dt">Min.Temp=</span><span class="kw">rep</span>(<span class="fl">27.826</span>,<span class="dv">30</span>),</a>
-<a class="sourceLine" id="cb720-3" title="3">                       <span class="dt">Max.Temp=</span><span class="kw">rep</span>(<span class="fl">36.3913</span>,<span class="dv">30</span>))</a>
-<a class="sourceLine" id="cb720-4" title="4">newdata1</a></code></pre></div>
+<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb721-1" title="1">elevs &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">5000</span>, <span class="dt">to=</span><span class="dv">8000</span>, <span class="dt">length.out=</span><span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb721-2" title="2">newdata1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Elevation=</span>elevs, <span class="dt">Min.Temp=</span><span class="kw">rep</span>(<span class="fl">27.826</span>,<span class="dv">30</span>),</a>
+<a class="sourceLine" id="cb721-3" title="3">                       <span class="dt">Max.Temp=</span><span class="kw">rep</span>(<span class="fl">36.3913</span>,<span class="dv">30</span>))</a>
+<a class="sourceLine" id="cb721-4" title="4">newdata1</a></code></pre></div>
 <pre><code>## # A tibble: 30 x 3
 ##    Elevation Min.Temp Max.Temp
 ##        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -379,7 +379,7 @@ temperatures held constant that is stored in <code>newdata1</code>.  </p>
 <p>The predicted snow depths along with 95% confidence intervals for the mean,
 holding temperatures at their means, are:</p>
 
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb722-1" title="1"><span class="kw">predict</span>(m6, <span class="dt">newdata=</span>newdata1, <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb723-1" title="1"><span class="kw">predict</span>(m6, <span class="dt">newdata=</span>newdata1, <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>)</a></code></pre></div>
 <pre><code>##           fit        lwr      upr
 ## 1  -6.3680312 -24.913607 12.17754
 ## 2  -3.5898846 -21.078518 13.89875
@@ -420,15 +420,15 @@ much easier.
 </p>
 <p>There are two other model components of possible interest in this model. The
 slope of 0.984 for <em>Min.Temp</em> suggests that for a 1<span class="math inline">\(^\circ F\)</span> increase in
-<em>Minimum Temperature</em>, we expect a 0.984 inch change in the mean <em>Snow Depth</em>,
+<em>Minimum Temperature</em>, we estimate a 0.984 inch change in the mean <em>Snow Depth</em>,
 after controlling for <em>Elevation</em> and <em>Max.Temp</em> at the sites. Similarly, the
 slope of 1.243 for the <em>Max.Temp</em> suggests that for a 1<span class="math inline">\(^\circ F\)</span> increase in
-<em>Maximum Temperature</em>, we expect a 1.243 inch change in the mean <em>Snow Depth</em>,
+<em>Maximum Temperature</em>, we estimate a 1.243 inch change in the mean <em>Snow Depth</em>,
 holding <em>Elevation</em> and <em>Min.Temp</em> constant. Note that there are a variety of ways
 to note that each term in an
 MLR is only a particular value given the other variables in the model. We can
 use words such as “holding the other variables constant” or “after adjusting
-for the other variables” or “in a model with…”. The main
+for the other variables” or “in a model with…” or “for observations with similar values of the other variables but a difference of 1 unit in the predictor..”. The main
 point is to find words that reflect that this single slope coefficient might be
 different if we had a different overall model and the only way to interpret it
 is conditional on the other model components.</p>
@@ -446,18 +446,19 @@ making that assessment. And one last note about term-plots – they do not mean
 that the relationships are really linear between the predictor and response
 variable being displayed. The model <strong>forces</strong> the relationship to be linear
 even if that is not the real functional form. <strong>Term-plots are not diagnostics
-for the model, they are summaries of the model you assumed was correct!</strong>
+for the model unless you add the partial residuals, the lines are just summaries of the model you assumed was correct!</strong>
 Any time we do linear regression, the inferences are contingent upon the
 model we chose. We know our model is not
 perfect, but we hope that it helps us learn something about our research
-question(s).</p>
+question(s) and, to trust its results, we hope it matches the data fairly well.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="118">
-<li id="fn118"><p>The <code>seq</code> function has syntax of
+<ol start="119">
+<li id="fn119"><p>They hold factor variables at their modal category but we don’t have factor variables in the MLR models, yet.<a href="8-3-section8-3.html#fnref119" class="footnote-back">↩</a></p></li>
+<li id="fn120"><p>The <code>seq</code> function has syntax of
 <code>seq(from=startingpoint, to=endingpoint, length.out=#ofvalues_between_start_and_end)</code> and the <code>rep</code> function has
-syntax of <code>rep(numbertorepeat, #oftimes).</code><a href="8-3-section8-3.html#fnref118" class="footnote-back">↩</a></p></li>
+syntax of <code>rep(numbertorepeat, #oftimes).</code><a href="8-3-section8-3.html#fnref120" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

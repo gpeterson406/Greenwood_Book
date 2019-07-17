@@ -271,15 +271,15 @@ In many cases, we take a sample
 from a population but that overall group is likely a combination of individuals from
 different sub-populations. For example, the SAT study was interested in all
 students at the university but that contains the obvious sub-populations based
-on the sex of the students. It is dangerous to fit MLR models across
+on the gender of the students. It is dangerous to fit MLR models across
 subpopulations but we can also use MLR models to address more sophisticated
 research questions by comparing groups. We will be able to compare the
 intercepts (mean levels) and the slopes to see if they differ between the
 groups. For example, does the relationship between the <em>SATV</em> and <em>FYGPA</em>
 differ for male and female students? We can add the grouping information to
-the scatterplot of <em>FYGPA</em> vs <em>SATV</em> (Figure <a href="8-9-section8-9.html#fig:Figure8-17">2.166</a>) and
+the scatterplot of <em>FYGPA</em> vs <em>SATV</em> (Figure <a href="8-9-section8-9.html#fig:Figure8-17">2.167</a>) and
 consider whether there is visual evidence of a difference in the slope and/or
-intercept between the two groups, with men coded<a href="#fn124" class="footnote-ref" id="fnref124"><sup>124</sup></a> as 1 and women coded as 2.
+intercept between the two groups, with men coded<a href="#fn126" class="footnote-ref" id="fnref126"><sup>126</sup></a> as 1 and women coded as 2. Code below changes this variable to <code>GENDER</code> with more explicit labels, even though they might not be correct and the students were likely forced to choose one or the other.
 </p>
 <p>It appears that the slope for females might be larger (steeper) in this
 relationship than it is for
@@ -287,122 +287,57 @@ males. So increases in SAT Verbal percentiles for females might have more of an
 impact on the average first year GPA. We’ll handle this sort of situation in
 Section <a href="8-11-section8-11.html#section8-11">8.11</a>, where we will formally consider how to change the
 slopes for different groups. In this section, we develop new methods needed to
-begin to handle these situations and explore creating models with the same
-slope coefficient for all groups but different y-intercepts. This material
-resembles what we did for the Two-Way ANOVA additive model.</p>
-<p>These results contrast with Figure <a href="8-9-section8-9.html#fig:Figure8-18">2.167</a> for the relationship
+begin to handle these situations and explore creating models that assume the same
+slope coefficient for all groups but allow for different y-intercepts. This material
+ends up resembling what we did for the Two-Way ANOVA additive model.</p>
+<p>The results for <em>SATV</em> contrast with Figure <a href="8-9-section8-9.html#fig:Figure8-18">2.168</a> for the relationship
 between first year college <em>GPA</em> and <em>SATM</em>
-percentile by sex of the students. The lines for the two groups appear to be
-mostly parallel and just seem to have different y-intercepts. We can use our
+percentile by gender of the students. The lines for the two groups appear to be
+mostly parallel and just seem to have different y-intercepts. In this section, we will learn how we can use our
 MLR techniques to fit a model to the entire data set that allows for different
 y-intercepts. The real power of this idea is that we can then also test whether
 the different groups have different y-intercepts – whether the shift between
 the groups is “real”. In this example, it appears to suggest that females
 generally have slightly higher GPAs than males, on average, but that an
-increase in SATM has the same impact for both groups. If this difference in
+increase in SATM has about the same impact on GPA for both groups. If this difference in
 y-intercepts is not “real”, then there appears to be no difference between the
 sexes in their relationship between SATM and GPA and we can safely continue
 using a model that does not differentiate the two groups. We could also just
 subset the data set and do two analyses, but that approach will not allow us
 to assess whether things are “really” different between the two groups.</p>
-<div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb763-1" title="1"><span class="kw">library</span>(car)</a>
-<a class="sourceLine" id="cb763-2" title="2"><span class="kw">scatterplot</span>(FYGPA<span class="op">~</span>SATV<span class="op">|</span>sex, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">data=</span>satGPA, <span class="dt">smooth=</span>F,</a>
-<a class="sourceLine" id="cb763-3" title="3">            <span class="dt">main=</span><span class="st">&quot;Scatterplot of GPA vs SATV by Sex&quot;</span>)</a>
-<a class="sourceLine" id="cb763-4" title="4"><span class="kw">scatterplot</span>(FYGPA<span class="op">~</span>SATM<span class="op">|</span>sex, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">data=</span>satGPA, <span class="dt">smooth=</span>F,</a>
-<a class="sourceLine" id="cb763-5" title="5">            <span class="dt">main=</span><span class="st">&quot;Scatterplot of GPA vs SATM by Sex&quot;</span>)</a></code></pre></div>
-<p>To fit one model to a data set that contain multiple groups, we need a way of
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb766-1" title="1">satGPA<span class="op">$</span>GENDER &lt;-<span class="st"> </span><span class="kw">factor</span>(satGPA<span class="op">$</span>sex) <span class="co">#Make 1,2 coded sex into factor GENDER</span></a>
+<a class="sourceLine" id="cb766-2" title="2"><span class="kw">levels</span>(satGPA<span class="op">$</span>GENDER) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) <span class="co">#Make category names clear but names might be wrong</span></a>
+<a class="sourceLine" id="cb766-3" title="3"><span class="kw">scatterplot</span>(FYGPA<span class="op">~</span>SATV<span class="op">|</span>GENDER, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">data=</span>satGPA, <span class="dt">smooth=</span>F,</a>
+<a class="sourceLine" id="cb766-4" title="4">            <span class="dt">main=</span><span class="st">&quot;Scatterplot of GPA vs SATV by Sex&quot;</span>)</a>
+<a class="sourceLine" id="cb766-5" title="5"><span class="kw">scatterplot</span>(FYGPA<span class="op">~</span>SATM<span class="op">|</span>GENDER, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">data=</span>satGPA, <span class="dt">smooth=</span>F,</a>
+<a class="sourceLine" id="cb766-6" title="6">            <span class="dt">main=</span><span class="st">&quot;Scatterplot of GPA vs SATM by Sex&quot;</span>)</a></code></pre></div>
+<p>To fit one model to a data set that contains multiple groups, we need a way of
 entering categorical variable information in an MLR model. Regression models
 require quantitative predictor variables for the <span class="math inline">\(x\text{&#39;s}\)</span> so we can’t
-directly enter the sex of the students into the regression model since it
-contains categories. To be able to
+directly enter the text coded information on the gender of the students into the regression model since it
+contains “words” and how can multiply a word times a slope coefficient. To be able to
 put in “numbers” as predictors, we create what are called
-<strong><em>indicator variables</em></strong><a href="#fn125" class="footnote-ref" id="fnref125"><sup>125</sup></a>
+<strong><em>indicator variables</em></strong><a href="#fn127" class="footnote-ref" id="fnref127"><sup>127</sup></a>
 that are made up of 0s and 1s, with the 0 reflecting one category and 1 the
-other, changing depending on the category of the individual in the data set. The
+other, changing depending on the category of the individual in that row of the data set. The
 <code>lm</code> function does this whenever a
-categorical variable is used as an explanatory variable. 
+factor variable is used as an explanatory variable.  
 
 It sets up the indicator
-variables using a baseline category (gets coded as a 0) and the deviation
-category for the other level of the variable. We can see how this works by
-exploring what happens when we put <code>SEX</code> into our <code>lm</code><a href="#fn126" class="footnote-ref" id="fnref126"><sup>126</sup></a> with SATM, after first making sure it is categorical using
+variables using a baseline category (which gets coded as a 0) and the deviation
+category for the other level of the variable (which gets coded as a 1). We can see how this works by
+exploring what happens when we put <code>GENDER</code> into our <code>lm</code> with <code>SATM</code>, after first making sure it is categorical using
 the <code>factor</code> function and making the factor <code>levels</code> explicit instead of 1s
 and 2s.
 
 </p>
-<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb764-1" title="1">satGPA<span class="op">$</span>SEX &lt;-<span class="st"> </span><span class="kw">factor</span>(satGPA<span class="op">$</span>sex) <span class="co">#Make 1,2 coded sex into factor SEX</span></a>
-<a class="sourceLine" id="cb764-2" title="2"><span class="kw">levels</span>(satGPA<span class="op">$</span>SEX) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) <span class="co">#Make category names clear</span></a>
-<a class="sourceLine" id="cb764-3" title="3">SATSex1 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATM<span class="op">+</span>SEX, <span class="dt">data=</span>satGPA) <span class="co">#Fit lm with SATM and SEX</span></a>
-<a class="sourceLine" id="cb764-4" title="4"><span class="kw">summary</span>(SATSex1)</a></code></pre></div>
+<div class="sourceCode" id="cb767"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb767-1" title="1">satGPA<span class="op">$</span>GENDER &lt;-<span class="st"> </span><span class="kw">factor</span>(satGPA<span class="op">$</span>sex) <span class="co">#Make 1,2 coded sex into factor GENDER</span></a>
+<a class="sourceLine" id="cb767-2" title="2"><span class="kw">levels</span>(satGPA<span class="op">$</span>GENDER) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) <span class="co">#Make category names clear but names might be wrong</span></a>
+<a class="sourceLine" id="cb767-3" title="3">SATGENDER1 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATM<span class="op">+</span>GENDER, <span class="dt">data=</span>satGPA) <span class="co">#Fit lm with SATM and SEX</span></a>
+<a class="sourceLine" id="cb767-4" title="4"><span class="kw">summary</span>(SATGENDER1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = FYGPA ~ SATM + SEX, data = satGPA)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.42124 -0.42363  0.01868  0.46540  1.66397 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)  0.21589    0.14858   1.453    0.147
-## SATM         0.03861    0.00258  14.969  &lt; 2e-16
-## SEXFEMALE    0.31322    0.04360   7.184 1.32e-12
-## 
-## Residual standard error: 0.6667 on 997 degrees of freedom
-## Multiple R-squared:  0.1917, Adjusted R-squared:  0.1901 
-## F-statistic: 118.2 on 2 and 997 DF,  p-value: &lt; 2.2e-16</code></pre>
-
-<div class="figure"><span id="fig:Figure8-17"></span>
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="Plot of FYGPA vs SATV by Sex of students." width="960" />
-<p class="caption">
-Figure 2.166: Plot of FYGPA vs SATV by Sex of students.
-</p>
-</div>
-
-<div class="figure"><span id="fig:Figure8-18"></span>
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-18-1.png" alt="Plot of FYGPA vs SATM by Sex of students." width="960" />
-<p class="caption">
-Figure 2.167: Plot of FYGPA vs SATM by Sex of students.
-</p>
-</div>
-<p>The <code>SEX</code> row contains information that the linear model chose <em>MALE</em> as
-the baseline category and <em>FEMALE</em> as the deviation category since <em>MALE</em> does
-not show up in the output. To see what <code>lm</code> is doing for us when we give it a
-two-level categorical variable, we can create our own “numerical” predictor that
-is 0 for <em>males</em> and 1 for <em>females</em> that we called <code>SEXINDICATOR</code>, displayed
-for the first 10 observations:</p>
-<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb766-1" title="1"><span class="co"># Convert logical to 0 for male, 1 for female</span></a>
-<a class="sourceLine" id="cb766-2" title="2">satGPA<span class="op">$</span>SEXINDICATOR &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(satGPA<span class="op">$</span>SEX<span class="op">==</span><span class="st">&quot;FEMALE&quot;</span>) </a>
-<a class="sourceLine" id="cb766-3" title="3"><span class="co"># Explore first few observations</span></a>
-<a class="sourceLine" id="cb766-4" title="4"><span class="kw">head</span>(<span class="kw">tibble</span>(<span class="dt">SEX=</span>satGPA<span class="op">$</span>SEX, <span class="dt">SEXINDICATOR=</span>satGPA<span class="op">$</span>SEXINDICATOR), <span class="dv">10</span>) </a></code></pre></div>
-<pre><code>## # A tibble: 10 x 2
-##    SEX    SEXINDICATOR
-##    &lt;fct&gt;         &lt;dbl&gt;
-##  1 MALE              0
-##  2 FEMALE            1
-##  3 FEMALE            1
-##  4 MALE              0
-##  5 MALE              0
-##  6 FEMALE            1
-##  7 MALE              0
-##  8 MALE              0
-##  9 FEMALE            1
-## 10 MALE              0</code></pre>
-<p>We can define the indicator variable more generally by calling it
-<span class="math inline">\(I_{\text{Female},i}\)</span> to denote that it is an indicator
-<span class="math inline">\((I)\)</span> that takes on a value of 1 for
-observations in the category <em>Female</em> and 0 otherwise (<em>Male</em>) – changing based
-on the observation (<span class="math inline">\(i\)</span>). Indicator variables, once created,
-are quantitative variables that take on values of 0 or 1 and we can put them
-directly
-into linear models with other <span class="math inline">\(x\text{&#39;s}\)</span> (quantitative or categorical). If we
-replace the categorical <code>SEX</code> variable with our quantitative <code>SEXINDICATOR</code>
-and re-fit the model, we get:</p>
-<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb768-1" title="1">SATSex2 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATM<span class="op">+</span>SEXINDICATOR, <span class="dt">data=</span>satGPA)</a>
-<a class="sourceLine" id="cb768-2" title="2"><span class="kw">summary</span>(SATSex2)</a></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = FYGPA ~ SATM + SEXINDICATOR, data = satGPA)
+## lm(formula = FYGPA ~ SATM + GENDER, data = satGPA)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -412,13 +347,79 @@ and re-fit the model, we get:</p>
 ##              Estimate Std. Error t value Pr(&gt;|t|)
 ## (Intercept)   0.21589    0.14858   1.453    0.147
 ## SATM          0.03861    0.00258  14.969  &lt; 2e-16
-## SEXINDICATOR  0.31322    0.04360   7.184 1.32e-12
+## GENDERFEMALE  0.31322    0.04360   7.184 1.32e-12
+## 
+## Residual standard error: 0.6667 on 997 degrees of freedom
+## Multiple R-squared:  0.1917, Adjusted R-squared:  0.1901 
+## F-statistic: 118.2 on 2 and 997 DF,  p-value: &lt; 2.2e-16</code></pre>
+
+<div class="figure"><span id="fig:Figure8-17"></span>
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="Plot of FYGPA vs SATV by Sex of students." width="960" />
+<p class="caption">
+Figure 2.167: Plot of FYGPA vs SATV by Sex of students.
+</p>
+</div>
+
+<div class="figure"><span id="fig:Figure8-18"></span>
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-18-1.png" alt="Plot of FYGPA vs SATM by Sex of students." width="960" />
+<p class="caption">
+Figure 2.168: Plot of FYGPA vs SATM by Sex of students.
+</p>
+</div>
+<p>The <code>GENDER</code> row contains information that the linear model chose <em>MALE</em> as
+the baseline category and <em>FEMALE</em> as the deviation category since <em>MALE</em> does
+not show up in the output. To see what <code>lm</code> is doing for us when we give it a
+two-level categorical variable, we can create our own “numerical” predictor that
+is 0 for <em>males</em> and 1 for <em>females</em> that we called <code>GENDERINDICATOR</code>, displayed
+for the first 10 observations:</p>
+<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb769-1" title="1"><span class="co"># Convert logical to 0 for male, 1 for female</span></a>
+<a class="sourceLine" id="cb769-2" title="2">satGPA<span class="op">$</span>GENDERINDICATOR &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(satGPA<span class="op">$</span>GENDER<span class="op">==</span><span class="st">&quot;FEMALE&quot;</span>) </a>
+<a class="sourceLine" id="cb769-3" title="3"><span class="co"># Explore first few observations</span></a>
+<a class="sourceLine" id="cb769-4" title="4"><span class="kw">head</span>(<span class="kw">tibble</span>(<span class="dt">GENDER=</span>satGPA<span class="op">$</span>GENDER, <span class="dt">GENDERINDICATOR=</span>satGPA<span class="op">$</span>GENDERINDICATOR), <span class="dv">10</span>) </a></code></pre></div>
+<pre><code>## # A tibble: 10 x 2
+##    GENDER GENDERINDICATOR
+##    &lt;fct&gt;            &lt;dbl&gt;
+##  1 MALE                 0
+##  2 FEMALE               1
+##  3 FEMALE               1
+##  4 MALE                 0
+##  5 MALE                 0
+##  6 FEMALE               1
+##  7 MALE                 0
+##  8 MALE                 0
+##  9 FEMALE               1
+## 10 MALE                 0</code></pre>
+<p>We can define the indicator variable more generally by calling it
+<span class="math inline">\(I_{\text{Female},i}\)</span> to denote that it is an indicator
+<span class="math inline">\((I)\)</span> that takes on a value of 1 for
+observations in the category <em>Female</em> and 0 otherwise (<em>Male</em>) – changing based
+on the observation (<span class="math inline">\(i\)</span>). Indicator variables, once created,
+are quantitative variables that take on values of 0 or 1 and we can put them
+directly
+into linear models with other <span class="math inline">\(x\text{&#39;s}\)</span> (quantitative or categorical). If we
+replace the categorical <code>GENDER</code> variable with our quantitative <code>GENDERINDICATOR</code>
+and re-fit the model, we get:</p>
+<div class="sourceCode" id="cb771"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb771-1" title="1">SATGENDER2 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATM<span class="op">+</span>GENDERINDICATOR, <span class="dt">data=</span>satGPA)</a>
+<a class="sourceLine" id="cb771-2" title="2"><span class="kw">summary</span>(SATGENDER2)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = FYGPA ~ SATM + GENDERINDICATOR, data = satGPA)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.42124 -0.42363  0.01868  0.46540  1.66397 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)      0.21589    0.14858   1.453    0.147
+## SATM             0.03861    0.00258  14.969  &lt; 2e-16
+## GENDERINDICATOR  0.31322    0.04360   7.184 1.32e-12
 ## 
 ## Residual standard error: 0.6667 on 997 degrees of freedom
 ## Multiple R-squared:  0.1917, Adjusted R-squared:  0.1901 
 ## F-statistic: 118.2 on 2 and 997 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>This matches all the previous <code>lm</code> output except that we didn’t get any
-information on the categories used since <code>lm</code> didn’t know that SEXINDICATOR
+information on the categories used since <code>lm</code> didn’t know that GENDERINDICATOR
 was anything different from other quantitative predictors.</p>
 <p>Now we want to think about what this model means. We can write the estimated
 model as</p>
@@ -430,11 +431,11 @@ model as</p>
 y-intercept. The following
 works this out step-by-step, simplifying the MLR into two SLRs:</p>
 <ul>
-<li><p>Simplified model for <em>Males</em> (plug in a 0 for <span class="math inline">\(I_{\text{Female}}\)</span>):</p>
+<li><p>Simplified model for <em>Males</em> (plug in a 0 for <span class="math inline">\(I_{\text{Female},i}\)</span>):</p>
 <ul>
 <li><span class="math inline">\(\widehat{\text{FYGPA}}_i = 0.216 + 0.0386\cdot\text{SATM}_i +  0.313*0 = 0.216 + 0.0386\cdot\text{SATM}_i\)</span></li>
 </ul></li>
-<li><p>Simplified model for <em>Females</em> (plug in a 1 for <span class="math inline">\(I_{\text{Female}}\)</span>):</p>
+<li><p>Simplified model for <em>Females</em> (plug in a 1 for <span class="math inline">\(I_{\text{Female},i}\)</span>):</p>
 <ul>
 <li><p><span class="math inline">\(\widehat{\text{FYGPA}}_i = 0.216 + 0.0386\cdot\text{SATM}_i + 0.313*1\)</span></p></li>
 <li><p><span class="math inline">\(= 0.216 + 0.0386\cdot\text{SATM}_i + 0.313\)</span> (combine “like” terms to
@@ -448,29 +449,29 @@ simplify the equation)</p></li>
 <span class="math inline">\((\widehat{\text{FYGPA}}_i= 0.529 + 0.0386\cdot\text{SATM}_i)\)</span>. The only difference
 between these two models is in the y-intercept, with the <em>female</em> model’s
 y-intercept shifted up from the <em>male</em> y-intercept by 0.313. And that is what
-adding indicator variables into models does in general<a href="#fn127" class="footnote-ref" id="fnref127"><sup>127</sup></a> – it shifts the intercept up or down from
+adding indicator variables into models does in general<a href="#fn128" class="footnote-ref" id="fnref128"><sup>128</sup></a> – it shifts the intercept up or down from
 the baseline group (here selected as <em>males</em>) to get a new intercept for the
 deviation group (here <em>females</em>).</p>
-<p>To make this visually clearer, Figure <a href="8-9-section8-9.html#fig:Figure8-19">2.168</a> contains the
+<p>To make this visually clearer, Figure <a href="8-9-section8-9.html#fig:Figure8-19">2.169</a> contains the
 regression lines that were estimated for each
 group. For any <em>SATM</em>, the difference in the groups is the 0.313 coefficient from
-the <code>SEXFEMALE</code> or <code>SEXINDICATOR</code> row of the model summaries. For example,
+the <code>GENDERFEMALE</code> or <code>GENDERINDICATOR</code> row of the model summaries. For example,
 at <em>SATM</em>=50, the difference in terms of predicted average first year GPAs
 between males and females is displayed as a difference between 2.15 and 2.46.
 This model assumes that the slope on <em>SATM</em> is the same for both groups except
 that they are allowed to have different y-intercepts, which is reasonable here
 because we saw approximately parallel relationships for the two groups in
-Figure <a href="8-9-section8-9.html#fig:Figure8-18">2.167</a>.</p>
-<p>(ref:fig8-19) Plot of estimated model for <em>FYGPA</em> vs <em>SATM</em> by <em>SEX</em> of
-students (female line is thicker red line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group.</p>
+Figure <a href="8-9-section8-9.html#fig:Figure8-18">2.168</a>.</p>
+<p>(ref:fig8-19) Plot of estimated model for <em>FYGPA</em> vs <em>SATM</em> by <em>GENDER</em> of
+students (female line is thicker dark line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group.</p>
 <div class="figure"><span id="fig:Figure8-19"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-19-1.png" alt="(ref:fig8-19)" width="576" />
 <p class="caption">
-Figure 2.168: (ref:fig8-19)
+Figure 2.169: (ref:fig8-19)
 </p>
 </div>
 <p>Remember that <code>lm</code> selects baseline categories typically based on the
-alphabetical order of the levels of the categorical variable. Here, the <code>SEX</code>
+alphabetical order of the levels of the categorical variable when it is created unless the <code>reorder</code> function is used to change the order. Here, the <code>GENDER</code>
 variable started with a coding of 1 and 2 and retained that
 order even with the recoding of levels that we created to give it more explicit
 names. Because we allow <code>lm</code> to create indicator variables for us, the main
@@ -498,41 +499,48 @@ the model that includes <span class="math inline">\(x_i\)</span>. When we make t
 a quantitative and additive categorical variable, the two reported model
 components match with the previous discussion – the same estimated term from
 the quantitative variable for all observations and a shift to reflect the
-different y-intercepts in the two groups. In Figure <a href="8-9-section8-9.html#fig:Figure8-20">2.169</a>, the
+different y-intercepts in the two groups. In Figure <a href="8-9-section8-9.html#fig:Figure8-20">2.170</a>, the
 females are estimated to be that same 0.313 points higher on first year GPA.
 The males have a mean GPA slightly above 2.3 which is the predicted GPA for the
-average SATM percentile (remember that we have to hold the other variable at
-its mean to make each term-plot)<a href="#fn128" class="footnote-ref" id="fnref128"><sup>128</sup></a>.</p>
+average SATM percentile for a male (remember that we have to hold the other variable at
+its mean to make each term-plot). When making the SATM term-plot, the
+categorical variable is held at the most
+frequently occurring value (modal category) in the data set, which is for males in this data set.</p>
 <p>(ref:fig8-20) Term-plots for the estimated model for
-<span class="math inline">\(\text{FYGPA}\sim\text{SATM} + \text{SEX}\)</span>.</p>
-<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb770-1" title="1"><span class="kw">require</span>(effects)</a>
-<a class="sourceLine" id="cb770-2" title="2"><span class="kw">plot</span>(<span class="kw">allEffects</span>(SATSex1))</a></code></pre></div>
+<span class="math inline">\(\text{FYGPA}\sim\text{SATM} + \text{GENDER}\)</span>.</p>
+<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb773-1" title="1"><span class="kw">tally</span>(GENDER<span class="op">~</span><span class="dv">1</span>, <span class="dt">data=</span>satGPA)</a></code></pre></div>
+<pre><code>##         1
+## GENDER     1
+##   MALE   516
+##   FEMALE 484</code></pre>
+<div class="sourceCode" id="cb775"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb775-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(SATGENDER1))</a></code></pre></div>
 <div class="figure"><span id="fig:Figure8-20"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-20-1.png" alt="(ref:fig8-20)" width="576" />
 <p class="caption">
-Figure 2.169: (ref:fig8-20)
+Figure 2.170: (ref:fig8-20)
 </p>
 </div>
 <p>The model summary and confidence intervals provide some potential interesting
 inferences in these models. Again, these are just applications of MLR methods
 we have already seen except that the definition of one of the variables is
-“different” using the indicator coding idea.  For the same model, the <code>SEX</code>
+“different” using the indicator coding idea.  For the same model, the <code>GENDER</code>
 coefficient can be used to generate inferences for differences in the mean the
 groups, controlling for their <em>SATM</em> scores.</p>
-<pre><code>## SEXFEMALE    0.31322    0.04360   7.184 1.32e-12</code></pre>
+<pre><code>##                Estimate Std. Error t value Pr(&gt;|t|)
+## GENDERFEMALE    0.31322    0.04360   7.184 1.32e-12</code></pre>
 <p>Testing the null hypothesis that <span class="math inline">\(H_0: \beta_2=0\)</span> vs <span class="math inline">\(H_A: \beta_2\ne 0\)</span> using
 our regular <span class="math inline">\(t\)</span>-test provides the opportunity to test for a difference in
 intercepts between the groups. In this situation, the test
 statistic is <span class="math inline">\(t=7.184\)</span> and, based on a <span class="math inline">\(t_{997}\)</span>-distribution
-if the null is true, the p-value is <span class="math inline">\(&lt;0.0001\)</span>. We have very strong evidence that there is a difference in the true
-y-intercept in a <em>SATM</em> model for first year college GPA between <em>males</em> and <em>females</em>. The confidence
+if the null is true, the p-value is <span class="math inline">\(&lt;0.0001\)</span>. We have very strong evidence against the null hypothesis that there is no difference in the true
+y-intercept in a <em>SATM</em> model for first year college GPA between <em>males</em> and <em>females</em>, so we would conclude that there is difference in their true mean GPA levels controlled for <em>SATM</em>. The confidence
 interval is also informative:</p>
 
-<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb772-1" title="1"><span class="kw">confint</span>(SATSex1)</a></code></pre></div>
-<pre><code>##                   2.5 %     97.5 %
-## (Intercept) -0.07566665 0.50744709
-## SATM         0.03355273 0.04367726
-## SEXFEMALE    0.22766284 0.39877160</code></pre>
+<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb777-1" title="1"><span class="kw">confint</span>(SATGENDER1)</a></code></pre></div>
+<pre><code>##                    2.5 %     97.5 %
+## (Intercept)  -0.07566665 0.50744709
+## SATM          0.03355273 0.04367726
+## GENDERFEMALE  0.22766284 0.39877160</code></pre>
 <p>We are 95% confident that the true mean GPA for females is between 0.228 and
 0.399 points higher than for males, after adjusting for the <em>SATM</em> in the
 population of students. If we had subset the data set and fit two SLRs, we
@@ -545,26 +553,19 @@ in the intercept for each group.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="124">
-<li id="fn124"><p>We
+<ol start="126">
+<li id="fn126"><p>We
 are actually making an educated guess about what these codes mean. Other
 similar data sets used 1 for males but the documentation on these data is a bit
 sparse. We proceed with a small potential that the conclusions regarding
-differences in <code>sex</code> are in the wrong direction.<a href="8-9-section8-9.html#fnref124" class="footnote-back">↩</a></p></li>
-<li id="fn125"><p>Some people also call them <strong><em>dummy variables</em></strong> to reflect that they are stand-ins for dealing with the categorical information.<a href="8-9-section8-9.html#fnref125" class="footnote-back">↩</a></p></li>
-<li id="fn126"><p>That may not read
-how I intended…<a href="8-9-section8-9.html#fnref126" class="footnote-back">↩</a></p></li>
-<li id="fn127"><p>This is true for
+differences in gender are in the wrong direction.<a href="8-9-section8-9.html#fnref126" class="footnote-back">↩</a></p></li>
+<li id="fn127"><p>Some people also call them <strong><em>dummy variables</em></strong> to reflect that they are stand-ins for dealing with the categorical information. But it seems like a harsh anthropomorphism so I prefer “indicators”.<a href="8-9-section8-9.html#fnref127" class="footnote-back">↩</a></p></li>
+<li id="fn128"><p>This is true for
 additive uses of indicator variables. In Section <a href="8-11-section8-11.html#section8-11">8.11</a>, we
 consider interactions between quantitative and categorical variables which has
 the effect of changing slopes and intercepts. The simplification ideas to
 produce estimated equations for each group are used there but we have to account
-for changing slopes by group too.<a href="8-9-section8-9.html#fnref127" class="footnote-back">↩</a></p></li>
-<li id="fn128"><p>When making the SATM term-plot, the
-categorical variable is held at the most
-frequently occurring value in the data set. If you drop <code>ci.style="lines"</code>
-from the effect plot options, it is best to copy the figures as Bitmaps or
-save them as an image or they may (for some reason) lose the shaded bands in some word processing programs.<a href="8-9-section8-9.html#fnref128" class="footnote-back">↩</a></p></li>
+for changing slopes by group too.<a href="8-9-section8-9.html#fnref128" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

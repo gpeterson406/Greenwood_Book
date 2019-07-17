@@ -280,45 +280,40 @@ subject was measured twice (so the total sample size in the data set is 50) in
 the data set provided that is available at
 <a href="http://www.math.montana.edu/courses/s217/documents/epworthdata.csv" class="uri">http://www.math.montana.edu/courses/s217/documents/epworthdata.csv</a>.</p>
 <p>The data set was not initially provided by the researchers, but they
-did provide a plot very similar to Figure <a href="9-5-section9-5.html#fig:Figure9-12">2.197</a>. Since this
-is last section of the book, I am going to use a new package to make the plot,
+did provide a plot very similar to Figure <a href="9-5-section9-5.html#fig:Figure9-12">2.203</a>. Since this
+is the last section of the book, I am going to use a new package to make the plot,
 <code>qplot</code> from the <code>ggplot2</code> package <span class="citation">(Wickham et al. <a href="#ref-R-ggplot2" role="doc-biblioref">2019</a>)</span>, that violates one of
 the rules used for R functions to this point - it doesn’t have a formula interface.
-
-The <code>viridis</code> package <span class="citation">(Garnier <a href="#ref-R-viridis" role="doc-biblioref">2018</a>)</span> was used to specify the colors in the plot.
 
 If you continue much further in learning to use R, you will see the benefits
 of some other functions and styles of functions. You will also likely run into
 the <code>ggplot2</code> package, which is part of the “tidyverse” and has been developed
 to implement sophisticated graphics. For more on this, you can visit
-<a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a> and the related book by Hadley Wickham, who orks for RStudio. We could have used <code>ggplot2</code> to make every graph in the
+<a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a> and the related book by Hadley Wickham, who works for RStudio. We could have used <code>ggplot2</code> to make every graph in the
 book, but elected to focus on functions that rely on formula interfaces. For now, I am going to use it to make Figure
-<a href="9-5-section9-5.html#fig:Figure9-12">2.197</a> with the <code>qplot</code> function that allows me to display a
+<a href="9-5-section9-5.html#fig:Figure9-12">2.203</a> with the <code>qplot</code> function that allows me to display a
 line for each subject over the two time points (pre and post) of observation
 and indicate which group the subjects were assigned to. This allows us to see
 the variation at a given time across subjects and changes over time, which is
 critical here as this shows clearly why we had a violation of the independence
 assumption in these data. In the plot, you can see that there are not clear differences in the two groups at the “Pre” time but that treated group seems
 to have most of the lines go down to lower sleepiness ratings and that this is
-not happening much for the subjects in the control group. The violation of the independence assumption is diagnosable from the study design (two observations on each subject). The plot allows us to go further and see that many subjects had similar Epworth scores from pre to post (high in pre, generally high in post) once we account for systemtic changes in the treated subjects.</p>
+not happening much for the subjects in the control group. The violation of the independence assumption is diagnosable from the study design (two observations on each subject). The plot allows us to go further and see that many subjects had similar Epworth scores from pre to post (high in pre, generally high in post) once we account for systematic changes in the treated subjects that seemed to drop a bit on average.</p>
 
-<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb864-1" title="1"><span class="kw">require</span>(readr)</a>
-<a class="sourceLine" id="cb864-2" title="2">epworthdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/epworthdata.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb864-3" title="3">epworthdata<span class="op">$</span>Time &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Time)</a>
-<a class="sourceLine" id="cb864-4" title="4"><span class="kw">levels</span>(epworthdata<span class="op">$</span>Time) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Pre&quot;</span> , <span class="st">&quot;Post&quot;</span>)</a>
-<a class="sourceLine" id="cb864-5" title="5">epworthdata<span class="op">$</span>Group &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Group)</a>
-<a class="sourceLine" id="cb864-6" title="6"><span class="kw">levels</span>(epworthdata<span class="op">$</span>Group) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Control&quot;</span> , <span class="st">&quot;Didgeridoo&quot;</span>)</a>
-<a class="sourceLine" id="cb864-7" title="7"></a>
-<a class="sourceLine" id="cb864-8" title="8"><span class="kw">require</span>(ggplot2)</a>
-<a class="sourceLine" id="cb864-9" title="9"><span class="kw">require</span>(ggthemes)</a>
-<a class="sourceLine" id="cb864-10" title="10"><span class="kw">require</span>(viridis)</a>
-<a class="sourceLine" id="cb864-11" title="11"><span class="kw">qplot</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Epworth, <span class="dt">data =</span> epworthdata, </a>
-<a class="sourceLine" id="cb864-12" title="12">      <span class="dt">group =</span> Subject, <span class="dt">colour =</span> Group, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;line&quot;</span>,</a>
-<a class="sourceLine" id="cb864-13" title="13">      <span class="st">&quot;point&quot;</span>))<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb875-1" title="1">epworthdata &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/epworthdata.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb875-2" title="2">epworthdata<span class="op">$</span>Time &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Time)</a>
+<a class="sourceLine" id="cb875-3" title="3"><span class="kw">levels</span>(epworthdata<span class="op">$</span>Time) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Pre&quot;</span> , <span class="st">&quot;Post&quot;</span>)</a>
+<a class="sourceLine" id="cb875-4" title="4">epworthdata<span class="op">$</span>Group &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Group)</a>
+<a class="sourceLine" id="cb875-5" title="5"><span class="kw">levels</span>(epworthdata<span class="op">$</span>Group) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Control&quot;</span> , <span class="st">&quot;Didgeridoo&quot;</span>)</a>
+<a class="sourceLine" id="cb875-6" title="6"></a>
+<a class="sourceLine" id="cb875-7" title="7"><span class="kw">library</span>(ggplot2); <span class="kw">library</span>(ggthemes)</a>
+<a class="sourceLine" id="cb875-8" title="8"><span class="kw">qplot</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> Epworth, <span class="dt">data =</span> epworthdata, </a>
+<a class="sourceLine" id="cb875-9" title="9">      <span class="dt">group =</span> Subject, <span class="dt">colour =</span> Group, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;line&quot;</span>,</a>
+<a class="sourceLine" id="cb875-10" title="10">      <span class="st">&quot;point&quot;</span>))<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>) </a></code></pre></div>
 <div class="figure"><span id="fig:Figure9-12"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-12-1.png" alt="Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time." width="960" />
 <p class="caption">
-Figure 2.197: Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time.
+Figure 2.203: Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time.
 </p>
 </div>
 <p>This plot seems to contradict the result from the following Two-Way
@@ -330,10 +325,10 @@ as seen in Table <a href="9-5-section9-5.html#tab:Table9-2">2.15</a>). But this 
 observations are independent and so does not account for the repeated measures
 on the same subjects. It ends up that if we account for systematic differences
 in subjects, we can (sometimes) find the differences we are interested in more
-clearly.</p>
-<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb865-1" title="1"><span class="kw">require</span>(car)</a>
-<a class="sourceLine" id="cb865-2" title="2">lm_int &lt;-<span class="st"> </span><span class="kw">lm</span>(Epworth <span class="op">~</span><span class="st"> </span>Time<span class="op">*</span>Group,<span class="dt">data=</span>epworthdata)</a>
-<a class="sourceLine" id="cb865-3" title="3"><span class="kw">Anova</span>(lm_int)</a></code></pre></div>
+clearly. We can see that this model does not really seem to capture the full structure of the real data by comparing simulated data to the original one, as in Figure <a href="9-5-section9-5.html#fig:Figure9-13">2.204</a>. The real data set had fairly strong relationships between the pre and post scores but this connection seems to disappear in responses simulated from the estimated Two-Way ANOVA model (that assumes all observations are independent).</p>
+<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb876-1" title="1"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb876-2" title="2">lm_int &lt;-<span class="st"> </span><span class="kw">lm</span>(Epworth <span class="op">~</span><span class="st"> </span>Time<span class="op">*</span>Group,<span class="dt">data=</span>epworthdata)</a>
+<a class="sourceLine" id="cb876-3" title="3"><span class="kw">Anova</span>(lm_int)</a></code></pre></div>
 
 <table>
 <caption><span id="tab:Table9-2">Table 2.15: </span>ANOVA table from Two-Way ANOVA interaction model.</caption>
@@ -377,6 +372,13 @@ clearly.</p>
 </tr>
 </tbody>
 </table>
+
+<div class="figure"><span id="fig:Figure9-13"></span>
+<img src="09-caseStudies_files/figure-html/Figure9-13-1.png" alt="Plot of simulated data from the Two-Way ANOVA model that does not assume observations are on repeated measures on subjects to compare to the real data set. Even though the treatment levels seem to decrease on average, there is a much less clear relationship between the starting and ending values in the individuals." width="960" />
+<p class="caption">
+Figure 2.204: Plot of simulated data from the Two-Way ANOVA model that does not assume observations are on repeated measures on subjects to compare to the real data set. Even though the treatment levels seem to decrease on average, there is a much less clear relationship between the starting and ending values in the individuals.
+</p>
+</div>
 <p>If the issue is failing to account for differences in subjects, then
 why not add “Subject” to the model? There are two things to consider. First,
 we would need to make sure that “Subject” is a factor variable as the “Subject”
@@ -387,8 +389,8 @@ term-plot for Subject extremely challenging. Fortunately, we are not too
 concerned about how much higher or lower an individual is than a baseline
 subject, but we do need to account for it in the model. This sort of “repeated
 measures” modeling is more often handled by a more complex set of extended
-regression models that are called mixed effects models and are designed to
-handle this sort of grouping variable with many levels.</p>
+regression models that are called linear mixed models and are designed to
+handle this sort of grouping variable with many levels. </p>
 <p>But if we put the Subject factor variable into the previous model, we
 can use Type II ANOVA tests to test for an interaction between Time and Group
 (our primary research question) after controlling for subject-to-subject
@@ -398,12 +400,12 @@ this model (and why we more typically used mixed models to do this sort of
 thing). Despite this, the test for <code>Time:Group</code> in Table <a href="9-5-section9-5.html#tab:Table9-3">2.16</a>
 is correct and now accounts for the repeated measures on the subject. It
 provides <span class="math inline">\(F(1,23)=5.43\)</span> with a p-value of 0.029, suggesting that there is
-moderate evidence for retaining that interaction in the model. This is a
+moderate evidence against the null hypothesis of no interaction of time and group once we account for subject. This is a
 notably different result from what we observed in the Two-Way ANOVA
-interaction model that didn’t account for repeated measures on the subjects.</p>
-<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb866-1" title="1">epworthdata<span class="op">$</span>Subject &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Subject)</a>
-<a class="sourceLine" id="cb866-2" title="2">lm_int_wsub &lt;-<span class="st"> </span><span class="kw">lm</span>(Epworth <span class="op">~</span><span class="st"> </span>Time <span class="op">*</span><span class="st"> </span>Group <span class="op">+</span><span class="st"> </span>Subject,<span class="dt">data=</span>epworthdata)</a>
-<a class="sourceLine" id="cb866-3" title="3"><span class="kw">Anova</span>(lm_int_wsub)</a></code></pre></div>
+interaction model that didn’t account for repeated measures on the subjects and matches the results in the original paper closely.</p>
+<div class="sourceCode" id="cb877"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb877-1" title="1">epworthdata<span class="op">$</span>Subject &lt;-<span class="st"> </span><span class="kw">factor</span>(epworthdata<span class="op">$</span>Subject)</a>
+<a class="sourceLine" id="cb877-2" title="2">lm_int_wsub &lt;-<span class="st"> </span><span class="kw">lm</span>(Epworth <span class="op">~</span><span class="st"> </span>Time <span class="op">*</span><span class="st"> </span>Group <span class="op">+</span><span class="st"> </span>Subject,<span class="dt">data=</span>epworthdata)</a>
+<a class="sourceLine" id="cb877-3" title="3"><span class="kw">Anova</span>(lm_int_wsub)</a></code></pre></div>
 
 <table>
 <caption><span id="tab:Table9-3">Table 2.16: </span>ANOVA table from Two-Way ANOVA interaction model.</caption>
@@ -457,10 +459,10 @@ interaction model that didn’t account for repeated measures on the subjects.</
 <p>With this result, we would usually explore the term-plots from this
 model to get a sense of the pattern of the changes over time in the treatment
 and control groups. That aliasing issue means that the “effects” function also
-has some issues. To see the effects plots, we need to use a mixed effects model
+has some issues. To see the effects plots, we need to use a linear mixed model
 from the <code>nlme</code> package. This model is beyond the scope of this material, but
 it provides the same <span class="math inline">\(F\)</span>-statistic for the interaction (<span class="math inline">\(F(1,23)=5.43\)</span>) and the
-term-plots can now be produced (Figure <a href="9-5-section9-5.html#fig:Figure9-13">2.198</a>). In that plot, we
+term-plots can now be produced (Figure <a href="9-5-section9-5.html#fig:Figure9-14">2.205</a>). In that plot, we
 again see that the didgeridoo group mean for “Post” is noticeably lower than in
 the “Pre” and that the changes in the control group were minimal over the four
 months. This difference in the changes over time was present in the initial
@@ -469,30 +471,26 @@ able to detect this difference. While these results rely on more complex models
 than we have time to discuss here, hopefully the similarity of the results of
 interest should resonate with the methods we have been exploring while hinting
 at more possibilities if you learn more statistical methods.</p>
-<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb867-1" title="1"><span class="kw">require</span>(nlme)</a>
-<a class="sourceLine" id="cb867-2" title="2">lme_int &lt;-<span class="st"> </span><span class="kw">lme</span>(Epworth <span class="op">~</span><span class="st"> </span>Time<span class="op">*</span>Group, <span class="dt">random=</span><span class="op">~</span><span class="dv">1</span><span class="op">|</span>Subject, <span class="dt">data=</span>epworthdata)</a>
-<a class="sourceLine" id="cb867-3" title="3"><span class="kw">anova</span>(lme_int)</a></code></pre></div>
+<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb878-1" title="1"><span class="kw">library</span>(nlme)</a>
+<a class="sourceLine" id="cb878-2" title="2">lme_int &lt;-<span class="st"> </span><span class="kw">lme</span>(Epworth <span class="op">~</span><span class="st"> </span>Time<span class="op">*</span>Group, <span class="dt">random=</span><span class="op">~</span><span class="dv">1</span><span class="op">|</span>Subject, <span class="dt">data=</span>epworthdata)</a>
+<a class="sourceLine" id="cb878-3" title="3"><span class="kw">anova</span>(lme_int)</a></code></pre></div>
 <pre><code>##             numDF denDF   F-value p-value
 ## (Intercept)     1    23 132.81354  &lt;.0001
 ## Time            1    23  22.41014  0.0001
 ## Group           1    23   0.23175  0.6348
 ## Time:Group      1    23   5.43151  0.0289</code></pre>
-<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb869-1" title="1"><span class="kw">require</span>(effects)</a>
-<a class="sourceLine" id="cb869-2" title="2"><span class="kw">plot</span>(<span class="kw">allEffects</span>(lme_int), <span class="dt">multiline=</span>T, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">ci.style=</span><span class="st">&quot;bars&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb880-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(lme_int), <span class="dt">multiline=</span>T, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">ci.style=</span><span class="st">&quot;bars&quot;</span>, <span class="dt">grid=</span>T)</a></code></pre></div>
 
 
-<div class="figure"><span id="fig:Figure9-13"></span>
-<img src="09-caseStudies_files/figure-html/Figure9-13-1.png" alt="Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model." width="960" />
+<div class="figure"><span id="fig:Figure9-14"></span>
+<img src="09-caseStudies_files/figure-html/Figure9-14-1.png" alt="Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model." width="960" />
 <p class="caption">
-Figure 2.198: Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
+Figure 2.205: Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
 </p>
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-R-viridis">
-<p>Garnier, Simon. 2018. <em>Viridis: Default Color Maps from ’Matplotlib’</em>. <a href="https://CRAN.R-project.org/package=viridis">https://CRAN.R-project.org/package=viridis</a>.</p>
-</div>
 <div id="ref-Puhan2006">
 <p>Puhan, Milo A, Alex Suarez, Christian Lo Cascio, Alfred Zahn, Markus Heitz, and Otto Braendli. 2006. “Didgeridoo Playing as Alternative Treatment for Obstructive Sleep Apnoea Syndrome: Randomised Controlled Trial.” <em>BMJ</em> 332 (7536): 266–70. <a href="https://doi.org/10.1136/bmj.38705.470590.55">https://doi.org/10.1136/bmj.38705.470590.55</a>.</p>
 </div>

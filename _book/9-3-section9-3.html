@@ -274,36 +274,35 @@ a large entrance but was dark and the other that had a small entrance but was
 bright. 54 of the 60 colonies that were randomly assigned to one of the two
 treatments completed the experiment by making a choice between the two types of
 sites. The data set and some processing code follows.</p>
-<p>The first question of interest is what type of analysis is appropriate here.
+<p>The first question is what type of analysis is appropriate here.
 Once we recognize that there are two categorical variables being considered
 (<em>Treatment</em> group with two levels and <em>After</em> choice with two levels
 <em>SmallBright</em> or <em>LargeDark</em> for what the colonies selected), then this is recognized as being within our
 Chi-square testing framework. The random assignment of colonies (the subjects
 here) to treatment levels tells us that the <strong><em>Chi-square Homogeneity test</em></strong>
-is appropriate here and that we can make causal statements if we find evidence
-of differences in the patterns of responses.</p>
+is appropriate here and that we can make causal statements about the effects of the <em>Treatment</em> groups.</p>
 
-<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb847-1" title="1">sasakipratt &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/sasakipratt.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb847-2" title="2">sasakipratt<span class="op">$</span>group &lt;-<span class="st"> </span><span class="kw">factor</span>(sasakipratt<span class="op">$</span>group)</a>
-<a class="sourceLine" id="cb847-3" title="3"><span class="kw">levels</span>(sasakipratt<span class="op">$</span>group) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Light&quot;</span>,<span class="st">&quot;Entrance&quot;</span>)</a>
-<a class="sourceLine" id="cb847-4" title="4">sasakipratt<span class="op">$</span>after &lt;-<span class="st"> </span><span class="kw">factor</span>(sasakipratt<span class="op">$</span>after)</a>
-<a class="sourceLine" id="cb847-5" title="5"><span class="kw">levels</span>(sasakipratt<span class="op">$</span>after) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SmallBright&quot;</span>,<span class="st">&quot;LargeDark&quot;</span>)</a>
-<a class="sourceLine" id="cb847-6" title="6">sasakipratt<span class="op">$</span>before &lt;-<span class="st"> </span><span class="kw">factor</span>(sasakipratt<span class="op">$</span>before)</a>
-<a class="sourceLine" id="cb847-7" title="7"><span class="kw">levels</span>(sasakipratt<span class="op">$</span>before) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SmallBright&quot;</span>,<span class="st">&quot;LargeDark&quot;</span>)</a>
-<a class="sourceLine" id="cb847-8" title="8"><span class="kw">plot</span>(after<span class="op">~</span>group, <span class="dt">data=</span>sasakipratt)</a></code></pre></div>
+<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb856-1" title="1">sasakipratt &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/sasakipratt.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb856-2" title="2">sasakipratt<span class="op">$</span>group &lt;-<span class="st"> </span><span class="kw">factor</span>(sasakipratt<span class="op">$</span>group)</a>
+<a class="sourceLine" id="cb856-3" title="3"><span class="kw">levels</span>(sasakipratt<span class="op">$</span>group) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Light&quot;</span>,<span class="st">&quot;Entrance&quot;</span>)</a>
+<a class="sourceLine" id="cb856-4" title="4">sasakipratt<span class="op">$</span>after &lt;-<span class="st"> </span><span class="kw">factor</span>(sasakipratt<span class="op">$</span>after)</a>
+<a class="sourceLine" id="cb856-5" title="5"><span class="kw">levels</span>(sasakipratt<span class="op">$</span>after) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SmallBright&quot;</span>,<span class="st">&quot;LargeDark&quot;</span>)</a>
+<a class="sourceLine" id="cb856-6" title="6">sasakipratt<span class="op">$</span>before &lt;-<span class="st"> </span><span class="kw">factor</span>(sasakipratt<span class="op">$</span>before)</a>
+<a class="sourceLine" id="cb856-7" title="7"><span class="kw">levels</span>(sasakipratt<span class="op">$</span>before) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SmallBright&quot;</span>,<span class="st">&quot;LargeDark&quot;</span>)</a>
+<a class="sourceLine" id="cb856-8" title="8"><span class="kw">plot</span>(after<span class="op">~</span>group, <span class="dt">data=</span>sasakipratt)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure9-9"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-9-1.png" alt="Stacked bar chart for Ant Colony results." width="576" />
 <p class="caption">
-Figure 2.194: Stacked bar chart for Ant Colony results.
+Figure 2.199: Stacked bar chart for Ant Colony results.
 </p>
 </div>
-<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb848-1" title="1"><span class="kw">require</span>(mosaic)</a>
-<a class="sourceLine" id="cb848-2" title="2"><span class="kw">tally</span>(<span class="op">~</span>group<span class="op">+</span>after, <span class="dt">data=</span>sasakipratt)</a></code></pre></div>
+<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb857-1" title="1"><span class="kw">library</span>(mosaic)</a>
+<a class="sourceLine" id="cb857-2" title="2"><span class="kw">tally</span>(<span class="op">~</span>group<span class="op">+</span>after, <span class="dt">data=</span>sasakipratt)</a></code></pre></div>
 <pre><code>##           after
 ## group      SmallBright LargeDark
 ##   Light             19         9
 ##   Entrance           9        17</code></pre>
-<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb850-1" title="1">table1 &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>group<span class="op">+</span>after, <span class="dt">data=</span>sasakipratt, <span class="dt">margins=</span>F)</a></code></pre></div>
+<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb859-1" title="1">table1 &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>group<span class="op">+</span>after, <span class="dt">data=</span>sasakipratt, <span class="dt">margins=</span>F)</a></code></pre></div>
 <p>The null hypothesis of interest here is that there is no difference in the
 distribution of responses on <em>After</em> – the rates of their choice of den types
 – between the two treatment <em>groups</em> in the population of all ant colonies
@@ -314,23 +313,23 @@ we need all the expected cell counts to be larger than 5, so we should check
 that. Note that in the following, the <code>correct=F</code> option is used to keep the
 function from slightly modifying the statistic used that occurs when overall
 sample sizes are small.</p>
-<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb851-1" title="1"><span class="kw">chisq.test</span>(table1, <span class="dt">correct=</span>F)<span class="op">$</span>expected</a></code></pre></div>
+<div class="sourceCode" id="cb860"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb860-1" title="1"><span class="kw">chisq.test</span>(table1, <span class="dt">correct=</span>F)<span class="op">$</span>expected</a></code></pre></div>
 <pre><code>##           after
 ## group      SmallBright LargeDark
 ##   Light       14.51852  13.48148
 ##   Entrance    13.48148  12.51852</code></pre>
 <p>Our expected cell count condition is met, so we can proceed to explore the
-results of the test:</p>
-<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb853-1" title="1"><span class="kw">chisq.test</span>(table1, <span class="dt">correct=</span>F)</a></code></pre></div>
+results of the parametric test:</p>
+<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb862-1" title="1"><span class="kw">chisq.test</span>(table1, <span class="dt">correct=</span>F)</a></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  table1
 ## X-squared = 5.9671, df = 1, p-value = 0.01458</code></pre>
-<p>The <span class="math inline">\(X^2\)</span> statistic is 5.97 which, if our assumptions are met, should
+<p>The <span class="math inline">\(X^2\)</span> statistic is 5.97 which, if our assumptions hold, should
 approximately follow a Chi-square distribution with <span class="math inline">\((R-1)*(C-1)=1\)</span> degrees of
 freedom under the null hypothesis. The p-value is 0.015, suggesting that there
-is moderate to strong evidence against the null hypothesis. We can conclude that there is moderate evidence of a
+is moderate to strong evidence against the null hypothesis and we can conclude that there is a
 difference in the distribution of the responses between the two treated groups
 in the population of all ant colonies that could have been treated. Because of
 the random assignment, we can say that the treatments caused differences in the
@@ -338,7 +337,7 @@ colony choices. These results cannot be extended to ants beyond those being
 studied by these researchers because they were not randomly selected.</p>
 <p>Further exploration of the standardized residuals can provide more insights in
 some situations, although here they are similar for all the cells:</p>
-<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb855-1" title="1"><span class="kw">chisq.test</span>(table1, <span class="dt">correct=</span>F)<span class="op">$</span>residuals</a></code></pre></div>
+<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb864-1" title="1"><span class="kw">chisq.test</span>(table1, <span class="dt">correct=</span>F)<span class="op">$</span>residuals</a></code></pre></div>
 <pre><code>##           after
 ## group      SmallBright LargeDark
 ##   Light       1.176144 -1.220542
@@ -355,7 +354,7 @@ true and lower than expected in the small entrance, bright location.</p>
 model called <strong><em>logistic regression</em></strong>, which involves using something like a
 linear model but with a categorical response variable (well – it actually only
 works for a two-category response variable). They also had measured which of
-the two types of dens that each colony chose before treatment and controlled
+the two types of dens that each colony chose before treatment and used this model to control
 for that choice. So the actual model used in their paper contained two
 predictor variables – the randomized treatment received that we explored here
 and the prior choice of den type. The interpretation of their results related

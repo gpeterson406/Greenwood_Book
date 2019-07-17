@@ -68,7 +68,7 @@ those questions. There are no formulas to help us sort some of these things
 out, just critical thinking about the context of the measurements. 
 
 \indent To make this concrete, consider the data collected from a study 
-[@Walker2014] to investigate whether clothing worn by a bicyclist might impact the passing distance of cars. One of the author's wore seven different outfits (outfit for the day was chosen randomly by shuffling seven playing cards) on his regular 26 km commute near London in the United Kingdom. Using a specially instrumented bicycle, they measured how close the vehicles passed to the widest point on the handlebars. The seven outfits ("conditions") that you can view graphically at https://www.sciencedirect.com/science/article/pii/S0001457513004636 were: 
+[@Walker2014] to investigate whether clothing worn by a bicyclist might impact the passing distance of cars. One of the author's wore seven different outfits (outfit for the day was chosen randomly by shuffling seven playing cards) on his regular 26 km commute near London in the United Kingdom. Using a specially instrumented bicycle, they measured how close the vehicles passed to the widest point on the handlebars. The seven outfits ("conditions") that you can view at https://www.sciencedirect.com/science/article/pii/S0001457513004636 were: 
 
 * COMMUTE: Plain cycling jersey and pants, reflective cycle clips, commuting helmet, and bike gloves.
 
@@ -86,7 +86,7 @@ out, just critical thinking about the context of the measurements.
 
 They collected data (distance to the vehicle in cm for each car "overtake") on between 8 and 11 rides in each outfit and between 737 and 868 "overtakings" across these rides. The outfit is a categorical *predictor* or *explanatory* variable) \index{explanatory} that has seven different levels here. The distance is the *response* variable \index{response} and is a quantitative variable here^[Of particular interest to the bicycle rider might be the "close" passes and we will revisit this as a categorical response with "close" and "not close" as its two categories later.]. Note that we do not have the information on which overtake came from which ride in the data provided or the conditions related to individual overtake observations other than the distance to the vehicle (they only included overtakings that had consistent conditions for the road and riding).
 
-\indent The data are posted on my website^[Thanks to Ian Walker for allowing us to use these data.]  at http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv if you want to download the file to a local directory and then import the data into R using "Import Dataset". Or you can use the code in the following codechunk to directly read the data set into R using the URL.
+\indent The data are posted on my website^[Thanks to Ian Walker for allowing me to use and post these data.]  at http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv if you want to download the file to a local directory and then import the data into R using "Import Dataset". Or you can use the code in the following codechunk to directly read the data set into R using the URL.
 
 
 ```r
@@ -468,11 +468,7 @@ The function works like the boxplot used previously
 except that options 
 for the type of confidence interval needs to be specified with `inf.method="ci` - otherwise you will get a different kind of interval than you learned in introductory statistics and we don't want to get caught up in trying to understand the kind of interval it makes by default. There are many other options in the function that might be useful in certain situations, but that is the only one that is really needed to get started with pirate-plots.
 
-
-
-
-(ref:fig2-5) Pirate-plot of distances by outfit group. Bold horizontal lines correspond 
-to sample mean of each group, boxes around lines (here they are very narrow here) are the 95% confidence intervals.
+(ref:fig2-5) Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very narrow here) are the 95% confidence intervals.
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-5-1.png" alt="(ref:fig2-5)" width="480" />
@@ -770,9 +766,7 @@ encounter some sort of noticeable difference in the distances for the
 different outfits and have been able to find enough evidence to reject the null 
 model where the groups "look the same". 
 
-(ref:fig2-7) Illustration of the assumed situations under the null (left) 
-and a single possibility that could occur if the alternative were true 
-(right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.
+(ref:fig2-7) Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.
 
 <div class="figure">
 <img src="chapter2_files/image015.png" alt="(ref:fig2-7)" width="480" />
@@ -931,8 +925,7 @@ diffmean(Distance~PermutedCondition, data=Perm1)
 ## 12.06667
 ```
 
-(ref:fig2-8) Pirate-plots of Distance responses versus actual treatment groups and 
-permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals are more clearly visible than with the original large data set.
+(ref:fig2-8) Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals are more clearly visible than with the original large data set.
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="(ref:fig2-8)" width="672" />
@@ -1193,8 +1186,7 @@ possibilities under permutations (under the null hypothesis). So we repeat the
 loop, now with $B=1000$ and generate a histogram, density curve, and summary
 statistics of the results:
 
-(ref:fig2-9) Histogram (left, with counts in bars) and density curve (right) of 
-values of test statistic for *B* = 1,000 permutations. 
+(ref:fig2-9) Histogram (left, with counts in bars) and density curve (right) of values of test statistic for *B* = 1,000 permutations. 
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-9-1.png" alt="(ref:fig2-9)" width="960" />
@@ -1238,9 +1230,7 @@ by adding the value of the test statistic from the real data set, as shown in
 Figure \@ref(fig:Figure2-10), using the ``abline`` \index{texttt{abline}} function to draw a vertical 
 line at our $T_{obs}$ value specified in the ``v`` (for vertical) option. 
 
-(ref:fig2-10) Histogram (left) and density curve (right) of
-values of test statistic for 1,000 permutations with bold vertical line for
-value of observed test statistic. 
+(ref:fig2-10) Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic. 
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-10-1.png" alt="(ref:fig2-10)" width="960" />
@@ -1336,9 +1326,7 @@ So the p-value to test our null hypothesis of no difference in the true means
 between the groups is 0.027 + 0.017, providing a p-value of 0.044.
 Figure \@ref(fig:Figure2-11) shows both cut-offs on the histogram and density curve. 
 
-(ref:fig2-11) Histogram and density curve of values of test statistic for 1,000
-permutations with bold lines for value of observed test statistic (-25.933) and its
-opposite value (25.933) required for performing the two-sided test.
+(ref:fig2-11) Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test.
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-11-1.png" alt="(ref:fig2-11)" width="960" />
@@ -1461,8 +1449,7 @@ some of these criticisms, we recommend reporting the strength of evidence of the
 result based on the p-value and also reporting and discussing the size of the
 estimated results (with a measure of precision of the estimated difference). We will explore the implications of how p-values are used in scientific research in Section [SECTIONREFERENCE].
 
-(ref:figPValStr) Graphic suggesting potential interpretations of strength of 
-evidence based on gradient of p-values.
+(ref:figPValStr) Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values.
 
 <div class="figure">
 <img src="chapter2_files/pvalueStrengths.png" alt="(ref:figPValStr)" width="800" />
@@ -1954,11 +1941,7 @@ equivalent to the methods we will consider in Chapters
 \@ref(chapter3) and \@ref(chapter4) so that 
 will be our focus for the two group problem and is what we get when using the ``lm`` model to estimate the differences in the group means. The unequal variance version of the two-sample t-test is available in the ``t.test`` function if needed. 
 
-(ref:fig2-13) Plots of $t$-distributions with 2, 10, and 20 degrees of freedom 
-and a normal distribution (dashed line). Note how the $t$-distributions get 
-closer to the normal distribution as the degrees of freedom increase and at 20 
-degrees of freedom, the $t$-distribution *almost* matches a standard normal 
-curve.
+(ref:fig2-13) Plots of $t$-distributions with 2, 10, and 20 degrees of freedom and a normal distribution (dashed line). Note how the $t$-distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the $t$-distribution *almost* matches a standard normal curve.
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-13-1.png" alt="(ref:fig2-13)" width="672" />
@@ -2017,9 +2000,7 @@ reason for this similarity is that the permutation distribution looks like a $t$
 of freedom. Figure \@ref(fig:Figure2-14) shows how similar the two distributions
 happened to be here, where the only difference in shape is near the peak of the distributions with a slight difference of the permutation distribution to shift to the right.
 
-(ref:fig2-14) Plot of permutation and $t$-distribution with $df=28$. Note the 
-close match in the two distributions, especially in the tails of the 
-distributions where we are obtaining the p-values.
+(ref:fig2-14) Plot of permutation and $t$-distribution with $df=28$. Note the close match in the two distributions, especially in the tails of the distributions where we are obtaining the p-values.
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-14-1.png" alt="(ref:fig2-14)" width="576" />
@@ -2314,8 +2295,7 @@ for (b in (1:B)){
 pdata(abs(Tstar),abs(Tobs),lower.tail=F)[[1]]
 ```
 
-(ref:fig2-17) Histogram and density curve of permutation distribution of test
-statistic for Intermediate Statistics student GPAs.
+(ref:fig2-17) Histogram and density curve of permutation distribution of test statistic for Intermediate Statistics student GPAs.
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-17-1.png" alt="(ref:fig2-17)" width="960" />
@@ -2581,8 +2561,7 @@ results and then using a validation or test data set that they withheld from
 initial analysis to try to verify that the first results are also present in that 
 second data set. This also has problems but the only way to develop an understanding of a process is to look across a suite of studies and learn from that accumulation of evidence. This is a good start but needs to be coupled with complete reporting of all results, even those that have p-values larger than 0.05 to avoid the bias identified in the previous simulation study.
 
-(ref:fig2-20) Plot of family-wise error rate (Bold solid line) as the number of tests performed 
-increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on $m$=10 tests. 
+(ref:fig2-20) Plot of family-wise error rate (Bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on $m$=10 tests. 
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-20-1.png" alt="(ref:fig2-20)" width="480" />
@@ -2729,12 +2708,11 @@ each number of times of re-sampling when we start with all observations having
 an equal chance and sampling with replacement but this isn't important for
 using bootstrapping methods. 
 
-(ref:fig2-2) Counts of number of times of observation (or not observed for 
-times re-sampled of 0) for two bootstrap samples. 
+(ref:fig2-22) Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples. 
 
 <div class="figure">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-22-1.png" alt="(ref:fig2-2)" width="480" />
-<p class="caption">(\#fig:Figure2-22)(ref:fig2-2)</p>
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-22-1.png" alt="(ref:fig2-22)" width="480" />
+<p class="caption">(\#fig:Figure2-22)(ref:fig2-22)</p>
 </div>
 
 \indent The main point of this exploration was to see that each run of the
@@ -2788,9 +2766,7 @@ favstats(Tstar)
 ##        0
 ```
 
-(ref:fig2-23) Histogram and density curve of bootstrap distributions of 
-difference in sample mean ``Distances`` with vertical line for the observed 
-difference in the means of -25.933.
+(ref:fig2-23) Histogram and density curve of bootstrap distributions of difference in sample mean ``Distances`` with vertical line for the observed difference in the means of -25.933.
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-23-1.png" alt="(ref:fig2-23)" width="960" />
@@ -2876,11 +2852,9 @@ quantiles
 ## 97.5%  -2.248774 0.975
 ```
 
-Figure \@ref(fig:Figure2-24) displays those same percentiles on the bootstrap
-distribution residing in ``Tstar``. 
+Figure \@ref(fig:Figure2-24) displays those same percentiles on the bootstrap distribution residing in ``Tstar``. 
 
-(ref:fig2-24) Histogram and density curve of bootstrap distribution with 
-95% bootstrap confidence intervals displayed (bold vertical lines).
+(ref:fig2-24) Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold vertical lines).
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-24-1.png" alt="(ref:fig2-24)" width="960" />
@@ -2973,8 +2947,7 @@ in a $t$-based confidence interval -- try to focus on which $t$ you are interest
 $t$-distribution with 28 degrees of freedom and the cut-offs that put 95% of the 
 area in the middle. 
 
-(ref:fig2-25) Plot of $t(28)$ with cut-offs for putting 95% of distribution in 
-the middle that delineate the $t^*$ multiplier to make a 95% confidence interval. 
+(ref:fig2-25) Plot of $t(28)$ with cut-offs for putting 95% of distribution in the middle that delineate the $t^*$ multiplier to make a 95% confidence interval. 
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-25-1.png" alt="(ref:fig2-25)" width="480" />
@@ -3332,10 +3305,7 @@ points. The bootstrap distribution with the observed difference in the sample
 means and these cut-offs is displayed in Figure \@ref(fig:Figure2-26) using 
 this code:
 
-(ref:fig2-26) Histogram and density curve of bootstrap distribution of 
-difference in sample mean GPAs (male minus female) with observed difference 
-(solid vertical line) and quantiles that delineate the 90% confidence intervals
-(dashed vertical lines). 
+(ref:fig2-26) Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines). 
 
 <div class="figure">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-26-1.png" alt="(ref:fig2-26)" width="960" />

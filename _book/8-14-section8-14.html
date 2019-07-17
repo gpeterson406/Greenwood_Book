@@ -283,7 +283,7 @@ the potential for including up to four variables (<em>age</em>, <em>height</em>,
 <em>smoking status</em>) and possibly the interaction between <em>age</em> and <em>smoking status</em>.
 Initial explorations suggested that modeling the log-FEV would be more successful
 than trying to model the responses on the original scale. Figure
-<a href="8-14-section8-14.html#fig:Figure8-34">2.183</a> shows the suggestion of different slopes for the
+<a href="8-14-section8-14.html#fig:Figure8-34">2.187</a> shows the suggestion of different slopes for the
 smokers than non-smokers and that there aren’t very many smokers under 9 years
 old in the data set.</p>
 <p>So we will start with a model that contains an <em>age</em> by <em>smoking</em> interaction
@@ -297,29 +297,28 @@ involved in the interaction if we don’t need the interaction.</p>
 <div class="figure"><span id="fig:Figure8-34"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-34-1.png" alt="Scatterplot of log(FEV) vs Age by smoking status." width="960" />
 <p class="caption">
-Figure 2.183: Scatterplot of log(FEV) vs Age by smoking status.
+Figure 2.187: Scatterplot of log(FEV) vs Age by smoking status.
 </p>
 </div>
-<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb807-1" title="1"><span class="kw">library</span>(coneproj)</a>
-<a class="sourceLine" id="cb807-2" title="2"><span class="kw">data</span>(FEV)</a>
-<a class="sourceLine" id="cb807-3" title="3">FEV &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(FEV)</a>
-<a class="sourceLine" id="cb807-4" title="4">FEV<span class="op">$</span>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(FEV<span class="op">$</span>sex) <span class="co">#Make sex a factor</span></a>
-<a class="sourceLine" id="cb807-5" title="5"><span class="kw">levels</span>(FEV<span class="op">$</span>sex) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Male&quot;</span>)  <span class="co">#Make sex labels explicit</span></a>
-<a class="sourceLine" id="cb807-6" title="6">FEV<span class="op">$</span>smoke &lt;-<span class="st"> </span><span class="kw">factor</span>(FEV<span class="op">$</span>smoke) <span class="co">#Make smoking status a factor</span></a>
-<a class="sourceLine" id="cb807-7" title="7"><span class="kw">levels</span>(FEV<span class="op">$</span>smoke) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Nonsmoker&quot;</span>,<span class="st">&quot;Smoker&quot;</span>) <span class="co">#Make smoking status labels explicit</span></a>
-<a class="sourceLine" id="cb807-8" title="8"><span class="kw">scatterplot</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>age<span class="op">|</span>smoke, <span class="dt">data=</span>FEV, <span class="dt">smooth=</span>F,</a>
-<a class="sourceLine" id="cb807-9" title="9">            <span class="dt">main=</span><span class="st">&quot;Plot of log(FEV) vs Age of children by smoking  status&quot;</span>,</a>
-<a class="sourceLine" id="cb807-10" title="10">            <span class="dt">legend=</span><span class="kw">list</span>(<span class="dt">coords=</span><span class="st">&quot;topleft&quot;</span>, <span class="dt">columns=</span><span class="dv">1</span>, <span class="dt">cex.leg=</span><span class="fl">0.75</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb814-1" title="1"><span class="kw">library</span>(coneproj)</a>
+<a class="sourceLine" id="cb814-2" title="2"><span class="kw">data</span>(FEV)</a>
+<a class="sourceLine" id="cb814-3" title="3">FEV &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(FEV)</a>
+<a class="sourceLine" id="cb814-4" title="4">FEV<span class="op">$</span>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(FEV<span class="op">$</span>sex) <span class="co">#Make sex a factor</span></a>
+<a class="sourceLine" id="cb814-5" title="5"><span class="kw">levels</span>(FEV<span class="op">$</span>sex) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Male&quot;</span>)  <span class="co">#Make sex labels explicit</span></a>
+<a class="sourceLine" id="cb814-6" title="6">FEV<span class="op">$</span>smoke &lt;-<span class="st"> </span><span class="kw">factor</span>(FEV<span class="op">$</span>smoke) <span class="co">#Make smoking status a factor</span></a>
+<a class="sourceLine" id="cb814-7" title="7"><span class="kw">levels</span>(FEV<span class="op">$</span>smoke) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Nonsmoker&quot;</span>,<span class="st">&quot;Smoker&quot;</span>) <span class="co">#Make smoking status labels explicit</span></a>
+<a class="sourceLine" id="cb814-8" title="8"><span class="kw">scatterplot</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>age<span class="op">|</span>smoke, <span class="dt">data=</span>FEV, <span class="dt">smooth=</span>F,</a>
+<a class="sourceLine" id="cb814-9" title="9">            <span class="dt">main=</span><span class="st">&quot;Plot of log(FEV) vs Age of children by smoking  status&quot;</span>,</a>
+<a class="sourceLine" id="cb814-10" title="10">            <span class="dt">legend=</span><span class="kw">list</span>(<span class="dt">coords=</span><span class="st">&quot;topleft&quot;</span>, <span class="dt">columns=</span><span class="dv">1</span>, <span class="dt">cex.leg=</span><span class="fl">0.75</span>),<span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">6</span>)[<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">1</span>)])</a></code></pre></div>
 <p>To get the needed results, start with the <strong><em>full model</em></strong> – the most
 complicated model you want to consider. It is good to check assumptions before
 considering reducing the model as they rarely get better in simpler models and
-the <strong>AIC is only appropriate to use if the model assumptions are reasonably
-well-met</strong>. As suggested above, our “fullish” model for the <em>log(FEV)</em> values is
+the <strong>AIC is only appropriate to use if the model assumptions are not clearly violated</strong>. As suggested above, our “fullish” model for the <em>log(FEV)</em> values is
 specified as <code>log(FEV)~height+age*smoke+sex</code>.</p>
 <p>(ref:fig8-35) Diagnostics for the log(FEV) model that includes height, sex,
 and an interaction between age and smoking status (the full model).</p>
-<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb808-1" title="1">fm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>height<span class="op">+</span>age<span class="op">*</span>smoke<span class="op">+</span>sex, <span class="dt">data=</span>FEV)</a>
-<a class="sourceLine" id="cb808-2" title="2"><span class="kw">summary</span>(fm1)</a></code></pre></div>
+<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb815-1" title="1">fm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>height<span class="op">+</span>age<span class="op">*</span>smoke<span class="op">+</span>sex, <span class="dt">data=</span>FEV)</a>
+<a class="sourceLine" id="cb815-2" title="2"><span class="kw">summary</span>(fm1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(FEV) ~ height + age * smoke + sex, data = FEV)
@@ -340,44 +339,44 @@ and an interaction between age and smoking status (the full model).</p>
 ## Residual standard error: 0.1454 on 648 degrees of freedom
 ## Multiple R-squared:  0.8112, Adjusted R-squared:  0.8097 
 ## F-statistic: 556.8 on 5 and 648 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb810-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb810-2" title="2"><span class="kw">plot</span>(fm1, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for full FEV model&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb817-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb817-2" title="2"><span class="kw">plot</span>(fm1, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for full FEV model&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure8-35"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-35-1.png" alt="(ref:fig8-35)" width="960" />
 <p class="caption">
-Figure 2.184: (ref:fig8-35)
+Figure 2.188: (ref:fig8-35)
 </p>
 </div>
-<p>The diagnostic plots suggest that there are a few outlying points (Figure <a href="8-14-section8-14.html#fig:Figure8-35">2.184</a>) but they
-are not influential and there is no indication of violations of the normality and constant
-variance assumptions. If we select a different
+<p>The diagnostic plots suggest that there are a few outlying points (Figure <a href="8-14-section8-14.html#fig:Figure8-35">2.188</a>) but they
+are not influential and there is no indication of violations of the constant
+variance assumption. There is a slight left skew with a long left tail to cause a very minor concern with the normality assumption but not enough to be concerned about our inferences from this model. If we select a different
 model(s), we would want to check its diagnostics and make sure that the results
 do not look noticeably worse than these do.</p>
 <p>The <code>AIC</code> function can be used to generate the AIC values for a
-single or set
+single or set 
 of candidate models. It will also provide the model degrees of freedom used for
-each model. For example, suppose that the want to compare <code>fm1</code> to a model
+each model if run the function on multiple models. For example, suppose that the want to compare <code>fm1</code> to a model
 without the interaction term in the model, called <code>fm1R</code>. You need to fit both
 models and then apply the <code>AIC</code> function to them with commas between the model
 names:</p>
-<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb811-1" title="1">fm1R &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>height<span class="op">+</span>age<span class="op">+</span>smoke<span class="op">+</span>sex, <span class="dt">data=</span>FEV)</a>
-<a class="sourceLine" id="cb811-2" title="2"><span class="kw">AIC</span>(fm1, fm1R)</a></code></pre></div>
+<div class="sourceCode" id="cb818"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb818-1" title="1">fm1R &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>height<span class="op">+</span>age<span class="op">+</span>smoke<span class="op">+</span>sex, <span class="dt">data=</span>FEV)</a>
+<a class="sourceLine" id="cb818-2" title="2"><span class="kw">AIC</span>(fm1, fm1R)</a></code></pre></div>
 <pre><code>##      df       AIC
 ## fm1   7 -658.5178
 ## fm1R  6 -658.6037</code></pre>
 <p>These results tells us that the <code>fm1R</code> model (the one without the interaction)
-is better on the AIC by 0.09 AIC units. Note that this model does not “fit” as well
+is better (more negative) on the AIC by 0.09 AIC units. Note that this model does not “fit” as well
 as the full model, it is just the top AIC model – the AIC results suggest that
-it is slightly closer to the truth than the more complicated model. But this
+it is slightly closer to the truth than the more complicated model but with such a small difference there is similar support and little evidence of a difference between the two models. This
 provides only an assessment of the difference between including or excluding
 the interaction between <em>age</em> and <em>smoking</em> in a model with two other predictors.
 We are probably also interested in whether the other terms are
 needed in the model. The full suite of results from dredge provide model
 comparisons that help us to assess the presence/absence of each model component
 including the interaction.</p>
-<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb813-1" title="1"><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></a>
-<a class="sourceLine" id="cb813-2" title="2"><span class="kw">dredge</span>(fm1, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </a>
-<a class="sourceLine" id="cb813-3" title="3">       <span class="dt">extra =</span> <span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</a></code></pre></div>
+<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb820-1" title="1"><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></a>
+<a class="sourceLine" id="cb820-2" title="2"><span class="kw">dredge</span>(fm1, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </a>
+<a class="sourceLine" id="cb820-3" title="3">       <span class="dt">extra =</span> <span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</a></code></pre></div>
 <pre><code>## Global model call: lm(formula = log(FEV) ~ height + age * smoke + sex, data = FEV)
 ## ---
 ## Model selection table 
@@ -439,7 +438,7 @@ The next best model adds the interaction between <em>age</em> and <em>smoking</e
 in increases in the <strong><em>R</em></strong><sup>2</sup>, adjusted <strong><em>R</em></strong><sup>2</sup>, and
 <em>model df</em>, but increasing the AIC by 0.09 units <span class="math inline">\((\Delta\text{AIC}=0.09)\)</span>.
 This suggests that these two models are essentially equivalent on the AIC because
-the difference is so small. The simpler model is a little bit better on AIC so
+the difference is so small and this comparison was discussed previously. The simpler model is a little bit better on AIC so
 you could focus on it or on the slightly more complicated model – but you should
 probably note that the evidence is equivocal for these two models.</p>
 <p>The comparison to other potential models shows the strength of evidence in
@@ -452,12 +451,19 @@ like the overall <span class="math inline">\(\boldsymbol{F}\)</span>-test we con
 complicated model.</strong> Each model with just one predictor included is available
 in the table as well, with the top single predictor model based on <em>height</em>
 having a <span class="math inline">\(\Delta\text{AIC}\)</span> of 43.96. So we certainly need to
-pursue something more complicated than SLR based on the AIC results. Closer to
+pursue something more complicated than SLR based with such strong evidence for the more complex models versus the single predictor models at over 40 AIC units different. Closer to
 the top model is the third-ranked model that includes <em>age</em>, <em>height</em>, and <em>sex</em>.
 It has a <span class="math inline">\(\Delta\text{AIC}\)</span> of 2.87 so we would say that
 these results present marginal support for the top two models over this model. It is the simplest model of the top three but not close enough to
 be considered in detail.</p>
-<p>This table also provides the opportunity to compare the model selection
+
+<div class="figure"><span id="fig:Figure8-35X"></span>
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-35X-1.png" alt="Display of AIC results on a number line with models indicated by their number in the dredge output. In more complex models, the dredge model numbers are just labels and not a meaningful numeration of the models being considered (there are 20 models considered here but labels go up to 32). Panel (a) presents results for all the models and panel (b) focuses just on the top 10 models so some differences in those models can be explored. Note that the spacing of the vertical grid lines in panel (a) are 10 AIC units and in (b) they are 1 AIC unit apart." width="768" />
+<p class="caption">
+Figure 2.189: Display of AIC results on a number line with models indicated by their number in the <code>dredge</code> output. In more complex models, the <code>dredge</code> model numbers are just labels and not a meaningful numeration of the models being considered (there are 20 models considered here but labels go up to 32). Panel (a) presents results for all the models and panel (b) focuses just on the top 10 models so some differences in those models can be explored. Note that the spacing of the vertical grid lines in panel (a) are 10 AIC units and in (b) they are 1 AIC unit apart.
+</p>
+</div>
+<p>The dredge results also provides the opportunity to compare the model selection
 results
 from the adjusted <strong><em>R</em></strong><sup>2</sup> compared to the AIC. The AIC favors the model
 without an interaction between <em>age</em> and <em>smoking</em> whereas the adjusted
@@ -465,55 +471,65 @@ without an interaction between <em>age</em> and <em>smoking</em> whereas the adj
 that included an <em>age</em> and <em>smoking</em> interaction. The AIC provides units that are
 more interpretable than adjusted <em>R</em><sup>2</sup> even though the
 scale for the AIC is a bit mysterious as <strong>distances from the unknown true
-model</strong>.</p>
+model</strong> with possibly negative distances.</p>
 <p>The top AIC model (and possibly the other similar models) can then be
 explored in more detail. You should not then focus on hypothesis testing in this
-model<a href="#fn142" class="footnote-ref" id="fnref142"><sup>142</sup></a>. Confidence
+model. Hypothesis testing so permeates the use of statistics that even after
+using AICs many researchers are pressured to report p-values for model
+components.
+
+Some of this could be confusion caused when people first learned
+these statistical methods because when we teach you statistics we show you how
+to use various methods, one after another, and forget to mention that you should
+not use <strong>every</strong> method we taught you in <strong>every</strong> analysis. Confidence
 intervals and term-plots are useful for describing the different
 model components and making inferences for the estimated sizes of differences
 in the population. These results should not be used for deciding if terms are
-“significant” when the models are selected using measures like the AIC or
+“significant” when the models (and their components) have already been selected using measures like the AIC or
 adjusted <em>R</em><sup>2</sup>. But you can discuss the estimated model components to go with how you arrived at having them in the model.</p>
 <p>In this situation, the top model is estimated to be</p>
 <p><span class="math display">\[\log(\widehat{\text{FEV}})_i = -1.94 + 0.043\cdot\text{Height}_i+ 0.0234\cdot\text{Age}_i
 -0.046I_{\text{Smoker},i}+0.0293I_{\text{Male},i}\]</span></p>
 <p>based on the estimated coefficients provided below. Using these results and the
-term-plots (Figure <a href="8-14-section8-14.html#fig:Figure8-36">2.185</a>) we see that in this model there are positive slopes
+term-plots (Figure <a href="8-14-section8-14.html#fig:Figure8-36">2.190</a>) we see that in this model there are positive slopes
 for <em>Age</em> and <em>Height</em> on <em>log-FEV</em>, a negative coefficient for <em>smoking</em>
-(<em>Smoker</em>), and a positive coefficient for <em>sex</em> (<em>Males</em>). We could go further with interpretations
-such as for the <em>age</em> term: For a 1 year increase in <em>age</em>, we expect, on
+(<em>Smoker</em>), and a positive coefficient for <em>sex</em> (<em>Males</em>). There is some multicollinearity impacting the estimates for <em>height</em> and <em>age</em> based on having VIFs near 3 but these are not extreme issues. We could go further with interpretations
+such as for the <em>age</em> term: For a 1 year increase in <em>age</em>, we estimate, on
 average, a 0.0234 log-liter increase in <em>FEV</em>, after controlling for the
 <em>height</em>, <em>smoking status</em>, and <em>sex</em> of the children. We can even interpret
 this on the original scale since this was a <em>log(y)</em> response model using the same techniques as in Section
 <a href="7-6-section7-6.html#section7-6">7.6</a>. If we exponentiate the slope coefficient of the quantitative
 variable, <span class="math inline">\(\exp(0.0234)=1.0237\)</span>. This provides the interpretation on the original
-<em>FEV</em> scale, for a 1 year increase in <em>age</em>, we expect 2.4% increase in the
+<em>FEV</em> scale, for a 1 year increase in <em>age</em>, we estimate a 2.4% increase in the
 median <em>FEV</em>, after controlling for the <em>height</em>, <em>smoking status</em>, and <em>sex</em> of
 the children. <strong>The only difference from Section</strong> <a href="7-6-section7-6.html#section7-6">7.6</a> <strong>when
 working with a log(y) model now is that we have to note that the model used to
 generate the slope coefficient had other components and so this estimate is
 after adjusting for them.</strong></p>
 <p>(ref:fig8-36) Term-plots for the top AIC model for log(FEV) that includes
-height, age, smoking status and sex in the model.</p>
-<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb815-1" title="1">fm1R<span class="op">$</span>coefficients</a></code></pre></div>
+height, age, smoking status, and sex in the model.</p>
+<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb822-1" title="1">fm1R<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>## (Intercept)      height         age smokeSmoker     sexMale 
 ## -1.94399818  0.04279579  0.02338721 -0.04606754  0.02931936</code></pre>
-<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb817-1" title="1"><span class="kw">confint</span>(fm1R)</a></code></pre></div>
+<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb824-1" title="1"><span class="kw">vif</span>(fm1R)</a></code></pre></div>
+<pre><code>##   height      age    smoke      sex 
+## 2.829728 3.019010 1.209564 1.060228</code></pre>
+<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb826-1" title="1"><span class="kw">confint</span>(fm1R)</a></code></pre></div>
 <pre><code>##                    2.5 %       97.5 %
 ## (Intercept) -2.098414941 -1.789581413
 ## height       0.039498923  0.046092655
 ## age          0.016812109  0.029962319
 ## smokeSmoker -0.087127344 -0.005007728
 ## sexMale      0.006308481  0.052330236</code></pre>
-<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb819-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(fm1R))</a></code></pre></div>
+<div class="sourceCode" id="cb828"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb828-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(fm1R), <span class="dt">grid=</span>T)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure8-36"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-36-1.png" alt="(ref:fig8-36)" width="672" />
 <p class="caption">
-Figure 2.185: (ref:fig8-36)
+Figure 2.190: (ref:fig8-36)
 </p>
 </div>
 <p>Like any statistical method, the AIC works better with larger sample sizes and
-when the assumptions are met. It also will detect important variables in models
+when assumptions are not clearly violated. It also will detect important variables in models
 more easily when the effects of the predictor variables are strong. Along with
 the AIC results, it is good to report the coefficients for your top estimated
 model(s), confidence intervals for the coefficients and/or term-plots, and
@@ -522,8 +538,8 @@ the model(s), information on the importance of the terms within the model, and
 a measure of the variability explained by the model. The <em>R</em><sup>2</sup> is not used to
 select the model, but after selection can be a nice summary of model quality.
 For <code>fm1R</code> , the <span class="math inline">\(R^2=0.8106\)</span> suggesting that the selected model explains
-81% of the variation in log-<em>FEV</em> values.</p>
-<p>The AICs are a preferred modeling strategy in some areas such as Ecology. As
+81% of the variation in log-<em>FEV</em> values. </p>
+<p>The AICs are a preferred modeling strategy in some fields such as Ecology. As
 with this and many other
 methods discussed in this book, it is sometimes as easy to find journal
 articles with mistakes in using statistical methods as it is to find papers
@@ -535,13 +551,13 @@ through your problem before jumping to the statistical results. Make a graph
 first, think carefully about your study design and variables collected and what
 your models of interest might be, what assumptions might be violated based on
 the data collection story, and then start fitting models. Then check your
-assumptions and only proceed on with any inference if those conditions are
-reasonably well-met. The AIC provides an alternative method for selecting among
+assumptions and only proceed on with any inference if the conditions are
+not clearly violated. The AIC provides an alternative method for selecting among
 different potential models and they do not need to be nested (a requirement of
 hypothesis testing methods used to sequentially simplify models). The automated
 consideration of all possible models in the <code>dredge</code> function should not be
 considered in all situations but can be useful in a preliminary model exploration
-study where no clear knowledge exists about useful models to consider. Reporting the summary of AIC results beyond just reporting the top model(s) selected for focused exploration provides the evidence to support that selection.</p>
+study where no clear knowledge exists about useful models to consider. Where some knowledge exists of possible models of interest <em>a priori</em>, fit those models and use the AIC function to get AICs to compare. Reporting the summary of AIC results beyond just reporting the top model(s) that were selected for focused exploration provides the evidence to support that selection – not p-values!</p>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
@@ -551,19 +567,6 @@ study where no clear knowledge exists about useful models to consider. Reporting
 <div id="ref-R-coneproj">
 <p>Meyer, Mary C., and Xiyue Liao. 2018. <em>Coneproj: Primal or Dual Cone Projections with Routines for Constrained Regression</em>. <a href="https://CRAN.R-project.org/package=coneproj">https://CRAN.R-project.org/package=coneproj</a>.</p>
 </div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="142">
-<li id="fn142"><p>Hypothesis testing so permeates the use of statistics that even after
-using AICs many researchers are pressured to report p-values for model
-components.
-
-Some of this could be confusion caused when people first learned
-these statistical methods because when we teach you statistics we show you how
-to use various methods, one after another, and forget to mention that you should
-not use <strong>every</strong> method we taught you in <strong>every</strong> analysis.<a href="8-14-section8-14.html#fnref142" class="footnote-back">↩</a></p></li>
-</ol>
 </div>
 <p style="text-align: center;">
 <a href="8-13-section8-13.html"><button class="btn btn-default">Previous</button></a>

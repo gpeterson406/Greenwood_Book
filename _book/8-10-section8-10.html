@@ -282,16 +282,17 @@ called <code>du2</code>). One would expect that there would be a relationship be
 upper tolerance levels of the subjects before and after treatment. But
 maybe the treatments impact that relationship? We can use our indicator 
 approach to see if the treatments provide a shift to higher tolerances after
-accounting for the relationship between the two measurements<a href="#fn129" class="footnote-ref" id="fnref129"><sup>129</sup></a>. The scatterplot<a href="#fn130" class="footnote-ref" id="fnref130"><sup>130</sup></a>
-of the results in Figure <a href="8-10-section8-10.html#fig:Figure8-21">2.170</a> shows some variation in the
+accounting for the relationship between the two measurements<a href="#fn129" class="footnote-ref" id="fnref129"><sup>129</sup></a>. The scatterplot<a href="#fn130" class="footnote-ref" id="fnref130"><sup>130</sup></a> 
+of the results in Figure <a href="8-10-section8-10.html#fig:Figure8-21">2.171</a> shows some variation in the
 slopes and the intercepts for the groups although the variation in intercepts
-seems more prominent than differences in slopes.</p>
+seems more prominent than differences in slopes. Note that the <code>relevel</code> function was applied to the <code>treatment</code> variable with an option of <code>"Control"</code> to make the <em>Control</em> category the baseline category as the person who created the data set had set <code>T1</code> as the baseline in the <code>treatment</code> variable.</p>
 <p>(ref:fig8-21) Scatterplot of post-treatment decibel tolerance (du2) vs
 pre-treatment tolerance (du1) by treatment level (4 groups).</p>
-<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb774-1" title="1"><span class="kw">library</span>(heplots)</a>
-<a class="sourceLine" id="cb774-2" title="2"><span class="kw">data</span>(Headache)</a>
-<a class="sourceLine" id="cb774-3" title="3">Headache &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(Headache)</a>
-<a class="sourceLine" id="cb774-4" title="4">Headache</a></code></pre></div>
+<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb779-1" title="1"><span class="kw">library</span>(heplots)</a>
+<a class="sourceLine" id="cb779-2" title="2"><span class="kw">library</span>(viridis)</a>
+<a class="sourceLine" id="cb779-3" title="3"><span class="kw">data</span>(Headache)</a>
+<a class="sourceLine" id="cb779-4" title="4">Headache &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(Headache)</a>
+<a class="sourceLine" id="cb779-5" title="5">Headache</a></code></pre></div>
 <pre><code>## # A tibble: 98 x 6
 ##    type    treatment    u1   du1    u2   du2
 ##    &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -306,143 +307,145 @@ pre-treatment tolerance (du1) by treatment level (4 groups).</p>
 ##  9 Migrane T1         1.38  2.33  2.23  3.98
 ## 10 Tension T3         0.85  1.42  1.37  1.89
 ## # ... with 88 more rows</code></pre>
-<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb776-1" title="1"><span class="kw">scatterplot</span>(du2<span class="op">~</span>du1<span class="op">|</span>treatment, <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb776-2" title="2">            <span class="dt">main=</span><span class="st">&quot;Plot of Maximum DB tolerances before &amp; after treatment (by treatment)&quot;</span>,</a>
-<a class="sourceLine" id="cb776-3" title="3">            <span class="dt">legend=</span><span class="kw">list</span>(<span class="dt">coords=</span><span class="st">&quot;topleft&quot;</span>,<span class="dt">columns=</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb781-1" title="1">Headache<span class="op">$</span>treatment &lt;-<span class="st"> </span><span class="kw">factor</span>(Headache<span class="op">$</span>treatment)</a>
+<a class="sourceLine" id="cb781-2" title="2">Headache<span class="op">$</span>treatment &lt;-<span class="st"> </span><span class="kw">relevel</span>(Headache<span class="op">$</span>treatment, <span class="st">&quot;Control&quot;</span>) <span class="co">#Make Control the baseline category</span></a>
+<a class="sourceLine" id="cb781-3" title="3"><span class="kw">scatterplot</span>(du2<span class="op">~</span>du1<span class="op">|</span>treatment, <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb781-4" title="4">            <span class="dt">main=</span><span class="st">&quot;Plot of Maximum DB tolerances before &amp; after treatment (by treatment)&quot;</span>,</a>
+<a class="sourceLine" id="cb781-5" title="5">            <span class="dt">legend=</span><span class="kw">list</span>(<span class="dt">coords=</span><span class="st">&quot;topleft&quot;</span>,<span class="dt">columns=</span><span class="dv">2</span>), <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">4</span>))</a></code></pre></div>
 <div class="figure"><span id="fig:Figure8-21"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-21-1.png" alt="(ref:fig8-21)" width="960" />
 <p class="caption">
-Figure 2.170: (ref:fig8-21)
+Figure 2.171: (ref:fig8-21)
 </p>
 </div>
 <p>This data set contains a categorical variable with 4 levels. To go beyond two
 groups, we have to add more than one indicator variable,  defining three
 indicators to turn on (1) or off (0) for three of the levels of the variable
 with the same reference level used for all the indicators. For this example,
-the <em>T1 Treatment</em> group is chosen as the baseline group so it sort of hides in
+the <em>Control</em> group is chosen as the baseline group so it hides in
 the background while we define indicators for the other three levels. The
-indicators for <em>T2</em>, <em>T3</em>, and <em>Control</em> levels are:</p>
+indicators for <em>T1</em>, <em>T2</em>, and <em>T3</em> treatment levels are:</p>
 <ul>
+<li><p>Indicator for <em>T1</em>: <span class="math inline">\(I_{T1,i}=\left\{\begin{array}{rl} 1 &amp; \text{if Treatment}=T1 \\ 0 &amp; \text{else} \end{array}\right.\)</span></p></li>
 <li><p>Indicator for <em>T2</em>: <span class="math inline">\(I_{T2,i}=\left\{\begin{array}{rl} 1 &amp; \text{if Treatment}=T2 \\ 0 &amp; \text{else} \end{array}\right.\)</span></p></li>
 <li><p>Indicator for <em>T3</em>: <span class="math inline">\(I_{T3,i}=\left\{\begin{array}{rl} 1 &amp; \text{if Treatment}=T3 \\ 0 &amp; \text{else} \end{array}\right.\)</span></p></li>
-<li><p>Indicator for <em>Control</em>: <span class="math inline">\(I_{\text{Control},i}=\left\{\begin{array}{rl} 1 &amp; \text{if Treatment}=\text{Control} \\ 0 &amp; \text{else} \end{array}\right.\)</span></p></li>
 </ul>
 <p>We can see the values of these indicators for a few observations and their
 original variable (<code>treatment</code>) in the following output. The bolded
-observations show each of the indicators being “turned on”. For <em>T1</em>, all the
+observations show each of the indicators being “turned on”. For <em>Control</em> all the
 indicators stay at 0.</p>
 
 <table>
 <thead>
 <tr class="header">
 <th align="left">Treatment</th>
+<th align="right">I_T1</th>
 <th align="right">I_T2</th>
 <th align="right">I_T3</th>
-<th align="right">I_Control</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">T3</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">T1</td>
-<td align="right">0</td>
+<td align="right">1</td>
 <td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="left">T1</td>
-<td align="right">0</td>
+<td align="right">1</td>
 <td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="left">T3</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">T3</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">T3</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">T2</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="left">T1</td>
-<td align="right">0</td>
+<td align="right">1</td>
 <td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="left">T1</td>
-<td align="right">0</td>
+<td align="right">1</td>
 <td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="left">T3</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">T3</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">T2</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="left">T3</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">T1</td>
-<td align="right">0</td>
+<td align="right">1</td>
 <td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="left">T3</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">Control</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">1</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="left">T3</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">0</td>
+<td align="right">1</td>
 </tr>
 </tbody>
 </table>
@@ -456,7 +459,7 @@ The true model will be of the form</p>
 +\cdots+\beta_{J}I_{\text{Level}J,i}+\varepsilon_i\]</span></p>
 <p>where the <span class="math inline">\(I_{\text{CatName}j,i}\text{&#39;s}\)</span> are the different indicator variables.
 Note that each indicator variable gets a coefficient associated with it and is
-“turned on” whenever the <span class="math inline">\(i^{th}\)</span> observation is in that category. Only one of
+“turned on” whenever the <span class="math inline">\(i^{th}\)</span> observation is in that category. At most only one of
 the <span class="math inline">\(I_{\text{CatName}j,i}\text{&#39;s}\)</span> is a 1 for any observation, so the
 y-intercept will either be <span class="math inline">\(\beta_0\)</span> for the baseline group or <span class="math inline">\(\beta_0+\beta_j\)</span>
 for <span class="math inline">\(j=2,\ldots,J\)</span>. It is important to remember that this
@@ -468,12 +471,12 @@ coefficients for the groups as discussed in the next section.</p>
 set with regression lines for each group – assessing whether the lines look
 relatively parallel or not.
 
-In Figure <a href="8-10-section8-10.html#fig:Figure8-21">2.170</a>, there are some
+In Figure <a href="8-10-section8-10.html#fig:Figure8-21">2.171</a>, there are some
 differences in slopes – we investigate that further in the next section. For
 now, we can proceed with fitting the additive model with different intercepts
 for the four levels of <code>treatment</code> and the quantitative explanatory variable, <code>du1</code>.</p>
-<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb777-1" title="1">head1 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">+</span>treatment, <span class="dt">data=</span>Headache)</a>
-<a class="sourceLine" id="cb777-2" title="2"><span class="kw">summary</span>(head1)</a></code></pre></div>
+<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb782-1" title="1">head1 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">+</span>treatment, <span class="dt">data=</span>Headache)</a>
+<a class="sourceLine" id="cb782-2" title="2"><span class="kw">summary</span>(head1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = du2 ~ du1 + treatment, data = Headache)
@@ -483,62 +486,62 @@ for the four levels of <code>treatment</code> and the quantitative explanatory v
 ## -6.9085 -0.9551 -0.3118  1.1141 10.5364 
 ## 
 ## Coefficients:
-##                  Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)       0.80918    0.50095   1.615    0.110
-## du1               0.83705    0.05176  16.172   &lt;2e-16
-## treatmentT2       0.07692    0.62622   0.123    0.903
-## treatmentT3       0.80919    0.59271   1.365    0.175
-## treatmentControl -0.55752    0.61830  -0.902    0.370
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  0.25165    0.51624   0.487   0.6271
+## du1          0.83705    0.05176  16.172   &lt;2e-16
+## treatmentT1  0.55752    0.61830   0.902   0.3695
+## treatmentT2  0.63444    0.63884   0.993   0.3232
+## treatmentT3  1.36671    0.60608   2.255   0.0265
 ## 
 ## Residual standard error: 2.14 on 93 degrees of freedom
 ## Multiple R-squared:  0.7511, Adjusted R-squared:  0.7404 
 ## F-statistic: 70.16 on 4 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The complete estimated regression model is</p>
-<p><span class="math display">\[\widehat{\text{du2}}_i=0.809+0.837\cdot\text{du1}_i +0.077I_{\text{T2},i}+0.809I_{\text{T3},i}-0.558I_{\text{Control},i}\ .\]</span></p>
+<p><span class="math display">\[\widehat{\text{du2}}_i=0.252+0.837\cdot\text{du1}_i +0.558I_{\text{T1},i}+0.634I_{\text{T2},i}+1.367I_{\text{T3},i}\ .\]</span></p>
 <p>For each group, the model simplifies to an SLR as follows:</p>
 <ul>
-<li>For <em>T1</em> (baseline):</li>
+<li>For <em>Control</em> (baseline):</li>
 </ul>
 <p><span class="math display">\[\begin{array}{rl}
-\widehat{\text{du2}}_i &amp;=0.809+0.837\cdot\text{du1}_i +0.077I_{\text{T2},i}+0.809I_{\text{T3},i}-0.558I_{\text{Control},i} \\
-&amp;= 0.809+0.837\cdot\text{du1}_i+0.077*0+0.809*0-0.558*0 \\
-&amp;= 0.809+0.837\cdot\text{du1}_i.
+\widehat{\text{du2}}_i &amp;=0.252+0.837\cdot\text{du1}_i +0.558I_{\text{T1},i}+0.634I_{\text{T2},i}+1.367I_{\text{T3},i} \\
+&amp;= 0.252+0.837\cdot\text{du1}_i+0.558*0+0.634*0+1.367*0 \\
+&amp;= 0.252+0.837\cdot\text{du1}_i.
 \end{array}\]</span></p>
 <ul>
-<li>For <em>T2</em>:</li>
+<li>For <em>T1</em>:</li>
 </ul>
 <p><span class="math display">\[\begin{array}{rl}
-\widehat{\text{du2}}_i &amp;=0.809+0.837\cdot\text{du1}_i+0.077I_{\text{T2},i}+0.809I_{\text{T3},i}-0.558I_{\text{Control},i} \\
-&amp;= 0.809+0.837\cdot\text{du1}_i+0.077*1+0.809*0-0.558*0 \\
-&amp;= 0.809+0.837\cdot\text{du1}_i + 0.077 \\
-&amp;= 0.886+0.837\cdot\text{du1}_i.
+\widehat{\text{du2}}_i &amp;=0.252+0.837\cdot\text{du1}_i +0.558I_{\text{T1},i}+0.634I_{\text{T2},i}+1.367I_{\text{T3},i} \\
+&amp;= 0.252+0.837\cdot\text{du1}_i+0.558*1+0.634*0+1.367*0 \\
+&amp;= 0.809+0.837\cdot\text{du1}_i + 0.558 \\
+&amp;= 0.81+0.837\cdot\text{du1}_i.
 \end{array}\]</span></p>
 
 <ul>
-<li>Similarly for <em>T3</em>:</li>
+<li>Similarly for <em>T2</em>:</li>
 </ul>
-<p><span class="math display">\[\widehat{\text{du2}}_i = 1.618 + 0.837\cdot\text{du1}_i\ .\]</span></p>
+<p><span class="math display">\[\widehat{\text{du2}}_i = 0.886 + 0.837\cdot\text{du1}_i\ .\]</span></p>
 <ul>
-<li>Finally, for <em>Control</em>:</li>
+<li>Finally for <em>T3</em>:</li>
 </ul>
-<p><span class="math display">\[\widehat{\text{du2}}_i = 0.251 + 0.837\cdot\text{du1}_i\ .\]</span></p>
-<p>To reinforce what this additive model is doing, Figure <a href="8-10-section8-10.html#fig:Figure8-22">2.171</a>
+<p><span class="math display">\[\widehat{\text{du2}}_i = 1.62 + 0.837\cdot\text{du1}_i\ .\]</span></p>
+<p>To reinforce what this additive model is doing, Figure <a href="8-10-section8-10.html#fig:Figure8-22">2.172</a>
 displays the estimated regression lines for all four
 groups, showing the shifts in the <em>y</em>-intercepts among the groups.
 </p>
 
 <div class="figure"><span id="fig:Figure8-22"></span>
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-22-1.png" alt="Plot of estimated noise tolerance additive model." width="960" />
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-22-1.png" alt="Plot of estimated noise tolerance additive model." width="672" />
 <p class="caption">
-Figure 2.171: Plot of estimated noise tolerance additive model.
+Figure 2.172: Plot of estimated noise tolerance additive model.
 </p>
 </div>
-<p>The term-plot (Figure <a href="8-10-section8-10.html#fig:Figure8-23">2.172</a>) shows how the <em>T3</em> group
+<p>The right panel of the term-plot (Figure <a href="8-10-section8-10.html#fig:Figure8-23">2.173</a>) shows how the <em>T3</em> group
 seems to have shifted up the most relative to
-the others and the <em>Control</em> group seems to be noticeably lower than the others,
-in the model that otherwise assumes that the same relationship holds between
+the others and the <em>Control</em> group seems to have a mean that is a bit lower than the others,
+in the model that otherwise assumes that the same linear relationship holds between
 <code>du1</code> and <code>du2</code> for all the groups. After controlling for the <em>Treatment</em>
-group, for a 1 decibel increase in initial tolerances, we expect, on average,
+group, for a 1 decibel increase in initial tolerances, we estimate, on average,
 to obtain a 0.84 decibel change in the second tolerance measurement. The
 <strong><em>R</em></strong><sup>2</sup> shows that this is a decent model for the responses, with
 this model explaining 75.1% percent of the
@@ -549,30 +552,42 @@ between the grouping variable and the responses.
 
 Additionally, sometimes we
 need to add group information to diagnostics to see if any patterns in residuals look
-different in different groups, like linearity or non-constant variance.</p>
+different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups.</p>
 
-<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb779-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(head1, <span class="dt">residuals=</span>T))</a></code></pre></div>
+<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb784-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(head1, <span class="dt">residuals=</span>T))</a></code></pre></div>
 <div class="figure"><span id="fig:Figure8-23"></span>
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-23-1.png" alt="Term-plots of the additive decibel tolerance model." width="576" />
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-23-1.png" alt="Term-plots of the additive decibel tolerance model with partial residuals." width="576" />
 <p class="caption">
-Figure 2.172: Term-plots of the additive decibel tolerance model.
+Figure 2.173: Term-plots of the additive decibel tolerance model with partial residuals.
 </p>
 </div>
-<p>The diagnostic plots in Figure <a href="8-10-section8-10.html#fig:Figure8-24">2.173</a> provides some
+<p>The diagnostic plots in Figure <a href="8-10-section8-10.html#fig:Figure8-24">2.174</a> provides some
 indications of a few observations in the tails that deviate from a normal
 distribution to having slightly heavier tails but
-only one outlier is of real concern. There is a small indication of increasing
+only one outlier is of real concern and causes some concern about the normality assumption. There is a small indication of increasing
 variability as a function of the fitted values as both the Residuals vs. Fitted
 and Scale-Location plots show some fanning out for higher values but this is a
-minor issue. There are no influential points in the data set. </p>
+minor issue. There are no influential points here since all the Cook’s D values are less than 0.5. </p>
 
-<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb780-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb780-2" title="2"><span class="kw">plot</span>(head1,</a>
-<a class="sourceLine" id="cb780-3" title="3">     <span class="dt">sub.caption=</span><span class="st">&quot;Plot of diagnostics for additive model with du1 and treatment for du2&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb785-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb785-2" title="2"><span class="kw">plot</span>(head1,</a>
+<a class="sourceLine" id="cb785-3" title="3">     <span class="dt">sub.caption=</span><span class="st">&quot;Plot of diagnostics for additive model with du1 and treatment for du2&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure8-24"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-24-1.png" alt="Diagnostic plots for the additive decibel tolerance model." width="960" />
 <p class="caption">
-Figure 2.173: Diagnostic plots for the additive decibel tolerance model.
+Figure 2.174: Diagnostic plots for the additive decibel tolerance model.
+</p>
+</div>
+<p>Additionally, sometimes we
+need to add group information to diagnostics to see if any patterns in residuals look
+different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups. We can use the <code>scatterplot</code> function to plot the residuals (extracted using the <code>residuals</code> function) versus the fitted values (extracted using the <code>fitted</code> function) by groups as in Figure <a href="8-10-section8-10.html#fig:Figure8-24X">2.175</a>. In this example, there are no additional patterns extracted by making this plot, but it is a good additional check in these multi-group situations.</p>
+
+<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb786-1" title="1"><span class="kw">scatterplot</span>(<span class="kw">residuals</span>(head1)<span class="op">~</span><span class="kw">fitted</span>(head1)<span class="op">|</span>treatment,</a>
+<a class="sourceLine" id="cb786-2" title="2">            <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">4</span>))</a></code></pre></div>
+<div class="figure"><span id="fig:Figure8-24X"></span>
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-24X-1.png" alt="Plot of residuals versus fitted values by treatment group from the additive decibel tolerance model." width="576" />
+<p class="caption">
+Figure 2.175: Plot of residuals versus fitted values by treatment group from the additive decibel tolerance model.
 </p>
 </div>
 <p>The VIFs are different for categorical variables than for quantitative
@@ -581,12 +596,12 @@ are combined in a measure called the <strong><em>generalized VIF (GVIF)</em></st
 we only focus on the inflation of the SE scale (square root for 1 df effects
 and raised to the power <span class="math inline">\(1/(2*J)\)</span> for a <span class="math inline">\(J\)</span>-level predictor). On this scale,
 the interpretation is as <strong>the multiplicative increase in the SEs for the coefficients on all the indicator variables due to
-multicolinearity with other predictors</strong>. In this model, the SE for <code>du1</code> is
+multicollinearity with other predictors</strong>. In this model, the SE for <code>du1</code> is
 1.009 times larger due to multicollinearity with other predictors
-and the SEs for the indicator variables are 1.003 times larger due to multicollinearity than they otherwise
+and the SEs for the indicator variables for <code>treatment</code> are 1.003 times larger due to multicollinearity than they otherwise
 would have been. Neither are large so multicollinearity is not a problem in
 this model.</p>
-<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb781-1" title="1"><span class="kw">vif</span>(head1)</a></code></pre></div>
+<div class="sourceCode" id="cb787"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb787-1" title="1"><span class="kw">vif</span>(head1)</a></code></pre></div>
 <pre><code>##              GVIF Df GVIF^(1/(2*Df))
 ## du1       1.01786  1        1.008891
 ## treatment 1.01786  3        1.002955</code></pre>
@@ -597,9 +612,9 @@ to the baseline. In Section <a href="8-12-section8-12.html#section8-12">8.12</a>
 model. But we can compare adjusted <strong><em>R</em></strong><sup>2</sup> values with and without
 <em>Treatment</em> to see if including the categorical variable was “worth
 it”:</p>
-<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb783-1" title="1">head1R &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1, <span class="dt">data=</span>Headache)</a></code></pre></div>
+<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb789-1" title="1">head1R &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1, <span class="dt">data=</span>Headache)</a></code></pre></div>
 
-<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb784-1" title="1"><span class="kw">summary</span>(head1R)</a></code></pre></div>
+<div class="sourceCode" id="cb790"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb790-1" title="1"><span class="kw">summary</span>(head1R)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = du2 ~ du1, data = Headache)
@@ -634,7 +649,7 @@ all the groups had the same slope coefficient for the quantitative variable.</p>
 <hr />
 <ol start="129">
 <li id="fn129"><p>Models like this with a categorical variable and quantitative variable are often called <em>ANCOVA</em> or <em>analysis of covariance</em> models but really are just versions of our linear models we’ve been using throughout this material.<a href="8-10-section8-10.html#fnref129" class="footnote-back">↩</a></p></li>
-<li id="fn130"><p>Note that we employed some specific options in the <code>legend</code> option to get the legend to fit on this scatterplot better. Usually you can avoid this but the <code>coords</code> option defined a location and the <code>columns</code> option made it a two column legend.<a href="8-10-section8-10.html#fnref130" class="footnote-back">↩</a></p></li>
+<li id="fn130"><p>Note that we employed some specific options in the <code>legend</code> option to get the legend to fit on this scatterplot better. Usually you can avoid this but the <code>coords</code> option defined a location and the <code>columns</code> option made it a two column legend. The <code>viridis(4)</code> code makes the plot in a suite of four colors from the <code>viridis</code> package. <span class="citation">(Garnier <a href="#ref-R-viridis" role="doc-biblioref">2018</a>)</span><a href="8-10-section8-10.html#fnref130" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

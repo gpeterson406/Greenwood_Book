@@ -266,17 +266,17 @@ img {
 <p>The original research goal for the treadmill data set used for practice
 problems in the last two chapters was to
 replace the costly treadmill oxygen test with a cheap to find running time
-measurement but there were actually quite a few variables measured while the
+measurement but there were actually quite a few variables measured when the
 run time was found – maybe we can replace the treadmill test result with a
 combined prediction built using a few variables using the MLR techniques. The
 following code will get us re-started in this situation.</p>
-<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb820-1" title="1">treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/treadmill.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb820-2" title="2">tm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(TreadMillOx<span class="op">~</span>RunTime, <span class="dt">data=</span>treadmill)</a></code></pre></div>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb829-1" title="1">treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/treadmill.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb829-2" title="2">tm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(TreadMillOx<span class="op">~</span>RunTime, <span class="dt">data=</span>treadmill)</a></code></pre></div>
 <p>8.1. Fit the MLR that also includes the running pulse (<code>RunPulse</code>), the
 resting pulse (<code>RestPulse</code>), body weight (<code>BodyWeight</code>), and Age (<code>Age</code>)
-of the subjects using the following code. Report and interpret the <em>R</em><sup>2</sup> for
+of the subjects. Report and interpret the <em>R</em><sup>2</sup> for
 this model.</p>
-<p>8.2. Compare <em>R</em><sup>2</sup> and the adjusted <em>R</em><sup>2</sup> to the results for the SLR model
+<p>8.2. Compare the <em>R</em><sup>2</sup> and the adjusted <em>R</em><sup>2</sup> to the results for the SLR model
 that just had <code>RunTime</code> in the model. What do these results suggest?</p>
 <p>8.3. Interpret the estimated <code>RunTime</code> slope coefficients from the SLR model
 and this MLR model. Explain the differences in the estimates.</p>
@@ -292,10 +292,10 @@ reduced models and report the top two models according to adjusted
 <strong><em>R</em></strong><sup>2</sup> values. What model had the highest <strong><em>R</em></strong><sup>2</sup>?
 Also discuss and compare the model selection results provided by the delta AICs
 here.</p>
-<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb821-1" title="1"><span class="kw">require</span>(MuMIn)</a>
-<a class="sourceLine" id="cb821-2" title="2"><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></a>
-<a class="sourceLine" id="cb821-3" title="3"><span class="kw">dredge</span>(mlr1, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </a>
-<a class="sourceLine" id="cb821-4" title="4">       <span class="dt">extra=</span><span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</a></code></pre></div>
+<div class="sourceCode" id="cb830"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb830-1" title="1"><span class="kw">require</span>(MuMIn)</a>
+<a class="sourceLine" id="cb830-2" title="2"><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></a>
+<a class="sourceLine" id="cb830-3" title="3"><span class="kw">dredge</span>(MODELNAMEFORFULLMODEL, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </a>
+<a class="sourceLine" id="cb830-4" title="4">       <span class="dt">extra=</span><span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</a></code></pre></div>
 <p>8.8. For one of the models, interpret the <em>Age</em> slope coefficient. Remember that
 only male subjects between 38 and 57 participated in this study. Discuss how
 this might have impacted the results found as compared to a more general
@@ -304,10 +304,10 @@ population that could have been sampled from.</p>
 into low, middle, and high for those observed. The scatterplot lets you
 explore whether the relationship between treadmill oxygen and run time might
 differ across the age groups.</p>
-<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb822-1" title="1">treadmill<span class="op">$</span>Ageb &lt;-<span class="st"> </span><span class="kw">cut</span>(treadmill<span class="op">$</span>Age, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">37</span>,<span class="fl">44.5</span>,<span class="fl">50.5</span>,<span class="dv">58</span>))</a>
-<a class="sourceLine" id="cb822-2" title="2"><span class="kw">summary</span>(treadmill<span class="op">$</span>Ageb)</a>
-<a class="sourceLine" id="cb822-3" title="3"><span class="kw">require</span>(car)</a>
-<a class="sourceLine" id="cb822-4" title="4"><span class="kw">scatterplot</span>(TreadMillOx<span class="op">~</span>RunTime<span class="op">|</span>Ageb, <span class="dt">data=</span>treadmill, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb831-1" title="1">treadmill<span class="op">$</span>Ageb &lt;-<span class="st"> </span><span class="kw">cut</span>(treadmill<span class="op">$</span>Age, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">37</span>,<span class="fl">44.5</span>,<span class="fl">50.5</span>,<span class="dv">58</span>))</a>
+<a class="sourceLine" id="cb831-2" title="2"><span class="kw">summary</span>(treadmill<span class="op">$</span>Ageb)</a>
+<a class="sourceLine" id="cb831-3" title="3"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb831-4" title="4"><span class="kw">scatterplot</span>(TreadMillOx<span class="op">~</span>RunTime<span class="op">|</span>Ageb, <span class="dt">data=</span>treadmill, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>)</a></code></pre></div>
 <p>Based on the plot, do the lines look approximately parallel or not?</p>
 <p>8.10. Fit the MLR that contains a <code>RunTime</code> by <code>Ageb</code> interaction – do not
 include any other variables. Compare the <strong><em>R</em></strong><sup>2</sup> and adjusted

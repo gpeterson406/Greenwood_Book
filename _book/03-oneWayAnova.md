@@ -46,6 +46,7 @@ summarizing the overtake distances by the seven groups using ``favstats``.
 <p class="caption">(\#fig:Figure3-1)(ref:fig3-1)</p>
 </div>
 
+
 ```
 ##   Condition min    Q1 median  Q3 max     mean       sd   n missing
 ## 1    casual  17 100.0    117 134 245 117.6110 29.86954 779       0
@@ -372,8 +373,7 @@ find the correspondence between the displayed means and the estimates that were
 constructed in Table \@ref(tab:Table3-1). 
 \index{\texttt{allEffects()}}
 
-(ref:fig3-2) Plot of the estimated group mean distances from the reference-coded
-model for the overtake data from the ``effects`` package.
+(ref:fig3-2) Plot of the estimated group mean distances from the reference-coded model for the overtake data from the ``effects`` package.
 
 
 ```r

@@ -266,13 +266,13 @@ img {
 
 
 <div class="figure"><span id="fig:Figure9-2"></span>
-<img src="09-caseStudies_files/figure-html/Figure9-2-1.png" alt="Beanplot of biomass responses by treatment and species." width="576" />
+<img src="09-caseStudies_files/figure-html/Figure9-2-1.png" alt="Pirate-plot of biomass responses by treatment and species." width="576" />
 <p class="caption">
-Figure 2.187: Beanplot of biomass responses by treatment and species.
+Figure 2.192: Pirate-plot of biomass responses by treatment and species.
 </p>
 </div>
 <p>In a 16-year experiment, <span class="citation">Gundale, Bach, and Nordin (<a href="#ref-Gundale2013" role="doc-biblioref">2013</a>)</span> studied the impacts
-of Nitrogen (<code>N</code>) additions on the mass of two feather moss species
+of Nitrogen (N) additions on the mass of two feather moss species
 (<em>Pleurozium schreberi</em> (<code>PS</code>) and <em>Hylocomium</em> (<code>HS</code>)) in the Svartberget
 Experimental Forest in Sweden. They used a randomized block design: here this
 means that within each of 6 blocks (pre-specified areas that were divided into
@@ -287,7 +287,7 @@ that will be measured) could be randomly assigned to any treatment.
 This is
 done in agricultural studies to control for systematic differences across the
 fields by making sure each treatment level is used in each area or <strong><em>block</em></strong>
-of the field.
+of the field. In this example, it resulted in a balanced design with six replicates at each combination of <em>Species</em> and <em>Treatment</em>.
 </p>
 <p>The three treatments involved different levels of N applied immediately after
 snow melt, <em>Control</em> (no additional N – just the naturally deposited
@@ -298,42 +298,40 @@ two species of moss growth. They measured a variety of other
 variables, but here we focus on the estimated <em>biomass</em> per hectare (mg/ha) of
 the <em>species</em> (<em>PS</em> or <em>HS</em>), both measured for each plot within each block,
 considering differences across the <em>treatments</em> (<em>Control</em>, <em>N12.5</em>, or <em>N50</em>).
-The beanplot in Figure <a href="9-2-section9-2.html#fig:Figure9-2">2.187</a> provides some initial information
+The pirate-plot in Figure <a href="9-2-section9-2.html#fig:Figure9-2">2.192</a> provides some initial information
 about the responses. Initially there seem to be some differences in the
 combinations of groups and some differences in variability in the different
 groups, especially with much more variability in the <em>control</em> treatment level
 and more variability in the <em>PS</em> responses than for the <em>HS</em> responses.</p>
-<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb823-1" title="1">gdn &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/gundalebachnordin_2.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb823-2" title="2">gdn<span class="op">$</span>Species &lt;-<span class="st"> </span><span class="kw">factor</span>(gdn<span class="op">$</span>Species)</a>
-<a class="sourceLine" id="cb823-3" title="3">gdn<span class="op">$</span>Treatment &lt;-<span class="st"> </span><span class="kw">factor</span>(gdn<span class="op">$</span>Treatment)</a>
-<a class="sourceLine" id="cb823-4" title="4"><span class="kw">require</span>(beanplot)</a>
-<a class="sourceLine" id="cb823-5" title="5"><span class="kw">beanplot</span>(Massperha<span class="op">~</span>Species<span class="op">+</span>Treatment, <span class="dt">data=</span>gdn, <span class="dt">side =</span> <span class="st">&quot;b&quot;</span>, </a>
-<a class="sourceLine" id="cb823-6" title="6">         <span class="dt">col=</span><span class="kw">list</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightgreen&quot;</span>), <span class="dt">xlab=</span><span class="st">&quot;Treatment&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Biomass&quot;</span>)</a>
-<a class="sourceLine" id="cb823-7" title="7"><span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;HS&quot;</span>, <span class="st">&quot;PS&quot;</span>), <span class="dt">fill=</span><span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightgreen&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb832-1" title="1">gdn &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/gundalebachnordin_2.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb832-2" title="2">gdn<span class="op">$</span>Species&lt;-<span class="kw">factor</span>(gdn<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb832-3" title="3">gdn<span class="op">$</span>Treatment&lt;-<span class="kw">factor</span>(gdn<span class="op">$</span>Treatment)</a>
+<a class="sourceLine" id="cb832-4" title="4"><span class="kw">library</span>(yarrr)</a>
+<a class="sourceLine" id="cb832-5" title="5"><span class="kw">pirateplot</span>(Massperha<span class="op">~</span>Species<span class="op">+</span>Treatment, <span class="dt">data=</span>gdn, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Biomass&quot;</span>,<span class="dt">point.o=</span><span class="dv">1</span>, <span class="dt">inf.f.o=</span><span class="fl">0.5</span>,<span class="dt">pal=</span><span class="st">&quot;southpark&quot;</span>)</a></code></pre></div>
 <p>The Two-WAY ANOVA model that contains a <em>species</em> by <em>treatment</em> interaction is
 of interest (this has a quantitative response variable of <em>biomass</em> and two
 categorical predictors of <em>species</em> and <em>treatment</em>)<a href="#fn143" class="footnote-ref" id="fnref143"><sup>143</sup></a>. We can make an interaction plot to
 focus on the observed patterns of the means across the combinations of levels
-as provided in Figure <a href="9-2-section9-2.html#fig:Figure9-3">2.188</a>. The interaction
+as provided in Figure <a href="9-2-section9-2.html#fig:Figure9-3">2.193</a>. The interaction
 plot suggests a relatively additive pattern of differences between <em>PS</em> and
 <em>HS</em> across the three treatment levels. However, the variability seems to be
 quite different based on this plot as well.</p>
 
 <div class="figure"><span id="fig:Figure9-3"></span>
-<img src="09-caseStudies_files/figure-html/Figure9-3-1.png" alt="Interaction plot of biomass responses by treatment and species." width="576" />
+<img src="09-caseStudies_files/figure-html/Figure9-3-1.png" alt="Interaction plot of biomass responses by treatment and species." width="960" />
 <p class="caption">
-Figure 2.188: Interaction plot of biomass responses by treatment and species.
+Figure 2.193: Interaction plot of biomass responses by treatment and species.
 </p>
 </div>
-<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb824-1" title="1"><span class="kw">source</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/intplot.R&quot;</span>)</a>
-<a class="sourceLine" id="cb824-2" title="2"><span class="kw">intplot</span>(Massperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">data=</span>gdn, <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">lwd=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb833-1" title="1"><span class="kw">source</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R&quot;</span>)</a>
+<a class="sourceLine" id="cb833-2" title="2"><span class="kw">intplotarray</span>(Massperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">data=</span>gdn, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">4</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>],  <span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">cex.main=</span><span class="dv">1</span>)</a></code></pre></div>
 <p>Based on the initial plots, we are going to be concerned about the equal
 variance assumption initially. We can fit the interaction model and explore
 the diagnostic plots to verify that we have a problem.</p>
 <p>(ref:fig9-4) Diagnostic plots of treatment by species interaction model for
 Biomass.</p>
-<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb825-1" title="1">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Massperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">data=</span>gdn)</a>
-<a class="sourceLine" id="cb825-2" title="2"><span class="kw">summary</span>(m1)</a></code></pre></div>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb834-1" title="1">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Massperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">data=</span>gdn)</a>
+<a class="sourceLine" id="cb834-2" title="2"><span class="kw">summary</span>(m1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Massperha ~ Species * Treatment, data = gdn)
@@ -354,18 +352,18 @@ Biomass.</p>
 ## Residual standard error: 519 on 30 degrees of freedom
 ## Multiple R-squared:  0.6661, Adjusted R-squared:  0.6104 
 ## F-statistic: 11.97 on 5 and 30 DF,  p-value: 2.009e-06</code></pre>
-<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb827-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb827-2" title="2"><span class="kw">plot</span>(m1, <span class="dt">sub.caption=</span><span class="st">&quot;Initial Massperha 2-WAY model&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb836-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb836-2" title="2"><span class="kw">plot</span>(m1, <span class="dt">sub.caption=</span><span class="st">&quot;Initial Massperha 2-WAY model&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure9-4"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-4-1.png" alt="(ref:fig9-4)" width="960" />
 <p class="caption">
-Figure 2.189: (ref:fig9-4)
+Figure 2.194: (ref:fig9-4)
 </p>
 </div>
 <p>There is a clear problem with non-constant variance showing up in a fanning
 shape<a href="#fn144" class="footnote-ref" id="fnref144"><sup>144</sup></a>
 in the Residuals versus Fitted and Scale-Location plots in Figure
-<a href="9-2-section9-2.html#fig:Figure9-4">2.189</a>. Interestingly, the normality assumption is not an issue
+<a href="9-2-section9-2.html#fig:Figure9-4">2.194</a>. Interestingly, the normality assumption is not an issue as the residuals track the 1-1 line in the QQ-plot quite closely
 so hopefully we will not worsen this result by using a transformation to try to
 address the non-constant variance issue. The independence assumption is
 violated in two ways for this model by this study design – the blocks create
@@ -376,7 +374,7 @@ typically give more precise inferences for the effects of interest, the
 treatments randomized within the blocks. Additionally, <strong>there are two
 measurements on each plot</strong> within block, one for <em>SP</em> and one for <em>HS</em> and
 these might be related (for example, high <em>HS</em> biomass might be associated with
-high <em>SP</em>) so putting both observations into a model <strong>violates the
+high or low <em>SP</em>) so putting both observations into a model <strong>violates the
 independence assumption</strong> at a second level. It takes more advanced statistical
 models (called linear mixed models) to see how to fully deal with
 this, for now it is important to recognize the issues. The more complicated
@@ -385,42 +383,39 @@ interaction we are going to explore, they just add to this basic model to
 account for these other issues.</p>
 <p>Remember that <strong>before using a <em>log</em>-transformation, you always must check
 that the responses are strictly greater than 0</strong>:</p>
-<div class="sourceCode" id="cb828"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb828-1" title="1"><span class="kw">summary</span>(gdn<span class="op">$</span>Massperha)</a></code></pre></div>
+<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb837-1" title="1"><span class="kw">summary</span>(gdn<span class="op">$</span>Massperha)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   319.1  1015.1  1521.8  1582.3  2026.6  3807.6</code></pre>
 <p>The minimum is 319.1 so it is safe to apply the natural log-transformation to
 the response variable (<em>Biomass</em>) and repeat the previous plots:</p>
-<p>(ref:fig9-5) Beanplot and interaction plot of the log-Biomass responses by
+<p>(ref:fig9-5) Pirate-plot and interaction plot of the log-Biomass responses by
 treatment and species.</p>
-<div class="sourceCode" id="cb830"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb830-1" title="1">gdn<span class="op">$</span>logMassperha &lt;-<span class="st"> </span><span class="kw">log</span>(gdn<span class="op">$</span>Massperha)</a>
-<a class="sourceLine" id="cb830-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb830-3" title="3"><span class="kw">beanplot</span>(logMassperha<span class="op">~</span>Species<span class="op">+</span>Treatment, <span class="dt">data=</span>gdn, <span class="dt">side =</span> <span class="st">&quot;b&quot;</span>,</a>
-<a class="sourceLine" id="cb830-4" title="4">         <span class="dt">col=</span> <span class="kw">list</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightgreen&quot;</span>), <span class="dt">xlab=</span><span class="st">&quot;Treatment&quot;</span>, </a>
-<a class="sourceLine" id="cb830-5" title="5">         <span class="dt">ylab=</span><span class="st">&quot;log-Biomass&quot;</span>, <span class="dt">main=</span><span class="st">&quot;(a)&quot;</span>)</a>
-<a class="sourceLine" id="cb830-6" title="6"><span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;HS&quot;</span>,<span class="st">&quot;PS&quot;</span>), <span class="dt">fill=</span><span class="kw">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;lightgreen&quot;</span>))</a>
-<a class="sourceLine" id="cb830-7" title="7"><span class="kw">intplot</span>(logMassperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">data=</span>gdn, <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">main=</span><span class="st">&quot;(b)&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb839-1" title="1">gdn<span class="op">$</span>logMassperha &lt;-<span class="st"> </span><span class="kw">log</span>(gdn<span class="op">$</span>Massperha)</a>
+<a class="sourceLine" id="cb839-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb839-3" title="3"><span class="kw">pirateplot</span>(logMassperha<span class="op">~</span>Species<span class="op">+</span>Treatment, <span class="dt">data=</span>gdn, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Biomass&quot;</span>,<span class="dt">point.o=</span><span class="dv">1</span>, <span class="dt">inf.f.o=</span><span class="fl">0.5</span>,<span class="dt">pal=</span><span class="st">&quot;southpark&quot;</span>, <span class="dt">main=</span><span class="st">&quot;(a)&quot;</span>)</a>
+<a class="sourceLine" id="cb839-4" title="4"><span class="kw">intplot</span>(logMassperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">data=</span>gdn, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">4</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">main=</span><span class="st">&quot;(b)&quot;</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure9-5"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-5-1.png" alt="(ref:fig9-5)" width="576" />
 <p class="caption">
-Figure 2.190: (ref:fig9-5)
+Figure 2.195: (ref:fig9-5)
 </p>
 </div>
-<p>The variability in the beanplot in Figure <a href="9-2-section9-2.html#fig:Figure9-5">2.190</a>(a) appears to be
+<p>The variability in the pirate-plot in Figure <a href="9-2-section9-2.html#fig:Figure9-5">2.195</a>(a) appears to be
 more consistent across the groups but the lines appear to be a little less
-parallel in the interaction plot Figure <a href="9-2-section9-2.html#fig:Figure9-5">2.190</a>(b) for
+parallel in the interaction plot Figure <a href="9-2-section9-2.html#fig:Figure9-5">2.195</a>(b) for
 the log-scale response. That is not problematic but suggests that we may now
 have an interaction present – it is hard to tell visually sometimes. Again,
 fitting the interaction model and exploring the diagnostics is the best way to
 assess the success of the transformation applied.</p>
 <p>The log(Mass per ha) version of the response variable has little issue with
-changing variability present in the residuals in Figure <a href="9-2-section9-2.html#fig:Figure9-6">2.191</a>
+changing variability present in the residuals in Figure <a href="9-2-section9-2.html#fig:Figure9-6">2.196</a>
 with much more similar variation in the residuals across the fitted values.
 The normality assumption is leaning toward a slight violation with too little
 variability in the right tail and so maybe a little bit of a left skew. This
 is only a minor issue and fixes the other big issue (clear non-constant
 variance), so this model is at least closer to giving us trustworthy
-inferences than the original model. The model presents moderate evidence of a
-<em>Species</em> by <em>Treatment</em> interaction (<span class="math inline">\(F(2,30)=4.2\)</span>, p-value<span class="math inline">\(=0.026\)</span>). This
+inferences than the original model. The model presents moderate evidence against the null hypothesis of no
+<em>Species</em> by <em>Treatment</em> interaction on the log-biomass (<span class="math inline">\(F(2,30)=4.2\)</span>, p-value<span class="math inline">\(=0.026\)</span>). This
 suggests that the effects on the log-biomass of the treatments differ between
 the two species. The mean log-biomass is lower for <em>HS</em> than <em>PS</em> with the impacts of increased nitrogen causing <em>HS</em> mean log-biomass to decrease more rapidly than for <em>PS</em>. In other words, increasing
 nitrogen has more of an impact on the resulting log-biomass for <em>HS</em> than for
@@ -429,8 +424,8 @@ conditions for both species making nitrogen appear to inhibit growth of these
 species.</p>
 <p>(ref:fig9-6) Diagnostic plots of treatment by species interaction model for
 log-Biomass.</p>
-<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb831-1" title="1">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(logMassperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">data=</span>gdn)</a>
-<a class="sourceLine" id="cb831-2" title="2"><span class="kw">summary</span>(m2)</a></code></pre></div>
+<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb840-1" title="1">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(logMassperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">data=</span>gdn)</a>
+<a class="sourceLine" id="cb840-2" title="2"><span class="kw">summary</span>(m2)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logMassperha ~ Species * Treatment, data = gdn)
@@ -451,8 +446,8 @@ log-Biomass.</p>
 ## Residual standard error: 0.2841 on 30 degrees of freedom
 ## Multiple R-squared:  0.7998, Adjusted R-squared:  0.7664 
 ## F-statistic: 23.96 on 5 and 30 DF,  p-value: 1.204e-09</code></pre>
-<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb833-1" title="1"><span class="kw">require</span>(car)</a>
-<a class="sourceLine" id="cb833-2" title="2"><span class="kw">Anova</span>(m2)</a></code></pre></div>
+<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb842-1" title="1"><span class="kw">require</span>(car)</a>
+<a class="sourceLine" id="cb842-2" title="2"><span class="kw">Anova</span>(m2)</a></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: logMassperha
@@ -461,12 +456,12 @@ log-Biomass.</p>
 ## Treatment         4.6725  2  28.952 9.923e-08
 ## Species:Treatment 0.6727  2   4.168   0.02528
 ## Residuals         2.4208 30</code></pre>
-<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb835-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb835-2" title="2"><span class="kw">plot</span>(m2, <span class="dt">sub.caption=</span><span class="st">&quot;log-Massperha 2-WAY model&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb844-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb844-2" title="2"><span class="kw">plot</span>(m2, <span class="dt">sub.caption=</span><span class="st">&quot;log-Massperha 2-WAY model&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure9-6"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-6-1.png" alt="(ref:fig9-6)" width="960" />
 <p class="caption">
-Figure 2.191: (ref:fig9-6)
+Figure 2.196: (ref:fig9-6)
 </p>
 </div>
 <p>The researchers actually applied a <span class="math inline">\(\log(y+1)\)</span> transformation to all the
@@ -481,10 +476,10 @@ responses that include 0s. Or more complicated statistical models can be used
 that allow 0s in responses and still account for the violations of the linear
 model assumptions – see a statistician or continue exploring more advanced
 statistical methods for ideas in this direction.</p>
-<p>The term-plot in Figure <a href="9-2-section9-2.html#fig:Figure9-7">2.192</a> provides another display of the
+<p>The term-plot in Figure <a href="9-2-section9-2.html#fig:Figure9-7">2.197</a> provides another display of the
 results with some information on the results for each combination of the
-species and treatments. Finding evidence that the treatments caused different
-results for the different species is a good first start. And it appears that
+species and treatments. Retaining the interaction because of moderate evidence in the interaction test suggests that the treatments caused different
+results for the different species. And it appears that
 there are some clear differences among certain combinations such as the mean
 for <em>PS-Control</em> is clearly larger than for <em>HS</em>-<em>N50</em>. The researchers were
 probably really interested in whether the <em>N12.5</em> results differed from
@@ -494,17 +489,17 @@ detailed questions. This sort of follow-up could be considered in any
 Two-Way ANOVA model but will be most interesting in situations where there are
 important interactions.</p>
 
-<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb836-1" title="1"><span class="kw">require</span>(effects)</a>
-<a class="sourceLine" id="cb836-2" title="2"><span class="kw">plot</span>(<span class="kw">allEffects</span>(m2), <span class="dt">multiline=</span>T, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">ci.style=</span><span class="st">&quot;bars&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb845-1" title="1"><span class="kw">require</span>(effects)</a>
+<a class="sourceLine" id="cb845-2" title="2"><span class="kw">plot</span>(<span class="kw">allEffects</span>(m2), <span class="dt">multiline=</span>T, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">ci.style=</span><span class="st">&quot;bars&quot;</span>, <span class="dt">grid=</span>T)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure9-7"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-7-1.png" alt="Term-plot of the interaction model for log-biomass." width="576" />
 <p class="caption">
-Figure 2.192: Term-plot of the interaction model for log-biomass.
+Figure 2.197: Term-plot of the interaction model for log-biomass.
 </p>
 </div>
 
 <p><strong>Follow-up Pairwise Comparisons:</strong></p>
-<p>Given strong evidence of an interaction, many researchers would like more
+<p>Given at least moderate evidence against the null hypothesis of no interaction, many researchers would like more
 details about the source of the differences. We can re-fit the model with a
 unique mean for each combination of the two predictor variables, fitting a
 One-Way ANOVA model (here with six levels) and using Tukey’s HSD to provide
@@ -512,31 +507,31 @@ safe inferences for differences among pairs of the true means.  There are six
 groups corresponding to all combinations of <em>Species</em> (<em>HS</em>, <em>PS</em>) and
 treatment levels (<em>Control</em>, <em>N12.5</em>, and <em>N50</em>) provided in the new
 variable <code>SpTrt</code> by the <code>interaction</code> function with new levels of
-<em>HS.Control</em>, <em>PS.Control</em>, <em>HS.N12.5</em>, <em>PS.N12.5</em>, <em>HS.N50</em>, and <em>PS.N50</em>. The
+<em>HS.Control</em>, <em>PS.Control</em>, <em>HS.N12.5</em>, <em>PS.N12.5</em>, <em>HS.N50</em>, and <em>PS.N50</em>.  The
 One-Way ANOVA <span class="math inline">\(F\)</span>-test (<span class="math inline">\(F(5,30)=23.96\)</span>, p-value <span class="math inline">\(&lt;0.0001\)</span>) suggests that there
-is strong evidence of some difference in the true mean log-biomass among the six
-treatment/species combinations. Note that the One-Way ANOVA table contains the test for
+is strong evidence against the null hypothesis of no difference in the true mean log-biomass among the six
+treatment/species combinations and so we would conclude that at least on differs from the others. Note that the One-Way ANOVA table contains the test for
 at least one of those means being different from the others; the interaction
 test above was testing a more refined hypothesis – does the effect of
-treatment differ between the two species? With a small p-value from the overall
+treatment differ between the two species? As in any situation with a small p-value from the overall
 One-Way ANOVA test, the pair-wise comparisons should be of interest.</p>
-<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb837-1" title="1"><span class="co">#Create new variable:</span></a>
-<a class="sourceLine" id="cb837-2" title="2">gdn<span class="op">$</span>SpTrt &lt;-<span class="st"> </span><span class="kw">interaction</span>(gdn<span class="op">$</span>Species, gdn<span class="op">$</span>Treatment)</a>
-<a class="sourceLine" id="cb837-3" title="3"><span class="kw">levels</span>(gdn<span class="op">$</span>SpTrt)</a></code></pre></div>
+<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb846-1" title="1"><span class="co">#Create new variable:</span></a>
+<a class="sourceLine" id="cb846-2" title="2">gdn<span class="op">$</span>SpTrt &lt;-<span class="st"> </span><span class="kw">interaction</span>(gdn<span class="op">$</span>Species, gdn<span class="op">$</span>Treatment)</a>
+<a class="sourceLine" id="cb846-3" title="3"><span class="kw">levels</span>(gdn<span class="op">$</span>SpTrt)</a></code></pre></div>
 <pre><code>## [1] &quot;HS.Control&quot; &quot;PS.Control&quot; &quot;HS.N12.5&quot;   &quot;PS.N12.5&quot;   &quot;HS.N50&quot;    
 ## [6] &quot;PS.N50&quot;</code></pre>
-<div class="sourceCode" id="cb839"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb839-1" title="1">newm2 &lt;-<span class="st"> </span><span class="kw">lm</span>(logMassperha<span class="op">~</span>SpTrt, <span class="dt">data=</span>gdn)</a></code></pre></div>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb848-1" title="1">newm2 &lt;-<span class="st"> </span><span class="kw">lm</span>(logMassperha<span class="op">~</span>SpTrt, <span class="dt">data=</span>gdn)</a></code></pre></div>
 
-<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb840-1" title="1"><span class="kw">Anova</span>(newm2)</a></code></pre></div>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb849-1" title="1"><span class="kw">Anova</span>(newm2)</a></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: logMassperha
 ##           Sum Sq Df F value    Pr(&gt;F)
 ## SpTrt     9.6685  5  23.963 1.204e-09
 ## Residuals 2.4208 30</code></pre>
-<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb842-1" title="1"><span class="kw">require</span>(multcomp)</a>
-<a class="sourceLine" id="cb842-2" title="2">PWnewm2 &lt;-<span class="st"> </span><span class="kw">glht</span>(newm2, <span class="dt">linfct=</span><span class="kw">mcp</span>(<span class="dt">SpTrt=</span><span class="st">&quot;Tukey&quot;</span>))</a>
-<a class="sourceLine" id="cb842-3" title="3"><span class="kw">confint</span>(PWnewm2)</a></code></pre></div>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb851-1" title="1"><span class="kw">library</span>(multcomp)</a>
+<a class="sourceLine" id="cb851-2" title="2">PWnewm2 &lt;-<span class="st"> </span><span class="kw">glht</span>(newm2, <span class="dt">linfct=</span><span class="kw">mcp</span>(<span class="dt">SpTrt=</span><span class="st">&quot;Tukey&quot;</span>))</a>
+<a class="sourceLine" id="cb851-3" title="3"><span class="kw">confint</span>(PWnewm2)</a></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Confidence Intervals
 ## 
@@ -545,55 +540,54 @@ One-Way ANOVA test, the pair-wise comparisons should be of interest.</p>
 ## 
 ## Fit: lm(formula = logMassperha ~ SpTrt, data = gdn)
 ## 
-## Quantile = 3.043
+## Quantile = 3.0421
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                              Estimate lwr      upr     
-## PS.Control - HS.Control == 0  0.39210 -0.10698  0.89118
-## HS.N12.5 - HS.Control == 0   -0.42277 -0.92185  0.07630
-## PS.N12.5 - HS.Control == 0    0.21064 -0.28843  0.70972
-## HS.N50 - HS.Control == 0     -1.19994 -1.69901 -0.70086
-## PS.N50 - HS.Control == 0     -0.14620 -0.64528  0.35288
-## HS.N12.5 - PS.Control == 0   -0.81487 -1.31395 -0.31580
-## PS.N12.5 - PS.Control == 0   -0.18146 -0.68053  0.31762
-## HS.N50 - PS.Control == 0     -1.59204 -2.09112 -1.09296
-## PS.N50 - PS.Control == 0     -0.53830 -1.03738 -0.03923
-## PS.N12.5 - HS.N12.5 == 0      0.63342  0.13434  1.13249
-## HS.N50 - HS.N12.5 == 0       -0.77717 -1.27624 -0.27809
-## PS.N50 - HS.N12.5 == 0        0.27657 -0.22250  0.77565
-## HS.N50 - PS.N12.5 == 0       -1.41058 -1.90966 -0.91151
-## PS.N50 - PS.N12.5 == 0       -0.35685 -0.85592  0.14223
-## PS.N50 - HS.N50 == 0          1.05374  0.55466  1.55281</code></pre>
+## PS.Control - HS.Control == 0  0.39210 -0.10682  0.89102
+## HS.N12.5 - HS.Control == 0   -0.42277 -0.92169  0.07615
+## PS.N12.5 - HS.Control == 0    0.21064 -0.28828  0.70957
+## HS.N50 - HS.Control == 0     -1.19994 -1.69886 -0.70102
+## PS.N50 - HS.Control == 0     -0.14620 -0.64512  0.35272
+## HS.N12.5 - PS.Control == 0   -0.81487 -1.31379 -0.31595
+## PS.N12.5 - PS.Control == 0   -0.18146 -0.68038  0.31746
+## HS.N50 - PS.Control == 0     -1.59204 -2.09096 -1.09312
+## PS.N50 - PS.Control == 0     -0.53830 -1.03722 -0.03938
+## PS.N12.5 - HS.N12.5 == 0      0.63342  0.13450  1.13234
+## HS.N50 - HS.N12.5 == 0       -0.77717 -1.27609 -0.27824
+## PS.N50 - HS.N12.5 == 0        0.27657 -0.22235  0.77549
+## HS.N50 - PS.N12.5 == 0       -1.41058 -1.90950 -0.91166
+## PS.N50 - PS.N12.5 == 0       -0.35685 -0.85577  0.14208
+## PS.N50 - HS.N50 == 0          1.05374  0.55482  1.55266</code></pre>
 <p>We can also generate the Compact Letter Display (CLD) to help us group up the
 results. </p>
-<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb844-1" title="1"><span class="kw">cld</span>(PWnewm2)</a></code></pre></div>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb853-1" title="1"><span class="kw">cld</span>(PWnewm2)</a></code></pre></div>
 <pre><code>## HS.Control PS.Control   HS.N12.5   PS.N12.5     HS.N50     PS.N50 
 ##       &quot;bd&quot;        &quot;d&quot;        &quot;b&quot;       &quot;cd&quot;        &quot;a&quot;       &quot;bc&quot;</code></pre>
 <p>And we can add the CLD to an interaction plot to create Figure
-<a href="9-2-section9-2.html#fig:Figure9-8">2.193</a>. Researchers often use displays like this to simplify the
+<a href="9-2-section9-2.html#fig:Figure9-8">2.198</a>. Researchers often use displays like this to simplify the
 presentation of pair-wise comparisons. Sometimes researchers add bars or stars
 to provide the same information about pairs that are or are not detectably
 different. The following code creates the plot of these results using our
-<code>intplot</code> function and the <code>cld=T</code> option.</p>
+<code>intplot</code> function and the <code>cld=T</code> option. </p>
 <p>(ref:fig9-8) Interaction plot for log-biomass with CLD from Tukey’s HSD for all
 pairwise comparisons.</p>
-<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb846-1" title="1"><span class="kw">intplot</span>(logMassperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">cld=</span>T, <span class="dt">cldshift=</span><span class="fl">0.15</span>,</a>
-<a class="sourceLine" id="cb846-2" title="2">        <span class="dt">cldcol=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">8</span>), <span class="dt">data=</span>gdn, <span class="dt">lwd=</span><span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb846-3" title="3">        <span class="dt">main=</span><span class="st">&quot;Interaction with CLD from Tukey&#39;s HSD on One-Way ANOVA&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb855-1" title="1"><span class="kw">intplot</span>(logMassperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">cld=</span>T, <span class="dt">cldshift=</span><span class="fl">0.15</span>, <span class="dt">data=</span>gdn, <span class="dt">lwd=</span><span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb855-2" title="2">        <span class="dt">main=</span><span class="st">&quot;Interaction with CLD from Tukey&#39;s HSD on One-Way ANOVA&quot;</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:Figure9-8"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-8-1.png" alt="(ref:fig9-8)" width="960" />
 <p class="caption">
-Figure 2.193: (ref:fig9-8)
+Figure 2.198: (ref:fig9-8)
 </p>
 </div>
 <p>These results suggest that <em>HS-N50</em> is detectably different from all the other
 groups (letter “a”). The rest of the story is more complicated since many of
 the sets contain overlapping groups in terms of detectable differences. Some
 specific aspects of those results are most interesting. The mean log-biomasses
-were not detectably different between the (they share a “d”). In other words,
-without treatment, there is little to no evidence of a difference in how much of the two
+were not detectably different between the species in the control group (they share a “d”). In other words,
+without treatment, there is little to no evidence against the null hypothesis of no difference in how much of the two
 species are present in the sites. For <em>N12.5</em> and <em>N50</em> treatments, there are
 detectable differences between the <em>Species</em>. These comparisons are probably of
 the most interest initially and suggest that the treatments have a different
@@ -615,8 +609,8 @@ intervals in the Tukey’s HSD results printed above. Because these results are 
 <li id="fn143"><p>The researchers did not
 do this analysis so never directly addressed this research question although
 they did discuss it in general ways.<a href="9-2-section9-2.html#fnref143" class="footnote-back">↩</a></p></li>
-<li id="fn144"><p>Instructors in this class often get asked what a problem with
-non-constant variance actually looks like – this is it!<a href="9-2-section9-2.html#fnref144" class="footnote-back">↩</a></p></li>
+<li id="fn144"><p>Instructors often get asked what a problem with
+non-constant variance actually looks like – this is a perfect example of it!<a href="9-2-section9-2.html#fnref144" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 <p style="text-align: center;">

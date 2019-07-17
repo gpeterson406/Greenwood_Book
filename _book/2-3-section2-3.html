@@ -332,13 +332,11 @@ is more reasonable. The researchers obviously would have hoped to
 encounter some sort of noticeable difference in the distances for the
 different outfits and have been able to find enough evidence to reject the null
 model where the groups “look the same”.</p>
-<p>(ref:fig2-7) Illustration of the assumed situations under the null (left)
-and a single possibility that could occur if the alternative were true
-(right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.</p>
+
 <div class="figure"><span id="fig:Figure2-7"></span>
-<img src="chapter2_files/image015.png" alt="(ref:fig2-7)" width="480" />
+<img src="chapter2_files/image015.png" alt="Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis." width="480" />
 <p class="caption">
-Figure 2.7: (ref:fig2-7)
+Figure 2.7: Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.
 </p>
 </div>
 <p>In statistical inference, null hypotheses (and their
@@ -453,12 +451,11 @@ direction (the <em>commute</em> group had a higher mean than <em>casual</em> in 
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw">diffmean</span>(Distance<span class="op">~</span>PermutedCondition, <span class="dt">data=</span>Perm1)</a></code></pre></div>
 <pre><code>## diffmean 
 ## 12.06667</code></pre>
-<p>(ref:fig2-8) Pirate-plots of Distance responses versus actual treatment groups and
-permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals are more clearly visible than with the original large data set.</p>
+
 <div class="figure"><span id="fig:Figure2-8"></span>
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="(ref:fig2-8)" width="672" />
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals are more clearly visible than with the original large data set." width="672" />
 <p class="caption">
-Figure 2.8: (ref:fig2-8)
+Figure 2.8: Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals are more clearly visible than with the original large data set.
 </p>
 </div>
 <p>The <code>diffmean</code> function is a simple way to get the differences in the means, but we can also start to learn about using the <code>lm</code>  function - that will be used for every chapter except for Chapter <a href="5-chapter5.html#chapter5"><strong>??</strong></a>. The <code>lm</code> stands for <strong><em>linear model</em></strong>  and, as we will see moving forward, encompasses a wide array of different models and scenarios. Here we will consider among its simplest usage<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> to be able to estimate the difference in the mean of two groups. Notationally, it is very similar to other functions we have considered, <code>lm(y ~ x, data=...)</code> where <code>y</code> is the response variable and <code>x</code> is the explanatory variable. Here that is <code>lm(Distance~Condition, data=dsample)</code> with <code>Condition</code> defined as a factor variable. With linear models, we will need to interrogate them to obtain a variety of useful information and our first “interrogation” function is usually the <code>summary</code> function. To use it, it is best to have stored the model into an object, something like <code>lm1</code>, and then we can apply the <code>summary()</code>  function to the stored model object to get a suite of output:</p>

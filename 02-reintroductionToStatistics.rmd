@@ -1300,9 +1300,9 @@ limited to the sampled subjects.
 
 \footnotesize
 
-(ref:tab2-2) Scope of inference summary.
+(ref:tab2-1) Scope of inference summary.
 
-```{r Table2-2, echo=F,results="asis"}
+```{r Table2-1, echo=F,results="asis"}
 columnHeaders <- c("**Random\\\n Sampling/Random\\\n Assignment**",
                    "**Random Assignment (RA)\\\n -- Yes (controlled experiment)**",
                    "**Random Assignment (RA)\\\n -- No (observational study)**")
@@ -1314,7 +1314,7 @@ cell32 <- 'Cannot generalize inference to\\\n the population of interest\\\n bec
 cell33 <- 'Cannot generalize inference to\\\n the population of interest\\\n because the sample was\\\n not random and could be\\\n biased -- may not be\\\n "representative" of the\\\n population of interest.\\\n Cannot establish causal\\\n inference due to lack of RA of\\\n the treatment.'
 x <- data.frame(c(cell21,cell31),c(cell22,cell32),c(cell23,cell33))
 colnames(x) <- columnHeaders
-pandoc.table(x, keep.line.breaks = TRUE,caption="(\\#tab:Table2-2) (ref:tab2-2)", split.table = Inf,
+pandoc.table(x, keep.line.breaks = TRUE,caption="(\\#tab:Table2-1) (ref:tab2-1)", split.table = Inf,
              justify="left")
 ```
 
@@ -1432,16 +1432,15 @@ at $\alpha$. \index{type I error} We also have to worry about **Type II errors**
 to reject the null hypothesis when it's false. In a courtroom, this is the same
 as failing to convict a truly guilty person. This most often occurs due to a 
 lack of evidence that could be due to a small sample size or merely just an 
-unusual sample from the population. You can use the Table \@ref(tab:Table2-3) 
+unusual sample from the population. You can use the Table \@ref(tab:Table) 
 to help you remember all the possibilities. 
 
 \index{type I error} 
 \index{type II error} 
 
-(ref:tab2-3) Table of decisions and truth scenarios in a hypothesis 
-testing situation. But we never know the truth in a real situation. 
+(ref:tab2-2) Table of decisions and truth scenarios in a hypothesis testing situation. But we never know the truth in a real situation. 
 
-```{r Table2-3, echo=F,results="asis"}
+```{r Table2-2, echo=F,results="asis"}
 columnHeaders <- c("","$\\mathbf{H_0}$ **True**","$\\mathbf{H_0}$ **False**")
 cell21 <- "**FTR** $\\mathbf{H_0}$"
 cell22 <- 'Correct decision'
@@ -1452,7 +1451,7 @@ cell33 <- 'Correct decision'
 
 x <- data.frame(c(cell21,cell31),c(cell22,cell32),c(cell23,cell33))
 colnames(x) <- columnHeaders
-pandoc.table(x, keep.line.breaks = TRUE,caption="(\\#tab:Table2-3) (ref:tab2-3)", split.table = Inf,
+pandoc.table(x, keep.line.breaks = TRUE,caption="(\\#tab:Table2-2) (ref:tab2-2)", split.table = Inf,
              justify="left")
 ```
 
@@ -1506,7 +1505,7 @@ complete to make sure you have thought through and reported all aspects of the r
 
 Preliminary steps:
 
-* Define RQ and consider study design - what question can the data collected address? 
+* Define research question (RQ) and consider study design - what question can the data collected address? 
 
 * What graphs are appropriate to visualize the data?
 
@@ -1580,7 +1579,7 @@ of using the second model coefficient that estimates the difference in the means
 summary(lm1)$coef
 ```
 
-The first column of numbers contains the estimated difference in the sample means (-25.933 here) that was used before. The next column is the ``Std. Error`` column that contains the standard error (SE) of the estimated difference in the means, which is $s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$ and also the denominator used to form the t-test statistic (12.53 here). It will be a common theme in this material to take the ratio of the estimate (-25.933) to its SE (12.53) to generate test statistics, which provides -2.07 -- this is the "standardized" estimate of the difference in the means. It is also a test statistic ($T$) that we can use in a permutation test. This value is in the second row and third column of ``summary(lm1)$coef`` and to extract it the bracket notation is again employed. Specifically we want to extract ``summary(lm1)$coef[2,3]`` and using it and its permuted data equivalents to calculate a p-value. Since we are doing a two-sided 
+The first column of numbers contains the estimated difference in the sample means (-25.933 here) that was used before. The next column is the ``Std. Error`` column that contains the standard error (SE) of the estimated difference in the means, which is $s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$ and also the denominator used to form the $t$-test statistic (12.53 here). It will be a common theme in this material to take the ratio of the estimate (-25.933) to its SE (12.53) to generate test statistics, which provides -2.07 -- this is the "standardized" estimate of the difference in the means. It is also a test statistic ($T$) that we can use in a permutation test. This value is in the second row and third column of ``summary(lm1)$coef`` and to extract it the bracket notation is again employed. Specifically we want to extract ``summary(lm1)$coef[2,3]`` and using it and its permuted data equivalents to calculate a p-value. Since we are doing a two-sided 
 test, the code resembles the permutation test code in Section \@ref(section2-4) 
 with the new $t$-statistic replacing the difference in the sample means that we 
 used before. 
@@ -1755,7 +1754,7 @@ to work correctly, although this happened in the previous example.
 The parametric approach, the $t$-test, requires certain conditions to be true (or at least not be clearly violated) 
 for the sampling distribution of the 
 statistic to follow the named distribution and provide accurate p-values. The
-conditions for the t-test are:
+conditions for the $t$-test are:
 
 
 1. **Independent observations**: 
@@ -1794,7 +1793,7 @@ look normal for the procedure to work well, but they do need to look similar.
 \indent In the bicycle overtake study, we are not able to assume that the independent 
 observation condition is met because of multiple measurements taken on the same ride. The fact that the same rider was used for all observations is not really a violation of independence here because there was only one subject used. If multiple subjects had been used, then that also could present a violation of the independence assumption. This violation is important to note as the inferences may not be correct due to the violation of this assumption and more sophisticated statistical methods would be needed to complete this analysis correctly. The equal variance condition does not appear to be violated. The standard deviations are 28.4 vs 39.4, so this difference is not "large" 
 according to the rule of thumb noted above (ratio of SDs is about 1.4). There is also little evidence in the pirate-plots to suggest a violation of the normality condition for each of the groups (Figure \@ref(fig:Figure2-6)). Additionally, the shapes look similar for the two groups so we also could feel comfortable using the permutation approach based on 
-its version of condition (3) above. Note that when assessing assumptions, it is important to never state that assumptions are met -- we never know the truth and can only look at the information in the sample to look for evidence of problems with particular conditions. Violations of those conditions suggest a need for either more sophisticated statistical tools^[At this level, it is critical to learn the tools and learn where they might provide inaccurate inferences. If you explore more advanced statistical resources, you will encounter methods that can allow you to obtain valid inferences in even more scenarios.] or possibly transformations of the response variable (discussed in \@ref(chapter7)).
+its version of condition (3) above. Note that when assessing assumptions, it is important to never state that assumptions are met -- we never know the truth and can only look at the information in the sample to look for evidence of problems with particular conditions. Violations of those conditions suggest a need for either more sophisticated statistical tools^[At this level, it is critical to learn the tools and learn where they might provide inaccurate inferences. If you explore more advanced statistical resources, you will encounter methods that can allow you to obtain valid inferences in even more scenarios.] or possibly transformations of the response variable (discussed in Chapter \@ref(chapter7)).
 
 \indent The permutation approach is resistant 
 \index{resistant}
@@ -1989,7 +1988,7 @@ using the permutation \index{permutation} results for the grade data:
 
     * $T=-2.69$ from the previous R output. 
     
-    * p-value=`r perm_pval` from the permutation distribution results. 
+    * p-value $=$ `r perm_pval` from the permutation distribution results. 
 
     * This means that there is about a `r perm_pval*100`% chance we would observe 
     a difference in mean GPA (female-male or male-female) of 0.25 points or more 
@@ -2051,7 +2050,7 @@ The second new R code needed is the `simulate` \index{\texttt{simulate()}} funct
 
 ```{r Figure2-18, fig.cap="(ref:fig2-18)",echo=F,fig.width=10,fig.height=5,cache=F}
 set.seed(123456)
-ddsub$SimDistance <-simulate(lm_commonmean)[[1]]
+ddsub$SimDistance <- simulate(lm_commonmean)[[1]]
 
 pirateplot(SimDistance~Condition, data=ddsub)
 ```
@@ -2073,7 +2072,8 @@ even more clearly distinguished.
   #Create 10 data sets, keep estimated differences and p-values in diff10 and pval10
   for (c in (1:10)){
     ddsub$SimDistance <-simulate(lm_commonmean)[[1]]
-    lm_sim <- lm(SimDistance ~ Condition, data=ddsub) #Estimate two group model using simulated responses
+    #Estimate two group model using simulated responses
+    lm_sim <- lm(SimDistance ~ Condition, data=ddsub) 
     diff10[c] <- coef(lm_sim)[2]
     pval10[c] <- summary(lm_sim)$coef[2,4]
   }
@@ -2091,7 +2091,7 @@ diff10[pval10==min(pval10)] #Estimated difference for data set with smallest p-v
 
 \indent The estimated difference in the means also presents an interesting story. When just reporting the first result, the distribution of the estimated means in panel b of Figure \@ref(fig:Figure2-19) shows a symmetric distribution that is centered around 0 with results extending just past $\pm$ 4 in each tail. When selection of results is included, only more extreme estimated differences are considered and no results close to 0 are even reported. There are two modes here around $\pm$ 2.5 and multiple results close to $\pm$ 5 are observed. Interestingly, the mean of both distributions is close to 0 so both are "unbiased" ^[An unbiased estimator \index{unbiased estimator} is a statistic that is on average equal to the population parameter.] estimators but the distribution for the estimated difference from the selected "top" result is clearly flawed and would not give correct inferences for differences when the null hypothesis is correct. If a one-sided test had been employed, the selection of the top result would result is a clearly biased estimator as only one of the two modes would be selected. The presentation of these results is a great example of why pirate-plots are better than boxplots as a boxplot of these results would not allow the viewer to notice the two distinct groups of results.
 
-(ref:fig2-19) Pirate-plot of a simulation study results. Panel (a) contains the *B* = 1,000 p-values and (b) contains the *B*=1,000 estimated differences in the means. Note that the estimated means and confidence intervals normally present in pirate-plots are suppressed here with `inf.f.o = 0,inf.b.o = 0,avg.line.o = 0` because these plots are being used to summarize simulation results instead of an original data set. 
+(ref:fig2-19) Pirate-plot of a simulation study results. Panel (a) contains the *B* = 1,000 p-values and (b) contains the *B*=1,000 estimated differences in the means. Note that the estimated means and confidence intervals normally present in pirate-plots are suppressed here with `inf.f.o = 0, inf.b.o = 0, avg.line.o = 0` because these plots are being used to summarize simulation results instead of an original data set. 
 
 ```{r Figure2-19, fig.cap="(ref:fig2-19)",echo=F,fig.width=10,fig.height=5,cache=T}
 
@@ -2484,7 +2484,7 @@ in later chapters. The parametric confidence interval is called the
 assumes that the populations 
 being sampled from are normally distributed instead of just that they have similar shapes in the bootstrap approach. The parametric method leads to using a $t$-distribution
 \index{@$t$-distribution}
-to form the interval with the degrees of freedom for the $t$-distribution of $n-2$ although we can obtain it without direct reference to this distribution using the ``confint` function applied to the ``lm`` model. This function generates two confidence intervals and the one in the second row is the one we are interested as it pertains to the difference in the true means of the two groups. The parametric 95% confidence interval here is from -51.6 to -0.26 cm which is a bit different in width from the nonparametric bootstrap interval that was from -50 and -2.25 cm. 
+to form the interval with the degrees of freedom for the $t$-distribution of $n-2$ although we can obtain it without direct reference to this distribution using the ``confint`` function applied to the ``lm`` model. This function generates two confidence intervals and the one in the second row is the one we are interested as it pertains to the difference in the true means of the two groups. The parametric 95% confidence interval here is from -51.6 to -0.26 cm which is a bit different in width from the nonparametric bootstrap interval that was from -50 and -2.25 cm. 
 
 ```{r}
 confint(lm1)
@@ -2619,7 +2619,7 @@ qt(0.975, df=28)*sp*sqrt(1/15+1/15)
 
 ```{r}
 lm_all <- lm(Distance~Condition, data=ddsub)
-confint(lm1) #Parametric 95% CI
+confint(lm_all) #Parametric 95% CI
 ```
 
 The bootstrap 95% confidence interval is from -5.82 to -0.076. With this large data set, the differences between parametric and permutation approaches decrease and they essentially equivalent here. The bootstrap distribution (not displayed) for the differences in the sample means is relatively symmetric and centered around the estimated difference of -3 cm. So using all the observations we would be 95% confident that the true mean difference in overtake distances (*commute* - *casual*) is between -5.89 and -0.11 cm, providing additional information about the estimated difference in the sample means of -3 cm.
@@ -2644,7 +2644,7 @@ qdata(Tstar, c(0.025, 0.975))
 We can now apply the new confidence interval methods on the STAT 217 grade data. 
 This time we start with the parametric 95% confidence interval "by hand" in R
 and then use ``lm`` to verify our result. The ``favstats`` output provides 
-us with the required information to calculate the confidence interval, with the estimated difference in the sample mean GPAs of 3.338-3.0886 = 0.2494:
+us with the required information to calculate the confidence interval, with the estimated difference in the sample mean GPAs of $3.338-3.0886 = 0.2494$:
 
 ```{r}
 favstats(GPA~Sex, data=s217)
@@ -2857,12 +2857,12 @@ data=`r colFmt("DATASETNAME","red")`), level=0.95)**
     * Provides numerical summaries of Y by groups described in X. 
 
 * **Tobs ``<-`` coef(lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`))[2]; Tobs  
-B ``<-`` 1000  
-Tstar ``<-`` matrix(NA, nrow=B)  
-for (b in (1:B)){
-    lmP ``<-`` lm(`r colFmt("Y","red")`~shuffle(`r colFmt("X","red")`), data=`r colFmt("DATASETNAME","red")`)
-    Tstar[b] ``<-`` coef(lmP)[2]
-}**
+    B ``<-`` 1000  
+    Tstar ``<-`` matrix(NA, nrow=B)  
+    for (b in (1:B)){
+        lmP ``<-`` lm(`r colFmt("Y","red")`~shuffle(`r colFmt("X","red")`), data=`r colFmt("DATASETNAME","red")`)
+        Tstar[b] ``<-`` coef(lmP)[2]
+    }**
 
     * Code to run a ``for`` loop to generate 1000 permuted versions of the test
     statistic using the ``shuffle`` function and keep track of the results in 
@@ -2877,12 +2877,12 @@ for (b in (1:B)){
 \newpage
 
 * **Tobs ``<-`` coef(lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`))[2]; Tobs  
-B ``<-`` 1000  
-Tstar ``<-`` matrix(NA, nrow=B)  
-for (b in (1:B)){ 
-    lmP ``<-`` lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=resample(`r colFmt("DATASETNAME","red")`))  
-    Tstar[b] ``<-`` coef(lmP)[2]  
-}**
+    B ``<-`` 1000  
+    Tstar ``<-`` matrix(NA, nrow=B)  
+    for (b in (1:B)){ 
+        lmP ``<-`` lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=resample(`r colFmt("DATASETNAME","red")`))  
+        Tstar[b] ``<-`` coef(lmP)[2]  
+    }**
 
     * Code to run a ``for`` loop to generate 1000 bootstrapped versions of the 
     data set using the ``resample``  function and keep track of the results of 

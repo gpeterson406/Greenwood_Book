@@ -1287,7 +1287,7 @@ differ "beyond a reasonable doubt".
 
 \indent The scope of any inferences is constrained based on whether there is a 
 ***random sample*** (RS) and/or ***random assignment*** (RA). \index{scope of inference} \index{random assignment}  \index{random sampling}
-Table \@ref(tab:Table2-2) contains the four possible combinations of these 
+Table \@ref(tab:Table2-1) contains the four possible combinations of these 
 two characteristics of a given study. Random assignment of treatment levels to
 subjects allows for causal
 inferences for differences that are observed -- the difference in treatment
@@ -1432,7 +1432,7 @@ at $\alpha$. \index{type I error} We also have to worry about **Type II errors**
 to reject the null hypothesis when it's false. In a courtroom, this is the same
 as failing to convict a truly guilty person. This most often occurs due to a 
 lack of evidence that could be due to a small sample size or merely just an 
-unusual sample from the population. You can use the Table \@ref(tab:Table) 
+unusual sample from the population. You can use the Table \@ref(tab:Table2-2) 
 to help you remember all the possibilities. 
 
 \index{type I error} 
@@ -2071,7 +2071,7 @@ even more clearly distinguished.
   set.seed(222)
   #Create 10 data sets, keep estimated differences and p-values in diff10 and pval10
   for (c in (1:10)){
-    ddsub$SimDistance <-simulate(lm_commonmean)[[1]]
+    ddsub$SimDistance <- simulate(lm_commonmean)[[1]]
     #Estimate two group model using simulated responses
     lm_sim <- lm(SimDistance ~ Condition, data=ddsub) 
     diff10[c] <- coef(lm_sim)[2]
@@ -2859,9 +2859,9 @@ data=`r colFmt("DATASETNAME","red")`), level=0.95)**
 * **Tobs ``<-`` coef(lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`))[2]; Tobs  
     B ``<-`` 1000  
     Tstar ``<-`` matrix(NA, nrow=B)  
-    for (b in (1:B)){
-        lmP ``<-`` lm(`r colFmt("Y","red")`~shuffle(`r colFmt("X","red")`), data=`r colFmt("DATASETNAME","red")`)
-        Tstar[b] ``<-`` coef(lmP)[2]
+    for (b in (1:B)){  
+      lmP ``<-`` lm(`r colFmt("Y","red")`~shuffle(`r colFmt("X","red")`), data=`r colFmt("DATASETNAME","red")`)  
+      Tstar[b] ``<-`` coef(lmP)[2]  
     }**
 
     * Code to run a ``for`` loop to generate 1000 permuted versions of the test
@@ -2879,9 +2879,9 @@ data=`r colFmt("DATASETNAME","red")`), level=0.95)**
 * **Tobs ``<-`` coef(lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=`r colFmt("DATASETNAME","red")`))[2]; Tobs  
     B ``<-`` 1000  
     Tstar ``<-`` matrix(NA, nrow=B)  
-    for (b in (1:B)){ 
-        lmP ``<-`` lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=resample(`r colFmt("DATASETNAME","red")`))  
-        Tstar[b] ``<-`` coef(lmP)[2]  
+    for (b in (1:B)){  
+      lmP ``<-`` lm(`r colFmt("Y","red")`~`r colFmt("X","red")`, data=resample(`r colFmt("DATASETNAME","red")`))  
+      Tstar[b] ``<-`` coef(lmP)[2]  
     }**
 
     * Code to run a ``for`` loop to generate 1000 bootstrapped versions of the 

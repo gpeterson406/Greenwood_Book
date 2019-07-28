@@ -341,8 +341,7 @@ interpretations are interesting as they directly relate to comparisons of groups
 reconstructing the estimated means for each group by combining the baseline and
 a pertinent deviation as shown in Table \@ref(tab:Table3-1). 
 
-(ref:tab3-1) Constructing group mean estimates from the reference-coded linear
-model estimates.
+(ref:tab3-1) Constructing group mean estimates from the reference-coded linear model estimates.
 
 ```{r Table3-1, echo=F,results="asis"}
 columnHeaders <- c("Group","Formula","Estimates")
@@ -582,11 +581,7 @@ the $\textbf{SS}_{\textbf{Total}} \mathbf{=} \textbf{SS}_\textbf{A} \mathbf{+} \
 34948 + 5086298
 ```
 
-(ref:fig3-4) Plot of means and 95% confidence intervals for the three groups 
-for the real overtake data (a) and three different permutations of the outfit group labels 
-to the same responses in (b), (c), and (d). Note that ``SSTotal`` is always the same 
-but the different amounts of variation associated with the means (``SSA``) or the 
-errors (``SSE``) changes in permutation.
+(ref:fig3-4) Plot of means and 95% confidence intervals for the three groups for the real overtake data (a) and three different permutations of the outfit group labels to the same responses in (b), (c), and (d). Note that ``SSTotal`` is always the same but the different amounts of variation associated with the means (``SSA``) or the errors (``SSE``) changes in permutation.
 
 ```{r echo=F}
 #Permutation approaches to an F-test:
@@ -714,10 +709,7 @@ The following code performs the permutations ``B=1,000`` times using the
 ``shuffle`` function, builds up a vector of results in ``Tobs``, and then makes 
 a plot of the resulting permutation distribution:
 
-(ref:fig3-5) Histogram and density curve of permutation distribution of 
-$\text{SS}_A$ with the observed value of $\text{SS}_A$ displayed as a bold, 
-vertical line. The proportion of results that are as large or larger than the observed 
-value of $\text{SS}_A$ provides an estimate of the p-value. 
+(ref:fig3-5) Histogram and density curve of permutation distribution of $\text{SS}_A$ with the observed value of $\text{SS}_A$ displayed as a bold, vertical line. The proportion of results that are as large or larger than the observed value of $\text{SS}_A$ provides an estimate of the p-value. 
 
 ```{r Figure3-5,fig.cap="(ref:fig3-5)",echo=F,fig.height=5,fig.width=10}
 set.seed(123)
@@ -839,10 +831,7 @@ different $F$-distributions are displayed for you in Figure \@ref(fig:Figure3-6)
 * **Always use the right-tailed area for p-values.**
 
 
-(ref:fig3-6) Density curves of four different $F$-distributions. Upper left is an 
-$F(6, 5683)$, upper right is $F(2, 10)$, lower left is $F(6, 10)$, and lower right 
-is $F(3, 20)$. P-values are found using the areas to the right of the observed
-$F$-statistic value in all F-distributions. \index{p-value!calculation of}
+(ref:fig3-6) Density curves of four different $F$-distributions. Upper left is an $F(6, 5683)$, upper right is $F(2, 10)$, lower left is $F(6, 10)$, and lower right is $F(3, 20)$. P-values are found using the areas to the right of the observed $F$-statistic value in all F-distributions. \index{p-value!calculation of}
 
 ```{r Figure3-6,fig.cap="(ref:fig3-6)",echo=F,fig.height=4.25}
 x <- seq(from=0,to=7, length.out=200)
@@ -942,9 +931,7 @@ plot(density(Tstar), main="Density curve of Tstar")
 abline(v=Tobs, col="red", lwd=3)
 ```
 
-(ref:fig3-7) Histogram and density curve of the permutation distribution of 
-the F-statistic with bold, vertical line for the observed value of the test 
-statistic of `r round(orig_anova[1,4],2)`. 
+(ref:fig3-7) Histogram and density curve of the permutation distribution of the F-statistic with bold, vertical line for the observed value of the test statistic of `r round(orig_anova[1,4],2)`. 
 
 ```{r Figure3-7,fig.cap="(ref:fig3-7)",echo=F,fig.height=5,fig.width=10}
 par(mfrow=c(1,2))
@@ -973,8 +960,7 @@ the density curve and are not really a problem for the methods. The similarity i
 the two curves explains why both methods would give similar p-value results for almost any test statistic value. In some
 situations, the correspondence will not be quite so close. 
 
-(ref:fig3-8) Comparison of $F(6, 6583)$ (dashed line) and permutation distribution
-(solid line). 
+(ref:fig3-8) Comparison of $F(6, 6583)$ (dashed line) and permutation distribution (solid line). 
 
 ```{r Figure3-8,fig.cap="(ref:fig3-8)",echo=F,fig.height=3}
 par(mfrow=c(1,1))
@@ -1203,8 +1189,7 @@ as they will just be a little conservative. For any of the patterns, you would
 note a potential violation of the normality assumption and then proceed to 
 describe the type of violation and how clear or extreme it seems to be. \index{light-tailed}
 
-(ref:fig3-12) QQ-plots and density curves of four simulated distributions with
-different shapes. 
+(ref:fig3-12) QQ-plots and density curves of four simulated distributions with different shapes. 
 
 ```{r Figure3-12,fig.cap="(ref:fig3-12)",echo=F,fig.height=8,fig.width=6}
 #QQ plot code and examples:
@@ -1360,8 +1345,7 @@ each group using ``favstats``.
 favstats(len~Treat, data=ToothGrowth)
 ```
 
-(ref:fig3-14) Pirate-plot of odontoblast growth responses for the six 
-treatment level combinations. 
+(ref:fig3-14) Pirate-plot of odontoblast growth responses for the six treatment level combinations. 
 
 ```{r Figure3-14, fig.cap="(ref:fig3-14)",fig.height=6,fig.width=6}
 pirateplot(len~Treat, data=ToothGrowth, inf.method="ci", ylab="Odontoblast Growth in microns", point.o=.7)
@@ -1733,9 +1717,7 @@ and graphical^[The plot of results usually contains all the labels of groups but
 useful as a guide to help you read the plot in those situations.] results of applying Tukey's HSD
 to the linear model for the Guinea Pig data:
 
-(ref:fig3-19) Graphical display of pair-wise comparisons from Tukey's HSD for the 
-Guinea Pig data. Any confidence intervals that do not contain 0 provide strong evidence 
-against the null hypothesis of no difference in the true means for that pair of groups.
+(ref:fig3-19) Graphical display of pair-wise comparisons from Tukey's HSD for the Guinea Pig data. Any confidence intervals that do not contain 0 provide strong evidence against the null hypothesis of no difference in the true means for that pair of groups.
 
 ```{r Figure3-19, fig.cap="(ref:fig3-19)", fig.height=5,fig.width=10}
 require(multcomp)
@@ -1818,8 +1800,7 @@ ease of getting to the story of the Tukey's HSD results from a plot like this
 explains why it is common to report results using these methods instead of 
 reporting 15 confidence intervals for all the pair-wise differences, either in a table or the plot. 
 
-(ref:fig3-20) Pirate-plot of odontoblast growth by group with Tukey's HSD compact 
-letter display. Note some extra pirate-plot options are used to enhance focus on the CLD results.
+(ref:fig3-20) Pirate-plot of odontoblast growth by group with Tukey's HSD compact letter display. Note some extra pirate-plot options are used to enhance focus on the CLD results.
 
 ```{r Figure3-20, fig.cap="(ref:fig3-20)",echo=T,fig.width=10,fig.height=6}
 pirateplot(len~Treat, data=ToothGrowth, ylab="Growth (microns)", inf.method="ci", theme=2,inf.f.o = 0,point.o = .5) #Options theme=2,inf.f.o = 0,point.o = .5 added to focus on CLD

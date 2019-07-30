@@ -146,7 +146,7 @@ scope of inference gets complicated -- differences seen on randomized variables
 can be causally interpreted but you have to be careful to not say that the 
 demographics caused differences. Suppose that a randomly assigned drug dosage 
 is found to show positive differences in older adults and negative changes in younger adults. We 
-could say that the dosage causes the increases in older adults and decreases in younger ones, but we can't say that age caused the the differences in the ages -- it just modified how the drug works and what the drug caused to happen in the responses. 
+could say that the dosage causes the increases in older adults and decreases in younger ones, but we can't say that age caused the the differences in the responses -- it just modified how the drug works and what the drug caused to happen in the responses. 
 \index{scope of inference}
 
 \indent Even when we do have random assignment of treatments it is important to think 
@@ -265,13 +265,13 @@ combination. These data were simulated using a normal distribution with
 constant variance if that gives you some extra confidence in assessing these 
 model assumptions. 
 
-(ref:fig4-1) Pirate-plot of paper towel data by ``Drops`` (x-axis) and ``Brand`` 
-(side of bean, shaded area for ``Brand`` *B1*). 
+(ref:fig4-1) Pirate-plot of paper towel data by ``Drops`` (x-axis) and ``Brand`` (side of bean, shaded area for ``Brand`` *B1*). 
 
 ```{r Figure4-1,fig.cap="(ref:fig4-1)"}
 library(yarrr)
 set.seed(12)
-pirateplot(responses~brand*drops, data=pt, xlab="Drops", ylab="Time", inf.method="ci", point.o=1) 
+pirateplot(responses~brand*drops, data=pt, xlab="Drops", ylab="Time", inf.method="ci",
+           point.o=1) 
 ```
 
 \indent The pirate-plots can handle situations where both variables have more than two 
@@ -457,8 +457,7 @@ appears to change depending on which level of ``Brand`` is being considered.
 Note that the plot here described as Scenario 5 is the same as the initial plot 
 of the results in Figure \@ref(fig:Figure4-2). 
 
-(ref:fig4-6) Interaction plot of Scenario 5 where it appears that an 
-interaction is present. 
+(ref:fig4-6) Interaction plot of Scenario 5 where it appears that an interaction is present. 
 
 ```{r Figure4-6, fig.cap="(ref:fig4-6)",echo=F,fig.height=3,fig.width=4.5}
 old.par <- par(mai=c(1,1,0.75,1))
@@ -806,7 +805,7 @@ follow the rules of the sums of squares decomposition but they
 will test the desired hypotheses. Specifically, they provide each test
 conditional on any other terms at the same level of the model and match the
 hypotheses written out earlier in this section. To get the "correct" ANOVA
-results, the ``car`` (@R-car, @Fox2011) package is required. We use the 
+results, the ``car`` package (@R-car, @Fox2011) is required. We use the 
 ``Anova`` function on our linear models from here forward to get the "right" 
 tests in our ANOVA tables^[The ``anova`` results are not wrong, just not what we want in all situations.].
 \index{R packages!\textbf{car}}
@@ -880,9 +879,7 @@ impacts of changes brand and changing water levels, holding the other
 variable constant. The differences in heights in each panel correspond 
 to the coefficients just discussed. 
 
-(ref:fig4-8) Term-plots of additive model for paper towel data. Left panel displays
-results for two brands and right panel for number of drops of water, each after
-controlling for the other.
+(ref:fig4-8) Term-plots of additive model for paper towel data. Left panel displays results for two brands and right panel for number of drops of water, each after controlling for the other.
 
 ```{r Figure4-8, fig.cap="(ref:fig4-8)"}
 require(effects)
@@ -1123,7 +1120,7 @@ summary(TG2)$coefficients
 ```
 
 
-\indent There are two $\hat{\omega}_{jk}\text{'s}$ in the results, related to modifying the 
+\indent There are two $\widehat{\omega}_{jk}\text{'s}$ in the results, related to modifying the 
 estimates for doses of 1 (-0.68) and 2
 (5.33) for the Vitamin C group. If you want to re-construct the fitted values
 from the model that are displayed in Figure \@ref(fig:Figure4-13), you have 
@@ -1133,18 +1130,18 @@ example, for the OJ group (solid line), the
 dosage of 0.5 mg/day
 has an estimate of an average growth of approximately 13 mm. This is the
 baseline group, so the model estimate for an observation in the OJ and 0.5 mg/day
-dosage is simply $\hat{y}_{i,\text{OJ},0.5mg}=\hat{\alpha}=13.23$ microns. 
+dosage is simply $\widehat{y}_{i,\text{OJ},0.5mg}=\widehat{\alpha}=13.23$ microns. 
 For the OJ and 2 mg/day dosage estimate that has a value over 25 microns in the
 plot, the model incorporates the deviation for the 2 mg/day dosage:
-$\hat{y}_{i,\text{OJ},2mg}=\hat{\alpha} + \hat{\tau}_{2mg}=13.23 + 12.83 = 26.06$
+$\widehat{y}_{i,\text{OJ},2mg}=\widehat{\alpha} + \widehat{\tau}_{2mg}=13.23 + 12.83 = 26.06$
 microns. For the Vitamin C group, another coefficient becomes involved from its "main
 effect". For the VC and 0.5 mg dosage level, the estimate is approximately 8 microns.
 The pertinent model components are 
-$\hat{y}_{i,\text{VC},0.5mg}=\hat{\alpha} + \hat{\gamma}_{\text{VC}}=13.23 + (-5.25) = 7.98$
+$\widehat{y}_{i,\text{VC},0.5mg}=\widehat{\alpha} + \widehat{\gamma}_{\text{VC}}=13.23 + (-5.25) = 7.98$
 microns. Finally, when we consider non-baseline results for both groups, three
 coefficients are required to reconstruct the results in the plot. For example, 
 the estimate for the VC, 1 mg dosage is
-$\hat{y}_{i,\text{VC},1mg}=\hat{\alpha} + \hat{\tau}_{1mg} + \hat{\gamma}_{\text{VC}} + \hat{\omega}_{\text{VC},1mg} = 13.23 + 9.47 + (-5.25) +(-0.68)= 16.77$ microns. We usually will by-pass all this
+$\widehat{y}_{i,\text{VC},1mg}=\widehat{\alpha} + \widehat{\tau}_{1mg} + \widehat{\gamma}_{\text{VC}} + \widehat{\omega}_{\text{VC},1mg} = 13.23 + 9.47 + (-5.25) +(-0.68)= 16.77$ microns. We usually will by-pass all this
 fun(!) with the coefficients in an interaction model and go from the ANOVA
 interaction test to focusing on the pattern of the responses in the interaction
 plot or going to the simpler additive model, but it is good to know that there are still model coefficients driving
@@ -1272,8 +1269,7 @@ this suggests that we might be in Scenario 2 or 3 where a single main effect of
 interest is present. 
 
 
-(ref:fig4-15) Interaction plot array of ``prodebt`` by income group (1 to 5) and whether they buy cigarettes 
-(0=no, 1=yes).
+(ref:fig4-15) Interaction plot array of ``prodebt`` by income group (1 to 5) and whether they buy cigarettes (0=no, 1=yes).
 
 ```{r Figure4-15,fig.cap="(ref:fig4-15)",fig.height=5,fig.width=10}
 intplotarray(prodebt~cigbuy*incomegp, data=debtRc, col=c(1,3,4,5,6), lwd=2)
@@ -1336,8 +1332,7 @@ population these conclusions apply since it was random sample (at least those th
 suggests proceeding to fitting and exploring the additive model is reasonable
 here. No causal inferences are possible because this is an observational study. 
 
-(ref:fig4-16) Diagnostic plot for ``prodebt`` by income group and buy 
-cigarettes/not interaction model.
+(ref:fig4-16) Diagnostic plot for ``prodebt`` by income group and buy cigarettes/not interaction model.
 
 ```{r Figure4-16,fig.cap="(ref:fig4-16)",fig.height=5,fig.width=10}
 par(mfrow=c(2,2))
@@ -1430,9 +1425,7 @@ increasing average
 comfort with being in debt as the income groups go up except between groups 1 and 2 where 1 is a little higher than two. Being a cigarette buyer
 was related to a lower comfort level with debt but is really no different from those that did not report buying cigarettes. It would be possible to consider follow-up tests akin to the Tukey's HSD comparisons for the levels of ``incomegp`` here but that is a bit beyond the scope of this course -- focus on the estimated mean for the 5^th^ income group being over 3.5 and none of the others over 3.2. That seems like an interesting although modest difference in mean responses across income groups after controlling for cigarette purchasing or not. 
 
-(ref:fig4-19) Term-plots for the ``prodebt`` response additive model with left 
-panel for income group and the right panel for buying cigarettes or not
-(0 for no, 1 for yes).
+(ref:fig4-19) Term-plots for the ``prodebt`` response additive model with left panel for income group and the right panel for buying cigarettes or not (0 for no, 1 for yes).
 
 ```{r Figure4-19,fig.cap="(ref:fig4-19)",fig.height=5,fig.width=10}
 plot(allEffects(debt1r))
@@ -1451,18 +1444,17 @@ summary(debt1r)$coefficients
 ```
 
 In the model, the baseline group is for non-cigarette buyers (``cigbuy=0``)
-and income group 1 with $\hat{\alpha}= 3.131$ points. Regardless of the 
+and income group 1 with $\widehat{\alpha}= 3.131$ points. Regardless of the 
 ``cigbuy`` level, the difference between income groups 2 and 1 is estimated
-to be $\hat{\tau}_2=-0.054$, an decrease in the mean score of 0.054 points. 
-The difference between income groups 3 and 1 is $\hat{\tau}_3=0.027$
+to be $\widehat{\tau}_2=-0.054$, an decrease in the mean score of 0.054 points. 
+The difference between income groups 3 and 1 is $\widehat{\tau}_3=0.027$
 points, regardless of cigarette smoking status. The estimated difference
 between cigarette buyers and non-buyers was estimated as 
-$\hat{\gamma}_2=-0.011$ points for any income group, remember that this 
+$\widehat{\gamma}_2=-0.011$ points for any income group, remember that this 
 variable had a large p-value in this model. The additive model-based estimates for all 
 six combinations can be found in Table \@ref(tab:Table4-3).
 
-(ref:tab4-3) Calculations to construct the estimates for all combinations
-of variables for the ``prodebt`` additive model.
+(ref:tab4-3) Calculations to construct the estimates for all combinations of variables for the ``prodebt`` additive model.
 
 \small
 
@@ -1474,18 +1466,18 @@ columnHeaders <- c("$\\color{red}{\\text{Cig}}$\\\n $\\color{red}{\\text{Buy}}$"
       "$\\color{blue}{\\textbf{Income}}$\\\n $\\color{blue}{\\textbf{Group 4}}$",
       "$\\color{blue}{\\textbf{Income}}$\\\n $\\color{blue}{\\textbf{Group 5}}$")
 row1 <- c("$\\color{red}{\\text{0:No}}$",
-          "$\\hat{\\alpha} ={3.131}$",
-          "$\\hat{\\alpha} + \\hat{\\tau}_2$\\\n $=3.131 - 0.016$\\\n $= 3.115$",
-          "$\\hat{\\alpha} + \\hat{\\tau}_3$\\\n $=3.131 + 0.027$\\\n $= 3.158$",
-          "$\\hat{\\alpha} + \\hat{\\tau}_4$\\\n $=3.131 + 0.091$\\\n $= 3.222$",
-          "$\\hat{\\alpha} + \\hat{\\tau}_5$\\\n $=3.131 + 0.408$\\\n $= 3.539$\\\n"
+          "$\\widehat{\\alpha} ={3.131}$",
+          "$\\widehat{\\alpha} + \\widehat{\\tau}_2$\\\n $=3.131 - 0.016$\\\n $= 3.115$",
+          "$\\widehat{\\alpha} + \\widehat{\\tau}_3$\\\n $=3.131 + 0.027$\\\n $= 3.158$",
+          "$\\widehat{\\alpha} + \\widehat{\\tau}_4$\\\n $=3.131 + 0.091$\\\n $= 3.222$",
+          "$\\widehat{\\alpha} + \\widehat{\\tau}_5$\\\n $=3.131 + 0.408$\\\n $= 3.539$\\\n"
           )
 row2 <- c("$\\color{red}{\\text{1:}\\text{Yes}}$",
-          "$\\hat{\\alpha}+\\hat{\\gamma}_2$\\\n $=3.131$\\\n $-0.011$\\\n $=3.12$",
-          "$\\hat{\\alpha}+\\hat{\\tau}_2+\\hat{\\gamma}_2$\\\n $=3.131 - 0.016$\\\n $-0.011$\\\n $=3.104$",
-          "$\\hat{\\alpha}+\\hat{\\tau}_3+\\hat{\\gamma}_2$\\\n $=3.131 + 0.027$\\\n $-0.011$\\\n $=3.147$",
-          "$\\hat{\\alpha}+\\hat{\\tau}_4+\\hat{\\gamma}_2$\\\n $=3.131 + 0.091$\\\n $-0.011$\\\n $=3.211$",
-          "$\\hat{\\alpha}+\\hat{\\tau}_5+\\hat{\\gamma}_2$\\\n $=3.131 + 0.408$\\\n $-0.011$\\\n $=3.528$")
+          "$\\widehat{\\alpha}+\\widehat{\\gamma}_2$\\\n $=3.131$\\\n $-0.011$\\\n $=3.12$",
+          "$\\widehat{\\alpha}+\\widehat{\\tau}_2+\\widehat{\\gamma}_2$\\\n $=3.131 - 0.016$\\\n $-0.011$\\\n $=3.104$",
+          "$\\widehat{\\alpha}+\\widehat{\\tau}_3+\\widehat{\\gamma}_2$\\\n $=3.131 + 0.027$\\\n $-0.011$\\\n $=3.147$",
+          "$\\widehat{\\alpha}+\\widehat{\\tau}_4+\\widehat{\\gamma}_2$\\\n $=3.131 + 0.091$\\\n $-0.011$\\\n $=3.211$",
+          "$\\widehat{\\alpha}+\\widehat{\\tau}_5+\\widehat{\\gamma}_2$\\\n $=3.131 + 0.408$\\\n $-0.011$\\\n $=3.528$")
 t <- matrix(c(row1,row2),ncol = 6,byrow=T)
 m <- as.data.frame(t)
 colnames(m) <- columnHeaders
@@ -1506,12 +1498,7 @@ difference between ``cigbuy`` levels across all income groups is a drop in
 have the same differences regardless of cigarette buying or not, with income
 group 5 much higher than the other four groups. The minor differences in cigarette purchasing and large p-value for it controlled for income group suggest that we could also refine the model further and drop the ``cigbuy`` additive term and just focus on the income groups as a predictor -- and this takes us right back to a One-Way ANOVA model so is not repeated here.
 
-(ref:fig4-20) Illustration of the results from Table \@ref(tab:Table4-2)
-showing the combined impacts
-of the components of the additive model for ``prodebt``. Panel (a) uses income
-groups on the x-axis and different lines for cigarette buyers (1) or not (0). 
-Panel (b) displays the different income groups as lines with the cigarette
-buying status on the x-axis. 
+(ref:fig4-20) Illustration of the results from Table \@ref(tab:Table4-2) showing the combined impacts of the components of the additive model for ``prodebt``. Panel (a) uses income groups on the x-axis and different lines for cigarette buyers (1) or not (0). Panel (b) displays the different income groups as lines with the cigarette buying status on the x-axis. 
 
 ```{r Figure4-20,fig.cap="(ref:fig4-20)",echo=F,fig.width=7,fig.height=4.5}
 par(mfrow=c(1,2))
@@ -1685,8 +1672,7 @@ The term-plots in Figure \@ref(fig:Figure4-22) show that the
 differences among the levels are small relative to the residual variability as
 seen in the error bars around each point estimate. 
 
-(ref:fig4-22) Term-plots for the additive model in paper towel data set with no
-replication. 
+(ref:fig4-22) Term-plots for the additive model in paper towel data set with no replication. 
 
 ```{r Figure4-22,fig.cap="(ref:fig4-22)",fig.height=3}
 plot(allEffects(norep1))

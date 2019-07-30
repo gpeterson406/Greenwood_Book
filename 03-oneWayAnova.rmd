@@ -702,10 +702,6 @@ number from the ANOVA table that ``anova`` produces with
 of $\text{SS}_A$ in ``Tobs``, reusing some ideas from Chapter \@ref(chapter2). 
 \index{\texttt{anova()}}
 
-```{r echo=F}
-#options(scipen=0)
-```
-
 ```{r}
 Tobs <- anova(lm(Distance~Condition, data=dd))[1,2]; Tobs
 ```
@@ -888,7 +884,7 @@ from above, is:
 anova(lm2)
 ```
 
-The p-value from the $F$-distribution is `r round(orig_anova[1,5],7)` so we can report it as a p-value < 0.0001^[Any further claimed precision is an exaggeration and eventually we might see p-values that approach the precision of the computer at 2.2e-16 and anything below 0.0001 should just be reported as being below 0.0001. Also note the way that R represents small or extremely large numbers using scientific notation such as `3e-4` which is $3 \cdot 10^{-4} = 0.0003$]. \index{F-distribution} \index{p-values!small} We can 
+The p-value from the $F$-distribution is `r round(orig_anova[1,5],7)` so we can report it as a p-value < 0.0001^[Any further claimed precision is an exaggeration and eventually we might see p-values that approach the precision of the computer at 2.2e-16 and anything below 0.0001 should just be reported as being below 0.0001. Also note the way that R represents small or extremely large numbers using scientific notation such as `3e-4` which is $3 \cdot 10^{-4} = 0.0003$.]. \index{F-distribution} \index{p-values!small} We can 
 verify this result using the observed $F$-statistic of `r round(orig_anova[1,4],2)`
 (which came from taking the ratio of the two mean squares, 
 F=`r round(orig_anova[1,3],2)`/`r round(orig_anova[2,3],2)`)
@@ -1143,7 +1139,7 @@ suggest a deviation from normality since we rarely see values that many
 standard deviations from the mean in a normal distribution. But mainly focus 
 on the pattern in points in the QQ-plot and whether it matches the 1-1 line that is being plotted.] ***residuals*** are used (Figure \@ref(fig:Figure3-9)) and in others the raw residuals are used (Figure \@ref(fig:Figure3-11)) to compare the residual distribution to a normal one. Both the upper and lower tails (upper tail in the upper right and the lower tail in the lower right of the plot) show some separation from the 1-1 line. The separation in the upper tail is more clear and these positive residuals are higher than the line "predicts" if the distribution had been normal. Being higher than the line in the right tail means being bigger than expected and so more spread out in that direction than a normal distribution should be. The left tail for the negative residuals also shows some separation from the line to have more extreme (here more negative) than expected, suggesting a little extra spread in the lower tail than suggested by a normal distribution. If the two sides had been similarly far from the 1-1 line, then we would have a symmetric and ***heavy-tailed*** distribution. Here, the slight difference in the two sides suggests that the right tail is more spread out than the left and we should be concerned about a minor violation of the normality assumption.  If the distribution had followed the 
 normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose -- this is not the software identifying outliers or other problematic points -- that is your responsibility to assess using these plots. For example, the point "2709"  is identified in Figures \@ref(fig:Figure3-9) and \@ref(fig:Figure3-11)  (the 2709^th^
-observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a *novice* vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the ``fitted`` function on the estimated ``lm`` -- which here is just the sample mean of the group of the observations (*novice*) of 116.94 cm. The residual is stored in the 2,709^th^ value of ``eij`` or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the ``Distance`` variable), it is not too surprising that it ends up as the largest positive residual. index{\texttt{fitted()}}   \index{R packages!\textbf{car}}
+observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a *novice* vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the ``fitted`` function on the estimated ``lm`` -- which here is just the sample mean of the group of the observations (*novice*) of 116.94 cm. The residual is stored in the 2,709^th^ value of ``eij`` or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the ``Distance`` variable), it is not too surprising that it ends up as the largest positive residual. \index{\texttt{fitted()}} \index{R packages!\textbf{car}}
 
 ```{r}
 dd[2709,c(1:2)]
@@ -1284,7 +1280,9 @@ balanced, but all the sample sizes are between 737 and 868 so it is (in percenta
 tells us that the $F$-test should have some resistance to violations of 
 assumptions. We also get more resistance to violation of assumptions as our sample sizes increase. With such as large data set here and only minor concerns with the normality assumption, the inferences generated for the means should be trustworthy and we will get similar results from parametric and nonparametric procedures. If we had only 15 observations per group and a slightly skewed residual distribution, then we might want to appeal to the permutation approach to have more trustworthy results, even if the design were balanced.  
 
-
+```{r echo=F}
+options(scipen=0)
+```
 
 ## Guinea pig tooth growth One-Way ANOVA example {#section3-5}
 
@@ -1353,7 +1351,8 @@ favstats(len~Treat, data=ToothGrowth)
 (ref:fig3-14) Pirate-plot of odontoblast growth responses for the six treatment level combinations. 
 
 ```{r Figure3-14, fig.cap="(ref:fig3-14)",fig.height=6,fig.width=6}
-pirateplot(len~Treat, data=ToothGrowth, inf.method="ci", ylab="Odontoblast Growth in microns", point.o=.7)
+pirateplot(len~Treat, data=ToothGrowth, inf.method="ci", 
+           ylab="Odontoblast Growth in microns", point.o=.7)
 ```
 
 \indent Figure \@ref(fig:Figure3-14) suggests that the mean tooth growth increases with 
@@ -1475,7 +1474,7 @@ with these observations.
     the false impression that there is no chance of the result occurring when 
     it is just a really small probability. This p-value came from an $F(5,54)$
     distribution (this is the distribution of the test statistic if the null hypothesis
-    is true) with an $F-statistic of 41.56. 
+    is true) with an $F$-statistic of 41.56. 
     
     * The nonparametric approach is not too hard so we can compare the two approaches here  as well:
     
@@ -1667,7 +1666,7 @@ choose(7,2)
 ```
 
 So if you have three groups (the smallest number where we have to worry about more than one pair), there are three unique pairs to 
-compare. For six groups, like in the guinea pig study, we have to consider 15 tests to compare all the unique pairs of groups and with seven groups, there are 21 tests. Once there are more than two groups to compare, it seems like we 
+compare. For six groups, like in the Guinea Pig study, we have to consider 15 tests to compare all the unique pairs of groups and with seven groups, there are 21 tests. Once there are more than two groups to compare, it seems like we 
 should be worried about inflated family-wise error rates. Fortunately, the 
 Tukey's HSD method controls the family-wise error rate at your specified level 
 (say 0.05) across any number of pair-wise comparisons. This means that the 
@@ -1713,7 +1712,7 @@ explanatory variable name as ``VARIABLENAME="Tukey"``. The last part is to get t
 Tukey HSD multiple comparisons run on our explanatory variable^[In more complex models, this code can be used to create pair-wise comparisons on one of many explanatory variables.]. Once we obtain the
 intervals using the ``confint`` function or using ``plot`` applied to the stored results, we can use them to test $H_0: \mu_j = \mu_{j'} \text{ vs } H_A: \mu_j \ne \mu_{j'}$ 
 by assessing whether 0 is in the confidence interval for each pair. If 0 is in the 
-interval, then there is weak evidence against the null hypothesis for that pair, so we not detect a difference in that pair and not conclude that there is a difference. If 0 is not in the 
+interval, then there is weak evidence against the null hypothesis for that pair, so we do not detect a difference in that pair and do not conclude that there is a difference. If 0 is not in the 
 interval, then we have strong evidence against $H_0$ for that pair, detect a difference, and conclude that there is a difference in that pair *at the specified family-wise significance
 level*. You will see a switch to using the
 word "detection" to describe null hypotheses that we find strong evidence against as it
@@ -1808,7 +1807,9 @@ reporting 15 confidence intervals for all the pair-wise differences, either in a
 (ref:fig3-19) Pirate-plot of odontoblast growth by group with Tukey's HSD compact letter display. Note some extra pirate-plot options are used to enhance focus on the CLD results.
 
 ```{r Figure3-19, fig.cap="(ref:fig3-19)",echo=T,fig.width=10,fig.height=6}
-pirateplot(len~Treat, data=ToothGrowth, ylab="Growth (microns)", inf.method="ci", theme=2,inf.f.o = 0,point.o = .5) #Options theme=2,inf.f.o = 0,point.o = .5 added to focus on CLD
+#Options theme=2,inf.f.o = 0,point.o = .5 added to focus on CLD
+pirateplot(len~Treat, data=ToothGrowth, ylab="Growth (microns)", inf.method="ci",
+           theme=2,inf.f.o = 0,point.o = .5) 
 text(x=2,y=10,"a",col="blue",cex=1.5) #CLD added
 text(x=c(1,4),y=c(15,18),"b",col="red",cex=1.5)
 text(x=c(3,5,6),y=c(25,28,28),"c",col="green",cex=1.5)
@@ -1877,7 +1878,7 @@ mean(Distance~Condition2, data=dd)
 
 (ref:fig3-20) Tukey's HSD confidence interval results at the 95% family-wise confidence level for the overtake distances linear model using the new ``Condition2`` explanatory variable.
 
-```{r Figure3-20,fig.cap="(ref:fig3-20)",fig.height=7,echo=F}
+```{r Figure3-20,fig.cap="(ref:fig3-20)",fig.height=7,fig.width=6,echo=F}
 lm2 <- lm(Distance~Condition2, data=dd)
 require(multcomp)
 TmOv <- glht(lm2, linfct = mcp(Condition2 = "Tukey"))
@@ -1903,14 +1904,15 @@ old.par <- par(mai=c(1,2.5,1,1)) #Makes room on the plot for the group names
 plot(TmOv)
 ```
 
-The CLD also reinforces the previous discussion of which levels were detected as different and elucidates the other aspects of the results. Specifically, *police* is in a group with *hiviz* only (group "b", not detectably different). But *hiviz* is also in a group with all the other levels so also is in group "a". Figure \@ref(fig:Figure3-21) adds the CLD to the pirate-plot with the sorted means to help visually present these results with the original data, reiterating the benefits of sorting factor levels to make these plots easier to read. To wrap up this example (finally), we can see that we found that there was clear evidence against the null hypothesis of no difference in the true means, so concluded that there was some difference. The follow-up explorations show that we can really only suggest that the *police* outfit has detectably different mean distances and that is only for five of the six other levels. So if you are bike commuter (in the UK near London?), you are left to consider the size of this difference. The biggest estimated mean difference was 8.07 cm (3.2 inches) between *police* and *polite*. Do you think it is worth this potential extra average distance, especially given the wide variability in the distances, to make and then wear this vest? It is interesting that this result is found but it also is a fairly minimum size of a difference. It required an extremely large data set to detect these differences because the differences in the means are not very large relative to the variability in the responses. It seems like there might be many other reasons for why overtake distances vary that were not included our suite of predictors (they explored traffic volume in the paper as one other factor but we don't have that in our data set) or maybe it is just unexplanably variable. But it makes me wonder whether it matters what I wear when I bike and whether it has an impact that matters for average overtake distances -- even in the face of these "statistically significant" results. But maybe there is an impact on the "close calls" as you can see some differences in the lower tails of the distributions across the groups. The authors looked at the rates of "closer" overtakes by classifying the distances as either less than 100 cm (39.4 inches) as *closer* or not and also found some interesting results. Chapter \@ref(chapter5) discusses a method called a Chi-square test of Homogeneity that would be appropriate here and allow for an analysis of the rates of closer passes and this study is revisited in the Practice Problems there. It ends up showing that rates of "closer passes" are smallest in the *police* group.  
+The CLD also reinforces the previous discussion of which levels were detected as different and elucidates the other aspects of the results. Specifically, *police* is in a group with *hiviz* only (group "b", not detectably different). But *hiviz* is also in a group with all the other levels so also is in group "a". Figure \@ref(fig:Figure3-21) adds the CLD to the pirate-plot with the sorted means to help visually present these results with the original data, reiterating the benefits of sorting factor levels to make these plots easier to read. To wrap up this example (finally), we can see that we found that there was clear evidence against the null hypothesis of no difference in the true means, so concluded that there was some difference. The follow-up explorations show that we can really only suggest that the *police* outfit has detectably different mean distances and that is only for five of the six other levels. So if you are bike commuter (in the UK near London?), you are left to consider the size of this difference. The biggest estimated mean difference was 8.07 cm (3.2 inches) between *police* and *polite*. Do you think it is worth this potential extra average distance, especially given the wide variability in the distances, to make and then wear this vest? It is interesting that this result is found but it also is a fairly minimum size of a difference. It required an extremely large data set to detect these differences because the differences in the means are not very large relative to the variability in the responses. It seems like there might be many other reasons for why overtake distances vary that were not included our suite of predictors (they explored traffic volume in the paper as one other factor but we don't have that in our data set) or maybe it is just unexplainably variable. But it makes me wonder whether it matters what I wear when I bike and whether it has an impact that matters for average overtake distances -- even in the face of these "statistically significant" results. But maybe there is an impact on the "close calls" as you can see some differences in the lower tails of the distributions across the groups. The authors looked at the rates of "closer" overtakes by classifying the distances as either less than 100 cm (39.4 inches) as *closer* or not and also found some interesting results. Chapter \@ref(chapter5) discusses a method called a Chi-square test of Homogeneity that would be appropriate here and allow for an analysis of the rates of closer passes and this study is revisited in the Practice Problems (Section \@ref(section5-14)) there. It ends up showing that rates of "closer passes" are smallest in the *police* group.  
 
 
 (ref:fig3-21) Pirate-plot of overtake distances by group, sorted by sample means with Tukey's HSD CLD displayed. 
 
-```{r Figure3-21, fig.cap="(ref:fig3-21)", echo=T}
+```{r Figure3-21, fig.cap="(ref:fig3-21)", fig.width=6, echo=T}
 #old.par <- par(mai=c(0.5,1,1,1))
-pirateplot(Distance~Condition2, data=dd, ylab="Distance (cm)", inf.method="ci", theme=2,inf.f.o = 0) 
+pirateplot(Distance~Condition2, data=dd, ylab="Distance (cm)", inf.method="ci",
+           theme=2,inf.f.o = 0) 
 text(x=1:5,y=200,"a",col="blue",cex=1.5) #CLD added
 text(x=5.9,y=210,"a",col="blue",cex=1.5)
 text(x=6.1,y=210,"b",col="red",cex=1.5)
@@ -1937,7 +1939,7 @@ Pair-wise comparisons using Tukey's HSD provide a method for comparing all the g
 and are a nice complement to the overall ANOVA results. A compact letter display was 
 shown that enhanced the interpretation of Tukey's HSD result. 
 
-\indent In the guinea pig example, we are left with some lingering questions based on these 
+\indent In the Guinea Pig example, we are left with some lingering questions based on these 
 results. It appears that the effect of *dosage* changes as a function of the 
 *delivery method* (OJ, VC) because the size of the differences between OJ and VC
 change for different dosages. These methods can't directly assess the question
@@ -2059,7 +2061,7 @@ sd_fixedR <- subset(sd_fixed,!xor(BLs=="Forearm",BLs=="Forearm1"))
 sd_fixedR$BLs <-factor(sd_fixedR$BLs)
 ```
 
-3.7. Graphically explore the differences in the pain ratings across the different Body_Location levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? Hint: look for discreteness in the responses.
+3.7. Graphically explore the differences in the pain ratings across the different Body_Location levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? **Hint**: look for discreteness in the responses.
 
 3.8. Is the design balanced? 
 

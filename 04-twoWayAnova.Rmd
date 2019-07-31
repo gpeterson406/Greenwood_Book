@@ -283,7 +283,7 @@ Interaction plots display the mean
 responses (y-axis) versus levels of one predictor variable on the x-axis, 
 adding points and separate lines for each level of the other predictor variable. Because 
 we don't like any of the available functions in R, we wrote our own function, 
-called ``intplot`` that you can download^[Copy and include this code in a codechunk any time you want to use the ``intplot`` or ``inplotarray`` functions] using:
+called ``intplot`` that you can download^[Copy and include this code in a codechunk any time you want to use the ``intplot`` or ``inplotarray`` functions.] using:
 \index{\texttt{intplot()}}
 
 ```{r}
@@ -979,7 +979,7 @@ Anova(TG2)
 
 The ANOVA $F$-test for an interaction between supplement type and dosage level is 
 $F(2,54)= 4.107$ with a p-value of 0.022. So there is moderate to strong evidence against the null hypothesis of no interaction between *Dosage* and *Delivery method*, so we would likely conclude that there is an interaction present that we should discuss and this supports a changing effect on odontoblast growth of dosage based on the delivery
-method in these Guinea Pigs. 
+method in these guinea pigs. 
 
 \indent Any similarities between this correct
 result and the previous WRONG result are coincidence. I once
@@ -1336,7 +1336,7 @@ here. No causal inferences are possible because this is an observational study.
 
 ```{r Figure4-16,fig.cap="(ref:fig4-16)",fig.height=5,fig.width=10}
 par(mfrow=c(2,2))
-plot(debt1)
+plot(debt1, pch=16)
 ```
  
 \newpage
@@ -1371,7 +1371,7 @@ plot(debt1)
     ```{r Figure4-17,fig.cap="Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not",fig.height=5,fig.width=10}
     debt1r <- lm(prodebt~incomegp+cigbuy, data=debtRc)
     par(mfrow=c(2,2))
-    plot(debt1r)
+    plot(debt1r, pch=16)
     ```
 
     * Constant Variance:
@@ -1711,7 +1711,8 @@ dd$Backpack <- factor(dd$Backpack)
 
 library(tabplot)
 library(RColorBrewer)
-options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) # Options needed to prevent errors on PC
+# Options needed to prevent errors on PC
+options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
 tableplot(dd[,-1],sort=Condition2, pals=list("BrBG"))
 ```
 
@@ -1747,7 +1748,7 @@ in the same model with a
 continuous response were developed. The methods build on techniques from
 Chapter \@ref(chapter3) for the One-Way ANOVA and there are connections 
 between the two
-models. This was most clearly seen in the guinea pig data set that was analyzed
+models. This was most clearly seen in the Guinea Pig data set that was analyzed
 in both chapters. When two factors are available, it is better to start with
 the methods developed in this chapter because the interaction between the
 factors can, potentially, be separated from their main effects. The additive
@@ -1798,7 +1799,7 @@ methods that allow analyses of data sets similar
 to those considered in the last two chapters but with a categorical response
 variable. The methods are very different in application but are quite similar in overall goals
 to those in Chapter \@ref(chapter3) where differences in responses where explored 
-across groups. After Chapter \@ref(chapter5), the rest of the semester will 
+across groups. After Chapter \@ref(chapter5), the rest of the book will 
 return to fitting models using the ``lm`` function as used here, but 
 incorporating quantitative predictor variables and
 then eventually incorporating both categorical and quantitative predictor
@@ -1870,7 +1871,7 @@ data=`r colFmt("DATASETNAME","red")`)**
 * **summary(`r colFmt("MODELNAME","red")`)**
 
     * Generates model summary information including the estimated model coefficients, 
-    SEs, t-tests, and p-values. 
+    SEs, $t$-tests, and p-values. 
 
 * **Anova(`r colFmt("MODELNAME","red")`)** 
 
@@ -1983,7 +1984,7 @@ epworthdata$Group <- factor(epworthdata$Group)
 levels(epworthdata$Group) <- c("Control" , "Didgeridoo")
 ```
 
-4.9. Make pirate-plot and an interaction plot array to graphically explore the potential interaction of Time and Group on the Epworth responses.
+4.9. Make a pirate-plot and an interaction plot array to graphically explore the potential interaction of Time and Group on the Epworth responses.
 
 4.10.  Fit the interaction model and find
 the ANOVA table. For the test you should consider first (the interaction), 

@@ -103,7 +103,8 @@ Arthritis <- as_tibble(Arthritis)
 #Homogeneity example
 library(tabplot)
 library(RColorBrewer)
-options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) # Options needed to prevent errors on PC
+# Options needed to prevent errors on PC
+options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
 tableplot(Arthritis,select=c(Treatment,Improved,Sex,Age),pals=list("BrBG"))
 ```
 
@@ -248,13 +249,7 @@ clearly a big difference. We can also display this result using a
 ***stacked bar-chart*** \index{stacked bar chart} that displays the same information using the ``plot``
 function with a ``y~x`` formula:
 
-(ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is 
-for the Placebo group
-and the right bar is for the Treated group. The width of the bars is based on
-relative size of each group and the portion of the total height of each shaded
-area is the proportion of that group in each category. The darkest shading is
-for "none", medium shading for "some", and the lightest shading for "marked", 
-as labeled on the y-axis.
+(ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The darkest shading is for "none", medium shading for "some", and the lightest shading for "marked", as labeled on the y-axis.
 
 ```{r Figure5-2,fig.cap="(ref:fig5-2)", fig.height=5.5}
 plot(Improved~Treatment, data=Arthritis,
@@ -315,10 +310,7 @@ a diagram of the
 data collection processes and can help you to identify the appropriate analysis
 situation.
 
-(ref:fig5-3) Diagram of the scenarios involved
-in Homogeneity and Independence tests. Homogeneity testing involves R random
-samples or subjects assigned to R groups. Independence testing involves a
-single random sample and measurements on two categorical variables. 
+(ref:fig5-3) Diagram of the scenarios involved in Homogeneity and Independence tests. Homogeneity testing involves R random samples or subjects assigned to R groups. Independence testing involves a single random sample and measurements on two categorical variables. 
 
 ```{r Figure5-3,fig.cap="(ref:fig5-3)",echo=F,fig.width=7}
 knitr::include_graphics('chapter5_files/image027.png')
@@ -418,8 +410,7 @@ The alternative hypothesis is then:
 To make this concrete, consider what the proportions could look like if they satisfied 
 the null hypothesis for the *Arthritis* example, as displayed in Figure \@ref(fig:Figure5-4).
 
-(ref:fig5-4) Plot of one way that the Arthritis proportions could have been if the null 
-hypothesis had been true.
+(ref:fig5-4) Plot of one way that the Arthritis proportions could have been if the null hypothesis had been true.
 
 ```{r Figure5-4,fig.cap="(ref:fig5-4)",echo=F}
 ArthritisFAKE <- rbind(Arthritis,Arthritis) # Just to make the following plot!
@@ -579,8 +570,7 @@ natural ordering.
 function from a table that just contains the counts (**no totals**): 
 \index{\texttt{tally()}}
 
-(ref:fig5-5) Mosaic plot of the 2000 election data comparing party 
-affiliation and voting results. 
+(ref:fig5-5) Mosaic plot of the 2000 election data comparing party affiliation and voting results. 
 
 ```{r Figure5-5,fig.cap="(ref:fig5-5)"}
 # Makes a mosaic plot where areas are related to the proportion of
@@ -607,8 +597,7 @@ predict the voting response and that is not the case in
 Figure \@ref(fig:Figure5-6) but was in certain places in 
 Figure \@ref(fig:Figure5-5). 
 
-(ref:fig5-6) Mosaic plot of what the 2000 election data would look 
-like if the null hypothesis of no relationship were true. 
+(ref:fig5-6) Mosaic plot of what the 2000 election data would look like if the null hypothesis of no relationship were true. 
 
 ```{r Figure5-6,fig.cap="(ref:fig5-6)",echo=F}
 mosaicplot(chisq.test(electable)$expected,
@@ -697,8 +686,7 @@ Table \@ref(tab:Table5-3) demonstrates the calculations of the
 expected cell counts using this formula for all 6 cells in the $2\times 3$
 table. 
 
-(ref:fig5-7) Stacked bar chart that could occur if the null 
-hypothesis were true for the Arthritis study. 
+(ref:fig5-7) Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study. 
 
 ```{r Figure5-7,fig.cap="(ref:fig5-7)",echo=F}
 ArthritisFAKE <- rbind(Arthritis,Arthritis) # Just to make the following plot!
@@ -708,8 +696,7 @@ plot(Improved~Treat,data=ArthritisFAKE,main="Homogeneity Null Hypothesis True")
 
 
 
-(ref:tab5-3) Demonstration of calculation of expected cell counts 
-for Arthritis data. 
+(ref:tab5-3) Demonstration of calculation of expected cell counts for Arthritis data. 
 
 ```{r Table5-3,echo=F,results="asis"}
 columnHeaders <- c("&nbsp;&nbsp;&nbsp;&nbsp;","**None**","**Some**",
@@ -753,7 +740,7 @@ counts that has been produced **without row or column totals**.
 counts. Applying the ``chisq.test`` function^[Note that in smaller data sets to get results as discussed here, use the ``correct=F`` option. If you get output that contains "``...with Yate's continuity correction``", a slightly modified version of this test is being used.] to ``Arthtable``
 provides a variety of useful output. For the moment, we are just 
 going to extract the information in the "``expected``" attribute of 
-the results from running this function (using ``chisq.test()$expected)``.
+the results from running this function (using ``chisq.test(TABLENAME)$expected)``.
 These are the expected cell counts which match the previous calculations 
 except for some rounding in the hand-calculations. 
 
@@ -900,8 +887,7 @@ Arthpermtable
 chisq.test(Arthpermtable)
 ```
 
-(ref:fig5-8) Stacked bar charts of four permuted Arthritis data sets 
-that produced $X^2$ between 0.62 and 2.38.
+(ref:fig5-8) Stacked bar charts of four permuted Arthritis data sets that produced $X^2$ between 0.62 and 2.38.
 
 ```{r Figure5-8,fig.cap="(ref:fig5-8)",echo=F,fig.width=7,fig.height=4}
 set.seed(98765)
@@ -938,8 +924,7 @@ provided to ``chisq.test `` to analyze. We extract the
 ``$statistic`` attribute of the results from running ``chisq.test``. 
 \index{permutation!distribution}
 
-(ref:fig5-9) Permutation distribution for the $X^2$ statistic for 
-the Arthritis data with an observed $X^2$ of 13.1 (bold, vertical line). 
+(ref:fig5-9) Permutation distribution for the $X^2$ statistic for the Arthritis data with an observed $X^2$ of 13.1 (bold, vertical line). 
 
 ```{r Figure5-9,fig.cap="(ref:fig5-9)",fig.height=3.25}
 Tobs <- chisq.test(Arthtable)$statistic; Tobs
@@ -1064,8 +1049,7 @@ pchisq(13.055, df=2, lower.tail=F)
 We'll see more examples of the $\boldsymbol{\chi^2}$-distributions
 in each of the examples that follow. 
 
-(ref:fig5-10) $\boldsymbol{\chi^2}$-distribution with two degrees of 
-freedom with the observed statistic of 13.1 indicated with a vertical line. 
+(ref:fig5-10) $\boldsymbol{\chi^2}$-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line. 
 
 ```{r Figure5-10,fig.cap="(ref:fig5-10)",echo=F,warning=F,message=F}
 par(mfrow=c(1,1))
@@ -1098,8 +1082,7 @@ say about the effectiveness of the arthritis medication? It seems that there is 
 of patients getting improvement (*Some* or *Marked*). If the differences 
 "looked" smaller, even with a small p-value you^[Doctors are faced with this exact dilemma -- with little more training than you have now in statistics, they read a result like this in a paper and used to be encouraged to focus on the p-value to decide about treatment recommendations. Would you recommend the treatment here just based on the small p-value? Would having Figure \@ref(fig:Figure5-11) to go with the small p-value help you make a more educated decision? Now the recommendations are starting to move past just focusing on the p-values and thinking about the practical importance and size of the differences. The potential benefits of a treatment need to be balanced with risks of complications too, but that takes us back into discussing having multiple analyses in the same study (treatment improvement, complications/not, etc.).] might not recommend someone take the drug...
 
-(ref:fig5-11) Stacked bar chart of the Arthritis data comparing 
-*Treated* and *Placebo*.
+(ref:fig5-11) Stacked bar chart of the Arthritis data comparing *Treated* and *Placebo*.
 
 ```{r Figure5-11,fig.cap="(ref:fig5-11)",echo=F,message=F,warning=F, fig.height=5.5}
 plot(Improved~Treatment, data=Arthritis,
@@ -1148,9 +1131,7 @@ Homogeneity test -- both are evaluated with the same $X^2$ statistic so
 the large standardized residuals are of interest in both situations. Both types
 of results are shown for the Arthritis data table:
 
-(ref:fig5-12) Mosaic plot of the Arthritis data with large standardized 
-residuals indicated (actually, there were none that were indicated 
-because all were less than 2). Note that dashed borders correspond to negative standardized residuals (observed less than expected) and solid borders are positive standardized residuals (observed more than expected).
+(ref:fig5-12) Mosaic plot of the Arthritis data with large standardized residuals indicated (actually, there were none that were indicated because all were less than 2). Note that dashed borders correspond to negative standardized residuals (observed less than expected) and solid borders are positive standardized residuals (observed more than expected).
 
 ```{r Figure5-12,fig.cap="(ref:fig5-12)",echo=F,fig.height=4}
 old.par <- par(mai=c(0.5,0.75,0.75,0.75))
@@ -1169,7 +1150,7 @@ too helpful but this type of plot is in other examples. The largest
 contributions to the $X^2$ statistic come from the *Placebo* and *Treated*
 groups in the *Marked* improvement cells. Those standardized residuals 
 are -1.94 and 1.98 (both really close to 2), showing that the *placebo* 
-group had  **noticeably fewer** *Marked* improvement  
+group had  **noticeably fewer** *Marked* improvement 
 **results than expected** and the *Treated* group **had noticeably more**
 *Marked* improvement responses **than expected if the null hypothesis was true**. Similarly but with smaller magnitudes, there were more *None*
 results than expected in the *Placebo* group and fewer *None* results 
@@ -1237,11 +1218,7 @@ are just for making
 sure that R is treating the categorical variables that were coded numerically
 as categorical variables. 
 
-(ref:fig5-13) Tableplot of vote, party affiliation, education, and 
-gender from election survey data. Note that
-missing observations are present in all variables except for ``Gender``. Education is coded
-from 1 to 7 with higher values related to higher educational attainment. ``Gender``
-code 1 is for male and 2 is for female.
+(ref:fig5-13) Tableplot of vote, party affiliation, education, and gender from election survey data. Note that missing observations are present in all variables except for ``Gender``. Education is coded from 1 to 7 with higher values related to higher educational attainment. ``Gender`` code 1 is for male and 2 is for female.
 
 ```{r Figure5-13,fig.cap="(ref:fig5-13)", fig.height=5,fig.width=10}
 election$VOTEF <- factor(election$VOTE3)
@@ -1249,7 +1226,8 @@ election$PARTY <- factor(election$PARTY)
 election$EDUC <- factor(election$EDUC)
 election$GENDER <- factor(election$GENDER)
 levels(election$VOTEF) <- c("Gore","Bush","Other")
-options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) # Required options to avoid error when running on a PC, should have no impact on other platforms
+# Required options to avoid error when running on a PC, should have no impact on other platforms
+options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
 tableplot(election, select=c(VOTEF,PARTY,EDUC,GENDER),pals=list("BrBG"))
 ```
 
@@ -1403,7 +1381,7 @@ Here are our 6+ steps applied to this example:
     * But since the expected cell count condition is violated, we should 
     use permutations as implemented in the following code to provide a more trustworthy p-value:
 
-    ```{r Figure5-16,fig.cap="Permutation distribution of $X^2$ for the election data. Observed value of 763 not displayed.", warning=F}
+    ```{r Figure5-16,fig.cap="Permutation distribution of $X^2$ for the election data. Observed value of 763 not displayed.", fig.width=6, warning=F}
     Tobs <- chisq.test(electable)$statistic; Tobs
     par(mfrow=c(1,2))
     B <- 1000
@@ -1462,8 +1440,7 @@ chisq.test(electable)$residuals #(Obs - expected)/sqrt(expected)
 ```
 
 
-(ref:fig5-17) Mosaic plot with shading based on standardized residuals
-for the election data.
+(ref:fig5-17) Mosaic plot with shading based on standardized residuals for the election data.
 
 ```{r Figure5-17,fig.cap="(ref:fig5-17)",echo=F}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))
@@ -1561,9 +1538,7 @@ cheated on exams. The contingency table can help us dig further into the
 hypotheses related to the Chi-square test of Independence that is appropriate
 in this situation. \index{Chi-Square Test!Independence Test}
 
-(ref:fig5-19) Tableplot of new variables ``liar` and ``copier`` that allow 
-exploration of relationships between different types of lying and 
-cheating behaviors.
+(ref:fig5-19) Tableplot of new variables ``liar` and ``copier`` that allow exploration of relationships between different types of lying and cheating behaviors.
 
 ```{r Figure5-19,fig.cap="(ref:fig5-19)",fig.height=5,fig.width=10}
 cheating$liar <- interaction(cheating$LIEEXAM, cheating$LIEPAPER)
@@ -1588,8 +1563,7 @@ variable. This creates two new variables called ``liar2`` and ``copier2``
 (tableplot in Figure \@ref(fig:Figure5-20)). The code to create these 
 variables and make the plot is below which employs the ``levels`` function to assign the same label to two different levels from the original list. \index{\texttt{levels()}}
 
-(ref:fig5-20) Tableplot of lying and copying variables after combining 
-categories. 
+(ref:fig5-20) Tableplot of lying and copying variables after combining categories. 
 
 ```{r Figure5-20,fig.cap="(ref:fig5-20)",fig.height=5,fig.width=10}
 #Collapse the middle categories of each variable
@@ -1777,8 +1751,7 @@ tally(~stype, data=apipop) #Population counts
 tally(~stype, data=apistrat) #Sample counts
 ```
 
-(ref:fig5-23) Pirate-plot of the API growth scores by level 
-of school in the ``stype`` variable (coded E for elementary, M for Middle, and H for High school).
+(ref:fig5-23) Pirate-plot of the API growth scores by level of school in the ``stype`` variable (coded E for elementary, M for Middle, and H for High school).
 
 ```{r Figure5-23,fig.cap="(ref:fig5-23)",echo=F,fig.height=4,fig.width=6}
 pirateplot(growth~stype, data=apistrat, inf.method="ci", pal="southpark")
@@ -1801,8 +1774,7 @@ justified here but there is another "simpler" option available using our new
 Chi-square analysis methods. 
 
 
-(ref:fig5-24) QQ-plot of standardized residuals from the One-Way ANOVA
-linear model.
+(ref:fig5-24) QQ-plot of standardized residuals from the One-Way ANOVA linear model.
 
 ```{r Figure5-24,fig.cap="(ref:fig5-24)",fig.width=5.5}
 m1 <- lm(growth~stype, data=apistrat)
@@ -1856,8 +1828,7 @@ these situations, the stacked bar chart provides the appropriate summary of the
 data. It also shows us the labels of the categories that the ``cut`` function
 created in the new ``growthcut`` variable:
 
-(ref:fig5-25) Stacked bar chart of the growth category responses
-by level of school.
+(ref:fig5-25) Stacked bar chart of the growth category responses by level of school.
 
 ```{r Figure5-25,fig.cap="(ref:fig5-25)",echo=F,fig.width=6,fig.height=5.5}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))
@@ -1939,8 +1910,7 @@ expected if there were no differences across the school levels.
 chisq.test(growthtable)$residuals
 ```
 
-(ref:fig5-26) Mosaic plot of the API Growth rate categories versus 
-level of the school with shading for size of standardized residuals. 
+(ref:fig5-26) Mosaic plot of the API Growth rate categories versus level of the school with shading for size of standardized residuals. 
 
 ```{r Figure5-26,fig.cap="(ref:fig5-26)",echo=F,fig.width=6,fig.height=4}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))

@@ -246,7 +246,7 @@ version of the table.
 In this application, it shows how the proportions seem to be different among categories of *Improvement* between the placebo and treatment groups. This matches the previous thoughts on
 these data, but now a difference of marked improvement of 16% vs 51% is more
 clearly a big difference. We can also display this result using a 
-***stacked bar-chart*** \index{stacked bar chart} that displays the same information using the ``plot``
+***stacked bar chart*** \index{stacked bar chart} that displays the same information using the ``plot``
 function with a ``y~x`` formula:
 
 (ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The darkest shading is for "none", medium shading for "some", and the lightest shading for "marked", as labeled on the y-axis.
@@ -256,7 +256,7 @@ plot(Improved~Treatment, data=Arthritis,
      main="Stacked Bar Chart of Arthritis Data")
 ```
 
-\indent The stacked bar-chart in Figure \@ref(fig:Figure5-2) displays the previous 
+\indent The stacked bar chart in Figure \@ref(fig:Figure5-2) displays the previous 
 conditional proportions for the groups, with
 the same relatively clear difference between the groups persisting. If you run
 the ``plot`` function with variables that are
@@ -862,7 +862,7 @@ results we obtain in a single permutation of the treated/placebo labels
 -- Figure \@ref(fig:Figure5-8) (top left panel) shows
 a permuted data set that produced $X^{2*} = 0.62$. Visually, you can only
 see minimal differences between the treatment and placebo groups showing up in
-the stacked bar-chart. Three other permuted data sets are displayed in 
+the stacked bar chart. Three other permuted data sets are displayed in 
 Figure \@ref(fig:Figure5-8) showing the variability in results in 
 permutations but that none get close
 to showing the differences in the bars observed in the real data set in Figure \@ref(fig:Figure5-2). 
@@ -1181,7 +1181,7 @@ Pay attention to "small" counts, especially cells with 0 counts.
 3. Make the appropriate graphical display of results and generally 
 describe the pattern of responses.
 
-    a. For Homogeneity, make a stacked bar-chart.
+    a. For Homogeneity, make a stacked bar chart.
     
     b. For Independence, make a mosaic plot.
     
@@ -1690,10 +1690,10 @@ single sample was taken from the population so that is the appropriate procedure
 5. **Size:**
     
     * The standardized residuals can help us more fully understand this result -- the mosaic plot only had one cell shaded and so wasn't needed here. 
-
-```{r}
-chisq.test(cheatlietable)$residuals
-```
+    
+    ```{r}
+    chisq.test(cheatlietable)$residuals
+    ```
 
     * There is really only one large standardized residual for the *ExamorPaper* liars and the *CopyBoth* copiers, with a much larger observed value than expected of 2.48. The only other medium-sized standardized residuals came from the *CopyBoth* copiers column with fewer than expected students in the *None* category and more than expected in the *LieBoth* type of lying category. So we are seeing more than expected that lied somehow and copied -- we can say this suggests that the students who lie tend to copy too!
     
@@ -1955,7 +1955,7 @@ having a large enough overall sample). When the expected cell count condition is
 permutation approach can provide valuable inferences in these situations in
 most situations. 
 
-\indent Data displays of the stacked barchart (Homogeneity) and mosaic plots 
+\indent Data displays of the stacked bar chart (Homogeneity) and mosaic plots 
 (Independence) provide a visual
 summary of the results that can also be found in contingency tables. You should
 have learned how to calculate the $X^2$ (X-squared) test statistic
@@ -1967,7 +1967,7 @@ hypothesis, independence or homogeneity. After assessing evidence against the nu
 contributed to the deviations from the null hypothesis. The standardized
 residuals provide that information. Graphing them in a mosaic plot makes for a
 fun display to identify the large residuals and often allows you to better
-understand the results. This should tie back into the original data display (tableplot, stacked bar-chart or mosaic plot) and
+understand the results. This should tie back into the original data display (tableplot, stacked bar chart or mosaic plot) and
 contingency table where you identified initial patterns and help to tell the story of the results. 
 
 \newpage
@@ -2042,6 +2042,8 @@ df=(`r colFmt("R","red")` - 1)``*``(`r colFmt("C","red")` - 1), lower.tail=F)**
 
 ## Practice problems	{#section5-14}
 
+### Determine type of Chi-Square test
+
 Determine which type of test is appropriate in each situation --
 ***Independence***  or  ***Homogeneity***?
 
@@ -2103,6 +2105,8 @@ cups that were filled with milk first and 4 cups that were filled with tea first
 people from Rural and Urban areas aged differently. They contacted 200 people
 from Rural areas and 200 people from Urban areas and asked the participants
 their age (<40, 41-50, 51-60, >60). 
+
+### Data is/are analysis
 
 The [FiveThirtyEight Blog](https://fivethirtyeight.com/)
 often shows up with interesting data summaries
@@ -2176,13 +2180,14 @@ the is/are preferences move away from the null hypothesis for people that care
 more about this?
 
 --------------------------------------------------------------------------------
-We might be fighting a losing battle on "data is a plural word", but since we
-are in the group that cares a lot about this, we are going to keep trying...
+We might be fighting a losing battle on "data is a plural word", but since we are in the group that cares a lot about this, we are going to keep trying...
 --------------------------------------------------------------------------------
 
-We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``dd$Distance<=100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar-chat in Figure \@ref(fig:Figure5-28) is provided.
+### Overtake close calls by outfit analysis
 
-(ref:fig5-28) Stacked bar-chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit. 
+We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``dd$Distance<=100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided.
+
+(ref:fig5-28) Stacked bar chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit. 
 
 ```{r Figure5-28,fig.cap="(ref:fig5-28)",echo=T,fig.width=6,fig.height=3}
 dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")

@@ -828,7 +828,7 @@ by type of tree.
 library(spuRs) #install.packages("spuRs")
 data(ufc)
 ufc <- as_tibble(ufc)
-scatterplot(height.m~dbh.cm, data=ufc, smooth=F, regLine=T, pch=16)
+scatterplot(height.m~dbh.cm, data=ufc, smooth=F, regLine=T)
 ```
 
 Of particular interest is an observation with a diameter around 58 cm and a height
@@ -934,7 +934,7 @@ default option to provide the lines.
 (ref:fig6-13) Scatterplot with estimated regression line for the *Beers* and *BAC* data. Horizontal dashed lines for the predicted BAC for 4 and 5 beers consumed.
 
 ```{r Figure6-13,fig.cap="(ref:fig6-13)"}
-scatterplot(BAC~Beers, ylim=c(0,.2), xlim=c(0,9), data=BB, pch=16,
+scatterplot(BAC~Beers, ylim=c(0,.2), xlim=c(0,9), data=BB,
             boxplot=F, main="Scatterplot with regression line",
             lwd=2, smooth=F)
 abline(v=1:9, col="grey")
@@ -1152,7 +1152,7 @@ m2 <- lm(Hc~Bfat, data=subset(aisR2,Sex==1)) #Results for Females
 
 ```{r Figure6-15,fig.cap="(ref:fig6-15)"}
 summary(m2)
-scatterplot(Hc~Bfat, data=subset(aisR2,Sex==1), smooth=F, pch=16,
+scatterplot(Hc~Bfat, data=subset(aisR2,Sex==1), smooth=F,
             main="Scatterplot of Body Fat vs Hematocrit for Female Athletes",
             ylab="Hc (% blood)", xlab="Body fat (% weight)")
 ```
@@ -1367,7 +1367,7 @@ equation -- here between 54 and 60 degrees F seems reasonable.
 (ref:fig6-18) Scatterplot of log-hectares burned versus temperature with estimated regression line. 
 
 ```{r Figure6-18,fig.cap="(ref:fig6-18)",warning=F,message=F}
-scatterplot(loghectares~Temperature, data=mtfires, regLine=T, smooth=F, spread=F, pch=16,
+scatterplot(loghectares~Temperature, data=mtfires, regLine=T, smooth=F, spread=F,
             main="Scatterplot with regression line for Area burned vs Temperature")
 ```
 
@@ -1416,18 +1416,18 @@ predictor variables). \index{coefficient of determination} \index{R-squared}
 m1<-lm(BAC~Beers,data=BB)
 
 par(mfrow=c(1,3))
-plot(BAC~Beers,ylim=c(-0.15,.35),xlim=c(1,9),pch=16,data=BB,main="Real Data")
+plot(BAC~Beers,ylim=c(-0.15,.35),xlim=c(1,9),data=BB,main="Real Data")
 abline(a=m1$coef[1],b=m1$coef[2],col="darkgreen", lwd=2)
 
 BBfake1=BB
 BBfake1$BAC=fitted(m1)+residuals(m1)*5
-plot(BAC~Beers,ylim=c(-0.15,.35),xlim=c(1,9),pch=16,data=BBfake1,main="Fake Data")
+plot(BAC~Beers,ylim=c(-0.15,.35),xlim=c(1,9),data=BBfake1,main="Fake Data")
 m1<-lm(BAC~Beers,data=BBfake1)
 abline(a=m1$coef[1],b=m1$coef[2],col="darkgreen", lwd=2)
 
 BBfake2=BB
 BBfake2$BAC=fitted(m1)+residuals(m1)/15
-plot(BAC~Beers,ylim=c(-0.15,.35),xlim=c(1,9),pch=16,data=BBfake2,main="Fake Data")
+plot(BAC~Beers,ylim=c(-0.15,.35),xlim=c(1,9),data=BBfake2,main="Fake Data")
 m1<-lm(BAC~Beers,data=BBfake2)
 abline(a=m1$coef[1],b=m1$coef[2],col="darkgreen", lwd=2)
 ```

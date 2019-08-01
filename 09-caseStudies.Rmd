@@ -231,7 +231,8 @@ Based on the initial plots, we are going to be concerned about the equal
 variance assumption initially. We can fit the interaction model and explore
 the diagnostic plots to verify that we have a problem. 
 
-(ref:fig9-4) Diagnostic plots of treatment by species interaction model for Biomass.
+(ref:fig9-4) Diagnostic plots of treatment by species interaction model for
+Biomass.
 
 ```{r Figure9-4,fig.cap="(ref:fig9-4)",fig.height=5,fig.width=10}
 m1 <- lm(Massperha~Species*Treatment, data=gdn)
@@ -273,7 +274,8 @@ summary(gdn$Massperha)
 The minimum is 319.1 so it is safe to apply the natural log-transformation to
 the response variable (*Biomass*) and repeat the previous plots:
 
-(ref:fig9-5) Pirate-plot and interaction plot of the log-Biomass responses by treatment and species.
+(ref:fig9-5) Pirate-plot and interaction plot of the log-Biomass responses by 
+treatment and species.
 
 ```{r Figure9-5,fig.cap="(ref:fig9-5)",fig.width=6, fig.height=8}
 gdn$logMassperha <- log(gdn$Massperha)
@@ -306,7 +308,8 @@ nitrogen has more of an impact on the resulting log-biomass for *HS* than for
 conditions for both species making nitrogen appear to inhibit growth of these
 species. 
 
-(ref:fig9-6) Diagnostic plots of treatment by species interaction model for log-Biomass. 
+(ref:fig9-6) Diagnostic plots of treatment by species interaction model for
+log-Biomass. 
 
 ```{r Figure9-6,fig.cap="(ref:fig9-6)",fig.height=5,fig.width=10}
 m2 <- lm(logMassperha~Species*Treatment, data=gdn)
@@ -401,7 +404,8 @@ to provide the same information about pairs that are or are not detectably
 different. The following code creates the plot of these results using our 
 ``intplot`` function and the ``cld=T`` option. \index{\texttt{intplot()}}
 
-(ref:fig9-8) Interaction plot for log-biomass with CLD from Tukey's HSD for all pairwise comparisons.
+(ref:fig9-8) Interaction plot for log-biomass with CLD from Tukey's HSD for all
+pairwise comparisons.
 
 ```{r Figure9-8,fig.cap="(ref:fig9-8)",fig.height=5,fig.width=10}
 intplot(logMassperha~Species*Treatment, cld=T, cldshift=0.15, data=gdn, lwd=2, 

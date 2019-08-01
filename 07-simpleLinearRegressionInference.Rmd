@@ -138,15 +138,13 @@ regression line with two different residual SEs of 0.02 and 0.06. The original
 BAC model has a residual SE of 0.02 but had many fewer observations at each 
 *Beer* value.
 
-(ref:fig7-1) Sketch of assumed normal distributions for the responses 
-centered at the regression line.
+(ref:fig7-1) Sketch of assumed normal distributions for the responses centered at the regression line.
 
-```{r Figure7-1,fig.cap="(ref:fig7-1)",echo=F}
+```{r Figure7-1,fig.cap="(ref:fig7-1)",echo=F,out.width='50%'}
 knitr::include_graphics("chapter7_files/image029small.png")
 ```
 
-(ref:fig7-2) Simulated data for Beers and BAC assuming two different residual
-standard errors (0.02 and 0.06).
+(ref:fig7-2) Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06).
 
 ```{r Figure7-2,fig.cap="(ref:fig7-2)",echo=F,fig.height=4}
 BB<- read_csv("http://www.math.montana.edu/courses/s217/documents/beersbac.csv")
@@ -196,8 +194,7 @@ estimates.
 \index{random sampling}
 The next sections develop those inferential tools. 
 
-(ref:fig7-3) Variability in realized regression lines based on sampling 
-variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the ``simulate`` function as was used in Chapter \@ref(chapter2) were used to create this plot. \index{\texttt{simulate()}}
+(ref:fig7-3) Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the ``simulate`` function as was used in Chapter \@ref(chapter2) were used to create this plot. \index{\texttt{simulate()}}
 
 ```{r Figure7-3,fig.cap="(ref:fig7-3)",echo=F}
 knitr::include_graphics("chapter7_files/image034.png")
@@ -244,8 +241,7 @@ true slope. This sketch also informs an ***interpretation of the slope coefficie
 confidence interval***:
 
 
-(ref:fig7-4) Graphic illustrating the confidence interval for a slope 
-coefficient for a 1 unit increase in $x$.
+(ref:fig7-4) Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in $x$.
 
 ```{r Figure7-4,fig.cap="(ref:fig7-4)",echo=F}
 knitr::include_graphics("chapter7_files/image045.png")
@@ -595,8 +591,7 @@ F from 1901 to 2014. We can call
 them yearly average maximum temperatures but note that it was a little more
 complicated than that to arrive at the response variable we are analyzing. 
 
-(ref:fig7-5) Scatterplot of average yearly maximum temperatures in 
-Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines.
+(ref:fig7-5) Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines.
 
 ```{r Figure7-5,fig.cap="(ref:fig7-5)",error=F,message=F,fig.height=5,fig.width=10}
 bozemantemps <- read_csv("http://www.math.montana.edu/courses/s217/documents/BozemanMeanMax.csv")
@@ -670,7 +665,7 @@ $$H_0: \beta_1=0 \text{ vs } H_A: \beta_1 \ne 0$$
 To assess the remaining conditions, we need to fit the regression model and use
 the diagnostic plots in Figure \@ref(fig:Figure7-6) to aid our assessment:
 
-(ref:fig7-6) Diagnostic plots of the Bozeman yearly temperature simple linear  regression model.
+(ref:fig7-6) Diagnostic plots of the Bozeman yearly temperature simple linear regression model.
 
 ```{r Figure7-6,fig.cap="(ref:fig7-6)",fig.height=4,fig.width=10}
 temp1 <- lm(meanmax~Year, data=bozemantemps)
@@ -853,9 +848,7 @@ useful to understanding how much information is available for different aspects
 of the line. Here it provides gaps for missing years of observations as sort of
 broken teeth in a comb. Also not used here, we can also turn on the ``residuals=T`` option, which in SLR just plots the original points and adds a smoothing line to this plot to reinforce the previous assessment of assumptions.
 
-(ref:fig7-7) Term-plot for the Bozeman mean yearly maximum temperature 
-linear regression model with 95% confidence interval bands for the mean 
-in each year.
+(ref:fig7-7) Term-plot for the Bozeman mean yearly maximum temperature linear regression model with 95% confidence interval bands for the mean in each year.
 
 ```{r Figure7-7,fig.cap="(ref:fig7-7)",message=F,warning=F}
 require(effects)
@@ -928,9 +921,7 @@ in Figure \@ref(fig:Figure7-7). First, think about which of the panels you
 think present the most
 evidence of a linear relationship between ``Year`` and ``Temperature``? 
 
-(ref:fig7-8) Plot of the ``Temperature`` responses versus four versions of 
-``Year``, three of which are permutations of the Year variable relative 
-to the Temperatures.
+(ref:fig7-8) Plot of the ``Temperature`` responses versus four versions of ``Year``, three of which are permutations of the Year variable relative to the Temperatures.
 
 ```{r Figure7-8,fig.cap="(ref:fig7-8)",echo=F,fig.height=4,fig.width=8}
 set.seed(1667)
@@ -994,9 +985,7 @@ B <- 1000
 Tstar <- matrix(NA, nrow=B)
 ```
 
-(ref:fig7-9) Permutation distribution of the slope coefficient in the 
-Bozeman temperature linear regression model with bold vertical lines at 
-$\pm b_1=0.56$ based on the observed estimated slope.
+(ref:fig7-9) Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at $\pm b_1=0.56$ based on the observed estimated slope.
 
 ```{r Figure7-9,fig.cap="(ref:fig7-9)",fig.height=5,fig.width=10}
 for (b in (1:B)){
@@ -1046,9 +1035,7 @@ approach is not unreasonable here except possibly for the independence assumptio
 set.seed(12345)
 ```
 
-(ref:fig7-10) Bootstrap distribution of the slope coefficient in the Bozeman
-temperature linear regression model with bold vertical lines delineating the 95%
-confidence interval and observed slope of 0.52.
+(ref:fig7-10) Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines delineating the 95% confidence interval and observed slope of 0.52.
 
 ```{r Figure7-10,fig.cap="(ref:fig7-10)",fig.height=5,fig.width=10}
 Tobs <- lm(meanmax~Year, data=bozemantemps)$coef[2]
@@ -1118,8 +1105,7 @@ Here if you like temperature changes in $^\circ C$ for a 1 year increase, the
 slope coefficient is 0.029 and if you like the original change in $^\circ F$ for
 a 1 year increase, the slope coefficient is 0.052. More useful than this is the switch into units of 100 years (so each year increase would just be 0.1 instead of 1), so that the slope is the temperature change over 100 years.
 
-(ref:fig7-11) Scatterplots of *Temperature* ($^\circ F$) versus *Year* (left)
-and *Temperature* ($^\circ C$) vs *Years* since 1901 (right).
+(ref:fig7-11) Scatterplots of *Temperature* ($^\circ F$) versus *Year* (left) and *Temperature* ($^\circ C$) vs *Years* since 1901 (right).
 
 ```{r Figure7-11,fig.cap="(ref:fig7-11)",echo=F,fig.width=10,fig.height=5}
 bozemantemps$meanmaxC <- (bozemantemps$meanmax - 32)*(5/9)
@@ -1166,8 +1152,7 @@ with $\boldsymbol{\lambda}$ being the power of the transformation of the respons
 variable and $\lambda = 0$ implying a log-transformation. Except for $\lambda = 1$, the
 transformations are all nonlinear functions of $y$.
 
-(ref:fig7-12) Scatterplots of Hectares (a) and log-Hectares 
-(b) vs Temperature.
+(ref:fig7-12) Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature.
 
 ```{r Figure7-12,fig.cap="(ref:fig7-12)",fig.height=5,fig.width=10,echo=F}
 par(mfrow=c(1,2))
@@ -1177,8 +1162,7 @@ plot(loghectares~Temperature, data=mtfires, main="(b)",
      ylab="log-Hectares", pch=16)
 ```
 
-(ref:tab7-1) Ladder of powers of transformations that are often used in statistical 
-modeling.
+(ref:tab7-1) Ladder of powers of transformations that are often used in statistical modeling.
 
 ```{r Table7-1, echo=F,results="asis"}
 columnHeaders <- c("**Power**","**Formula**","**Usage**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
@@ -1346,8 +1330,7 @@ and *log(GDP)*. In the next section, we will fit models to some of these
 relationships and use our diagnostic plots to help us assess "success" of 
 the transformations. 
 
-(ref:fig7-17) Scatterplots of Infant Mortality vs GDP under four 
-different combinations of log-transformations. 
+(ref:fig7-17) Scatterplots of Infant Mortality vs GDP under four different combinations of log-transformations. 
 
 ```{r Figure7-17,fig.cap="(ref:fig7-17)",echo=F,fig.height=5,fig.width=10}
 require(carData)
@@ -1443,6 +1426,8 @@ understand the properties and eventually the interpretation of
 transformed-variables models, we need to try to "reverse" our transformation. 
 If we exponentiate^[Note ``exp(x)`` is the same as $e^{(x)}$ but easier
 to read in-line and ``exp()`` is the R function name to execute this calculation.] both sides of $\log(y)=b_0 + b_1x$, we get:
+
+(ref:fig7-18) Plot of the estimated SLR (a) and implied model for the median on the original Hectares scale (b) for the area burned vs temperature data. 
 
 ```{r Figure7-18,fig.cap="(ref:fig7-18)",echo=F,fig.height=5,fig.width=10}
 par(mfrow=c(1,2))
@@ -1547,9 +1532,7 @@ than at 58$^\circ F$... This can also be interpreted on a % change scale:
 A 1$^\circ F$ increase in temperature is related
 to an estimated $(4.01-1)*100 = 301\%$ increase in the median number of hectares burned. 
 
-(ref:fig7-18) Plot of the estimated SLR (a) and implied model for the
-median on the original Hectares scale (b) for the area burned vs 
-temperature data. 
+
 
 **Scenario 2: y vs log(x) model:**
 
@@ -1591,9 +1574,7 @@ doubling of $x$, we estimate a $b_1\log(2)$ change in the mean of $y$.
 Note that both interpretations are for the mean of the $y\text{'s}$
 since we haven't changed the $y\sim$ part of the model. 
 
-(ref:fig7-19) Plot of the observations and estimated SLR model 
-(mortality~ log(GDP)) (top) and implied model (bottom) for the 
-infant mortality data.
+(ref:fig7-19) Plot of the observations and estimated SLR model (mortality~ log(GDP)) (top) and implied model (bottom) for the infant mortality data.
 
 ```{r Figure7-19,fig.cap="(ref:fig7-19)",echo=F,fig.height=5,fig.width=10}
 ID1<-lm(infantMortality~log(ppgdp),data=UN)
@@ -1638,8 +1619,7 @@ should check the diagnostic plots (available in Figure \@ref(fig:Figure7-20))
 before we trust
 any of those previous interpretations. 
 
-(ref:fig7-20) Diagnostics plots of the infant mortality model with 
-log(GDP). 
+(ref:fig7-20) Diagnostics plots of the infant mortality model with log(GDP). 
 
 ```{r Figure7-20,fig.cap="(ref:fig7-20)",fig.height=5,fig.width=10}
 par(mfrow=c(2,2))
@@ -1678,9 +1658,7 @@ for logs:* $\log(ab) = \log(a) + \log(b)$.
 * $\log(y) = \log(\beta_0) + \beta_1\log(x).$ &nbsp; *Based on the rules
 for logs:* $\log(x^b) = b\log(x)$.
 
-(ref:fig7-21) Plot of the observations and estimated SLR model 
-log(mortality) $\sim$ log(GDP) (left) and implied model (right) for the infant
-mortality data.
+(ref:fig7-21) Plot of the observations and estimated SLR model log(mortality) $\sim$ log(GDP) (left) and implied model (right) for the infant mortality data.
 
 ```{r Figure7-21,fig.cap='(ref:fig7-21)',echo=F}
 par(mfrow=c(1,2))
@@ -2006,8 +1984,7 @@ head(BBPI)
 The rest of the code is just making a scatterplot and adding the five lines
 with a legend. The ``lines`` function connects the points with a line that provided and only works to add lines to the previously made ``plot``. \index(\texttt(lines())) 
 
-(ref:fig7-23) Estimated SLR for BAC data with 95% confidence (darker, dashed lines)
-and 95% prediction (lighter, dotted lines) intervals. 
+(ref:fig7-23) Estimated SLR for BAC data with 95% confidence (darker, dashed lines) and 95% prediction (lighter, dotted lines) intervals. 
 
 ```{r Figure7-23,fig.cap="(ref:fig7-23)",fig.height=5,fig.width=10,echo=F}
 par(mfrow=c(1,1))
@@ -2055,8 +2032,7 @@ the 109 observations (1.8%) fall outside the 95% PIs. Since the PI needs to be
 concerned with unobserved new observations it makes sense that it might contain
 more than 95% of the observations used to make it. 
 
-(ref:fig7-24) Estimated SLR for Bozeman temperature data with 95% confidence
-(dashed lines) and 95% prediction (lighter, dotted lines) intervals. 
+(ref:fig7-24) Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals. 
 
 ```{r Figure7-24,fig.cap="(ref:fig7-24)",echo=T,fig.height=5,fig.width=10}
 temp1<-lm(meanmax~Year, data=bozemantemps)

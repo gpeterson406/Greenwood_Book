@@ -106,7 +106,7 @@ $$y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i}+ \ldots + \beta_Kx_{Ki}
 
 Note that if $K=1$, we are back to SLR. In the MLR model, there are $K$
 predictors and we still have a
-y-intercept.
+$y$-intercept.
 \index{model!MLR}
 The MLR model carries the same assumptions as an SLR model with a
 couple of slight tweaks specific to MLR (see Section \@ref(section8-2)
@@ -125,7 +125,7 @@ about the algorithms when they don't work -- which is usually due to the
 user's inputs in these models not the algorithm itself.].\index{\texttt{lm()}} The estimated 
 regression equation it returns is:
 
-$$\hat{y}_i = b_0 + b_1x_{1i} +b_2x_{2i}+\ldots+b_Kx_{Ki}$$
+$$\widehat{y}_i = b_0 + b_1x_{1i} +b_2x_{2i}+\ldots+b_Kx_{Ki}$$
 
 where each $b_k$ estimates its corresponding parameter $\beta_k$.
 
@@ -269,7 +269,7 @@ plot(allEffects(m3, residuals=T),
 m1 <- lm(Snow.Depth~Elevation, data=snotel2)
 m2 <- lm(Snow.Depth~Min.Temp, data=snotel2)
 m3 <- lm(Snow.Depth~Max.Temp, data=snotel2)
-require(effects)
+library(effects)
 plot(allEffects(m1, residuals=T),
      main="SLR: Effect of Elevation")
 plot(allEffects(m2, residuals=T),
@@ -570,7 +570,7 @@ plot(m4, sub.caption="Diagnostics for m4", pch=16)
 
     * With $K=3$ predictors and $n=25$ observations, the average
     leverage is $4/25=0.16$. This gives us a scale to interpret the leverage
-    values on the x-axis of the lower right panel of our diagnostic plots.
+    values on the $x$-axis of the lower right panel of our diagnostic plots.
     
     * There are three higher leverage points (leverages over 0.3) with only
     one being influential (point 9) with Cook's D close to 1.
@@ -607,7 +607,7 @@ $$\begin{array}{rl}
 
 but the observed snow depth was actually $y_9=11.2$ inches. The observed  ***residual*** is then
 
-$$e_9=y_9-\hat{y}_9 = 11.2-40.465 = -29.265 \text{ inches.}$$
+$$e_9=y_9-\widehat{y}_9 = 11.2-40.465 = -29.265 \text{ inches.}$$
 
 So the model "misses" the snow depth by over 29 inches with the model suggesting
 over 40 inches of snow but only 11 inches actually being present^[Imagine
@@ -625,7 +625,7 @@ reporting of amounts of snow on the ground...].
 ```
 
 \indent This point is being rated as influential (Cook's D $\approx$ 1) with a
-leverage of nearly 0.35 and a standardized residual (y-axis of Residuals vs. 
+leverage of nearly 0.35 and a standardized residual ($y$-axis of Residuals vs. 
 Leverage plot) of nearly -3. This suggests that even
 with this observation impacting/distorting the slope coefficients (that is what
 ***influence*** means), the model is still doing really poorly at fitting this
@@ -647,7 +647,7 @@ $$\begin{array}{rl}
 The observed snow depth here was $y_{10} = 14.0$ inches so the observed
 residual is then
 
-$$e_{10}=y_{10}-\hat{y}_{10} = 14.0-23.998 = -9.998 \text{ inches.}$$
+$$e_{10}=y_{10}-\widehat{y}_{10} = 14.0-23.998 = -9.998 \text{ inches.}$$
 
 This results in a standardized residual of around -1. This is still a "miss"
 but not as glaring as the previous result and also is not having a major impact
@@ -884,7 +884,7 @@ $$\begin{array}{rl}
 \end{array}$$
 
 So at the means on the two temperature variables, 
-the model looks like an SLR with an estimated y-intercept of -140.69 (mean 
+the model looks like an SLR with an estimated $y$-intercept of -140.69 (mean 
 *Snow Depth* for *Elevation* of 0 if temperatures are at their means) 
 and an estimated
 slope of 0.0269. Then we can plot the predicted changes in $y$ across all the
@@ -904,7 +904,7 @@ depth of $-140.69 + 0.0269*8000 = 74.51$ inches.
 We can plot this information (Figure \@ref(fig:Figure8-10)) using the ``plot``
 function to show the points we calculated and the ``lines`` function to add 
 a line that connects the dots. In the ``plot`` function, we used the
-``ylim=...`` option to make the scaling on the y-axis match the previous
+``ylim=...`` option to make the scaling on the $y$-axis match the previous
 term-plot's scaling.
 
 (ref:fig8-10) Term-plot for Elevation "by-hand", holding temperature variables constant at their means. 
@@ -1078,7 +1078,7 @@ can be seen by considering
 $$R^2 = \frac{\text{SS}_{\text{regression}}}{\text{SS}_{\text{total}}}\ 
 \text{ where }\  \text{SS}_{\text{regression}} = \text{SS}_{\text{total}}
 - \text{SS}_{\text{error}}\ 
-\text{ and }\  \text{SS}_{\text{error}} = \Sigma(y-\hat{y})^2\ .$$
+\text{ and }\  \text{SS}_{\text{error}} = \Sigma(y-\widehat{y})^2\ .$$
 
 Because adding extra variables to a linear model will only make the fitted
 values better, not worse, the $\text{SS}_{\text{error}}$ will always go down
@@ -1502,7 +1502,7 @@ suggest that there is a linear relationship between *Elevation* and
 sites in Montana on this day. 
 
 \indent There is one last test that is of dubious interest in almost every 
-situation -- to test that the y-intercept $(\boldsymbol{\beta_0})$ in an MLR 
+situation -- to test that the $y$-intercept $(\boldsymbol{\beta_0})$ in an MLR 
 is 0. This tests if the
 true mean response is 0 when all the predictor variables are set to 0. I see
 researchers reporting this p-value frequently and it is possibly the most
@@ -1515,8 +1515,8 @@ prediction and are interested in whether the mean response when all the
 predictors are set to 0 is different from 0, this test should not be reported
 or, if reported, is certainly not very interesting^[There are some social
 science models where the model is fit with the mean subtracted from each 
-predictor so all have mean 0 and the precision of the y-intercept is 
-interesting. In some cases both the response and predictor variables are "standardized" to have means of 0 and standard deviations of 1. The interpretations of coefficients then relates to changes in standard deviations around the means. These coefficients are called "standardized betas". \index{standardized betas} But even in these models where the $x$-values of 0 are of interest, the test for the y-intercept being 0 is 
+predictor so all have mean 0 and the precision of the $y$-intercept is 
+interesting. In some cases both the response and predictor variables are "standardized" to have means of 0 and standard deviations of 1. The interpretations of coefficients then relates to changes in standard deviations around the means. These coefficients are called "standardized betas". \index{standardized betas} But even in these models where the $x$-values of 0 are of interest, the test for the $y$-intercept being 0 is 
 rarely of interest.]. 
 \index{@$y$-intercept interpretation!MLR}
 But we should at least go through the motions on this 
@@ -1600,7 +1600,7 @@ This test is called the ***overall F-test*** in MLR and is very similar to
 the $F$-test in a reference-coded One-Way ANOVA model. 
 \index{@$F$-test!overall}
 It tests the null
-hypothesis that involves setting every coefficient except the y-intercept to
+hypothesis that involves setting every coefficient except the $y$-intercept to
 0 (so all the slope coefficients equal 0). We saw this reduced model in the
 One-Way material when we considered setting all the deviations from the
 baseline group to 0 under the null hypothesis. We can frame this as a
@@ -1611,7 +1611,7 @@ comparison between a full and reduced model as follows:
 * ***Reduced Model:*** &nbsp; $y_i = \beta_0 + 0x_{1i} + 0x_{2i}+\cdots + 0x_{Ki}+\varepsilon_i$
 
 The reduced model estimates the same values for all $y\text{'s}$, 
-$\hat{y}_i=\bar{y}=b_0$ and corresponds to the null hypothesis of: 
+$\widehat{y}_i=\bar{y}=b_0$ and corresponds to the null hypothesis of: 
 
 $\boldsymbol{H_0:}$ **No explanatory variables should be included in the model:** $\beta_1=\beta_2=\cdots=\beta_K=0$. 
 
@@ -1942,7 +1942,7 @@ at the 30^th^ percentile and *SATM* at the 60^th^ percentile.
 The predicted mean value is
 
 $$\begin{array}{rl}
-\hat{\mu}_{\text{GPA}_i} &= 0.00737 + 0.0254\cdot\text{SATV}_i 
+\widehat{\mu}_{\text{GPA}_i} &= 0.00737 + 0.0254\cdot\text{SATV}_i 
 + 0.0224\cdot\text{SATM}_i \\
 &= 0.00737 + 0.0254*30 + 0.0224*60 = 2.113.
 \end{array}$$
@@ -1973,7 +1973,7 @@ not be useful.
 \indent To support this difficulty in getting a precise prediction for a new student,
 review the original scatterplots and partial residuals: there is quite a bit of vertical variability
 in first year *GPA*s for each level of any of the predictors. The residual
-SE, $\hat{\sigma}$, is also informative in this regard -- 
+SE, $\widehat{\sigma}$, is also informative in this regard -- 
 remember that it is the standard deviation of the residuals around the
 regression line. It is 0.6582, so the SD of new observations around the line is
 0.66 GPA points and that is pretty large on a GPA scale. Remember that if the residuals meet our assumptions and follow a normal distribution around the line, observations within 2 or 3 SDs of the mean would be expected which is a large range of GPA values. 
@@ -2053,20 +2053,20 @@ impact on the average first year GPA. We'll handle this sort of situation in
 Section \@ref(section8-11), where we will formally consider how to change the
 slopes for different groups. In this section, we develop new methods needed to
 begin to handle these situations and explore creating models that assume the same
-slope coefficient for all groups but allow for different y-intercepts. This material
+slope coefficient for all groups but allow for different $y$-intercepts. This material
 ends up resembling what we did for the Two-Way ANOVA additive model. 
 
 \indent The results for *SATV* contrast with Figure \@ref(fig:Figure8-18) for the relationship
 between first year college *GPA* and *SATM*
 percentile by gender of the students. The lines for the two groups appear to be
-mostly parallel and just seem to have different y-intercepts. In this section, we will learn how we can use our
+mostly parallel and just seem to have different $y$-intercepts. In this section, we will learn how we can use our
 MLR techniques to fit a model to the entire data set that allows for different
-y-intercepts. The real power of this idea is that we can then also test whether
-the different groups have different y-intercepts -- whether the shift between
+$y$-intercepts. The real power of this idea is that we can then also test whether
+the different groups have different $y$-intercepts -- whether the shift between
 the groups is "real". In this example, it appears to suggest that females
 generally have slightly higher GPAs than males, on average, but that an
 increase in SATM has about the same impact on GPA for both groups. If this difference in
-y-intercepts is not "real", then there appears to be no difference between the
+$y$-intercepts is not "real", then there appears to be no difference between the
 sexes in their relationship between SATM and GPA and we can safely continue
 using a model that does not differentiate the two groups. We could also just
 subset the data set and do two analyses, but that approach will not allow us 
@@ -2167,7 +2167,7 @@ $$\widehat{\text{FYGPA}}_i = 0.216 + 0.0386\cdot\text{SATM}_i +
 When we have a *male* observation, the indicator takes on a value of 0 so the 
 0.313 drops out of the model, leaving an SLR just in terms of *SATM*. For a
 *female* student, the indicator is 1 and we add 0.313 to the previous 
-y-intercept. The following
+$y$-intercept. The following
 works this out step-by-step, simplifying the MLR into two SLRs:
 
 
@@ -2189,8 +2189,8 @@ In this situation, we then end up with two SLR models that relate *SATM* to
 *GPA*, one model for *males* 
 $(\widehat{\text{FYGPA}}_i= 0.216 + 0.0386\cdot\text{SATM}_i)$ and one for *females*
 $(\widehat{\text{FYGPA}}_i= 0.529 + 0.0386\cdot\text{SATM}_i)$. The only difference
-between these two models is in the y-intercept, with the *female* model's
-y-intercept shifted up from the *male* y-intercept by 0.313. And that is what
+between these two models is in the $y$-intercept, with the *female* model's
+$y$-intercept shifted up from the *male* $y$-intercept by 0.313. And that is what
 adding indicator variables into models does in general^[This is true for 
 additive uses of indicator variables. In Section \@ref(section8-11), we
 consider interactions between quantitative and categorical variables which has
@@ -2207,7 +2207,7 @@ the ``GENDERFEMALE`` or ``GENDERINDICATOR`` row of the model summaries. For exam
 at *SATM*=50, the difference in terms of predicted average first year GPAs
 between males and females is displayed as a difference between 2.15 and 2.46.
 This model assumes that the slope on *SATM* is the same for both groups except
-that they are allowed to have different y-intercepts, which is reasonable here
+that they are allowed to have different $y$-intercepts, which is reasonable here
 because we saw approximately parallel relationships for the two groups in
 Figure \@ref(fig:Figure8-18). 
 
@@ -2248,17 +2248,17 @@ is $y_i=\beta_0+\beta_1x_i + \varepsilon_i$.
 * For any observation $i$ in the **non-baseline (deviation)** category, $I_i=1$
 and the model simplifies to $y_i=(\beta_0+\beta_2)+\beta_1x_i + \varepsilon_i$.
 
-    * This model has a y-intercept of $\beta_0+\beta_2$.
+    * This model has a $y$-intercept of $\beta_0+\beta_2$.
 
 The interpretation and inferences for $\beta_1$ resemble the work with any 
 MLR model, noting that these results are "controlled for", "adjusted for", or
 "allowing for differences based on" the categorical variable in the model. The
-interpretation of $\beta_2$ is as a shift up or down in the y-intercept for
+interpretation of $\beta_2$ is as a shift up or down in the $y$-intercept for
 the model that includes $x_i$. When we make term-plots in a model with
 a quantitative and additive categorical variable, the two reported model
 components match with the previous discussion -- the same estimated term from
 the quantitative variable for all observations and a shift to reflect the
-different y-intercepts in the two groups. In Figure \@ref(fig:Figure8-20), the
+different $y$-intercepts in the two groups. In Figure \@ref(fig:Figure8-20), the
 females are estimated to be that same 0.313 points higher on first year GPA.
 The males have a mean GPA slightly above 2.3 which is the predicted GPA for the
 average SATM percentile for a male (remember that we have to hold the other variable at 
@@ -2290,7 +2290,7 @@ our regular $t$-test provides the opportunity to test for a difference in
 intercepts between the groups. In this situation, the test
 statistic is $t=7.184$ and, based on a $t_{997}$-distribution
 if the null is true, the p-value is $<0.0001$. We have very strong evidence against the null hypothesis that there is no difference in the true
-y-intercept in a *SATM* model for first year college GPA between *males* and *females*, so we would conclude that there is difference in their true mean GPA levels controlled for *SATM*. The confidence
+$y$-intercept in a *SATM* model for first year college GPA between *males* and *females*, so we would conclude that there is difference in their true mean GPA levels controlled for *SATM*. The confidence
 interval is also informative:
 
 \newpage
@@ -2400,7 +2400,7 @@ where the $I_{\text{CatName}j,i}\text{'s}$ are the different indicator variables
 Note that each indicator variable gets a coefficient associated with it and is
 "turned on" whenever the $i^{th}$ observation is in that category. At most only one of
 the $I_{\text{CatName}j,i}\text{'s}$ is a 1 for any observation, so the
-y-intercept will either be $\beta_0$ for the baseline group or $\beta_0+\beta_j$
+$y$-intercept will either be $\beta_0$ for the baseline group or $\beta_0+\beta_j$
 for $j=2,\ldots,J$. It is important to remember that this
 is an "additive" model since the effects just add and there is no interaction
 between the grouping variable and the quantitative predictor. To be able to
@@ -2664,7 +2664,7 @@ scatterplot(score~ziq|dys, xlab="Standardized nonverbal IQ scores",
             main="Plot of IQ vs Reading by dyslexia status", col=viridis(7)[c(1,6)])
 ```
 
-\indent To allow for both different y-intercepts and slope coefficients on the
+\indent To allow for both different $y$-intercepts and slope coefficients on the
 quantitative predictor, we need to include a "modification" of the slope
 coefficient. This is performed using an ***interaction*** between the two
 predictor variables where we allow the impacts of one variable
@@ -2718,7 +2718,7 @@ and simplify the equations. \index{indicator}
 
     by combining like terms.
     
-    * For the second category, the model contains a modified y-intercept,
+    * For the second category, the model contains a modified $y$-intercept,
     now $\beta_0+\beta_2$, **and** a modified slope coefficient, now
     $\beta_1+\color{red}{\boldsymbol{\beta_3}}$.
     
@@ -2776,7 +2776,7 @@ to show higher performance on a test like this.
 
 \indent Checking the assumptions is always recommended before getting focused 
 on the inferences in the model. When interactions are present, you should not use VIFs as they are naturally inflated because the same variable is re-used in multiple parts of the model to create the interaction components. Checking the multicollinearity in the related additive model can be performed to understand shared information in the variables used in interactions. When fitting models with multiple groups, it is possible to see "groups" in the
-fitted values (x-axis in Residuals vs Fitted and Scale-Location plots) and that is not a problem -- it is a feature of these models.
+fitted values ($x$-axis in Residuals vs Fitted and Scale-Location plots) and that is not a problem -- it is a feature of these models.
 \index{Residuals vs Fitted plot}
 \index{Scale-Location plot}
 \index{assumptions}
@@ -2902,7 +2902,7 @@ plot(allEffects(dys_modelR, residuals=T))
 
 This model provides little evidence against the null hypothesis that IQ is not linearly related to reading score for all
 students ($t_{41}=1.34$, p-value=0.188), adjust for dyslexia status, but strong evidence against the null hypothesis of no difference in the true
-y-intercepts ($t_{41}=-6.88$, p-value $<0.00001$) after adjusting for the verbal IQ score. 
+$y$-intercepts ($t_{41}=-6.88$, p-value $<0.00001$) after adjusting for the verbal IQ score. 
 
 \indent Since the IQ term has a large p-value, we could drop it from the 
 model -- leaving a model that only includes the grouping variable:
@@ -3028,7 +3028,7 @@ plot(allEffects(head2), multiline=T, ci.style="bands")
 ```
 
 \indent In situations with more than 2 levels, the $t$-tests for the interaction or
-changing y-intercepts are not informative for deciding if you really need
+changing $y$-intercepts are not informative for deciding if you really need
 different slopes or intercepts for all the groups.
 \index{interaction!MLR}
 They only tell
@@ -3196,7 +3196,7 @@ for the additive model contains two interesting tests.
 \index{ANOVA table}
 One test is for the
 quantitative variable discussed previously. The other is for the categorical
-variable, assessing whether different y-intercepts are needed. The additive
+variable, assessing whether different $y$-intercepts are needed. The additive
 model here is
 
 $$\text{du2}_i = \beta_0 + \beta_1\cdot\text{du1}_i + \beta_2I_{T1,i} +
@@ -3204,24 +3204,24 @@ $$\text{du2}_i = \beta_0 + \beta_1\cdot\text{du1}_i + \beta_2I_{T1,i} +
 
 The hypotheses assessed in the ANOVA test for treatment are:
 
-* $H_0:$ The y-intercept for the model with *du1* is the same for all four
+* $H_0:$ The $y$-intercept for the model with *du1* is the same for all four
 *Treatment* groups in the population OR
 
 * $H_0: \beta_2=\beta_3=\beta_4=0$
 
     * This defines a null hypothesis that all the deviation coefficients for
-    getting different y-intercepts for the different *Treatments* are 0 in 
+    getting different $y$-intercepts for the different *Treatments* are 0 in 
     the population. 
 
-* $H_A:$ The y-intercepts for the model with *du1* is NOT the same for all four
+* $H_A:$ The $y$-intercepts for the model with *du1* is NOT the same for all four
 *Treatment* groups in the population (at least one group has a different
-y-intercept) OR
+$y$-intercept) OR
 
 * $H_A:$ At least one of  $\beta_2,\beta_3,\beta_4$ is different from 0 in the
 population.
 
     * The alternative states that at least one of the deviation coefficients
-    for getting different y-intercepts for the different *Treatments* is not 0
+    for getting different $y$-intercepts for the different *Treatments* is not 0
     in the population. 
 
 The $F$-test for the categorical variable in an additive model follows 
@@ -3231,7 +3231,7 @@ $F(J-1, n-J-1)$-distribution under the null hypothesis.
 For this example, the
 test statistic for *Treatment* follows an $F(3, 93)$-distribution under the null
 hypothesis. The observed test statistic has a value of 1.74, generating a p-value
-of 0.164. So we would find weak evidence against the null hypothesis and so does not suggest some difference in y-intercepts
+of 0.164. So we would find weak evidence against the null hypothesis and so does not suggest some difference in $y$-intercepts
 between the *treatment* groups, in a model with *du1*, in the population. We
 could interpret this in the fashion we used initially in MLR by stating this
 result as: there is little evidence against the null hypothesis of no difference in the mean *du2* for the
@@ -3243,13 +3243,13 @@ Anova(head1)
 ```
 
 \indent In the same ANOVA table, there is a test for the *du1* model component. This tests 
-$H_0: \beta_1=0$ vs $H_A: \beta_1\ne 0$ in a model with different y-intercepts
+$H_0: \beta_1=0$ vs $H_A: \beta_1\ne 0$ in a model with different $y$-intercepts
 for the different treatment groups. If we remove this term from the model, all
 we are left with is different
-y-intercepts for the groups. A model just with different y-intercepts is typically
+$y$-intercepts for the groups. A model just with different $y$-intercepts is typically
 called a One-Way ANOVA model. Here, there it appears that the quantitative
 variable is needed in the model after controlling for the different
-y-intercepts for different treatments since it has a small p-value ($F$(1,93)=261.55 or $t$(93)=16.172, p-value<0.0001). Note that this interpretation retains
+$y$-intercepts for different treatments since it has a small p-value ($F$(1,93)=261.55 or $t$(93)=16.172, p-value<0.0001). Note that this interpretation retains
 the conditional wording regardless of whether the other variable had a small
 p-value or it did not. If you want an unconditional interpretation for a variable, then you
 will need to refit the model without the other variable(s) after deciding that
@@ -3978,7 +3978,7 @@ Also discuss and compare the model selection results provided by the delta AICs
 here. 
 
 ```r
-require(MuMIn)
+library(MuMIn)
 options(na.action = "na.fail") #Must run this code once to use dredge
 dredge(MODELNAMEFORFULLMODEL, rank="AIC", 
        extra=c("R^2", adjRsq=function(x) summary(x)$adj.r.squared))

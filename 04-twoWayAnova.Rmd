@@ -210,7 +210,7 @@ observations at each combination of factors) and look at some summary
 statistics across all the "groups". The data set is available via the following link:
 
 ```{r}
-require(readr)
+library(readr)
 pt <- read_csv("http://www.math.montana.edu/courses/s217/documents/pt.csv")
 pt$drops <- factor(pt$drops)
 pt$brand <- factor(pt$brand)
@@ -222,7 +222,7 @@ variables, use the general formula of ``tally(x1~x2, data=...)`` -- noting that 
 \index{\texttt{tally()}}
 
 ```{r}
-require(mosaic)
+library(mosaic)
 tally(brand~drops, data=pt)
 ```
 
@@ -882,7 +882,7 @@ to the coefficients just discussed.
 (ref:fig4-8) Term-plots of additive model for paper towel data. Left panel displays results for two brands and right panel for number of drops of water, each after controlling for the other.
 
 ```{r Figure4-8, fig.cap="(ref:fig4-8)"}
-require(effects)
+library(effects)
 plot(allEffects(m2))
 ```
 
@@ -893,7 +893,7 @@ plot(allEffects(m2))
 (ref:fig4-9) Term-plots of additive model for paper towel data with partial residuals added. Relatively similar variability seems to be present in each of the groups of residuals after adjusting for the other variable except for the residuals for the 10 drops where the variability is smaller, especially if one small outlier is ignored.
 
 ```{r Figure4-9, fig.cap="(ref:fig4-9)"}
-require(effects)
+library(effects)
 plot(allEffects(m2, residuals = T))
 ```
 
@@ -914,7 +914,7 @@ Figure \@ref(fig:Figure4-10).
 
 ```{r Figure4-10,fig.cap="(ref:fig4-10)",echo=F,fig.height=4,fig.width=6}
 data(ToothGrowth)
-require(tibble)
+library(tibble)
 ToothGrowth<-as_tibble(ToothGrowth)
 par(mfrow=c(1,2))
 pirateplot(len ~ supp*dose, data=ToothGrowth, ylim=c(0,35),
@@ -926,7 +926,7 @@ intplot(len ~ supp*dose, data=ToothGrowth, col=c(1,2),
 
 ```{r eval=F}
 data(ToothGrowth)
-require(tibble)
+library(tibble)
 ToothGrowth <- as_tibble(ToothGrowth)
 par(mfrow=c(1,2))
 pirateplot(len ~ supp*dose, data=ToothGrowth, ylim=c(0,35),

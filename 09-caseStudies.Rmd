@@ -15,10 +15,10 @@ header-includes:
 ```{r echo=F,warning=F,message=F}
 set.seed(3234)
 library(pander)
-require(mosaic)
+library(mosaic)
 library(knitr)
 library(readr)
-require(tibble)
+library(tibble)
 knitr::opts_chunk$set(cache = F,fig.height=3.5,fig.width=6,fig.pos='ht',warning=F,
                       message=F)
 options(show.signif.stars = FALSE)
@@ -311,7 +311,7 @@ species.
 ```{r Figure9-6,fig.cap="(ref:fig9-6)",fig.height=5,fig.width=10}
 m2 <- lm(logMassperha~Species*Treatment, data=gdn)
 summary(m2)
-require(car)
+library(car)
 Anova(m2)
 par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(m2, sub.caption="log-Massperha 2-WAY model", pch=16)
@@ -346,7 +346,7 @@ important interactions.
 (ref:fig9-7) Term-plot of the interaction model for log-biomass.
 
 ```{r Figure9-7,fig.cap="(ref:fig9-7)"}
-require(effects)
+library(effects)
 plot(allEffects(m2), multiline=T, lty=c(1,2), ci.style="bars", grid=T)
 ```
 

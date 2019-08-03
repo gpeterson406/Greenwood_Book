@@ -386,7 +386,7 @@ constructed in Table \@ref(tab:Table3-1).
 (ref:fig3-2) Plot of the estimated group mean distances from the reference-coded model for the overtake data from the ``effects`` package.
 
 ```{r Figure3-2, fig.cap="(ref:fig3-2)", fig.width=7,fig.height=2.75}
-require(effects)
+library(effects)
 plot(allEffects(lm2))
 ```
 
@@ -618,7 +618,7 @@ maxSSA <- max(MJP1_SSA, MJP2_SSA, MJP3_SSA)
 Tobs <- anova(lm(Distance~Condition, data=dd))[1,2]
 par(mfrow=c(2,2))
 old.par <- par(mai=c(.75,0.5,0.3,0.3))
-require(gplots)
+library(gplots)
 label_list = c(paste("SSA=",as.character(orig_SSA),sep=""),
                paste("SSE=",as.character(orig_SSE),sep=""),
                paste("SSTotal=",as.character(orig_SST),sep=""))
@@ -1154,7 +1154,7 @@ eij[2709]
 
 ```{r Figure3-11,fig.cap="(ref:fig3-11)",echo=F,fig.height=3,fig.width=6}
 par(mfrow=c(1,2))
-require(car)
+library(car)
 s <- qqPlot(eij, main="QQ-Plot of residuals",envelope=F)
 plot(density(eij), main="Density plot of residuals", ylab="Density",
      xlab="Residuals")
@@ -1194,7 +1194,7 @@ describe the type of violation and how clear or extreme it seems to be. \index{l
 
 ```{r Figure3-12,fig.cap="(ref:fig3-12)",echo=F,fig.height=8,fig.width=6}
 #QQ plot code and examples:
-require(car)
+library(car)
 par(mfrow=c(4,2))
 #Right skew
 y1 <- scale(rf(75,df1=3,df2=8))
@@ -1271,7 +1271,7 @@ a single variable, we use ``tally(~x, data=...)``:
 \index{\texttt{tally()}}
 
 ```{r,warning=F,message=F}
-require(mosaic)
+library(mosaic)
 tally(~Condition, data=dd)
 ```
 
@@ -1724,7 +1724,7 @@ to the linear model for the Guinea Pig data:
 (ref:fig3-18) Graphical display of pair-wise comparisons from Tukey's HSD for the Guinea Pig data. Any confidence intervals that do not contain 0 provide strong evidence against the null hypothesis of no difference in the true means for that pair of groups.
 
 ```{r Figure3-18, fig.cap="(ref:fig3-18)", fig.height=5,fig.width=10}
-require(multcomp)
+library(multcomp)
 Tm2 <- glht(m2, linfct = mcp(Treat = "Tukey"))
 confint(Tm2)
 old.par <- par(mai=c(1,2,1,1)) #Makes room on the plot for the group names
@@ -1880,7 +1880,7 @@ mean(Distance~Condition2, data=dd)
 
 ```{r Figure3-20,fig.cap="(ref:fig3-20)",fig.height=7,fig.width=6,echo=F}
 lm2 <- lm(Distance~Condition2, data=dd)
-require(multcomp)
+library(multcomp)
 TmOv <- glht(lm2, linfct = mcp(Condition2 = "Tukey"))
 old.par <- par(mai=c(1,2.5,1,1)) #Makes room on the plot for the group names
 plot(TmOv)
@@ -1888,7 +1888,7 @@ plot(TmOv)
 
 ```{r eval=F}
 lm2 <- lm(Distance~Condition2, data=dd)
-require(multcomp)
+library(multcomp)
 TmOV <- glht(lm2, linfct = mcp(Condition2 = "Tukey"))
 ```
 
@@ -2025,7 +2025,7 @@ load the data set and learn more about the study, use the following code:
 ```r
 library(multcomp)
 data(cholesterol)
-require(tibble)
+library(tibble)
 cholesterol <- as_tibble(cholesterol)
 help(cholesterol)
 ```

@@ -14,9 +14,9 @@ header-includes:
 ```{r echo=F,warning=F,message=F}
 set.seed(5678)
 library(pander)
-require(readr)
-require(curl)
-require(mosaic)
+library(readr)
+library(curl)
+library(mosaic)
 library(knitr)
 knitr::opts_chunk$set(cache = F,fig.height=3.5,fig.width=6,fig.pos='ht',
                       message=F,warning=F)
@@ -105,7 +105,7 @@ should graphically explore the relationship between ``Beers`` and ``BAC`` in a s
 Figure \@ref(fig:Figure6-1) shows a ***scatterplot*** of the results that display 
 the expected positive relationship. Scatterplots display the response pairs for 
 the two quantitative variables with the
-explanatory variable on the x-axis and the response variable on the y-axis. The
+explanatory variable on the $x$-axis and the response variable on the $y$-axis. The
 relationship between ``Beers`` and ``BAC`` appears to be relatively linear but
 there is possibly more variability than one might expect. For example, for
 students consuming 5 beers, their *BAC*s range from 0.05 to 0.10. If you look
@@ -134,7 +134,7 @@ set.seed(5678)
 (ref:fig6-1) Scatterplot of *Beers* consumed versus *BAC*.
 
 ```{r Figure6-1,fig.cap="(ref:fig6-1)",warning=F,message=F}
-require(readr)
+library(readr)
 BB <- read_csv("http://www.math.montana.edu/courses/s217/documents/beersbac.csv")
 plot(BAC~Beers, data=BB, pch=16, col=30)
 ```
@@ -191,9 +191,9 @@ of 0. We also don't know the exact alcohol concentration of the beer consumed or
 volume. So while this is a fun example to start these methods with, a better version of this data set would be nice...
 
 \indent In making scatterplots, there is always a choice of a variable for the 
-x-axis and the y-axis. It is our
+$x$-axis and the $y$-axis. It is our
 convention to put explanatory or independent variables (the ones used to
-explain or predict the responses) on the x-axis. In studies where the subjects are
+explain or predict the responses) on the $x$-axis. In studies where the subjects are
 randomly assigned to levels of a variable, this is very clearly an explanatory
 variable, and we can go as far as making causal inferences with it. In
 observational studies, it can be less clear which variable explains which. In
@@ -396,7 +396,7 @@ get lots of information in one place. As in the correlation matrix, you
 triangulate the variables for the pairwise relationship. The upper right
 panel of Figure \@ref(fig:Figure6-3) displays a correlation of 0.36 for 
 ``Year`` and ``loghectares`` and the lower left panel contains the 
-scatterplot with ``Year`` on the x-axis and ``loghectares`` on the y-axis.
+scatterplot with ``Year`` on the $x$-axis and ``loghectares`` on the $y$-axis.
 The correlation between ``Year`` and ``Temperature`` is really small, both
 in magnitude and in display, but appears to be nonlinear (it goes down between
 1985 and 1995 and then goes back up), so the correlation coefficient doesn't
@@ -428,9 +428,9 @@ based on the other variables, but for now the associations are of interest.
 (ref:fig6-4) Scatterplot matrix of athlete data. 
 
 ```{r Figure6-4,fig.cap="(ref:fig6-4)"}
-require(alr3)
+library(alr3)
 data(ais)
-require(tibble)
+library(tibble)
 ais <- as.tibble(ais)
 aisR <- ais[,c("Ht","Hc","Bfat")]
 summary(aisR)
@@ -497,7 +497,7 @@ numerical correlations if desired. \index{correlation plot}
 (ref:fig6-6) Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations. 
 
 ```{r Figure6-6,fig.cap="(ref:fig6-6)",fig.height=3.5,fig.width=3.5}
-require(corrplot)
+library(corrplot)
 corrplot.mixed(cor(aisR2), upper.col=c("black", "orange"),lower.col=c("black", "orange"))
 ```
 
@@ -534,7 +534,7 @@ athletes where sex was coded 0 for males and 1 for females. \index{\texttt{scatt
 
 ```{r Figure6-7,fig.cap="(ref:fig6-7)",echo=F}
 aisR2 <- ais[-c(56,166),c("Ht","Hc","Bfat","Sex")]
-require(car)
+library(car)
 aisR2$Sex <- factor(aisR2$Sex)
 scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
             boxplots="xy", main="Scatterplot of Height vs Hematocrit by Sex",
@@ -543,7 +543,7 @@ scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
 
 ```{r eval=F}
 aisR2 <- ais[-c(56,166),c("Ht","Hc","Bfat","Sex")]
-require(car)
+library(car)
 aisR2$Sex <- factor(aisR2$Sex)
 scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
             boxplots="xy", main="Scatterplot of Height vs Hematocrit by Sex") 
@@ -943,24 +943,24 @@ abline(h=c(0.05914,0.0771), col="blue", lty=2, lwd=2)
 
 \indent The equation for a line is $y=a+bx$, or maybe $y=mx+b$. In the version 
 $mx+b$ you learned that $m$ is a slope coefficient that relates a 
-change in $x$ to changes in $y$ and that $b$ is a y-intercept (the 
+change in $x$ to changes in $y$ and that $b$ is a $y$-intercept (the 
 value of $y$ when $x$ is 0). In Figure \@ref(fig:Figure6-13), two extra
 horizontal lines are added to help you see the defining characteristics of the line. The
 slope, whatever letter you use, is the change in $y$ for a one-unit 
 increase in $x$. Here, the slope is the change in ``BAC`` for a 1 beer 
 increase in ``Beers``, such as the change from 4 to 5 beers. The 
-y-values (blue, dashed lines) for ``Beers`` = 4 and 5 go from 0.059 to 
+$y$-values (blue, dashed lines) for ``Beers`` = 4 and 5 go from 0.059 to 
 0.077. This means that for a 1 beer increase (+1 unit change in $x$), the 
 ``BAC`` goes up by $0.077-0.059=0.018$ (+0.018 unit change in $y$).
-We can also try to find the y-intercept on the graph by looking for the 
-``BAC`` level for 0 ``Beers`` consumed. The y-value (``BAC``) ends up 
+We can also try to find the $y$-intercept on the graph by looking for the 
+``BAC`` level for 0 ``Beers`` consumed. The $y$-value (``BAC``) ends up 
 being around -0.01 if you extend the regression line to ``Beers``=0. 
 You might assume that the ``BAC`` should be 0 for ``Beers``=0 but the 
 researchers did not observe any students at 0 ``Beers``, so we don't 
 really know what the ``BAC`` might be at this value. We have to
 use our line to ***predict*** this value. This ends up providing a 
 prediction below 0 -- an impossible value for *BAC*. If the 
-y-intercept were positive, it would suggest that the students
+$y$-intercept were positive, it would suggest that the students
 has a *BAC* over 0 even without drinking. \index{model!SLR!predict}
 
 \indent The numbers reported were very
@@ -969,7 +969,7 @@ values -- we
 were using a linear model to estimate the equation to 
 describe the
 relationship between ``Beers`` and ``BAC``. In statistics, we estimate 
-"$m$" and "$b$". We also write the equation starting with the y-intercept 
+"$m$" and "$b$". We also write the equation starting with the $y$-intercept 
 and use slightly different notation that allows us to extend to more 
 complicated models with more variables.
 \index{model!SLR}
@@ -979,7 +979,7 @@ regression equation is $\widehat{y} = b_0 + b_1x$, where
 
 * $\widehat{y}$ is the estimated value of $y$ for a given $x$,
 
-* $b_0$ is the estimated y-intercept (predicted value of $y$ when
+* $b_0$ is the estimated $y$-intercept (predicted value of $y$ when
 $x$ is 0),
 
 * $b_1$ is the estimated slope coefficient, and 
@@ -1018,7 +1018,7 @@ $i^{th}$ observation,
 
 * $\beta_0 + \beta_1x_i$ is the true mean function evaluated at $x_i$,
 
-* $\beta_0$ is the true (or population) y-intercept,
+* $\beta_0$ is the true (or population) $y$-intercept,
 
 * $\beta_1$ is the true (or population) slope coefficient, and
 
@@ -1063,7 +1063,7 @@ by a model ``summary``: \index{\texttt{summary()}}
 summary(m1)
 ```
 
-From either version of the output, you can find the estimated y-intercept 
+From either version of the output, you can find the estimated $y$-intercept 
 in the ``(Intercept)`` part of the output and the slope coefficient in the
 ``Beers``  part of the output. So $b_0 = -0.0127$, $b_1=0.01796$, and
 the ***estimated regression equation*** is
@@ -1113,22 +1113,22 @@ about. Typically, we will just use the units used in the original variables and
 only change the scale of "change in $x$" when it provides an interpretation we
 are particularly interested in. 
 
-\indent Similarly, the general interpretation for a y-intercept is:
+\indent Similarly, the general interpretation for a $y$-intercept is:
 \index{@$y$-intercept interpretation!SLR}
 
-* **Y-intercept interpretation (general):** For ***X***= 0 **[*units of X*]**,
+* **$Y$-intercept interpretation (general):** For ***X***= 0 **[*units of X*]**,
 we expect, on average, $\boldsymbol{b_0}$ **[*units of Y*]** **in** ***Y***. 
 
 Again, applied to the *BAC* data set: For 0 beers for *Beers* consumed, 
 we expect, on
-average, -0.012 g/dL *BAC*. The y-intercept interpretation is often less
+average, -0.012 g/dL *BAC*. The $y$-intercept interpretation is often less
 interesting than the slope interpretation but can be interesting in some
 situations. Here, it is predicting average *BAC* for ``Beers``=0, which 
 is a value outside the scope of the $x\text{'s}$ (*Beers* was observed 
 between 1 and 9). Prediction outside the scope of the predictor values is 
 called ***extrapolation***. Extrapolation is dangerous at best and 
 misleading at worst. That said, if you are asked to
-interpret the y-intercept you should still interpret it, but it is also good to
+interpret the $y$-intercept you should still interpret it, but it is also good to
 note if it is outside of the region where we had observations on the
 explanatory variable. Another example is useful for practicing how to do these
 interpretations. 
@@ -1161,9 +1161,9 @@ Based on these results, the estimated regression equation is
 $\widehat{\text{Hc}}_i = 42.014 - 0.085\cdot\text{BodyFat}_i$ with $b_0 = 42.014$
 and $b_1 = 0.085$. The slope coefficient interpretation is: For a one 
 percent increase in body fat, we expect, on average, a -0.085% (blood) change
-in Hematocrit for Australian female athletes. For the y-intercept, the
+in Hematocrit for Australian female athletes. For the $y$-intercept, the
 interpretation is: For a 0% body fat female athlete, we expect a Hematocrit of
-42.014% on average. Again, this y-intercept involves extrapolation to a region
+42.014% on average. Again, this $y$-intercept involves extrapolation to a region
 of $x$'s that we did not observed. None of the athletes had body fat below 5% so we don't know what would happen to 
 the hematocrit of an athlete that had no body fat except that it probably would not
 continue to follow a linear relationship. 
@@ -1226,15 +1226,15 @@ a chance to try to find the optimal slope and intercept for a fake data set.
 Click on the "sprocket" icon in the upper left of the plot and you will see
 something like Figure \@ref(fig:Figure6-17). This interaction can help you see 
 how the residuals
-are being measuring in the y-direction and appreciate that ``lm`` takes care of
+are being measuring in the $y$-direction and appreciate that ``lm`` takes care of
 this for us. 
 \index{residuals}
 
 \newpage
 
 ```r
-> require(tigerstats)
-> require(manipulate)
+> library(tigerstats)
+> library(manipulate)
 > FindRegLine()
 
 Equation of the regression line is:
@@ -1253,7 +1253,7 @@ knitr::include_graphics("chapter6_files/image063.png")
 \indent It ends up that the least squares
 criterion does not require a search across coefficients or trial and error --
 there are some "simple" equations available for calculating the estimates of
-the y-intercept and slope:
+the $y$-intercept and slope:
 
 $$b_1 = \frac{\Sigma_i(x_i-\bar{x})(y_i-\bar{y})}{\Sigma_i(x_i-\bar{x})^2}
 =r\frac{s_y}{s_x} \text{ and } b_0 = \bar{y} - b_1\bar{x}.$$
@@ -1272,7 +1272,7 @@ there is no linear relationship between $x$ and $y$ ($r=0$), the least
 squares regression line is a horizontal line with height $\bar{y}$, and
 the line produces the same fitted values for all $x$ values. You can also
 think about this as when there is no relationship between $x$ and $y$, the
-best prediction of $y$ is the mean of the y-values and it doesn't change
+best prediction of $y$ is the mean of the $y$-values and it doesn't change
 based on the values of $x$. It is less obvious in these equations, but they
 also imply that **the regression line ALWAYS goes through the point**
 $\boldsymbol{(\bar{x},\bar{y}).}$ It provides a sort of anchor point
@@ -1301,7 +1301,7 @@ summary(fire1)
 
 * Explanatory Variable: Average Summer Temperature
 
-* Estimated y-Intercept ($b_0$): -69.78
+* Estimated $y$-Intercept ($b_0$): -69.78
 
 * Estimated slope ($b_1$): 1.39
 
@@ -1309,11 +1309,11 @@ summary(fire1)
 Average Summer Temperature we would expect, **on average**, a 1.39 log(Hectares)
 $\underline{change}$ in log(Hectares) burned in Montana. 
 
-* Y-intercept Interpretation: If temperature were 0 degrees F, we would 
+* $Y$-intercept Interpretation: If temperature were 0 degrees F, we would 
 expect -69.78 log(Hectares) burned **on average** in Montana. 
 
 \indent One other use of regression equations is for prediction. It is a trivial
-exercise (or maybe not -- we'll see when you try it!) to plug an x-value of
+exercise (or maybe not -- we'll see when you try it!) to plug an $x$-value of
 interest into the regression equation and get an estimate for $y$ at that $x$.
 Basically, the regression lines displayed in the scatterplots show the 
 predictions from the regression line across the range of $x\text{'s}$. \index{prediction}
@@ -1562,7 +1562,7 @@ is a positive numerical measure with larger values corresponding to more
 leverage. The scale changes depending on the sample size ($n$) and the
 complexity of the model so all that matters is which observations have 
 more or less relative leverage in a particular data set. The observations 
-with x-values
+with $x$-values
 that provide higher leverage have increased potential to influence the
 estimated regression line. Along with measuring the leverage, we can also
 measure the influence that each point has on the regression line using
@@ -1572,7 +1572,7 @@ Cook's D values over 1.0 correspond to clearly influential points, values over
 0.5 have some influence and values lower than 0.5 indicate points that are not
 influential on the regression model slope coefficients. One part of the regular
 diagnostic plots we will use for regression models displays the leverages on
-the x-axis, the standardized residuals on the y-axis, and adds contour lines
+the $x$-axis, the standardized residuals on the $y$-axis, and adds contour lines
 for Cook's Distances in a panel that is labeled "Residuals vs Leverage".
 \index{Residuals vs Leverage plot}
 This
@@ -1587,7 +1587,7 @@ to show up on the upper and lower right of the plot.
 \index{Residuals vs Leverage plot}
 They show increasing
 levels of influence going to the upper and lower right corners as you combine
-higher leverage (x-axis) and larger residuals (y-axis) -- the two ingredients
+higher leverage ($x$-axis) and larger residuals ($y$-axis) -- the two ingredients
 required to be influential on the line. The contours are displayed for Cook's D
 values of 0.5 and 1.0 if there are points near or over those levels. The Cook's
 D values come from a topographical surface of values that is a sort of U-shaped
@@ -1705,13 +1705,13 @@ same set of $x\text{'s}$ and the distance to the mean of the $x$'s is unchanged.
 it is not influential
 since its Cook's D value is less than 0.5. This occurred because it followed the
 overall pattern of observations even though it was "far away" from the other
-observations in the x-direction. The last two rows of plots show what happens
+observations in the $x$-direction. The last two rows of plots show what happens
 when low leverage outliers are encountered. If observations are near the
 center of the $x\text{'s}$, it ends up that to be influential the points have 
 to be very far
 from the pattern of the other observations. The (5, 0.19) example almost
 attains a Cook's D of 0.5 but has little impact on the regression line, 
-especially the slope coefficient. It does impact the y-intercept and drops the
+especially the slope coefficient. It does impact the $y$-intercept and drops the
 R-squared value to 0.57. The same result occurs if the observation is
 noticeably lower than the other points. 
 
@@ -1810,7 +1810,7 @@ regression models can be assessed using diagnostic plots:
         as a function of the fitted values.
         \index{Scale-Location plot}
         
-            * The y-axis in this plot is the square-root of the absolute 
+            * The $y$-axis in this plot is the square-root of the absolute 
             value of the standardized residual. This scale flips the 
             negative residuals on top of the positive ones to help you 
             better assess changing variability without being distracted 
@@ -2198,7 +2198,7 @@ the data set and provides a scatterplot matrix using ``pairs.panel``.
 
 ```r
 treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv")
-require(psych)
+library(psych)
 pairs.panels(treadmill, ellipses=F, smooth=F, col=0)
 ```
 

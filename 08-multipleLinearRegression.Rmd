@@ -182,7 +182,7 @@ correlated.
 potential SLR
 models and plotting the estimated models. Figure \@ref(fig:Figure8-2) contains
 the result for the SLR using *Elevation* and results for two temperature based
-models are in Figures \@ref(fig:Figure8-3a) and \@ref(fig:Figure8-3b).
+models are in Figures \@ref(fig:Figure8-3) and \@ref(fig:Figure8-4).
 *Snow Depth* is selected as the
 obvious response variable both due to skier interest and potential scientific
 causation (snow can't change elevation but elevation could be the driver of
@@ -236,7 +236,7 @@ then the slope would have been estimated to be $0.0163*1000=16.3$ inches change 
 *Snow Depth* for a 1000 foot increase in elevation. 
 
 \indent The plots of the two estimated temperature models in 
-Figures \@ref(fig:Figure8-3a) and \@ref(fig:Figure8-3b) suggest a similar change
+Figures \@ref(fig:Figure8-3) and \@ref(fig:Figure8-4) suggest a similar change
 in the responses over
 the range of observed temperatures. Those predictors range from 22$^\circ F$
 to 34$^\circ F$ (minimum temperature) and from 26$^\circ F$ to 50$^\circ F$
@@ -249,17 +249,17 @@ guarantee of a good model -- in fact, the elevation model has the highest
 *R*^2^ value of these three models even though its slope coefficient looks tiny
 compared to the other models.
 
-(ref:fig8-3a) Plot of the estimated SLR model using Min Temp as predictor. 
+(ref:fig8-3) Plot of the estimated SLR model using Min Temp as predictor. 
 
-```{r Figure8-3a,fig.cap="(ref:fig8-3a)",echo=F,fig.height=3,fig.width=5}
+```{r Figure8-3,fig.cap="(ref:fig8-3)",echo=F,fig.height=3,fig.width=5}
 m2 <- lm(Snow.Depth~Min.Temp, data=snotel2)
 plot(allEffects(m2, residuals=T),
      main="SLR: Effect of Min Temp")
 ```
 
-(ref:fig8-3b) Plot of the estimated SLR model using Max Temp as predictor.
+(ref:fig8-4) Plot of the estimated SLR model using Max Temp as predictor.
 
-```{r Figure8-3b,fig.cap="(ref:fig8-3b)",echo=F,fig.height=3,fig.width=5}
+```{r Figure8-4,fig.cap="(ref:fig8-4)",echo=F,fig.height=3,fig.width=5}
 m3 <- lm(Snow.Depth~Max.Temp, data=snotel2)
 plot(allEffects(m3, residuals=T), 
      main="SLR: Effect of Max Temp")
@@ -297,9 +297,9 @@ ANOVA and this is also additive in terms of these variables. Interaction
 models are discussed later in the chapter.] we want to add to the model, 
 ``y~x1+x2+...+xk``: \index{model!MLR}
 
-(ref:fig8-4) Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp. Compare this plot that comes from one MLR model to Figures \@ref(fig:Figure8-2), \@ref(fig:Figure8-3a) and \@ref(fig:Figure8-3b) for comparable SLR models. Note the points in these panels are the partial residuals that are generated after controlling for the other two of the three variables. 
+(ref:fig8-5) Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp. Compare this plot that comes from one MLR model to Figures \@ref(fig:Figure8-2), \@ref(fig:Figure8-3) and \@ref(fig:Figure8-4) for comparable SLR models. Note the points in these panels are the partial residuals that are generated after controlling for the other two of the three variables. 
 
-```{r Figure8-4,fig.cap="(ref:fig8-4)",fig.width=10,fig.height=5}
+```{r Figure8-5,fig.cap="(ref:fig8-5)",fig.width=10,fig.height=5}
 m4 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2)
 summary(m4)
 plot(allEffects(m4, residuals=T), main="MLR model with Elev, Min & Max Temps")
@@ -312,7 +312,7 @@ $$\widehat{\text{SnowDepth}}_i = -10.51 + 0.0123\cdot\text{Elevation}_i
 
 The direction of the estimated slope coefficients were similar but they 
 all changed in magnitude as compared to the respective SLRs, as seen in the
-estimated term-plots from the MLR model in Figure \@ref(fig:Figure8-4). 
+estimated term-plots from the MLR model in Figure \@ref(fig:Figure8-5). 
 
 \indent There are two ways to think about the changes from individual SLR slope
 coefficients to the similar MLR results here. 
@@ -507,9 +507,9 @@ as before will provide diagnostic plots. There is some extra code
 (``par(...)``) added to allow us to add labels to the plots (``sub.caption="..."``) to know which model
 is being displayed since we have so many to discuss here. We can also employ a new approach, which is to simulate new observations from the model and make plots to compare simulated data sets to what was observed. The ``simulate`` function from Chapter \@ref(chapter2) \index{\texttt{simulate()}} can be used to generate new observations from the model based on the estimated coefficients and where we know that the assumptions are true. If the simulated data and the observed data are very different, then the model is likely dangerous to use for inferences because of this mis-match. This method can be used to assess the linearity, constant variance, normality of residuals, and influential points aspects of the model. It is not something used in every situation, but is especially helpful if you are struggling to decide if what you are seeing in the diagnostics is just random variability or is really a clear issue. The regular steps in assessing each assumption are discussed first.
 
-(ref:fig8-5) Diagnostic plots for model m4: $\text{Snow.Depth}\sim \text{Elevation} + \text{Min.Temp} + \text{Max.Temp}$.
+(ref:fig8-6) Diagnostic plots for model m4: $\text{Snow.Depth}\sim \text{Elevation} + \text{Min.Temp} + \text{Max.Temp}$.
 
-```{r Figure8-5,fig.cap="(ref:fig8-5)",fig.height=5,fig.width=10}
+```{r Figure8-6,fig.cap="(ref:fig8-6)",fig.height=5,fig.width=10}
 par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(m4, sub.caption="Diagnostics for m4", pch=16)
 ```
@@ -523,7 +523,7 @@ plot(m4, sub.caption="Diagnostics for m4", pch=16)
         snow depth do not clearly show any nonlinearity except for a little 
         dip around 7000 feet in the plot vs *Elevation*. 
     
-    * Examine the Residuals vs Fitted plot in Figure \@ref(fig:Figure8-5):
+    * Examine the Residuals vs Fitted plot in Figure \@ref(fig:Figure8-6):
         
         * Generally, there is no clear curvature in the Residuals vs Fitted
         panel and that would be an acceptable answer. However, there is some
@@ -535,7 +535,7 @@ plot(m4, sub.caption="Diagnostics for m4", pch=16)
         bit better but that it is not unreasonable to proceed on with the MLR,
         ignoring this little wiggle in the diagnostic plot.
         
-    * Examine partial residuals as seen in Figure \@ref(fig:Figure8-4):
+    * Examine partial residuals as seen in Figure \@ref(fig:Figure8-5):
     
         * In the term-plot for elevation from this model, there is a slight pattern in the partial residuals between 6,500 and 7,500 feet. This was also apparent in the original plot and suggests a slight nonlinearity in the pattern of responses versus this explanatory variable.
         
@@ -670,9 +670,9 @@ summary(m5)
 ```
 
 
-(ref:fig8-6) Term-plots for the MLR for Snow Depth based on Elevation, Min Temp, and Max Temp with Northeast entrance observation removed from data set (n=24).
+(ref:fig8-7) Term-plots for the MLR for Snow Depth based on Elevation, Min Temp, and Max Temp with Northeast entrance observation removed from data set (n=24).
 
-```{r Figure8-6,fig.cap="(ref:fig8-6)",fig.height=5, fig.width=10}
+```{r Figure8-7,fig.cap="(ref:fig8-7)",fig.height=5, fig.width=10}
 plot(allEffects(m5, residuals=T), main="MLR model with NE Ent. Removed")
 ```
 
@@ -683,7 +683,7 @@ $$\widehat{\text{SnowDepth}}_i = -142.4 + 0.0214\cdot\text{Elevation}_i
 +0.672\cdot\text{MinTemp}_i +0.508\cdot\text{MaxTemp}_i\ .$$
 
 Something unusual has happened here: there is a positive slope for both
-temperature terms in Figure \@ref(fig:Figure8-6) that both
+temperature terms in Figure \@ref(fig:Figure8-7) that both
 contradicts reasonable expectations (warmer temperatures are related to higher
 snow levels?) and our original SLR results. So what happened? First, removing
 the influential point has drastically changed the slope coefficients (remember
@@ -720,7 +720,7 @@ Exploring the results for this model assumes we trust it and, once again, we
 need to check diagnostics before getting too focused on any particular results
 from it. 
 
-\indent The Residuals vs. Leverage diagnostic plot in Figure \@ref(fig:Figure8-7) 
+\indent The Residuals vs. Leverage diagnostic plot in Figure \@ref(fig:Figure8-8) 
 for the model fit to the data set without NE Entrance (now $n=24$) reveals a new 
 point that is somewhat influential (point 22 in the data set has Cook's D 
 $\approx$ 0.5). It is for a location called "Bloody
@@ -749,16 +749,16 @@ snotel2$Station[snotel2$Station=="Bloody Dick"] <- "Bloody [Redact.]"
 snotel2$Station <- factor(snotel2$Station)
 ```
 
-(ref:fig8-7) Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with Northeast entrance observation removed from data set.
+(ref:fig8-8) Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with Northeast entrance observation removed from data set.
 
-```{r Figure8-7,fig.cap="(ref:fig8-7)",fig.height=5,fig.width=10}
+```{r Figure8-8,fig.cap="(ref:fig8-8)",fig.height=5,fig.width=10}
 par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(m5, sub.caption="Diagnostics for m5", pch=16)
 ```
 
-(ref:fig8-8) Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed ($n=23$). 
+(ref:fig8-9) Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed ($n=23$). 
 
-```{r Figure8-8,fig.cap="(ref:fig8-8)",fig.height=5,fig.width=10,echo=F}
+```{r Figure8-9,fig.cap="(ref:fig8-9)",fig.height=5,fig.width=10,echo=F}
 m6 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2[-c(9,22),])
 summary(m6)
 par(mfrow=c(2,2), oma=c(0,0,2,0))
@@ -776,7 +776,7 @@ snotel2[22,]
 With the removal of both the "Northeast Entrance" and "Bloody
 `r blackOut("Redact.")`" sites, there are $n=23$ observations
 remaining. This model (``m6``) seems to contain residual diagnostics (Figure
-\@ref(fig:Figure8-8)) that are finally generally reasonable. 
+\@ref(fig:Figure8-9)) that are finally generally reasonable. 
 
 ```{r eval=F}
 m6 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2[-c(9,22),])
@@ -791,7 +791,7 @@ due to few observations with fitted values around 30 happening to be well
 approximated by the model. The normality assumption is generally reasonable and
 no points seem to be overly influential on this model (finally!). 
 
-\indent The term-plots (Figure \@ref(fig:Figure8-9)) show that the temperature slopes
+\indent The term-plots (Figure \@ref(fig:Figure8-10)) show that the temperature slopes
 are both positive although in this model *Max.Temp* seems to be more
 "important" than *Min.Temp*. We have ruled out individual
 influential points as the source of un-expected directions in slope coefficients
@@ -805,17 +805,17 @@ quantitatively assess and compare different regression models that are considere
 in the next sections. 
 \index{MLR}
 
-(ref:fig8-9) Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed.
+(ref:fig8-10) Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed.
 
-```{r Figure8-9,fig.cap="(ref:fig8-9)",fig.height=4.5,fig.width=8}
+```{r Figure8-10,fig.cap="(ref:fig8-10)",fig.height=4.5,fig.width=8}
 plot(allEffects(m6, residuals=T), main="MLR model with n=23")
 ```
 
-\indent As a final assessment of this model, we can consider simulating a set of $n=23$ responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called ``SimulatedSnow`` in the following codechunk. Figure \@ref(fig:Figure8-9X1) uses the ``plot`` function to just focus on the relationship of the original (``Snow.Depth``) and new (fake) responses (``SimulatedSnow``) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions for the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.
+\indent As a final assessment of this model, we can consider simulating a set of $n=23$ responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called ``SimulatedSnow`` in the following codechunk. Figure \@ref(fig:Figure8-11) uses the ``plot`` function to just focus on the relationship of the original (``Snow.Depth``) and new (fake) responses (``SimulatedSnow``) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions for the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.
 
-(ref:fig8-9X1) Plot of the original responses versus the three predictors ($n$=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows.
+(ref:fig8-11) Plot of the original responses versus the three predictors ($n$=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows.
 
-```{r Figure8-9X1,fig.cap="(ref:fig8-9X1)",fig.height=6,fig.width=8}
+```{r Figure8-11,fig.cap="(ref:fig8-11)",fig.height=6,fig.width=8}
 set.seed(307)
 snotel_final <- snotel2[-c(9,22),]
 snotel_final$SimulatedSnow <- simulate(m6)[[1]] #Creates first set of simulated responses
@@ -833,7 +833,7 @@ plot(SimulatedSnow~Elevation + Max.Temp + Min.Temp, data=snotel_final, pch=16, m
 Since these results (finally) do not contain any highly influential points,
 we can formally discuss
 interpretations of the slope coefficients and how the term-plots 
-(Figure \@ref(fig:Figure8-9)) aid
+(Figure \@ref(fig:Figure8-10)) aid
 our interpretations. Term-plots in MLR are constructed by holding all the other
 quantitative variables^[They hold factor variables at their modal category but we don't have factor variables in the MLR models, yet.] at their mean and generating predictions and 95% CIs for the mean
 response across the levels of observed values for each predictor variable. This
@@ -901,15 +901,15 @@ depth of $-140.69 + 0.0269*6000 = 20.71$ inches.
 * For an elevation of 8000 at the average temperatures, we predict a mean snow
 depth of $-140.69 + 0.0269*8000 = 74.51$ inches.
 
-We can plot this information (Figure \@ref(fig:Figure8-10)) using the ``plot``
+We can plot this information (Figure \@ref(fig:Figure8-12)) using the ``plot``
 function to show the points we calculated and the ``lines`` function to add 
 a line that connects the dots. In the ``plot`` function, we used the
 ``ylim=...`` option to make the scaling on the $y$-axis match the previous
 term-plot's scaling.
 
-(ref:fig8-10) Term-plot for Elevation "by-hand", holding temperature variables constant at their means. 
+(ref:fig8-12) Term-plot for Elevation "by-hand", holding temperature variables constant at their means. 
 
-```{r Figure8-10,fig.cap="(ref:fig8-10)",echo=F}
+```{r Figure8-12,fig.cap="(ref:fig8-12)",echo=F}
 par(mfrow=c(1,1))
 #Making own effect plot:
 elevs <- c(5000,6000,8000)
@@ -1241,7 +1241,7 @@ regression models that can result in common mistakes.
     It is harder to know if you are doing extrapolation in MLR since you could be
     in a region of the $x\text{'s}$ that no observations were obtained. Suppose we
     want to predict the *Snow Depth* for an *Elevation* of 6000 and *Max.Temp* 
-    of 30. Is this extrapolation based on Figure \@ref(fig:Figure8-11)? In other
+    of 30. Is this extrapolation based on Figure \@ref(fig:Figure8-13)? In other
     words, can you find any observations "nearby" in the plot of the two 
     variables together? What about an *Elevation* of 6000 and a *Max.Temp* of 
     40? The first prediction is in a different proximity to observations than 
@@ -1251,11 +1251,11 @@ regression models that can result in common mistakes.
     fact, in complicated MLR models we typically do not know whether there are
     observations "nearby" if we are doing predictions for unobserved
     combinations of our predictors. Note that Figure
-    \@ref(fig:Figure8-11) also reinforces our potential collinearity problem
+    \@ref(fig:Figure8-13) also reinforces our potential collinearity problem
     between *Elevation* and *Max.Temp* with higher elevations being strongly
     associated with lower temperatures. 
 
-    ```{r Figure8-11,fig.cap="Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data.",echo=F,fig.width=5,fig.height=3}
+    ```{r Figure8-13,fig.cap="Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data.",echo=F,fig.width=5,fig.height=3}
     plot(Max.Temp~Elevation,data=snotel2[-c(9,22),],pch=16,
          main="Plot of Max Temp and Elevation")
     ```
@@ -1273,7 +1273,7 @@ regression models that can result in common mistakes.
     When explanatory variables are not independent (related) to one another, then
     including/excluding one variable will have an impact on the other variable. Consider the
     correlations among the predictors in the SNOTEL data set or visually displayed
-    in Figure \@ref(fig:Figure8-12):
+    in Figure \@ref(fig:Figure8-14):
     \index{R packages!\textbf{corrplot}}
     \index{correlation plot}
 
@@ -1285,7 +1285,7 @@ regression models that can result in common mistakes.
     round(cor(snotel2[-c(9,22),3:6]),2)
     ```
     
-    ```{r Figure8-12,fig.cap="Plot of correlation matrix in the snow depth data set with influential points removed",fig.width=6.5,echo=F}
+    ```{r Figure8-14,fig.cap="Plot of correlation matrix in the snow depth data set with influential points removed",fig.width=6.5,echo=F}
     library(corrplot)
     par(mfrow=c(1,1), oma=c(0,0,1,0))
     corrplot.mixed(cor(snotel2[-c(9,22),3:6]), upper.col=c(1, "orange"),lower.col=c(1, "orange"), tl.cex=0.75)
@@ -1682,16 +1682,16 @@ college GPA. There are certainly other possible research questions that can be
 addressed with these data but this will keep us focused. 
 \index{R packages!\textbf{psych}}
 
-(ref:fig8-13) Scatterplot matrix of SAT and GPA data set.
+(ref:fig8-15) Scatterplot matrix of SAT and GPA data set.
 
-```{r Figure8-13,fig.cap="(ref:fig8-13)",fig.height=5,fig.width=7}
+```{r Figure8-15,fig.cap="(ref:fig8-15)",fig.height=5,fig.width=7}
 library(openintro)
 data(satGPA)
 satGPA <- as_tibble(satGPA)
 pairs.panels(satGPA[,-4], ellipse=F, col="red", lwd=2)
 ```
 
-There are positive relationships in Figure \@ref(fig:Figure8-13) among all the
+There are positive relationships in Figure \@ref(fig:Figure8-15) among all the
 pre-college measures and the *college GPA* but none are above the moderate
 strength level. The *HSGPA* has a highest correlation with
 first year of college results but its correlation is not that strong. Maybe
@@ -1736,9 +1736,9 @@ they might apply to... But you could see why the company that administers the SA
 \indent The following code fits the model of interest, provides a model summary, 
 and the diagnostic plots, allowing us to consider the tests of interest:
 
-(ref:fig8-14) Diagnostic plots for the $\text{FYGPA}\sim\text{ SATV }+\text{ SATM}$ model.
+(ref:fig8-16) Diagnostic plots for the $\text{FYGPA}\sim\text{ SATV }+\text{ SATM}$ model.
 
-```{r Figure8-14,fig.cap="(ref:fig8-14)",fig.height=5,fig.width=10}
+```{r Figure8-16,fig.cap="(ref:fig8-16)",fig.height=5,fig.width=10}
 gpa1 <- lm(FYGPA~SATV+SATM, data=satGPA)
 summary(gpa1)
 par(mfrow=c(2,2), oma=c(0,0,2,0))
@@ -1771,14 +1771,14 @@ plot(gpa1, sub.caption="Diagnostics for GPA model with SATV and SATM")
         
     * **Linearity of relationships:**
     
-        * The initial scatterplots (Figure \@ref(fig:Figure8-13)) do not show 
+        * The initial scatterplots (Figure \@ref(fig:Figure8-15)) do not show 
         any clear nonlinearities with each predictor used in this model.
         
         * The Residuals vs Fitted and Scale-Location plots (Figure 
-        \@ref(fig:Figure8-14)) do not show much more than a football shape,
+        \@ref(fig:Figure8-16)) do not show much more than a football shape,
         which is our desired result.
         
-        * The partial residuals are displayed in Figure \@ref(fig:Figure8-15) and do not suggest any clear missed curvature.
+        * The partial residuals are displayed in Figure \@ref(fig:Figure8-17) and do not suggest any clear missed curvature.
         
             * Together, there is no suggestion of a violation of the linearity
             assumption.
@@ -1873,7 +1873,7 @@ the size of the estimated slope coefficients, we can add to the information abou
 it is often easier to assess "practical" importance of the results by considering
 how much change this implies over the range of observed predictor values. 
 
-    * The term-plots (Figure \@ref(fig:Figure8-15)) provide a visualization of the "size" of the differences in the response variable explained by each predictor. \index{effects plot} The *SATV* term-plot shows that for the range of percentiles from around the
+    * The term-plots (Figure \@ref(fig:Figure8-17)) provide a visualization of the "size" of the differences in the response variable explained by each predictor. \index{effects plot} The *SATV* term-plot shows that for the range of percentiles from around the
 30^th^ percentile to the 70^th^ percentile, the mean first 
 year *GPA* is predicted to go from approximately 1.9 to 3.0. That is a pretty
 wide range of differences in GPAs across the range of observed percentiles.
@@ -1895,9 +1895,9 @@ plot(allEffects(gpa1, residuals=T))
 ```
 
 
-(ref:fig8-15) Term-plots for the $\text{FYGPA}\sim\text{SATV} + \text{SATM}$ model with partial residuals.
+(ref:fig8-17) Term-plots for the $\text{FYGPA}\sim\text{SATV} + \text{SATM}$ model with partial residuals.
 
-```{r Figure8-15,fig.cap="(ref:fig8-15)",warning=F,message=F,echo=F}
+```{r Figure8-17,fig.cap="(ref:fig8-17)",warning=F,message=F,echo=F}
 plot(allEffects(gpa1, residuals=T))
 ```
 
@@ -1977,7 +1977,7 @@ SE, $\widehat{\sigma}$, is also informative in this regard --
 remember that it is the standard deviation of the residuals around the
 regression line. It is 0.6582, so the SD of new observations around the line is
 0.66 GPA points and that is pretty large on a GPA scale. Remember that if the residuals meet our assumptions and follow a normal distribution around the line, observations within 2 or 3 SDs of the mean would be expected which is a large range of GPA values. 
-Figure \@ref(fig:Figure8-16) remakes
+Figure \@ref(fig:Figure8-18) remakes
 both term-plots, holding the other predictor at its mean, and adds the 95%
 prediction intervals to show the difference in variability between estimating
 the mean and pinning down the value of a new observation. The R code is very messy
@@ -1986,9 +1986,9 @@ two types of intervals -- to make them in MLR, you have to fix all but one of
 the predictor variables and we usually do that by fixing the other variables at
 their means. \index{effects plot} \index{prediction interval}
 
-(ref:fig8-16) Term-plots for the $\text{FYGPA}\sim\text{SATV} + \text{SATM}$ model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines). 
+(ref:fig8-18) Term-plots for the $\text{FYGPA}\sim\text{SATV} + \text{SATM}$ model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines). 
 
-```{r Figure8-16,fig.cap="(ref:fig8-16)",fig.height=5,fig.width=10}
+```{r Figure8-18,fig.cap="(ref:fig8-18)",fig.height=5,fig.width=10}
 #Remake effects plots with 95% PIs
 dv1 <- tibble(SATV=seq(from=24,to=76,length.out=50), SATM=rep(54.4,50))
 dm1 <- tibble(SATV=rep(48.93,50), SATM=seq(from=29,to=77,length.out=50))
@@ -2037,7 +2037,7 @@ research questions by comparing groups. We will be able to compare the
 intercepts (mean levels) and the slopes to see if they differ between the
 groups. For example, does the relationship between the *SATV* and *FYGPA*
 differ for male and female students? We can add the grouping information to
-the scatterplot of *FYGPA* vs *SATV* (Figure \@ref(fig:Figure8-17)) and
+the scatterplot of *FYGPA* vs *SATV* (Figure \@ref(fig:Figure8-19)) and
 consider whether there is visual evidence of a difference in the slope and/or
 intercept between the two groups, with men coded^[We 
 are actually making an educated guess about what these codes mean. Other
@@ -2056,7 +2056,7 @@ begin to handle these situations and explore creating models that assume the sam
 slope coefficient for all groups but allow for different $y$-intercepts. This material
 ends up resembling what we did for the Two-Way ANOVA additive model. 
 
-\indent The results for *SATV* contrast with Figure \@ref(fig:Figure8-18) for the relationship
+\indent The results for *SATV* contrast with Figure \@ref(fig:Figure8-20) for the relationship
 between first year college *GPA* and *SATM*
 percentile by gender of the students. The lines for the two groups appear to be
 mostly parallel and just seem to have different $y$-intercepts. In this section, we will learn how we can use our
@@ -2109,17 +2109,17 @@ SATGENDER1 <- lm(FYGPA~SATM+GENDER, data=satGPA) #Fit lm with SATM and SEX
 summary(SATGENDER1)
 ```
 
-(ref:fig8-17) Plot of FYGPA vs SATV by Sex of students.
+(ref:fig8-19) Plot of FYGPA vs SATV by Sex of students.
 
-```{r Figure8-17,fig.cap="(ref:fig8-17)",echo=F,fig.height=5,fig.width=10}
+```{r Figure8-19,fig.cap="(ref:fig8-19)",echo=F,fig.height=5,fig.width=10}
 library(viridis)
 scatterplot(FYGPA~SATV|GENDER, lwd=3, data=satGPA, smooth=F,
             main="Scatterplot of GPA vs SATV by Sex", cex.main=1, col=viridis(8)[c(7,1)])
 ```
 
-(ref:fig8-18) Plot of FYGPA vs SATM by Sex of students.
+(ref:fig8-20) Plot of FYGPA vs SATM by Sex of students.
 
-```{r Figure8-18,fig.cap="(ref:fig8-18)",echo=F,fig.height=5,fig.width=10}
+```{r Figure8-20,fig.cap="(ref:fig8-20)",echo=F,fig.height=5,fig.width=10}
 scatterplot(FYGPA~SATM|GENDER, lwd=3, data=satGPA, smooth=F,
             main="Scatterplot of GPA vs SATM by Sex", cex.main=1, col=viridis(8)[c(7,1)])
 ```
@@ -2200,7 +2200,7 @@ for changing slopes by group too.] -- it shifts the intercept up or down from
 the baseline group (here selected as *males*) to get a new intercept for the
 deviation group (here *females*).
 
-\indent To make this visually clearer, Figure \@ref(fig:Figure8-19) contains the
+\indent To make this visually clearer, Figure \@ref(fig:Figure8-21) contains the
 regression lines that were estimated for each
 group. For any *SATM*, the difference in the groups is the 0.313 coefficient from
 the ``GENDERFEMALE`` or ``GENDERINDICATOR`` row of the model summaries. For example,
@@ -2209,11 +2209,11 @@ between males and females is displayed as a difference between 2.15 and 2.46.
 This model assumes that the slope on *SATM* is the same for both groups except
 that they are allowed to have different $y$-intercepts, which is reasonable here
 because we saw approximately parallel relationships for the two groups in
-Figure \@ref(fig:Figure8-18). 
+Figure \@ref(fig:Figure8-20). 
 
-(ref:fig8-19) Plot of estimated model for *FYGPA* vs *SATM* by *GENDER* of students (female line is thicker dark line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group.
+(ref:fig8-21) Plot of estimated model for *FYGPA* vs *SATM* by *GENDER* of students (female line is thicker dark line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group.
 
-```{r Figure8-19,fig.cap="(ref:fig8-19)",echo=F,warning=F,message=F}
+```{r Figure8-21,fig.cap="(ref:fig8-21)",echo=F,warning=F,message=F}
 fitmales<-0.216+0.0386*dm1$SATM
 fitfemales<-0.529+0.0386*dm1$SATM
 
@@ -2258,7 +2258,7 @@ the model that includes $x_i$. When we make term-plots in a model with
 a quantitative and additive categorical variable, the two reported model
 components match with the previous discussion -- the same estimated term from
 the quantitative variable for all observations and a shift to reflect the
-different $y$-intercepts in the two groups. In Figure \@ref(fig:Figure8-20), the
+different $y$-intercepts in the two groups. In Figure \@ref(fig:Figure8-22), the
 females are estimated to be that same 0.313 points higher on first year GPA.
 The males have a mean GPA slightly above 2.3 which is the predicted GPA for the
 average SATM percentile for a male (remember that we have to hold the other variable at 
@@ -2266,9 +2266,9 @@ its mean to make each term-plot). When making the SATM term-plot, the
 categorical variable is held at the most
 frequently occurring value (modal category) in the data set, which is for males in this data set. 
 
-(ref:fig8-20) Term-plots for the estimated model for $\text{FYGPA}\sim\text{SATM} + \text{GENDER}$.
+(ref:fig8-22) Term-plots for the estimated model for $\text{FYGPA}\sim\text{SATM} + \text{GENDER}$.
 
-```{r Figure8-20,fig.cap="(ref:fig8-20)",warning=F,message=F}
+```{r Figure8-22,fig.cap="(ref:fig8-22)",warning=F,message=F}
 tally(GENDER~1, data=satGPA)
 plot(allEffects(SATGENDER1))
 ```
@@ -2331,13 +2331,13 @@ upper tolerance levels of the subjects before and after treatment. But
 maybe the treatments impact that relationship? We can use our indicator \index{indicator}
 approach to see if the treatments provide a shift to higher tolerances after
 accounting for the relationship between the two measurements^[Models like this with a categorical variable and quantitative variable are often called *ANCOVA* or *analysis of covariance* models but really are just versions of our linear models we've been using throughout this material.]. The scatterplot^[Note that we employed some specific options in the ``legend`` option to get the legend to fit on this scatterplot better. Usually you can avoid this but the ``coords`` option defined a location and the ``columns`` option made it a two column legend. The ``viridis(4)`` code makes the plot in a suite of four colors from the ``viridis`` package. [@R-viridis]] \index{R packages!\textbf{viridis}}
-of the results in Figure \@ref(fig:Figure8-21) shows some variation in the
+of the results in Figure \@ref(fig:Figure8-23) shows some variation in the
 slopes and the intercepts for the groups although the variation in intercepts
 seems more prominent than differences in slopes. Note that the ``relevel`` function was applied to the ``treatment`` variable with an option of ``"Control"`` to make the *Control* category the baseline category as the person who created the data set had set ``T1`` as the baseline in the ``treatment`` variable.  
 
-(ref:fig8-21) Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups).  
+(ref:fig8-23) Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups).  
 
-```{r Figure8-21,fig.cap="(ref:fig8-21)",fig.height=5,fig.width=10}
+```{r Figure8-23,fig.cap="(ref:fig8-23)",fig.height=5,fig.width=10}
 library(heplots)
 library(viridis)
 data(Headache)
@@ -2411,7 +2411,7 @@ coefficients for the groups as discussed in the next section.
 set with regression lines for each group -- assessing whether the lines look
 relatively parallel or not.
 \index{non-parallel lines}
-In Figure \@ref(fig:Figure8-21), there are some
+In Figure \@ref(fig:Figure8-23), there are some
 differences in slopes -- we investigate that further in the next section. For
 now, we can proceed with fitting the additive model with different intercepts
 for the four levels of ``treatment`` and the quantitative explanatory variable, ``du1``. 
@@ -2456,14 +2456,14 @@ $$\widehat{\text{du2}}_i = 0.886 + 0.837\cdot\text{du1}_i\ .$$
 
 $$\widehat{\text{du2}}_i = 1.62 + 0.837\cdot\text{du1}_i\ .$$
 
-To reinforce what this additive model is doing, Figure \@ref(fig:Figure8-22)
+To reinforce what this additive model is doing, Figure \@ref(fig:Figure8-24)
 displays the estimated regression lines for all four
 groups, showing the shifts in the *y*-intercepts among the groups.
 \index{additive model}
 
-(ref:fig8-22) Plot of estimated noise tolerance additive model.
+(ref:fig8-24) Plot of estimated noise tolerance additive model.
 
-```{r Figure8-22,fig.cap="(ref:fig8-22)",echo=F, fig.height=4,fig.width=7}
+```{r Figure8-24,fig.cap="(ref:fig8-24)",echo=F, fig.height=4,fig.width=7}
 du1s<-seq(from=0.37,to=15.1,length.out=50)
 hdT1<-tibble(du1=du1s,treatment=rep("T1",50))
 hdT2<-tibble(du1=du1s,treatment=rep("T2",50))
@@ -2476,7 +2476,7 @@ lines(du1s,predict(head1,newdata=hdT3),lwd=3,col=viridis(4)[4],lty=3)
 legend("topleft",lwd=c(2,2,2,3),title="Groups",legend=c("Control","T1","T2","T3"),lty=c(2,1,2,3),col=viridis(4))
 ```
 
-\indent The right panel of the term-plot (Figure \@ref(fig:Figure8-23)) shows how the *T3* group
+\indent The right panel of the term-plot (Figure \@ref(fig:Figure8-25)) shows how the *T3* group
 seems to have shifted up the most relative to
 the others and the *Control* group seems to have a mean that is a bit lower than the others,
 in the model that otherwise assumes that the same linear relationship holds between
@@ -2494,13 +2494,13 @@ Additionally, sometimes we
 need to add group information to diagnostics to see if any patterns in residuals look
 different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups. 
  
-(ref:fig8-23) Term-plots of the additive decibel tolerance model with partial residuals. 
+(ref:fig8-25) Term-plots of the additive decibel tolerance model with partial residuals. 
 
-```{r Figure8-23,fig.cap="(ref:fig8-23)",warning=F,message=F}
+```{r Figure8-25,fig.cap="(ref:fig8-25)",warning=F,message=F}
 plot(allEffects(head1, residuals=T))
 ```
 
-\indent The diagnostic plots in Figure \@ref(fig:Figure8-24) provides some 
+\indent The diagnostic plots in Figure \@ref(fig:Figure8-26) provides some 
 indications of a few observations in the tails that deviate from a normal
 distribution to having slightly heavier tails but
 only one outlier is of real concern and causes some concern about the normality assumption. There is a small indication of increasing
@@ -2508,9 +2508,9 @@ variability as a function of the fitted values as both the Residuals vs. Fitted
 and Scale-Location plots show some fanning out for higher values but this is a
 minor issue. There are no influential points here since all the Cook's D values are less than 0.5. \index{influential}
 
-(ref:fig8-24) Diagnostic plots for the additive decibel tolerance model. 
+(ref:fig8-26) Diagnostic plots for the additive decibel tolerance model. 
 
-```{r Figure8-24,fig.cap="(ref:fig8-24)",fig.width=10,fig.height=5}
+```{r Figure8-26,fig.cap="(ref:fig8-26)",fig.width=10,fig.height=5}
 par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(head1,
      sub.caption="Plot of diagnostics for additive model with du1 and treatment for du2", pch=16)
@@ -2519,13 +2519,13 @@ plot(head1,
 
 \indent Additionally, sometimes we
 need to add group information to diagnostics to see if any patterns in residuals look
-different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups. We can use the ``scatterplot`` function to plot the residuals (extracted using the ``residuals`` function) versus the fitted values (extracted using the ``fitted`` function) by groups as in Figure \@ref(fig:Figure8-24X). In this example, there are no additional patterns extracted by making this plot, but it is a good additional check in these multi-group situations.
+different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups. We can use the ``scatterplot`` function to plot the residuals (extracted using the ``residuals`` function) versus the fitted values (extracted using the ``fitted`` function) by groups as in Figure \@ref(fig:Figure8-27). In this example, there are no additional patterns extracted by making this plot, but it is a good additional check in these multi-group situations.
 
 
-(ref:fig8-24X) Plot of residuals versus fitted values by treatment group from the additive decibel tolerance model.
+(ref:fig8-27) Plot of residuals versus fitted values by treatment group from the additive decibel tolerance model.
 
 
-```{r Figure8-24X,fig.cap="(ref:fig8-24X)",warning=F,message=F}
+```{r Figure8-27,fig.cap="(ref:fig8-27)",warning=F,message=F}
 scatterplot(residuals(head1)~fitted(head1)|treatment,
             data=Headache, smooth=F, col=viridis(4))
 ```
@@ -2632,16 +2632,16 @@ correct. The fact that there is an
 upper limit to the response variable attained by many students will cause
 complications below, but we can still learn something from our attempts to
 analyze these data using an MLR model. The scatterplot in
-Figure \@ref(fig:Figure8-25) seems to indicate some clear differences in the
+Figure \@ref(fig:Figure8-28) seems to indicate some clear differences in the
 *IQ* vs *reading score* relationship between the *dys*=0 (non-dyslexic) and 
 *dys*=1 (dyslexic) students (code below makes these levels more explicit in the data set). Note that the IQ is standardized to have mean 0 
 and standard deviation of 1 which means that
 a 1 unit change in IQ score is a 1 SD change and that the *y*-intercept (for
 $x=0$) is right in the center of the plot and actually interesting^[Standardizing quantitative predictor variables is popular in social sciences, often where the response variable is also standardized. In those situations, they generate what are called "standardized betas" (https://en.wikipedia.org/wiki/Standardized_coefficient) that estimate the change in SDs in the response for a 1 SD increase in the explanatory variable.]. 
 
-(ref:fig8-25) Scatterplot for reading score versus nonverbal IQ by dyslexia group. 
+(ref:fig8-28) Scatterplot for reading score versus nonverbal IQ by dyslexia group. 
 
-```{r Figure8-25,fig.cap="(ref:fig8-25)",echo=F}
+```{r Figure8-28,fig.cap="(ref:fig8-28)",echo=F}
 library(smdata)
 data("dyslexic3")
 dyslexic3$dys <- factor(dyslexic3$dys)
@@ -2782,7 +2782,7 @@ fitted values ($x$-axis in Residuals vs Fitted and Scale-Location plots) and tha
 You
 should look for issues in the residuals for each group but the residuals should
 overall still be normally distributed and have the same variability everywhere. 
-It is a bit hard to see issues in Figure \@ref(fig:Figure8-26) because of the
+It is a bit hard to see issues in Figure \@ref(fig:Figure8-29) because of the
 group differences, 
 but note the line of residuals for the higher fitted values. This is an
 artifact of the upper threshold in the reading accuracy test used. As in the
@@ -2797,9 +2797,9 @@ scoring on average higher and have a different slope than the results for the
 dyslexic students. The QQ-plot suggests a slightly long left tail but this deviation is not too far from what might happen if we simulated from a normal distribution, so is not clear evidence of a violation of the normality assumption. The influence diagnostics do not suggest any
 influential points because no points have Cook's D over 0.5. \index{censored}
 
-(ref:fig8-26) Diagnostic plots for interaction model for reading scores. 
+(ref:fig8-29) Diagnostic plots for interaction model for reading scores. 
 
-```{r Figure8-26,fig.cap="(ref:fig8-26)",fig.width=10,fig.height=5}
+```{r Figure8-29,fig.cap="(ref:fig8-29)",fig.width=10,fig.height=5}
 par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(dys_model,
      sub.caption="Plot of diagnostics for Dyslexia Interaction model", pch=16)
@@ -2815,16 +2815,16 @@ can be difficult to check the assumptions by looking at the overall diagnostic
 plots and it may be easier to go back to the original scatterplot or plot the
 residuals vs fitted values by group to fully assess the results.
 \index{Residuals vs Fitted plot!by group}
-Figure \@ref(fig:Figure8-27)
+Figure \@ref(fig:Figure8-30)
 shows a scatterplot of the residuals vs the quantitative explanatory variable
 by the groups. The variability in the residuals is a bit larger in the
 non-dyslexic group, possibly suggesting that variability in the reading test is
 higher for higher scoring individuals even though we couldn't observe all of
 that variability because there were so many perfect scores in this group. 
 
-(ref:fig8-27) Plot of Residuals vs Fitted from interaction dyslexia data model with groups indicated.
+(ref:fig8-30) Plot of Residuals vs Fitted from interaction dyslexia data model with groups indicated.
 
-```{r Figure8-27,fig.cap="(ref:fig8-27)",warning=F,message=F}
+```{r Figure8-30,fig.cap="(ref:fig8-30)",warning=F,message=F}
 scatterplot(residuals(dys_model)~fitted(dys_model)|dys,
             data=dyslexic3, smooth=F, col=viridis(7)[c(1,6)])
 ```
@@ -2858,24 +2858,24 @@ slopes for the two groups.
 be generated that plot the results for each group on the same display or on separate facets for each level of the categorical variable. The first version is useful for comparing the different lines and the second version is useful to add the partial residuals and get a final exploration of model assumptions and ranges of values where predictor variables were observed in each group.
 \index{interaction!MLR!term-plot}
 The term-plots basically provide a plot of the "simplified" SLR models for each group. In 
-Figure \@ref(fig:Figure8-28) we can see noticeable differences in the slopes 
+Figure \@ref(fig:Figure8-31) we can see noticeable differences in the slopes 
 and intercepts. Note that
 testing for differences in intercepts between groups is not very interesting
 when there are different slopes because if you change the slope, you have to
 change the intercept. The plot shows that there are clear differences in the
 means even though we don't have a test to directly assess that in this
-complicated of a model^[There is a way to test for a difference in the two lines at a particular $x$ value but it is beyond the scope of this material.]. Figure Figure \@ref(fig:Figure8-28X) splits the plots up and adds partial residuals to the plots. The impact on the estimated model for the perfect scores in the non-dyslexic subjects is very prominent as well as the difference in the relationships between the two variables in the two groups.
+complicated of a model^[There is a way to test for a difference in the two lines at a particular $x$ value but it is beyond the scope of this material.]. Figure Figure \@ref(fig:Figure8-32) splits the plots up and adds partial residuals to the plots. The impact on the estimated model for the perfect scores in the non-dyslexic subjects is very prominent as well as the difference in the relationships between the two variables in the two groups.
 
-(ref:fig8-28) Term-plots for interaction model for reading scores using the ``multiline=T`` option to overlay the results for the two groups on one plot. 
+(ref:fig8-31) Term-plots for interaction model for reading scores using the ``multiline=T`` option to overlay the results for the two groups on one plot. 
 
-```{r Figure8-28,fig.cap="(ref:fig8-28)",warning=F,message=F}
+```{r Figure8-31,fig.cap="(ref:fig8-31)",warning=F,message=F}
 plot(allEffects(dys_model), ci.style="bands", multiline=T, lty=c(1,2), grid=T)
 ```
 
 
-(ref:fig8-28X) Term-plots for interaction model for reading scores with partial residuals and the results for the two groups in different panels of the plot. 
+(ref:fig8-32) Term-plots for interaction model for reading scores with partial residuals and the results for the two groups in different panels of the plot. 
 
-```{r Figure8-28X,fig.cap="(ref:fig8-28X)",warning=F,message=F}
+```{r Figure8-32,fig.cap="(ref:fig8-32)",warning=F,message=F}
 plot(allEffects(dys_model, residuals=T), lty=c(1,2), grid=T)
 ```
 
@@ -2885,15 +2885,15 @@ evidence in support of the interaction). To
 reinforce the potential dangers of forcing the same slope for both groups, 
 consider the additive model for these data. Again, this just shifts one group
 off the other one, but both have the same slope. The following model summary
-and term-plots (Figure \@ref(fig:Figure8-29)) suggest the potentially
+and term-plots (Figure \@ref(fig:Figure8-33)) suggest the potentially
 dangerous conclusion that
 can come from assuming a common slope when that might not be the case. 
 
 \vspace{11pt}
 
-(ref:fig8-29) Term-plots for additive model for reading scores.
+(ref:fig8-33) Term-plots for additive model for reading scores.
 
-```{r Figure8-29,fig.cap="(ref:fig8-29)",warning=F,message=F}
+```{r Figure8-33,fig.cap="(ref:fig8-33)",warning=F,message=F}
 dys_modelR <- lm(score~ziq+dys, data=dyslexic3)
 summary(dys_modelR)
 plot(allEffects(dys_modelR, residuals=T))
@@ -2906,15 +2906,15 @@ $y$-intercepts ($t_{41}=-6.88$, p-value $<0.00001$) after adjusting for the verb
 \indent Since the IQ term has a large p-value, we could drop it from the 
 model -- leaving a model that only includes the grouping variable:
 
-(ref:fig8-30) Term-plot for dyslexia status only model for reading scores.
+(ref:fig8-34) Term-plot for dyslexia status only model for reading scores.
 
-```{r Figure8-30,fig.cap="(ref:fig8-30)",warning=F,message=F}
+```{r Figure8-34,fig.cap="(ref:fig8-34)",warning=F,message=F}
 dys_modelR2 <- lm(score~dys, data=dyslexic3)
 summary(dys_modelR2)
 plot(allEffects(dys_modelR2, residuals=T))
 ```
 
-These results, including the term-plot in Figure \@ref(fig:Figure8-30), show
+These results, including the term-plot in Figure \@ref(fig:Figure8-34), show
 that there is evidence of a difference in the mean reading scores
 between the two groups and maybe that is all these data really say... This is the
 logical outcome if we decide that the interaction is not important *in this data set*. In general, if the interaction is dropped, the interaction model can be
@@ -2983,9 +2983,9 @@ $$\begin{array}{rll}
 \widehat{\text{du2}}_i&=1.332 &+ 0.733\cdot\text{du1}_i.\ 
 \end{array}$$
 
-(ref:fig8-31) Term-plot for decibel tolerance interaction model with partial residuals (version 1). 
+(ref:fig8-35) Term-plot for decibel tolerance interaction model with partial residuals (version 1). 
 
-```{r Figure8-31,fig.cap="(ref:fig8-31)",fig.height=4,fig.width=7,echo=F}
+```{r Figure8-35,fig.cap="(ref:fig8-35)",fig.height=4,fig.width=7,echo=F}
 head2<-lm(du2~du1*treatment,data=Headache)
 plot(allEffects(head2, residuals=T), grid=T)
 ```
@@ -2999,8 +2999,8 @@ summary(head2)
 
 \normalsize
 
-Or we can let the term-plots (Figures \@ref(fig:Figure8-31) and 
-\@ref(fig:Figure8-32)) show us all four different simplified models. Here we
+Or we can let the term-plots (Figures \@ref(fig:Figure8-35) and 
+\@ref(fig:Figure8-36)) show us all four different simplified models. Here we
 can see that all the slopes "look" to be pretty similar. When the interaction
 model is fit and the results "look" like the additive model, there is a good
 chance that we will be able to avoid all this complication and just use the
@@ -3008,16 +3008,16 @@ additive model without missing anything interesting.
 \index{additive model}
 There are two different
 options for displaying interaction models. Version 1 (Figure
-\@ref(fig:Figure8-31)) has a
+\@ref(fig:Figure8-35)) has a
 different panel for each level of the categorical variable and Version 2
-(Figure \@ref(fig:Figure8-32)) puts all the lines on the same plot. In this
+(Figure \@ref(fig:Figure8-36)) puts all the lines on the same plot. In this
 case, neither
 version shows much of a difference and Version 2 overlaps so much that you
 can't see all the groups. In these situations, it can be useful to make the term-plots with ``multiline=T`` and ``multiline=F`` and select the version that captures the results best.
 
-(ref:fig8-32) Term-plot for decibel tolerance interaction model (version 2). This plot is not printed in color because it is impossible to distinguish the four groups whether in color or black and white.
+(ref:fig8-36) Term-plot for decibel tolerance interaction model (version 2). This plot is not printed in color because it is impossible to distinguish the four groups whether in color or black and white.
 
-```{r Figure8-32,fig.cap="(ref:fig8-32)",echo=F}
+```{r Figure8-36,fig.cap="(ref:fig8-36)",echo=F}
 plot(allEffects(head2), multiline=T, ci.style="bands")
 ```
 
@@ -3074,15 +3074,15 @@ a reasonable next step.
 \index{non-parallel lines}
 Basically this establishes a set of ***nested models***
 (each model is a reduced version of another more complicated
-model higher in the tree of models and we can move down the tree by setting a set of slope coefficients to 0) displayed in Figure \@ref(fig:Figure8-33).
+model higher in the tree of models and we can move down the tree by setting a set of slope coefficients to 0) displayed in Figure \@ref(fig:Figure8-37).
 This is based on
 the assumption that we would proceed through the model, dropping terms if the
 p-values are large ("not significant" in the diagram) to arrive at a final
 model. \index{model!nested}
 
-(ref:fig8-33) Diagram of models to consider in an interaction model. 
+(ref:fig8-37) Diagram of models to consider in an interaction model. 
 
-```{r Figure8-33,fig.cap="(ref:fig8-33)",echo=F,warning=F,message=F}
+```{r Figure8-37,fig.cap="(ref:fig8-37)",echo=F,warning=F,message=F}
 knitr::include_graphics("chapter8_files/nestedModelTree_medium.png")
 ```
 
@@ -3486,12 +3486,12 @@ And the mean-only model had a $\Delta\text{AIC}$ of nearly 40 -- suggesting
 extremely strong evidence for the top model versus using no predictors. So we
 have pretty clear support for models that include the *Elevation* and *Max.Temp*
 variables (in both top models) and some support for also including the
-*Min.Temp*, but the top model did not require its inclusion. It is also possible to think about the AICs as a result on a number line from "closest to the truth" to "farthest" for the suite of models considered, as shown in Figure \@ref(fig:Figure8-33X).
+*Min.Temp*, but the top model did not require its inclusion. It is also possible to think about the AICs as a result on a number line from "closest to the truth" to "farthest" for the suite of models considered, as shown in Figure \@ref(fig:Figure8-38).
 
 
-(ref:fig8-33X) Display of AIC results on a number line with models indicated by their number in the ``dredge`` output. Note that the actual truth is unknown but further left in the plot corresponds to the models that are estimated to be closer to the truth and so there is stronger evidence for those models versus the others.
+(ref:fig8-38) Display of AIC results on a number line with models indicated by their number in the ``dredge`` output. Note that the actual truth is unknown but further left in the plot corresponds to the models that are estimated to be closer to the truth and so there is stronger evidence for those models versus the others.
 
-```{r Figure8-33X,fig.cap="(ref:fig8-33X)",echo=F, fig.height=4, fig.width=8,echo=F,warning=F,message=F}
+```{r Figure8-38,fig.cap="(ref:fig8-38)",echo=F, fig.height=4, fig.width=8,echo=F,warning=F,message=F}
 res1 <- dredge(m6, rank="AIC",
        extra = c("R^2", adjRsq=function(x) summary(x)$adj.r.squared))
 plot(x=res1$AIC,y=rep(0,8), pch=4, xlab="AIC", yaxt='n', ylab="", ylim=c(-.5,0.2))
@@ -3546,7 +3546,7 @@ the potential for including up to four variables (*age*, *height*, *sex*, and
 *smoking status*) and possibly the interaction between *age* and *smoking status*.
 Initial explorations suggested that modeling the log-FEV would be more successful
 than trying to model the responses on the original scale. Figure 
-\@ref(fig:Figure8-34) shows the suggestion of different slopes for the
+\@ref(fig:Figure8-39) shows the suggestion of different slopes for the
 smokers than non-smokers and that there aren't very many smokers under 9 years
 old in the data set. 
 
@@ -3558,9 +3558,9 @@ between the mean-only and most complicated model are many different options
 where we can drop the interaction or drop the additive terms or drop the terms
 involved in the interaction if we don't need the interaction. 
 
-(ref:fig8-34) Scatterplot of log(FEV) vs Age by smoking status.
+(ref:fig8-39) Scatterplot of log(FEV) vs Age by smoking status.
 
-```{r Figure8-34,fig.cap="(ref:fig8-34)",echo=F,fig.height=5,fig.width=10}
+```{r Figure8-39,fig.cap="(ref:fig8-39)",echo=F,fig.height=5,fig.width=10}
 library(coneproj)
 data(FEV)
 FEV<-as_tibble(FEV)
@@ -3592,16 +3592,16 @@ considering reducing the model as they rarely get better in simpler models and
 the **AIC is only appropriate to use if the model assumptions are not clearly violated**. As suggested above, our "fullish" model for the *log(FEV)* values is
 specified as ``log(FEV)~height+age*smoke+sex``. 
 
-(ref:fig8-35) Diagnostics for the log(FEV) model that includes height, sex, and an interaction between age and smoking status (the full model). 
+(ref:fig8-40) Diagnostics for the log(FEV) model that includes height, sex, and an interaction between age and smoking status (the full model). 
 
-```{r Figure8-35,fig.cap="(ref:fig8-35)",fig.height=5,fig.width=10}
+```{r Figure8-40,fig.cap="(ref:fig8-40)",fig.height=5,fig.width=10}
 fm1 <- lm(log(FEV)~height+age*smoke+sex, data=FEV)
 summary(fm1)
 par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(fm1, sub.caption="Diagnostics for full FEV model", pch=16)
 ```
 
-The diagnostic plots suggest that there are a few outlying points (Figure \@ref(fig:Figure8-35)) but they
+The diagnostic plots suggest that there are a few outlying points (Figure \@ref(fig:Figure8-40)) but they
 are not influential and there is no indication of violations of the constant
 variance assumption. There is a slight left skew with a long left tail to cause a very minor concern with the normality assumption but not enough to be concerned about our inferences from this model. If we select a different
 model(s), we would want to check its diagnostics and make sure that the results
@@ -3672,9 +3672,9 @@ It has a $\Delta\text{AIC}$ of 2.87 so we would say that
 these results present marginal support for the top two models over this model. It is the simplest model of the top three but not close enough to
 be considered in detail. 
 
-(ref:fig8-35X) Display of AIC results on a number line with models indicated by their number in the ``dredge`` output. In more complex models, the ``dredge`` model numbers are just labels and not a meaningful numeration of the models being considered (there are 20 models considered here but labels go up to 32). Panel (a) presents results for all the models and panel (b) focuses just on the top 10 models so some differences in those models can be explored. Note that the spacing of the vertical grid lines in panel (a) are 10 AIC units and in (b) they are 1 AIC unit apart.
+(ref:fig8-41) Display of AIC results on a number line with models indicated by their number in the ``dredge`` output. In more complex models, the ``dredge`` model numbers are just labels and not a meaningful numeration of the models being considered (there are 20 models considered here but labels go up to 32). Panel (a) presents results for all the models and panel (b) focuses just on the top 10 models so some differences in those models can be explored. Note that the spacing of the vertical grid lines in panel (a) are 10 AIC units and in (b) they are 1 AIC unit apart.
 
-```{r Figure8-35X,fig.cap="(ref:fig8-35X)",echo=F, fig.height=6, fig.width=8,echo=F,warning=F,message=F}
+```{r Figure8-41,fig.cap="(ref:fig8-41)",echo=F, fig.height=6, fig.width=8,echo=F,warning=F,message=F}
 res1 <- dredge(fm1, rank="AIC", 
        extra = c("R^2", adjRsq=function(x) summary(x)$adj.r.squared))
 par(mfrow=c(2,1))
@@ -3726,7 +3726,7 @@ $$\log(\widehat{\text{FEV}})_i = -1.94 + 0.043\cdot\text{Height}_i+ 0.0234\cdot\
 -0.046I_{\text{Smoker},i}+0.0293I_{\text{Male},i}$$
 
 based on the estimated coefficients provided below. Using these results and the
-term-plots (Figure \@ref(fig:Figure8-36)) we see that in this model there are positive slopes
+term-plots (Figure \@ref(fig:Figure8-42)) we see that in this model there are positive slopes
 for *Age* and *Height* on *log-FEV*, a negative coefficient for *smoking*
 (*Smoker*), and a positive coefficient for *sex* (*Males*). There is some multicollinearity impacting the estimates for *height* and *age* based on having VIFs near 3 but these are not extreme issues. We could go further with interpretations
 such as for the *age* term: For a 1 year increase in *age*, we estimate, on
@@ -3742,9 +3742,9 @@ working with a log(y) model now is that we have to note that the model used to
 generate the slope coefficient had other components and so this estimate is
 after adjusting for them.** 
 
-(ref:fig8-36) Term-plots for the top AIC model for log(FEV) that includes height, age, smoking status, and sex in the model.
+(ref:fig8-42) Term-plots for the top AIC model for log(FEV) that includes height, age, smoking status, and sex in the model.
 
-```{r Figure8-36,fig.cap="(ref:fig8-36)",fig.height=4.5,fig.width=7}
+```{r Figure8-42,fig.cap="(ref:fig8-42)",fig.height=4.5,fig.width=7}
 fm1R$coefficients
 vif(fm1R)
 confint(fm1R)

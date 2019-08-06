@@ -716,7 +716,7 @@ par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(bd1, pch=16)
 ```
 
-\indent The constant variance, linearity, and assessment of influence do not suggest any problems with those assumptions. This is reinforced in the partial residuals in Figure \@ref(fig:Figure9-11X). The normality assumption is possibly violated but shows lighter
+\indent The constant variance, linearity, and assessment of influence do not suggest any problems with those assumptions. This is reinforced in the partial residuals in Figure \@ref(fig:Figure9-12). The normality assumption is possibly violated but shows lighter
 tails than expected from a normal distribution and so should cause few
 problems with inferences (we would be looking for an answer of "yes, there is a
 violation of the normality assumption but that problem is 
@@ -776,9 +776,9 @@ log-sampling effort in each stage.
 summary(bd1)
 ```
 
-(ref:fig9-11X) Term-plots for the top AIC model with partial residuals.
+(ref:fig9-12) Term-plots for the top AIC model with partial residuals.
 
-```{r Figure9-11X,fig.cap="(ref:fig9-11X)",fig.height=5,fig.width=10}
+```{r Figure9-12,fig.cap="(ref:fig9-12)",fig.height=5,fig.width=10}
 plot(allEffects(bd1, residuals=T), grid=T)
 ```
 
@@ -848,7 +848,7 @@ the data set provided that is available at
 http://www.math.montana.edu/courses/s217/documents/epworthdata.csv.
 
 \indent The data set was not initially provided by the researchers, but they 
-did provide a plot very similar to Figure \@ref(fig:Figure9-12). Since this 
+did provide a plot very similar to Figure \@ref(fig:Figure9-13). Since this 
 is the last section of the book, I am going to use a new package to make the plot,
 ``qplot`` from the ``ggplot2`` package [@R-ggplot2], that violates one of 
 the rules used for R functions to this point - it doesn't have a formula interface.
@@ -859,7 +859,7 @@ the ``ggplot2`` package, which is part of the "tidyverse" and has been developed
 to implement sophisticated graphics. For more on this, you can visit
 https://ggplot2.tidyverse.org/ and the related book by Hadley Wickham, who works for RStudio. We could have used ``ggplot2`` to make every graph in the 
 book, but elected to focus on functions that rely on formula interfaces. For now, I am going to use it to make Figure
-\@ref(fig:Figure9-12) with the ``qplot`` function that allows me to display a 
+\@ref(fig:Figure9-13) with the ``qplot`` function that allows me to display a 
 line for each subject over the two time points (pre and post) of observation 
 and indicate which group the subjects were assigned to. This allows us to see 
 the variation at a given time across subjects and changes over time, which is 
@@ -868,9 +868,9 @@ assumption in these data. In the plot, you can see that there are not clear diff
 to have most of the lines go down to lower sleepiness ratings and that this is 
 not happening much for the subjects in the control group. The violation of the independence assumption is diagnosable from the study design (two observations on each subject). The plot allows us to go further and see that many subjects had similar Epworth scores from pre to post (high in pre, generally high in post) once we account for systematic changes in the treated subjects that seemed to drop a bit on average.
 
-(ref:fig9-12) Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time.
+(ref:fig9-13) Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time.
 
-```{r Figure9-12,fig.cap="(ref:fig9-12)",fig.height=5,fig.width=10}
+```{r Figure9-13,fig.cap="(ref:fig9-13)",fig.height=5,fig.width=10}
 epworthdata <- read_csv("http://www.math.montana.edu/courses/s217/documents/epworthdata.csv")
 epworthdata$Time <- factor(epworthdata$Time)
 levels(epworthdata$Time) <- c("Pre" , "Post")
@@ -892,7 +892,7 @@ as seen in Table \@ref(tab:Table9-2)). But this model assumes all the
 observations are independent and so does not account for the repeated measures 
 on the same subjects. It ends up that if we account for systematic differences
 in subjects, we can (sometimes) find the differences we are interested in more 
-clearly. We can see that this model does not really seem to capture the full structure of the real data by comparing simulated data to the original one, as in Figure \@ref(fig:Figure9-13). The real data set had fairly strong relationships between the pre and post scores but this connection seems to disappear in responses simulated from the estimated Two-Way ANOVA model (that assumes all observations are independent).
+clearly. We can see that this model does not really seem to capture the full structure of the real data by comparing simulated data to the original one, as in Figure \@ref(fig:Figure9-14). The real data set had fairly strong relationships between the pre and post scores but this connection seems to disappear in responses simulated from the estimated Two-Way ANOVA model (that assumes all observations are independent).
 
 ```{r eval=F}
 library(car)
@@ -909,9 +909,9 @@ options(knitr.kable.NA = '')
 knitr::kable(Anova(lm_int), booktabs=TRUE, caption="(ref:tab9-2)",digits=3)
 ```
 
-(ref:fig9-13) Plot of simulated data from the Two-Way ANOVA model that does not assume observations are on repeated measures on subjects to compare to the real data set. Even though the treatment levels seem to decrease on average, there is a much less clear relationship between the starting and ending values in the individuals.
+(ref:fig9-14) Plot of simulated data from the Two-Way ANOVA model that does not assume observations are on repeated measures on subjects to compare to the real data set. Even though the treatment levels seem to decrease on average, there is a much less clear relationship between the starting and ending values in the individuals.
 
-```{r Figure9-13,fig.cap="(ref:fig9-13)",fig.height=5,fig.width=10,echo=F}
+```{r Figure9-14,fig.cap="(ref:fig9-14)",fig.height=5,fig.width=10,echo=F}
 set.seed(111)
 epworthdata$SimEpworth <- simulate(lm_int)[[1]]
 qplot(x = Time, y = SimEpworth, data = epworthdata, 
@@ -967,7 +967,7 @@ and control groups. That aliasing issue means that the "effects" function also
 has some issues. To see the effects plots, we need to use a linear mixed model 
 from the ``nlme`` package. This model is beyond the scope of this material, but 
 it provides the same $F$-statistic for the interaction ($F(1,23)=5.43$) and the
-term-plots can now be produced (Figure \@ref(fig:Figure9-14)). In that plot, we 
+term-plots can now be produced (Figure \@ref(fig:Figure9-15)). In that plot, we 
 again see that the didgeridoo group mean for "Post" is noticeably lower than in 
 the "Pre" and that the changes in the control group were minimal over the four
 months. This difference in the changes over time was present in the initial 
@@ -989,9 +989,9 @@ plot(allEffects(lme_int), multiline=T, lty=c(1,2), ci.style="bars", grid=T)
 
 \newpage
 
-(ref:fig9-14) Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
+(ref:fig9-15) Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
 
-```{r Figure9-14,fig.cap="(ref:fig9-14)",fig.height=5,fig.width=10,echo=F}
+```{r Figure9-15,fig.cap="(ref:fig9-15)",fig.height=5,fig.width=10,echo=F}
 plot(allEffects(lme_int),multiline=T, lty=c(1,2), ci.style="bars", grid=T)
 ```
 

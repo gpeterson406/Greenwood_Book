@@ -1861,6 +1861,7 @@ In our previous work with the overtake data, the overall ANOVA test
 led to a conclusion that there is some difference in the true means across the
 seven groups with a p-value < 0.001 giving very strong evidence against the null hypothesis. The original authors followed up their overall $F$-test with comparing every pair of outfits using one of the other methods for multiple testing adjustments available in the ``p.adjust`` function and detected differences between the *police* outfit and all others except for *hiviz* and no other pairs had p-values less than 0.05 using their approach. We will employ the Tukey's HSD approach to address the same exploration and get basically the same results as they obtained. 
 
+\newpage
 
 \indent The code is similar^[There is a warning message produced by the default Tukey's code here related to the algorithms used to generate approximate p-values and then the CLD, but the results seem reasonable and just a few p-values seem to vary in the second or third decimal points.] to the previous example focusing on the ``Condition`` variable for the 21 pairs to compare. To make these results easier to read and generally to make all the results with seven groups easier to understand, we can sort the levels of the explanatory based on the values in the response, using something like the the means or medians of the responses for the groups. This does not change the analyses (the $F$-statistic and all pair-wise comparisons are the same), it just sorts them to be easier to discuss. Note that it might change the baseline group so would impact the reference-coded model even though the fitted values are the same. Specifically, we can use the ``reorder`` function \index{\texttt{reorder}} based on the mean using something like ``reorder(FACTORVARIABLE, RESPONSEVARIABLE, FUN=mean)``. Unfortunately the ``reorder`` function doesn't have a ``data=...`` option, so we will let the function know where to find the two variables with a wrapper around it of ``with(DATASETNAME, reorder(...))``; this approach saves us from having to use ``dd$...`` to reference each variable. I like to put this "reordered" factor into a new variable so I can always go back to the other version if I want it. The code creates ``Condition2`` here and checking the levels for it and the original ``Condition`` variable show the change in the order of the levels of the two factor variables:
 
@@ -1884,7 +1885,7 @@ mean(Distance~Condition2, data=dd)
 
 (ref:fig3-20) Tukey's HSD confidence interval results at the 95% family-wise confidence level for the overtake distances linear model using the new ``Condition2`` explanatory variable.
 
-```{r Figure3-20,fig.cap="(ref:fig3-20)",fig.height=7,fig.width=10,echo=F}
+```{r Figure3-20,fig.cap="(ref:fig3-20)",fig.height=5.5,fig.width=10,echo=F}
 lm2 <- lm(Distance~Condition2, data=dd)
 library(multcomp)
 TmOv <- glht(lm2, linfct = mcp(Condition2 = "Tukey"))
@@ -1958,7 +1959,7 @@ will introduce new models and methods for analyzing data where there are two
 factors as explanatory variables in a model for a quantitative response variable 
 in what is called the Two-Way ANOVA. 
 
-<!-- \newpage -->
+\newpage
 
 ## Summary of important R code {#section3-9}
 
@@ -2020,9 +2021,11 @@ confint(Tm2); plot(Tm2); summary(Tm2); cld(Tm2)**
     * Generates the text output and plot for Tukey's HSD as well as the compact 
     letter display information. \index{Tukey's HSD}
 
-<!-- \newpage -->
+\newpage
 
 ## Practice problems {#section3-10}
+
+### Cholesterol Analysis
 
 For the first practice problems, you will work with the cholesterol data set from 
 the ``multcomp`` package that was used to generate the Tukey's HSD results. To 
@@ -2056,7 +2059,9 @@ reductions?
 3.6. Find and interpret the CLD and compare that to your interpretation of results 
 from 3.5.
 
-These data come from [@Smith2014] where the author experimented on himself by daily stinging himself five times on randomly selected body locataions over the course of months. You can read more about this fascinating (and cringe inducing) study at https://peerj.com/articles/338/. The following code gets the data prepared for analysis by removing the observations he took each on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. It also sorts of the levels (there are many) based on the mean pain rating in each group using the ``reorder`` function.
+### Sting Location Analysis
+
+These data come from [@Smith2014] where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at https://peerj.com/articles/338/. The following code gets the data prepared for analysis by removing the observations he took each on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. It also sorts of the levels (there are many) based on the mean pain rating in each group using the ``reorder`` function.
 
 ```r
 library(readr)

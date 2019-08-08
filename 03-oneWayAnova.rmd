@@ -12,7 +12,7 @@ set.seed(3234)
 library(pander)
 library(mosaic)
 library(knitr)
-knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht',
+knitr::opts_chunk$set(cache = T,fig.width = 5, fig.height = 3.5,fig.pos='ht',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
 ```
@@ -73,7 +73,7 @@ summarizing the overtake distances by the seven groups using ``favstats``.
 library(mosaic)
 library(readr)
 library(yarrr)
-dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
+dd <- read_csv("Walker2014_mod.csv")
 dd$Condition <- factor(dd$Condition)
 dd$Shirt <- factor(dd$Shirt) 
 dd$Helmet <- factor(dd$Helmet)
@@ -614,7 +614,7 @@ minSSA <- min(MJP1_SSA, MJP2_SSA, MJP3_SSA)
 maxSSA <- max(MJP1_SSA, MJP2_SSA, MJP3_SSA)
 ```
 
-```{r Figure3-4, fig.cap="(ref:fig3-4)",echo=F,fig.width=8,fig.height=6}
+```{r Figure3-4, fig.cap="(ref:fig3-4)",echo=F,fig.width=10,fig.height=5.5}
 Tobs <- anova(lm(Distance~Condition, data=dd))[1,2]
 par(mfrow=c(2,2))
 old.par <- par(mai=c(.75,0.5,0.3,0.3))
@@ -797,7 +797,7 @@ means around the grand mean.
 * $\text{MS}_{\text{Error}} = \text{SS}_{\text{Error}}/(N-J)$, which estimates 
 the variation of the errors around the group means.
 
-\newpage
+<!-- \newpage -->
 
 \indent These results are put together using a ratio to define the ***ANOVA F-statistic***
 (also called the ***F-ratio***) as: \index{F-statistics}
@@ -834,7 +834,7 @@ different $F$-distributions are displayed for you in Figure \@ref(fig:Figure3-6)
 
 (ref:fig3-6) Density curves of four different $F$-distributions. Upper left is an $F(6, 5683)$, upper right is $F(2, 10)$, lower left is $F(6, 10)$, and lower right is $F(3, 20)$. P-values are found using the areas to the right of the observed $F$-statistic value in all F-distributions. \index{p-value!calculation of}
 
-```{r Figure3-6,fig.cap="(ref:fig3-6)",echo=F,fig.height=4.25}
+```{r Figure3-6,fig.cap="(ref:fig3-6)",echo=F,fig.width=10,fig.height=5.5}
 x <- seq(from=0,to=7, length.out=200)
 par(mfrow=c(2,2))
 old.par <- par(mai=c(0.5,0.3,0.3,0.3))
@@ -856,6 +856,8 @@ components. Note the general format of the ANOVA table is in Table \@ref(tab:Tab
 from left to right and up and down to fill in the ANOVA table given just the 
 necessary information to determine the other components or from a study description to complete the *DF* part of the table -- there are always questions like these on exams...]:
 \index{ANOVA table}
+
+\newpage
 
 (ref:tab3-2) General One-Way ANOVA table.
 
@@ -883,6 +885,8 @@ from above, is:
 ```{r}
 anova(lm2)
 ```
+
+\newpage
 
 The p-value from the $F$-distribution is `r round(orig_anova[1,5],7)` so we can report it as a p-value < 0.0001^[Any further claimed precision is an exaggeration and eventually we might see p-values that approach the precision of the computer at 2.2e-16 and anything below 0.0001 should just be reported as being below 0.0001. Also note the way that R represents small or extremely large numbers using scientific notation such as `3e-4` which is $3 \cdot 10^{-4} = 0.0003$.]. \index{F-distribution} \index{p-values!small} We can 
 verify this result using the observed $F$-statistic of `r round(orig_anova[1,4],2)`
@@ -1127,6 +1131,19 @@ a normal distribution". It is best to be specific about the type of deviation
 you are detecting and how clear or obvious that deviation is. And to do that, we need to practice interpreting some
 QQ-plots. 
 
+
+(ref:fig3-11) QQ-plot of residuals from overtake data linear model.
+
+
+```{r Figure3-11,fig.cap="(ref:fig3-11)",echo=F,fig.height=3,fig.width=6}
+par(mfrow=c(1,2))
+library(car)
+s <- qqPlot(eij, main="QQ-Plot of residuals",envelope=F)
+plot(density(eij), main="Density plot of residuals", ylab="Density",
+     xlab="Residuals")
+```
+
+
 \indent The QQ-plot of the linear model residuals from Figure \@ref(fig:Figure3-9) is extracted and enhanced a little to make Figure \@ref(fig:Figure3-11) so we 
 can just focus on it.
 \index{QQ-plot!interpretation of}
@@ -1147,19 +1164,6 @@ fitted(lm2)[2709]
 eij[2709]
 274-116.9405
 ```
-
-
-(ref:fig3-11) QQ-plot of residuals from overtake data linear model.
-
-
-```{r Figure3-11,fig.cap="(ref:fig3-11)",echo=F,fig.height=3,fig.width=6}
-par(mfrow=c(1,2))
-library(car)
-s <- qqPlot(eij, main="QQ-Plot of residuals",envelope=F)
-plot(density(eij), main="Density plot of residuals", ylab="Density",
-     xlab="Residuals")
-```
-
 
 \indent Generally, when both tails deviate on the same side of the line (forming a 
 sort of quadratic curve, especially in more extreme cases), that is evidence 
@@ -1317,7 +1321,7 @@ ToothGrowth <- as_tibble(ToothGrowth) #Convert data.frame to tibble
 library(mosaic)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 tally(~supp, data=ToothGrowth) #Supplement Type (VC or OJ)
@@ -1350,7 +1354,7 @@ favstats(len~Treat, data=ToothGrowth)
 
 (ref:fig3-14) Pirate-plot of odontoblast growth responses for the six treatment level combinations. 
 
-```{r Figure3-14, fig.cap="(ref:fig3-14)",fig.height=6,fig.width=6}
+```{r Figure3-14, fig.cap="(ref:fig3-14)",fig.height=5.5,fig.width=10}
 pirateplot(len~Treat, data=ToothGrowth, inf.method="ci", 
            ylab="Odontoblast Growth in microns", point.o=.7)
 ```
@@ -1556,7 +1560,7 @@ coefficients:
 summary(m2)$coefficients
 ```
     
-\newpage
+<!-- \newpage -->
 
 ```{r echo=F}
 summary(m2)$coefficients
@@ -1776,7 +1780,7 @@ the different treatment levels.
 cld(Tm2)
 ```
 
-\newpage
+<!-- \newpage -->
 
 Groups with the same letter are not detectably different (are in the same set) 
 and groups that are detectably different get different letters (are in 
@@ -1834,6 +1838,8 @@ problem are also possible, but will not be considered here.
 
 \indent Tukey's HSD results can also be displayed as p-values for each pair-wise test result. This is a little less common but can allow you to directly assess the strength of evidence for a particular pair instead of using the detected/not result that the family-wise CIs provide. But the family-wise CIs are useful for exploring the size of the differences in the pairs and we need to simplify things to detect/not in these situations because there are so many tests. But if you want to see the Tukey HSD p-values, you can use the ``summary`` function on the object that is storing the results:
 
+\newpage
+
 ```{r}
 summary(Tm2)
 ```
@@ -1878,7 +1884,7 @@ mean(Distance~Condition2, data=dd)
 
 (ref:fig3-20) Tukey's HSD confidence interval results at the 95% family-wise confidence level for the overtake distances linear model using the new ``Condition2`` explanatory variable.
 
-```{r Figure3-20,fig.cap="(ref:fig3-20)",fig.height=7,fig.width=6,echo=F}
+```{r Figure3-20,fig.cap="(ref:fig3-20)",fig.height=7,fig.width=10,echo=F}
 lm2 <- lm(Distance~Condition2, data=dd)
 library(multcomp)
 TmOv <- glht(lm2, linfct = mcp(Condition2 = "Tukey"))
@@ -1892,7 +1898,7 @@ library(multcomp)
 TmOV <- glht(lm2, linfct = mcp(Condition2 = "Tukey"))
 ```
 
-\vspace{0.25in}
+\newpage
 
 ```{r}
 confint(TmOv)
@@ -1952,7 +1958,7 @@ will introduce new models and methods for analyzing data where there are two
 factors as explanatory variables in a model for a quantitative response variable 
 in what is called the Two-Way ANOVA. 
 
-\newpage
+<!-- \newpage -->
 
 ## Summary of important R code {#section3-9}
 
@@ -2014,7 +2020,7 @@ confint(Tm2); plot(Tm2); summary(Tm2); cld(Tm2)**
     * Generates the text output and plot for Tukey's HSD as well as the compact 
     letter display information. \index{Tukey's HSD}
 
-\newpage
+<!-- \newpage -->
 
 ## Practice problems {#section3-10}
 
@@ -2058,7 +2064,7 @@ sd_fixed <- read_csv("http://www.math.montana.edu/courses/s217/documents/stingda
 sd_fixed$BLs <- sd_fixed$Body_Location 
 sd_fixed$BLs <- with(sd_fixed, reorder(Body_Location, Rating, mean))
 sd_fixedR <- subset(sd_fixed,!xor(BLs=="Forearm",BLs=="Forearm1"))
-sd_fixedR$BLs <-factor(sd_fixedR$BLs)
+sd_fixedR$BLs <- factor(sd_fixedR$BLs)
 ```
 
 3.7. Graphically explore the differences in the pain ratings across the different Body_Location levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? **Hint**: look for discreteness in the responses.

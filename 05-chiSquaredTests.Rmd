@@ -381,7 +381,7 @@ the $R$ populations.
 \index{Chi-Square Test!Homogeneity Test}
 This means that the null hypothesis is:
 
-\newpage
+<!-- \newpage -->
 
 $$\begin{array}{rl}
 \mathbf{H_0:}\  & \mathbf{p_{11}=p_{21}=\ldots=p_{R1}} \textbf{ and } \mathbf{p_{12}=p_{22}=\ldots=p_{R2}}  \textbf{ and } \mathbf{p_{13}=p_{23}=\ldots=p_{R3}} \\ 
@@ -703,14 +703,14 @@ columnHeaders <- c("&nbsp;&nbsp;&nbsp;&nbsp;","**None**","**Some**",
                    "**Marked**","**Totals**")
 
 cell11 <- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{None}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{43*42}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{21.5}}}$"
-cell12<- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{Some}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{43*14}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{7.167}}}$"
-cell13<- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{Marked}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{43*28}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{14.33}}}$\\\n"
+cell12 <- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{Some}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{43*14}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{7.167}}}$"
+cell13 <- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{Marked}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{43*28}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{14.33}}}$\\\n"
 cell14 <- "$\\boldsymbol{n_{\\text{Placebo}\\bullet}=43}$"
 row1 <- c("**Placebo**",cell11,cell12,cell13,cell14)
 
 cell21 <- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{None}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{41*42}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{20.5}}}$"
-cell22<- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{Some}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{41*14}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{6.83}}}$"
-cell23<- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{Marked}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{41*28}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{13.67}}}$\\\n"
+cell22 <- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{Some}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{41*14}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{6.83}}}$"
+cell23 <- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{Marked}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{41*28}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{13.67}}}$\\\n"
 cell24 <- "$\\boldsymbol{n_{\\text{Treated}\\bullet}=41}$"
 row2 <- c("**Treated**",cell21,cell22,cell23,cell24)
 
@@ -734,7 +734,7 @@ engine for results in this chapter is the ``chisq.test``
 function. \index{\texttt{chisq.test()}} It operates on a table of
 counts that has been produced **without row or column totals**. 
 
-\newpage
+<!-- \newpage -->
 
 \indent For example, ``Arthtable`` below contains just the observed cell 
 counts. Applying the ``chisq.test`` function^[Note that in smaller data sets to get results as discussed here, use the ``correct=F`` option. If you get output that contains "``...with Yate's continuity correction``", a slightly modified version of this test is being used.] to ``Arthtable``
@@ -800,7 +800,7 @@ which, when squared (in R, squaring is accomplished using ``^2``),
 is the contribution of that particular cell to the $X^2$
 statistic that is displayed in Table \@ref(tab:Table5-4). 
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 (chisq.test(Arthtable)$residuals)^2
@@ -891,25 +891,25 @@ chisq.test(Arthpermtable)
 
 ```{r Figure5-8,fig.cap="(ref:fig5-8)",echo=F,fig.width=7,fig.height=4}
 set.seed(98765)
-Arthperm$PermTreatment<-factor(shuffle(Arthperm$Treatment))
+Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
 par(mfrow=c(2,2))
 old.par <- par(mai=c(0.5,0.75,0.5,0.5))
 plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",0.62)),
      cex.main=0.75)
-Arthperm$PermTreatment<-factor(shuffle(Arthperm$Treatment))
-Arthpermtable<-tally(~PermTreatment+Improved,data=Arthperm)
+Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
+Arthpermtable <- tally(~PermTreatment+Improved,data=Arthperm)
 #chisq.test(Arthpermtable)
 plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",1.62)),
      cex.main=0.75)
 
-Arthperm$PermTreatment<-factor(shuffle(Arthperm$Treatment))
-Arthpermtable<-tally(~PermTreatment+Improved,data=Arthperm)
+Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
+Arthpermtable <- tally(~PermTreatment+Improved,data=Arthperm)
 #chisq.test(Arthpermtable)
 plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",0.81)),
      cex.main=0.75)
 
-Arthperm$PermTreatment<-factor(shuffle(Arthperm$Treatment))
-Arthpermtable<-tally(~PermTreatment+Improved,data=Arthperm)
+Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
+Arthpermtable <- tally(~PermTreatment+Improved,data=Arthperm)
 #chisq.test(Arthpermtable)
 plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",2.38)),
      cex.main=0.75)
@@ -956,7 +956,7 @@ relative to the null
 hypothesis and provides strong evidence against it. 
 \index{permutation!test}
 
-\newpage
+<!-- \newpage -->
 
 **Validity conditions** for a permutation $X^2$ test are:
 \index{validity conditions!@$X^2$ test!permutation}
@@ -1053,7 +1053,7 @@ in each of the examples that follow.
 
 ```{r Figure5-10,fig.cap="(ref:fig5-10)",echo=F,warning=F,message=F}
 par(mfrow=c(1,1))
-Xsq<-seq(from=0,to=15,length.out=30)
+Xsq <- seq(from=0,to=15,length.out=30)
 plot(Xsq,dchisq(Xsq,df=2),ylab="Density",main="Plot of Chi-sq(2) distribution",type="l",col="blue",lwd=2)
 abline(v=13.055,col="magenta",lwd=3)
 ```
@@ -1328,7 +1328,7 @@ Here are our 6+ steps applied to this example:
         * We need to generate a table of expected cell counts to be 
         able to check this condition:
 
-        \newpage
+        <!-- \newpage -->
         
         ```{r warning=T,message=T}
         chisq.test(electable)$expected
@@ -1365,7 +1365,7 @@ Here are our 6+ steps applied to this example:
     that value in the distribution.
     
     ```{r Figure5-15,fig.cap="Plot of $\\boldsymbol{\\chi^2}$-distribution with 12 degrees of freedom.",echo=F,fig.height=2.75,fig.width=3}
-    Xsq<-seq(from=0,to=100,length.out=100)
+    Xsq <- seq(from=0,to=100,length.out=100)
     plot(Xsq,dchisq(Xsq,df=12),ylab="Density",
          main="Plot of Chi-sq(12) distribution",type="l",col="blue",lwd=2)
     ```
@@ -1636,7 +1636,7 @@ single sample was taken from the population so that is the appropriate procedure
     expected cell count condition was violated.
 
     ```{r Figure5-21,fig.cap="Plot of $\\boldsymbol{\\chi^2}$-distribution with 4 degrees of freedom.",echo=F,fig.width=3.5,fig.height=3}
-    Xsq<-seq(from=0,to=30,length.out=100)
+    Xsq <- seq(from=0,to=30,length.out=100)
     plot(Xsq,dchisq(Xsq,df=4),ylab="Density",
          main="Plot of Chi-sq(4) distribution",type="l",col="blue",lwd=2)
     abline(v=13.24,col="magenta")
@@ -1813,7 +1813,7 @@ apistrat$growthcut <- cut(apistrat$growth, breaks=c(-47,6.75,25,48,133),
                           include.lowest=T)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 tally(~growthcut, data=apistrat)
@@ -1942,7 +1942,7 @@ example shows that there might be some situations where "going categorical"
 could be an acceptable method for handing situations where an assumption is
 violated. 
 
-\newpage
+<!-- \newpage -->
 
 ## Chapter summary	{#section5-12}
 
@@ -1970,7 +1970,7 @@ fun display to identify the large residuals and often allows you to better
 understand the results. This should tie back into the original data display (tableplot, stacked bar chart or mosaic plot) and
 contingency table where you identified initial patterns and help to tell the story of the results. 
 
-\newpage
+<!-- \newpage -->
 
 ## Summary of important R commands	{#section5-13}
 
@@ -2137,11 +2137,19 @@ little re-ordering of factor levels to help make the results easier to
 understand, and makes a tableplot (Figure \@ref(fig:Figure5-27)) to get a general sense of the results 
 including information on the respondents' gender, age, income, and education. 
 
+```{r eval=F}
+library(readr)
+csd <- read_csv("http://www.math.montana.edu/courses/s217/documents/csd.csv")
+```
+
+```{r echo=F}
+library(readr)
+csd <- read_csv("csd.csv")
+```
+
 (ref:fig5-27) Tableplot of data from "data-is-vs-data-are" survey, sorted by "CareAbout" responses. 
 
 ```{r Figure5-27,fig.cap="(ref:fig5-27)",echo=T,fig.width=6,fig.height=4}
-library(readr)
-csd <- read_csv("http://www.math.montana.edu/courses/s217/documents/csd.csv")
 library(tabplot)
 #Need to make it explicit that these are factor variables
 csd$careabout <- factor(csd$careabout) 
@@ -2187,10 +2195,17 @@ We might be fighting a losing battle on "data is a plural word", but since we ar
 
 We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``dd$Distance<=100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided.
 
+```{r eval=F}
+dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
+```
+
+```{r echo=F}
+dd <- read_csv("Walker2014_mod.csv")
+```
+
 (ref:fig5-28) Stacked bar chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit. 
 
 ```{r Figure5-28,fig.cap="(ref:fig5-28)",echo=T,fig.width=6,fig.height=3}
-dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
 dd$Condition <- factor(dd$Condition)
 dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
 dd$Close <- factor(ifelse(dd$Distance<=100, "close", "notclose"))

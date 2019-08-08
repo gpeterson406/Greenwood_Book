@@ -11,12 +11,15 @@ output:
 library(mosaic)
 library(knitr)
 library(readr)
-knitr::opts_chunk$set(cache=F,fig.width = 5, fig.height = 3.5,
+knitr::opts_chunk$set(cache=T,fig.width = 5, fig.height = 3.5,
                       fig.pos = "ht", message=F,warning=F)
 options(show.signif.stars = FALSE)
 ```
 
 ```{r echo=F}
+knitr::opts_chunk$set(cache=F,fig.width = 5, fig.height = 3.5,
+                      fig.pos = "ht", message=F,warning=F)
+options(show.signif.stars = FALSE)
 #Color Format
 colFmt = function(x, color){
   outputFormat = opts_knit$get("rmarkdown.pandoc.to")
@@ -293,6 +296,12 @@ will not work in older versions of R and sometimes old code won't work in new
 versions of R.^[The need to keep the code up-to-date as R continues to evolve is one reason that this book is locally published and that this is the 6^th^ time it has been revised in
 six years...]
  
+(ref:fig1-2) Initial RStudio layout.
+
+```{r Figure1-2, echo=FALSE, fig.cap="(ref:fig1-2)"}
+knitr::include_graphics('chapter1_files/fig1.2.png')
+```
+
 \indent To get started, we can complete some basic tasks in R using the RStudio
 interface. When you open RStudio, you will see a screen like Figure 
 \@ref(fig:Figure1-2). The
@@ -317,11 +326,6 @@ contains information on the "Packages" (additional code we will download and
 install to add functionality to R) that are available and is where you will see
 plots that you make and requests for "Help" on specific functions. 
 
-(ref:fig1-2) Initial RStudio layout.
-
-```{r Figure1-2, echo=FALSE, fig.cap="(ref:fig1-2)"}
-knitr::include_graphics('chapter1_files/fig1.2.png')
-```
 
 \indent As a first interaction with R we can use it as a calculator. To do this, click near the command prompt
 (``>``) in the lower left "console" panel, type 3+4, and then hit enter. It
@@ -604,7 +608,7 @@ section of code using the "Run" button.
 
 (ref:fig1-4) RStudio with highlighted code run.
 
-```{r Figure1-4, echo=FALSE, fig.cap="(ref:fig1-4)"}
+```{r Figure1-4, echo=FALSE, fig.cap="(ref:fig1-4)",out.width="100%"}
 knitr::include_graphics('chapter1_files/fig1.4.png')
 ```
 
@@ -693,11 +697,16 @@ Figure \@ref(fig:Figure1-5).
 
 (ref:fig1-5) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study, bar heights are counts.
 
-```{r Figure1-5, fig.cap='(ref:fig1-5)',echo=F}
+```{r Figure1-5, fig.cap='(ref:fig1-5)',echo=F,fig.width = 5, fig.height = 3.5}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))
 hist(treadmill$RunTime)
 ```
 
+(ref:fig1-6) RStudio while in the process of copying the histogram.
+
+```{r Figure1-6,echo=FALSE,fig.cap="(ref:fig1-6)",out.width="100%"}
+knitr::include_graphics('chapter1_files/image010.png')
+```
 
 \indent You can save this plot by clicking on the **Export** button found above 
 the plot, followed by **Copy to Clipboard** and clicking on the 
@@ -707,12 +716,6 @@ document for writing reports that include the figures. You can see the first
 parts of this process in the screen grab in Figure \@ref(fig:Figure1-6). You can also directly save the figures as separate files using 
 **Save as Image** or **Save as PDF** and then insert them into your word 
 processing documents. 
-
-(ref:fig1-6) RStudio while in the process of copying the histogram.
-
-```{r Figure1-6,echo=FALSE,fig.cap="(ref:fig1-6)",fig.width=6,fig.height=3.5}
-knitr::include_graphics('chapter1_files/image010.png')
-```
 
 \indent The function ``hist`` defaults into providing a histogram on the ***frequency***
 (count) scale. In most R functions, there are the default options that will 
@@ -727,7 +730,7 @@ into each bar. Specifically, we can turn the ``labels`` option "on" by making it
 
 (ref:fig1-7) Histogram of Run Times with counts in bars labeled.
 
-```{r Figure1-7, fig.cap="(ref:fig1-7)",echo=F,fig.width=4,fig.height=2.75}
+```{r Figure1-7, fig.cap="(ref:fig1-7)",echo=F,fig.width = 5, fig.height = 3.5}
 hist(treadmill$RunTime, labels=T)
 ```
 
@@ -780,7 +783,7 @@ but worth noting.
 
 (ref:fig1-8) Boxplot of 1.5 mile Run Times.
 
-```{r Figure1-8, fig.cap="(ref:fig1-8)",echo=F,fig.width=4,fig.height=2.5}
+```{r Figure1-8, fig.cap="(ref:fig1-8)",echo=F,fig.width = 5, fig.height = 3.5}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))
 boxplot(treadmill$RunTime)
 ```
@@ -799,7 +802,7 @@ be assigned into the options ``ylab`` (for y-axis) or ``main``
 
 (ref:fig1-9) Boxplot of Run Times with improved labels.
 
-```{r Figure1-9, fig.cap="(ref:fig1-9)",echo=F,fig.width=4,fig.height=2.5}
+```{r Figure1-9, fig.cap="(ref:fig1-9)",echo=F,fig.width = 5, fig.height = 3.5}
 old.par <- par(mai=c(0.5,1,0.75,0.5))
 boxplot(treadmill$RunTime, ylab="1.5 Mile Run Time (minutes)",cex.main=0.75,
         main="Boxplot of the Run Times of n=31 participants")
@@ -879,6 +882,8 @@ summaries. We revisited the ideas of symmetry and skew. But the main point was
 really to get a start on using R via RStudio to provide results you should be familiar with
 from your previous statistics experience(s). 
 
+\newpage
+
 ## Summary of important R code {#section1-5}
 
 To help you learn and use R, there is a section highlighting the most important 
@@ -942,6 +947,7 @@ revisit the worked examples using each of the functions.
     * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
 
 
+\newpage
 
 ## Practice problems {#section1-6}
 

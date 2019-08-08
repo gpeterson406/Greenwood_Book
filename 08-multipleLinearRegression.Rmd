@@ -146,11 +146,17 @@ code loads the data set and makes the scatterplot matrix
 (Figure \@ref(fig:Figure8-1)) to allow
 some preliminary assessment of the pairwise relationships. 
 
+```{r eval=F}
+snotel_s <- read_csv("http://www.math.montana.edu/courses/s217/documents/snotel_s.csv")
+```
+
+```{r echo=F}
+snotel_s <- read_csv("snotel_s.csv")
+```
 
 (ref:fig8-1) Scatterplot matrix of data from a sample of SNOTEL sites in April on four variables. \index{R packages!\textbf{psych}}
 
 ```{r Figure8-1,fig.cap="(ref:fig8-1)",fig.height=5,fig.width=7}
-snotel_s <- read_csv("http://www.math.montana.edu/courses/s217/documents/snotel_s.csv")
 snotel2 <- snotel_s[,c(1:2,4:6,3)] #Reorders columns for nicer pairs.panel display
 library(psych)
 pairs.panels(snotel2[,-c(1:2)], ellipse=F,
@@ -549,7 +555,7 @@ plot(m4, sub.caption="Diagnostics for m4", pch=16)
     
     * See Section \@ref(section8-5) for more on this issue in these data. 
     
-\newpage
+<!-- \newpage -->
 
 * **Equal (constant) variance:**
 
@@ -1761,7 +1767,7 @@ plot(gpa1, sub.caption="Diagnostics for GPA model with SATV and SATM")
         plotted in the previous scatterplot matrix and is not quantitative --
         we will explore its use later.
         
-    \newpage
+    <!-- \newpage -->
     
     * **Independence of observations:**
     
@@ -2214,8 +2220,8 @@ Figure \@ref(fig:Figure8-20).
 (ref:fig8-21) Plot of estimated model for *FYGPA* vs *SATM* by *GENDER* of students (female line is thicker dark line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group.
 
 ```{r Figure8-21,fig.cap="(ref:fig8-21)",echo=F,warning=F,message=F}
-fitmales<-0.216+0.0386*dm1$SATM
-fitfemales<-0.529+0.0386*dm1$SATM
+fitmales <- 0.216+0.0386*dm1$SATM
+fitfemales <- 0.529+0.0386*dm1$SATM
 
 par(mfrow=c(1,1))
 plot(dm1$SATM,fitmales,ylim=c(min(fitmales),max(fitfemales)),main="Plot of estimated regression lines by sex",type="l",lwd=2,xlab="SATM",ylab="FYGPA", col=viridis(8)[7])
@@ -2293,7 +2299,7 @@ if the null is true, the p-value is $<0.0001$. We have very strong evidence agai
 $y$-intercept in a *SATM* model for first year college GPA between *males* and *females*, so we would conclude that there is difference in their true mean GPA levels controlled for *SATM*. The confidence
 interval is also informative:
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 confint(SATGENDER1)
@@ -2370,15 +2376,15 @@ original variable (``treatment``) in the following output. The bolded
 observations show each of the indicators being "turned on". For *Control* all the
 indicators stay at 0. 
 
-\newpage
+<!-- \newpage -->
 
 
 
 ```{r echo=F}
-head1<-lm(du2~du1+treatment,data=Headache)
-dummies<-model.matrix(head1)[,c(3:5)]
-colnames(dummies)<-c("I_T1", "I_T2","I_T3")
-res1<-data.frame(Treatment=Headache$treatment,dummies)[1:17,]
+head1 <- lm(du2~du1+treatment,data=Headache)
+dummies <- model.matrix(head1)[,c(3:5)]
+colnames(dummies) <- c("I_T1", "I_T2","I_T3")
+res1 <- data.frame(Treatment=Headache$treatment,dummies)[1:17,]
 #res1
 emphasize.strong.rows(c(1,2,7,16))
 options(knitr.kable.NA = '')
@@ -2446,7 +2452,7 @@ $$\begin{array}{rl}
 &= 0.81+0.837\cdot\text{du1}_i.
 \end{array}$$
 
-\newpage
+<!-- \newpage -->
 
 * Similarly for *T2*:
 
@@ -2464,11 +2470,11 @@ groups, showing the shifts in the *y*-intercepts among the groups.
 (ref:fig8-24) Plot of estimated noise tolerance additive model.
 
 ```{r Figure8-24,fig.cap="(ref:fig8-24)",echo=F, fig.height=4,fig.width=7}
-du1s<-seq(from=0.37,to=15.1,length.out=50)
-hdT1<-tibble(du1=du1s,treatment=rep("T1",50))
-hdT2<-tibble(du1=du1s,treatment=rep("T2",50))
-hdT3<-tibble(du1=du1s,treatment=rep("T3",50))
-hdcontrol<-tibble(du1=du1s,treatment=rep("Control",50))
+du1s <- seq(from=0.37,to=15.1,length.out=50)
+hdT1 <- tibble(du1=du1s,treatment=rep("T1",50))
+hdT2 <- tibble(du1=du1s,treatment=rep("T2",50))
+hdT3 <- tibble(du1=du1s,treatment=rep("T3",50))
+hdcontrol <- tibble(du1=du1s,treatment=rep("Control",50))
 plot(du1s,predict(head1,newdata=hdcontrol),lwd=2,lty=2,ylim=c(0,16),type="l",xlab="DU1",ylab="DU2",main="Plot of additive estimated regression model", col=viridis(4)[1])
 lines(du1s,predict(head1,newdata=hdT1),lwd=2,col=viridis(4)[2])
 lines(du1s,predict(head1,newdata=hdT2),lwd=2,col=viridis(4)[3],lty=2)
@@ -2559,7 +2565,7 @@ it":
 head1R <- lm(du2~du1, data=Headache)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 summary(head1R)
@@ -2986,7 +2992,7 @@ $$\begin{array}{rll}
 (ref:fig8-35) Term-plot for decibel tolerance interaction model with partial residuals (version 1). 
 
 ```{r Figure8-35,fig.cap="(ref:fig8-35)",fig.height=4,fig.width=7,echo=F}
-head2<-lm(du2~du1*treatment,data=Headache)
+head2 <- lm(du2~du1*treatment,data=Headache)
 plot(allEffects(head2, residuals=T), grid=T)
 ```
 
@@ -3036,7 +3042,7 @@ the choice of the baseline is arbitrary. To assess whether we really need to
 have varying slopes or intercepts with more than two groups we need to develop
 $F$-tests for the interaction part of the model. 
 
-\newpage
+<!-- \newpage -->
 
 \phantom{Make the sectionmark actually work!}
 
@@ -3468,7 +3474,7 @@ most complex model that included four predictor variables used up 5 *model df*.
 ```{r warning=F,error=F}
 library(MuMIn)
 options(na.action = "na.fail") #Must run this code once to use dredge
-snotel2R<-snotel2[-c(9,22),]; m6 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2R)
+snotel2R <- snotel2[-c(9,22),]; m6 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2R)
 dredge(m6, rank="AIC",
        extra = c("R^2", adjRsq=function(x) summary(x)$adj.r.squared))
 ```
@@ -3563,7 +3569,7 @@ involved in the interaction if we don't need the interaction.
 ```{r Figure8-39,fig.cap="(ref:fig8-39)",echo=F,fig.height=5,fig.width=10}
 library(coneproj)
 data(FEV)
-FEV<-as_tibble(FEV)
+FEV <- as_tibble(FEV)
 FEV$sex <- factor(FEV$sex) #Make sex a factor
 levels(FEV$sex) <- c("Female","Male") #Make sex labels explicit
 FEV$smoke <- factor(FEV$smoke) #Make smoking status a factor
@@ -3818,7 +3824,7 @@ provided. Because of multicollinearity in models, you should never remove more
 than one quantitative predictor at a time or else you could remove two variables
 that are important but were "hiding" when both were included in the model.
 
-\newpage
+<!-- \newpage -->
 
 ## Summary of important R code	{#section8-16}
 

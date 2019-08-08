@@ -131,15 +131,23 @@ other than black, an entirely unnecessary addition here.] use
 set.seed(5678)
 ```
 
+```{r eval=F}
+library(readr)
+BB <- read_csv("http://www.math.montana.edu/courses/s217/documents/beersbac.csv")
+```
+
+```{r echo=F}
+library(readr)
+BB <- read_csv("beersbac.csv")
+```
+
 (ref:fig6-1) Scatterplot of *Beers* consumed versus *BAC*.
 
 ```{r Figure6-1,fig.cap="(ref:fig6-1)",warning=F,message=F}
-library(readr)
-BB <- read_csv("http://www.math.montana.edu/courses/s217/documents/beersbac.csv")
 plot(BAC~Beers, data=BB, pch=16, col=30)
 ```
 
-\newpage
+<!-- \newpage -->
 
 There are a few general things to look for in scatterplots:
 
@@ -218,7 +226,7 @@ Some of the extra distinctions arise because there are other ways of measuring
 correlations in other situations (for example between two categorical
 variables), but we will not consider them here. 
 
-\newpage
+<!-- \newpage -->
 
 \indent The correlation coefficient, ***r***, is calculated as
 
@@ -252,10 +260,10 @@ Figure \@ref(fig:Figure6-2).
 (ref:fig6-2) Scatterplot of an amusing (and strong) relationship that has $r=0$.
 
 ```{r Figure6-2,fig.cap="(ref:fig6-2)",echo=F,warning=F,message=F}
-x<-seq(from=0,to=20,length.out=20)
-y<-(x-mean(x))^2
-x<-c(x,5,15)
-y<-c(y,220,220)
+x <- seq(from=0,to=20,length.out=20)
+y <- (x-mean(x))^2
+x <- c(x,5,15)
+y <- c(y,220,220)
 plot(x,y,col='skyblue',main="r=0",pch=16)
 ```
 
@@ -373,8 +381,15 @@ change over time. And there is a strong linear relationship between
 be related to log-area burned but that the trend over time in both is less 
 clear (at least the linear trends). 
 
-```{r}
+```{r eval=F}
 mtfires <- read_csv("http://www.math.montana.edu/courses/s217/documents/climateR2.csv")
+```
+
+```{r echo=F}
+mtfires <- read_csv("climateR2.csv")
+```
+
+```{r}
 # natural log transformation of area burned
 mtfires$loghectares <- log(mtfires$hectares) 
 
@@ -600,7 +615,7 @@ scatterplot(Hc~Bfat|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
             cex.main=1)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r eval=F}
 scatterplot(Hc~Bfat|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
@@ -752,7 +767,7 @@ for (b in (1:B)){
 quantiles <- qdata(Tstar, c(0.025,0.975)) #95% Confidence Interval
 ```
 
-\newpage
+<!-- \newpage -->
 
 (ref:fig6-10) Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval.
 
@@ -1203,10 +1218,10 @@ estimates.
 (ref:fig6-16) Plot of sum of squared residuals vs possible slope coefficients for *Beers* vs *BAC* data, with vertical line for the least squares estimate that minimizes the sum of squared residuals. 
 
 ```{r Figure6-16,fig.cap="(ref:fig6-16)",echo=F,fig.height=3,fig.width=4}
-s1<-seq(from=0, to=0.03,length.out=100)
-ss1<-numeric(0)
+s1 <- seq(from=0, to=0.03,length.out=100)
+ss1 <- numeric(0)
 for (j in (1:length(s1))){
-  ss1[j]<-sum(lm(BAC~offset(Beers*s1[j]),data=BB)$residuals^2)
+  ss1[j] <- sum(lm(BAC~offset(Beers*s1[j]),data=BB)$residuals^2)
 }
 plot(s1,ss1,type="l",col="blue",lwd=2,xlab="Possible Slope Coefficients",
      ylab="Sum of squared residuals",
@@ -1230,7 +1245,7 @@ are being measuring in the $y$-direction and appreciate that ``lm`` takes care o
 this for us. 
 \index{residuals}
 
-\newpage
+<!-- \newpage -->
 
 ```r
 > library(tigerstats)
@@ -1413,7 +1428,7 @@ predictor variables). \index{coefficient of determination} \index{R-squared}
 (ref:fig6-19) Three scatterplots with the same estimated regression line. 
 
 ```{r Figure6-19,fig.cap="(ref:fig6-19)",echo=F,fig.height=3,fig.width=6,results="hold"}
-m1<-lm(BAC~Beers,data=BB)
+m1 <- lm(BAC~Beers,data=BB)
 
 par(mfrow=c(1,3))
 plot(BAC~Beers,ylim=c(-0.15,.35),xlim=c(1,9),pch=16,data=BB,main="Real Data")
@@ -1422,13 +1437,13 @@ abline(a=m1$coef[1],b=m1$coef[2],col="darkgreen", lwd=2)
 BBfake1=BB
 BBfake1$BAC=fitted(m1)+residuals(m1)*5
 plot(BAC~Beers,ylim=c(-0.15,.35),xlim=c(1,9),pch=16,data=BBfake1,main="Fake Data")
-m1<-lm(BAC~Beers,data=BBfake1)
+m1 <- lm(BAC~Beers,data=BBfake1)
 abline(a=m1$coef[1],b=m1$coef[2],col="darkgreen", lwd=2)
 
 BBfake2=BB
 BBfake2$BAC=fitted(m1)+residuals(m1)/15
 plot(BAC~Beers,ylim=c(-0.15,.35),xlim=c(1,9),pch=16,data=BBfake2,main="Fake Data")
-m1<-lm(BAC~Beers,data=BBfake2)
+m1 <- lm(BAC~Beers,data=BBfake2)
 abline(a=m1$coef[1],b=m1$coef[2],col="darkgreen", lwd=2)
 ```
 
@@ -1617,11 +1632,11 @@ or revisit our assumption that the relationship is really linear here.
 (ref:fig6-20) Scatterplot and Residuals vs Leverage plot for the real BAC data. Two high leverage points are flagged, with only one that has a Cook's D value over 1 ("$\circ$") and is indicated as influential. 
 
 ```{r Figure6-20,fig.cap="(ref:fig6-20)",echo=F,warning=F,message=F}
-BBfake3<-BB
-m1<-lm(BAC~Beers,data=BB)
+BBfake3 <- BB
+m1 <- lm(BAC~Beers,data=BB)
 par(mfrow=c(1,2))
-id<-rep(16,16)
-id[3]<-21; id[15]<-5
+id <- rep(16,16)
+id[3] <- 21; id[15] <- 5
 
 par(mfrow=c(1,2))
 plot(BAC~Beers,data=BB,pch=id,cex=1.3)
@@ -1634,18 +1649,18 @@ plot(m1,which=5,add.smooth=F,pch=id,cex=1.3)
 
 ```{r Figure6-21,fig.cap="(ref:fig6-21)",echo=F,warning=F,message=F,fig.height=10,fig.width=8}
 
-BBfake3<-BB
+BBfake3 <- BB
 BBfake3[17,]=c(11,0.01)
-m1o<-lm(BAC~Beers,data=BB)
+m1o <- lm(BAC~Beers,data=BB)
 
 par(mfrow=c(4,2))
-id1<-rep(16,17)
-id1[17]<-8;
-id2<-rep(16,17)
-id2[17]<-1;
+id1 <- rep(16,17)
+id1[17] <- 8;
+id2 <- rep(16,17)
+id2[17] <- 1;
 
 
-m1<-lm(BAC~Beers,data=BBfake3)
+m1 <- lm(BAC~Beers,data=BBfake3)
 #summary(m1)
 plot(BAC~Beers,data=BBfake3,col=id2,pch=id1,main="Added (11,0.01), R-sq=0.24")
 abline(a=m1o$coef[1],b=m1o$coef[2],col="blue",lty=2,lwd=2)
@@ -1653,9 +1668,9 @@ abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
 plot(m1,which=5,add.smooth=F,col=id2,pch=id1,main="Added (11,0.1)")
 
 
-BBfake4<-BB
-BBfake4[17,]<-c(11,0.19)
-m1<-lm(BAC~Beers,data=BBfake4)
+BBfake4 <- BB
+BBfake4[17,] <- c(11,0.19)
+m1 <- lm(BAC~Beers,data=BBfake4)
 #summary(m1)
 plot(BAC~Beers,data=BBfake4,col=id2,pch=id1,main="Added (11,0.19), R-sq=0.86")
 abline(a=m1o$coef[1],b=m1o$coef[2],col="blue",lty=2,lwd=2)
@@ -1663,18 +1678,18 @@ abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
 plot(m1,which=5,add.smooth=F,col=id2,pch=id1,main="Added (11,0.19)")
 
 
-BBfake5<-BB
-BBfake5[17,]<-c(5,0.19)
-m1<-lm(BAC~Beers,data=BBfake5)
+BBfake5 <- BB
+BBfake5[17,] <- c(5,0.19)
+m1 <- lm(BAC~Beers,data=BBfake5)
 #summary(m1)
 plot(BAC~Beers,data=BBfake5,col=id2,pch=id1,main="Added (5,0.19), R-sq=0.57")
 abline(a=m1o$coef[1],b=m1o$coef[2],col="blue",lty=2,lwd=2)
 abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
 plot(m1,which=5,add.smooth=F,col=id2,pch=id1,main="Added (5,0.19)")
 
-BBfake6<-BB
-BBfake6[17,]<-c(5,0.01)
-m1<-lm(BAC~Beers,data=BBfake6)
+BBfake6 <- BB
+BBfake6[17,] <- c(5,0.01)
+m1 <- lm(BAC~Beers,data=BBfake6)
 #summary(m1)
 plot(BAC~Beers,data=BBfake6,col=id2,pch=id1,main="Added (5,0.01), R-sq=0.69")
 abline(a=m1o$coef[1],b=m1o$coef[2],col="blue",lty=2,lwd=2)
@@ -2055,7 +2070,7 @@ levels of duration of eruptions.
 OF1 <- lm(Waiting~Duration, data=G2)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 summary(OF1)
@@ -2134,7 +2149,7 @@ look similar. People still like to distinguish among the different types of
 situations, but the underlying ***linear models*** are actually exactly the 
 same...
 
-\newpage
+<!-- \newpage -->
 
 ## Summary of important R code	{#section6-13}
 
@@ -2186,7 +2201,7 @@ data=`r colFmt("DATASETNAME","red")`)**
 
     * Provides four regression diagnostic plots in one plot. 
 
-\newpage
+<!-- \newpage -->
 
 ## Practice problems	{#section6-14}
 

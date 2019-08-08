@@ -209,9 +209,16 @@ actually perform the experiment as described so these data were simulated. The h
 observations at each combination of factors) and look at some summary
 statistics across all the "groups". The data set is available via the following link:
 
-```{r}
+```{r eval=F}
 library(readr)
 pt <- read_csv("http://www.math.montana.edu/courses/s217/documents/pt.csv")
+pt$drops <- factor(pt$drops)
+pt$brand <- factor(pt$brand)
+```
+
+```{r echo=F}
+library(readr)
+pt <- read_csv("pt.csv")
 pt$drops <- factor(pt$drops)
 pt$brand <- factor(pt$brand)
 ```
@@ -243,7 +250,7 @@ In the output, the first row contains summary information for the
 sample size in the ``n`` column, although here it rolled into a new set of 
 rows with the standard deviations of each combination. 
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 favstats(responses~brand+drops, data=pt)
@@ -286,8 +293,12 @@ we don't like any of the available functions in R, we wrote our own function,
 called ``intplot`` that you can download^[Copy and include this code in a codechunk any time you want to use the ``intplot`` or ``inplotarray`` functions.] using:
 \index{\texttt{intplot()}}
 
-```{r}
+```{r eval=F}
 source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R")
+```
+
+```{r echo=F}
+source("intplotfunctions_v2.R")
 ```
 
 The function allows a formula interface like ``Y~X1*X2`` and provides the 
@@ -393,30 +404,30 @@ levels, or any interaction between them in this data set.
 (ref:fig4-5) Interaction plots of four possible scenarios in the paper towel study.
 
 ```{r Figure4-5, fig.cap="(ref:fig4-5)",echo=F,fig.width=6.5,fig.height=4}
-lm1<-lm(responses~brand*dropsf,data=pt)
-res1<-residuals(lm1)
+lm1 <- lm(responses~brand*dropsf,data=pt)
+res1 <- residuals(lm1)
 
 par(mfrow=c(2,2))
 old.par <- par(mai=c(0.75,0.75,0.25,0.25))
 #Scenario 1: No effects
-m1<-lm(responses~1,data=pt)
-pt$r1<-fitted(m1)+res1
+m1 <- lm(responses~1,data=pt)
+pt$r1 <- fitted(m1)+res1
 intplot(r1~brand*drops,ylim=c(0,3.2),data=pt,
         main="(a) Scenario 1: No effects",col=c(1,2),lwd=2,cex.main=1,cex.leg=0.75,xlim=c(0.8,3.8),
         x.leg=3.2,cex.lab=0.75)
 #Scenario 2: A effect only
-m2<-lm(responses~brand,data=pt)
-pt$r2<-fitted(m2)+res1
+m2 <- lm(responses~brand,data=pt)
+pt$r2 <- fitted(m2)+res1
 intplot(r2~brand*drops,ylim=c(0,3.2),data=pt,main="(b) Scenario 2: A only",col=c(1,2),lwd=2,cex.main=1,cex.leg=0.75,xlim=c(0.8,3.8),
         x.leg=3.2,cex.lab=0.75)
 #Scenario 3: B effect only
-m3<-lm(responses~drops,data=pt)
-pt$r3<-fitted(m3)+res1
+m3 <- lm(responses~drops,data=pt)
+pt$r3 <- fitted(m3)+res1
 intplot(r3~brand*drops,ylim=c(0,3.2),data=pt,main="(c) Scenario 3: B only",col=c(1,2),lwd=2,cex.main=1,cex.leg=0.75,xlim=c(0.8,3.8),
         x.leg=3.2,cex.lab=0.75)
 #Scenario 4: A and B additive
-m4<-lm(responses~brand+drops,data=pt)
-pt$r4<-fitted(m4)+res1
+m4 <- lm(responses~brand+drops,data=pt)
+pt$r4 <- fitted(m4)+res1
 intplot(r4~brand*drops,ylim=c(0,3.2),data=pt,main="(d) Scenario 4: A and B additive",col=c(1,2),lwd=2,cex.main=1,cex.leg=0.75,xlim=c(0.8,3.8),
         x.leg=3.2,cex.lab=0.75)
 ```
@@ -461,8 +472,8 @@ of the results in Figure \@ref(fig:Figure4-2).
 
 ```{r Figure4-6, fig.cap="(ref:fig4-6)",echo=F,fig.height=3,fig.width=4.5}
 old.par <- par(mai=c(1,1,0.75,1))
-m5<-lm(responses~brand*drops,data=pt)
-pt$r5<-fitted(m5)+res1
+m5 <- lm(responses~brand*drops,data=pt)
+pt$r5 <- fitted(m5)+res1
 par(mfrow=c(1,1))
 intplot(r5~brand*drops,ylim=c(0,3.2),data=pt,main="Scenario 5: Interaction between A and B",col=c(1,2),lwd=2,cex.leg=0.75,x.leg=3.2,xlim=c(0.8,3.8),
         cex.lab=0.75,cex.main=1)
@@ -915,7 +926,7 @@ Figure \@ref(fig:Figure4-10).
 ```{r Figure4-10,fig.cap="(ref:fig4-10)",echo=F,fig.height=4,fig.width=6}
 data(ToothGrowth)
 library(tibble)
-ToothGrowth<-as_tibble(ToothGrowth)
+ToothGrowth <- as_tibble(ToothGrowth)
 par(mfrow=c(1,2))
 pirateplot(len ~ supp*dose, data=ToothGrowth, ylim=c(0,35),
          main="Pirate-plot",  xlab="Dosage", ylab="Odontoblast Growth", inf.method="ci", theme=2, point.o = .75)
@@ -1016,7 +1027,7 @@ the interaction had been dropped, we would have reported the test results for th
 interaction, then re-fit the additive model and used it to explore the main effect
 tests and estimates for *Dose* and *Delivery method*. But since we are inclined to retain the interaction component in the model, the steps focus on the interaction.
 
-\newpage
+<!-- \newpage -->
 
 
 0. The RQ is whether there is an interaction of dosage and delivery method on odontoblast growth. Data were collected at all combinations of these predictor variables on the size of the cells, so they can address the size of the cells in these condition combinations. The interaction $F$-test will be used to assess the research question.
@@ -1339,7 +1350,7 @@ par(mfrow=c(2,2))
 plot(debt1, pch=16)
 ```
  
-\newpage
+<!-- \newpage -->
 
 0. After ruling out the interaction of income and cigarette status on opinions about debt, we can focus on the additive model.
 
@@ -1511,7 +1522,7 @@ intplot(debt1r_fitted_jitter~incomegp*cigbuy,data=debtRc,lwd=2,
         main="(b)",ylab="Mean of ProDebt",xlim=c(0.8,3),cex.leg=0.75)
 ```
 
-\newpage
+<!-- \newpage -->
 
 **In general, we proceed through the following steps in any 2-WAY ANOVA situation:**
 
@@ -1571,13 +1582,19 @@ illustrate these methods, the paper towel example
 is revisited except that only one response for each combination is used. Now
 the entire data set can be easily printed out:
 
-```{r}
+```{r eval=F}
 ptR <- read_csv("http://www.math.montana.edu/courses/s217/documents/ptR.csv")
 ptR$dropsf <- factor(ptR$drops)
 ptR$brand <- factor(ptR$brand)
 ptR
 ```
 
+```{r echo=F}
+ptR <- read_csv("ptR.csv")
+ptR$dropsf <- factor(ptR$drops)
+ptR$brand <- factor(ptR$brand)
+ptR
+```
 
 Upon first inspection the interaction plot in Figure \@ref(fig:Figure4-21)
 looks like there might be
@@ -1695,11 +1712,17 @@ observations were missing for a categorical variable and in grey for missing val
 simply as ``tableplot(DATASETNAME)`` which will sort the data set based on the first variable. To use our previous work with the sorted levels of ``Condition2``, the code ``dd[,-1]`` is used to specify the data set without ``Condition`` and then ``sort=Condition2`` is used to sort based on the ``Condition2`` variable. The ``pals=list("BrBG")`` option specifies a color palette for the plot that is color-blind friendly.
 \index{R packages!\textbf{RColorBrewer}}
 
+```{r eval=F}
+dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
+```
+
+```{r echo=F}
+dd <- read_csv("Walker2014_mod.csv")
+```
 
 (ref:fig4-23) Tableplot of the full overtake data set sorted by outfit worn (``Condition2``). 
 
 ```{r Figure4-23,fig.cap="(ref:fig4-23)",echo=T,fig.height=5,fig.width=10}
-dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
 dd$Condition <- factor(dd$Condition)
 dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
 dd$Shirt <- factor(dd$Shirt) 
@@ -1882,7 +1905,7 @@ data=`r colFmt("DATASETNAME","red")`)**
     when working with the additive model as it provides inferences for 
     each term conditional on the other one. \index{\texttt{Anova()}|textbf}
 
-\newpage
+<!-- \newpage -->
 
 * **par(mfrow=c(2,2)); plot(`r colFmt("MODELNAME","red")`)**
 

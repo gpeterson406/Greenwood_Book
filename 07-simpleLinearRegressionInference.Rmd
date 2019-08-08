@@ -144,25 +144,32 @@ BAC model has a residual SE of 0.02 but had many fewer observations at each
 knitr::include_graphics("chapter7_files/image029small.png")
 ```
 
+```{r eval=F}
+BB <- read_csv("http://www.math.montana.edu/courses/s217/documents/beersbac.csv")
+```
+
+```{r echo=F}
+BB <- read_csv("beersbac.csv")
+```
+
 (ref:fig7-2) Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06).
 
 ```{r Figure7-2,fig.cap="(ref:fig7-2)",echo=F,fig.height=4}
-BB<- read_csv("http://www.math.montana.edu/courses/s217/documents/beersbac.csv")
-m1<-lm(BAC~Beers,data=BB)
+m1 <- lm(BAC~Beers,data=BB)
 par(mfrow=c(1,1))
 set.seed(3456)
 
-coef1<-m1$coefficients
-Beersnew<-sort(rep(1:9,20))
+coef1 <- m1$coefficients
+Beersnew <- sort(rep(1:9,20))
 
-e1_20<-rnorm(n=length(Beersnew),0,sd=0.02)
-e1_20<-e1_20-mean(e1_20)
-y1_20<-coef1[1]+coef1[2]*Beersnew+e1_20
+e1_20 <- rnorm(n=length(Beersnew),0,sd=0.02)
+e1_20 <- e1_20-mean(e1_20)
+y1_20 <- coef1[1]+coef1[2]*Beersnew+e1_20
 plot(y1_20~I(Beersnew-0.05),ylim=c(-.1,0.27),pch=16,ylab="Simulated BACs",xlab="Beers")
 abline(coef1,col="khaki",lwd=2)
-e2_20<-rnorm(n=length(Beersnew),mean=0,sd=0.06)
-e2_20<-e2_20-mean(e2_20)
-y2_20<-coef1[1]+coef1[2]*Beersnew+e2_20
+e2_20 <- rnorm(n=length(Beersnew),mean=0,sd=0.06)
+e2_20 <- e2_20-mean(e2_20)
+y2_20 <- coef1[1]+coef1[2]*Beersnew+e2_20
 points(y2_20~I(Beersnew+.05),ylim=c(0,0.25),pch=17,col="orange")
 
 legend("topleft",c("Residual SE=0.02","Residual SE=0.06"),pch=c(16,17),col=c("black","orange"),cex=.75)
@@ -200,7 +207,7 @@ The next sections develop those inferential tools.
 knitr::include_graphics("chapter7_files/image034.png")
 ```
 
-\newpage
+<!-- \newpage -->
 
 \sectionmark{CI and Hypothesis tests for slope and intercept}
 
@@ -476,8 +483,15 @@ to how we are handling the units of the response variable, log-hectares, and to
 the changes to doing inferences with a 99% confidence
 level CI, and where you can find the needed results in the following output:
 
-```{r}
+```{r eval=F}
 mtfires <- read_csv("http://www.math.montana.edu/courses/s217/documents/climateR2.csv")
+```
+
+```{r echo=F}
+mtfires <- read_csv("climateR2.csv")
+```
+
+```{r}
 mtfires$loghectares <- log(mtfires$hectares)
 fire1 <- lm(loghectares~Temperature, data=mtfires)
 summary(fire1)
@@ -591,10 +605,17 @@ F from 1901 to 2014. We can call
 them yearly average maximum temperatures but note that it was a little more
 complicated than that to arrive at the response variable we are analyzing. 
 
+```{r eval=F}
+bozemantemps <- read_csv("http://www.math.montana.edu/courses/s217/documents/BozemanMeanMax.csv")
+```
+
+```{r echo=F}
+bozemantemps <- read_csv("BozemanMeanMax.csv")
+```
+
 (ref:fig7-5) Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines.
 
 ```{r Figure7-5,fig.cap="(ref:fig7-5)",error=F,message=F,fig.height=5,fig.width=10}
-bozemantemps <- read_csv("http://www.math.montana.edu/courses/s217/documents/BozemanMeanMax.csv")
 summary(bozemantemps)
 length(bozemantemps$Year) #Some years are missing (1905, 1906, 1948, 1950,1995)
 library(car)
@@ -927,25 +948,25 @@ evidence of a linear relationship between ``Year`` and ``Temperature``?
 set.seed(1667)
 
 par(mfrow=c(2,2))
-d1<-bozemantemps
-d1$Year<-shuffle(d1$Year)
+d1 <- bozemantemps
+d1$Year <- shuffle(d1$Year)
 plot(meanmax~Year,data=d1,xlab="Year",ylab="Maximum Temperature",main="(a)")
 abline(lm(meanmax~Year,data=d1)$coefficients,lwd=2,col="red")
 
-d1<-bozemantemps
-d1$Year<-shuffle(d1$Year)
+d1 <- bozemantemps
+d1$Year <- shuffle(d1$Year)
 plot(meanmax~Year,data=d1,xlab="Year",ylab="Maximum Temperature",main="(b)")
 abline(lm(meanmax~Year,data=d1)$coefficients,lwd=2,col="red")
 
-d1<-bozemantemps
-d1$Year<-shuffle(d1$Year)
+d1 <- bozemantemps
+d1$Year <- shuffle(d1$Year)
 plot(meanmax~Year,data=bozemantemps,xlab="Year",ylab="Maximum Temperature",main="(c)")
 abline(lm(meanmax~Year,data=bozemantemps)$coefficients,lwd=2,col="red")
 
 set.seed(97531)
 
-d1<-bozemantemps
-d1$Year<-shuffle(d1$Year)
+d1 <- bozemantemps
+d1$Year <- shuffle(d1$Year)
 plot(meanmax~Year,data=d1,xlab="Year",ylab="Maximum Temperature",main="(d)")
 abline(lm(meanmax~Year,data=d1)$coefficients,lwd=2,col="red")
 ```
@@ -1134,7 +1155,7 @@ summary(temp1)
 summary(temp3)
 ```
 
-\newpage
+<!-- \newpage -->
 
 \indent `r textItalicBold("Nonlinear transformation functions")`
 are where we apply something more complicated than this
@@ -1201,7 +1222,7 @@ data for Montana. Figure \@ref(fig:Figure7-12) compares the
 relationship between these variables on the original hectares scale and the
 log-hectares scale. 
 
-\newpage
+<!-- \newpage -->
 
 ```{r eval=F}
 par(mfrow=c(1,2))
@@ -1247,7 +1268,7 @@ scatterplot(log(height.m)~dbh.cm, data=ufc[-168,], smooth=list(spread=F),
 ```{r Figure7-13,fig.cap="(ref:fig7-13)",echo=F}
 library(spuRs) 
 data(ufc)
-ufc<-as_tibble(ufc)
+ufc <- as_tibble(ufc)
 scatterplot(height.m~dbh.cm, data=ufc[-168,], smooth=list(spread=F),
             main="Tree height vs tree diameter")
 ```
@@ -1335,7 +1356,7 @@ the transformations.
 ```{r Figure7-17,fig.cap="(ref:fig7-17)",echo=F,fig.height=5,fig.width=10}
 library(carData)
 data(UN)
-UN<-as_tibble(carData::UN) #Needed to find the correct UN data set from car
+UN <- as_tibble(carData::UN) #Needed to find the correct UN data set from car
 par(mfrow=c(2,2))
 plot(infantMortality~ppgdp,data=UN,pch=16,col="coral",xlab="GDP",ylab="Infant deaths/1000 births",main="(a) Infant Mortality vs GDP")
 
@@ -1430,10 +1451,10 @@ to read in-line and ``exp()`` is the R function name to execute this calculation
 ```{r Figure7-18,fig.cap="(ref:fig7-18)",echo=F,fig.height=5,fig.width=10}
 par(mfrow=c(1,2))
 plot(loghectares~Temperature,data=mtfires, main="(a)",ylab="log-Hectares",pch=16,col="salmon")
-firem<-lm(loghectares~Temperature,data=mtfires)
+firem <- lm(loghectares~Temperature,data=mtfires)
 abline(lm(loghectares~Temperature,data=mtfires),lwd=2,col="darkred")
 plot(hectares~Temperature,data=mtfires, main="(b)",ylab="Hectares",pch=16,col="salmon")
-t1<-seq(from=53,to=60,length.out=30)
+t1 <- seq(from=53,to=60,length.out=30)
 lines(exp(firem$coef[1]+firem$coef[2]*t1)~t1,lwd=2,col="darkred")
 ```
 
@@ -1575,7 +1596,7 @@ since we haven't changed the $y\sim$ part of the model.
 (ref:fig7-19) Plot of the observations and estimated SLR model (mortality~ log(GDP)) (top) and implied model (bottom) for the infant mortality data.
 
 ```{r Figure7-19,fig.cap="(ref:fig7-19)",echo=F,fig.height=5,fig.width=10}
-ID1<-lm(infantMortality~log(ppgdp),data=UN)
+ID1 <- lm(infantMortality~log(ppgdp),data=UN)
 par(mfrow=c(1,2))
 
 plot(infantMortality~log(ppgdp),data=UN,pch=16,col="coral",xlab="log-GDP",ylab="Infant deaths/1000 births",main="(a) Infant Mortality vs log-GDP")
@@ -1583,7 +1604,7 @@ abline(ID1$coef,lwd=2,col="slateblue4")
 
 plot(infantMortality~ppgdp,data=UN,pch=16,col="coral",xlab="GDP",ylab="Infant deaths/1000 births",main="(b) Infant Mortality vs GDP")
 
-ppgdp1<-seq(from=30,to=105095.4,length.out=100)
+ppgdp1 <- seq(from=30,to=105095.4,length.out=100)
 lines(ID1$coef[1]+ID1$coef[2]*log(ppgdp1)~ppgdp1,lwd=2,col="slateblue4")
 ```
 
@@ -1666,7 +1687,7 @@ abline(ID2$coef,lwd=2,col="slateblue3")
 
 plot(infantMortality~ppgdp,data=UN,pch=16,col="coral",xlab="GDP",ylab="Infant deaths/1000 births",main="(b) Infant Mortality vs GDP")
 
-ppgdp1<-seq(from=30,to=105095.4,length.out=100)
+ppgdp1 <- seq(from=30,to=105095.4,length.out=100)
 lines(exp(ID2$coef[1]+ID2$coef[2]*log(ppgdp1))~ppgdp1,lwd=2,col="slateblue3")
 ```
 
@@ -1757,7 +1778,7 @@ that the model is at least reasonable to consider in each situation, possibly af
 are some of the most sensitive results to violations of the assumptions that we
 will explore.
 
-\newpage
+<!-- \newpage -->
 
 \sectionmark{Confidence intervals and prediction intervals}
 
@@ -2033,12 +2054,12 @@ more than 95% of the observations used to make it.
 (ref:fig7-24) Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals. 
 
 ```{r Figure7-24,fig.cap="(ref:fig7-24)",echo=T,fig.height=5,fig.width=10}
-temp1<-lm(meanmax~Year, data=bozemantemps)
- Yearf<-seq(from=1901,to=2014,length.out=75)
+temp1 <- lm(meanmax~Year, data=bozemantemps)
+Yearf <- seq(from=1901,to=2014,length.out=75)
  
-TCI<-as_tibble(predict(temp1,newdata= tibble(Year=Yearf),interval="confidence"))
+TCI <- as_tibble(predict(temp1,newdata= tibble(Year=Yearf),interval="confidence"))
 
-TPI<-as_tibble(predict(temp1,newdata=tibble(Year=Yearf),interval="prediction"))
+TPI <- as_tibble(predict(temp1,newdata=tibble(Year=Yearf),interval="prediction"))
 
 plot(meanmax~Year,data=bozemantemps,xlab="Year", ylab="degrees F",pch=20,col="darkgreen", main="Scatterplot of estimated regression line with 95% CI and PI")
  lines(fit~Yearf,data=TCI,col="blue",lwd=3)
@@ -2086,7 +2107,7 @@ Note that up to 2014, no values of this response had been observed above 60$^\ci
 persists. It is easy to criticize the use of this model for 2050 because of its extreme amount
 of extrapolation. 
 
-\newpage
+<!-- \newpage -->
 
 ## Chapter summary {#section7-8}
 
@@ -2130,7 +2151,7 @@ variables, especially when dealing with transformations, as this can lead to
 big changes in the results depending on which scale (original or transformed)
 the results are being interpreted on. 
 
-\newpage
+<!-- \newpage -->
 
 ## Summary of important R code {#section7-9}
 
@@ -2211,7 +2232,7 @@ interval="prediction")**
     by the sample size -- 2.
     \index{\texttt{qt()}|textbf}
    
-\newpage
+<!-- \newpage -->
 
 ## Practice problems	{#section7-10}
 

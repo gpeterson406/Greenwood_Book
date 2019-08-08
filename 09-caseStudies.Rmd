@@ -47,6 +47,12 @@ learn about that was (probably) gibberish. Hopefully, revisiting that same diagr
 One common theme was that categorical variables create special challenges whether they are explanatory or
 response variables. 
 
+(ref:fig9-1) Schematic of methods covered. 
+
+```{r Figure9-1,fig.cap="(ref:fig9-1)",echo=F}
+knitr::include_graphics("chapter9_files/image002.png")
+```
+
 \indent Every scenario with a quantitative response variable was handled using linear
 models. The last material on multiple linear regression modeling tied back to
 the One-Way and Two-Way ANOVA models as categorical variables were added to the
@@ -67,11 +73,7 @@ variable using $J-1$ indicator variables as:
 $$y_i = \beta_0 + \beta_1I_{\text{Level }2,i} + \beta_2I_{\text{Level }3,i} +
 \cdots + \beta_{J-1}I_{\text{Level }J,i} + \varepsilon_i.$$
 
-(ref:fig9-1) Schematic of methods covered. 
 
-```{r Figure9-1,fig.cap="(ref:fig9-1)",echo=F,fig.pos="b"}
-knitr::include_graphics("chapter9_files/image002.png")
-```
 
 We now know how the indicator variables are either 0 or 1 for each observation
 and only one takes in the value 1 (is "turned on") at a time for each response.
@@ -151,12 +153,19 @@ from earlier in the book and to see some hints about possible extensions of the 
 
 \sectionmark{The impact of simulated chronic nitrogen deposition}
 
+```{r eval=F}
+gdn <- read_csv("http://www.math.montana.edu/courses/s217/documents/gundalebachnordin_2.csv")
+```
+
+```{r echo=F}
+gdn <- read_csv("gundalebachnordin_2.csv")
+```
+
 (ref:fig9-2) Pirate-plot of biomass responses by treatment and species. 
 
 ```{r Figure9-2,fig.cap="(ref:fig9-2)",echo=F}
-gdn <- read_csv("http://www.math.montana.edu/courses/s217/documents/gundalebachnordin_2.csv")
-gdn$Species<-factor(gdn$Species)
-gdn$Treatment<-factor(gdn$Treatment)
+gdn$Species <- factor(gdn$Species)
+gdn$Treatment <- factor(gdn$Treatment)
 library(yarrr)
 pirateplot(Massperha~Species+Treatment, data=gdn, inf.method="ci", ylab="Biomass",point.o=1, inf.f.o=0.2,pal="southpark")
 ```
@@ -197,8 +206,8 @@ and more variability in the *PS* responses than for the *HS* responses.
 
 ```{r eval=F}
 gdn <- read_csv("http://www.math.montana.edu/courses/s217/documents/gundalebachnordin_2.csv")
-gdn$Species<-factor(gdn$Species)
-gdn$Treatment<-factor(gdn$Treatment)
+gdn$Species <- factor(gdn$Species)
+gdn$Treatment <- factor(gdn$Treatment)
 library(yarrr)
 pirateplot(Massperha~Species+Treatment, data=gdn, inf.method="ci", ylab="Biomass",point.o=1, inf.f.o=0.5,pal="southpark")
 ```
@@ -217,7 +226,7 @@ quite different based on this plot as well.
 (ref:fig9-3) Interaction plot of biomass responses by treatment and species. 
 
 ```{r Figure9-3,fig.cap="(ref:fig9-3)",echo=F, fig.height=6, fig.width=10}
-source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R")
+source("intplotfunctions_v2.R")
 library(viridis)
 intplotarray(Massperha~Species*Treatment, data=gdn, col=viridis(4)[1:3], lwd=2,cex.main=1)
 ```
@@ -350,7 +359,7 @@ library(effects)
 plot(allEffects(m2), multiline=T, lty=c(1,2), ci.style="bars", grid=T)
 ```
 
-\newpage
+<!-- \newpage -->
 
 **Follow-up Pairwise Comparisons:**
 
@@ -378,7 +387,7 @@ levels(gdn$SpTrt)
 newm2 <- lm(logMassperha~SpTrt, data=gdn)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 Anova(newm2)
@@ -447,10 +456,17 @@ Chi-square testing framework. The random assignment of colonies (the subjects
 here) to treatment levels tells us that the ***Chi-square Homogeneity test***
 is appropriate here and that we can make causal statements about the effects of the *Treatment* groups. 
 
+```{r eval=F}
+sasakipratt <- read_csv("http://www.math.montana.edu/courses/s217/documents/sasakipratt.csv")
+```
+
+```{r echo=F}
+sasakipratt <- read_csv("sasakipratt.csv")
+```
+
 (ref:fig9-9) Stacked bar chart for Ant Colony results.
 
 ```{r Figure9-9,fig.cap="(ref:fig9-9)"}
-sasakipratt <- read_csv("http://www.math.montana.edu/courses/s217/documents/sasakipratt.csv")
 sasakipratt$group <- factor(sasakipratt$group)
 levels(sasakipratt$group) <- c("Light","Entrance")
 sasakipratt$after <- factor(sasakipratt$after)
@@ -598,10 +614,17 @@ the formations version of the quantitative predictor variable and that the
 research questions involve whether *DBF* or *DBC* are better predictor
 variables. 
 
+```{r eval=F}
+bm <- read_csv("http://www.math.montana.edu/courses/s217/documents/bensonmanion.csv")
+```
+
+```{r echo=F}
+bm <- read_csv("bensonmanion.csv")
+```
+
 (ref:fig9-10) Scatterplot of *log-biodiversity* vs *log-DBCs* by *TJK*.
 
 ```{r Figure9-10,fig.cap="(ref:fig9-10)",echo=T,fig.height=5,fig.width=10}
-bm <- read_csv("http://www.math.montana.edu/courses/s217/documents/bensonmanion.csv")
 bm2 <- bm[,-c(9:10)]
 bm$logSpecies <- log(bm$Species)
 bm$logDBCs <- log(bm$DBCs)
@@ -770,7 +793,7 @@ suggests $\exp(-0.76)=0.47$ times (53% drop in) the median biodiversity count
 per stage for Cretaceous versus the prior time period, after correcting for
 log-sampling effort in each stage. 
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 summary(bd1)
@@ -868,10 +891,17 @@ assumption in these data. In the plot, you can see that there are not clear diff
 to have most of the lines go down to lower sleepiness ratings and that this is 
 not happening much for the subjects in the control group. The violation of the independence assumption is diagnosable from the study design (two observations on each subject). The plot allows us to go further and see that many subjects had similar Epworth scores from pre to post (high in pre, generally high in post) once we account for systematic changes in the treated subjects that seemed to drop a bit on average.
 
+```{r eval=F}
+epworthdata <- read_csv("http://www.math.montana.edu/courses/s217/documents/epworthdata.csv")
+```
+
+```{r echo=F}
+epworthdata <- read_csv("epworthdata.csv")
+```
+
 (ref:fig9-13) Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time.
 
 ```{r Figure9-13,fig.cap="(ref:fig9-13)",fig.height=5,fig.width=10}
-epworthdata <- read_csv("http://www.math.montana.edu/courses/s217/documents/epworthdata.csv")
 epworthdata$Time <- factor(epworthdata$Time)
 levels(epworthdata$Time) <- c("Pre" , "Post")
 epworthdata$Group <- factor(epworthdata$Group)
@@ -987,7 +1017,7 @@ anova(lme_int)
 plot(allEffects(lme_int), multiline=T, lty=c(1,2), ci.style="bars", grid=T)
 ```
 
-\newpage
+<!-- \newpage -->
 
 (ref:fig9-15) Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
 

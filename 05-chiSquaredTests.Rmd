@@ -251,7 +251,7 @@ function with a ``y~x`` formula:
 
 (ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The darkest shading is for "none", medium shading for "some", and the lightest shading for "marked", as labeled on the y-axis.
 
-```{r Figure5-2,fig.cap="(ref:fig5-2)", fig.height=5.5}
+```{r Figure5-2,fig.cap="(ref:fig5-2)"}
 plot(Improved~Treatment, data=Arthritis,
      main="Stacked Bar Chart of Arthritis Data")
 ```
@@ -312,7 +312,7 @@ situation.
 
 (ref:fig5-3) Diagram of the scenarios involved in Homogeneity and Independence tests. Homogeneity testing involves R random samples or subjects assigned to R groups. Independence testing involves a single random sample and measurements on two categorical variables. 
 
-```{r Figure5-3,fig.cap="(ref:fig5-3)",echo=F,fig.width=7}
+```{r Figure5-3,fig.cap="(ref:fig5-3)",echo=F,out.width="100%"}
 knitr::include_graphics('chapter5_files/image027.png')
 ```
 
@@ -387,6 +387,8 @@ $$\begin{array}{rl}
 \mathbf{H_0:}\  & \mathbf{p_{11}=p_{21}=\ldots=p_{R1}} \textbf{ and } \mathbf{p_{12}=p_{22}=\ldots=p_{R2}}  \textbf{ and } \mathbf{p_{13}=p_{23}=\ldots=p_{R3}} \\ 
 & \textbf{ and } \mathbf{\ldots} \textbf{ and }\mathbf{p_{1C}=p_{2C}=\ldots=p_{RC}}. \\
 \end{array}$$
+
+\newpage
 
 If all the groups are the same, then they all have the same conditional proportions and we can 
 more simply write the null hypothesis as:
@@ -744,6 +746,8 @@ the results from running this function (using ``chisq.test(TABLENAME)$expected)`
 These are the expected cell counts which match the previous calculations 
 except for some rounding in the hand-calculations. 
 
+\newpage
+
 ```{r}
 Arthtable <- tally(~Treatment+Improved, data=Arthritis)
 Arthtable
@@ -1084,7 +1088,7 @@ of patients getting improvement (*Some* or *Marked*). If the differences
 
 (ref:fig5-11) Stacked bar chart of the Arthritis data comparing *Treated* and *Placebo*.
 
-```{r Figure5-11,fig.cap="(ref:fig5-11)",echo=F,message=F,warning=F, fig.height=5.5}
+```{r Figure5-11,fig.cap="(ref:fig5-11)",echo=F,message=F,warning=F,fig.width=10,fig.height=5.5}
 plot(Improved~Treatment, data=Arthritis,
      main="Stacked Bar Chart of Arthritis Data")
 ```
@@ -1133,7 +1137,7 @@ of results are shown for the Arthritis data table:
 
 (ref:fig5-12) Mosaic plot of the Arthritis data with large standardized residuals indicated (actually, there were none that were indicated because all were less than 2). Note that dashed borders correspond to negative standardized residuals (observed less than expected) and solid borders are positive standardized residuals (observed more than expected).
 
-```{r Figure5-12,fig.cap="(ref:fig5-12)",echo=F,fig.height=4}
+```{r Figure5-12,fig.cap="(ref:fig5-12)",echo=F,fig.height=5,fig.width=10}
 old.par <- par(mai=c(0.5,0.75,0.75,0.75))
 chisq.test(Arthtable)$residuals
 mosaicplot(Arthtable,shade=T)
@@ -1226,7 +1230,8 @@ election$PARTY <- factor(election$PARTY)
 election$EDUC <- factor(election$EDUC)
 election$GENDER <- factor(election$GENDER)
 levels(election$VOTEF) <- c("Gore","Bush","Other")
-# Required options to avoid error when running on a PC, should have no impact on other platforms
+# Required options to avoid error when running on a PC, 
+# should have no impact on other platforms
 options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
 tableplot(election, select=c(VOTEF,PARTY,EDUC,GENDER),pals=list("BrBG"))
 ```
@@ -2042,12 +2047,11 @@ df=(`r colFmt("R","red")` - 1)``*``(`r colFmt("C","red")` - 1), lower.tail=F)**
 
 ## Practice problems	{#section5-14}
 
-### Determine type of Chi-Square test
 
-Determine which type of test is appropriate in each situation --
+5.1. **Determine type of Chi-Square test** Determine which type of test is appropriate in each situation --
 ***Independence***  or  ***Homogeneity***?
 
-5.1. Concerns over diseases being transmitted between birds and humans 
+5.1.1. Concerns over diseases being transmitted between birds and humans 
 have led to many areas developing
 monitoring plans for the birds that are in their regions. The duck pond on
 campus at MSU-Bozeman is a bit like a night club for the birds that pass
@@ -2065,14 +2069,14 @@ present on a single day, classifies them by type of bird (ducks,
 swans, etc.) and then assesses whether each is sick or healthy. 
 The variables in this study are type of bird and sick/healthy. 
 
-5.2. Psychologists performed an experiment on 48 male bank supervisors 
+5.1.2. Psychologists performed an experiment on 48 male bank supervisors 
 attending a management institute to investigate biases against women 
 in personnel decisions. The supervisors were
 asked to make a decision on whether to promote a hypothetical applicant based
 on a personnel file. For half of them, the application file described 
 a female candidate; for the others it described a male. 
 
-5.3. Researchers collected data on death
+5.1.3. Researchers collected data on death
 penalty sentencing in Georgia. For 243 crimes, they categorized the crime by
 severity from 1 to 6 with Category 1 comprising barroom brawls, liquor-induced
 arguments, lovers' quarrels, and similar crimes and Category 6 including the
@@ -2080,7 +2084,7 @@ most vicious, cruel, cold-blooded, unprovoked crimes. They also recorded the
 perpetrator's race. They wanted to know if there was a relationship between
 race and type of crime. 
 
-5.4. Epidemiologists want to see if
+5.1.4. Epidemiologists want to see if
 Vitamin C helped people with colds. They would like to give some patients
 Vitamin C and some a placebo then compare the two groups. However, they are
 worried that the placebo might not be working. Since vitamin C has such a
@@ -2090,25 +2094,24 @@ randomly assigned half to take a placebo and the other half to take Vitamin C.
 30 minutes later, they asked the subjects which supplement they received
 (hoping that the patients would not know which group they were assigned to). 
 
-5.5. Is zodiac sign related to GPA?
+5.1.5. Is zodiac sign related to GPA?
 300 randomly selected students from MSU were asked their birthday and their
 current GPA. GPA was then categorized as < 1.50 = F, 1.51-2.50 = D, 
 2.51 - 3.25 = C, 3.26-3.75 = B, 3.76-4.0 = A and their birthday was used 
 to find their zodiac sign. 
 
-5.6. In 1935, the statistician R. A. 
+5.1.6. In 1935, the statistician R. A. 
 Fisher famously had a colleague claim that she could distinguish whether milk
 or tea was added to a cup first. Fisher presented her, in a random order, 4
 cups that were filled with milk first and 4 cups that were filled with tea first. 
 
-5.7. Researchers wanted to see if
+5.1.7. Researchers wanted to see if
 people from Rural and Urban areas aged differently. They contacted 200 people
 from Rural areas and 200 people from Urban areas and asked the participants
 their age (<40, 41-50, 51-60, >60). 
 
-### Data is/are analysis
 
-The [FiveThirtyEight Blog](https://fivethirtyeight.com/)
+5.2. **Data is/are analysis** The [FiveThirtyEight Blog](https://fivethirtyeight.com/)
 often shows up with interesting data summaries
 that have general public appeal. Their staff includes a bunch of quants with
 various backgrounds. When starting their blog, they had to decide on the data
@@ -2168,21 +2171,21 @@ tableplot(csd[,c("isare","careabout","thoughtabout","Gender",
           pals=list("BrBG")) 
 ```
 
-5.8. If we are interested in the variables ``isare`` and ``careabout``,
+5.2.1. If we are interested in the variables ``isare`` and ``careabout``,
 what sort of test should we perform?
 
-5.9. Make the appropriate plot of the results for the table relating 
+5.2.2. Make the appropriate plot of the results for the table relating 
 those two variables relative to your answer to 5.8. 
 
-5.10. Generate the contingency table
+5.2.3. Generate the contingency table
 and find the expected cell counts, first "by hand" and then check them using
 the output. Is the parametric procedure appropriate here? Why or why not?
 
-5.11. Report the value of the test
+5.2.4. Report the value of the test
 statistic, its distribution under the null, the parametric p-value, and write a
 decision and conclusion, making sure to address scope of inference. 
 
-5.12. Make a mosaic plot with the
+5.2.5. Make a mosaic plot with the
 standardized residuals and discuss the results. Specifically, in what way do
 the is/are preferences move away from the null hypothesis for people that care
 more about this?
@@ -2191,9 +2194,7 @@ more about this?
 We might be fighting a losing battle on "data is a plural word", but since we are in the group that cares a lot about this, we are going to keep trying...
 --------------------------------------------------------------------------------
 
-### Overtake close calls by outfit analysis
-
-We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``dd$Distance<=100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided.
+5.3. **Overtake close calls by outfit analysis** We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``dd$Distance<=100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided.
 
 ```{r eval=F}
 dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
@@ -2217,8 +2218,8 @@ table1 <- tally(Close ~ Condition2, data=dd)
 chisq.test(table1)
 ```
 
-5.13. This is a Homogeneity test situation. Why?
+5.3.1. This is a Homogeneity test situation. Why?
 
-5.14. Perform the 6+ steps of the hypothesis test using the provided results.
+5.3.2. Perform the 6+ steps of the hypothesis test using the provided results.
 
-5.15. Explain how these results are consistent with the One-Way ANOVA test but also address a different research question.
+5.3.3. Explain how these results are consistent with the One-Way ANOVA test but also address a different research question.

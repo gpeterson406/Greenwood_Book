@@ -2025,9 +2025,7 @@ confint(Tm2); plot(Tm2); summary(Tm2); cld(Tm2)**
 
 ## Practice problems {#section3-10}
 
-### Cholesterol Analysis
-
-For the first practice problems, you will work with the cholesterol data set from 
+3.1. **Cholesterol Analysis** For the first practice problems, you will work with the cholesterol data set from 
 the ``multcomp`` package that was used to generate the Tukey's HSD results. To 
 load the data set and learn more about the study, use the following code:
 
@@ -2039,29 +2037,29 @@ cholesterol <- as_tibble(cholesterol)
 help(cholesterol)
 ```
 
-3.1. Graphically explore the differences in the changes in Cholesterol levels for
+3.1.1. Graphically explore the differences in the changes in Cholesterol levels for
 the five levels using pirate-plots. 
 
-3.2. Is the design balanced? How can assess this? \index{balance}
+3.1.2. Is the design balanced? How can assess this? \index{balance}
 
-3.3. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
+3.1.3. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
 reporting the ANOVA table and the distribution of the test statistic under the null. When you discuss the scope of inference, make sure you note that the treatment levels
 were randomly assigned to volunteers in the study. 
 
-3.4. Generate the permutation distribution and find the p-value. Compare the parametric
+3.1.4. Generate the permutation distribution and find the p-value. Compare the parametric
 p-value to the permutation test results. 
 
-3.5. Perform Tukey's HSD on the data set. Discuss the results -- which pairs were
+3.1.5. Perform Tukey's HSD on the data set. Discuss the results -- which pairs were
 detected as different and which were not? Bigger reductions in cholesterol are
 good, so are there any levels you would recommend or that might provide similar
 reductions?
 
-3.6. Find and interpret the CLD and compare that to your interpretation of results 
-from 3.5.
+3.1.6. Find and interpret the CLD and compare that to your interpretation of results 
+from 3.1.5.
 
-### Sting Location Analysis
+\vspace{11pt}
 
-These data come from [@Smith2014] where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at https://peerj.com/articles/338/. The following code gets the data prepared for analysis by removing the observations he took each on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. It also sorts of the levels (there are many) based on the mean pain rating in each group using the ``reorder`` function.
+3.2. **Sting Location Analysis** These data come from [@Smith2014] where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at https://peerj.com/articles/338/. The following code gets the data prepared for analysis by removing the observations he took each on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. It also sorts of the levels (there are many) based on the mean pain rating in each group using the ``reorder`` function.
 
 ```r
 library(readr)
@@ -2072,16 +2070,16 @@ sd_fixedR <- subset(sd_fixed,!xor(BLs=="Forearm",BLs=="Forearm1"))
 sd_fixedR$BLs <- factor(sd_fixedR$BLs)
 ```
 
-3.7. Graphically explore the differences in the pain ratings across the different Body_Location levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? **Hint**: look for discreteness in the responses.
+3.2.1. Graphically explore the differences in the pain ratings across the different Body_Location levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? **Hint**: look for discreteness in the responses.
 
-3.8. Is the design balanced? 
+3.2.2. Is the design balanced? 
 
-3.9. How does taking 3 measurements that are of interest each day lead to a violation of the independence assumption here?
+3.2.3. How does taking 3 measurements that are of interest each day lead to a violation of the independence assumption here?
 
-3.10. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
+3.2.4. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
 reporting the ANOVA table and the distribution of the test statistic under the null. For the scope of inference use the information that the sting locations were randomly assigned but only one person (the researcher) participated in the study. 
 
-3.11. Generate the permutation distribution and find the p-value. Compare the parametric
+3.2.5. Generate the permutation distribution and find the p-value. Compare the parametric
 p-value to the permutation test results. 
 
-3.12. Often we might consider Tukey's pairwise comparisons given the initial result here. How many levels are there in Body_Location? How many pairs would be compared if we tried Tukey's -- calculate using the ``choose`` function.
+3.2.6. Often we might consider Tukey's pairwise comparisons given the initial result here. How many levels are there in Body_Location? How many pairs would be compared if we tried Tukey's -- calculate using the ``choose`` function.

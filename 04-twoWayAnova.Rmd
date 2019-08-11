@@ -747,7 +747,7 @@ for the means instead of the $\pm$ 1 SE used in the ``intplot`` where each SE is
 
 (ref:fig4-7) Plot of estimated results of interaction model for the paper towel performance data. 
 
-```{r Figure4-7,fig.cap="(ref:fig4-7)",echo=T,fig.width=6,fig.asp=.75}
+```{r Figure4-7,fig.cap="(ref:fig4-7)",echo=T,fig.width=10,fig.height=5}
 library(effects)
 plot(allEffects(m1), grid=T, multiline=T, lty=c(1,2), ci.style="bars")
 ```
@@ -756,15 +756,10 @@ plot(allEffects(m1), grid=T, multiline=T, lty=c(1,2), ci.style="bars")
 interaction, the model should be simplified to the additive model and the interpretation
 focused on each main effect, conditional on having the other variable in the
 model. To fit an additive model and not include an interaction, the model
-formula involves a "+" instead of a "``*``" between the explanatory variables. 
+formula involves a "+" instead of a "``*``" between the explanatory variables. \index{\texttt{anova()}}
 
 ```{r}
 m2 <- lm(responses~brand+drops, data=pt)
-```
-
-\index{\texttt{anova()}}
-
-```{r}
 anova(m2)
 ```
 
@@ -908,7 +903,9 @@ library(effects)
 plot(allEffects(m2, residuals = T))
 ```
 
-For the One-Way and Two-Way interaction models, the partial residuals are just the original observations so present similar information as the pirate-plots but do show the model estimated 95% confidence intervals. With interaction models, you can use the default the settings in ``effects`` when adding in the partial residuals as seen below in Figure XXX.
+For the One-Way and Two-Way interaction models, the partial residuals are just the original observations so present similar information as the pirate-plots but do show the model estimated 95% confidence intervals. With interaction models, you can use the default the settings in ``effects`` when adding in the partial residuals as seen below in Figure \@ref(fig:Figure4-12).
+
+\newpage
 
 ## Guinea pig tooth growth analysis with Two-Way ANOVA	{#section4-4}
 
@@ -1029,6 +1026,10 @@ tests and estimates for *Dose* and *Delivery method*. But since we are inclined 
 
 <!-- \newpage -->
 
+```{r Figure4-11,fig.cap="Diagnostic plots for the interaction model for odontoblast growth interaction model.",fig.height=5,fig.width=10}
+par(mfrow=c(2,2))
+plot(TG2, pch=16) 
+```
 
 0. The RQ is whether there is an interaction of dosage and delivery method on odontoblast growth. Data were collected at all combinations of these predictor variables on the size of the cells, so they can address the size of the cells in these condition combinations. The interaction $F$-test will be used to assess the research question.
 
@@ -1065,10 +1066,7 @@ tests and estimates for *Dose* and *Delivery method*. But since we are inclined 
         assumption. Similarly, the original pirate-plots and adding the partial residuals to the term-plot do not highlight big differences in variability at any of the combinations of the predictors, so do not suggest clear issues with this assumption.
         \index{Residuals vs Fitted plot} \index{Scale-Location plot}
         
-        ```{r Figure4-11,fig.cap="Diagnostic plots for the interaction model for odontoblast growth interaction model.",fig.height=5,fig.width=10}
-        par(mfrow=c(2,2))
-        plot(TG2, pch=16) 
-        ```
+        
         ```{r Figure4-12,fig.cap="Term-plot for odontoblast growth interaction model with partial residuals added.",fig.height=5,fig.width=10}
         plot(allEffects(TG2, residuals = T, x.var="dosef")) 
         ```
@@ -1323,6 +1321,13 @@ debt1 <- lm(prodebt~incomegp*cigbuy, data=debtRc)
 Anova(debt1)
 ```
 
+(ref:fig4-16) Diagnostic plot for ``prodebt`` by income group and buy cigarettes/not interaction model.
+
+```{r Figure4-16,fig.cap="(ref:fig4-16)",fig.height=5,fig.width=10}
+par(mfrow=c(2,2))
+plot(debt1, pch=16)
+```
+
 The diagnostic plots (Figure \@ref(fig:Figure4-16)) seem to be pretty 
 well-behaved with no apparent
 violations of the normality assumption and no clear evidence of a violation of
@@ -1342,15 +1347,6 @@ population sampled, so will just leave this vague here but know that there would
 population these conclusions apply since it was random sample (at least those that would answer the questions). All of this
 suggests proceeding to fitting and exploring the additive model is reasonable
 here. No causal inferences are possible because this is an observational study. 
-
-(ref:fig4-16) Diagnostic plot for ``prodebt`` by income group and buy cigarettes/not interaction model.
-
-```{r Figure4-16,fig.cap="(ref:fig4-16)",fig.height=5,fig.width=10}
-par(mfrow=c(2,2))
-plot(debt1, pch=16)
-```
- 
-<!-- \newpage -->
 
 0. After ruling out the interaction of income and cigarette status on opinions about debt, we can focus on the additive model.
 
@@ -1385,6 +1381,8 @@ plot(debt1, pch=16)
     plot(debt1r, pch=16)
     ```
 
+    \newpage
+    
     * Constant Variance:
     
         * In the Residuals vs Fitted and the Scale-Location plots in 
@@ -1511,7 +1509,7 @@ group 5 much higher than the other four groups. The minor differences in cigaret
 
 (ref:fig4-20) Illustration of the results from Table \@ref(tab:Table4-2) showing the combined impacts of the components of the additive model for ``prodebt``. Panel (a) uses income groups on the x-axis and different lines for cigarette buyers (1) or not (0). Panel (b) displays the different income groups as lines with the cigarette buying status on the x-axis. 
 
-```{r Figure4-20,fig.cap="(ref:fig4-20)",echo=F,fig.width=7,fig.height=4.5}
+```{r Figure4-20,fig.cap="(ref:fig4-20)",echo=F,fig.width=10,fig.height=5.5}
 par(mfrow=c(1,2))
 old.par <- par(mai=c(0.85,1,0.5,0.25))
 debt1r_fitted_jitter <- jitter(fitted(debt1r))
@@ -1720,9 +1718,7 @@ dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mo
 dd <- read_csv("Walker2014_mod.csv")
 ```
 
-(ref:fig4-23) Tableplot of the full overtake data set sorted by outfit worn (``Condition2``). 
-
-```{r Figure4-23,fig.cap="(ref:fig4-23)",echo=T,fig.height=5,fig.width=10}
+```{r}
 dd$Condition <- factor(dd$Condition)
 dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
 dd$Shirt <- factor(dd$Shirt) 
@@ -1731,7 +1727,11 @@ dd$Pants <- factor(dd$Pants)
 dd$Gloves <- factor(dd$Gloves)
 dd$ReflectClips <- factor(dd$ReflectClips)
 dd$Backpack <- factor(dd$Backpack) 
+```
 
+(ref:fig4-23) Tableplot of the full overtake data set sorted by outfit worn (``Condition2``). 
+
+```{r Figure4-23,fig.cap="(ref:fig4-23)",echo=T,fig.height=5,fig.width=10}
 library(tabplot)
 library(RColorBrewer)
 # Options needed to prevent errors on PC
@@ -1741,6 +1741,7 @@ tableplot(dd[,-1],sort=Condition2, pals=list("BrBG"))
 
 \indent In the tableplot in Figure \@ref(fig:Figure4-23), we can now the six variables created related to aspects of each outfit. For example, the *commuter* helmet (darkest shade in ``Helmet`` column) was worn with all outfits except for the *racer* and *casual*. So maybe we would like to explore differences in overtake distances based on the type of helmet worn. Similarly, it might be nice to explore whether wearing reflective pant clips is useful and maybe there is an interaction between helmet type and leg clips on impacts on overtake distance (should we wear both or just one, for example). So instead of using the seven level ``Condition2`` in the model to assess differences based on all combinations of these outfits delineated in the other variables, we can try to fit a model with ``Helmet`` and ``ReflectClips`` and their interaction for overtake distances:
 
+\newpage
 
 ```{r}
 overtake_int <- lm(Distance ~ Helmet*ReflectClips, data = dd)
@@ -1829,6 +1830,7 @@ then eventually incorporating both categorical and quantitative predictor
 variables. The methods in Chapter \@ref(chapter8) are actually quite similar 
 to those considered here, so the better you understand these models, the easier that material will be master. 
 
+
 ## Summary of important R code	{#section4-8}
 
 The main components of R code used in this chapter follow with components to 
@@ -1905,7 +1907,6 @@ data=`r colFmt("DATASETNAME","red")`)**
     when working with the additive model as it provides inferences for 
     each term conditional on the other one. \index{\texttt{Anova()}|textbf}
 
-<!-- \newpage -->
 
 * **par(mfrow=c(2,2)); plot(`r colFmt("MODELNAME","red")`)**
 
@@ -1923,9 +1924,11 @@ data=`r colFmt("DATASETNAME","red")`)**
     
     * Plots the results from the estimated model with partial residuals.
 
+\newpage
+
 ## Practice problems	{#section4-9}
 
-To practice the Two-Way ANOVA, consider a data set on $N=861$ ACT
+4.1. **Mathematics Usage Test Scores Analysis** To practice the Two-Way ANOVA, consider a data set on $N=861$ ACT
 Mathematics Usage Test scores from 1987. The test was given to a 
 sample of high school seniors who met one of three profiles of high school 
 mathematics course
@@ -1947,42 +1950,44 @@ names(math)
 favstats(Score ~ Sex+Background, data=math)
 ``` 
 
-4.1. Use the ``favstats`` summary to discuss whether the design was balanced or not. 
+4.1.1. Use the ``favstats`` summary to discuss whether the design was balanced or not. 
 
-4.2. Make a pirate-plot and
+4.1.2. Make a pirate-plot and
 interaction plot array of the results and discuss the relationship between Sex, 
 Background, and ACT Score. 
 
-4.3. Write out the interaction model in
+4.1.3. Write out the interaction model in
 terms of the Greek letters, making sure to define all the terms and don't
 forget the error terms in the model. 
 
-4.4. Fit the interaction plot and find
+4.1.4. Fit the interaction plot and find
 the ANOVA table. For the test you should consider first (the interaction), 
 write out the hypotheses, report the test statistic, p-value, distribution of
 the test statistic under the null, and write a conclusion related to the
 results of this test. 
 
-4.5. Re-fit the model as an additive
+4.1.5. Re-fit the model as an additive
 model (why is this reasonable here?) and use ``Anova`` to find the Type II sums of
 squares ANOVA. Write out the hypothesis for the Background variable, report the
 test statistic, p-value, distribution of the test statistic under the null, and
 write a conclusion related to the results of this test. Make sure to discuss the scope of inference for this result.
 
-4.6. Use the ``effects`` package to make a term-plot from the
+4.1.6. Use the ``effects`` package to make a term-plot from the
 additive model from 4.5 and discuss the results. Specifically, discuss what you
 can conclude about the average relationship across both sexes, between
 Background and average ACT score?
 
-4.7. Add partial residuals to the term-plot and make our standard diagnostic plots
+4.1.7. Add partial residuals to the term-plot and make our standard diagnostic plots
 and assess the assumptions using these plots. Can you assess independence using
 these plots? Discuss this assumption in this situation. 
 
-4.8. Use the term-plot and the estimated model
+4.1.8. Use the term-plot and the estimated model
 coefficients to determine which of the combinations of levels provides the
 highest estimated average score.
 
-As a second example, consider data based on Figure 3 from @Puhan2006, which is
+\vspace{11pt}
+
+4.2. **Sleep Quality Analysis** As a second example, consider data based on Figure 3 from @Puhan2006, which is
 available at http://www.bmj.com/content/332/7536/266. In this study, the 
 researchers were interested in whether didgeridoo playing might impact sleep 
 quality (and therefore daytime sleepiness). They obtained volunteers and they
@@ -2007,16 +2012,16 @@ epworthdata$Group <- factor(epworthdata$Group)
 levels(epworthdata$Group) <- c("Control" , "Didgeridoo")
 ```
 
-4.9. Make a pirate-plot and an interaction plot array to graphically explore the potential interaction of Time and Group on the Epworth responses.
+4.2.1. Make a pirate-plot and an interaction plot array to graphically explore the potential interaction of Time and Group on the Epworth responses.
 
-4.10.  Fit the interaction model and find
+4.2.2.  Fit the interaction model and find
 the ANOVA table. For the test you should consider first (the interaction), 
 write out the hypotheses, report the test statistic, p-value, distribution of
 the test statistic under the null, and write a conclusion related to the
 results of this test.
 
-4.11. Discuss the independence assumption for the previous model. The researchers used an analysis based on matched pairs. Discuss how using ideas from matched pairs might be applicable to the scenario discussed here.
+4.2.3. Discuss the independence assumption for the previous model. The researchers used an analysis based on matched pairs. Discuss how using ideas from matched pairs might be applicable to the scenario discussed here.
 
-4.12. Refine the model based on the previous test result and continue refining the model as the results might suggest. This should lead to retaining just a single variable. Make term-plot plot for this model and discuss this result related to the intent of the original research. If you read the original paper, they did find evidence of an effect of learning to play the didgeridoo (that there was a different change over time in the treated control when compared to the control group) -- why might they have gotten a different result (hint: think about the previous question). 
+4.2.4. Refine the model based on the previous test result and continue refining the model as the results might suggest. This should lead to retaining just a single variable. Make term-plot plot for this model and discuss this result related to the intent of the original research. If you read the original paper, they did find evidence of an effect of learning to play the didgeridoo (that there was a different change over time in the treated control when compared to the control group) -- why might they have gotten a different result (hint: think about the previous question). 
 
 Note that the didgeridoo example is revisited in the case-studies in Chapter \@ref(chapter9) with some information on an even better way to analyze these data. 

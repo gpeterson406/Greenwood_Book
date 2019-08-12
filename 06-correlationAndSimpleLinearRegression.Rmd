@@ -562,7 +562,8 @@ library(car)
 aisR2$Sex <- factor(aisR2$Sex)
 scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
             boxplots="xy", main="Scatterplot of Height vs Hematocrit by Sex") 
-#pch=c(3,21) provides two different symbols that are easy to distinguish. Drop this option or add more numbers to the list if you have more than 2 groups.
+# pch=c(3,21) provides two different symbols that are easy to distinguish. 
+# Drop this option or add more numbers to the list if you have more than 2 groups.
 ```
 
 \indent Adding the grouping information really changes the impressions of the relationship
@@ -917,6 +918,8 @@ abline(v=Tobs, col="red", lwd=3)
 abline(v=quantiles$quantile, col="blue", lty=2, lwd=3)
 ```
 
+\newpage
+
 ## Describing relationships with a regression model	{#section6-6}
 
 When the relationship appears to
@@ -1101,16 +1104,17 @@ interpret the slope coefficient as: \index{slope interpretation!SLR}
 ***X***, we expect, *on average*, a $\boldsymbol{b_1}$ **[*unit of Y*]** change
 in ***Y***. 
 
+(ref:fig6-14) Diagram of interpretation of slope coefficients.
+
+```{r Figure6-14,fig.cap="(ref:fig6-14)",echo=F,warning=F,message=F,out.width="100%"}
+knitr::include_graphics("chapter6_files/image047.png")
+```
+
+
 Figure \@ref(fig:Figure6-14) can help you think about the
 different sorts of slope coefficients we might need to interpret, both
 providing changes in the response variable for 1 unit increases in the
 predictor variable. 
-
-(ref:fig6-14) Diagram of interpretation of slope coefficients.
-
-```{r Figure6-14,fig.cap="(ref:fig6-14)",echo=F,warning=F,message=F}
-knitr::include_graphics("chapter6_files/image047.png")
-```
 
 \indent Applied to this problem, for each additional 1 beer consumed, we expect 
 a 0.018 gram per dL change in the *BAC* *on average*. Using "change" in 
@@ -1162,6 +1166,7 @@ aisR2 <- ais[-c(56,166), c("Ht","Hc","Bfat","Sex")]
 m2 <- lm(Hc~Bfat, data=subset(aisR2,Sex==1)) #Results for Females 
 ```
 
+\newpage
 
 (ref:fig6-15) Scatterplot of Hematocrit versus Body Fat for female athletes. 
 
@@ -1245,7 +1250,7 @@ are being measuring in the $y$-direction and appreciate that ``lm`` takes care o
 this for us. 
 \index{residuals}
 
-<!-- \newpage -->
+\newpage
 
 ```r
 > library(tigerstats)
@@ -1261,7 +1266,7 @@ Thanks for playing!
 
 (ref:fig6-17) Results of running ``FindRegLine()`` where I didn't quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line.
 
-```{r Figure6-17,fig.cap="(ref:fig6-17)",echo=F,warning=F,message=F}
+```{r Figure6-17,fig.cap="(ref:fig6-17)",echo=F,warning=F,message=F,out.width="100%"}
 knitr::include_graphics("chapter6_files/image063.png")
 ```
 
@@ -1483,6 +1488,8 @@ proportion and it is your choice whether you want to report
 and interpret it as a proportion or percentage, just make that clear in how you
 discuss it. 
 
+\newpage
+
 ```{r}
 m1 <- lm(BAC~Beers, data=BB)
 summary(m1)
@@ -1526,7 +1533,7 @@ response unexplained. Note that we were careful about using the scaling of the
 response variable (log(area burned)) in the interpretation -- this is because we
 would get a much different answer if area burned vs temperature was considered. 
 
-\vspace{11pt}
+\newpage
 
 ```{r}
 fire1 <- lm(loghectares~Temperature, data=mtfires)
@@ -1550,6 +1557,7 @@ m2 <- lm(Hc~Bfat, data=subset(aisR2,Sex==1)) #Results for Females
 summary(m2)
 ```
 
+\newpage
 
 ## Outliers: leverage and influence	{#section6-9}
 
@@ -1596,6 +1604,21 @@ observation was from the regression line (residual), and to see a measure of
 that point's influence (Cook's D). 
 \index{residuals}
 
+(ref:fig6-20) Scatterplot and Residuals vs Leverage plot for the real BAC data. Two high leverage points are flagged, with only one that has a Cook's D value over 1 ("$\circ$") and is indicated as influential. 
+
+```{r Figure6-20,fig.cap="(ref:fig6-20)",echo=F,warning=F,message=F}
+BBfake3 <- BB
+m1 <- lm(BAC~Beers,data=BB)
+par(mfrow=c(1,2))
+id <- rep(16,16)
+id[3] <- 21; id[15] <- 5
+
+par(mfrow=c(1,2))
+plot(BAC~Beers,data=BB,pch=id,cex=1.3)
+abline(a=m1$coef[1],b=m1$coef[2],col="green")
+plot(m1,which=5,add.smooth=F,pch=id,cex=1.3)
+```
+
 \indent To extract the level of Cook's D on the "Residuals vs Leverage" plot,
 look for contours
 to show up on the upper and lower right of the plot.
@@ -1629,21 +1652,38 @@ Cook's D over 1. We might want to consider fitting this model without that
 observation to get a better estimate of the effects of beer consumption on BAC
 or revisit our assumption that the relationship is really linear here.  
 
-(ref:fig6-20) Scatterplot and Residuals vs Leverage plot for the real BAC data. Two high leverage points are flagged, with only one that has a Cook's D value over 1 ("$\circ$") and is indicated as influential. 
-
-```{r Figure6-20,fig.cap="(ref:fig6-20)",echo=F,warning=F,message=F}
-BBfake3 <- BB
-m1 <- lm(BAC~Beers,data=BB)
-par(mfrow=c(1,2))
-id <- rep(16,16)
-id[3] <- 21; id[15] <- 5
-
-par(mfrow=c(1,2))
-plot(BAC~Beers,data=BB,pch=id,cex=1.3)
-abline(a=m1$coef[1],b=m1$coef[2],col="green")
-plot(m1,which=5,add.smooth=F,pch=id,cex=1.3)
-```
-
+\indent To further explore influence, we will add a point to the original data set and
+move it around so you can see how those changes impact the results. For each
+scatterplot in Figure \@ref(fig:Figure6-21), the Residuals vs Leverage 
+plot is displayed to its right.
+\index{Residuals vs Leverage plot}
+The original data are "$\color{Grey}{\bullet}$"
+and the original regression line is the dashed line in 
+Figure \@ref(fig:Figure6-21). First, a fake observation at 11 *Beers* and
+0.1 *BAC* is added, 
+at (11, 0.1), in the top panels of the figure. This observation is clearly an
+outlier and heavily impacts the slope of the regression line (so is clearly
+influential). This added point drops the **R^2^** from 0.80 in the
+original data to 0.24. The accompanying Residuals vs Leverage plot shows
+that this point has extremely high leverage and a Cook's D over 1 -- it 
+is a clearly influential point. However, **having high leverage does not
+always make points influential.**
+Consider the second row of plots with an added point of (11, 0.19). The
+regression line barely changes and **R^2^** increases a little.
+This point has the same leverage as in the first example since it is the 
+same set of $x\text{'s}$ and the distance to the mean of the $x$'s is unchanged. But 
+it is not influential
+since its Cook's D value is less than 0.5. This occurred because it followed the
+overall pattern of observations even though it was "far away" from the other
+observations in the $x$-direction. The last two rows of plots show what happens
+when low leverage outliers are encountered. If observations are near the
+center of the $x\text{'s}$, it ends up that to be influential the points have 
+to be very far
+from the pattern of the other observations. The (5, 0.19) example almost
+attains a Cook's D of 0.5 but has little impact on the regression line, 
+especially the slope coefficient. It does impact the $y$-intercept and drops the
+R-squared value to 0.57. The same result occurs if the observation is
+noticeably lower than the other points. 
 
 (ref:fig6-21) Plots exploring the impacts of moving a single additional observation in the BAC example. The added point is indicated with * and the original regression line is the dashed line in the left column.
 
@@ -1696,39 +1736,6 @@ abline(a=m1o$coef[1],b=m1o$coef[2],col="blue",lty=2,lwd=2)
 abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
 plot(m1,which=5,add.smooth=F,col=id2,pch=id1,main="Added (5,0.1)")
 ```
-
-\indent To further explore influence, we will add a point to the original data set and
-move it around so you can see how those changes impact the results. For each
-scatterplot in Figure \@ref(fig:Figure6-21), the Residuals vs Leverage 
-plot is displayed to its right.
-\index{Residuals vs Leverage plot}
-The original data are "$\color{Grey}{\bullet}$"
-and the original regression line is the dashed line in 
-Figure \@ref(fig:Figure6-21). First, a fake observation at 11 *Beers* and
-0.1 *BAC* is added, 
-at (11, 0.1), in the top panels of the figure. This observation is clearly an
-outlier and heavily impacts the slope of the regression line (so is clearly
-influential). This added point drops the **R^2^** from 0.80 in the
-original data to 0.24. The accompanying Residuals vs Leverage plot shows
-that this point has extremely high leverage and a Cook's D over 1 -- it 
-is a clearly influential point. However, **having high leverage does not
-always make points influential.**
-Consider the second row of plots with an added point of (11, 0.19). The
-regression line barely changes and **R^2^** increases a little.
-This point has the same leverage as in the first example since it is the 
-same set of $x\text{'s}$ and the distance to the mean of the $x$'s is unchanged. But 
-it is not influential
-since its Cook's D value is less than 0.5. This occurred because it followed the
-overall pattern of observations even though it was "far away" from the other
-observations in the $x$-direction. The last two rows of plots show what happens
-when low leverage outliers are encountered. If observations are near the
-center of the $x\text{'s}$, it ends up that to be influential the points have 
-to be very far
-from the pattern of the other observations. The (5, 0.19) example almost
-attains a Cook's D of 0.5 but has little impact on the regression line, 
-especially the slope coefficient. It does impact the $y$-intercept and drops the
-R-squared value to 0.57. The same result occurs if the observation is
-noticeably lower than the other points. 
 
 \indent When we are doing regressions, we get very worried about points "at the edges"
 having an undue influence on the results. When we start using multiple
@@ -1987,6 +1994,14 @@ examples:
         * The Cook's D contours do not show up in this plot so none of 
         the points are influential. 
 
+(ref:fig6-23) Diagnostics plots for tree height and diameter simple linear regression model. 
+
+```{r Figure6-23,fig.cap="(ref:fig6-23)",fig.height=5,fig.width=10,echo=F}
+tree1 <- lm(height.m~dbh.cm, data=ufc[-168,])
+par(mfrow=c(2,2))
+plot(tree1, add.smooth=F)
+```
+
 So the main issues with this model are the curving relationship and 
 non-constant variance. We'll revisit this example later to see if we can
 find a model on transformed variables that has better diagnostics. Reporting the following regression model that has a decent $R^2$ of 62.6%
@@ -1998,9 +2013,7 @@ tree1 <- lm(height.m~dbh.cm, data=ufc[-168,])
 summary(tree1)
 ```
 
-(ref:fig6-23) Diagnostics plots for tree height and diameter simple linear regression model. 
-
-```{r Figure6-23,fig.cap="(ref:fig6-23)",fig.height=5,fig.width=10}
+```{r eval=F}
 par(mfrow=c(2,2))
 plot(tree1, add.smooth=F)
 ```
@@ -2201,11 +2214,11 @@ data=`r colFmt("DATASETNAME","red")`)**
 
     * Provides four regression diagnostic plots in one plot. 
 
-<!-- \newpage -->
+\newpage
 
 ## Practice problems	{#section6-14}
 
-These questions revisit the treadmill data set from Chapter \@ref(chapter1).
+6.1. These questions revisit the treadmill data set from Chapter \@ref(chapter1).
 Researchers were
 interested in whether the run test variable could be used to replace the treadmill
 oxygen consumption variable that is expensive to measure. The following code loads
@@ -2217,30 +2230,30 @@ library(psych)
 pairs.panels(treadmill, ellipses=F, smooth=F, col=0)
 ```
 
-6.1. First, 
+6.1.1. First, 
 we should get a sense of the strength of the correlation between the variable
 of primary interest, ``TreadMillOx``, and the other variables and consider
 whether outliers or nonlinearity are going to be
 major issues here. Which variable is it most strongly correlated with? Which
 variables are next most strongly correlated with this variable?
 
-6.2. Fit
+6.1.2. Fit
 the SLR using ``RunTime`` as explanatory variable for ``TreadMillOx``.
 Report the estimated model. 
 
-6.3. Predict the treadmill oxygen value for a subject with a run time 
+6.1.3. Predict the treadmill oxygen value for a subject with a run time 
 of 14 minutes. Repeat for a subject with a run time of 16 minutes. Is there
 something different about these two predictions?
 
-6.4. Interpret the slope coefficient from the estimated model, remembering 
+6.1.4. Interpret the slope coefficient from the estimated model, remembering 
 the units on the variables. 
 
-6.5. Report and interpret the $y$-intercept from the SLR. 
+6.1.5. Report and interpret the $y$-intercept from the SLR. 
 
-6.6. Report and interpret the $R^2$ value from the output. Show how you can find this 
+6.1.6. Report and interpret the $R^2$ value from the output. Show how you can find this 
 value from the original correlation matrix result. 
 
-6.7. Produce the diagnostic plots and discuss any potential issues. What
+6.1.7. Produce the diagnostic plots and discuss any potential issues. What
 is the approximate leverage of the highest leverage observation and how large
 is its Cook's D? What does that tell you about its potential influence in this
 model?

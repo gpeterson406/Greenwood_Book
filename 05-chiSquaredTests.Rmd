@@ -1316,6 +1316,8 @@ Here are our 6+ steps applied to this example:
     * $H_A$: There is a relationship between the party affiliation 
     (7 levels) and voting results (*Bush*, *Gore*, *Other*) in the 
     population. 
+    
+    \newpage
 
 2. **Plot the data and assess validity conditions:** 
 \index{validity conditions!Chi-square Test}
@@ -1333,8 +1335,6 @@ Here are our 6+ steps applied to this example:
         * We need to generate a table of expected cell counts to be 
         able to check this condition:
 
-        <!-- \newpage -->
-        
         ```{r warning=T,message=T}
         chisq.test(electable)$expected
         ```
@@ -1379,6 +1379,8 @@ Here are our 6+ steps applied to this example:
     tiny value that R reports as 1.5e-155. Again, reporting less than 
     0.0001 is just fine.
     
+    \newpage
+    
     ```{r}
     pchisq(762.81, df=12, lower.tail=F)
     ```
@@ -1410,7 +1412,8 @@ Here are our 6+ steps applied to this example:
     observed configuration was really far from the null
     hypothesis of no relationship between party status and voting. 
 
-    
+\newpage
+
 4. **Conclusion:**
 
     * There is strong evidence against the null hypothesis of no relationship between party affiliation and voting 
@@ -1439,6 +1442,8 @@ of 6.17. So maybe Gore didn't have
 as strong of support from his center-leaning supporters as Bush was able to
 obtain from the same voters on the other side of the middle? Exploring the relative proportion of each vertical bar in the response categories is also interesting to see the proportions of each level of party affiliation and how they voted. A political
 scientist would easily obtain many more (useful) theories based on this combination of results. 
+
+\newpage
 
 ```{r}
 chisq.test(electable)$residuals #(Obs - expected)/sqrt(expected)
@@ -1524,6 +1529,18 @@ more likely to do the other? Or are they independent of each other? This is a
 hard story to elicit from the previous plot because there are so many variables
 involved. 
 
+(ref:fig5-19) Tableplot of new variables ``liar` and ``copier`` that allow exploration of relationships between different types of lying and cheating behaviors.
+
+```{r Figure5-19,fig.cap="(ref:fig5-19)",fig.height=5,fig.width=10,echo=F}
+cheating$liar <- interaction(cheating$LIEEXAM, cheating$LIEPAPER)
+levels(cheating$liar) <- c("None","ExamLie","PaperLie","LieBoth")
+
+cheating$copier <- interaction(cheating$FRAUD, cheating$COPYEXAM)
+levels(cheating$copier) <- c("None","PaperCheat","ExamCheat","PaperExamCheat")
+
+tableplot(cheating, sort=liar, select=c(liar,copier),pals=list("BrBG"))
+```
+
 \indent To simplify the results, combining the two groups of variables
 into the four possible combinations on
 each has the potential to simplify the results -- or at least allow exploration
@@ -1543,18 +1560,20 @@ cheated on exams. The contingency table can help us dig further into the
 hypotheses related to the Chi-square test of Independence that is appropriate
 in this situation. \index{Chi-Square Test!Independence Test}
 
-(ref:fig5-19) Tableplot of new variables ``liar` and ``copier`` that allow exploration of relationships between different types of lying and cheating behaviors.
-
-```{r Figure5-19,fig.cap="(ref:fig5-19)",fig.height=5,fig.width=10}
+```{r eval=F}
 cheating$liar <- interaction(cheating$LIEEXAM, cheating$LIEPAPER)
 levels(cheating$liar) <- c("None","ExamLie","PaperLie","LieBoth")
 
 cheating$copier <- interaction(cheating$FRAUD, cheating$COPYEXAM)
 levels(cheating$copier) <- c("None","PaperCheat","ExamCheat","PaperExamCheat")
+tableplot(cheating, sort=liar, select=c(liar,copier),pals=list("BrBG"))
+```
 
+\newpage
+
+```{r}
 cheatlietable <- tally(~liar+copier, data=cheating)
 cheatlietable
-tableplot(cheating, sort=liar, select=c(liar,copier),pals=list("BrBG"))
 ```
 
 \indent Unfortunately for our statistic, there were very few responses in some combinations of 
@@ -1576,9 +1595,9 @@ cheating$liar2 <- cheating$liar
 levels(cheating$liar2) <- c("None","ExamorPaper","ExamorPaper","LieBoth")
 cheating$copier2 <- cheating$copier
 levels(cheating$copier2) <- c("None","ExamorPaper","ExamorPaper","CopyBoth")
-tableplot(cheating, sort=liar2, select=c(liar2,copier2),pals=list("BrBG"))
 cheatlietable <- tally(~liar2+copier2, data=cheating)
 cheatlietable
+tableplot(cheating, sort=liar2, select=c(liar2,copier2),pals=list("BrBG"))
 ```
 
 This $3\times 3$ table is more manageable and has few really small 
@@ -1715,6 +1734,16 @@ single sample was taken from the population so that is the appropriate procedure
 
 ## Analyzing a stratified random sample of California schools	{#section5-11}
 
+(ref:fig5-23) Pirate-plot of the API growth scores by level of school in the ``stype`` variable (coded E for elementary, M for Middle, and H for High school).
+
+```{r Figure5-23,fig.cap="(ref:fig5-23)",echo=F,fig.height=4,fig.width=6}
+library(survey)
+data(api)
+apistrat <- as.tibble(apistrat)
+apipop <- as.tibble(apipop)
+pirateplot(growth~stype, data=apistrat, inf.method="ci", pal="southpark")
+```
+
 In recent decades, there has been a push for quantification of school performance
 and tying financial punishment and rewards to growth in these metrics both for schools and for teachers. One
 example is the API (Academic Performance Index) in California that is based
@@ -1754,12 +1783,6 @@ apistrat <- as.tibble(apistrat)
 apipop <- as.tibble(apipop)
 tally(~stype, data=apipop) #Population counts
 tally(~stype, data=apistrat) #Sample counts
-```
-
-(ref:fig5-23) Pirate-plot of the API growth scores by level of school in the ``stype`` variable (coded E for elementary, M for Middle, and H for High school).
-
-```{r Figure5-23,fig.cap="(ref:fig5-23)",echo=F,fig.height=4,fig.width=6}
-pirateplot(growth~stype, data=apistrat, inf.method="ci", pal="southpark")
 ```
 
 ```{r eval=F}
@@ -1835,7 +1858,7 @@ created in the new ``growthcut`` variable:
 
 (ref:fig5-25) Stacked bar chart of the growth category responses by level of school.
 
-```{r Figure5-25,fig.cap="(ref:fig5-25)",echo=F,fig.width=6,fig.height=5.5}
+```{r Figure5-25,fig.cap="(ref:fig5-25)",echo=F}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))
 plot(growthcut~stype, data=apistrat)
 ```
@@ -1880,6 +1903,8 @@ systematically but this is beyond the scope of the current exploration.
 
 \indent Checking the expected cell counts gives insight into the assumption for 
 using the $\boldsymbol{\chi^2}$-distribution to find the p-value:
+
+\newpage
 
 ```{r}
 growthtable <- tally(~stype+growthcut, data=apistrat)
@@ -2044,6 +2069,7 @@ df=(`r colFmt("R","red")` - 1)``*``(`r colFmt("C","red")` - 1), lower.tail=F)**
 
     * Provides a mosaic plot with shading based on standardized residuals.
 
+\newpage
 
 ## Practice problems	{#section5-14}
 
@@ -2120,6 +2146,32 @@ think about this, they collected a nationally representative sample
 that contained three questions about this. Based on their survey, they 
 concluded that 
 
+```{r echo=F}
+library(readr)
+csd <- read_csv("csd.csv")
+```
+
+(ref:fig5-27) Tableplot of data from "data-is-vs-data-are" survey, sorted by "CareAbout" responses. 
+
+```{r Figure5-27,fig.cap="(ref:fig5-27)",echo=F,fig.width=10,fig.height=5}
+library(tabplot)
+#Need to make it explicit that these are factor variables
+csd$careabout <- factor(csd$careabout) 
+#Reorders factor levels to be in "correct" order
+csd$careabout <- factor(csd$careabout,
+                    levels=levels(csd$careabout)[c(1,4,3,2)]) 
+csd$Education <- factor(csd$Education)
+csd$Education <- factor(csd$Education,
+                    levels=levels(csd$Education)[c(4,3,5,1,2)])
+csd$Household.Income <- factor(csd$Household.Income)
+csd$Household.Income <- factor(csd$Household.Income,
+                    levels=levels(csd$Household.Income)[c(1,4,5,6,2,3)])
+#Sorts plot by careabout responses
+tableplot(csd[,c("isare","careabout","thoughtabout","Gender",
+                 "Age","Household.Income","Education")], sortCol=careabout,
+          pals=list("BrBG")) 
+```
+
 > Relevant to the 
  [interests of FiveThirtyEight](http://fivethirtyeight.com/datalab/data-is-vs-data-are/) in particular, we also asked whether people preferred using "data" as a
  singular or plural noun. To those who prefer the plural, I'll put this in
@@ -2145,14 +2197,8 @@ library(readr)
 csd <- read_csv("http://www.math.montana.edu/courses/s217/documents/csd.csv")
 ```
 
-```{r echo=F}
-library(readr)
-csd <- read_csv("csd.csv")
-```
 
-(ref:fig5-27) Tableplot of data from "data-is-vs-data-are" survey, sorted by "CareAbout" responses. 
-
-```{r Figure5-27,fig.cap="(ref:fig5-27)",echo=T,fig.width=6,fig.height=4}
+```{r eval=F}
 library(tabplot)
 #Need to make it explicit that these are factor variables
 csd$careabout <- factor(csd$careabout) 
@@ -2191,14 +2237,10 @@ the is/are preferences move away from the null hypothesis for people that care
 more about this?
 
 --------------------------------------------------------------------------------
-We might be fighting a losing battle on "data is a plural word", but since we are in the group that cares a lot about this, we are going to keep trying...
+We might be fighting a losing battle on "data is a plural word", 
+but since we are in the group that cares a lot about this, we are going to 
+keep trying...
 --------------------------------------------------------------------------------
-
-5.3. **Overtake close calls by outfit analysis** We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``dd$Distance<=100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided.
-
-```{r eval=F}
-dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
-```
 
 ```{r echo=F}
 dd <- read_csv("Walker2014_mod.csv")
@@ -2206,13 +2248,29 @@ dd <- read_csv("Walker2014_mod.csv")
 
 (ref:fig5-28) Stacked bar chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit. 
 
-```{r Figure5-28,fig.cap="(ref:fig5-28)",echo=T,fig.width=6,fig.height=3}
+```{r Figure5-28,fig.cap="(ref:fig5-28)",echo=F}
 dd$Condition <- factor(dd$Condition)
 dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
 dd$Close <- factor(ifelse(dd$Distance<=100, "close", "notclose"))
 
 plot(Close ~ Condition2, data=dd)
+```
 
+5.3. **Overtake close calls by outfit analysis** We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``dd$Distance<=100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided.
+
+```{r eval=F}
+dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
+```
+
+```{r eval=F}
+dd$Condition <- factor(dd$Condition)
+dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
+dd$Close <- factor(ifelse(dd$Distance<=100, "close", "notclose"))
+
+plot(Close ~ Condition2, data=dd)
+```
+
+```{r}
 table1 <- tally(Close ~ Condition2, data=dd)
 
 chisq.test(table1)

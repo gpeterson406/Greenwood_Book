@@ -34,6 +34,7 @@ colFmt = function(x, color){
   else
     x
 }
+# Triple star doesn't work after \indent function so use the below function
 textItalicBold = function(x){
   outputFormat = opts_knit$get("rmarkdown.pandoc.to")
   if(outputFormat == 'latex')
@@ -140,7 +141,7 @@ BAC model has a residual SE of 0.02 but had many fewer observations at each
 
 (ref:fig7-1) Sketch of assumed normal distributions for the responses centered at the regression line.
 
-```{r Figure7-1,fig.cap="(ref:fig7-1)",echo=F, out.width="25%"}
+```{r Figure7-1,fig.cap="(ref:fig7-1)",echo=F, out.width="100%"}
 knitr::include_graphics("chapter7_files/image029small.png")
 ```
 
@@ -203,7 +204,7 @@ The next sections develop those inferential tools.
 
 (ref:fig7-3) Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the ``simulate`` function as was used in Chapter \@ref(chapter2) were used to create this plot. \index{\texttt{simulate()}}
 
-```{r Figure7-3,fig.cap="(ref:fig7-3)",echo=F}
+```{r Figure7-3,fig.cap="(ref:fig7-3)",echo=F, out.width="100%"}
 knitr::include_graphics("chapter7_files/image034.png")
 ```
 
@@ -250,7 +251,7 @@ confidence interval***:
 
 (ref:fig7-4) Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in $x$.
 
-```{r Figure7-4,fig.cap="(ref:fig7-4)",echo=F}
+```{r Figure7-4,fig.cap="(ref:fig7-4)",echo=F, out.width="100%"}
 knitr::include_graphics("chapter7_files/image045.png")
 ```
 
@@ -358,11 +359,11 @@ calculation in the model summary and from ``qt(0.975, df=n-2)`` which was
 make confidence intervals -- that is the test statistic used below. The related
 calculations are shown at the bottom of the following code:
 
-```{r}
-m1 <- lm(BAC~Beers, data=BB)
-```
+\vspace{24pt}
 
 ```{r}
+m1 <- lm(BAC~Beers, data=BB)
+
 summary(m1)
 ```
 
@@ -466,6 +467,8 @@ but certainly would never say that this presents strong evidence.
 \index{R packages!\textbf{alr3}}
 \index{R packages!\textbf{tibble}}
 
+\vspace{22pt}
+
 ```{r}
 library(alr3)
 data(ais)
@@ -473,6 +476,7 @@ library(tibble)
 ais <- as_tibble(ais)
 aisR2 <- ais[-c(56,166), c("Ht","Hc","Bfat","Sex")]
 m2 <- lm(Hc~Bfat, data=subset(aisR2,Sex==1)) # Results for Females 
+
 summary(m2)
 confint(m2)
 ```
@@ -780,7 +784,9 @@ normality assumption a bit.
     between *Year* and yearly mean *Temperature* so we can conclude that
     there is, in fact, some linear relationship between *Year* and yearly mean 
     maximum *Temperature* in Bozeman. 
-    
+
+\newpage
+
 5. **Size:**
 
     * For a one year increase in Year, we estimate that, on average, the yearly average maximum temperature will change by 0.0524 $^\circ F$ (95% CI: 0.043 to 0.062). This suggests a modest but noticeable change in the mean temperature in Bozeman and the confidence suggests minimal variation around this estimate, going from 0.04 to 0.06 $^\circ F$. The "size" of this change is discussed more in Section \@ref(section7-5).
@@ -938,7 +944,7 @@ predictor variable's values is as good as any other.
 \index{permutation!test}
 Consider the four scatterplots of
 the Bozeman temperature data versus ``Year`` and permuted versions of ``Year``
-in Figure \@ref(fig:Figure7-7). First, think about which of the panels you 
+in Figure \@ref(fig:Figure7-8). First, think about which of the panels you 
 think present the most
 evidence of a linear relationship between ``Year`` and ``Temperature``? 
 
@@ -1002,13 +1008,16 @@ set.seed(3456)
 ```{r}
 Tobs <- lm(meanmax~Year, data=bozemantemps)$coef[2]
 Tobs
-B <- 1000
-Tstar <- matrix(NA, nrow=B)
 ```
+
+\newpage
+
 
 (ref:fig7-9) Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at $\pm b_1=0.56$ based on the observed estimated slope.
 
 ```{r Figure7-9,fig.cap="(ref:fig7-9)",fig.height=5,fig.width=10}
+B <- 1000
+Tstar <- matrix(NA, nrow=B)
 for (b in (1:B)){
   Tstar[b] <- lm(meanmax~shuffle(Year), data=bozemantemps)$coef[2]
 }
@@ -1146,16 +1155,11 @@ abline(temp3$coefficients,lwd=2,col="steelblue")
 ```{r}
 bozemantemps$meanmaxC <- (bozemantemps$meanmax - 32)*(5/9)
 temp3 <- lm(meanmaxC~Year2, data=bozemantemps)
-```
-
-\vspace{11pt}
-
-```{r}
 summary(temp1)
 summary(temp3)
 ```
 
-<!-- \newpage -->
+\newpage
 
 \indent `r textItalicBold("Nonlinear transformation functions")`
 are where we apply something more complicated than this
@@ -1222,7 +1226,7 @@ data for Montana. Figure \@ref(fig:Figure7-12) compares the
 relationship between these variables on the original hectares scale and the
 log-hectares scale. 
 
-<!-- \newpage -->
+\newpage
 
 ```{r eval=F}
 par(mfrow=c(1,2))
@@ -2007,8 +2011,8 @@ with a legend. The ``lines`` function connects the points with a line that provi
 
 ```{r Figure7-23,fig.cap="(ref:fig7-23)",fig.height=5,fig.width=10,echo=F}
 par(mfrow=c(1,1))
-plot(BAC~Beers, data=BB, xlab="Beers", ylab="BAC", pch=20, col="gold4",
-     main="Scatterplot of estimated regression line with 95% CI and PI")
+plot(BAC~Beers, data=BB, xlab="Beers", ylab="BAC", col="gold4",
+     pch=20, main="Scatterplot of estimated regression line with 95% CI and PI")
 lines(fit~beerf, data=BBCI, col="blue", lwd=3) #Plot fitted values
 lines(lwr~beerf, data=BBCI, col="red", lty=2, lwd=3) #Plot the CI lower bound
 lines(upr~beerf, data=BBCI, col="red", lty=2, lwd=3) #Plot the CI upper bound
@@ -2020,8 +2024,8 @@ legend("topleft", c("Estimate","CI","PI"), lwd=3, lty=c(1,2,3),
 
 ```{r eval=F}
 par(mfrow=c(1,1))
-plot(BAC~Beers, data=BB, xlab="Beers", ylab="BAC", pch=20, col="gold4",
-     main="Scatterplot of estimated regression line with 95% CI and PI")
+plot(BAC~Beers, data=BB, xlab="Beers", ylab="BAC", col="gold4",
+     pch=20, main="Scatterplot of estimated regression line with 95% CI and PI")
 lines(fit~beerf, data=BBCI, col="blue", lwd=3) #Plot fitted values
 lines(lwr~beerf, data=BBCI, col="red", lty=2, lwd=3) #Plot the CI lower bound
 lines(upr~beerf, data=BBCI, col="red", lty=2, lwd=3) #Plot the CI upper bound
@@ -2061,13 +2065,15 @@ TCI <- as_tibble(predict(temp1,newdata= tibble(Year=Yearf),interval="confidence"
 
 TPI <- as_tibble(predict(temp1,newdata=tibble(Year=Yearf),interval="prediction"))
 
-plot(meanmax~Year,data=bozemantemps,xlab="Year", ylab="degrees F",pch=20,col="darkgreen", main="Scatterplot of estimated regression line with 95% CI and PI")
- lines(fit~Yearf,data=TCI,col="blue",lwd=3)
- lines(lwr~Yearf,data=TCI,col="red",lty=2,lwd=3)
- lines(upr~Yearf,data=TCI,col="red",lty=2,lwd=3)
- lines(lwr~Yearf,data=TPI,col="grey",lty=3,lwd=3)
- lines(upr~Yearf,data=TPI,col="grey",lty=3,lwd=3)
-legend("topleft", c("Estimate", "CI","PI"),lwd=3,lty=c(1,2,3),col = c("blue", "red","grey"))
+plot(meanmax~Year,data=bozemantemps,xlab="Year", ylab="degrees F", col="darkgreen",
+     pch=20, main="Scatterplot of estimated regression line with 95% CI and PI")
+lines(fit~Yearf,data=TCI,col="blue",lwd=3)
+lines(lwr~Yearf,data=TCI,col="red",lty=2,lwd=3)
+lines(upr~Yearf,data=TCI,col="red",lty=2,lwd=3)
+lines(lwr~Yearf,data=TPI,col="grey",lty=3,lwd=3)
+lines(upr~Yearf,data=TPI,col="grey",lty=3,lwd=3)
+legend("topleft", c("Estimate", "CI","PI"),lwd=3,lty=c(1,2,3),
+       col = c("blue", "red","grey"))
 ```
 
 \indent We can also use these same methods to do a prediction for the year after the
@@ -2077,19 +2083,13 @@ data set ended, 2015, and in 2050:
 predict(temp1, newdata=tibble(Year=2015), interval="confidence")
 ```
 
-\vspace{11pt}
-
 ```{r}
 predict(temp1, newdata=tibble(Year=2015), interval="prediction")
 ```
 
-\vspace{11pt}
-
 ```{r}
 predict(temp1, newdata=tibble(Year=2050), interval="confidence")
 ```
-
-\vspace{11pt}
 
 ```{r}
 predict(temp1, newdata=tibble(Year=2050), interval="prediction")
@@ -2232,11 +2232,11 @@ interval="prediction")**
     by the sample size -- 2.
     \index{\texttt{qt()}|textbf}
    
-<!-- \newpage -->
+\newpage
 
 ## Practice problems	{#section7-10}
 
-We will continue with the treadmill data set introduced in Chapter 
+7.1. **Treadmill data analysis** We will continue with the treadmill data set introduced in Chapter 
 \@ref(chapter1) and the SLR fit in the practice problems in
 Chapter \@ref(chapter6). The following code will get you back to where we 
 stopped at the end of Chapter \@ref(chapter6):
@@ -2248,12 +2248,12 @@ tm <- lm(TreadMillOx~RunTime, data=treadmill)
 summary(tm1)
 ```
 
-7.1. Use the output to test for a
+7.1.1. Use the output to test for a
 linear relationship between treadmill oxygen and run time, writing out all 6+
 steps of the hypothesis test. Make sure to address scope of inference and
 interpret the p-value. 
 
-7.2. Form and interpret a 95%
+7.1.2. Form and interpret a 95%
 confidence interval for the slope coefficient "by hand" using the provided
 multiplier:
 
@@ -2261,24 +2261,24 @@ multiplier:
 qt(0.975, df=29)
 ```
 
-7.3. Use the ``confint`` function to find a similar confidence interval,
+7.1.3. Use the ``confint`` function to find a similar confidence interval,
 checking your previous calculation. 
 
-7.4. Use the ``predict`` function to find fitted values, 95% confidence, and 95%
+7.1.4. Use the ``predict`` function to find fitted values, 95% confidence, and 95%
 prediction intervals for run times of 11 and 16 minutes. 
 
-7.5. Interpret the CI and PI for the 11 minute run time. 
+7.1.5. Interpret the CI and PI for the 11 minute run time. 
 
-7.6. Compare the width of either set of CIs and PIs -- why are they different?
+7.1.6. Compare the width of either set of CIs and PIs -- why are they different?
 For the two different predictions, why are the intervals wider for 16 minutes
 than for 11 minutes?
 
-7.7. The Residuals vs Fitted plot considered in Chapter \@ref(chapter6) should
+7.1.7. The Residuals vs Fitted plot considered in Chapter \@ref(chapter6) should
 have suggested slight non-constant variance and maybe a little missed
 nonlinearity. Perform a log-transformation of the treadmill oxygen response
 variable and re-fit the SLR model. Remake the diagnostic plots and discuss
 whether the transformation changed any of them. 
 
-7.8 Summarize the $\log(y) \sim x$ model and interpret the slope coefficient on
+7.1.8 Summarize the $\log(y) \sim x$ model and interpret the slope coefficient on
 the transformed and original scales, regardless of the answer to the previous
 question.

@@ -2919,7 +2919,7 @@ and term-plots (Figure \@ref(fig:Figure8-33)) suggest the potentially
 dangerous conclusion that
 can come from assuming a common slope when that might not be the case. 
 
-\vspace{11pt}
+\newpage
 
 (ref:fig8-33) Term-plots for additive model for reading scores.
 
@@ -2936,11 +2936,17 @@ $y$-intercepts ($t_{41}=-6.88$, p-value $<0.00001$) after adjusting for the verb
 \indent Since the IQ term has a large p-value, we could drop it from the 
 model -- leaving a model that only includes the grouping variable:
 
+
+```{r}
+dys_modelR2 <- lm(score~dys, data=dyslexic3)
+summary(dys_modelR2)
+```
+
+\vspace{11pt}
+
 (ref:fig8-34) Term-plot for dyslexia status only model for reading scores.
 
 ```{r Figure8-34,fig.cap="(ref:fig8-34)",warning=F,message=F}
-dys_modelR2 <- lm(score~dys, data=dyslexic3)
-summary(dys_modelR2)
 plot(allEffects(dys_modelR2, residuals=T))
 ```
 
@@ -3020,7 +3026,7 @@ head2 <- lm(du2~du1*treatment,data=Headache)
 plot(allEffects(head2, residuals=T), grid=T)
 ```
 
-
+\vspace{22pt}
 
 ```{r}
 head2 <- lm(du2~du1*treatment, data=Headache)
@@ -3230,6 +3236,7 @@ model here is
 
 $$\text{du2}_i = \beta_0 + \beta_1\cdot\text{du1}_i + \beta_2I_{T1,i} +
 \beta_3I_{T2,i} + \beta_4I_{T3,i} +\varepsilon_i.\ $$
+
 
 The hypotheses assessed in the ANOVA test for treatment are:
 
@@ -3493,17 +3500,24 @@ you see how complex each model is. For example, the top model used up 4
 *model df* (three $\beta\text{'s}$ and the residual error variance) and the
 most complex model that included four predictor variables used up 5 *model df*. 
 
-\small
 
-```{r warning=F,error=F}
-library(MuMIn)
-options(na.action = "na.fail") #Must run this code once to use dredge
-snotel2R <- snotel2[-c(9,22),]; m6 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2R)
-dredge(m6, rank="AIC",
-       extra = c("R^2", adjRsq=function(x) summary(x)$adj.r.squared))
+
+```{r echo=F}
+oldWidth <- options()$width
+options(width=80)
 ```
 
-\normalsize
+```{r message=FALSE, warning=FALSE}
+library(MuMIn)
+options(na.action = "na.fail") #Must run this code once to use dredge
+snotel2R <- snotel2[-c(9,22),]
+m6 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2R)
+dredge(m6, rank="AIC", extra = c("R^2", adjRsq=function(x) summary(x)$adj.r.squared))
+```
+
+```{r echo=F}
+options(width=oldWidth)
+```
 
 \indent You can use the table of results from ``dredge`` to find information to compare the estimated models. There are two models that are clearly favored over the others with 
 $\Delta\text{AICs}$ for the model with *Elevation* and *Max.Temp* of 0 and for
@@ -3661,11 +3675,26 @@ needed in the model. The full suite of results from dredge provide model
 comparisons that help us to assess the presence/absence of each model component
 including the interaction. 
 
+\small
+
+
+```{r echo=F}
+oldWidth <- options()$width
+options(width=120)
+```
+
 ```{r warning=F,message=F}
 options(na.action = "na.fail") #Must run this code once to use dredge
 dredge(fm1, rank="AIC", 
        extra = c("R^2", adjRsq=function(x) summary(x)$adj.r.squared))
 ```
+
+
+```{r echo=F}
+options(width=oldWidth)
+```
+
+\normalsize
 
 There is a lot of information in the output and some of the needed information
 in the second set of rows, so we will try to point out some useful features to
@@ -3704,7 +3733,7 @@ be considered in detail.
 
 (ref:fig8-41) Display of AIC results on a number line with models indicated by their number in the ``dredge`` output. In more complex models, the ``dredge`` model numbers are just labels and not a meaningful numeration of the models being considered (there are 20 models considered here but labels go up to 32). Panel (a) presents results for all the models and panel (b) focuses just on the top 10 models so some differences in those models can be explored. Note that the spacing of the vertical grid lines in panel (a) are 10 AIC units and in (b) they are 1 AIC unit apart.
 
-```{r Figure8-41,fig.cap="(ref:fig8-41)",echo=F, fig.height=6, fig.width=8,echo=F,warning=F,message=F}
+```{r Figure8-41,fig.cap="(ref:fig8-41)",echo=F, fig.height=7, fig.width=10,echo=F,warning=F,message=F}
 res1 <- dredge(fm1, rank="AIC", 
        extra = c("R^2", adjRsq=function(x) summary(x)$adj.r.squared))
 par(mfrow=c(2,1))
@@ -3774,7 +3803,7 @@ after adjusting for them.**
 
 (ref:fig8-42) Term-plots for the top AIC model for log(FEV) that includes height, age, smoking status, and sex in the model.
 
-```{r Figure8-42,fig.cap="(ref:fig8-42)",fig.height=4.5,fig.width=7}
+```{r Figure8-42,fig.cap="(ref:fig8-42)",fig.height=5,fig.width=10}
 fm1R$coefficients
 vif(fm1R)
 confint(fm1R)
@@ -3963,6 +3992,7 @@ dredge(`r colFmt("FULL\\_MODELNAME","red")`, rank="AIC")**
     a full model called ``FULL_MODELNAME``. 
     \index{\texttt{dredge()}|textbf}
 
+\newpage
 
 ## Practice problems	{#section8-17}
 

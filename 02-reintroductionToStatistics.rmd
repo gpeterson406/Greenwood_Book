@@ -227,11 +227,22 @@ quick information about all of them; the ``summary`` function provides
 useful information whether the variables are categorical or 
 quantitative and notes if any values were missing. \index{\texttt{summary()}}
 
+\footnotesize
+
+```{r echo=F}
+oldWidth <- options()$width
+options(width=120)
+```
 
 ```{r}
 summary(dd)
 ```
 
+```{r echo=F}
+options(width=oldWidth)
+```
+
+\normalsize
 
 The output is organized by variable, 
 providing summary information based on the type of
@@ -312,7 +323,6 @@ hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, main="Histogram of Dis
 lines(density(dd$Distance), lwd=3,col="purple")
 ```
 
-\newpage
 
 \indent Histograms can be sensitive to the choice of the number of bars and 
 even the cut-offs used to define the bins for a given number of bars.
@@ -373,7 +383,7 @@ boxplot(Distance~Condition,data=dd)
 boxplot(Distance ~ Condition, data=dd)
 ```
 
-\indent The "~" (which is read as the *tilde* symbol^[If you want to type this character in Rmarkdown, try "\sim" outside of codechunks.], which you can find in the
+\indent The "~" (which is read as the *tilde* symbol^[If you want to type this character in Rmarkdown, try `$\sim$` outside of codechunks.], which you can find in the
 upper left corner of your keyboard) notation will be used in two ways in this 
 material. \index{tilde} The formula use in R employed previously declares that the 
 response variable here is *Distance* and the explanatory variable is *Condition*. 
@@ -440,7 +450,7 @@ need to have numerical values to compare. We can get means and standard
 deviations by groups easily using the same formula notation as for the plots with the ``mean``
 and ``sd`` functions, if the ``mosaic`` package is loaded.
 
-<!-- <!-- \newpage --> -->
+<!-- <!-- \newpage -->
 
 ```{r}
 library(mosaic)
@@ -554,7 +564,7 @@ boxplot(Distance~Condition,data=ddsub)
 pirateplot(Distance~Condition,data=ddsub,inf.method="ci")
 ```
 
-\newpage
+<!-- \newpage -->
 
 \indent The two-sample mean techniques you learned in your previous course all 
 start with comparing the means the two groups. We can obtain the two 
@@ -940,7 +950,7 @@ for (b in (1:B)){
 #Print out the results stored in Tstar with the next line of code
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 Tstar
@@ -1870,6 +1880,7 @@ plot(density(Tstar), main="Density curve of Tstar")
 abline(v=c(-1,1)*Tobs, lwd=2, col="red")
 ```
 
+\newpage
 
 ## Second example of permutation tests {#section2-7}
 
@@ -2127,16 +2138,20 @@ diff10[pval10==min(pval10)] #Estimated difference for data set with smallest p-v
 
 ```{r Figure2-20, fig.cap="(ref:fig2-20)",echo=T,fig.width=10,fig.height=5,cache=T}
 
-#Simulation study of generating 10 data sets and either using the first or "best p-value" result:
+# Simulation study of generating 10 data sets and either using the first
+# or "best p-value" result:
 set.seed(1234)
 
 B <- 1000 # # of simulations
-Diffmeans <- pvalues <- Diffmeans_Min <- pvalues_Min <- matrix(NA, nrow=B) #To store results
+# To store results
+Diffmeans <- pvalues <- Diffmeans_Min <- pvalues_Min <- matrix(NA, nrow=B) 
 for (b in (1:B)){ #Simulation study loop to repeat process B times
-  diff10 <- pval10 <- matrix(NA, nrow=10) #Create empty vectors to store 10 results for each b
+  # Create empty vectors to store 10 results for each b
+  diff10 <- pval10 <- matrix(NA, nrow=10) 
   for (c in (1:10)){ #Loop to create 10 data sets and extract results
     ddsub$SimDistance <- simulate(lm_commonmean)[[1]]
-    lm_sim <- lm(SimDistance ~ Condition, data=ddsub) #Estimate two group model using simulated responses
+    # Estimate two group model using simulated responses
+    lm_sim <- lm(SimDistance ~ Condition, data=ddsub) 
     diff10[c] <- coef(lm_sim)[2]
     pval10[c] <- summary(lm_sim)$coef[2,4]
   }
@@ -2150,15 +2165,24 @@ for (b in (1:B)){ #Simulation study loop to repeat process B times
 }
 
 #Put results together
-results <- tibble(pvalue_results=c(pvalues,pvalues_Min), Diffmeans_results=c(Diffmeans, Diffmeans_Min), Scenario = rep(c("First", "Min"), each=B))
+results <- tibble(pvalue_results=c(pvalues,pvalues_Min), 
+                  Diffmeans_results=c(Diffmeans, Diffmeans_Min), 
+                  Scenario = rep(c("First", "Min"), each=B))
 
 par(mfrow=c(1,2)) #Plot results
-pirateplot(pvalue_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,avg.line.o = 0, main="(a) P-value results")
+pirateplot(pvalue_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
+           avg.line.o = 0, main="(a) P-value results")
 abline(h=0.05, lwd=2, col="red", lty=2)
-pirateplot(Diffmeans_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,avg.line.o = 0, main="(b) Estimated difference in mean results")
+pirateplot(Diffmeans_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
+           avg.line.o = 0, main="(b) Estimated difference in mean results")
 
 #Numerical summaries of results
 favstats(pvalue_results~Scenario,data=results)
+```
+
+\newpage
+
+```{r}
 favstats(Diffmeans_results~Scenario,data=results)
 ```
 
@@ -2201,7 +2225,8 @@ second data set. This also has problems but the only way to develop an understan
 ```{r Figure2-21, fig.cap="(ref:fig2-21)",echo=F,warning=F,message=F}
 m <- 1:100
 pr <- 1-.95^m
-plot(m,pr,type="l",col="blue",xlab="# of Tests",ylab="Probability of at least one Type I error",lwd=2)
+plot(m,pr,type="l",col="blue",xlab="# of Tests",
+     ylab="Probability of at least one Type I error",lwd=2)
 abline(h=.05,lty=2,col="red")
 lines(x=c(10,10), y=c(0.05,1-.95^10), col="grey", lwd=2)
 ```
@@ -2213,18 +2238,21 @@ lines(x=c(10,10), y=c(0.05,1-.95^10), col="grey", lwd=2)
 
 (ref:fig2-22) Pirate-plot of a simulation study results of p-values with Bonferroni correction. 
 
-```{r Figure2-22, fig.cap="(ref:fig2-22)",echo=T,fig.width=5,fig.height=5,cache=T}
+```{r Figure2-22, fig.cap="(ref:fig2-22)",echo=T,fig.width=10,fig.height=5.5,cache=T}
 
-#Simulation study of generating 10 data sets and either using the first or "best p-value" result:
+# Simulation study of generating 10 data sets and either using the first 
+# or "best p-value" result:
 set.seed(1234)
 
 B <- 1000 # # of simulations
 pvalues <- pvalues_Min <- matrix(NA, nrow=B) #To store results
 for (b in (1:B)){ #Simulation study loop to repeat process B times
-  pval10 <- matrix(NA, nrow=10) #Create empty vectors to store 10 results for each b
+  # Create empty vectors to store 10 results for each b
+  pval10 <- matrix(NA, nrow=10) 
   for (c in (1:10)){ #Loop to create 10 data sets and extract results
     ddsub$SimDistance <- simulate(lm_commonmean)[[1]]
-    lm_sim <- lm(SimDistance ~ Condition, data=ddsub) #Estimate two group model using simulated responses
+    # Estimate two group model using simulated responses
+    lm_sim <- lm(SimDistance ~ Condition, data=ddsub) 
     pval10[c] <- summary(lm_sim)$coef[2,4]
   }
   
@@ -2237,17 +2265,33 @@ for (b in (1:B)){ #Simulation study loop to repeat process B times
 }
 
 #Put results together
-results <- tibble(pvalue_results=c(pvalues,pvalues_Min), Scenario = rep(c("First", "Min"), each=B))
+results <- tibble(pvalue_results=c(pvalues,pvalues_Min), 
+                  Scenario = rep(c("First", "Min"), each=B))
 
-pirateplot(pvalue_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,avg.line.o = 0, main="(a) P-value results")
+pirateplot(pvalue_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
+           avg.line.o = 0, main="(a) P-value results")
 abline(h=0.05, lwd=2, col="red", lty=2)
 ```
 
 By applying the `pdata` function to the two groups of results we can directly assess how many of each type of result resulted in p-values less than 0.05. It ends up that if adjust for ten tests and just focus on the first result, it is really hard to find moderate or strong evidence against the null hypothesis as only 3 in 1,000 results had adjusted p-values less than 0.05. When the focus is on the "top" p-value result when ten are considered and adjustments are made, 52 out of 1,000 results (0.052) show at least moderate evidence against the null hypothesis. This is the rate we would expect from a well-behaved hypothesis test when the null hypothesis is true -- that we would only make a mistake 5% of the time when $\alpha$ is 0.05. 
 
+\newpage
+
+```{r echo=F}
+oldWidth <- options()$width
+options(width=90)
+```
+
 ```{r}
 #Numerical summaries of results
 favstats(pvalue_results~Scenario,data=results)
+```
+
+```{r echo=F}
+options(width=oldWidth)
+```
+
+```{r}
 #Proportion of simulations with adjusted p-values less than 0.05
 pdata(pvalue_results~Scenario,data=results,.05, lower.tail=T)
 ```
@@ -2312,6 +2356,11 @@ multiple times and to do that it has to ignore some^[In any bootstrap sample, ab
 ```{r}
 set.seed(406)
 dsample_BTS <- resample(dsample)
+```
+
+\newpage
+
+```{r}
 table(as.numeric(dsample_BTS$orig.id))
 ```
 
@@ -2384,7 +2433,7 @@ lm1 <- lm(Distance~Condition, data=dsample)
 Tobs <- coef(lm1)[2]; Tobs
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 B <- 1000
@@ -2394,8 +2443,19 @@ for (b in (1:B)){
   lmP <- lm(Distance~Condition, data=resample(dsample))
   Tstar[b] <- coef(lmP)[2]
 }
+```
 
+```{r echo=F}
+oldWidth <- options()$width
+options(width=90)
+```
+
+```{r}
 favstats(Tstar)
+```
+
+```{r echo=F}
+options(width=oldWidth)
 ```
 
 (ref:fig2-24) Histogram and density curve of bootstrap distributions of difference in sample mean ``Distances`` with vertical line for the observed difference in the means of -25.933.
@@ -2462,6 +2522,11 @@ of code using:
 
 ```{r}
 quantiles <- qdata(Tstar, c(0.025,0.975))
+```
+
+\newpage
+
+```{r}
 quantiles
 ```
 
@@ -2672,7 +2737,7 @@ for (b in (1:B)){
 }
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 qdata(Tstar, c(0.025, 0.975))
@@ -2702,6 +2767,8 @@ The margin of error is:
 ```{r}
 qt(0.975, df=77)*sp*sqrt(1/37+1/42)
 ```
+
+\newpage
 
 All together, the 95% confidence interval is:
 
@@ -2841,7 +2908,7 @@ and/or violations of conditions lessen, then the procedures will perform better.
 In Chapter \@ref(chapter3), some new tools for doing diagnostics are introduced
 to help us assess how and how much those validity conditions are violated. 
 
-\newpage
+
 
 ## Summary of important R code {#section2-12}
 

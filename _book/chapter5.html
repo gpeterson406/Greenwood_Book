@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Chi-square tests | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 5 Chi-square tests | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Chi-square tests | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -49,26 +49,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -77,9 +78,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -140,26 +141,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> (R)e-Introduction to statistics</a><ul>
 <li class="chapter" data-level="2.1" data-path="chapter2.html"><a href="chapter2.html#section2-1"><i class="fa fa-check"></i><b>2.1</b> Histograms, boxplots, and density curves</a></li>
-<li class="chapter" data-level="2.2" data-path="chapter2.html"><a href="chapter2.html#section2-2"><i class="fa fa-check"></i><b>2.2</b> Beanplots</a></li>
+<li class="chapter" data-level="2.2" data-path="chapter2.html"><a href="chapter2.html#section2-2"><i class="fa fa-check"></i><b>2.2</b> Pirate-plots</a></li>
 <li class="chapter" data-level="2.3" data-path="chapter2.html"><a href="chapter2.html#section2-3"><i class="fa fa-check"></i><b>2.3</b> Models, hypotheses, and permutations for the two sample mean situation</a></li>
 <li class="chapter" data-level="2.4" data-path="chapter2.html"><a href="chapter2.html#section2-4"><i class="fa fa-check"></i><b>2.4</b> Permutation testing for the two sample mean situation</a></li>
 <li class="chapter" data-level="2.5" data-path="chapter2.html"><a href="chapter2.html#section2-5"><i class="fa fa-check"></i><b>2.5</b> Hypothesis testing (general)</a></li>
 <li class="chapter" data-level="2.6" data-path="chapter2.html"><a href="chapter2.html#section2-6"><i class="fa fa-check"></i><b>2.6</b> Connecting randomization (nonparametric) and parametric tests</a></li>
 <li class="chapter" data-level="2.7" data-path="chapter2.html"><a href="chapter2.html#section2-7"><i class="fa fa-check"></i><b>2.7</b> Second example of permutation tests</a></li>
-<li class="chapter" data-level="2.8" data-path="chapter2.html"><a href="chapter2.html#section2-8"><i class="fa fa-check"></i><b>2.8</b> Confidence intervals and bootstrapping</a></li>
-<li class="chapter" data-level="2.9" data-path="chapter2.html"><a href="chapter2.html#section2-9"><i class="fa fa-check"></i><b>2.9</b> Bootstrap confidence intervals for difference in GPAs</a></li>
-<li class="chapter" data-level="2.10" data-path="chapter2.html"><a href="chapter2.html#section2-10"><i class="fa fa-check"></i><b>2.10</b> Chapter summary</a></li>
-<li class="chapter" data-level="2.11" data-path="chapter2.html"><a href="chapter2.html#section2-11"><i class="fa fa-check"></i><b>2.11</b> Summary of important R code</a></li>
-<li class="chapter" data-level="2.12" data-path="chapter2.html"><a href="chapter2.html#section2-12"><i class="fa fa-check"></i><b>2.12</b> Practice problems</a></li>
+<li class="chapter" data-level="2.8" data-path="chapter2.html"><a href="chapter2.html#section2-8"><i class="fa fa-check"></i><b>2.8</b> Reproducibility Crisis: Moving beyond p &lt; 0.05, publication bias, and multiple testing issues</a></li>
+<li class="chapter" data-level="2.9" data-path="chapter2.html"><a href="chapter2.html#section2-9"><i class="fa fa-check"></i><b>2.9</b> Confidence intervals and bootstrapping</a></li>
+<li class="chapter" data-level="2.10" data-path="chapter2.html"><a href="chapter2.html#section2-10"><i class="fa fa-check"></i><b>2.10</b> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li class="chapter" data-level="2.11" data-path="chapter2.html"><a href="chapter2.html#section2-11"><i class="fa fa-check"></i><b>2.11</b> Chapter summary</a></li>
+<li class="chapter" data-level="2.12" data-path="chapter2.html"><a href="chapter2.html#section2-12"><i class="fa fa-check"></i><b>2.12</b> Summary of important R code</a></li>
+<li class="chapter" data-level="2.13" data-path="chapter2.html"><a href="chapter2.html#section2-13"><i class="fa fa-check"></i><b>2.13</b> Practice problems</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a><ul>
 <li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#section3-1"><i class="fa fa-check"></i><b>3.1</b> Situation</a></li>
-<li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#section3-2"><i class="fa fa-check"></i><b>3.2</b> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#section3-2"><i class="fa fa-check"></i><b>3.2</b> Linear model for One-Way ANOVA (cell means and reference-coding)</a></li>
 <li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#section3-3"><i class="fa fa-check"></i><b>3.3</b> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
 <li class="chapter" data-level="3.4" data-path="chapter3.html"><a href="chapter3.html#section3-4"><i class="fa fa-check"></i><b>3.4</b> ANOVA model diagnostics including QQ-plots</a></li>
 <li class="chapter" data-level="3.5" data-path="chapter3.html"><a href="chapter3.html#section3-5"><i class="fa fa-check"></i><b>3.5</b> Guinea pig tooth growth One-Way ANOVA example</a></li>
 <li class="chapter" data-level="3.6" data-path="chapter3.html"><a href="chapter3.html#section3-6"><i class="fa fa-check"></i><b>3.6</b> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
-<li class="chapter" data-level="3.7" data-path="chapter3.html"><a href="chapter3.html#section3-7"><i class="fa fa-check"></i><b>3.7</b> Pair-wise comparisons for Prisoner Rating data</a></li>
+<li class="chapter" data-level="3.7" data-path="chapter3.html"><a href="chapter3.html#section3-7"><i class="fa fa-check"></i><b>3.7</b> Pair-wise comparisons for the Overtake data</a></li>
 <li class="chapter" data-level="3.8" data-path="chapter3.html"><a href="chapter3.html#section3-8"><i class="fa fa-check"></i><b>3.8</b> Chapter summary</a></li>
 <li class="chapter" data-level="3.9" data-path="chapter3.html"><a href="chapter3.html#section3-9"><i class="fa fa-check"></i><b>3.9</b> Summary of important R code</a></li>
 <li class="chapter" data-level="3.10" data-path="chapter3.html"><a href="chapter3.html#section3-10"><i class="fa fa-check"></i><b>3.10</b> Practice problems</a></li>
@@ -170,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="chapter4.html"><a href="chapter4.html#section4-3"><i class="fa fa-check"></i><b>4.3</b> Two-Way ANOVA models and hypothesis tests</a></li>
 <li class="chapter" data-level="4.4" data-path="chapter4.html"><a href="chapter4.html#section4-4"><i class="fa fa-check"></i><b>4.4</b> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
 <li class="chapter" data-level="4.5" data-path="chapter4.html"><a href="chapter4.html#section4-5"><i class="fa fa-check"></i><b>4.5</b> Observational study example: The Psychology of Debt</a></li>
-<li class="chapter" data-level="4.6" data-path="chapter4.html"><a href="chapter4.html#section4-6"><i class="fa fa-check"></i><b>4.6</b> Pushing Two-Way ANOVA to the limit: Un-replicated designs</a></li>
+<li class="chapter" data-level="4.6" data-path="chapter4.html"><a href="chapter4.html#section4-6"><i class="fa fa-check"></i><b>4.6</b> Pushing Two-Way ANOVA to the limit: Un-replicated designs and Estimability</a></li>
 <li class="chapter" data-level="4.7" data-path="chapter4.html"><a href="chapter4.html#section4-7"><i class="fa fa-check"></i><b>4.7</b> Chapter summary</a></li>
 <li class="chapter" data-level="4.8" data-path="chapter4.html"><a href="chapter4.html#section4-8"><i class="fa fa-check"></i><b>4.8</b> Summary of important R code</a></li>
 <li class="chapter" data-level="4.9" data-path="chapter4.html"><a href="chapter4.html#section4-9"><i class="fa fa-check"></i><b>4.9</b> Practice problems</a></li>
@@ -195,7 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="chapter6.html"><a href="chapter6.html#section6-1"><i class="fa fa-check"></i><b>6.1</b> Relationships between two quantitative variables</a></li>
 <li class="chapter" data-level="6.2" data-path="chapter6.html"><a href="chapter6.html#section6-2"><i class="fa fa-check"></i><b>6.2</b> Estimating the correlation coefficient</a></li>
 <li class="chapter" data-level="6.3" data-path="chapter6.html"><a href="chapter6.html#section6-3"><i class="fa fa-check"></i><b>6.3</b> Relationships between variables by groups</a></li>
-<li class="chapter" data-level="6.4" data-path="chapter6.html"><a href="chapter6.html#section6-4"><i class="fa fa-check"></i><b>6.4</b> Inference for the correlation coefficient (Optional section)</a></li>
+<li class="chapter" data-level="6.4" data-path="chapter6.html"><a href="chapter6.html#section6-4"><i class="fa fa-check"></i><b>6.4</b> Inference for the correlation coefficient</a></li>
 <li class="chapter" data-level="6.5" data-path="chapter6.html"><a href="chapter6.html#section6-5"><i class="fa fa-check"></i><b>6.5</b> Are tree diameters related to tree heights?</a></li>
 <li class="chapter" data-level="6.6" data-path="chapter6.html"><a href="chapter6.html#section6-6"><i class="fa fa-check"></i><b>6.6</b> Describing relationships with a regression model</a></li>
 <li class="chapter" data-level="6.7" data-path="chapter6.html"><a href="chapter6.html#section6-7"><i class="fa fa-check"></i><b>6.7</b> Least Squares Estimation</a></li>
@@ -211,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="chapter7.html"><a href="chapter7.html#section7-1"><i class="fa fa-check"></i><b>7.1</b> Model</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter7.html"><a href="chapter7.html#section7-2"><i class="fa fa-check"></i><b>7.2</b> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li class="chapter" data-level="7.3" data-path="chapter7.html"><a href="chapter7.html#section7-3"><i class="fa fa-check"></i><b>7.3</b> Bozeman temperature trend</a></li>
-<li class="chapter" data-level="7.4" data-path="chapter7.html"><a href="chapter7.html#section7-4"><i class="fa fa-check"></i><b>7.4</b> Randomizing inferences for the slope coefficient</a></li>
+<li class="chapter" data-level="7.4" data-path="chapter7.html"><a href="chapter7.html#section7-4"><i class="fa fa-check"></i><b>7.4</b> Randomization-based inferences for the slope coefficient</a></li>
 <li class="chapter" data-level="7.5" data-path="chapter7.html"><a href="chapter7.html#section7-5"><i class="fa fa-check"></i><b>7.5</b> Transformations part I: Linearizing relationships</a></li>
 <li class="chapter" data-level="7.6" data-path="chapter7.html"><a href="chapter7.html#section7-6"><i class="fa fa-check"></i><b>7.6</b> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
 <li class="chapter" data-level="7.7" data-path="chapter7.html"><a href="chapter7.html#section7-7"><i class="fa fa-check"></i><b>7.7</b> Confidence interval for the mean and prediction intervals for a new observation</a></li>
@@ -287,15 +289,15 @@ the difference between <em>no improvement</em> and <em>some improvement</em> is 
 necessarily the same as the difference between <em>some</em> and <em>marked improvement</em>.
 If it is treated numerically, then the differences between levels are assumed to be the same
 unless a different coding scheme is used (say 1, 2, and 5). It is better to
-treat these types of responses as being in one of the three categories and use
+treat this type of responses as being in one of the three categories and use
 statistical methods that don’t make unreasonable and arbitrary assumptions about what the
 numerical coding might mean. The study being performed here involved subjects
 randomly assigned to either a treatment or a placebo (control) group and we
 want to address research questions similar to those considered in
 Chapters <a href="chapter2.html#chapter2">2</a> and <a href="chapter3.html#chapter3">3</a> –
-assessing differences among two or more groups. With quantitative
+assessing differences in a response variable among two or more groups. With quantitative
 responses, the differences in the distributions are parameterized via the means
-of the groups and we used 2-sample mean or ANOVA hypotheses and tests. With
+of the groups and we used linear models. With
 categorical responses, the focus is on the probabilities of getting responses in
 each category and whether they differ among the groups.</p>
 <p>We start with some useful summary techniques, both numerical and graphical,
@@ -303,11 +305,10 @@ applied to some examples of
 studies these methods can be used to analyze. Graphical techniques provide
 opportunities for assessing specific patterns in variables, relationships
 between variables, and for generally understanding the responses obtained.
-There are many different types of plots and each can enhance certain features
-of data. We will start with a “fun” display, called a <em>tableplot</em>, to help us
+There are many different types of plots and each can elucidate certain features
+of data. The <em>tableplot</em>, briefly introduced in Chapter <a href="chapter4.html#chapter4">4</a>, is a great and often fun starting point for working with data sets that contain categorical variables. We will start here with using it to help us
 understand some aspects of the results from a double-blind randomized clinical
-trial investigating a treatment for rheumatoid arthritis that has the
-categorical response variable introduced previously.
+trial investigating a treatment for rheumatoid arthritis.
 
 These data are available
 in the <code>Arthritis</code> data set available in the <code>vcd</code> package <span class="citation">(Meyer, Zeileis, and Hornik <a href="#ref-R-vcd" role="doc-biblioref">2017</a>)</span>.
@@ -316,31 +317,23 @@ There were <span class="math inline">\(n=84\)</span> subjects, with some demogra
 information recorded
 along with the <code>Treatment</code> status (<em>Treated</em>, <em>Placebo</em>) and whether the
 patients’ arthritis symptoms <code>Improved</code> (with levels of <em>None</em>, <em>Some</em>,
-and <em>Marked</em>).</p>
-<p>The <code>tableplot</code> function from the <code>tabplot</code> package <span class="citation">(Tennekes and de Jonge <a href="#ref-R-tabplot" role="doc-biblioref">2019</a>)</span>
-displays bars for each response in a row<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a> based on the
-category of responses or as a bar with the height corresponding
-the value of quantitative variables<a href="#fn63" class="footnote-ref" id="fnref63"><sup>63</sup></a>.
-
-
-It also plots a red cell if the
-observations were missing on a particular variable. The plot can be obtained
-simply as <code>tableplot(DATASETNAME)</code>. But when using <code>tableplot</code>, we may
-not want to display everything in the tibble and often just select some
+and <em>Marked</em>). When using <code>tableplot</code>, we may
+not want to display everything in the tibble and can just select some
 of the variables. We use <code>Treatment</code>, <code>Improved</code>, <code>Gender</code>, and <code>Age</code>
 in the <code>select=...</code> option with a <code>c()</code> and commas between the names of
 the variables we want to display as shown below. The first one in the list is also the one that
-the data are sorted on. The <code>pals=list("BrBG")</code> option specifies a color palette for the plot that is color-blind friendly.
-</p>
+the data are sorted on and is what we want here – to start with sorting observations based on <code>Treatment</code> status.</p>
 
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(vcd)
-<span class="kw">data</span>(Arthritis) <span class="co">#Double-blind clinical trial with treatment and control groups</span>
-<span class="kw">require</span>(tibble)
-Arthritis &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(Arthritis)
-<span class="co">#Homogeneity example</span>
-<span class="kw">require</span>(tabplot)
-<span class="kw">require</span>(RColorBrewer)
-<span class="kw">tableplot</span>(Arthritis,<span class="dt">select=</span><span class="kw">c</span>(Treatment,Improved,Sex,Age),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</code></pre>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="chapter5.html#cb386-1"></a><span class="kw">library</span>(vcd)</span>
+<span id="cb386-2"><a href="chapter5.html#cb386-2"></a><span class="kw">data</span>(Arthritis) <span class="co">#Double-blind clinical trial with treatment and control groups</span></span>
+<span id="cb386-3"><a href="chapter5.html#cb386-3"></a><span class="kw">library</span>(tibble)</span>
+<span id="cb386-4"><a href="chapter5.html#cb386-4"></a>Arthritis &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(Arthritis)</span>
+<span id="cb386-5"><a href="chapter5.html#cb386-5"></a><span class="co">#Homogeneity example</span></span>
+<span id="cb386-6"><a href="chapter5.html#cb386-6"></a><span class="kw">library</span>(tabplot)</span>
+<span id="cb386-7"><a href="chapter5.html#cb386-7"></a><span class="kw">library</span>(RColorBrewer)</span>
+<span id="cb386-8"><a href="chapter5.html#cb386-8"></a><span class="co"># Options needed to prevent errors on PC</span></span>
+<span id="cb386-9"><a href="chapter5.html#cb386-9"></a><span class="kw">options</span>(<span class="dt">ffbatchbytes =</span> <span class="dv">1024</span><span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">128</span>); <span class="kw">options</span>(<span class="dt">ffmaxbytes =</span> <span class="dv">1024</span><span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">128</span> <span class="op">*</span><span class="st"> </span><span class="dv">32</span>) </span>
+<span id="cb386-10"><a href="chapter5.html#cb386-10"></a><span class="kw">tableplot</span>(Arthritis,<span class="dt">select=</span><span class="kw">c</span>(Treatment,Improved,Sex,Age),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-1"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-1-1.png" alt="Tableplot of the arthritis data set." width="960" />
 <p class="caption">
@@ -370,7 +363,7 @@ have worried about whether sex and treatment were confounded and whether any
 differences in the responses might be due to sex instead of the treatment. The
 random assignment of treatment/placebo to the subjects appears to have been
 successful here in generating a mix of ages and sexes among the
-two treatment groups<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a>. The main benefit of this sort of plot is the ability to
+two treatment groups<a href="references.html#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a>. The main benefit of this sort of plot is the ability to
 visualize more than two categorical variables simultaneously. But now we want
 to focus more directly on the researchers’ main question – does the treatment
 lead to different improvement outcomes than the placebo?</p>
@@ -398,8 +391,8 @@ and column for the “Totals” in defining the size of the table. In the table,
 there seems to be many more <em>Marked</em> improvement responses (21 vs 7) and
 fewer <em>None</em> responses (13 vs 29) in the treated group compared to the
 placebo group.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(mosaic)
-<span class="kw">tally</span>(<span class="op">~</span>Treatment<span class="op">+</span>Improved, <span class="dt">data=</span>Arthritis, <span class="dt">margins=</span>T)</code></pre>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="chapter5.html#cb387-1"></a><span class="kw">library</span>(mosaic)</span>
+<span id="cb387-2"><a href="chapter5.html#cb387-2"></a><span class="kw">tally</span>(<span class="op">~</span>Treatment<span class="op">+</span>Improved, <span class="dt">data=</span>Arthritis, <span class="dt">margins=</span>T)</span></code></pre></div>
 <pre><code>##          Improved
 ## Treatment None Some Marked Total
 ##   Placebo   29    7      7    43
@@ -510,10 +503,10 @@ function formula to <code>~ y|x</code> and adding the <code>format="proportion"<
 option provides the proportions in the response categories conditional on the
 category of the predictor (these are
 called <strong><em>conditional proportions</em></strong> or the <strong><em>conditional distribution</em></strong> of,
-here, <em>Improved</em> on <em>Treatment</em>)<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a>.
+here, <em>Improved</em> on <em>Treatment</em>)<a href="references.html#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>.
 
 Note that they sum to 1.0 in each level of x, <em>placebo</em> or <em>treated</em>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tally</span>(<span class="op">~</span>Improved<span class="op">|</span>Treatment, <span class="dt">data=</span>Arthritis, <span class="dt">format=</span><span class="st">&quot;proportion&quot;</span>, <span class="dt">margins=</span>T)</code></pre>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="chapter5.html#cb389-1"></a><span class="kw">tally</span>(<span class="op">~</span>Improved<span class="op">|</span>Treatment, <span class="dt">data=</span>Arthritis, <span class="dt">format=</span><span class="st">&quot;proportion&quot;</span>, <span class="dt">margins=</span>T)</span></code></pre></div>
 <pre><code>##         Treatment
 ## Improved   Placebo   Treated
 ##   None   0.6744186 0.3170732
@@ -528,24 +521,18 @@ version of the table.
 In this application, it shows how the proportions seem to be different among categories of <em>Improvement</em> between the placebo and treatment groups. This matches the previous thoughts on
 these data, but now a difference of marked improvement of 16% vs 51% is more
 clearly a big difference. We can also display this result using a
-<strong><em>stacked bar-chart</em></strong> that displays the same information using the <code>plot</code>
+<strong><em>stacked bar chart</em></strong>  that displays the same information using the <code>plot</code>
 function with a <code>y~x</code> formula:</p>
-<p>(ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is
-for the Placebo group
-and the right bar is for the Treated group. The width of the bars is based on
-relative size of each group and the portion of the total height of each shaded
-area is the proportion of that group in each category. The darkest shading is
-for “none”, medium shading for “some”, and the lightest shading for “marked”,
-as labeled on the y-axis.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Improved<span class="op">~</span>Treatment, <span class="dt">data=</span>Arthritis,
-     <span class="dt">main=</span><span class="st">&quot;Stacked Bar Chart of Arthritis Data&quot;</span>)</code></pre>
+
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="chapter5.html#cb391-1"></a><span class="kw">plot</span>(Improved<span class="op">~</span>Treatment, <span class="dt">data=</span>Arthritis,</span>
+<span id="cb391-2"><a href="chapter5.html#cb391-2"></a>     <span class="dt">main=</span><span class="st">&quot;Stacked Bar Chart of Arthritis Data&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-2"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-2-1.png" alt="(ref:fig5-2)" width="480" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-2-1.png" alt="Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The darkest shading is for “none”, medium shading for “some”, and the lightest shading for “marked”, as labeled on the y-axis." width="480" />
 <p class="caption">
-Figure 5.2: (ref:fig5-2)
+Figure 5.2: Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The darkest shading is for “none”, medium shading for “some”, and the lightest shading for “marked”, as labeled on the y-axis.
 </p>
 </div>
-<p>The stacked bar-chart in Figure <a href="chapter5.html#fig:Figure5-2">5.2</a> displays the previous
+<p>The stacked bar chart in Figure <a href="chapter5.html#fig:Figure5-2">5.2</a> displays the previous
 conditional proportions for the groups, with
 the same relatively clear difference between the groups persisting. If you run
 the <code>plot</code> function with variables that are
@@ -571,7 +558,7 @@ table is formed based on responses on two categorical variables.
 
 When one
 sample is collected and analyzed using a contingency table, the appropriate
-analysis is called an <strong><em>Independence</em></strong> or <strong><em>Association test</em></strong>.
+analysis is called a Chi-square test of <strong><em>Independence</em></strong> or <strong><em>Association</em></strong>.
 
 In this
 situation, it is not necessary to have variables that are clearly classified
@@ -597,25 +584,22 @@ Figure <a href="chapter5.html#fig:Figure5-3">5.3</a> contains
 a diagram of the
 data collection processes and can help you to identify the appropriate analysis
 situation.</p>
-<p>(ref:fig5-3) Diagram of the scenarios involved
-in Homogeneity and Independence tests. Homogeneity testing involves R random
-samples or subjects assigned to R groups. Independence testing involves a
-single random sample and measurements on two categorical variables.</p>
+
 <div class="figure"><span id="fig:Figure5-3"></span>
-<img src="chapter5_files/image027.png" alt="(ref:fig5-3)" width="479" />
+<img src="chapter5_files/image027.png" alt="Diagram of the scenarios involved in Homogeneity and Independence tests. Homogeneity testing involves R random samples or subjects assigned to R groups. Independence testing involves a single random sample and measurements on two categorical variables." width="100%" />
 <p class="caption">
-Figure 5.3: (ref:fig5-3)
+Figure 5.3: Diagram of the scenarios involved in Homogeneity and Independence tests. Homogeneity testing involves R random samples or subjects assigned to R groups. Independence testing involves a single random sample and measurements on two categorical variables.
 </p>
 </div>
 <p>You will discover that the test statistics are the same for both methods,
 which can create some desire
-to assume that the differences in the data collection doesn’t matter. In
+to assume that the differences in the data collection don’t matter. In
 Homogeneity designs, the sample size in each group
 <span class="math inline">\((\mathbf{n_{1\bullet}},\mathbf{n_{2\bullet},\ldots,\mathbf{n_{R\bullet}}})\)</span>
-is fixed.
+is fixed (researcher chooses the size of each group).
 
 In Independence situations, the total sample size <span class="math inline">\(\mathbf{N}\)</span> is
-fixed but all the <span class="math inline">\(\mathbf{n_{r\bullet}}\text{&#39;s}\)</span> are random.
+fixed but all the <span class="math inline">\(\mathbf{n_{r\bullet}}\text{&#39;s}\)</span> are random (we need the data set to know how many are in each group).
 
 These
 differences impact the graphs, hypotheses, and conclusions used even though
@@ -629,8 +613,8 @@ to make sure we know which we’re doing!</p>
 to assess evidence related to whether the treatment “matters” in Homogeneity
 situations.
 
-This situation is similar to what we did in the One-Way ANOVA
-situation with quantitative responses in Chapter <a href="chapter3.html#chapter3">3</a> but the parameters now
+This situation is similar to what we did in the One-Way ANOVA (Chapter <a href="chapter3.html#chapter3">3</a>)
+situation with quantitative responses but the parameters now
 relate to proportions in the response variable categories across the groups.
 First we can define the conditional population proportions in level <span class="math inline">\(c\)</span> (column
 <span class="math inline">\(c=1,\ldots,C\)</span>) of group <span class="math inline">\(r\)</span> (row <span class="math inline">\(r=1,\ldots,R\)</span>) as <span class="math inline">\(p_{rc}\)</span>.
@@ -720,11 +704,12 @@ Level C</strong></th>
 the <span class="math inline">\(R\)</span> populations.
 
 This means that the null hypothesis is:</p>
-
+<!-- \newpage -->
 <p><span class="math display">\[\begin{array}{rl}
 \mathbf{H_0:}\  &amp; \mathbf{p_{11}=p_{21}=\ldots=p_{R1}} \textbf{ and } \mathbf{p_{12}=p_{22}=\ldots=p_{R2}}  \textbf{ and } \mathbf{p_{13}=p_{23}=\ldots=p_{R3}} \\ 
 &amp; \textbf{ and } \mathbf{\ldots} \textbf{ and }\mathbf{p_{1C}=p_{2C}=\ldots=p_{RC}}. \\
 \end{array}\]</span></p>
+
 <p>If all the groups are the same, then they all have the same conditional proportions and we can
 more simply write the null hypothesis as:</p>
 <p><span class="math display">\[\mathbf{H_0:(p_{r1},p_{r2},\ldots,p_{rC})=(p_1,p_2,\ldots,p_C)} \textbf{ for all } \mathbf{r}.\]</span></p>
@@ -744,12 +729,11 @@ reproduce words, equivalently, we can say:</p>
 </ul>
 <p>To make this concrete, consider what the proportions could look like if they satisfied
 the null hypothesis for the <em>Arthritis</em> example, as displayed in Figure <a href="chapter5.html#fig:Figure5-4">5.4</a>.</p>
-<p>(ref:fig5-4) Plot of one way that the Arthritis proportions could have been if the null
-hypothesis had been true.</p>
+
 <div class="figure"><span id="fig:Figure5-4"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-4-1.png" alt="(ref:fig5-4)" width="480" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-4-1.png" alt="Plot of one way that the Arthritis proportions could have been if the null hypothesis had been true." width="480" />
 <p class="caption">
-Figure 5.4: (ref:fig5-4)
+Figure 5.4: Plot of one way that the Arthritis proportions could have been if the null hypothesis had been true.
 </p>
 </div>
 <p>Note that the proportions in the different response categories do not need to be the
@@ -757,7 +741,7 @@ same just that the distribution needs
 to be the same across the groups. The null hypothesis does <em>not</em>
 require that all three response categories (<em>none</em>, <em>some</em>, <em>marked</em>) be equally
 likely. It assumes
-that whatever the distribution of proportions is across these three levels that
+that whatever the distribution of proportions is across these three levels of the response that
 there is no difference in that distribution between the explanatory variable
 (here treated/placebo) groups. Figure <a href="chapter5.html#fig:Figure5-4">5.4</a> shows an example of a
 situation where
@@ -796,7 +780,7 @@ the hypotheses for an Independence test for variables <span class="math inline">
 </ul>
 <p>To illustrate a test of independence, consider an example involving
 data from a national random sample
-taken prior to the 2000 US elections from the data set <code>election</code>
+taken prior to the 2000 U.S. elections from the data set <code>election</code>
 from the package <code>poLCA</code> (<span class="citation">Linzer and Lewis. (<a href="#ref-R-poLCA" role="doc-biblioref">2014</a>)</span>, <span class="citation">Linzer and Lewis (<a href="#ref-Linzer2011" role="doc-biblioref">2011</a>)</span>). Each respondent’s
 democratic-republican partisan identification was collected,
 provided in the <code>PARTY</code> variable for measurements on a seven-point
@@ -806,7 +790,7 @@ scale from (1) <em>Strong Democrat</em>, (2) <em>Weak Democrat</em>,
 (7) <em>Strong Republican</em>. The <code>VOTEF</code> variable that is created below
 will contain the candidate that the participants voted for (the data set was
 originally coded with 1, 2, and 3 for the candidates and we replaced those
-levels with the candidate names). The contingency table shows some expected
+<code>levels</code>  with the candidate names). The contingency table shows some expected
 results, that individuals with strong party affiliations tend to vote for the
 party nominee with strong support for Gore in the democrats
 (<code>PARTY</code> = 1 and 2) and strong support for Bush in the republicans
@@ -822,18 +806,18 @@ say that they voted for Gore, informs the types of responses that you would
 expect for that person, here that they are likely affiliated with the Democratic
 Party. When there is no relationship (the null hypothesis here), knowing the
 level of one variable is not informative about the level of the other variable.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(poLCA)
-<span class="co"># 2000 Survey - use package=&quot;&quot; because other data sets in R have same name</span>
-<span class="kw">data</span>(election, <span class="dt">package=</span><span class="st">&quot;poLCA&quot;</span>) 
-election &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(election)
-<span class="co"># Subset variables and remove missing values</span>
-election2 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(election[,<span class="kw">c</span>(<span class="st">&quot;PARTY&quot;</span>,<span class="st">&quot;VOTE3&quot;</span>)])
-election2<span class="op">$</span>VOTEF &lt;-<span class="st"> </span><span class="kw">factor</span>(election2<span class="op">$</span>VOTE3)
-<span class="kw">levels</span>(election2<span class="op">$</span>VOTEF) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Gore&quot;</span>,<span class="st">&quot;Bush&quot;</span>,<span class="st">&quot;Other&quot;</span>)
-<span class="kw">levels</span>(election2<span class="op">$</span>VOTEF)</code></pre>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="chapter5.html#cb392-1"></a><span class="kw">library</span>(poLCA)</span>
+<span id="cb392-2"><a href="chapter5.html#cb392-2"></a><span class="co"># 2000 Survey - use package=&quot;&quot; because other data sets in R have same name</span></span>
+<span id="cb392-3"><a href="chapter5.html#cb392-3"></a><span class="kw">data</span>(election, <span class="dt">package=</span><span class="st">&quot;poLCA&quot;</span>) </span>
+<span id="cb392-4"><a href="chapter5.html#cb392-4"></a>election &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(election)</span>
+<span id="cb392-5"><a href="chapter5.html#cb392-5"></a><span class="co"># Subset variables and remove missing values</span></span>
+<span id="cb392-6"><a href="chapter5.html#cb392-6"></a>election2 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(election[,<span class="kw">c</span>(<span class="st">&quot;PARTY&quot;</span>,<span class="st">&quot;VOTE3&quot;</span>)])</span>
+<span id="cb392-7"><a href="chapter5.html#cb392-7"></a>election2<span class="op">$</span>VOTEF &lt;-<span class="st"> </span><span class="kw">factor</span>(election2<span class="op">$</span>VOTE3)</span>
+<span id="cb392-8"><a href="chapter5.html#cb392-8"></a><span class="kw">levels</span>(election2<span class="op">$</span>VOTEF) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Gore&quot;</span>,<span class="st">&quot;Bush&quot;</span>,<span class="st">&quot;Other&quot;</span>) <span class="co">#Replace 1,2,3 with meaningful names</span></span>
+<span id="cb392-9"><a href="chapter5.html#cb392-9"></a><span class="kw">levels</span>(election2<span class="op">$</span>VOTEF) <span class="co">#Check new names of levels in VOTEF</span></span></code></pre></div>
 <pre><code>## [1] &quot;Gore&quot;  &quot;Bush&quot;  &quot;Other&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">electable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>PARTY<span class="op">+</span>VOTEF, <span class="dt">data=</span>election2)
-electable</code></pre>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="chapter5.html#cb394-1"></a>electable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>PARTY<span class="op">+</span>VOTEF, <span class="dt">data=</span>election2) <span class="co">#Contingency table</span></span>
+<span id="cb394-2"><a href="chapter5.html#cb394-2"></a>electable</span></code></pre></div>
 <pre><code>##      VOTEF
 ## PARTY Gore Bush Other
 ##     1  238    6     2
@@ -870,7 +854,7 @@ and a new graph called a <strong><em>mosaic plot</em></strong> (using the <code>
 function).
 </p>
 <p>Mosaic plots display a box for each cell count whose area corresponds
-to the proportion of the total data set that is in that cell
+to the proportion of the <em>total</em> data set that is in that cell
 <span class="math inline">\((n_{rc}/\mathbf{N})\)</span>. In some cases, the bars can be short or narrow
 if proportions of the total are small and the labels can be
 hard to read but the same bars or a single line exist for each category of the
@@ -897,7 +881,7 @@ party affiliation. Comparing the size of the 4s &amp; <em>Other</em> segment
 with the 3s &amp; <em>Other</em> segment, one should conclude that the 3s &amp; <em>Other</em>
 segment is a slightly larger portion of the total data set. There is
 generally a gradient of decreasing/increasing voting rates for the
-two primary candidates
+two main party candidates
 across the party affiliations, but there are a few exceptions. For
 example, the
 proportion of <em>Gore</em> voters goes up slightly between the <code>PARTY</code>
@@ -909,15 +893,14 @@ natural ordering.</p>
 <p>The mosaic plots are best made on the tables created by the <code>tally</code>
 function from a table that just contains the counts (<strong>no totals</strong>):
 </p>
-<p>(ref:fig5-5) Mosaic plot of the 2000 election data comparing party
-affiliation and voting results.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Makes a mosaic plot where areas are related to the proportion of</span>
-<span class="co"># the total in the table</span>
-<span class="kw">mosaicplot</span>(electable) </code></pre>
+
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="chapter5.html#cb396-1"></a><span class="co"># Makes a mosaic plot where areas are related to the proportion of</span></span>
+<span id="cb396-2"><a href="chapter5.html#cb396-2"></a><span class="co"># the total in the table</span></span>
+<span id="cb396-3"><a href="chapter5.html#cb396-3"></a><span class="kw">mosaicplot</span>(electable) </span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-5"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-5-1.png" alt="(ref:fig5-5)" width="480" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-5-1.png" alt="Mosaic plot of the 2000 election data comparing party affiliation and voting results." width="480" />
 <p class="caption">
-Figure 5.5: (ref:fig5-5)
+Figure 5.5: Mosaic plot of the 2000 election data comparing party affiliation and voting results.
 </p>
 </div>
 <p>In general, the results here are not too surprising as the respondents
@@ -938,19 +921,18 @@ here would involve considering whether knowing the party level could help you
 predict the voting response and that is not the case in
 Figure <a href="chapter5.html#fig:Figure5-6">5.6</a> but was in certain places in
 Figure <a href="chapter5.html#fig:Figure5-5">5.5</a>.</p>
-<p>(ref:fig5-6) Mosaic plot of what the 2000 election data would look
-like if the null hypothesis of no relationship were true.</p>
+
 <div class="figure"><span id="fig:Figure5-6"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-6-1.png" alt="(ref:fig5-6)" width="480" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-6-1.png" alt="Mosaic plot of what the 2000 election data would look like if the null hypothesis of no relationship were true." width="480" />
 <p class="caption">
-Figure 5.6: (ref:fig5-6)
+Figure 5.6: Mosaic plot of what the 2000 election data would look like if the null hypothesis of no relationship were true.
 </p>
 </div>
 </div>
 <div id="section5-4" class="section level2">
 <h2><span class="header-section-number">5.4</span> Models for R by C tables</h2>
 <p>This section is very short in this chapter because we really do not use any
-“models” in this material. There are some complicated
+“models” in this Chapter. There are some complicated
 statistical models that can be employed in these situations, but they are
 beyond the scope of this book. What we do have in this situation is our
 original data summary in the form of a contingency table, graphs of the results
@@ -974,10 +956,10 @@ under the null hypothesis, with large differences between what
 we observed and what we
 expect under the null leading to evidence against the null hypothesis. To help
 this statistic to follow a named parametric distribution and provide some
-insights into sources of interesting differences from the null hypothesis, we <strong><em>standardize</em></strong><a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a>
+insights into sources of interesting differences from the null hypothesis, we <strong><em>standardize</em></strong><a href="references.html#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a>
 the difference between the observed and expected counts by the square-root of
 the expected count.
-
+ 
 The <span class="math inline">\(\mathbf{X^2}\)</span> <strong><em>statistic</em></strong> is based on
 the sum of squared standardized differences,</p>
 <p><span class="math display">\[\boldsymbol{X^2 = \Sigma^{RC}_{i=1}\left(\frac{Observed_i-Expected_i}
@@ -987,7 +969,7 @@ table of the square of the difference between observed and expected
 cell counts divided by the square root of the
 expected cell count. To calculate this test statistic, it useful to start with
 a table of expected cell counts to go with our contingency table of observed
-counts. The expected cell counts are easiest to understand in the
+counts.  The expected cell counts are easiest to understand in the
 homogeneity situation but are calculated the same in either scenario.</p>
 <p>The idea underlying finding the <strong><em>expected cell counts</em></strong> is to find
 how many observations we would expect in category <span class="math inline">\(c\)</span> given the sample
@@ -1018,18 +1000,16 @@ row <span class="math inline">\(r\)</span> and column <span class="math inline">
 <p>Table <a href="chapter5.html#tab:Table5-3">5.3</a> demonstrates the calculations of the
 expected cell counts using this formula for all 6 cells in the <span class="math inline">\(2\times 3\)</span>
 table.</p>
-<p>(ref:fig5-7) Stacked bar chart that could occur if the null
-hypothesis were true for the Arthritis study.</p>
+
 <div class="figure"><span id="fig:Figure5-7"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-7-1.png" alt="(ref:fig5-7)" width="480" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-7-1.png" alt="Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study." width="480" />
 <p class="caption">
-Figure 5.7: (ref:fig5-7)
+Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study.
 </p>
 </div>
-<p>(ref:tab5-3) Demonstration of calculation of expected cell counts
-for Arthritis data.</p>
+
 <table>
-<caption><span id="tab:Table5-3">Table 5.3: </span> (ref:tab5-3)</caption>
+<caption><span id="tab:Table5-3">Table 5.3: </span> Demonstration of calculation of expected cell counts for Arthritis data.</caption>
 <colgroup>
 <col width="8%" />
 <col width="25%" />
@@ -1087,23 +1067,24 @@ for Arthritis data.</p>
 
 <p>Of course, using R can help us avoid tedium like this… The main
 engine for results in this chapter is the <code>chisq.test</code>
-function. It operates on a table of
+function.  It operates on a table of
 counts that has been produced <strong>without row or column totals</strong>.</p>
-
+<!-- \newpage -->
 <p>For example, <code>Arthtable</code> below contains just the observed cell
-counts. Applying the <code>chisq.test</code> function to <code>Arthtable</code>
+counts. Applying the <code>chisq.test</code> function<a href="references.html#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a> to <code>Arthtable</code>
 provides a variety of useful output. For the moment, we are just
 going to extract the information in the “<code>expected</code>” attribute of
-the results from running this function (using <code>chisq.test()$expected)</code>.
+the results from running this function (using <code>chisq.test(TABLENAME)$expected)</code>.
 These are the expected cell counts which match the previous calculations
 except for some rounding in the hand-calculations.</p>
-<pre class="sourceCode r"><code class="sourceCode r">Arthtable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>Treatment<span class="op">+</span>Improved, <span class="dt">data=</span>Arthritis)
-Arthtable</code></pre>
+
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="chapter5.html#cb397-1"></a>Arthtable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>Treatment<span class="op">+</span>Improved, <span class="dt">data=</span>Arthritis)</span>
+<span id="cb397-2"><a href="chapter5.html#cb397-2"></a>Arthtable</span></code></pre></div>
 <pre><code>##          Improved
 ## Treatment None Some Marked
 ##   Placebo   29    7      7
 ##   Treated   13    7     21</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>expected</code></pre>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="chapter5.html#cb399-1"></a><span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>expected</span></code></pre></div>
 <pre><code>##          Improved
 ## Treatment None     Some   Marked
 ##   Placebo 21.5 7.166667 14.33333
@@ -1112,7 +1093,7 @@ Arthtable</code></pre>
 attention to calculating the test
 statistic. It is possible to lay out the “contributions” to the
 <span class="math inline">\(X^2\)</span> statistic in a table format, allowing a simple way to finally
-calculate the statistic without losing any numbers. For <strong>each cell</strong>
+calculate the statistic without losing any information. For <strong>each cell</strong>
 we need to find</p>
 <p><span class="math display">\[(\text{observed}-\text{expected})/\sqrt{\text{expected}}),\]</span></p>
 <p><strong>square them</strong>, and then we need to add them <strong>all</strong> up. In the
@@ -1154,14 +1135,14 @@ in Table <a href="chapter5.html#tab:Table5-4">5.4</a>.</p>
 <span class="math inline">\(={\color{red}{2.616+0.004+3.752+2.744+0.004+3.935}}=13.055\)</span></p>
 <p>Our favorite function in this chapter, <code>chisq.test</code>, does not provide
 the contributions to the <span class="math inline">\(X^2\)</span> statistic directly. It provides a related
-quantity called the</p>
+quantity called the </p>
 <p><span class="math display">\[\textbf{standardized residual}=\left(\frac{\text{Observed}_i -
 \text{Expected}_i}{\sqrt{\text{Expected}_i}}\right),\]</span></p>
 <p>which, when squared (in R, squaring is accomplished using <code>^2</code>),
 is the contribution of that particular cell to the <span class="math inline">\(X^2\)</span>
 statistic that is displayed in Table <a href="chapter5.html#tab:Table5-4">5.4</a>.</p>
-
-<pre class="sourceCode r"><code class="sourceCode r">(<span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>residuals)<span class="op">^</span><span class="dv">2</span></code></pre>
+<!-- \newpage -->
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="chapter5.html#cb401-1"></a>(<span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>residuals)<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>##          Improved
 ## Treatment        None        Some      Marked
 ##   Placebo 2.616279070 0.003875969 3.751937984
@@ -1172,22 +1153,22 @@ and then failing to make the <span class="math inline">\(X^2\)</span> contributi
 (remember you are <strong>squaring the entire quantity</strong> in the parentheses
 and so the sign has to go positive!). In R, we can add up the cells using
 the <code>sum</code> function over the entire table of numbers:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>((<span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>residuals)<span class="op">^</span><span class="dv">2</span>)</code></pre>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="chapter5.html#cb403-1"></a><span class="kw">sum</span>((<span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>residuals)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 13.05502</code></pre>
 <p>Or we can let R do all this hard work for us and get straight to the
 good stuff:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(Arthtable)</code></pre>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="chapter5.html#cb405-1"></a><span class="kw">chisq.test</span>(Arthtable)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  Arthtable
 ## X-squared = 13.055, df = 2, p-value = 0.001463</code></pre>
-<p>The <code>chisq.test</code> function reports a p-value by
+<p>The <code>chisq.test</code>  function reports a p-value by
 default. Before we discover how it got that result, we can rely on our
 permutation methods to obtain a distribution for the <span class="math inline">\(X^2\)</span> statistic
 under the null hypothesis. As in Chapters <a href="chapter2.html#chapter2">2</a> and <a href="chapter3.html#chapter3">3</a>,
 this will allow us to find a
-p-value while relaxing one of our assumptions<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a>.
+p-value while relaxing one of our assumptions<a href="references.html#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a>.
 In the One-WAY ANOVA in Chapter <a href="chapter3.html#chapter3">3</a>, we permuted the
 grouping variable relative
 to the responses, mimicking the null hypothesis that the groups are the same
@@ -1204,7 +1185,7 @@ The observed statistic is the
 Like the <span class="math inline">\(F\)</span>-statistic, it ends up
 that only results in the right tail of this distribution are desirable for
 finding evidence against the null hypothesis
-because all the values have to be positive. You can see this by observing that
+because all the values showing deviation from the null in any direction going into the statistic have to be positive. You can see this by observing that
 values of the <span class="math inline">\(X^2\)</span> statistic close to 0 are generated when the
 observed values are close to the expected values and that sort of result should
 not be used to find evidence against the null. When the observed and expected
@@ -1216,32 +1197,31 @@ results we obtain in a single permutation of the treated/placebo labels
 – Figure <a href="chapter5.html#fig:Figure5-8">5.8</a> (top left panel) shows
 a permuted data set that produced <span class="math inline">\(X^{2*} = 0.62\)</span>. Visually, you can only
 see minimal differences between the treatment and placebo groups showing up in
-the stacked bar-chart. Three other permuted data sets are displayed in
+the stacked bar chart. Three other permuted data sets are displayed in
 Figure <a href="chapter5.html#fig:Figure5-8">5.8</a> showing the variability in results in
 permutations but that none get close
-to showing the differences in the bars observed in the real data set.</p>
-<pre class="sourceCode r"><code class="sourceCode r">Arthperm &lt;-<span class="st"> </span>Arthritis
-Arthperm<span class="op">$</span>PermTreatment &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">shuffle</span>(Arthperm<span class="op">$</span>Treatment))</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(Improved<span class="op">~</span>PermTreatment, <span class="dt">data=</span>Arthperm,
-     <span class="dt">main=</span><span class="st">&quot;Stacked Bar Chart of Permuted Arthritis Data&quot;</span>)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">Arthpermtable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>PermTreatment<span class="op">+</span>Improved, <span class="dt">data=</span>Arthperm)
-Arthpermtable</code></pre>
+to showing the differences in the bars observed in the real data set in Figure <a href="chapter5.html#fig:Figure5-2">5.2</a>.</p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="chapter5.html#cb407-1"></a>Arthperm &lt;-<span class="st"> </span>Arthritis</span>
+<span id="cb407-2"><a href="chapter5.html#cb407-2"></a>Arthperm<span class="op">$</span>PermTreatment &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">shuffle</span>(Arthperm<span class="op">$</span>Treatment))</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="chapter5.html#cb408-1"></a><span class="kw">plot</span>(Improved<span class="op">~</span>PermTreatment, <span class="dt">data=</span>Arthperm,</span>
+<span id="cb408-2"><a href="chapter5.html#cb408-2"></a>     <span class="dt">main=</span><span class="st">&quot;Stacked Bar Chart of Permuted Arthritis Data&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="chapter5.html#cb409-1"></a>Arthpermtable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>PermTreatment<span class="op">+</span>Improved, <span class="dt">data=</span>Arthperm)</span>
+<span id="cb409-2"><a href="chapter5.html#cb409-2"></a>Arthpermtable</span></code></pre></div>
 <pre><code>##              Improved
 ## PermTreatment None Some Marked
 ##       Placebo   22    6     15
 ##       Treated   20    8     13</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(Arthpermtable)</code></pre>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="chapter5.html#cb411-1"></a><span class="kw">chisq.test</span>(Arthpermtable)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  Arthpermtable
 ## X-squared = 0.47646, df = 2, p-value = 0.788</code></pre>
-<p>(ref:fig5-8) Stacked bar charts of four permuted Arthritis data sets
-that produced <span class="math inline">\(X^2\)</span> between 0.62 and 2.38.</p>
+
 <div class="figure"><span id="fig:Figure5-8"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-8-1.png" alt="(ref:fig5-8)" width="672" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-8-1.png" alt="Stacked bar charts of four permuted Arthritis data sets that produced \(X^2\) between 0.62 and 2.38." width="672" />
 <p class="caption">
-Figure 5.8: (ref:fig5-8)
+Figure 5.8: Stacked bar charts of four permuted Arthritis data sets that produced <span class="math inline">\(X^2\)</span> between 0.62 and 2.38.
 </p>
 </div>
 <p>To build the permutation-based null distribution for the <span class="math inline">\(X^2\)</span> statistic,
@@ -1249,43 +1229,42 @@ we need to collect up the test statistics (<span class="math inline">\(X^{2*}\)<
 results. The code is similar to permutation tests in Chapters
 <a href="chapter2.html#chapter2">2</a> and <a href="chapter3.html#chapter3">3</a> except
 that each permutation generates a new contingency table that is summarized and
-provided to <code>chisq.test</code> to analyze. We again extract the
-<code>$statistic</code>.
+provided to <code>chisq.test</code> to analyze. We extract the
+<code>$statistic</code> attribute of the results from running <code>chisq.test</code>.
 </p>
-<p>(ref:fig5-9) Permutation distribution for the <span class="math inline">\(X^2\)</span> statistic for
-the Arthritis data with an observed <span class="math inline">\(X^2\)</span> of 13.1 (bold, vertical line).</p>
-<pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>statistic; Tobs</code></pre>
+
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="chapter5.html#cb413-1"></a>Tobs &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>statistic; Tobs</span></code></pre></div>
 <pre><code>## X-squared 
 ##  13.05502</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
-B &lt;-<span class="st"> </span><span class="dv">1000</span>
-Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)
-<span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
-  Tstar[b] &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="kw">tally</span>(<span class="op">~</span><span class="kw">shuffle</span>(Treatment)<span class="op">+</span>Improved,
-                               <span class="dt">data=</span>Arthritis))<span class="op">$</span>statistic
-}
-<span class="kw">pdata</span>(Tstar, Tobs, <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</code></pre>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="chapter5.html#cb415-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb415-2"><a href="chapter5.html#cb415-2"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb415-3"><a href="chapter5.html#cb415-3"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
+<span id="cb415-4"><a href="chapter5.html#cb415-4"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</span>
+<span id="cb415-5"><a href="chapter5.html#cb415-5"></a>  Tstar[b] &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="kw">tally</span>(<span class="op">~</span><span class="kw">shuffle</span>(Treatment)<span class="op">+</span>Improved,</span>
+<span id="cb415-6"><a href="chapter5.html#cb415-6"></a>                               <span class="dt">data=</span>Arthritis))<span class="op">$</span>statistic</span>
+<span id="cb415-7"><a href="chapter5.html#cb415-7"></a>}</span>
+<span id="cb415-8"><a href="chapter5.html#cb415-8"></a><span class="kw">pdata</span>(Tstar, Tobs, <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0.002</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,Tobs<span class="op">+</span><span class="dv">1</span>))
-<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">3</span>)
-<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>,
-     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,Tobs<span class="op">+</span><span class="dv">1</span>), <span class="dt">lwd=</span><span class="dv">2</span>)
-<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</code></pre>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="chapter5.html#cb417-1"></a><span class="kw">hist</span>(Tstar, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,Tobs<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb417-2"><a href="chapter5.html#cb417-2"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb417-3"><a href="chapter5.html#cb417-3"></a><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>,</span>
+<span id="cb417-4"><a href="chapter5.html#cb417-4"></a>     <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,Tobs<span class="op">+</span><span class="dv">1</span>), <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb417-5"><a href="chapter5.html#cb417-5"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-9"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-9-1.png" alt="(ref:fig5-9)" width="480" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-9-1.png" alt="Permutation distribution for the \(X^2\) statistic for the Arthritis data with an observed \(X^2\) of 13.1 (bold, vertical line)." width="480" />
 <p class="caption">
-Figure 5.9: (ref:fig5-9)
+Figure 5.9: Permutation distribution for the <span class="math inline">\(X^2\)</span> statistic for the Arthritis data with an observed <span class="math inline">\(X^2\)</span> of 13.1 (bold, vertical line).
 </p>
 </div>
-<p>For an observed <span class="math inline">\(X^2\)</span> statistic of 13.055, four out of 1,000 permutation
+<p>For an observed <span class="math inline">\(X^2\)</span> statistic of 13.055, two out of 1,000 permutation
 results matched or exceeded this value (<code>pdata</code> returned a value of
-0.002).
+0.002) as displayed in Figure <a href="chapter5.html#fig:Figure5-9">5.9</a>.
 
 This suggests that our observed result is quite extreme
 relative to the null
 hypothesis and provides strong evidence against it.
 </p>
-
+<!-- \newpage -->
 <p><strong>Validity conditions</strong> for a permutation <span class="math inline">\(X^2\)</span> test are:
 </p>
 <ol style="list-style-type: decimal">
@@ -1338,7 +1317,7 @@ this condition is violated, it is better to use the permutation approach.
 The <code>chisq.test</code> function will provide a warning message
 to help you notice this. But it is good practice to always explore
 the expected cell counts using <code>chisq.test(...)$expected</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>expected</code></pre>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="chapter5.html#cb418-1"></a><span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>expected</span></code></pre></div>
 <pre><code>##          Improved
 ## Treatment None     Some   Marked
 ##   Placebo 21.5 7.166667 14.33333
@@ -1364,49 +1343,44 @@ hypothesis. The p-value is based on the area to the right of the observed
 
 Note that this is very similar to the permutation result found
 previously for these data.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pchisq</span>(<span class="fl">13.055</span>, <span class="dt">df=</span><span class="dv">2</span>, <span class="dt">lower.tail=</span>F)</code></pre>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="chapter5.html#cb420-1"></a><span class="kw">pchisq</span>(<span class="fl">13.055</span>, <span class="dt">df=</span><span class="dv">2</span>, <span class="dt">lower.tail=</span>F)</span></code></pre></div>
 <pre><code>## [1] 0.001462658</code></pre>
 <p>We’ll see more examples of the <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distributions
 in each of the examples that follow.</p>
-<p>(ref:fig5-10) <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with two degrees of
-freedom with 13.1 indicated with a vertical line.</p>
+
 <div class="figure"><span id="fig:Figure5-10"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-10-1.png" alt="(ref:fig5-10)" width="480" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-10-1.png" alt="\(\boldsymbol{\chi^2}\)-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line." width="480" />
 <p class="caption">
-Figure 5.10: (ref:fig5-10)
+Figure 5.10: <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line.
 </p>
 </div>
 <p>A small side note about sample sizes is warranted here. In
 contingency tables, especially those based
 on survey data, it is common to have large overall sample sizes (<span class="math inline">\(N\)</span>).
-With large sample sizes, it becomes easy to reject the null the
-hypothesis, even when the “distance” from the null
-is relatively minor and possibly unimportant. By this we mean that it might be possible to reject the
-null hypothesis even if the observed proportions are a small practical distance
+With large sample sizes, it becomes easy to find strong evidence against the null hypothesis, even when the “distance” from the null
+is relatively minor and possibly unimportant. By this we mean that the observed proportions are a small practical distance
 from the situation described in the null. After obtaining a small p-value, we
 need to consider whether we have obtained <strong><em>practical significance</em></strong>
 (or maybe better described as <strong><em>practical importance</em></strong>) to
 accompany our discussion
-of rejecting the null hypothesis. Whether a result is large enough to
+of strong evidence against the null hypothesis. Whether a result is large enough to
 be of practical
 importance can only be judged by knowing something about the situation we are
 studying and by providing a good summary of our results to allow experts to
-assess the size and importance of the result. “Statistical significance” (what
-our tests address) is just a first step in any situation although many
-researchers are so happy to see small p-values that this is their last step.</p>
+assess the size and importance of the result. Unfortunately, many
+researchers are so happy to see small p-values that this is their last step. We encountered a similar situation in the car overtake distance data set where a large sample size provided a data set that had a small p-value and possibly minor differences in the means driving it.</p>
 <p>If we revisit our observed results, re-plotted in Figure <a href="chapter5.html#fig:Figure5-11">5.11</a>
 since Figure <a href="chapter5.html#fig:Figure5-2">5.2</a> is many pages
 earlier, knowing that we have strong evidence against the null hypothesis
 of no difference between <em>Placebo</em> and <em>Treated</em> groups, what can we
 say about the effectiveness of the arthritis medication? It seems that there is a real and important increase in the proportion
 of patients getting improvement (<em>Some</em> or <em>Marked</em>). If the differences
-“looked” smaller, even with a small p-value you might not recommend someone take the drug…</p>
-<p>(ref:fig5-11) Stacked bar chart of the Arthritis data comparing
-<em>Treated</em> and <em>Placebo</em>.</p>
+“looked” smaller, even with a small p-value you<a href="references.html#fn86" class="footnote-ref" id="fnref86"><sup>86</sup></a> might not recommend someone take the drug…</p>
+
 <div class="figure"><span id="fig:Figure5-11"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-11-1.png" alt="(ref:fig5-11)" width="480" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-11-1.png" alt="Stacked bar chart of the Arthritis data comparing Treated and Placebo." width="960" />
 <p class="caption">
-Figure 5.11: (ref:fig5-11)
+Figure 5.11: Stacked bar chart of the Arthritis data comparing <em>Treated</em> and <em>Placebo</em>.
 </p>
 </div>
 </div>
@@ -1446,31 +1420,28 @@ applied whether we are performing an Independence or
 Homogeneity test – both are evaluated with the same <span class="math inline">\(X^2\)</span> statistic so
 the large standardized residuals are of interest in both situations. Both types
 of results are shown for the Arthritis data table:</p>
-<p>(ref:fig5-12) Mosaic plot of the Arthritis data with large standardized
-residuals indicated (actually, there were none that were indicated
-because all were less than 2).</p>
+
 <pre><code>##          Improved
 ## Treatment        None        Some      Marked
 ##   Placebo  1.61749160 -0.06225728 -1.93699199
 ##   Treated -1.65647289  0.06375767  1.98367320</code></pre>
 <div class="figure"><span id="fig:Figure5-12"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-12-1.png" alt="(ref:fig5-12)" width="480" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-12-1.png" alt="Mosaic plot of the Arthritis data with large standardized residuals indicated (actually, there were none that were indicated because all were less than 2). Note that dashed borders correspond to negative standardized residuals (observed less than expected) and solid borders are positive standardized residuals (observed more than expected)." width="960" />
 <p class="caption">
-Figure 5.12: (ref:fig5-12)
+Figure 5.12: Mosaic plot of the Arthritis data with large standardized residuals indicated (actually, there were none that were indicated because all were less than 2). Note that dashed borders correspond to negative standardized residuals (observed less than expected) and solid borders are positive standardized residuals (observed more than expected).
 </p>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>residuals
-<span class="kw">mosaicplot</span>(Arthtable, <span class="dt">shade=</span>T)</code></pre>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="chapter5.html#cb423-1"></a><span class="kw">chisq.test</span>(Arthtable)<span class="op">$</span>residuals</span>
+<span id="cb423-2"><a href="chapter5.html#cb423-2"></a><span class="kw">mosaicplot</span>(Arthtable, <span class="dt">shade=</span>T)</span></code></pre></div>
 <p>In these data, the standardized residuals are all less than 2 in
 magnitude so Figure <a href="chapter5.html#fig:Figure5-12">5.12</a> isn’t
 too helpful but this type of plot is in other examples. The largest
 contributions to the <span class="math inline">\(X^2\)</span> statistic come from the <em>Placebo</em> and <em>Treated</em>
 groups in the <em>Marked</em> improvement cells. Those standardized residuals
-are -1.94 and 1.98 (both really close to 2), showing that <em>placebo</em>
-group had <strong>noticeably fewer</strong> <em>Marked</em> improvement<br />
+are -1.94 and 1.98 (both really close to 2), showing that the <em>placebo</em>
+group had <strong>noticeably fewer</strong> <em>Marked</em> improvement
 <strong>results than expected</strong> and the <em>Treated</em> group <strong>had noticeably more</strong>
-<em>Marked</em> improvement responses <strong>than expected if the null hypothesis
-was true</strong>. Similarly but with smaller magnitudes, there were more <em>None</em>
+<em>Marked</em> improvement responses <strong>than expected if the null hypothesis was true</strong>. Similarly but with smaller magnitudes, there were more <em>None</em>
 results than expected in the <em>Placebo</em> group and fewer <em>None</em> results
 than expected in the <em>Treated</em> group. The standardized residuals were
 very small in the two cells for the <em>Some</em> improvement category, showing
@@ -1487,7 +1458,7 @@ completing an analysis.</p>
 <li><p>Identify the data collection method and whether the proper analysis
 is based on the Independence or Homogeneity hypotheses
 (Section <a href="chapter5.html#section5-1">5.1</a>).</p></li>
-<li><p>Make a contingency table and get a general sense of response patterns.
+<li><p>Make contingency table and get a general sense of response patterns.
 Pay attention to “small” counts, especially cells with 0 counts.</p>
 <ol style="list-style-type: lower-alpha">
 <li>If there are many small count cells, consider combining categories
@@ -1498,10 +1469,10 @@ Section <a href="chapter5.html#section5-10">5.10</a> for a related example).</li
 <li><p>Make the appropriate graphical display of results and generally
 describe the pattern of responses.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>For Homogeneity, make a stacked bar-chart.</p></li>
+<li><p>For Homogeneity, make a stacked bar chart.</p></li>
 <li><p>For Independence, make a mosaic plot.</p></li>
 <li><p>Consider a more general exploration using a tableplot if other
-variables were measured to check for confounding and other interesting multi-variable relationships.</p></li>
+variables were measured to check for confounding and other interesting multi-variable relationships. Also check for missing data if you have not done this before.</p></li>
 </ol></li>
 <li><p>Conduct the 6+ steps of the appropriate type of hypothesis test.</p>
 <ol style="list-style-type: lower-alpha">
@@ -1510,11 +1481,11 @@ variables were measured to check for confounding and other interesting multi-var
 approaches are acceptable.</p></li>
 </ol></li>
 <li><p>Explore the standardized residuals for the “source” of any evidence
-against the null.</p>
+against the null – this can be the start of your “size” discussion.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Tie the interpretation of the “large” standardized residuals
 and their direction (above or below expected under the
-null) back into the original data display. Work to find a story
+null) back into the original data display (this really gets to “size”). Work to find a story
 for the pattern of responses. If little evidence is found against the null, there is not much to do here.</li>
 </ol></li>
 </ol>
@@ -1533,21 +1504,20 @@ Many of the lines of code here
 are just for making
 sure that R is treating the categorical variables that were coded numerically
 as categorical variables.</p>
-<p>(ref:fig5-13) Tableplot of vote, party affiliation, education, and
-gender from election survey data. Note that
-missing observations are present in three of four variables. Education is coded
-from 1 to 7 with higher values related to higher educational attainment. Sex
-code 1 is for male and 2 is for female.</p>
-<pre class="sourceCode r"><code class="sourceCode r">election<span class="op">$</span>VOTEF &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>VOTE3)
-election<span class="op">$</span>PARTY &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>PARTY)
-election<span class="op">$</span>EDUC &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>EDUC)
-election<span class="op">$</span>GENDER &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>GENDER)
-<span class="kw">levels</span>(election<span class="op">$</span>VOTEF) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Gore&quot;</span>,<span class="st">&quot;Bush&quot;</span>,<span class="st">&quot;Other&quot;</span>)
-<span class="kw">tableplot</span>(election, <span class="dt">select=</span><span class="kw">c</span>(VOTEF,PARTY,EDUC,GENDER),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</code></pre>
+
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="chapter5.html#cb424-1"></a>election<span class="op">$</span>VOTEF &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>VOTE3)</span>
+<span id="cb424-2"><a href="chapter5.html#cb424-2"></a>election<span class="op">$</span>PARTY &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>PARTY)</span>
+<span id="cb424-3"><a href="chapter5.html#cb424-3"></a>election<span class="op">$</span>EDUC &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>EDUC)</span>
+<span id="cb424-4"><a href="chapter5.html#cb424-4"></a>election<span class="op">$</span>GENDER &lt;-<span class="st"> </span><span class="kw">factor</span>(election<span class="op">$</span>GENDER)</span>
+<span id="cb424-5"><a href="chapter5.html#cb424-5"></a><span class="kw">levels</span>(election<span class="op">$</span>VOTEF) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Gore&quot;</span>,<span class="st">&quot;Bush&quot;</span>,<span class="st">&quot;Other&quot;</span>)</span>
+<span id="cb424-6"><a href="chapter5.html#cb424-6"></a><span class="co"># Required options to avoid error when running on a PC, </span></span>
+<span id="cb424-7"><a href="chapter5.html#cb424-7"></a><span class="co"># should have no impact on other platforms</span></span>
+<span id="cb424-8"><a href="chapter5.html#cb424-8"></a><span class="kw">options</span>(<span class="dt">ffbatchbytes =</span> <span class="dv">1024</span><span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">128</span>); <span class="kw">options</span>(<span class="dt">ffmaxbytes =</span> <span class="dv">1024</span><span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">128</span> <span class="op">*</span><span class="st"> </span><span class="dv">32</span>) </span>
+<span id="cb424-9"><a href="chapter5.html#cb424-9"></a><span class="kw">tableplot</span>(election, <span class="dt">select=</span><span class="kw">c</span>(VOTEF,PARTY,EDUC,GENDER),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-13"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-13-1.png" alt="(ref:fig5-13)" width="960" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-13-1.png" alt="Tableplot of vote, party affiliation, education, and gender from election survey data. Note that missing observations are present in all variables except for Gender. Education is coded from 1 to 7 with higher values related to higher educational attainment. Gender code 1 is for male and 2 is for female." width="960" />
 <p class="caption">
-Figure 5.13: (ref:fig5-13)
+Figure 5.13: Tableplot of vote, party affiliation, education, and gender from election survey data. Note that missing observations are present in all variables except for <code>Gender</code>. Education is coded from 1 to 7 with higher values related to higher educational attainment. <code>Gender</code> code 1 is for male and 2 is for female.
 </p>
 </div>
 <p>In Figure <a href="chapter5.html#fig:Figure5-13">5.13</a>, we can see many missing <code>VOTEF</code>
@@ -1555,11 +1525,10 @@ responses but also some missingness in <code>PARTY</code> and <code>EDUC</code>
 (<em>Education</em>) status. While we don’t know
 too much about why people didn’t respond on the Vote question – they could have
 been unwilling to answer it or may not have voted. It looks like those subjects
-have more of the lower education level responses (more dark green, brown, and
-purple) than in the responders to this question. There are many “middle” ratings
-(orange) in the party affiliation responses for the missing <code>VOTEF</code> responses,
+have more of the lower education level responses (more dark colors, especially level 2 of education) than in the responders to this question. There are many “middle” ratings
+in the party affiliation responses for the missing <code>VOTEF</code> responses,
 suggesting that independents were less likely to answer the question in the
-survey for whatever reason. We want to focus on those that did respond in
+survey for whatever reason. Even though this comes with concerns about who these results actually apply to (likely not the population that was sampled from), we want to focus on those that did respond in
 <code>VOTEF</code>, so will again use <code>na.omit</code> to clean out any subjects with any
 missing responses on these four variables and remake this plot
 (Figure <a href="chapter5.html#fig:Figure5-14">5.14</a>). The code also adds the <code>sort</code> option to the
@@ -1569,15 +1538,15 @@ based on other variables.
 It is interesting, for example, to sort the
 responses by <em>Education</em> level and explore the differences in other variables.
 These explorations are omitted here but easily available by changing the
-sorting column from 1 to <code>sort=3</code>. Figure <a href="chapter5.html#fig:Figure5-14">5.14</a> shows us that there are clear differences
+sorting column from 1 to <code>sort=3</code> or <code>sort=EDUC</code>. Figure <a href="chapter5.html#fig:Figure5-14">5.14</a> shows us that there are clear differences
 in party affiliation based on voting for <em>Bush</em>, <em>Gore</em>, or
 <em>Other</em>. It is harder to see if there are differences in education level or gender
 based on the voting status in this plot, but, as noted above, sorting on these
 other variables can sometimes help to see other relationships between
 variables.</p>
 
-<pre class="sourceCode r"><code class="sourceCode r">election2 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(election[,<span class="kw">c</span>(<span class="st">&quot;VOTEF&quot;</span>,<span class="st">&quot;PARTY&quot;</span>,<span class="st">&quot;EDUC&quot;</span>,<span class="st">&quot;GENDER&quot;</span>)])
-<span class="kw">tableplot</span>(election2, <span class="dt">select=</span><span class="kw">c</span>(VOTEF,PARTY,EDUC,GENDER), <span class="dt">sort=</span><span class="dv">1</span>,<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</code></pre>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="chapter5.html#cb425-1"></a>election2 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(election[,<span class="kw">c</span>(<span class="st">&quot;VOTEF&quot;</span>,<span class="st">&quot;PARTY&quot;</span>,<span class="st">&quot;EDUC&quot;</span>,<span class="st">&quot;GENDER&quot;</span>)])</span>
+<span id="cb425-2"><a href="chapter5.html#cb425-2"></a><span class="kw">tableplot</span>(election2, <span class="dt">select=</span><span class="kw">c</span>(VOTEF,PARTY,EDUC,GENDER), <span class="dt">sort=</span><span class="dv">1</span>,<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-14"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-14-1.png" alt="Tableplot of election data with subjects without any missing responses (complete cases)." width="960" />
 <p class="caption">
@@ -1591,8 +1560,8 @@ The total sample size for the complete responses was <span class="math inline">\
 (out of the original 1,785 subjects). Because this is an Independence test,
 the mosaic plot is the appropriate display of the results,
 which was provided in Figure <a href="chapter5.html#fig:Figure5-5">5.5</a>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">electable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>PARTY<span class="op">+</span>VOTEF, <span class="dt">data=</span>election2)
-electable</code></pre>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="chapter5.html#cb426-1"></a>electable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>PARTY<span class="op">+</span>VOTEF, <span class="dt">data=</span>election2)</span>
+<span id="cb426-2"><a href="chapter5.html#cb426-2"></a>electable</span></code></pre></div>
 <pre><code>##      VOTEF
 ## PARTY Gore Bush Other
 ##     1  238    6     2
@@ -1604,7 +1573,7 @@ electable</code></pre>
 ##     7    3  188     1</code></pre>
 <p>There is a potential for bias in some polls because of the methods used
 to find and contact people. As
-US residents have transitioned from land-lines to cell phones, the early
+U.S. residents have transitioned from land-lines to cell phones, the early
 adopting cell phone users were often excluded from political polling. These
 policies are being reconsidered to adapt to the decline in residential phone
 lines and most polling organizations now include cell phone numbers in their
@@ -1618,8 +1587,10 @@ the request to answer the survey but should be cautious in extending it to all
 Americans or even voters in the year 2000. When we say “population” below, this
 nuanced discussion is what we mean. Because the political party is not randomly
 assigned to the subjects, we cannot make causal inferences for political
-affiliation causing different voting patterns<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a>.</p>
-<ol style="list-style-type: decimal">
+affiliation causing different voting patterns<a href="references.html#fn87" class="footnote-ref" id="fnref87"><sup>87</sup></a>.</p>
+<p>Here are our 6+ steps applied to this example:</p>
+<ol start="0" style="list-style-type: decimal">
+<li><p>The desired RQ is about assessing the relationship between part affiliation and vote choice, but this is constrained by the large rate of non-response in this data set. This is an Independence test and so the tableplot and mosaic plot are good visualizations to consider and the <span class="math inline">\(X^2\)</span>-statistic will be used.</p></li>
 <li><p><strong>Hypotheses:</strong></p>
 <ul>
 <li><p><span class="math inline">\(H_0\)</span>: There is no relationship between the party affiliation
@@ -1628,13 +1599,14 @@ population.</p></li>
 <li><p><span class="math inline">\(H_A\)</span>: There is a relationship between the party affiliation
 (7 levels) and voting results (<em>Bush</em>, <em>Gore</em>, <em>Other</em>) in the
 population.</p></li>
-</ul></li>
-<li><p><strong>Validity conditions:</strong>
+</ul>
+<p></p></li>
+<li><p><strong>Plot the data and assess validity conditions:</strong>
 </p>
 <ul>
 <li><p>Independence:</p>
 <ul>
-<li>This assumption is presumed to be met since each subject is
+<li>There is no indication of an issue with this assumption since each subject is
 measured only once in the table. No other information suggests
 a potential issue since a random sample was taken from presumably
 a large national population and we have no information that could suggest dependencies among observations.</li>
@@ -1645,8 +1617,7 @@ a large national population and we have no information that could suggest depend
 <li>We need to generate a table of expected cell counts to be
 able to check this condition:</li>
 </ul>
-<p></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(electable)<span class="op">$</span>expected</code></pre>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="chapter5.html#cb428-1"></a><span class="kw">chisq.test</span>(electable)<span class="op">$</span>expected</span></code></pre></div>
 <pre><code>## Warning in chisq.test(electable): Chi-squared approximation may be
 ## incorrect</code></pre>
 <pre><code>##      VOTEF
@@ -1663,36 +1634,33 @@ able to check this condition:</li>
 us with a warning message if the expected cell counts might
 be small, as in this situation.</p></li>
 <li><p>There is one expected cell count below 5 for <code>Party</code> = 4
-who voted <em>Other</em> with an expected cell count of 3.102, so
+who voted <em>Other</em> with an expected cell count of 3.07, so
 the condition is violated and the permutation approach
 should be used to obtain more trustworthy p-values. The
 conditions are met for performing a permutation test.</p></li>
 </ul></li>
 </ul></li>
-<li><p><strong>Calculate the test statistic:</strong></p>
+<li><p><strong>Calculate the test statistic and p-value:</strong></p>
 <ul>
-<li>This is best performed by the <code>chisq.test</code> function since there
+<li>The test statistic is best calculated by the <code>chisq.test</code> function since there
 are 21 cells and many potential places for a calculation error if
 performed by hand.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(electable)</code></pre>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="chapter5.html#cb431-1"></a><span class="kw">chisq.test</span>(electable)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  electable
 ## X-squared = 762.81, df = 12, p-value &lt; 2.2e-16</code></pre>
 <ul>
-<li>The observed <span class="math inline">\(X^2\)</span> statistic is 762.81.</li>
-</ul></li>
-<li><p><strong>Find the p-value:</strong></p>
-<ul>
-<li>The parametric p-value is &lt; 2.2e-16 from the R output which
+<li><p>The observed <span class="math inline">\(X^2\)</span> statistic is 762.81.</p></li>
+<li><p>The parametric p-value is &lt; 2.2e-16 from the R output which
 would be reported as &lt; 0.0001. This was based on a
 <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with <span class="math inline">\((7-1)*(3-1) = 12\)</span>
 degrees of freedom displayed in Figure <a href="chapter5.html#fig:Figure5-15">5.15</a>.
 Note that the observed test statistic of 762.81 was off the plot
 to the right which reflects how little area is to the right of
-that value in the distribution.</li>
+that value in the distribution.</p></li>
 </ul>
 <div class="figure"><span id="fig:Figure5-15"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-15-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 12 degrees of freedom." width="288" />
@@ -1705,31 +1673,31 @@ Figure 5.15: Plot of <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-di
 tiny value that R reports as 1.5e-155. Again, reporting less than
 0.0001 is just fine.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pchisq</span>(<span class="fl">762.81</span>, <span class="dt">df=</span><span class="dv">12</span>, <span class="dt">lower.tail=</span>F)</code></pre>
+<p></p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="chapter5.html#cb433-1"></a><span class="kw">pchisq</span>(<span class="fl">762.81</span>, <span class="dt">df=</span><span class="dv">12</span>, <span class="dt">lower.tail=</span>F)</span></code></pre></div>
 <pre><code>## [1] 1.553744e-155</code></pre>
 <ul>
 <li>But since the expected cell count condition is violated, we should
-use permutations as implemented in the following code to provide a
-trustworthy p-value:</li>
+use permutations as implemented in the following code to provide a more trustworthy p-value:</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(electable)<span class="op">$</span>statistic; Tobs</code></pre>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="chapter5.html#cb435-1"></a>Tobs &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(electable)<span class="op">$</span>statistic; Tobs</span></code></pre></div>
 <pre><code>## X-squared 
 ##  762.8095</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
-B &lt;-<span class="st"> </span><span class="dv">1000</span>
-Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)
-<span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
-  Tstar[b] &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="kw">tally</span>(<span class="op">~</span><span class="kw">shuffle</span>(PARTY)<span class="op">+</span>VOTEF, <span class="dt">data=</span>election2,
-                               <span class="dt">margins=</span>F))<span class="op">$</span>statistic
-}
-<span class="kw">pdata</span>(Tstar, Tobs, <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</code></pre>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="chapter5.html#cb437-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb437-2"><a href="chapter5.html#cb437-2"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb437-3"><a href="chapter5.html#cb437-3"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
+<span id="cb437-4"><a href="chapter5.html#cb437-4"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</span>
+<span id="cb437-5"><a href="chapter5.html#cb437-5"></a>  Tstar[b] &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="kw">tally</span>(<span class="op">~</span><span class="kw">shuffle</span>(PARTY)<span class="op">+</span>VOTEF, <span class="dt">data=</span>election2,</span>
+<span id="cb437-6"><a href="chapter5.html#cb437-6"></a>                               <span class="dt">margins=</span>F))<span class="op">$</span>statistic</span>
+<span id="cb437-7"><a href="chapter5.html#cb437-7"></a>}</span>
+<span id="cb437-8"><a href="chapter5.html#cb437-8"></a><span class="kw">pdata</span>(Tstar, Tobs, <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar)
-<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
-<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
-<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</code></pre>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="chapter5.html#cb439-1"></a><span class="kw">hist</span>(Tstar)</span>
+<span id="cb439-2"><a href="chapter5.html#cb439-2"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb439-3"><a href="chapter5.html#cb439-3"></a><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb439-4"><a href="chapter5.html#cb439-4"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-16"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-16-1.png" alt="Permutation distribution of $X^2$ for the election data. Observed value of 763 not displayed." width="480" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-16-1.png" alt="Permutation distribution of $X^2$ for the election data. Observed value of 763 not displayed." width="576" />
 <p class="caption">
 Figure 5.16: Permutation distribution of <span class="math inline">\(X^2\)</span> for the election data. Observed value of 763 not displayed.
 </p>
@@ -1743,49 +1711,18 @@ Figure <a href="chapter5.html#fig:Figure5-16">5.16</a> contains no results over 
 observed configuration was really far from the null
 hypothesis of no relationship between party status and voting.</li>
 </ul></li>
-<li><p><strong>Make a decision:</strong></p>
-<ul>
-<li>With a p-value less than 0.001, we can say that there is almost
-no chance of observing a configuration like ours or more extreme
-if the null hypothesis is true. So there is very strong evidence against the null
-hypothesis.</li>
-</ul></li>
-<li><p><strong>Write a conclusion and scope of inference:</strong></p>
-<ul>
-<li>There is strong evidence that there is a relationship between party affiliation and voting
-results in the population. The results are not causal since no random
-assignment was present but they do apply to the population
-of voters in the 2000 election that were able to be contacted by those
-running the poll and who would be willing to answer all the questions
-and voted.</li>
-</ul></li>
 </ol>
-<p>We can add a little more refinement to the results by exploring the
-standardized residuals. The numerical results are obtained using:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(electable)<span class="op">$</span>residuals <span class="co">#(Obs - expected)/sqrt(expected)</span></code></pre>
-<pre><code>##      VOTEF
-## PARTY        Gore        Bush       Other
-##     1  10.1304439 -10.0254117  -2.3317373
-##     2   6.9709179  -6.7607252  -2.0916557
-##     3   3.7352759  -4.7980730   3.0310127
-##     4  -0.8610559  -0.3729136   4.5252413
-##     5  -6.5724708   6.1926811   2.6135809
-##     6  -6.1701472   6.9078679  -1.4115200
-##     7  -9.5662296  10.7335798  -2.2717310</code></pre>
-<p>And visually using:</p>
-<p>(ref:fig5-17) Mosaic plot with shading based on standardized residuals
-for the election</p>
-<div class="figure"><span id="fig:Figure5-17"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-17-1.png" alt="(ref:fig5-17)" width="480" />
-<p class="caption">
-Figure 5.17: (ref:fig5-17)
-</p>
-</div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Adds information on the size of the residuals</span>
-<span class="kw">mosaicplot</span>(electable, <span class="dt">shade=</span>T) </code></pre>
-<p>In this example, the standardized residuals show some clear sources
-of the differences from the
-results expected if there were no relationship present. The largest
+
+<ol start="4" style="list-style-type: decimal">
+<li><p><strong>Conclusion:</strong></p>
+<ul>
+<li>There is strong evidence against the null hypothesis of no relationship between party affiliation and voting
+results in the population (<span class="math inline">\(X^2\)</span>=762.81, p-value&lt;0.001), so we would conclude that there is a relationship between party affiliation and voting results.</li>
+</ul></li>
+<li><p><strong>Size:</strong></p>
+<ul>
+<li>We can add insight into the results by exploring the
+standardized residuals. The numerical results are obtained using <code>chisq.test(electable)$residuals</code> and visually using <code>mosaicplot(electable, shade=T)</code> in Figure <a href="chapter5.html#fig:Figure5-17">5.17</a>. The standardized residuals show some clear sources of the differences from the results expected if there were no relationship present. The largest
 contributions are found in the highest democrat category (<code>PARTY</code> = 1)
 where the standardized residual for <em>Gore</em> is 10.13 and for <em>Bush</em>
 is -10.03, showing much higher than expected (under <span class="math inline">\(H_0\)</span>) counts for Gore
@@ -1802,10 +1739,38 @@ example, the Gore voters from <code>PARTY</code> = 3 had a standardized residual
 of 3.75 but the <code>PARTY</code> = 5 voters for Bush had a standardized residual
 of 6.17. So maybe Gore didn’t have
 as strong of support from his center-leaning supporters as Bush was able to
-obtain from the same voters on the other side of the middle? A political
-scientist would easily obtain many more (useful) theories, especially once they
-understood the additional information provided by exploring the standardized
-residuals.</p>
+obtain from the same voters on the other side of the middle? Exploring the relative proportion of each vertical bar in the response categories is also interesting to see the proportions of each level of party affiliation and how they voted. A political
+scientist would easily obtain many more (useful) theories based on this combination of results.</li>
+</ul></li>
+</ol>
+
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="chapter5.html#cb440-1"></a><span class="kw">chisq.test</span>(electable)<span class="op">$</span>residuals <span class="co">#(Obs - expected)/sqrt(expected)</span></span></code></pre></div>
+<pre><code>##      VOTEF
+## PARTY        Gore        Bush       Other
+##     1  10.1304439 -10.0254117  -2.3317373
+##     2   6.9709179  -6.7607252  -2.0916557
+##     3   3.7352759  -4.7980730   3.0310127
+##     4  -0.8610559  -0.3729136   4.5252413
+##     5  -6.5724708   6.1926811   2.6135809
+##     6  -6.1701472   6.9078679  -1.4115200
+##     7  -9.5662296  10.7335798  -2.2717310</code></pre>
+
+<div class="figure"><span id="fig:Figure5-17"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-17-1.png" alt="Mosaic plot with shading based on standardized residuals for the election data." width="480" />
+<p class="caption">
+Figure 5.17: Mosaic plot with shading based on standardized residuals for the election data.
+</p>
+</div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="chapter5.html#cb442-1"></a><span class="co">#Adds information on the size of the residuals</span></span>
+<span id="cb442-2"><a href="chapter5.html#cb442-2"></a><span class="kw">mosaicplot</span>(electable, <span class="dt">shade=</span>T) </span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li><p><strong>Scope of inference:</strong></p>
+<ul>
+<li>The results are not causal since no random assignment was present but they do apply to the population
+of voters in the 2000 election that were able to be contacted by those
+running the poll and who would be willing to answer all the questions and actually voted.</li>
+</ul></li>
+</ol>
 </div>
 <div id="section5-10" class="section level2">
 <h2><span class="header-section-number">5.10</span> Is cheating and lying related in students?</h2>
@@ -1828,17 +1793,15 @@ from 1 to 5, respectively. Again, the code starts with making sure the
 variables are treated categorically by applying the <code>factor</code> function.
 </p>
 
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(poLCA)
-<span class="kw">data</span>(cheating) <span class="co">#Survey of students</span>
-cheating &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(cheating)
-cheating<span class="op">$</span>LIEEXAM &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>LIEEXAM)
-cheating<span class="op">$</span>LIEPAPER &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>LIEPAPER)
-cheating<span class="op">$</span>FRAUD &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>FRAUD)
-cheating<span class="op">$</span>COPYEXAM &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>COPYEXAM)
-cheating<span class="op">$</span>GPA &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>GPA)
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
-<span class="kw">require</span>(tabplot)
-<span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>GPA,<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</code></pre>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="chapter5.html#cb443-1"></a><span class="kw">library</span>(poLCA)</span>
+<span id="cb443-2"><a href="chapter5.html#cb443-2"></a><span class="kw">data</span>(cheating) <span class="co">#Survey of students</span></span>
+<span id="cb443-3"><a href="chapter5.html#cb443-3"></a>cheating &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(cheating)</span>
+<span id="cb443-4"><a href="chapter5.html#cb443-4"></a>cheating<span class="op">$</span>LIEEXAM &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>LIEEXAM)</span>
+<span id="cb443-5"><a href="chapter5.html#cb443-5"></a>cheating<span class="op">$</span>LIEPAPER &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>LIEPAPER)</span>
+<span id="cb443-6"><a href="chapter5.html#cb443-6"></a>cheating<span class="op">$</span>FRAUD &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>FRAUD)</span>
+<span id="cb443-7"><a href="chapter5.html#cb443-7"></a>cheating<span class="op">$</span>COPYEXAM &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>COPYEXAM)</span>
+<span id="cb443-8"><a href="chapter5.html#cb443-8"></a>cheating<span class="op">$</span>GPA &lt;-<span class="st"> </span><span class="kw">factor</span>(cheating<span class="op">$</span>GPA)</span>
+<span id="cb443-9"><a href="chapter5.html#cb443-9"></a><span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>GPA,<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-18"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-18-1.png" alt="Tableplot of initial cheating and lying data set. Note that a few GPAs were missing in the data set." width="480" />
 <p class="caption">
@@ -1868,10 +1831,17 @@ the lying and copying behaviors – are those that engage in one type of behavio
 more likely to do the other? Or are they independent of each other? This is a
 hard story to elicit from the previous plot because there are so many variables
 involved.</p>
+
+<div class="figure"><span id="fig:Figure5-19"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-19-1.png" alt="Tableplot of new variables liar` andcopier`` that allow exploration of relationships between different types of lying and cheating behaviors." width="960" />
+<p class="caption">
+Figure 5.19: Tableplot of new variables <code>liar` and</code>copier`` that allow exploration of relationships between different types of lying and cheating behaviors.
+</p>
+</div>
 <p>To simplify the results, combining the two groups of variables
 into the four possible combinations on
 each has the potential to simplify the results – or at least allow exploration
-of additional research questions. In the tableplot in
+of additional research questions. The <code>interaction</code> function is used to create two new variables that have four levels that are combinations of the different options from none to both of each type (<em>copier</em> and <em>liar</em>). In the tableplot in
 Figure <a href="chapter5.html#fig:Figure5-19">5.19</a>, you can see
 the four categories for each, starting with no bad behavior of either type
 (which is fortunately the most popular response on both variables!). For each
@@ -1879,37 +1849,28 @@ variable, there are students who admitted to one of the two violations and some
 that did both. The <code>liar</code> variable has categories of <em>None</em>, <em>ExamLie</em>,
 <em>PaperLie</em>, and <em>LieBoth</em>. The <code>copier</code> variable has categories of <em>None</em>,
 <em>PaperCheat</em>, <em>ExamCheat</em>, and <em>PaperExamCheat</em> (for doing both). The last
-category for <code>copier</code> (plotted as an orange color) seems to mostly occur at
+category for <code>copier</code> seems to mostly occur at
 the top of the plot which is where the students who had lied to get out of things
 reside, so maybe there is a relationship between those two types of behaviors?
 On the other hand, for the students who have never lied, quite a few had
 cheated on exams. The contingency table can help us dig further into the
 hypotheses related to the Chi-square test of Independence that is appropriate
 in this situation. </p>
-<p>(ref:fig5-19) Tableplot of new variables liar and copier that allow
-exploration of relationships between different types of lying and
-cheating behaviors.</p>
-<pre class="sourceCode r"><code class="sourceCode r">cheating<span class="op">$</span>liar &lt;-<span class="st"> </span><span class="kw">interaction</span>(cheating<span class="op">$</span>LIEEXAM, cheating<span class="op">$</span>LIEPAPER)
-<span class="kw">levels</span>(cheating<span class="op">$</span>liar) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;ExamLie&quot;</span>,<span class="st">&quot;PaperLie&quot;</span>,<span class="st">&quot;LieBoth&quot;</span>)
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="chapter5.html#cb444-1"></a>cheating<span class="op">$</span>liar &lt;-<span class="st"> </span><span class="kw">interaction</span>(cheating<span class="op">$</span>LIEEXAM, cheating<span class="op">$</span>LIEPAPER)</span>
+<span id="cb444-2"><a href="chapter5.html#cb444-2"></a><span class="kw">levels</span>(cheating<span class="op">$</span>liar) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;ExamLie&quot;</span>,<span class="st">&quot;PaperLie&quot;</span>,<span class="st">&quot;LieBoth&quot;</span>)</span>
+<span id="cb444-3"><a href="chapter5.html#cb444-3"></a></span>
+<span id="cb444-4"><a href="chapter5.html#cb444-4"></a>cheating<span class="op">$</span>copier &lt;-<span class="st"> </span><span class="kw">interaction</span>(cheating<span class="op">$</span>FRAUD, cheating<span class="op">$</span>COPYEXAM)</span>
+<span id="cb444-5"><a href="chapter5.html#cb444-5"></a><span class="kw">levels</span>(cheating<span class="op">$</span>copier) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;PaperCheat&quot;</span>,<span class="st">&quot;ExamCheat&quot;</span>,<span class="st">&quot;PaperExamCheat&quot;</span>)</span>
+<span id="cb444-6"><a href="chapter5.html#cb444-6"></a><span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>liar, <span class="dt">select=</span><span class="kw">c</span>(liar,copier),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
 
-cheating<span class="op">$</span>copier &lt;-<span class="st"> </span><span class="kw">interaction</span>(cheating<span class="op">$</span>FRAUD, cheating<span class="op">$</span>COPYEXAM)
-<span class="kw">levels</span>(cheating<span class="op">$</span>copier) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;PaperCheat&quot;</span>,<span class="st">&quot;ExamCheat&quot;</span>,<span class="st">&quot;PaperExamCheat&quot;</span>)
-
-cheatlietable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>liar<span class="op">+</span>copier, <span class="dt">data=</span>cheating)
-cheatlietable</code></pre>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="chapter5.html#cb445-1"></a>cheatlietable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>liar<span class="op">+</span>copier, <span class="dt">data=</span>cheating)</span>
+<span id="cb445-2"><a href="chapter5.html#cb445-2"></a>cheatlietable</span></code></pre></div>
 <pre><code>##           copier
 ## liar       None PaperCheat ExamCheat PaperExamCheat
 ##   None      207          7        46              5
 ##   ExamLie    10          1         3              2
 ##   PaperLie   13          1         4              2
 ##   LieBoth    11          1         4              2</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>liar, <span class="dt">select=</span><span class="kw">c</span>(liar,copier),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</code></pre>
-<div class="figure"><span id="fig:Figure5-19"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-19-1.png" alt="(ref:fig5-19)" width="960" />
-<p class="caption">
-Figure 5.19: (ref:fig5-19)
-</p>
-</div>
 <p>Unfortunately for our statistic, there were very few responses in some combinations of
 categories even with <span class="math inline">\(N=319\)</span>. For example, there was only one response
 each in the combinations for students that copied on papers and lied
@@ -1919,33 +1880,33 @@ number of counts in the combinations, we combined the single behavior only level
 into “<em>either</em>” categories and left the <em>none</em> and <em>both</em> categories for each
 variable. This creates two new variables called <code>liar2</code> and <code>copier2</code>
 (tableplot in Figure <a href="chapter5.html#fig:Figure5-20">5.20</a>). The code to create these
-variables and make the plot is below.</p>
-<p>(ref:fig5-20) Tableplot of lying and copying variables after combining
-categories.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Collapse the middle categories of each variable</span>
-cheating<span class="op">$</span>liar2 &lt;-<span class="st"> </span>cheating<span class="op">$</span>liar
-<span class="kw">levels</span>(cheating<span class="op">$</span>liar2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;LieBoth&quot;</span>)
-cheating<span class="op">$</span>copier2 &lt;-<span class="st"> </span>cheating<span class="op">$</span>copier
-<span class="kw">levels</span>(cheating<span class="op">$</span>copier2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;CopyBoth&quot;</span>)
-<span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>liar2, <span class="dt">select=</span><span class="kw">c</span>(liar2,copier2),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</code></pre>
-<div class="figure"><span id="fig:Figure5-20"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-20-1.png" alt="(ref:fig5-20)" width="960" />
-<p class="caption">
-Figure 5.20: (ref:fig5-20)
-</p>
-</div>
-<pre class="sourceCode r"><code class="sourceCode r">cheatlietable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>liar2<span class="op">+</span>copier2, <span class="dt">data=</span>cheating)
-cheatlietable</code></pre>
+variables and make the plot is below which employs the <code>levels</code> function to assign the same label to two different levels from the original list. </p>
+
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="chapter5.html#cb447-1"></a><span class="co">#Collapse the middle categories of each variable</span></span>
+<span id="cb447-2"><a href="chapter5.html#cb447-2"></a>cheating<span class="op">$</span>liar2 &lt;-<span class="st"> </span>cheating<span class="op">$</span>liar</span>
+<span id="cb447-3"><a href="chapter5.html#cb447-3"></a><span class="kw">levels</span>(cheating<span class="op">$</span>liar2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;LieBoth&quot;</span>)</span>
+<span id="cb447-4"><a href="chapter5.html#cb447-4"></a>cheating<span class="op">$</span>copier2 &lt;-<span class="st"> </span>cheating<span class="op">$</span>copier</span>
+<span id="cb447-5"><a href="chapter5.html#cb447-5"></a><span class="kw">levels</span>(cheating<span class="op">$</span>copier2) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;ExamorPaper&quot;</span>,<span class="st">&quot;CopyBoth&quot;</span>)</span>
+<span id="cb447-6"><a href="chapter5.html#cb447-6"></a>cheatlietable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>liar2<span class="op">+</span>copier2, <span class="dt">data=</span>cheating)</span>
+<span id="cb447-7"><a href="chapter5.html#cb447-7"></a>cheatlietable</span></code></pre></div>
 <pre><code>##              copier2
 ## liar2         None ExamorPaper CopyBoth
 ##   None         207          53        5
 ##   ExamorPaper   23           9        4
 ##   LieBoth       11           5        2</code></pre>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="chapter5.html#cb449-1"></a><span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>liar2, <span class="dt">select=</span><span class="kw">c</span>(liar2,copier2),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
+<div class="figure"><span id="fig:Figure5-20"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-20-1.png" alt="Tableplot of lying and copying variables after combining categories." width="960" />
+<p class="caption">
+Figure 5.20: Tableplot of lying and copying variables after combining categories.
+</p>
+</div>
 <p>This <span class="math inline">\(3\times 3\)</span> table is more manageable and has few really small
 cells so we will proceed with the 6+ steps of hypothesis
 testing applied to these data using the Independence testing methods (again a
-single sample was taken from the population):</p>
-<ol style="list-style-type: decimal">
+single sample was taken from the population so that is the appropriate procedure to employ):</p>
+<ol start="0" style="list-style-type: decimal">
+<li><p>The RQ is about relationships between lying to instructors and cheating and these questions, after some work and simplifications, allow us to address a version of that RQ even though it might not be the one that we started with. The tableplots help to visualize the results and the <span class="math inline">\(X^2\)</span>-statistic will be used to do the hypothesis test.</p></li>
 <li><p><strong>Hypotheses:</strong></p>
 <ul>
 <li><p><span class="math inline">\(H_0\)</span>: Lying and copying behavior are independent in the population
@@ -1957,10 +1918,10 @@ of students at this university.</p></li>
 <ul>
 <li><p>Independence:</p>
 <ul>
-<li>This assumption is presumed to be met since each subject
+<li>There is no indication of a violation of this assumption since each subject
 is measured only once in the table. No other information
 suggests a potential issue but we don’t have much
-information on how these subjects were obtained.</li>
+information on how these subjects were obtained. What happens if we had sampled from students in different sections of a multi-section course and one of the sections had recently had a cheating scandal that impacted many students in that section?</li>
 </ul></li>
 <li><p>All expected cell counts larger than 5 (required to use
 <span class="math inline">\(\chi^2\)</span>-distribution to find p-values):</p>
@@ -1968,7 +1929,7 @@ information on how these subjects were obtained.</li>
 <li>We need to generate a table of expected cell counts to
 check this condition:</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(cheatlietable)<span class="op">$</span>expected</code></pre>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="chapter5.html#cb450-1"></a><span class="kw">chisq.test</span>(cheatlietable)<span class="op">$</span>expected</span></code></pre></div>
 <pre><code>##              copier2
 ## liar2              None ExamorPaper  CopyBoth
 ##   None        200.20376   55.658307 9.1379310
@@ -1982,28 +1943,25 @@ so the condition is violated and a permutation approach
 should be used to obtain more trustworthy p-values.</p></li>
 </ul></li>
 </ul></li>
-<li><p><strong>Calculate the test statistic:</strong></p>
+<li><p><strong>Calculate the test statistic and p-value:</strong></p>
 <ul>
-<li>Use <code>chisq.test</code> although this table is small enough to do
+<li>Use <code>chisq.test</code> to obtain the test statistic, although this table is small enough to do
 by hand if you want the practice – see if you can find a similar answer
 to what the function provides:</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(cheatlietable)</code></pre>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="chapter5.html#cb452-1"></a><span class="kw">chisq.test</span>(cheatlietable)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  cheatlietable
 ## X-squared = 13.238, df = 4, p-value = 0.01017</code></pre>
 <ul>
-<li>The <span class="math inline">\(X^2\)</span> statistic is 13.24.</li>
-</ul></li>
-<li><p><strong>Find the p-value:</strong></p>
-<ul>
-<li>The parametric p-value is 0.0102 from the R output. This was based
+<li><p>The <span class="math inline">\(X^2\)</span> statistic is 13.24.</p></li>
+<li><p>The parametric p-value is 0.0102 from the R output. This was based
 on a <span class="math inline">\(\chi^2\)</span>-distribution with <span class="math inline">\((3-1)*(3-1) = 4\)</span> degrees of freedom
 that is displayed in Figure <a href="chapter5.html#fig:Figure5-21">5.21</a>. Remember that this
 isn’t quite the right distribution for the test statistic since our
-expected cell count condition was violated.</li>
+expected cell count condition was violated.</p></li>
 </ul>
 <div class="figure"><span id="fig:Figure5-21"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-21-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 4 degrees of freedom." width="336" />
@@ -2014,7 +1972,7 @@ Figure 5.21: Plot of <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-di
 <ul>
 <li>If you want to repeat the p-value calculation directly:</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pchisq</span>(<span class="fl">13.2384</span>, <span class="dt">df=</span><span class="dv">4</span>, <span class="dt">lower.tail=</span>F)</code></pre>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="chapter5.html#cb454-1"></a><span class="kw">pchisq</span>(<span class="fl">13.2384</span>, <span class="dt">df=</span><span class="dv">4</span>, <span class="dt">lower.tail=</span>F)</span></code></pre></div>
 <pre><code>## [1] 0.01016781</code></pre>
 <ul>
 <li>But since the expected cell condition is violated, we
@@ -2023,23 +1981,23 @@ code with the number of permutations increased to 10,000 to help
 get a better estimate of the p-value since it is
 possibly close to 0.05:</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">Tobs &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="kw">tally</span>(<span class="op">~</span>liar2<span class="op">+</span>copier2, <span class="dt">data=</span>cheating))<span class="op">$</span>statistic
-Tobs</code></pre>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="chapter5.html#cb456-1"></a>Tobs &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="kw">tally</span>(<span class="op">~</span>liar2<span class="op">+</span>copier2, <span class="dt">data=</span>cheating))<span class="op">$</span>statistic</span>
+<span id="cb456-2"><a href="chapter5.html#cb456-2"></a>Tobs</span></code></pre></div>
 <pre><code>## X-squared 
 ##  13.23844</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
-B &lt;-<span class="st"> </span><span class="dv">10000</span> <span class="co"># Now performing 10,000 permutations</span>
-Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>,<span class="dt">nrow=</span>B)
-<span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){
-  Tstar[b] &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="kw">tally</span>(<span class="op">~</span><span class="kw">shuffle</span>(liar2)<span class="op">+</span>copier2,
-                               <span class="dt">data=</span>cheating))<span class="op">$</span>statistic
-}
-<span class="kw">pdata</span>(Tstar, Tobs, <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</code></pre>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="chapter5.html#cb458-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb458-2"><a href="chapter5.html#cb458-2"></a>B &lt;-<span class="st"> </span><span class="dv">10000</span> <span class="co"># Now performing 10,000 permutations</span></span>
+<span id="cb458-3"><a href="chapter5.html#cb458-3"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>,<span class="dt">nrow=</span>B)</span>
+<span id="cb458-4"><a href="chapter5.html#cb458-4"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</span>
+<span id="cb458-5"><a href="chapter5.html#cb458-5"></a>  Tstar[b] &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(<span class="kw">tally</span>(<span class="op">~</span><span class="kw">shuffle</span>(liar2)<span class="op">+</span>copier2,</span>
+<span id="cb458-6"><a href="chapter5.html#cb458-6"></a>                               <span class="dt">data=</span>cheating))<span class="op">$</span>statistic</span>
+<span id="cb458-7"><a href="chapter5.html#cb458-7"></a>}</span>
+<span id="cb458-8"><a href="chapter5.html#cb458-8"></a><span class="kw">pdata</span>(Tstar, Tobs, <span class="dt">lower.tail=</span>F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0.0174</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(Tstar)
-<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)
-<span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)
-<span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</code></pre>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="chapter5.html#cb460-1"></a><span class="kw">hist</span>(Tstar)</span>
+<span id="cb460-2"><a href="chapter5.html#cb460-2"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb460-3"><a href="chapter5.html#cb460-3"></a><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb460-4"><a href="chapter5.html#cb460-4"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-22"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-22-1.png" alt="Plot of permutation distributions for cheat/lie results with observed value of 13.24 (bold, vertical line)." width="480" />
 <p class="caption">
@@ -2054,17 +2012,27 @@ Figure <a href="chapter5.html#fig:Figure5-22">5.22</a>, so we report that the p-
 0.0174 using the permutation approach, which was slightly larger than the
 result provided by the parametric method.</li>
 </ul></li>
-<li><p><strong>Make a decision:</strong></p>
+<li><p><strong>Conclusion:</strong></p>
 <ul>
-<li>With a p-value of 0.0174, we can say that there is a
-1.74% chance of observing a configuration like ours or more
-extreme if the null hypothesis is true. So I would say that there is strong evidence against the null hypothesis but you might rate this as closer to moderate evidence.</li>
+<li>There is strong evidence against the null hypothesis of no relationship between lying and copying behavior in the population
+of students (<span class="math inline">\(X^2\)</span>-statistic=13.24, permutation p-value of 0.0174), so conclude that there is a relationship between lying and copying behavior at the university in the population of students studied.</li>
 </ul></li>
-<li><p><strong>Write a conclusion and scope of inference:</strong></p>
+<li><p><strong>Size:</strong></p>
 <ul>
-<li>There is strong evidence to conclude that there is a
-relationship between lying and copying behavior in the population
-of students. There is no causal inference possible here since
+<li>The standardized residuals can help us more fully understand this result – the mosaic plot only had one cell shaded and so wasn’t needed here.</li>
+</ul>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="chapter5.html#cb461-1"></a><span class="kw">chisq.test</span>(cheatlietable)<span class="op">$</span>residuals</span></code></pre></div>
+<pre><code>##              copier2
+## liar2               None ExamorPaper   CopyBoth
+##   None         0.4803220  -0.3563200 -1.3688609
+##   ExamorPaper -0.8048695   0.5232734  2.4759378
+##   LieBoth     -0.7047165   0.6271633  1.7507524</code></pre>
+<ul>
+<li>There is really only one large standardized residual for the <em>ExamorPaper</em> liars and the <em>CopyBoth</em> copiers, with a much larger observed value than expected of 2.48. The only other medium-sized standardized residuals came from the <em>CopyBoth</em> copiers column with fewer than expected students in the <em>None</em> category and more than expected in the <em>LieBoth</em> type of lying category. So we are seeing more than expected that lied somehow and copied – we can say this suggests that the students who lie tend to copy too!</li>
+</ul></li>
+<li><p><strong>Scope of inference:</strong></p>
+<ul>
+<li>There is no causal inference possible here since
 neither variable was randomly assigned (really neither is
 explanatory or response here either) but we can extend the
 inferences to the population of students that these were selected
@@ -2073,26 +2041,18 @@ discussion related to some differences in students that wouldn’t
 answer that question).</li>
 </ul></li>
 </ol>
-<p>The standardized residuals can help us more fully understand this result
-– the mosaic plot only had one cell shaded and so wasn’t needed here.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(cheatlietable)<span class="op">$</span>residuals</code></pre>
-<pre><code>##              copier2
-## liar2               None ExamorPaper   CopyBoth
-##   None         0.4803220  -0.3563200 -1.3688609
-##   ExamorPaper -0.8048695   0.5232734  2.4759378
-##   LieBoth     -0.7047165   0.6271633  1.7507524</code></pre>
-<p>There is really only one large standardized residual for the <em>ExamorPaper</em>
-liars and the <em>CopyBoth</em> copiers, with a much larger observed value than
-expected of 2.48. The only other medium-sized standardized residuals came
-from the <em>CopyBoth</em> copiers column with fewer than expected students in the
-<em>None</em> category and more than expected in the <em>LieBoth</em> type of lying
-category. So we are seeing more than expected that lied somehow and copied
-– we can say this suggests that the students who lie tend to copy too!</p>
 </div>
 <div id="section5-11" class="section level2">
 <h2><span class="header-section-number">5.11</span> Analyzing a stratified random sample of California schools</h2>
+
+<div class="figure"><span id="fig:Figure5-23"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-23-1.png" alt="Pirate-plot of the API growth scores by level of school in the stype variable (coded E for elementary, M for Middle, and H for High school)." width="576" />
+<p class="caption">
+Figure 5.23: Pirate-plot of the API growth scores by level of school in the <code>stype</code> variable (coded E for elementary, M for Middle, and H for High school).
+</p>
+</div>
 <p>In recent decades, there has been a push for quantification of school performance
-and tying financial punishment and rewards to growth in these metrics. One
+and tying financial punishment and rewards to growth in these metrics both for schools and for teachers. One
 example is the API (Academic Performance Index) in California that is based
 mainly on student scores on standardized tests. It ranges between 200 and 1000
 and year to year changes are of interest to assess “performance” of schools –
@@ -2102,71 +2062,58 @@ metric might differ between different levels of schools. Maybe it is easier or
 harder for elementary, middle, or high schools to attain growth? The researcher
 has a list of most of the schools in the state of each level that are using a
 database that the researcher has access to. In order to assess this question,
-the researcher takes a stratified random sample<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a>, selecting
+the researcher takes a <strong><em>stratified random sample</em></strong><a href="references.html#fn88" class="footnote-ref" id="fnref88"><sup>88</sup></a>, selecting
 <span class="math inline">\(n_{\text{elementary}}=100\)</span> schools from the population of 4421 elementary
 schools, <span class="math inline">\(n_{\text{middle}}=50\)</span> from the population of 1018 middle schools,
 and <span class="math inline">\(n_{\text{high}}=50\)</span> from the population of 755 high
 schools. These data are available in the <code>survey</code> package <span class="citation">(Lumley <a href="#ref-R-survey" role="doc-biblioref">2019</a>)</span>
-and the api data object that loads both <code>apipop</code> (population) and <code>apistrat</code> (stratified random sample) data sets.
+and the <code>api</code> data object that loads both <code>apipop</code> (population) and <code>apistrat</code> (stratified random sample) data sets.
 
 The <code>growth</code> (change!) in
 API scores for the schools between 1999 and
 2000 (taken as the year 2000 score minus 1999 score) is used as the response
-variable. The boxplot and beanplot of the growth scores are displayed in Figure
+variable. The pirate-plot of the growth scores are displayed in Figure
 <a href="chapter5.html#fig:Figure5-23">5.23</a>. They suggest some differences in the growth
-rates among the different
-levels. There are also a few schools flagged as being possible outliers.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(survey)
-<span class="kw">data</span>(api)
-apistrat &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(apistrat)
-apipop &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(apipop)
-<span class="kw">tally</span>(<span class="op">~</span>stype, <span class="dt">data=</span>apipop) <span class="co">#Population counts</span></code></pre>
+rates among the different levels. There are also a few schools flagged as being possible outliers.</p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="chapter5.html#cb463-1"></a><span class="kw">library</span>(survey)</span>
+<span id="cb463-2"><a href="chapter5.html#cb463-2"></a><span class="kw">data</span>(api)</span>
+<span id="cb463-3"><a href="chapter5.html#cb463-3"></a>apistrat &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(apistrat)</span>
+<span id="cb463-4"><a href="chapter5.html#cb463-4"></a>apipop &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(apipop)</span>
+<span id="cb463-5"><a href="chapter5.html#cb463-5"></a><span class="kw">tally</span>(<span class="op">~</span>stype, <span class="dt">data=</span>apipop) <span class="co">#Population counts</span></span></code></pre></div>
 <pre><code>## stype
 ##    E    H    M 
 ## 4421  755 1018</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tally</span>(<span class="op">~</span>stype, <span class="dt">data=</span>apistrat) <span class="co">#Sample counts</span></code></pre>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="chapter5.html#cb465-1"></a><span class="kw">tally</span>(<span class="op">~</span>stype, <span class="dt">data=</span>apistrat) <span class="co">#Sample counts</span></span></code></pre></div>
 <pre><code>## stype
 ##   E   H   M 
 ## 100  50  50</code></pre>
-<p>(ref:fig5-23) Boxplot and beanplot of the API growth scores by level
-of school in the <code>stype</code> variable (coded E for elementary, M for Middle, and H for High school).</p>
-<div class="figure"><span id="fig:Figure5-23"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-23-1.png" alt="(ref:fig5-23)" width="576" />
-<p class="caption">
-Figure 5.23: (ref:fig5-23)
-</p>
-</div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
-<span class="kw">boxplot</span>(growth<span class="op">~</span>stype, <span class="dt">data=</span>apistrat, <span class="dt">ylab=</span><span class="st">&quot;Growth&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">55</span>,<span class="dv">160</span>))
-<span class="kw">beanplot</span>(growth<span class="op">~</span>stype, <span class="dt">data=</span>apistrat, <span class="dt">log=</span><span class="st">&quot;&quot;</span>, <span class="dt">col=</span><span class="st">&quot;beige&quot;</span>,
-         <span class="dt">method=</span><span class="st">&quot;jitter&quot;</span>, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">55</span>,<span class="dv">160</span>))</code></pre>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="chapter5.html#cb467-1"></a><span class="kw">pirateplot</span>(growth<span class="op">~</span>stype, <span class="dt">data=</span>apistrat, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>)</span></code></pre></div>
 <p>The One-Way ANOVA <span class="math inline">\(F\)</span>-test, provided below, suggests
-evidence of some difference in the true mean growth scores among the different
+strong evidence against the null hypothesis of no difference in the true mean growth scores among the different
 types of schools (<span class="math inline">\(F(2,197)=23.56,\text{ p-value}&lt;0.0001\)</span>). But the
 residuals from this model displayed in the QQ-Plot in
-Figure <a href="chapter5.html#fig:Figure5-24">5.24</a> contain a slightly long right tail,
+Figure <a href="chapter5.html#fig:Figure5-24">5.24</a> contain a slightly long right tail and short left tail,
 suggesting a right skewed
 distribution for the residuals. In a high-stakes situation such as this,
 reporting results with violations of the assumptions probably would not be
 desirable, so another approach is needed. The permutation methods would be
 justified here but there is another “simpler” option available using our new
 Chi-square analysis methods.</p>
-<p>(ref:fig5-24) QQ-plot of standardized residuals from the One-Way ANOVA
-linear model.</p>
-<pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(growth<span class="op">~</span>stype, <span class="dt">data=</span>apistrat)
-<span class="kw">require</span>(car)
-<span class="kw">Anova</span>(m1)</code></pre>
+
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="chapter5.html#cb468-1"></a>m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(growth<span class="op">~</span>stype, <span class="dt">data=</span>apistrat)</span>
+<span id="cb468-2"><a href="chapter5.html#cb468-2"></a><span class="kw">library</span>(car)</span>
+<span id="cb468-3"><a href="chapter5.html#cb468-3"></a><span class="kw">Anova</span>(m1)</span></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: growth
 ##           Sum Sq  Df F value    Pr(&gt;F)
 ## stype      30370   2  23.563 6.685e-10
 ## Residuals 126957 197</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(m1, <span class="dt">which=</span><span class="dv">2</span>, <span class="dt">pch=</span><span class="dv">16</span>)</code></pre>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="chapter5.html#cb470-1"></a><span class="kw">plot</span>(m1, <span class="dt">which=</span><span class="dv">2</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-24"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-24-1.png" alt="(ref:fig5-24)" width="528" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-24-1.png" alt="QQ-plot of standardized residuals from the One-Way ANOVA linear model." width="528" />
 <p class="caption">
-Figure 5.24: (ref:fig5-24)
+Figure 5.24: QQ-plot of standardized residuals from the One-Way ANOVA linear model.
 </p>
 </div>
 <p>One way to get around the normality assumption is to use a method
@@ -2184,17 +2131,17 @@ responses into groups for the lowest 25%, second 25%, third 25%, and highest
 <code>cut</code> function is available to turn a
 quantitative variable into a categorical variable. First, we can use the
 information from <code>favstats</code> to find the cut-points:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">favstats</span>(<span class="op">~</span>growth, <span class="dt">data=</span>apistrat)</code></pre>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="chapter5.html#cb471-1"></a><span class="kw">favstats</span>(<span class="op">~</span>growth, <span class="dt">data=</span>apistrat)</span></code></pre></div>
 <pre><code>##  min   Q1 median Q3 max   mean      sd   n missing
 ##  -47 6.75     25 48 133 27.995 28.1174 200       0</code></pre>
 <p>The <code>cut</code> function can provide the binned variable if it is provided
 with the end-points of the desired intervals to
 create new categories with those names in a new variable called
-<code>growthcut</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r">apistrat<span class="op">$</span>growthcut &lt;-<span class="st"> </span><span class="kw">cut</span>(apistrat<span class="op">$</span>growth, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">47</span>,<span class="fl">6.75</span>,<span class="dv">25</span>,<span class="dv">48</span>,<span class="dv">133</span>),
-                          <span class="dt">include.lowest=</span>T)</code></pre>
-
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tally</span>(<span class="op">~</span>growthcut, <span class="dt">data=</span>apistrat)</code></pre>
+<code>growthcut</code>. </p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="chapter5.html#cb473-1"></a>apistrat<span class="op">$</span>growthcut &lt;-<span class="st"> </span><span class="kw">cut</span>(apistrat<span class="op">$</span>growth, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">47</span>,<span class="fl">6.75</span>,<span class="dv">25</span>,<span class="dv">48</span>,<span class="dv">133</span>),</span>
+<span id="cb473-2"><a href="chapter5.html#cb473-2"></a>                          <span class="dt">include.lowest=</span>T)</span></code></pre></div>
+<!-- \newpage -->
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="chapter5.html#cb474-1"></a><span class="kw">tally</span>(<span class="op">~</span>growthcut, <span class="dt">data=</span>apistrat)</span></code></pre></div>
 <pre><code>## growthcut
 ## [-47,6.75]  (6.75,25]    (25,48]   (48,133] 
 ##         50         52         49         49</code></pre>
@@ -2206,15 +2153,14 @@ each of the three populations so a Homogeneity test should be employed. In
 these situations, the stacked bar chart provides the appropriate summary of the
 data. It also shows us the labels of the categories that the <code>cut</code> function
 created in the new <code>growthcut</code> variable:</p>
-<p>(ref:fig5-25) Stacked bar chart of the growth category responses
-by level of school.</p>
+
 <div class="figure"><span id="fig:Figure5-25"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-25-1.png" alt="(ref:fig5-25)" width="576" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-25-1.png" alt="Stacked bar chart of the growth category responses by level of school." width="480" />
 <p class="caption">
-Figure 5.25: (ref:fig5-25)
+Figure 5.25: Stacked bar chart of the growth category responses by level of school.
 </p>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(growthcut<span class="op">~</span>stype, <span class="dt">data=</span>apistrat)</code></pre>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="chapter5.html#cb476-1"></a><span class="kw">plot</span>(growthcut<span class="op">~</span>stype, <span class="dt">data=</span>apistrat)</span></code></pre></div>
 <p>Figure <a href="chapter5.html#fig:Figure5-25">5.25</a> suggests that the distributions of growth
 scores may not be the same across the levels of the
 schools with many more high growth <em>Elementary</em> schools than in either
@@ -2247,22 +2193,23 @@ finding district-level average growth rates and exploring whether those vary
 systematically but this is beyond the scope of the current exploration.</p>
 <p>Checking the expected cell counts gives insight into the assumption for
 using the <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution to find the p-value:</p>
-<pre class="sourceCode r"><code class="sourceCode r">growthtable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>stype<span class="op">+</span>growthcut, <span class="dt">data=</span>apistrat)
-growthtable</code></pre>
+
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="chapter5.html#cb477-1"></a>growthtable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>stype<span class="op">+</span>growthcut, <span class="dt">data=</span>apistrat)</span>
+<span id="cb477-2"><a href="chapter5.html#cb477-2"></a>growthtable</span></code></pre></div>
 <pre><code>##      growthcut
 ## stype [-47,6.75] (6.75,25] (25,48] (48,133]
 ##     E         14        22      27       37
 ##     H         24        18       5        3
 ##     M         12        12      17        9</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(growthtable)<span class="op">$</span>expected </code></pre>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="chapter5.html#cb479-1"></a><span class="kw">chisq.test</span>(growthtable)<span class="op">$</span>expected </span></code></pre></div>
 <pre><code>##      growthcut
 ## stype [-47,6.75] (6.75,25] (25,48] (48,133]
 ##     E       25.0        26   24.50    24.50
 ##     H       12.5        13   12.25    12.25
 ##     M       12.5        13   12.25    12.25</code></pre>
 <p>The smallest expected count is 12.25, occurring in four different cells,
-so the assumptions for using the parametric approach are met.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(growthtable) </code></pre>
+so we can use the parametric approach.</p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="chapter5.html#cb481-1"></a><span class="kw">chisq.test</span>(growthtable) </span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -2270,13 +2217,11 @@ so the assumptions for using the parametric approach are met.</p>
 ## X-squared = 38.668, df = 6, p-value = 8.315e-07</code></pre>
 <p>The observed test statistic is <span class="math inline">\(X^2=38.67\)</span> and, based on a
 <span class="math inline">\(\boldsymbol{\chi^2}(6)\)</span> distribution, the p-value is 0.0000008. This p-value
-suggests that there is very strong evidence
-of some difference in the distribution of API growth of schools among
+suggests that there is very strong evidence against the null hypothesis of no difference in the distribution of API growth of schools among
 <em>Elementary</em>, <em>Middle</em> and <em>High School</em> in the population of schools in
-California between 1999 and 2000. So we can conclude that there is very strong evidence
-of some difference in the population (California
-schools) because the schools were randomly selected from all the California
-schools but because the level of schools, obviously, cannot be randomly
+California between 1999 and 2000, and can conclude that there is some difference in the population (California
+schools). Because the schools were randomly selected from all the California
+schools we can make valid inferences to all the schools but because the level of schools, obviously, cannot be randomly
 assigned, we cannot say that level of school causes these differences.</p>
 <p>The standardized residuals can enhance this interpretation, displayed in
 Figure <a href="chapter5.html#fig:Figure5-26">5.26</a>. The <em>Elementary</em> schools have fewer low/negative growth schools and more
@@ -2285,21 +2230,20 @@ schools have more low growth and fewer higher growth (growth over 25 points) sch
 than expected if there were no difference in patterns of response across
 the school levels. The <em>Middle</em> school results were closer to the results
 expected if there were no differences across the school levels.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(growthtable)<span class="op">$</span>residuals</code></pre>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="chapter5.html#cb483-1"></a><span class="kw">chisq.test</span>(growthtable)<span class="op">$</span>residuals</span></code></pre></div>
 <pre><code>##      growthcut
 ## stype [-47,6.75]  (6.75,25]    (25,48]   (48,133]
 ##     E -2.2000000 -0.7844645  0.5050763  2.5253814
 ##     H  3.2526912  1.3867505 -2.0714286 -2.6428571
 ##     M -0.1414214 -0.2773501  1.3571429 -0.9285714</code></pre>
-<p>(ref:fig5-26) Mosaic plot of the API Growth rate categories versus
-level of the school with shading for size of standardized residuals.</p>
+
 <div class="figure"><span id="fig:Figure5-26"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-26-1.png" alt="(ref:fig5-26)" width="576" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-26-1.png" alt="Mosaic plot of the API Growth rate categories versus level of the school with shading for size of standardized residuals." width="576" />
 <p class="caption">
-Figure 5.26: (ref:fig5-26)
+Figure 5.26: Mosaic plot of the API Growth rate categories versus level of the school with shading for size of standardized residuals.
 </p>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mosaicplot</span>(growthcut<span class="op">~</span>stype,<span class="dt">data=</span>apistrat,<span class="dt">shade=</span>T)</code></pre>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="chapter5.html#cb485-1"></a><span class="kw">mosaicplot</span>(growthcut<span class="op">~</span>stype,<span class="dt">data=</span>apistrat,<span class="dt">shade=</span>T)</span></code></pre></div>
 <p>The binning of quantitative variables is not a first step in analyses –
 the quantitative
 version is almost always preferable. However, this analysis avoided the
@@ -2318,7 +2262,7 @@ In many cases, there are no options but to use contingency table analyses. This
 example shows that there might be some situations where “going categorical”
 could be an acceptable method for handing situations where an assumption is
 violated.</p>
-
+<!-- \newpage -->
 </div>
 <div id="section5-12" class="section level2">
 <h2><span class="header-section-number">5.12</span> Chapter summary</h2>
@@ -2327,10 +2271,10 @@ the Independence and Homogeneity
 tests. The appropriate analysis is determined based on the data collection
 methodology. The parametric Chi-square distribution for which these tests are
 named is appropriate when the expected cell counts are large enough (related to
-having a large enough overall sample). When this condition is violated, the
+having a large enough overall sample). When the expected cell count condition is violated, the
 permutation approach can provide valuable inferences in these situations in
 most situations.</p>
-<p>Data displays of the stacked barchart (Homogeneity) and mosaic plots
+<p>Data displays of the stacked bar chart (Homogeneity) and mosaic plots
 (Independence) provide a visual
 summary of the results that can also be found in contingency tables. You should
 have learned how to calculate the <span class="math inline">\(X^2\)</span> (X-squared) test statistic
@@ -2342,9 +2286,9 @@ hypothesis, independence or homogeneity. After assessing evidence against the nu
 contributed to the deviations from the null hypothesis. The standardized
 residuals provide that information. Graphing them in a mosaic plot makes for a
 fun display to identify the large residuals and often allows you to better
-understand the results. This should tie back into the original data display and
+understand the results. This should tie back into the original data display (tableplot, stacked bar chart or mosaic plot) and
 contingency table where you identified initial patterns and help to tell the story of the results.</p>
-
+<!-- \newpage -->
 </div>
 <div id="section5-13" class="section level2">
 <h2><span class="header-section-number">5.13</span> Summary of important R commands</h2>
@@ -2410,12 +2354,13 @@ permutation-based p-value. </p></li>
 <li>Provides a mosaic plot with shading based on standardized residuals.</li>
 </ul></li>
 </ul>
+
 </div>
 <div id="section5-14" class="section level2">
 <h2><span class="header-section-number">5.14</span> Practice problems</h2>
-<p>Determine which type of test is appropriate in each situation –
+<p>5.1. <strong>Determine type of Chi-Square test</strong> Determine which type of test is appropriate in each situation –
 <strong><em>Independence</em></strong> or <strong><em>Homogeneity</em></strong>?</p>
-<p>5.1. Concerns over diseases being transmitted between birds and humans
+<p>5.1.1. Concerns over diseases being transmitted between birds and humans
 have led to many areas developing
 monitoring plans for the birds that are in their regions. The duck pond on
 campus at MSU-Bozeman is a bit like a night club for the birds that pass
@@ -2432,20 +2377,20 @@ present on a single day, classifies them by type of bird (ducks,
 swans, etc.) and then assesses whether each is sick or healthy.
 The variables in this study are type of bird and sick/healthy.</p></li>
 </ol>
-<p>5.2. Psychologists performed an experiment on 48 male bank supervisors
+<p>5.1.2. Psychologists performed an experiment on 48 male bank supervisors
 attending a management institute to investigate biases against women
 in personnel decisions. The supervisors were
 asked to make a decision on whether to promote a hypothetical applicant based
 on a personnel file. For half of them, the application file described
 a female candidate; for the others it described a male.</p>
-<p>5.3. Researchers collected data on death
+<p>5.1.3. Researchers collected data on death
 penalty sentencing in Georgia. For 243 crimes, they categorized the crime by
 severity from 1 to 6 with Category 1 comprising barroom brawls, liquor-induced
 arguments, lovers’ quarrels, and similar crimes and Category 6 including the
 most vicious, cruel, cold-blooded, unprovoked crimes. They also recorded the
 perpetrator’s race. They wanted to know if there was a relationship between
 race and type of crime.</p>
-<p>5.4. Epidemiologists want to see if
+<p>5.1.4. Epidemiologists want to see if
 Vitamin C helped people with colds. They would like to give some patients
 Vitamin C and some a placebo then compare the two groups. However, they are
 worried that the placebo might not be working. Since vitamin C has such a
@@ -2454,20 +2399,20 @@ in. To test if the placebo was working, they collected 200 subjects and
 randomly assigned half to take a placebo and the other half to take Vitamin C.
 30 minutes later, they asked the subjects which supplement they received
 (hoping that the patients would not know which group they were assigned to).</p>
-<p>5.5. Is zodiac sign related to GPA?
+<p>5.1.5. Is zodiac sign related to GPA?
 300 randomly selected students from MSU were asked their birthday and their
 current GPA. GPA was then categorized as &lt; 1.50 = F, 1.51-2.50 = D,
 2.51 - 3.25 = C, 3.26-3.75 = B, 3.76-4.0 = A and their birthday was used
 to find their zodiac sign.</p>
-<p>5.6. In 1935, the statistician R. A.
+<p>5.1.6. In 1935, the statistician R. A.
 Fisher famously had a colleague claim that she could distinguish whether milk
 or tea was added to a cup first. Fisher presented her, in a random order, 4
 cups that were filled with milk first and 4 cups that were filled with tea first.</p>
-<p>5.7. Researchers wanted to see if
+<p>5.1.7. Researchers wanted to see if
 people from Rural and Urban areas aged differently. They contacted 200 people
 from Rural areas and 200 people from Urban areas and asked the participants
 their age (&lt;40, 41-50, 51-60, &gt;60).</p>
-<p>The <a href="https://fivethirtyeight.com/">FiveThirtyEight Blog</a>
+<p>5.2. <strong>Data is/are analysis</strong> The <a href="https://fivethirtyeight.com/">FiveThirtyEight Blog</a>
 often shows up with interesting data summaries
 that have general public appeal. Their staff includes a bunch of quants with
 various backgrounds. When starting their blog, they had to decide on the data
@@ -2475,6 +2420,13 @@ is/are question that we introduced in Section <a href="chapter2.html#section2-1"
 think about this, they collected a nationally representative sample
 that contained three questions about this. Based on their survey, they
 concluded that</p>
+
+<div class="figure"><span id="fig:Figure5-27"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-27-1.png" alt="Tableplot of data from “data-is-vs-data-are” survey, sorted by “CareAbout” responses." width="960" />
+<p class="caption">
+Figure 5.27: Tableplot of data from “data-is-vs-data-are” survey, sorted by “CareAbout” responses.
+</p>
+</div>
 <blockquote>
 <p>Relevant to the
 <a href="http://fivethirtyeight.com/datalab/data-is-vs-data-are/">interests of FiveThirtyEight</a> in particular, we also asked whether people preferred using “data” as a
@@ -2492,57 +2444,78 @@ correct usage</em>, (<code>isare</code>), <em>have you thought about this issue<
 (<code>careabout</code>) with four levels from <em>Not at all</em> to <em>A lot</em>. The following
 code loads their data set after missing responses were removed, does a
 little re-ordering of factor levels to help make the results easier to
-understand, and makes a tableplot to get a general sense of the results
+understand, and makes a tableplot (Figure <a href="chapter5.html#fig:Figure5-27">5.27</a>) to get a general sense of the results
 including information on the respondents’ gender, age, income, and education.</p>
-
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(readr)
-csd &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/csd.csv&quot;</span>)
-<span class="kw">require</span>(tabplot)
-<span class="co">#Need to make it explicit that these are factor variables</span>
-csd<span class="op">$</span>careabout &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>careabout) 
-<span class="co">#Reorders factor levels to be in &quot;correct&quot; order</span>
-csd<span class="op">$</span>careabout &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>careabout,
-                    <span class="dt">levels=</span><span class="kw">levels</span>(csd<span class="op">$</span>careabout)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>)]) 
-csd<span class="op">$</span>Education &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Education)
-csd<span class="op">$</span>Education &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Education,
-                    <span class="dt">levels=</span><span class="kw">levels</span>(csd<span class="op">$</span>Education)[<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">2</span>)])
-csd<span class="op">$</span>Household.Income &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Household.Income)
-csd<span class="op">$</span>Household.Income &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Household.Income,
-                    <span class="dt">levels=</span><span class="kw">levels</span>(csd<span class="op">$</span>Household.Income)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">3</span>)])
-<span class="co">#Sorts plot by careabout responses</span>
-<span class="kw">tableplot</span>(csd[,<span class="kw">c</span>(<span class="st">&quot;isare&quot;</span>,<span class="st">&quot;careabout&quot;</span>,<span class="st">&quot;thoughtabout&quot;</span>,<span class="st">&quot;Gender&quot;</span>,
-                 <span class="st">&quot;Age&quot;</span>,<span class="st">&quot;Household.Income&quot;</span>,<span class="st">&quot;Education&quot;</span>)], <span class="dt">sortCol=</span>careabout,
-          <span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>)) </code></pre>
-<div class="figure"><span id="fig:Figure5-27"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-27-1.png" alt="Tableplot of data from “data-is-vs-data-are” survey, sorted by “CareAbout” responses." width="576" />
-<p class="caption">
-Figure 5.27: Tableplot of data from “data-is-vs-data-are” survey, sorted by “CareAbout” responses.
-</p>
-</div>
-<p>5.8. If we are interested in the variables <code>isare</code> and <code>careabout</code>,
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="chapter5.html#cb486-1"></a><span class="kw">library</span>(readr)</span>
+<span id="cb486-2"><a href="chapter5.html#cb486-2"></a>csd &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/csd.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="chapter5.html#cb487-1"></a><span class="kw">library</span>(tabplot)</span>
+<span id="cb487-2"><a href="chapter5.html#cb487-2"></a><span class="co">#Need to make it explicit that these are factor variables</span></span>
+<span id="cb487-3"><a href="chapter5.html#cb487-3"></a>csd<span class="op">$</span>careabout &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>careabout) </span>
+<span id="cb487-4"><a href="chapter5.html#cb487-4"></a><span class="co">#Reorders factor levels to be in &quot;correct&quot; order</span></span>
+<span id="cb487-5"><a href="chapter5.html#cb487-5"></a>csd<span class="op">$</span>careabout &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>careabout,</span>
+<span id="cb487-6"><a href="chapter5.html#cb487-6"></a>                    <span class="dt">levels=</span><span class="kw">levels</span>(csd<span class="op">$</span>careabout)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>)]) </span>
+<span id="cb487-7"><a href="chapter5.html#cb487-7"></a>csd<span class="op">$</span>Education &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Education)</span>
+<span id="cb487-8"><a href="chapter5.html#cb487-8"></a>csd<span class="op">$</span>Education &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Education,</span>
+<span id="cb487-9"><a href="chapter5.html#cb487-9"></a>                    <span class="dt">levels=</span><span class="kw">levels</span>(csd<span class="op">$</span>Education)[<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">2</span>)])</span>
+<span id="cb487-10"><a href="chapter5.html#cb487-10"></a>csd<span class="op">$</span>Household.Income &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Household.Income)</span>
+<span id="cb487-11"><a href="chapter5.html#cb487-11"></a>csd<span class="op">$</span>Household.Income &lt;-<span class="st"> </span><span class="kw">factor</span>(csd<span class="op">$</span>Household.Income,</span>
+<span id="cb487-12"><a href="chapter5.html#cb487-12"></a>                    <span class="dt">levels=</span><span class="kw">levels</span>(csd<span class="op">$</span>Household.Income)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">3</span>)])</span>
+<span id="cb487-13"><a href="chapter5.html#cb487-13"></a><span class="co">#Sorts plot by careabout responses</span></span>
+<span id="cb487-14"><a href="chapter5.html#cb487-14"></a><span class="kw">tableplot</span>(csd[,<span class="kw">c</span>(<span class="st">&quot;isare&quot;</span>,<span class="st">&quot;careabout&quot;</span>,<span class="st">&quot;thoughtabout&quot;</span>,<span class="st">&quot;Gender&quot;</span>,</span>
+<span id="cb487-15"><a href="chapter5.html#cb487-15"></a>                 <span class="st">&quot;Age&quot;</span>,<span class="st">&quot;Household.Income&quot;</span>,<span class="st">&quot;Education&quot;</span>)], <span class="dt">sortCol=</span>careabout,</span>
+<span id="cb487-16"><a href="chapter5.html#cb487-16"></a>          <span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>)) </span></code></pre></div>
+<p>5.2.1. If we are interested in the variables <code>isare</code> and <code>careabout</code>,
 what sort of test should we perform?</p>
-<p>5.9. Make the appropriate plot of the results for the table relating
+<p>5.2.2. Make the appropriate plot of the results for the table relating
 those two variables relative to your answer to 5.8.</p>
-<p>5.10. Generate the contingency table
+<p>5.2.3. Generate the contingency table
 and find the expected cell counts, first “by hand” and then check them using
 the output. Is the parametric procedure appropriate here? Why or why not?</p>
-<p>5.11. Report the value of the test
+<p>5.2.4. Report the value of the test
 statistic, its distribution under the null, the parametric p-value, and write a
 decision and conclusion, making sure to address scope of inference.</p>
-<p>5.12. Make a mosaic plot with the
+<p>5.2.5. Make a mosaic plot with the
 standardized residuals and discuss the results. Specifically, in what way do
 the is/are preferences move away from the null hypothesis for people that care
 more about this?</p>
 <table>
 <tbody>
 <tr class="odd">
-<td align="left">We might be fighting a losing battle on “data is a plural word”, but since we</td>
+<td align="left">We might be fighting a losing battle on “data is a plural word”,</td>
 </tr>
 <tr class="even">
-<td align="left">are in the group that cares a lot about this, we are going to keep trying…</td>
+<td align="left">but since we are in the group that cares a lot about this, we are going to</td>
+</tr>
+<tr class="odd">
+<td align="left">keep trying…</td>
 </tr>
 </tbody>
 </table>
+
+<div class="figure"><span id="fig:Figure5-28"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-28-1.png" alt="Stacked bar chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit." width="480" />
+<p class="caption">
+Figure 5.28: Stacked bar chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit.
+</p>
+</div>
+<p>5.3. <strong>Overtake close calls by outfit analysis</strong> We can revisit the car overtake passing distance data from Chapter <a href="chapter3.html#chapter3">3</a> and to focus in on the “close calls”. The following code uses the <code>ifelse</code> function to create the close call/not response variable. It works to create a two-category variable where the first category (<em>close</em>) is encountered when the condition is true (<code>dd$Distance&lt;=100</code>, so the passing distance was less than or equal to 100 cm) from the “if” part of the function (<em>if Distance is less than or equal to 100 cm, then “close”</em>) and the “else” is the second category (when the <code>Distance</code> was over 100 cm) and gets the category of <em>notclose</em>. The <code>factor</code> function is applied to the results from <code>ifelse</code> to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure <a href="chapter5.html#fig:Figure5-28">5.28</a> is provided.</p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="chapter5.html#cb488-1"></a>dd &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="chapter5.html#cb489-1"></a>dd<span class="op">$</span>Condition &lt;-<span class="st"> </span><span class="kw">factor</span>(dd<span class="op">$</span>Condition)</span>
+<span id="cb489-2"><a href="chapter5.html#cb489-2"></a>dd<span class="op">$</span>Condition2 &lt;-<span class="st"> </span><span class="kw">with</span>(dd, <span class="kw">reorder</span>(Condition, Distance, mean))</span>
+<span id="cb489-3"><a href="chapter5.html#cb489-3"></a>dd<span class="op">$</span>Close &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">ifelse</span>(dd<span class="op">$</span>Distance<span class="op">&lt;=</span><span class="dv">100</span>, <span class="st">&quot;close&quot;</span>, <span class="st">&quot;notclose&quot;</span>))</span>
+<span id="cb489-4"><a href="chapter5.html#cb489-4"></a></span>
+<span id="cb489-5"><a href="chapter5.html#cb489-5"></a><span class="kw">plot</span>(Close <span class="op">~</span><span class="st"> </span>Condition2, <span class="dt">data=</span>dd)</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="chapter5.html#cb490-1"></a>table1 &lt;-<span class="st"> </span><span class="kw">tally</span>(Close <span class="op">~</span><span class="st"> </span>Condition2, <span class="dt">data=</span>dd)</span>
+<span id="cb490-2"><a href="chapter5.html#cb490-2"></a></span>
+<span id="cb490-3"><a href="chapter5.html#cb490-3"></a><span class="kw">chisq.test</span>(table1)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  table1
+## X-squared = 30.861, df = 6, p-value = 2.695e-05</code></pre>
+<p>5.3.1. This is a Homogeneity test situation. Why?</p>
+<p>5.3.2. Perform the 6+ steps of the hypothesis test using the provided results.</p>
+<p>5.3.3. Explain how these results are consistent with the One-Way ANOVA test but also address a different research question.</p>
 
 </div>
 </div>
@@ -2563,42 +2536,6 @@ more about this?</p>
 <div id="ref-R-vcd">
 <p>Meyer, David, Achim Zeileis, and Kurt Hornik. 2017. <em>Vcd: Visualizing Categorical Data</em>. <a href="https://CRAN.R-project.org/package=vcd">https://CRAN.R-project.org/package=vcd</a>.</p>
 </div>
-<div id="ref-R-tabplot">
-<p>Tennekes, Martijn, and Edwin de Jonge. 2019. <em>Tabplot: Tableplot, a Visualization of Large Datasets</em>. <a href="https://CRAN.R-project.org/package=tabplot">https://CRAN.R-project.org/package=tabplot</a>.</p>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="62">
-<li id="fn62"><p>In larger data sets,
-multiple subjects are displayed in each row as proportions of
-the rows in each category.<a href="chapter5.html#fnref62" class="footnote-back">↩</a></p></li>
-<li id="fn63"><p>Quantitative variables are displayed with
-boxplot-like bounds to describe the variability in the variable for that row of
-responses for larger data sets.<a href="chapter5.html#fnref63" class="footnote-back">↩</a></p></li>
-<li id="fn64"><p>While randomization is typically useful in trying to “equalize” the composition of groups, a possible randomization of subjects to the groups is to put all the males into the treatment group. Sometimes we add additional constraints to randomization of subjects to treatments to guarantee that we don’t get stuck with an unusual and highly unlikely assignment like that. It is important at least to check the demographics of different treatment groups to see if anything odd occurred.<a href="chapter5.html#fnref64" class="footnote-back">↩</a></p></li>
-<li id="fn65"><p>The vertical line, “<code>|</code>”, in <code>~ y|x</code>
-is available on most keyboards on the same key as “<code>\</code>”. It is the mathematical
-symbol that means “conditional on” whatever follows.<a href="chapter5.html#fnref65" class="footnote-back">↩</a></p></li>
-<li id="fn66"><p>Standardizing involves dividing by the standard deviation
-of a quantity so it has a standard deviation 1 regardless of its original
-variability and that is what is happening here even though it doesn’t
-look like the standardization you are used to with continuous variables.<a href="chapter5.html#fnref66" class="footnote-back">↩</a></p></li>
-<li id="fn67"><p>Here it allows us to relax
-a requirement that all the expected cell counts are larger than 5 for the
-parametric test (Section <a href="chapter5.html#section5-6">5.6</a>).<a href="chapter5.html#fnref67" class="footnote-back">↩</a></p></li>
-<li id="fn68"><p>Independence tests can’t
-be causal by their construction. Homogeneity tests could be causal or just
-associational, depending on how the subjects ended up in the groups.<a href="chapter5.html#fnref68" class="footnote-back">↩</a></p></li>
-<li id="fn69"><p>A stratified random sample
-involves taking a simple random sample from each group or strata of the
-population.
-
-It is useful to make sure that each group is represented at a
-chosen level (for example the sample proportion of the total
-size). If a simple random sample of all schools had been taken, it is possible
-that a level could have no schools selected.<a href="chapter5.html#fnref69" class="footnote-back">↩</a></p></li>
-</ol>
 </div>
             </section>
 

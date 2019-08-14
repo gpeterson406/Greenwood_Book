@@ -41,10 +41,7 @@ summarizing the overtake distances by the seven groups using ``favstats``.
 
 (ref:fig3-1) Pirate-plot of the overtake distances for the seven groups with group mean (bold lines with boxes indicating 95% confidence intervals) and the overall sample mean (dashed line) of 117.1 cm added.
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-1-1.png" alt="(ref:fig3-1)" width="960" />
-<p class="caption">(\#fig:Figure3-1)(ref:fig3-1)</p>
-</div>
+![(\#fig:Figure3-1)(ref:fig3-1)](03-oneWayAnova_files/figure-latex/Figure3-1-1.pdf) 
 
 
 ```
@@ -78,7 +75,7 @@ Chapter \@ref(chapter2), we found moderate evidence regarding the difference in
 difference between, say, *commute* and *novice* groups since we are comparing 
 means of 114.05 and 116.94 cm. All the distributions appear to have similar shapes that are generally symmetric and bell-shaped and have relatively similar variability. The *police* vest group of observations seems to have highest sample mean, but there are many open questions about what differences might really exist here and there are many comparisons that could be considered.
 
-## Linear model for One-Way ANOVA (cell-means and reference-coding) {#section3-2}
+## Linear model for One-Way ANOVA (cell means and reference-coding) {#section3-2}
 
 We introduced the statistical model $y_{ij} = \mu_j+\varepsilon_{ij}$ in 
 Chapter \@ref(chapter2) for the situation with $j = 1 \text{ or } 2$ to denote 
@@ -87,7 +84,7 @@ with the alternative hypothesis, the means differed. Now there are seven groups
 and the previous model can be extended to this new situation by allowing $j$
 to be 1, 2, 3, ..., 7. \index{model!linear} As before, the linear model assumes that the responses follow a normal
 distribution with the model defining the mean of the normal distributions and all observations have the 
-same variance. ***Linear models** assume that the parameters for the mean in the model enter linearly. This 
+same variance. ***Linear models*** assume that the parameters for the mean in the model enter linearly. This 
 last condition is hard to explain at this level of material -- it is sufficient 
 to know that there are models where the parameters enter the model nonlinearly and 
 that they are beyond the scope of this function and this material and you won't run into them in most statistical models. By employing this general "linear" modeling methodology,  we will be able to use the same general modeling framework for the methods
@@ -137,9 +134,9 @@ as $\varepsilon_{ij} \sim N(0,\sigma^2)$. There is a second way to write out thi
 model that allows extension to more complex models discussed below, so we
 need a name for this version of the model. The model written in terms of the
 ${\color{red}{\mu_j}}\text{'s}$ is called the 
-<b><font color='red'>cell means model</font></b> and is the 
+\textcolor{red}{\textbf{cell means model}} and is the 
 easier version of this model to understand. 
-\index{model!cell-means}
+\index{model!cell means}
 
 \indent One of the reasons we learned about pirate-plots is that 
 it helps us visually consider all the aspects of this model. 
@@ -171,7 +168,7 @@ mean(dd$Distance)
 that provides a framework
 for extensions to more complex models described in Chapter \@ref(chapter4) and 
 beyond. The other ***parameterization*** (way of writing out or defining) of the 
-model is called the <b><font color='purple'>reference-coded model</font></b> since it 
+model is called the \textcolor{purple}{\textbf{reference-coded model}} since it 
 writes out the model in terms of a 
 \index{reference coding}
 \index{model!reference-coded}
@@ -183,7 +180,7 @@ baseline group (usually first alphabetically) and the $\color{purple}{\boldsymbo
 (tau $j$) are the deviations from the baseline group for group $j$. The deviation 
 for the baseline group, $\color{purple}{\boldsymbol{\tau_1}}$, is always set to 0 
 so there are really just deviations for groups 2 through $J$. The equivalence 
-between the reference-coded and cell-means models can be seen by considering the mean for the first, second, 
+between the reference-coded and cell means models can be seen by considering the mean for the first, second, 
 and $J^{th}$ groups in both models:
 
 $$\begin{array}{lccc}
@@ -195,7 +192,7 @@ $$\begin{array}{lccc}
 \end{array}$$
 
 The hypotheses for the reference-coded model are similar to those in the 
-cell-means coding except that they are defined in terms of the deviations,
+cell means coding except that they are defined in terms of the deviations,
 ${\color{purple}{\boldsymbol{\tau_j}}}$. The null hypothesis is that there is
 no deviation from the baseline for any group -- that all the ${\color{purple}{\boldsymbol{\tau_j\text{'s}}}}=0$,
 
@@ -208,25 +205,25 @@ $$\boldsymbol{H_A:} \textbf{ Not all } \boldsymbol{\tau_j} \textbf{ equal } \bf{
 In this chapter, you are welcome to use either version (unless we instruct you
 otherwise) but we have to use the reference-coding in subsequent chapters. The 
 next task is to learn how to use R's linear model, ``lm``, function to get 
-estimates of the parameters^[In Chapter \@ref(chapter2), we used ``lm`` to get these estimates and focused on the estimate of the difference between the second group and the baseline - that was and still is the difference in the sample means. Now there are potentially more than two groups and we need to formalize notation to handle this more complex sitation.] in each model, but first a quick review of these 
+estimates of the parameters^[In Chapter \@ref(chapter2), we used ``lm`` to get these estimates and focused on the estimate of the difference between the second group and the baseline - that was and still is the difference in the sample means. Now there are potentially more than two groups and we need to formalize notation to handle this more complex situation.] in each model, but first a quick review of these 
 new ideas:
 
-<b><font color='red'>Cell Means Version</font></b>
+\textcolor{red}{\textbf{Cell Means Version}}
 
 * $H_0: {\color{red}{\mu_1= \ldots = \mu_J}}$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp; $H_A: {\color{red}{\text{ Not all } \mu_j \text{ equal}}}$
 
 * Null hypothesis in words: No difference in the true means among the groups. 
 
-* Null model: $y_{ij} = \mu+\varepsilon_{ij}$ \index{model!null!cell-means}
+* Null model: $y_{ij} = \mu+\varepsilon_{ij}$ \index{model!null!cell means}
 
 * Alternative hypothesis in words: At least one of the true means differs among 
 the groups. 
 
 * Alternative model: $y_{ij} = \color{red}{\mu_j}+\varepsilon_{ij}.$
-\index{model!alternative!cell-means}
+\index{model!alternative!cell means}
 
-<b><font color='purple'>Reference-coded Version</font></b>
+\textcolor{purple}{\textbf{Reference-coded Version}}
 
 * $H_0: \color{purple}{\boldsymbol{\tau_2 = \ldots = \tau_J = 0}}$
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -254,16 +251,16 @@ model by default (The developers of R thought it was that important!).
 \index{reference coding}
 \index{\texttt{lm()}}
 But we want to start with the
-cell-means version of the model,
-\index{model!cell-means}
+cell means version of the model,
+\index{model!cell means}
 so we have to override the standard technique 
 and add a "``-1``" to the formula interface to tell R that we want to the 
-cell-means coding. Generally, this looks like ``lm(Y~X-1, data=datasetname).``
+cell means coding. Generally, this looks like ``lm(Y~X-1, data=datasetname).``
 \index{\texttt{lm()}}
 Once we fit a model in R, the ``summary`` function run on the model provides a
 useful "summary" of the model coefficients and a suite of other potentially
 interesting information. For the moment, we will focus on the estimated model
-coefficients, so only those lines are provided. When fitting the cell-means version
+coefficients, so only those lines are provided. When fitting the cell means version
 of the One-Way ANOVA model, 
 you will find a row of output for each group relating estimating the $\mu_j\text{'s}$.
 The output contains columns for an estimate (``Estimate``), standard error 
@@ -291,9 +288,9 @@ summary(lm1)$coefficients
 
 \indent In general, we denote estimated parameters \index{parameters!estimated} \index{hat} with a hat over the parameter of 
 interest to show that it is an estimate. For the true mean of group $j$, 
-$\mu_j$, we estimate it with $\hat{\mu}_j$, which is just the sample mean for group
+$\mu_j$, we estimate it with $\widehat{\mu}_j$, which is just the sample mean for group
 $j$, $\bar{x}_j$. The model suggests an estimate for each observation that we denote
-as $\hat{y}_{ij}$ that we will also call a ***fitted value*** based on the model
+as $\widehat{y}_{ij}$ that we will also call a ***fitted value*** based on the model
 being considered. The
 same estimate is used for all observations in the each group in this model. R tries to help you to 
 sort out which row of output corresponds to which group by appending the group name
@@ -325,33 +322,32 @@ summary(lm2)$coefficients
 ## Conditionracer    -0.8551713   1.483032  -0.5766371 0.564207492
 ```
 
-The estimated model coefficients are $\hat{\alpha} = 117.61$ cm, 
-$\hat{\tau}_2 =-3.00$ cm, $\hat{\tau}_3=0.83$ cm, and so on up to $\hat{\tau}_7=-0.86$ cm,  where R selected group 1
+The estimated model coefficients are $\widehat{\alpha} = 117.61$ cm, 
+$\widehat{\tau}_2 =-3.00$ cm, $\widehat{\tau}_3=0.83$ cm, and so on up to $\widehat{\tau}_7=-0.86$ cm,  where R selected group 1
 for *casual*, 2 for *commute*, 3 for *hiviz*, all the way up to group 7 for *racer*. The way you can figure 
 out the baseline group (group 1 is *casual* here) is to see which category label 
 is *not present* in the reference-coded output. **The baseline level is typically the first group 
 label alphabetically**, but you should always check this^[We can and will select the order of the levels of categorical variables as it can make plots easier to interpret.]. Based on these definitions,
-there are interpretations available for each coefficient. For $\hat{\alpha} = 117.61$ cm, this is an estimate of the mean overtake distance for the *casual* outfit group.
-$\hat{\tau}_2 =-3.00$ cm is the deviation of the *commute* group's mean from 
+there are interpretations available for each coefficient. For $\widehat{\alpha} = 117.61$ cm, this is an estimate of the mean overtake distance for the *casual* outfit group.
+$\widehat{\tau}_2 =-3.00$ cm is the deviation of the *commute* group's mean from 
 the *causal* group's mean (specifically, it is $3.00$ cm lower and was a quantity we explored in detail in Chapter \@ref(chapter2) when we just focused on comparing *casual* and *commute* groups). 
-$\hat{\tau}_3=0.83$ cm tells us that the *hiviz* group mean distance is 0.83 cm higher than the *casual* group mean and $\hat{\tau}_3=-0.86$ says that the *racer* sample mean was 0.86 cm lower than for the *casual* group. These
+$\widehat{\tau}_3=0.83$ cm tells us that the *hiviz* group mean distance is 0.83 cm higher than the *casual* group mean and $\widehat{\tau}_3=-0.86$ says that the *racer* sample mean was 0.86 cm lower than for the *casual* group. These
 interpretations are interesting as they directly relate to comparisons of groups with the baseline and lead directly to
 reconstructing the estimated means for each group by combining the baseline and
 a pertinent deviation as shown in Table \@ref(tab:Table3-1). 
 
-(ref:tab3-1) Constructing group mean estimates from the reference-coded linear
-model estimates.
+(ref:tab3-1) Constructing group mean estimates from the reference-coded linear model estimates.
 
 
------------------------------------------------------------------------
-Group     Formula                       Estimates                      
---------- ----------------------------- -------------------------------
-casual    $\hat{\alpha}$                **117.61** cm                  
+-------------------------------------------------------------------------------
+Group     Formula                               Estimates                      
+--------- ------------------------------------- -------------------------------
+casual    $\widehat{\alpha}$                    **117.61** cm                  
 
-commute   $\hat{\alpha}+\hat{\tau}_2$   117.61 - 3.00 = **114.61** cm  
+commute   $\widehat{\alpha}+\widehat{\tau}_2$   117.61 - 3.00 = **114.61** cm  
 
-hiviz     $\hat{\alpha}+\hat{\tau}_3$   117.61 + 0.82 = **118.43** cm  
------------------------------------------------------------------------
+hiviz     $\widehat{\alpha}+\widehat{\tau}_3$   117.61 + 0.82 = **118.43** cm  
+-------------------------------------------------------------------------------
 
 Table: (\#tab:Table3-1) (ref:tab3-1)
 
@@ -377,27 +373,24 @@ constructed in Table \@ref(tab:Table3-1).
 
 
 ```r
-require(effects)
+library(effects)
 plot(allEffects(lm2))
 ```
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-2-1.png" alt="(ref:fig3-2)" width="672" />
-<p class="caption">(\#fig:Figure3-2)(ref:fig3-2)</p>
-</div>
+![(\#fig:Figure3-2)(ref:fig3-2)](03-oneWayAnova_files/figure-latex/Figure3-2-1.pdf) 
 
 \indent In order to assess overall evidence against having the same means for the all groups (vs not having the same means), we 
-compare either of the previous models (cell-means or reference-coded) to a null 
+compare either of the previous models (cell means or reference-coded) to a null 
 model based on the null hypothesis of $H_0: \mu_1 = \ldots = \mu_J$, which implies a
-model of $\color{red}{y_{ij} = \mu+\varepsilon_{ij}}$ in the cell-means version 
+model of $\color{red}{y_{ij} = \mu+\varepsilon_{ij}}$ in the cell means version 
 where ${\color{red}{\mu}}$ is a common mean for all the observations. We will call 
-this the <b><font color='red'>mean-only</font></b> model since it only has a single mean 
+this the \textcolor{red}{\textbf{mean-only}} model since it only has a single mean 
 in it. In the reference-coded version of the model, we have a null hypothesis of
 $H_0: \tau_2 = \ldots = \tau_J = 0$, so the "mean-only" model is 
 \index{model!mean-only}
 $\color{purple}{y_{ij} =\boldsymbol{\alpha}+\varepsilon_{ij}}$ with 
 $\color{purple}{\boldsymbol{\alpha}}$ having the same definition as 
-$\color{red}{\mu}$ for the cell-means model -- it forces a common value for the 
+$\color{red}{\mu}$ for the cell means model -- it forces a common value for the 
 mean for all the groups. Moving from the *reference-coded* model to the *mean-only*
 model is also an example of a situation where we move from a "full" model
 \index{cell means}
@@ -416,7 +409,7 @@ and in areas known to have never been contaminated.]. In order for R to provide
 results for the mean-only model, we remove the grouping variable, ``Condition``, from 
 the model formula and just include a "1". The ``(Intercept)`` row of the output
 provides the estimate for the mean-only model as a reduced model from either the
-cell-means or reference-coded models when we assume that the mean is the same
+cell means or reference-coded models when we assume that the mean is the same
 for all groups:
 
 
@@ -431,7 +424,7 @@ summary(lm3)$coefficients
 ```
 
 This model provides an estimate of the common mean for all observations of 
-$117.13 = \hat{\mu} = \hat{\alpha}$ cm. This value also is the dashed horizontal
+$117.13 = \widehat{\mu} = \widehat{\alpha}$ cm. This value also is the dashed horizontal
 line in the pirate-plot in Figure \@ref(fig:Figure3-1). Some people 
 call this mean-only model estimate the "grand" or "overall" mean and notationally is represented as $\bar{\bar{y}}$. \index{grand mean} 
 
@@ -451,9 +444,9 @@ $n_j$ and the total sample size is
 $\boldsymbol{N=\Sigma n_j = n_1 + n_2 + \ldots + n_J}$ where $\Sigma$
 (capital sigma) means "add up over whatever follows". An estimated 
 ***residual*** ($e_{ij}$) is the difference between an observation, $y_{ij}$,
-and the model estimate, $\hat{y}_{ij} = \hat{\mu}_j$, for that observation,
-$y_{ij}-\hat{y}_{ij} = e_{ij}$. It is basically what is left over that the mean
-part of the model ($\hat{\mu}_{j}$) does not explain. It is also a window
+and the model estimate, $\widehat{y}_{ij} = \widehat{\mu}_j$, for that observation,
+$y_{ij}-\widehat{y}_{ij} = e_{ij}$. It is basically what is left over that the mean
+part of the model ($\widehat{\mu}_{j}$) does not explain. It is also a window
 into how "good" the model might be because it reflects what the model was unable to explain. \index{residuals}
 
 \indent Consider the four different fake results for a situation with four groups ($J=4$)
@@ -472,14 +465,9 @@ comparison of the variability in the means to the overall variability to help
 us get results that reflect that Scenario 4 has the strongest evidence of a
 difference (most variability in the means and least variability around those means) and Scenario 1 would have the least evidence(least variability in the means and most variability around those means). 
 
-(ref:fig3-3) Demonstration of different amounts of difference in means relative 
-to variability. Scenarios have the same means in rows and same variance around means 
-in columns of plot. Confidence intervals not reported in the pirate-plots.
+(ref:fig3-3) Demonstration of different amounts of difference in means relative to variability. Scenarios have the same means in rows and same variance around means in columns of plot. Confidence intervals not reported in the pirate-plots.
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-3-1.png" alt="(ref:fig3-3)" width="576" />
-<p class="caption">(\#fig:Figure3-3)(ref:fig3-3)</p>
-</div>
+![(\#fig:Figure3-3)(ref:fig3-3)](03-oneWayAnova_files/figure-latex/Figure3-3-1.pdf) 
 
 \indent The statistic that allows the comparison of relative amounts of variation is called
 the ***ANOVA F-statistic***. It is developed using ***sums of squares***
@@ -505,7 +493,7 @@ $= \Sigma^J_{j=1}\Sigma^{n_j}_{i=1}(y_{ij}-\bar{\bar{y}})^2$
     and then adding those results up across the groups, $\Sigma^J_{j=1}(\ )$,
     we accumulate the variation across all $N$ observations. 
 
-    * Note: this is the residual variation if the null model is used, so there 
+    * **Note**: this is the residual variation if the null model is used, so there 
     is no further decomposition possible for that model. 
 
     * This is also equivalent to the numerator of the sample variance, 
@@ -578,18 +566,11 @@ the $\textbf{SS}_{\textbf{Total}} \mathbf{=} \textbf{SS}_\textbf{A} \mathbf{+} \
 ## [1] 5121246
 ```
 
-(ref:fig3-4) Plot of means and 95% confidence intervals for the three groups 
-for the real overtake data (a) and three different permutations of the outfit group labels 
-to the same responses in (b), (c), and (d). Note that ``SSTotal`` is always the same 
-but the different amounts of variation associated with the means (``SSA``) or the 
-errors (``SSE``) changes in permutation.
+(ref:fig3-4) Plot of means and 95% confidence intervals for the three groups for the real overtake data (a) and three different permutations of the outfit group labels to the same responses in (b), (c), and (d). Note that ``SSTotal`` is always the same but the different amounts of variation associated with the means (``SSA``) or the errors (``SSE``) changes in permutation.
 
 
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-4-1.png" alt="(ref:fig3-4)" width="768" />
-<p class="caption">(\#fig:Figure3-4)(ref:fig3-4)</p>
-</div>
+![(\#fig:Figure3-4)(ref:fig3-4)](03-oneWayAnova_files/figure-latex/Figure3-4-1.pdf) 
 
 
 \indent It may be easiest to understand the *sums of squares decomposition* by connecting 
@@ -603,7 +584,7 @@ among the means and in the residuals can change if we change which observations 
 with which group. In Figure \@ref(fig:Figure3-4) (panel a), the means, sums of 
 squares, and 95% confidence intervals for each mean are displayed for the seven
 groups from the original overtake data. Three permuted versions 
-of the data set are summarized in panels (b), (c), and (d). The $\text{SS}_A$ is 3.4948\times 10^{4} 
+of the data set are summarized in panels (b), (c), and (d). The $\text{SS}_A$ is 34948 
  in the real data set and between 857 and 4539 in the permuted data sets.
 If you had 
 to pick among the plots for the one with the most evidence of a difference in the
@@ -620,7 +601,7 @@ converts the variation in the group means into a single value. This makes it a
 reasonable test statistic in a permutation testing context. 
 \index{permutation!test}
 By comparing the 
-observed $\text{SS}_A =$ 3.4948\times 10^{4} to the permutation results of 
+observed $\text{SS}_A =$ 34948 to the permutation results of 
 857, 3828, and 4539 we see 
 that the observed result is much more extreme than the three alternate versions. 
 In contrast to our previous test statistics where positive and negative 
@@ -655,15 +636,9 @@ The following code performs the permutations ``B=1,000`` times using the
 ``shuffle`` function, builds up a vector of results in ``Tobs``, and then makes 
 a plot of the resulting permutation distribution:
 
-(ref:fig3-5) Histogram and density curve of permutation distribution of 
-$\text{SS}_A$ with the observed value of $\text{SS}_A$ displayed as a bold, 
-vertical line. The proportion of results that are as large or larger than the observed 
-value of $\text{SS}_A$ provides an estimate of the p-value. 
+(ref:fig3-5) Histogram and density curve of permutation distribution of $\text{SS}_A$ with the observed value of $\text{SS}_A$ displayed as a bold, vertical line. The proportion of results that are as large or larger than the observed value of $\text{SS}_A$ provides an estimate of the p-value. 
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-5-1.png" alt="(ref:fig3-5)" width="960" />
-<p class="caption">(\#fig:Figure3-5)(ref:fig3-5)</p>
-</div>
+![(\#fig:Figure3-5)(ref:fig3-5)](03-oneWayAnova_files/figure-latex/Figure3-5-1.pdf) 
 
 
 ```r
@@ -740,7 +715,7 @@ means around the grand mean.
 * $\text{MS}_{\text{Error}} = \text{SS}_{\text{Error}}/(N-J)$, which estimates 
 the variation of the errors around the group means.
 
-\newpage
+<!-- \newpage -->
 
 \indent These results are put together using a ratio to define the ***ANOVA F-statistic***
 (also called the ***F-ratio***) as: \index{F-statistics}
@@ -775,21 +750,17 @@ different $F$-distributions are displayed for you in Figure \@ref(fig:Figure3-6)
 * **Always use the right-tailed area for p-values.**
 
 
-(ref:fig3-6) Density curves of four different $F$-distributions. Upper left is an 
-$F(6, 5683)$, upper right is $F(2, 10)$, lower left is $F(6, 10)$, and lower right 
-is $F(3, 20)$. P-values are found using the areas to the right of the observed
-$F$-statistic value in all F-distributions. \index{p-value!calculation of}
+(ref:fig3-6) Density curves of four different $F$-distributions. Upper left is an $F(6, 5683)$, upper right is $F(2, 10)$, lower left is $F(6, 10)$, and lower right is $F(3, 20)$. P-values are found using the areas to the right of the observed $F$-statistic value in all F-distributions. \index{p-value!calculation of}
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-6-1.png" alt="(ref:fig3-6)" width="480" />
-<p class="caption">(\#fig:Figure3-6)(ref:fig3-6)</p>
-</div>
+![(\#fig:Figure3-6)(ref:fig3-6)](03-oneWayAnova_files/figure-latex/Figure3-6-1.pdf) 
 
 \indent Now we are ready to discuss an ANOVA table since we know about each of its 
 components. Note the general format of the ANOVA table is in Table \@ref(tab:Table3-2)^[Make sure you can work 
 from left to right and up and down to fill in the ANOVA table given just the 
 necessary information to determine the other components or from a study description to complete the *DF* part of the table -- there are always questions like these on exams...]:
 \index{ANOVA table}
+
+\newpage
 
 (ref:tab3-2) General One-Way ANOVA table.
 
@@ -823,12 +794,14 @@ anova(lm2)
 ## Analysis of Variance Table
 ## 
 ## Response: Distance
-##             Df  Sum Sq Mean Sq F value    Pr(>F)
-## Condition    6   34948  5824.7  6.5081 7.392e-07
+##             Df  Sum Sq Mean Sq F value       Pr(>F)
+## Condition    6   34948  5824.7  6.5081 0.0000007392
 ## Residuals 5683 5086298   895.0
 ```
 
-The p-value from the $F$-distribution is 7\times 10^{-7} so we can report it as a p-value < 0.0001^[Any further claimed precision is an exaggeration and eventually we might see p-values that approach the precision of the computer at 2.2e-16 and anything below 0.0001 should just be reported as being below 0.0001. Also note the way that R represents small or extremely large numbers using scientific notation such as `3e-4` which is $3 \cdot 10^{-4} = 0.0003$]. \index{F-distribution} \index{p-values!small} We can 
+\newpage
+
+The p-value from the $F$-distribution is 0.0000007 so we can report it as a p-value < 0.0001^[Any further claimed precision is an exaggeration and eventually we might see p-values that approach the precision of the computer at 2.2e-16 and anything below 0.0001 should just be reported as being below 0.0001. Also note the way that R represents small or extremely large numbers using scientific notation such as `3e-4` which is $3 \cdot 10^{-4} = 0.0003$.]. \index{F-distribution} \index{p-values!small} We can 
 verify this result using the observed $F$-statistic of 6.51
 (which came from taking the ratio of the two mean squares, 
 F=5824.74/895)
@@ -845,7 +818,7 @@ pf(6.51, df1=6, df2=5683, lower.tail=F)
 ```
 
 ```
-## [1] 7.353832e-07
+## [1] 0.0000007353832
 ```
 
 \indent The result from the $F$-distribution using this parametric procedure is similar to 
@@ -894,14 +867,9 @@ plot(density(Tstar), main="Density curve of Tstar")
 abline(v=Tobs, col="red", lwd=3)
 ```
 
-(ref:fig3-7) Histogram and density curve of the permutation distribution of 
-the F-statistic with bold, vertical line for the observed value of the test 
-statistic of 6.51. 
+(ref:fig3-7) Histogram and density curve of the permutation distribution of the F-statistic with bold, vertical line for the observed value of the test statistic of 6.51. 
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-7-1.png" alt="(ref:fig3-7)" width="960" />
-<p class="caption">(\#fig:Figure3-7)(ref:fig3-7)</p>
-</div>
+![(\#fig:Figure3-7)(ref:fig3-7)](03-oneWayAnova_files/figure-latex/Figure3-7-1.pdf) 
 
 
 
@@ -920,13 +888,9 @@ the density curve and are not really a problem for the methods. The similarity i
 the two curves explains why both methods would give similar p-value results for almost any test statistic value. In some
 situations, the correspondence will not be quite so close. 
 
-(ref:fig3-8) Comparison of $F(6, 6583)$ (dashed line) and permutation distribution
-(solid line). 
+(ref:fig3-8) Comparison of $F(6, 6583)$ (dashed line) and permutation distribution (solid line). 
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-8-1.png" alt="(ref:fig3-8)" width="480" />
-<p class="caption">(\#fig:Figure3-8)(ref:fig3-8)</p>
-</div>
+![(\#fig:Figure3-8)(ref:fig3-8)](03-oneWayAnova_files/figure-latex/Figure3-8-1.pdf) 
 
 \indent So how can we rectify this result (p-value < 0.0001) and the 
 Chapter \@ref(chapter2) result that reported moderate evidence against the null hypothesis of no difference between *commute* 
@@ -988,8 +952,8 @@ plot(lm2, pch=16)
 ```
 
 There are two plots in Figure \@ref(fig:Figure3-9) with useful information for assessing the
-equal variance assumption. The "Residuals vs Fitted" panel in the top left panel displays  the residuals $(e_{ij} = y_{ij}-\hat{y}_{ij})$ on the y-axis and the fitted values
-$(\hat{y}_{ij})$ on the x-axis. 
+equal variance assumption. The "Residuals vs Fitted" panel in the top left panel displays  the residuals $(e_{ij} = y_{ij}-\widehat{y}_{ij})$ on the y-axis and the fitted values
+$(\widehat{y}_{ij})$ on the x-axis. 
 \index{Residuals vs Fitted plot}
 This allows you to see if the variability of the
 observations differs across the groups as a function of the mean of the groups, 
@@ -1023,10 +987,7 @@ clear evidence that the condition is violated!
 
 (ref:fig3-9) Default diagnostic plots for the full overtake data linear model.
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-9-1.png" alt="(ref:fig3-9)" width="960" />
-<p class="caption">(\#fig:Figure3-9)(ref:fig3-9)</p>
-</div>
+![(\#fig:Figure3-9)(ref:fig3-9)](03-oneWayAnova_files/figure-latex/Figure3-9-1.pdf) 
 
 \indent The linear model also assumes that all the random errors ($\varepsilon_{ij}$) follow a 
 normal distribution. To gain insight into the validity of this assumption, we 
@@ -1062,10 +1023,7 @@ plot(density(eij), main="Density plot of residuals", ylab="Density",
      xlab="Residuals")
 ```
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-10-1.png" alt="(ref:fig3-10)" width="960" />
-<p class="caption">(\#fig:Figure3-10)(ref:fig3-10)</p>
-</div>
+![(\#fig:Figure3-10)(ref:fig3-10)](03-oneWayAnova_files/figure-latex/Figure3-10-1.pdf) 
 
 \indent A Quantile-Quantile plot (***QQ-plot***) 
 \index{QQ-plot}
@@ -1089,6 +1047,13 @@ a normal distribution". It is best to be specific about the type of deviation
 you are detecting and how clear or obvious that deviation is. And to do that, we need to practice interpreting some
 QQ-plots. 
 
+
+(ref:fig3-11) QQ-plot of residuals from overtake data linear model.
+
+
+![(\#fig:Figure3-11)(ref:fig3-11)](03-oneWayAnova_files/figure-latex/Figure3-11-1.pdf) 
+
+
 \indent The QQ-plot of the linear model residuals from Figure \@ref(fig:Figure3-9) is extracted and enhanced a little to make Figure \@ref(fig:Figure3-11) so we 
 can just focus on it.
 \index{QQ-plot!interpretation of}
@@ -1101,7 +1066,7 @@ suggest a deviation from normality since we rarely see values that many
 standard deviations from the mean in a normal distribution. But mainly focus 
 on the pattern in points in the QQ-plot and whether it matches the 1-1 line that is being plotted.] ***residuals*** are used (Figure \@ref(fig:Figure3-9)) and in others the raw residuals are used (Figure \@ref(fig:Figure3-11)) to compare the residual distribution to a normal one. Both the upper and lower tails (upper tail in the upper right and the lower tail in the lower right of the plot) show some separation from the 1-1 line. The separation in the upper tail is more clear and these positive residuals are higher than the line "predicts" if the distribution had been normal. Being higher than the line in the right tail means being bigger than expected and so more spread out in that direction than a normal distribution should be. The left tail for the negative residuals also shows some separation from the line to have more extreme (here more negative) than expected, suggesting a little extra spread in the lower tail than suggested by a normal distribution. If the two sides had been similarly far from the 1-1 line, then we would have a symmetric and ***heavy-tailed*** distribution. Here, the slight difference in the two sides suggests that the right tail is more spread out than the left and we should be concerned about a minor violation of the normality assumption.  If the distribution had followed the 
 normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose -- this is not the software identifying outliers or other problematic points -- that is your responsibility to assess using these plots. For example, the point "2709"  is identified in Figures \@ref(fig:Figure3-9) and \@ref(fig:Figure3-11)  (the 2709^th^
-observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a *novice* vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the ``fitted`` function on the estimated ``lm`` -- which here is just the sample mean of the group of the observations (*novice*) of 116.94 cm. The residual is stored in the 2,709^th^ value of ``eij`` or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the ``Distance`` variable), it is not too surprising that it ends up as the largest positive residual. index{\texttt{fitted()}}   \index{R packages!\textbf{car}}
+observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a *novice* vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the ``fitted`` function on the estimated ``lm`` -- which here is just the sample mean of the group of the observations (*novice*) of 116.94 cm. The residual is stored in the 2,709^th^ value of ``eij`` or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the ``Distance`` variable), it is not too surprising that it ends up as the largest positive residual. \index{\texttt{fitted()}} \index{R packages!\textbf{car}}
 
 
 ```r
@@ -1141,16 +1106,6 @@ eij[2709]
 ## [1] 157.0595
 ```
 
-
-(ref:fig3-11) QQ-plot of residuals from overtake data linear model.
-
-
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-11-1.png" alt="(ref:fig3-11)" width="576" />
-<p class="caption">(\#fig:Figure3-11)(ref:fig3-11)</p>
-</div>
-
-
 \indent Generally, when both tails deviate on the same side of the line (forming a 
 sort of quadratic curve, especially in more extreme cases), that is evidence 
 of a clearly skewed residual distribution (the one above has a very minor skew so this does not occur). To see some different potential shapes in QQ-plots, six different 
@@ -1180,13 +1135,9 @@ as they will just be a little conservative. For any of the patterns, you would
 note a potential violation of the normality assumption and then proceed to 
 describe the type of violation and how clear or extreme it seems to be. \index{light-tailed}
 
-(ref:fig3-12) QQ-plots and density curves of four simulated distributions with
-different shapes. 
+(ref:fig3-12) QQ-plots and density curves of four simulated distributions with different shapes. 
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-12-1.png" alt="(ref:fig3-12)" width="576" />
-<p class="caption">(\#fig:Figure3-12)(ref:fig3-12)</p>
-</div>
+![(\#fig:Figure3-12)(ref:fig3-12)](03-oneWayAnova_files/figure-latex/Figure3-12-1.pdf) 
 
 \indent Finally, to help you calibrate expectations for data that are actually normally
 distributed, two data sets simulated from normal distributions are displayed in 
@@ -1200,10 +1151,7 @@ you see QQ-plots as in Figure \@ref(fig:Figure3-12) you can determine that there
 
 (ref:fig3-13) Two more simulated data sets, both generated from normal distributions.
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-13-1.png" alt="(ref:fig3-13)" width="576" />
-<p class="caption">(\#fig:Figure3-13)(ref:fig3-13)</p>
-</div>
+![(\#fig:Figure3-13)(ref:fig3-13)](03-oneWayAnova_files/figure-latex/Figure3-13-1.pdf) 
 
 \indent The last issues with assessing the assumptions in an ANOVA relates to 
 situations where the methods are more or less ***resistant***^[A resistant 
@@ -1233,7 +1181,7 @@ a single variable, we use ``tally(~x, data=...)``:
 
 
 ```r
-require(mosaic)
+library(mosaic)
 tally(~Condition, data=dd)
 ```
 
@@ -1284,7 +1232,7 @@ ToothGrowth <- as_tibble(ToothGrowth) #Convert data.frame to tibble
 library(mosaic)
 ```
 
-\newpage
+<!-- \newpage -->
 
 
 ```r
@@ -1350,18 +1298,15 @@ favstats(len~Treat, data=ToothGrowth)
 ## 6   VC.2 18.5 23.375  25.95 28.800 33.9 26.14 4.797731 10       0
 ```
 
-(ref:fig3-14) Pirate-plot of odontoblast growth responses for the six 
-treatment level combinations. 
+(ref:fig3-14) Pirate-plot of odontoblast growth responses for the six treatment level combinations. 
 
 
 ```r
-pirateplot(len~Treat, data=ToothGrowth, inf.method="ci", ylab="Odontoblast Growth in microns", point.o=.7)
+pirateplot(len~Treat, data=ToothGrowth, inf.method="ci", 
+           ylab="Odontoblast Growth in microns", point.o=.7)
 ```
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-14-1.png" alt="(ref:fig3-14)" width="576" />
-<p class="caption">(\#fig:Figure3-14)(ref:fig3-14)</p>
-</div>
+![(\#fig:Figure3-14)(ref:fig3-14)](03-oneWayAnova_files/figure-latex/Figure3-14-1.pdf) 
 
 \indent Figure \@ref(fig:Figure3-14) suggests that the mean tooth growth increases with 
 the dosage level and that *OJ* might lead to higher growth rates than *VC* except 
@@ -1441,10 +1386,7 @@ with these observations.
         plot(m2,pch=16)
         ```
         
-        <div class="figure">
-        <img src="03-oneWayAnova_files/figure-html/Figure3-15-1.png" alt="Diagnostic plots for the odontoblast growth model." width="960" />
-        <p class="caption">(\#fig:Figure3-15)Diagnostic plots for the odontoblast growth model.</p>
-        </div>
+        ![(\#fig:Figure3-15)Diagnostic plots for the odontoblast growth model.](03-oneWayAnova_files/figure-latex/Figure3-15-1.pdf) 
             
         * The Residuals vs Fitted panel in Figure \@ref(fig:Figure3-15) shows some 
         difference in the spreads but the spread is not that different among the groups. 
@@ -1498,7 +1440,7 @@ with these observations.
     the false impression that there is no chance of the result occurring when 
     it is just a really small probability. This p-value came from an $F(5,54)$
     distribution (this is the distribution of the test statistic if the null hypothesis
-    is true) with an $F-statistic of 41.56. 
+    is true) with an $F$-statistic of 41.56. 
     
     * The nonparametric approach is not too hard so we can compare the two approaches here  as well:
     
@@ -1533,10 +1475,7 @@ with these observations.
     abline(v=Tobs, col="red", lwd=3)
     ```
     
-    <div class="figure">
-    <img src="03-oneWayAnova_files/figure-html/Figure3-16-1.png" alt="Histogram and density curve of permutation distribution for $F$-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56." width="480" />
-    <p class="caption">(\#fig:Figure3-16)Histogram and density curve of permutation distribution for $F$-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56.</p>
-    </div>
+    ![(\#fig:Figure3-16)Histogram and density curve of permutation distribution for $F$-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56.](03-oneWayAnova_files/figure-latex/Figure3-16-1.pdf) 
     
     * **The permutation p-value was reported as 0.\index{p-value!zero}
     This should be reported as 
@@ -1601,7 +1540,7 @@ coefficients:
 summary(m2)$coefficients
 ```
     
-\newpage
+<!-- \newpage -->
 
 
 ```
@@ -1634,22 +1573,22 @@ levels(ToothGrowth$Treat)
 There is a ``VC.0.5`` in the second row of the model summary, but there is no row for 
 ``0J.0.5`` and so this must be the baseline category. That means that the fitted value 
 or model estimate for the *OJ* at 0.5 mg/day group is the same as the ``(Intercept)`` row 
-or $\hat{\alpha}$, estimating a mean tooth growth of 13.23 microns when the pigs get OJ 
+or $\widehat{\alpha}$, estimating a mean tooth growth of 13.23 microns when the pigs get OJ 
 at a 0.5 mg/day dosage level. You should always start with working on the baseline level 
 in a reference-coded model. To get estimates for any other group, then you can use the 
 ``(Intercept)`` estimate and add the deviation (which could be negative) for the group of interest. For 
 ``VC.0.5``, the estimated mean tooth growth is 
-$\hat{\alpha} + \hat{\tau}_2 = \hat{\alpha} + \hat{\tau}_{\text{VC}0.5}=13.23 + (-5.25)=7.98$
+$\widehat{\alpha} + \widehat{\tau}_2 = \widehat{\alpha} + \widehat{\tau}_{\text{VC}0.5}=13.23 + (-5.25)=7.98$
 microns. It is also potentially interesting to directly interpret the estimated difference 
 (or deviation) between ``OJ.0.5`` (the baseline) and ``VC.0.5`` (group 2) that 
-is $\hat{\tau}_{\text{VC}0.5}= -5.25$: we estimate that the mean tooth growth in
+is $\widehat{\tau}_{\text{VC}0.5}= -5.25$: we estimate that the mean tooth growth in
 ``VC.0.5`` is 5.25 microns shorter than it is in ``OJ.0.5``. This and many other 
 direct comparisons of groups are likely of interest to researchers involved in 
 studying the impacts of these supplements on tooth growth and the next section 
 will show us how to do that (correctly!).
 
 \indent The reference-coding is still going to feel a little uncomfortable so the comparison
-to the cell-means model and exploring the effect plot can help to reinforce
+to the cell means model and exploring the effect plot can help to reinforce
 that both models patch together the same estimated means for each group. For
 example, we can find our estimate of 7.98 microns for the VC0.5 group in the
 output and Figure \@ref(fig:Figure3-17). Also note that Figure 
@@ -1689,10 +1628,7 @@ summary(m3)
 
 (ref:fig3-17) Effect plot of the One-Way ANOVA model for the odontoblast growth data.
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-17-1.png" alt="(ref:fig3-17)" width="384" />
-<p class="caption">(\#fig:Figure3-17)(ref:fig3-17)</p>
-</div>
+![(\#fig:Figure3-17)(ref:fig3-17)](03-oneWayAnova_files/figure-latex/Figure3-17-1.pdf) 
 
 
 ```r
@@ -1781,7 +1717,7 @@ choose(7,2)
 ```
 
 So if you have three groups (the smallest number where we have to worry about more than one pair), there are three unique pairs to 
-compare. For six groups, like in the guinea pig study, we have to consider 15 tests to compare all the unique pairs of groups and with seven groups, there are 21 tests. Once there are more than two groups to compare, it seems like we 
+compare. For six groups, like in the Guinea Pig study, we have to consider 15 tests to compare all the unique pairs of groups and with seven groups, there are 21 tests. Once there are more than two groups to compare, it seems like we 
 should be worried about inflated family-wise error rates. Fortunately, the 
 Tukey's HSD method controls the family-wise error rate at your specified level 
 (say 0.05) across any number of pair-wise comparisons. This means that the 
@@ -1827,7 +1763,7 @@ explanatory variable name as ``VARIABLENAME="Tukey"``. The last part is to get t
 Tukey HSD multiple comparisons run on our explanatory variable^[In more complex models, this code can be used to create pair-wise comparisons on one of many explanatory variables.]. Once we obtain the
 intervals using the ``confint`` function or using ``plot`` applied to the stored results, we can use them to test $H_0: \mu_j = \mu_{j'} \text{ vs } H_A: \mu_j \ne \mu_{j'}$ 
 by assessing whether 0 is in the confidence interval for each pair. If 0 is in the 
-interval, then there is weak evidence against the null hypothesis for that pair, so we not detect a difference in that pair and not conclude that there is a difference. If 0 is not in the 
+interval, then there is weak evidence against the null hypothesis for that pair, so we do not detect a difference in that pair and do not conclude that there is a difference. If 0 is not in the 
 interval, then we have strong evidence against $H_0$ for that pair, detect a difference, and conclude that there is a difference in that pair *at the specified family-wise significance
 level*. You will see a switch to using the
 word "detection" to describe null hypotheses that we find strong evidence against as it
@@ -1836,13 +1772,11 @@ and graphical^[The plot of results usually contains all the labels of groups but
 useful as a guide to help you read the plot in those situations.] results of applying Tukey's HSD
 to the linear model for the Guinea Pig data:
 
-(ref:fig3-19) Graphical display of pair-wise comparisons from Tukey's HSD for the 
-Guinea Pig data. Any confidence intervals that do not contain 0 provide strong evidence 
-against the null hypothesis of no difference in the true means for that pair of groups.
+(ref:fig3-18) Graphical display of pair-wise comparisons from Tukey's HSD for the Guinea Pig data. Any confidence intervals that do not contain 0 provide strong evidence against the null hypothesis of no difference in the true means for that pair of groups.
 
 
 ```r
-require(multcomp)
+library(multcomp)
 Tm2 <- glht(m2, linfct = mcp(Treat = "Tukey"))
 confint(Tm2)
 ```
@@ -1884,12 +1818,9 @@ old.par <- par(mai=c(1,2,1,1)) #Makes room on the plot for the group names
 plot(Tm2)
 ```
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-19-1.png" alt="(ref:fig3-19)" width="960" />
-<p class="caption">(\#fig:Figure3-19)(ref:fig3-19)</p>
-</div>
+![(\#fig:Figure3-18)(ref:fig3-18)](03-oneWayAnova_files/figure-latex/Figure3-18-1.pdf) 
 
-\indent Figure \@ref(fig:Figure3-19) contains confidence intervals for the difference in 
+\indent Figure \@ref(fig:Figure3-18) contains confidence intervals for the difference in 
 the means for all 15 pairs of groups. For example, the first row in the plot contains 
 the confidence interval for comparing VC.0.5 and OJ.0.5 (VC.0.5 **minus** OJ.0.5). In the numerical output, you can find that this 95% 
 family-wise confidence interval goes from -10.05 to -0.45 microns (``lwr`` and 
@@ -1898,7 +1829,7 @@ contain 0 since its upper end point is -0.45 microns and so we can now say that
 there is strong evidence against the null hypothesis of no difference in this pair and that we detect that OJ and VC have different true mean growth rates at the 0.5 mg 
 dosage level. We can go further and say that we are 95% confident that the difference 
 in the true mean tooth growth between VC.0.5 and OJ.0.5 (VC.0.5-OJ.0.5) is between 
--10.05 and -0.45 microns, after adjusting for comparing all the pairs of groups. The center of this CI is -5.25 which is $\hat{\tau}_2$ and the estimate difference between VC.0.5 and the baseline category of OJ.0.5. That means we can get an un-adjusted 95% confidence interval from the ``confint`` function to compare to this adjusted CI. The interval that does not account for all the comparisons goes from -8.51 to -1.99 microns (second row out ``confint`` output), showing the increased width needed in Tukey's interval to control the family-wise error rate when many pairs are being compared. With 14 other intervals, we obviously can't give them all this much attention...
+-10.05 and -0.45 microns, after adjusting for comparing all the pairs of groups. The center of this CI is -5.25 which is $\widehat{\tau}_2$ and the estimate difference between VC.0.5 and the baseline category of OJ.0.5. That means we can get an un-adjusted 95% confidence interval from the ``confint`` function to compare to this adjusted CI. The interval that does not account for all the comparisons goes from -8.51 to -1.99 microns (second row out ``confint`` output), showing the increased width needed in Tukey's interval to control the family-wise error rate when many pairs are being compared. With 14 other intervals, we obviously can't give them all this much attention...
 
 
 
@@ -1951,7 +1882,7 @@ cld(Tm2)
 ##    "b"    "a"    "c"    "b"    "c"    "c"
 ```
 
-\newpage
+<!-- \newpage -->
 
 Groups with the same letter are not detectably different (are in the same set) 
 and groups that are detectably different get different letters (are in 
@@ -1968,32 +1899,30 @@ pairwise results.
 \indent One benefit of this work is that the CLD letters can be added to a plot (such as the pirate-plot) to 
 help fully report the results and understand the sorts of differences Tukey's 
 HSD detected. The code with ``text`` \index{\texttt{text()}} involves placing text on the figure. In the ``text`` function, the x and y axis locations are specified (x-axis goes from 1 to 6 for the 6 categories) as well as the text to add (the CLD here). Some trial and error for locations may be needed to get the letters to be easily seen in a given pirate-plot.  
-Figure \@ref(fig:Figure3-20) enhances the discussion by showing that the 
-"<b><font color='blue'>a</font></b>" group with VC.0.5 had the lowest average tooth 
-growth, the "<b><font color='red'>b</font></b>" group had intermediate tooth growth
+Figure \@ref(fig:Figure3-19) enhances the discussion by showing that the 
+"\textcolor{blue}{\textbf{a}}" group with VC.0.5 had the lowest average tooth 
+growth, the "\textcolor{red}{\textbf{b}}" group had intermediate tooth growth
 for treatments OJ.0.5 and VC.1, and the highest growth rates came from
 OJ.1, OJ.2, and VC.2. Even though VC.2 had the highest average growth rate, 
 we are not able to prove that its true mean is any higher
-than the other groups labeled with "<b><font color='green'>c</font></b>". Hopefully the 
+than the other groups labeled with "\textcolor{green}{\textbf{c}}". Hopefully the 
 ease of getting to the story of the Tukey's HSD results from a plot like this 
 explains why it is common to report results using these methods instead of 
 reporting 15 confidence intervals for all the pair-wise differences, either in a table or the plot. 
 
-(ref:fig3-20) Pirate-plot of odontoblast growth by group with Tukey's HSD compact 
-letter display. Note some extra pirate-plot options are used to enhance focus on the CLD results.
+(ref:fig3-19) Pirate-plot of odontoblast growth by group with Tukey's HSD compact letter display. Note some extra pirate-plot options are used to enhance focus on the CLD results.
 
 
 ```r
-pirateplot(len~Treat, data=ToothGrowth, ylab="Growth (microns)", inf.method="ci", theme=2,inf.f.o = 0,point.o = .5) #Options theme=2,inf.f.o = 0,point.o = .5 added to focus on CLD
+#Options theme=2,inf.f.o = 0,point.o = .5 added to focus on CLD
+pirateplot(len~Treat, data=ToothGrowth, ylab="Growth (microns)", inf.method="ci",
+           theme=2,inf.f.o = 0,point.o = .5) 
 text(x=2,y=10,"a",col="blue",cex=1.5) #CLD added
 text(x=c(1,4),y=c(15,18),"b",col="red",cex=1.5)
 text(x=c(3,5,6),y=c(25,28,28),"c",col="green",cex=1.5)
 ```
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-20-1.png" alt="(ref:fig3-20)" width="960" />
-<p class="caption">(\#fig:Figure3-20)(ref:fig3-20)</p>
-</div>
+![(\#fig:Figure3-19)(ref:fig3-19)](03-oneWayAnova_files/figure-latex/Figure3-19-1.pdf) 
 
 
 \indent There are just a couple of other details to mention on this set of methods. First, 
@@ -2013,6 +1942,8 @@ making the technique dangerously liberal. Nonparametric approaches to this
 problem are also possible, but will not be considered here. 
 
 \indent Tukey's HSD results can also be displayed as p-values for each pair-wise test result. This is a little less common but can allow you to directly assess the strength of evidence for a particular pair instead of using the detected/not result that the family-wise CIs provide. But the family-wise CIs are useful for exploring the size of the differences in the pairs and we need to simplify things to detect/not in these situations because there are so many tests. But if you want to see the Tukey HSD p-values, you can use the ``summary`` function on the object that is storing the results:
+
+\newpage
 
 
 ```r
@@ -2065,6 +1996,7 @@ In our previous work with the overtake data, the overall ANOVA test
 led to a conclusion that there is some difference in the true means across the
 seven groups with a p-value < 0.001 giving very strong evidence against the null hypothesis. The original authors followed up their overall $F$-test with comparing every pair of outfits using one of the other methods for multiple testing adjustments available in the ``p.adjust`` function and detected differences between the *police* outfit and all others except for *hiviz* and no other pairs had p-values less than 0.05 using their approach. We will employ the Tukey's HSD approach to address the same exploration and get basically the same results as they obtained. 
 
+\newpage
 
 \indent The code is similar^[There is a warning message produced by the default Tukey's code here related to the algorithms used to generate approximate p-values and then the CLD, but the results seem reasonable and just a few p-values seem to vary in the second or third decimal points.] to the previous example focusing on the ``Condition`` variable for the 21 pairs to compare. To make these results easier to read and generally to make all the results with seven groups easier to understand, we can sort the levels of the explanatory based on the values in the response, using something like the the means or medians of the responses for the groups. This does not change the analyses (the $F$-statistic and all pair-wise comparisons are the same), it just sorts them to be easier to discuss. Note that it might change the baseline group so would impact the reference-coded model even though the fitted values are the same. Specifically, we can use the ``reorder`` function \index{\texttt{reorder}} based on the mean using something like ``reorder(FACTORVARIABLE, RESPONSEVARIABLE, FUN=mean)``. Unfortunately the ``reorder`` function doesn't have a ``data=...`` option, so we will let the function know where to find the two variables with a wrapper around it of ``with(DATASETNAME, reorder(...))``; this approach saves us from having to use ``dd$...`` to reference each variable. I like to put this "reordered" factor into a new variable so I can always go back to the other version if I want it. The code creates ``Condition2`` here and checking the levels for it and the original ``Condition`` variable show the change in the order of the levels of the two factor variables:
 
@@ -2109,24 +2041,21 @@ mean(Distance~Condition2, data=dd)
 
 
 
-\indent In Figure \@ref(fig:Figure3-21), the 95% family-wise confidence intervals are displayed. There are only five pairs that have confidence intervals that do not contain 0 and all contain comparisons of the *police* group with others. So there is a detectable difference between *police* and *polite*, *commute*, *racer*, *novice*, and *casual*. The *police* versus *casual* comparison is hard to see whether 0 is in the interval or not in the plot, but the confidence interval goes from 0.06 to 8.97 cm (look at the results from ``confint``), so suggests sufficient evidence to detect a difference in these groups (barely!) at the 5% family-wise significance level. 
+\indent In Figure \@ref(fig:Figure3-20), the 95% family-wise confidence intervals are displayed. There are only five pairs that have confidence intervals that do not contain 0 and all contain comparisons of the *police* group with others. So there is a detectable difference between *police* and *polite*, *commute*, *racer*, *novice*, and *casual*. The *police* versus *casual* comparison is hard to see whether 0 is in the interval or not in the plot, but the confidence interval goes from 0.06 to 8.97 cm (look at the results from ``confint``), so suggests sufficient evidence to detect a difference in these groups (barely!) at the 5% family-wise significance level. 
 
 
-(ref:fig3-21) Tukey's HSD confidence interval results at the 95% family-wise confidence level for the overtake distances linear model using the new ``Condition2`` explanatory variable.
+(ref:fig3-20) Tukey's HSD confidence interval results at the 95% family-wise confidence level for the overtake distances linear model using the new ``Condition2`` explanatory variable.
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-21-1.png" alt="(ref:fig3-21)" width="480" />
-<p class="caption">(\#fig:Figure3-21)(ref:fig3-21)</p>
-</div>
+![(\#fig:Figure3-20)(ref:fig3-20)](03-oneWayAnova_files/figure-latex/Figure3-20-1.pdf) 
 
 
 ```r
 lm2 <- lm(Distance~Condition2, data=dd)
-require(multcomp)
+library(multcomp)
 TmOV <- glht(lm2, linfct = mcp(Condition2 = "Tukey"))
 ```
 
-\vspace{0.25in}
+\newpage
 
 
 ```r
@@ -2186,25 +2115,23 @@ old.par <- par(mai=c(1,2.5,1,1)) #Makes room on the plot for the group names
 plot(TmOv)
 ```
 
-The CLD also reinforces the previous discussion of which levels were detected as different and elucidates the other aspects of the results. Specifically, *police* is in a group with *hiviz* only (group "b", not detectably different). But *hiviz* is also in a group with all the other levels so also is in group "a". Figure \@ref(fig:Figure3-22) adds the CLD to the pirate-plot with the sorted means to help visually present these results with the original data, reiterating the benefits of sorting factor levels to make these plots easier to read. To wrap up this example (finally), we can see that we found that there was clear evidence against the null hypothesis of no difference in the true means, so concluded that there was some difference. The follow-up explorations show that we can really only suggest that the *police* outfit has detectably different mean distances and that is only for five of the six other levels. So if you are bike commuter (in the UK near London?), you are left to consider the size of this difference. The biggest estimated mean difference was 8.07 cm (3.2 inches) between *police* and *polite*. Do you think it is worth this potential extra average distance, especially given the wide variability in the distances, to make and then wear this vest? It is interesting that this result is found but it also is a fairly minimum size of a difference. It required an extremely large data set to detect these differences because the differences in the means are not very large relative to the variability in the responses. It seems like there might be many other reasons for why overtake distances vary that were not included our suite of predictors (they explored traffic volume in the paper as one other factor but we don't have that in our data set) or maybe it is just unexplanably variable. But it makes me wonder whether it matters what I wear when I bike and whether it has an impact that matters for average overtake distances -- even in the face of these "statistically significant" results. But maybe there is an impact on the "close calls" as you can see some differences in the lower tails of the distributions across the groups. The authors looked at the rates of "closer" overtakes by classifying the distances as either less than 100 cm (39.4 inches) as *closer* or not and also found some interesting results. Chapter \@ref(chapter5) discusses a method called a Chi-square test of Homogeneity that would be appropriate here and allow for an analysis of the rates of closer passes and this study is revisited in the Practice Problems there. It ends up showing that rates of "closer passes" are smallest in the *police* group.  
+The CLD also reinforces the previous discussion of which levels were detected as different and elucidates the other aspects of the results. Specifically, *police* is in a group with *hiviz* only (group "b", not detectably different). But *hiviz* is also in a group with all the other levels so also is in group "a". Figure \@ref(fig:Figure3-21) adds the CLD to the pirate-plot with the sorted means to help visually present these results with the original data, reiterating the benefits of sorting factor levels to make these plots easier to read. To wrap up this example (finally), we can see that we found that there was clear evidence against the null hypothesis of no difference in the true means, so concluded that there was some difference. The follow-up explorations show that we can really only suggest that the *police* outfit has detectably different mean distances and that is only for five of the six other levels. So if you are bike commuter (in the UK near London?), you are left to consider the size of this difference. The biggest estimated mean difference was 8.07 cm (3.2 inches) between *police* and *polite*. Do you think it is worth this potential extra average distance, especially given the wide variability in the distances, to make and then wear this vest? It is interesting that this result is found but it also is a fairly minimum size of a difference. It required an extremely large data set to detect these differences because the differences in the means are not very large relative to the variability in the responses. It seems like there might be many other reasons for why overtake distances vary that were not included our suite of predictors (they explored traffic volume in the paper as one other factor but we don't have that in our data set) or maybe it is just unexplainably variable. But it makes me wonder whether it matters what I wear when I bike and whether it has an impact that matters for average overtake distances -- even in the face of these "statistically significant" results. But maybe there is an impact on the "close calls" as you can see some differences in the lower tails of the distributions across the groups. The authors looked at the rates of "closer" overtakes by classifying the distances as either less than 100 cm (39.4 inches) as *closer* or not and also found some interesting results. Chapter \@ref(chapter5) discusses a method called a Chi-square test of Homogeneity that would be appropriate here and allow for an analysis of the rates of closer passes and this study is revisited in the Practice Problems (Section \@ref(section5-14)) there. It ends up showing that rates of "closer passes" are smallest in the *police* group.  
 
 
-(ref:fig3-22) Pirate-plot of overtake distances by group, sorted by sample means with Tukey's HSD CLD displayed. 
+(ref:fig3-21) Pirate-plot of overtake distances by group, sorted by sample means with Tukey's HSD CLD displayed. 
 
 
 ```r
 #old.par <- par(mai=c(0.5,1,1,1))
-pirateplot(Distance~Condition2, data=dd, ylab="Distance (cm)", inf.method="ci", theme=2,inf.f.o = 0) 
+pirateplot(Distance~Condition2, data=dd, ylab="Distance (cm)", inf.method="ci",
+           theme=2,inf.f.o = 0) 
 text(x=1:5,y=200,"a",col="blue",cex=1.5) #CLD added
 text(x=5.9,y=210,"a",col="blue",cex=1.5)
 text(x=6.1,y=210,"b",col="red",cex=1.5)
 text(x=7,y=215,"b",col="red",cex=1.5)
 ```
 
-<div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-22-1.png" alt="(ref:fig3-22)" width="480" />
-<p class="caption">(\#fig:Figure3-22)(ref:fig3-22)</p>
-</div>
+![(\#fig:Figure3-21)(ref:fig3-21)](03-oneWayAnova_files/figure-latex/Figure3-21-1.pdf) 
 
 
 
@@ -2213,7 +2140,7 @@ text(x=7,y=215,"b",col="red",cex=1.5)
 In this chapter, we explored methods for comparing a quantitative response across 
 $J$ groups ($J \ge 2$), with what is called the One-Way ANOVA procedure. The initial 
 test is based on assessing evidence against a null hypothesis of no difference in the true means for the $J$ groups. There are two different methods for estimating these One-Way ANOVA models: 
-the cell-means model and the reference-coded versions of the model. 
+the cell means model and the reference-coded versions of the model. 
 There are times when either model will be preferred, but for the rest of the text, 
 the reference coding is used (sorry!). The ANOVA $F$-statistic, 
 often presented with 
@@ -2225,7 +2152,7 @@ Pair-wise comparisons using Tukey's HSD provide a method for comparing all the g
 and are a nice complement to the overall ANOVA results. A compact letter display was 
 shown that enhanced the interpretation of Tukey's HSD result. 
 
-\indent In the guinea pig example, we are left with some lingering questions based on these 
+\indent In the Guinea Pig example, we are left with some lingering questions based on these 
 results. It appears that the effect of *dosage* changes as a function of the 
 *delivery method* (OJ, VC) because the size of the differences between OJ and VC
 change for different dosages. These methods can't directly assess the question
@@ -2246,8 +2173,8 @@ The main components of R code used in this chapter follow with components to
 modify in lighter and/or ALL CAPS text, remembering that any R packages mentioned 
 need to be installed and loaded for this code to have a chance of working:
 
-* **<font color='red'>MODELNAME</font> <- lm(<font color='red'>Y</font>~<font color='red'>X</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **\textcolor{red}{MODELNAME} <- lm(\textcolor{red}{Y}~\textcolor{red}{X},
+data=\textcolor{red}{DATASETNAME})**
 
     * Probably the most frequently used command in R. 
     
@@ -2255,42 +2182,42 @@ data=<font color='red'>DATASETNAME</font>)**
     response variable and X as the grouping variable, storing the estimated model 
     object in MODELNAME. Remember that X should be defined as a factor variable. \index{\texttt{lm()}|textbf}
 
-* **<font color='red'>MODELNAME</font> <- lm(<font color='red'>Y</font>~<font color='red'>X</font>-1,
-data=<font color='red'>DATASETNAME</font>)**
+* **\textcolor{red}{MODELNAME} <- lm(\textcolor{red}{Y}~\textcolor{red}{X}-1,
+data=\textcolor{red}{DATASETNAME})**
 
     * Fits the cell means version of the One-Way ANOVA model. 
 
-* **summary(<font color='red'>MODELNAME</font>)**
+* **summary(\textcolor{red}{MODELNAME})**
 
     * Generates model summary information including the estimated model coefficients, 
     SEs, t-tests, and p-values. 
 
-* **anova(<font color='red'>MODELNAME</font>)**
+* **anova(\textcolor{red}{MODELNAME})**
 
     * Generates the ANOVA table but **must only be run on the 
     reference-coded version of the model**. \index{\texttt{anova()}|textbf}
     
-    * Results are incorrect if run on the cell-means model since the reduced model 
+    * Results are incorrect if run on the cell means model since the reduced model 
     under the null is that the mean of all the observations is 0!
 
-* **pf(<font color='red'>FSTATISTIC</font>, df1=<font color='red'>NUMDF</font>,
-df2=<font color='red'>DENOMDF</font>, lower.tail=F)**
+* **pf(\textcolor{red}{FSTATISTIC}, df1=\textcolor{red}{NUMDF},
+df2=\textcolor{red}{DENOMDF}, lower.tail=F)**
 
     * Finds the p-value for an observed $F$-statistic with NUMDF and DENOMDF degrees 
     of freedom. \index{\texttt{pf()}|textbf}
 
-* **par(mfrow=c(2,2)); plot(<font color='red'>MODELNAME</font>)**
+* **par(mfrow=c(2,2)); plot(\textcolor{red}{MODELNAME})**
 
     * Generates four diagnostic plots including the Residuals vs Fitted and 
     Normal Q-Q plot. 
     
-* **plot(allEffects(<font color='red'>MODELNAME</font>))**
+* **plot(allEffects(\textcolor{red}{MODELNAME}))**
     
     * Requires the ``effects`` package be loaded. 
 
     * Plots the estimated model component. \index{\texttt{allEffects()}|textbf}
     
-* **Tm2 <- glht(<font color='red'>MODELNAME</font>, linfct=mcp(<font color='red'>X</font>="Tukey"));
+* **Tm2 <- glht(\textcolor{red}{MODELNAME}, linfct=mcp(\textcolor{red}{X}="Tukey"));
 confint(Tm2); plot(Tm2); summary(Tm2); cld(Tm2)**
 
     * Requires the ``multcomp`` package to be installed and loaded.
@@ -2304,39 +2231,41 @@ confint(Tm2); plot(Tm2); summary(Tm2); cld(Tm2)**
 
 ## Practice problems {#section3-10}
 
-For the first practice problems, you will work with the cholesterol data set from 
+3.1. **Cholesterol Analysis** For the first practice problems, you will work with the cholesterol data set from 
 the ``multcomp`` package that was used to generate the Tukey's HSD results. To 
 load the data set and learn more about the study, use the following code:
 
 ```r
 library(multcomp)
 data(cholesterol)
-require(tibble)
+library(tibble)
 cholesterol <- as_tibble(cholesterol)
 help(cholesterol)
 ```
 
-3.1. Graphically explore the differences in the changes in Cholesterol levels for
+3.1.1. Graphically explore the differences in the changes in Cholesterol levels for
 the five levels using pirate-plots. 
 
-3.2. Is the design balanced? How can assess this? \index{balance}
+3.1.2. Is the design balanced? How can assess this? \index{balance}
 
-3.3. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
+3.1.3. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
 reporting the ANOVA table and the distribution of the test statistic under the null. When you discuss the scope of inference, make sure you note that the treatment levels
 were randomly assigned to volunteers in the study. 
 
-3.4. Generate the permutation distribution and find the p-value. Compare the parametric
+3.1.4. Generate the permutation distribution and find the p-value. Compare the parametric
 p-value to the permutation test results. 
 
-3.5. Perform Tukey's HSD on the data set. Discuss the results -- which pairs were
+3.1.5. Perform Tukey's HSD on the data set. Discuss the results -- which pairs were
 detected as different and which were not? Bigger reductions in cholesterol are
 good, so are there any levels you would recommend or that might provide similar
 reductions?
 
-3.6. Find and interpret the CLD and compare that to your interpretation of results 
-from 3.5.
+3.1.6. Find and interpret the CLD and compare that to your interpretation of results 
+from 3.1.5.
 
-These data come from [@Smith2014] where the author experimented on himself by daily stinging himself five times on randomly selected body locataions over the course of months. You can read more about this fascinating (and cringe inducing) study at https://peerj.com/articles/338/. The following code gets the data prepared for analysis by removing the observations he took each on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. It also sorts of the levels (there are many) based on the mean pain rating in each group using the ``reorder`` function.
+\vspace{11pt}
+
+3.2. **Sting Location Analysis** These data come from [@Smith2014] where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at https://peerj.com/articles/338/. The following code gets the data prepared for analysis by removing the observations he took each on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. It also sorts of the levels (there are many) based on the mean pain rating in each group using the ``reorder`` function.
 
 ```r
 library(readr)
@@ -2344,19 +2273,19 @@ sd_fixed <- read_csv("http://www.math.montana.edu/courses/s217/documents/stingda
 sd_fixed$BLs <- sd_fixed$Body_Location 
 sd_fixed$BLs <- with(sd_fixed, reorder(Body_Location, Rating, mean))
 sd_fixedR <- subset(sd_fixed,!xor(BLs=="Forearm",BLs=="Forearm1"))
-sd_fixedR$BLs <-factor(sd_fixedR$BLs)
+sd_fixedR$BLs <- factor(sd_fixedR$BLs)
 ```
 
-3.7. Graphically explore the differences in the pain ratings across the different Body_Location levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? Hint: look for discreteness in the responses.
+3.2.1. Graphically explore the differences in the pain ratings across the different Body_Location levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? **Hint**: look for discreteness in the responses.
 
-3.8. Is the design balanced? 
+3.2.2. Is the design balanced? 
 
-3.9. How does taking 3 measurements that are of interest each day lead to a violation of the independence assumption here?
+3.2.3. How does taking 3 measurements that are of interest each day lead to a violation of the independence assumption here?
 
-3.10. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
+3.2.4. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
 reporting the ANOVA table and the distribution of the test statistic under the null. For the scope of inference use the information that the sting locations were randomly assigned but only one person (the researcher) participated in the study. 
 
-3.11. Generate the permutation distribution and find the p-value. Compare the parametric
+3.2.5. Generate the permutation distribution and find the p-value. Compare the parametric
 p-value to the permutation test results. 
 
-3.12. Often we might consider Tukey's pairwise comparisons given the initial result here. How many levels are there in Body_Location? How many pairs would be compared if we tried Tukey's -- calculate using the ``choose`` function.
+3.2.6. Often we might consider Tukey's pairwise comparisons given the initial result here. How many levels are there in Body_Location? How many pairs would be compared if we tried Tukey's -- calculate using the ``choose`` function.

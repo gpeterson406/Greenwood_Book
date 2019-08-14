@@ -1,0 +1,19 @@
+---
+title: "ForCover"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+````{r fig.height=7, fig.width=8}
+suppressMessages(library(readr))
+dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
+
+library(yarrr)
+library(viridis)
+set.seed(12345)
+pirateplot(Distance~Condition,data=dd,inf.method="ci", point.o=0.25,main="Pirate-plot of Car Overtaking Bike Distances", ylab="Distance(cm)",sortx="mean", pal=viridis(9),bean.f.o=.6)
+abline(h=117.12,col=viridis(9)[8],lty=2,lwd=2)
+```

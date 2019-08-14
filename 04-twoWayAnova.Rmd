@@ -272,7 +272,7 @@ combination. These data were simulated using a normal distribution with
 constant variance if that gives you some extra confidence in assessing these 
 model assumptions. 
 
-(ref:fig4-1) Pirate-plot of paper towel data by ``Drops`` (x-axis) and ``Brand`` (side of bean, shaded area for ``Brand`` *B1*). 
+(ref:fig4-1) Pirate-plot of paper towel data by ``Brand`` (first row of $x$-axis) and ``Drops`` (second row of $x$-axis). 
 
 ```{r Figure4-1,fig.cap="(ref:fig4-1)"}
 library(yarrr)
@@ -1004,8 +1004,8 @@ and for the right number of expected model coefficients) to make
 sure they match your expectations. This is one reason why you will be learning
 to fill in ANOVA tables based on information about the study so that you can be
 prepared to detect when your code has let you down^[Just so you don't think 
-that perfect R code should occur on the first try, we
-have all made similarly serious coding mistakes even after accumulating more
+that perfect R code should occur on the first try, I
+have made similarly serious coding mistakes even after accumulating more
 than decade of experience with R. It is finding those mistakes (in time) that matters.]. It
 is also a great reason to explore term-plots and coefficient interpretations as
 that can also help diagnose errors in model construction. 
@@ -1739,7 +1739,7 @@ options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32)
 tableplot(dd[,-1],sort=Condition2, pals=list("BrBG"))
 ```
 
-\indent In the tableplot in Figure \@ref(fig:Figure4-23), we can now the six variables created related to aspects of each outfit. For example, the *commuter* helmet (darkest shade in ``Helmet`` column) was worn with all outfits except for the *racer* and *casual*. So maybe we would like to explore differences in overtake distances based on the type of helmet worn. Similarly, it might be nice to explore whether wearing reflective pant clips is useful and maybe there is an interaction between helmet type and leg clips on impacts on overtake distance (should we wear both or just one, for example). So instead of using the seven level ``Condition2`` in the model to assess differences based on all combinations of these outfits delineated in the other variables, we can try to fit a model with ``Helmet`` and ``ReflectClips`` and their interaction for overtake distances:
+\indent In the tableplot in Figure \@ref(fig:Figure4-23), we can now explore the six variables created related to aspects of each outfit. For example, the *commuter* helmet (darkest shade in ``Helmet`` column) was worn with all outfits except for the *racer* and *casual*. So maybe we would like to explore differences in overtake distances based on the type of helmet worn. Similarly, it might be nice to explore whether wearing reflective pant clips is useful and maybe there is an interaction between helmet type and leg clips on impacts on overtake distance (should we wear both or just one, for example). So instead of using the seven level ``Condition2`` in the model to assess differences based on all combinations of these outfits delineated in the other variables, we can try to fit a model with ``Helmet`` and ``ReflectClips`` and their interaction for overtake distances:
 
 \newpage
 
@@ -1754,7 +1754,7 @@ The full model summary shows some odd things. First there is a warning after ``C
 tally(Helmet~ReflectClips, data=dd)
 ```
 
-There are three combinations that have $n_{jk}=0$ observations (for example for the *commuter* helmet, clips were always worn so no observations were made with this helmet without clips). So we have no hope of estimating a mean for the combinations with 0 observations and these are needed to consider interactions. If we revisit the tableplot, we can see how some of these needed combinations do not occur together. So this is an unbalanced design but also lack necessary information to explore the potential research question of interest. In order to study these two variables and their interaction, the researchers would have had to do rides with all six combinations of these variables. This could be quite informative because it could help someone tailor their outfit choice for optimal safety but also would have created many more than seven different outfit combinations to wear.
+There are three combinations that have $n_{jk}=0$ observations (for example for the *commuter* helmet, clips were always worn so no observations were made with this helmet without clips). So we have no hope of estimating a mean for the combinations with 0 observations and these are needed to consider interactions. If we revisit the tableplot, we can see how some of these needed combinations do not occur together. So this is an unbalanced design but also lacks necessary information to explore the potential research question of interest. In order to study just these two variables and their interaction, the researchers would have had to do rides with all six combinations of these variables. This could be quite informative because it could help someone tailor their outfit choice for optimal safety but also would have created many more than seven different outfit combinations to wear.
 
 \indent Hopefully by pushing the limits there
 are three conclusions available from this section. First, replication is

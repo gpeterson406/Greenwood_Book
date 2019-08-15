@@ -31,9 +31,9 @@ header-includes:
 
 
 
+# Cover {-}
 
-
-
+<img src="frontMatter/titlepage_2019.png" width="674" />
 
 <!-- \frontmatter -->
 
@@ -45,7 +45,7 @@ I have intentionally taken a first person perspective at times to be able to inc
 
 The development of this text was initially supported with funding from Montana State University’s Instructional Innovation Grant Program with the grant *Towards more active learning in STAT 217*. This book was born with the goal of having a targeted presentation of topics that we cover (and few that we don’t) that minimizes cost to students and incorporates the statistical software R (and the interface RStudio) from day one and every day after that. The software is a free, open-source platform and so is dynamically changing over time. This has necessitated frequent revisions of the text. 
 
-This is Version 2.0 of the book with this title but the sixth version of most of the content. This version heavily re-thinks how we engage with "statistical significance" and puts more focus on the estimation of sizes of differences than on p-values (even though p-values still feature prominently). It contains a new section on reproducibility, engages R-markdown as an expectation instead of an optional topic, and also incorporates partial residuals in term-plots as an additional model diagnostic tool. This text has been created by Greta Linse Peterson of Great Lines Writing and Consulting Services (https://www.greatlineswriting.com/) who ported the book into RStudio's bookdown format and tried to edit and improve the writing in the text. Any remaining errors are the responsibility of Mark Greenwood. The book was initially developed during Fall 2013 and the text has continually evolved since its creation. As always, the updated edition was primarily motivated by changes in the R software that impact the methods and results that are provided here and hopefully the code will work when you try it.
+This is Version 2.0 of the book with this title but the sixth version of most of the content. This version heavily re-thinks how we engage with "statistical significance" and puts more focus on the estimation of sizes of differences than on p-values (even though p-values still feature prominently). It contains a new section on reproducibility, engages R-markdown as an expectation instead of an optional topic, and also incorporates partial residuals in term-plots as an additional model diagnostic tool. This text has been created by Greta Linse of Great Lines Writing and Consulting Services (https://www.greatlineswriting.com/) who ported the book into RStudio's bookdown format and tried to edit and improve the writing in the text. Any remaining errors are the responsibility of Mark Greenwood. The book was initially developed during Fall 2013 and the text has continually evolved since its creation. As always, the updated edition was primarily motivated by changes in the R software that impact the methods and results that are provided here and hopefully the code will work when you try it.
 
 \newpage
 
@@ -53,8 +53,7 @@ We have made every attempt to keep costs for the book as low as possible by maki
 
 Enjoy your journey from introductory to intermediate statistics!
  
-
-\begin{center}\includegraphics[width=1.22in]{frontMatter/creative_commons_license} \end{center}
+<img src="frontMatter/creative_commons_license.png" width="44" style="display: block; margin: auto;" />
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 

@@ -431,23 +431,17 @@ and then repeat trying to load the package you wanted. These are called package 
 quick information about all of them; the <code>summary</code> function provides
 useful information whether the variables are categorical or
 quantitative and notes if any values were missing. </p>
+
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="chapter2.html#cb38-1"></a><span class="kw">summary</span>(dd)</span></code></pre></div>
-<pre><code>##    Condition      Distance             Shirt          Helmet    
-##  casual :779   Min.   :  2.0   Jacket     :737   commuter:4059  
-##  commute:857   1st Qu.: 99.0   PlainJersey:857   hat     : 779  
-##  hiviz  :737   Median :117.0   Rugby      :779   race    : 852  
-##  novice :807   Mean   :117.1   TourJersey :852                  
-##  police :790   3rd Qu.:134.0   Vest_Novice:807                  
-##  polite :868   Max.   :274.0   Vest_Police:790                  
-##  racer  :852                   Vest_Polite:868                  
-##    Pants        Gloves     ReflectClips Backpack  
-##  lycra: 852   bike :4911   no : 779     no :4911  
-##  plain:4838   plain: 779   yes:4911     yes: 779  
-##                                                   
-##                                                   
-##                                                   
-##                                                   
-## </code></pre>
+<pre><code>##    Condition      Distance             Shirt          Helmet       Pants        Gloves     ReflectClips Backpack  
+##  casual :779   Min.   :  2.0   Jacket     :737   commuter:4059   lycra: 852   bike :4911   no : 779     no :4911  
+##  commute:857   1st Qu.: 99.0   PlainJersey:857   hat     : 779   plain:4838   plain: 779   yes:4911     yes: 779  
+##  hiviz  :737   Median :117.0   Rugby      :779   race    : 852                                                    
+##  novice :807   Mean   :117.1   TourJersey :852                                                                    
+##  police :790   3rd Qu.:134.0   Vest_Novice:807                                                                    
+##  polite :868   Max.   :274.0   Vest_Police:790                                                                    
+##  racer  :852                   Vest_Polite:868</code></pre>
+
 <p>The output is organized by variable,
 providing summary information based on the type of
 variable, either counts by category for categorical variables or the 5-number summary plus the mean for the quantitative
@@ -514,7 +508,6 @@ either display and will rarely make both together.</p>
 Figure 2.2: Histogram and density curve of Distance responses.
 </p>
 </div>
-
 <p>Histograms can be sensitive to the choice of the number of bars and
 even the cut-offs used to define the bins for a given number of bars.
 Small changes in the definition of cut-offs for the bins can have
@@ -568,8 +561,8 @@ Figure 2.4: Side-by-side boxplot of distances based on outfits.
 </div>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="chapter2.html#cb43-1"></a><span class="kw">boxplot</span>(Distance <span class="op">~</span><span class="st"> </span>Condition, <span class="dt">data=</span>dd)</span></code></pre></div>
 <p>The “~” (which is read as the <em>tilde</em> symbol<a href="references.html#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>, which you can find in the
-upper left corner of your keyboard) notation will be used in two ways this
-semester.  The formula use in R employed previously declares that the
+upper left corner of your keyboard) notation will be used in two ways in this
+material.  The formula use in R employed previously declares that the
 response variable here is <em>Distance</em> and the explanatory variable is <em>Condition</em>.
 The other use for “~” is as shorthand for “is distributed as” and is used in
 the context of <span class="math inline">\(Y \sim N(0,1)\)</span>, which translates (in statistics) to defining the
@@ -578,7 +571,7 @@ random variable <em>Y</em> as following a Normal distribution<a href="references
 with mean 0
 and standard deviation of 1. In the current situation, we could ask whether
 the <code>Distance</code> variable seems like it may follow a normal distribution in each group, in
-other words, is <span class="math inline">\(\text{Years}\sim N(\mu,\sigma^2)\)</span>? Since the responses are relatively symmetric, it is not clear that we have a violation of the assumption of the normality assumption for the <em>Distance</em> variable for any of the seven groups (more later on how we can assess this and the issues that occur when we have a violation of this assumption). Remember that
+other words, is <span class="math inline">\(\text{Distance}\sim N(\mu,\sigma^2)\)</span>? Since the responses are relatively symmetric, it is not clear that we have a violation of the assumption of the normality assumption for the <em>Distance</em> variable for any of the seven groups (more later on how we can assess this and the issues that occur when we have a violation of this assumption). Remember that
 <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are parameters where
 <span class="math inline">\(\mu\)</span> (“mu”) is our standard symbol for the <strong><em>population mean</em></strong>
 and that <span class="math inline">\(\sigma\)</span> (“sigma”) is the symbol of the
@@ -604,14 +597,14 @@ except that options
 for the type of confidence interval needs to be specified with <code>inf.method="ci"</code> - otherwise you will get a different kind of interval than you learned in introductory statistics and we don’t want to get caught up in trying to understand the kind of interval it makes by default. There are many other options in the function that might be useful in certain situations, but that is the only one that is really needed to get started with pirate-plots.</p>
 
 <div class="figure"><span id="fig:Figure2-5"></span>
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-5-1.png" alt="Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very narrow here) are the 95% confidence intervals." width="480" />
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-5-1.png" alt="Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals." width="480" />
 <p class="caption">
-Figure 2.5: Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very narrow here) are the 95% confidence intervals.
+Figure 2.5: Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals.
 </p>
 </div>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="chapter2.html#cb44-1"></a><span class="kw">library</span>(yarrr)</span>
 <span id="cb44-2"><a href="chapter2.html#cb44-2"></a><span class="kw">pirateplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>dd,<span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>)</span></code></pre></div>
-<p>Because of the relatively symmetric nature of the distributions, the means and medians are similar, as shown in Figure <a href="chapter2.html#fig:Figure2-5">2.5</a>. In this display, none of the observations are flagged as outliers (it is not a part of this display). It is up to the consumer of the graphic to decide if observations look to be outside of the overall pattern of the rest of the observations. By plotting the observations by groups, we can also explore the narrowest (and likely most scary) overtakes in the data set. The <em>police</em> and <em>racer</em> conditions seem to have all observations over 25 cm and the most close passes were in the <em>novice</em> and <em>polite</em> outfits, including the two 2 cm passes. By displaying the original observations, we are able to explore and identify features that aggregation and summarization in plots can sometimes obfuscate. But the pirate-plots also allow up to compare the shape of the distributions (relatively symmetric and somewhat bell-shaped), variability (they look to have relatively similar variability) and the means of the groups. Our inferences are going to focus on the means but those inferences are only valid if the distributions are either approximately normal or at least similar shapes and spreads (more on this soon).</p>
+<p>Figure <a href="chapter2.html#fig:Figure2-5">2.5</a> suggests that the distributions are relatively symmetric which would suggest that the means and medians are similar even though only the means are displayed in these plots. In this display, none of the observations are flagged as outliers (it is not a part of this display). It is up to the consumer of the graphic to decide if observations look to be outside of the overall pattern of the rest of the observations. By plotting the observations by groups, we can also explore the narrowest (and likely most scary) overtakes in the data set. The <em>police</em> and <em>racer</em> conditions seem to have all observations over 25 cm and the most close passes were in the <em>novice</em> and <em>polite</em> outfits, including the two 2 cm passes. By displaying the original observations, we are able to explore and identify features that aggregation and summarization in plots can sometimes obfuscate. But the pirate-plots also allow you to compare the shape of the distributions (relatively symmetric and somewhat bell-shaped), variability (they look to have relatively similar variability), and the means of the groups. Our inferences are going to focus on the means but those inferences are only valid if the distributions are either approximately normal or at least have similar shapes and spreads (more on this soon).</p>
 <p>It appears that the mean for <em>police</em> is higher than the other groups but that the others are not too different. But is this difference real? We will never
 know the answer to that question, but we
 can assess how likely we are to have seen a result as extreme or more
@@ -624,7 +617,6 @@ need to have numerical values to compare. We can get means and standard
 deviations by groups easily using the same formula notation as for the plots with the <code>mean</code>
 and <code>sd</code> functions, if the <code>mosaic</code> package is loaded.</p>
 <!-- <!-- \newpage -->
-<p>–&gt;</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="chapter2.html#cb45-1"></a><span class="kw">library</span>(mosaic)</span>
 <span id="cb45-2"><a href="chapter2.html#cb45-2"></a><span class="kw">mean</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span>dd)</span></code></pre></div>
 <pre><code>##   casual  commute    hiviz   novice   police   polite    racer 
@@ -682,7 +674,7 @@ of both of these techniques for performing statistical inference and the fact th
 approaches.</p>
 <p>To be able to work just with the observations from two of the conditions (<em>casual</em> and <em>commute</em>) we could remove all the other observations in a spreadsheet program and read that new data set
 back into R, but it is actually pretty easy to use R to do data
-management once the data set is loaded. It is also a better scientific process to do as much of your data management within R as possible so that your steps in managing the data are fully documented and reproducible. Highlighting and clicking in spreadsheet programs is a dangerous way to work and can be impossible to recreate steps that were taken from initial data set to the version that was analyzed. In R, we could identify the rows that contain the observations we want to retain and just extract those rows, but this is hard with over five thousand observations. The <code>subset</code> function (also an option in some functions) is the best way to be able to focus on observations that meet a particular condition, we can “subset” the data set to retain those rows. The <code>subset</code> function takes the data set as its first argument and then in the “subset” option, we need to define the condition we want to meet to retain those rows. Specifically, we need to define the variable we want to work with, <code>Condition</code> and then request rows that meet a condition (are <code>%in%</code>) and the aspects that meet that condition (here by concatenating “casual” and “commute”), leading to code of:</p>
+management once the data set is loaded. It is also a better scientific process to do as much of your data management within R as possible so that your steps in managing the data are fully documented and reproducible. Highlighting and clicking in spreadsheet programs is a dangerous way to work and can be impossible to recreate steps that were taken from initial data set to the version that was analyzed. In R, we could identify the rows that contain the observations we want to retain and just extract those rows, but this is hard with over five thousand observations. The <code>subset</code> function (also an option in some functions) is the best way to be able to focus on observations that meet a particular condition, we can “subset” the data set to retain those rows. The <code>subset</code> function takes the data set as its first argument and then in the “subset” option, we need to define the condition we want to meet to retain those rows. Specifically, we need to define the variable we want to work with, <code>Condition</code>, and then request rows that meet a condition (are <code>%in%</code>) and the aspects that meet that condition (here by concatenating “casual” and “commute”), leading to code of:</p>
 <pre><code>subset(dd, Condition %in% c(&quot;casual&quot;, &quot;commute&quot;))</code></pre>
 <p>We would actually want to save that new subsetted data set into a new tibble for future work, so we can use the following to save the reduced data set into <code>ddsub</code>:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="chapter2.html#cb52-1"></a>ddsub &lt;-<span class="st"> </span><span class="kw">subset</span>(dd, Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;casual&quot;</span>, <span class="st">&quot;commute&quot;</span>))</span></code></pre></div>
@@ -717,7 +709,7 @@ Figure 2.6: Boxplot and pirate-plot of the <em>Distance</em> responses on the re
 </div>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="chapter2.html#cb58-1"></a><span class="kw">boxplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>ddsub) </span>
 <span id="cb58-2"><a href="chapter2.html#cb58-2"></a><span class="kw">pirateplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>ddsub,<span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>)</span></code></pre></div>
-
+<!-- \newpage -->
 <p>The two-sample mean techniques you learned in your previous course all
 start with comparing the means the two groups. We can obtain the two
 means using the <code>mean</code> function or directly obtain the difference
@@ -810,7 +802,7 @@ encounter some sort of noticeable difference in the distances for the
 different outfits and have been able to find enough evidence to reject the null
 model where the groups “look the same”.</p>
 
-<div class="figure"><span id="fig:Figure2-7"></span>
+<div class="figure" style="text-align: center"><span id="fig:Figure2-7"></span>
 <img src="chapter2_files/image015.png" alt="Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis." width="100%" />
 <p class="caption">
 Figure 2.7: Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.
@@ -838,7 +830,7 @@ other random permutations. The differences between the two groups should be
 more noticeable in the observed data set than in (most) of the shuffled data
 sets. It helps to see an example of a permutation of the labels to understand
 what this means here.</p>
-<p>The data set we are working with is a little on the large size, especially to explore individual observations. So for the moment we are going to work with a random sample of 30 of the <span class="math inline">\(n=1,636\)</span> observations in <code>ddsub</code>, fifteen from each group, that are generated using the <code>sample</code> function. To do this<a href="references.html#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>, we will use the <code>sample</code> function  twice - once to sample from the subsetted <em>commute</em> observations (creating the <code>s1</code> data set) and once to sample from the <em>casual</em> ones (creating <code>s2</code>). A new function for us, called <code>rbind</code> , is used to bind the rows together — much like pasting a chunk of rows below another chunk in a spreadsheet program. This operation only works if the columns all have the same names and meanings both for <code>rbind</code> and in a spreadsheet. Together this code creates the <code>dsample</code> data set that we will analyze below and compare to results from the full data set. The sample means are now 135.8 and 109.87 cm for <em>casual</em> and <em>commute</em> groups, respectively, and so the difference in the sample means has increased in magnitude to -25.93 cm (commute - casual). This difference would vary based on the different random samples from the larger data set, but for the moment pretend this was the entire data set that the researchers had collected and that we want to try to find evidence against the null hypothesis that the true means are the same in these two groups.</p>
+<p>The data set we are working with is a little on the large size, especially to explore individual observations. So for the moment we are going to work with a random sample of 30 of the <span class="math inline">\(n=1,636\)</span> observations in <code>ddsub</code>, fifteen from each group, that are generated using the <code>sample</code> function. To do this<a href="references.html#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>, we will use the <code>sample</code> function  twice - once to sample from the subsetted <em>commute</em> observations (creating the <code>s1</code> data set) and once to sample from the <em>casual</em> ones (creating <code>s2</code>). A new function for us, called <code>rbind</code>,  is used to bind the rows together — much like pasting a chunk of rows below another chunk in a spreadsheet program. This operation only works if the columns all have the same names and meanings both for <code>rbind</code> and in a spreadsheet. Together this code creates the <code>dsample</code> data set that we will analyze below and compare to results from the full data set. The sample means are now 135.8 and 109.87 cm for <em>casual</em> and <em>commute</em> groups, respectively, and so the difference in the sample means has increased in magnitude to -25.93 cm (commute - casual). This difference would vary based on the different random samples from the larger data set, but for the moment pretend this was the entire data set that the researchers had collected and that we want to try to find evidence against the null hypothesis that the true means are the same in these two groups.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="chapter2.html#cb63-1"></a><span class="kw">set.seed</span>(<span class="dv">9432</span>)</span>
 <span id="cb63-2"><a href="chapter2.html#cb63-2"></a>s1 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">subset</span>(ddsub, Condition <span class="op">%in%</span><span class="st"> &quot;commute&quot;</span>), <span class="dt">size=</span><span class="dv">15</span>)</span>
 <span id="cb63-3"><a href="chapter2.html#cb63-3"></a>s2 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">subset</span>(ddsub, Condition <span class="op">%in%</span><span class="st"> &quot;casual&quot;</span>), <span class="dt">size=</span><span class="dv">15</span>)</span>
@@ -964,7 +956,7 @@ Figure 2.8: Pirate-plots of Distance responses versus actual treatment groups an
 <pre><code>## PermutedConditioncommute 
 ##                 12.06667</code></pre>
 <p>Comparing the pirate-plots and the estimated difference in the sample means suggests that the observed difference was larger than what we got
-when we did a single permutation . Conceptually, permuting observations between group labels is
+when we did a single permutation.  Conceptually, permuting observations between group labels is
 consistent with the null hypothesis – this is a technique to generate results
 that we might have gotten if the null hypothesis were true since the responses
 are the same in the two groups if the null is true. We just need to repeat the
@@ -1001,7 +993,7 @@ set) as</p>
 <p><span class="math display">\[T_{obs}=\bar{x}_\text{commute} - \bar{x}_\text{casual},\]</span></p>
 <p>which happened to be -25.933 cm here. We will compare this result to the results
 for the test statistic that we obtain from permuting the group labels. To
-denote permuted results, we will add a * to the labels:</p>
+denote permuted results, we will add an * to the labels:</p>
 <p><span class="math display">\[T^*=\bar{x}_{\text{commute}^*}-\bar{x}_{\text{casual}^*}.\]</span></p>
 <p>We then compare the <span class="math inline">\(T_{obs}=\bar{x}_\text{commute} - \bar{x}_\text{casual} = -25.933\)</span>
 to the distribution of results that are possible for the permuted results (<span class="math inline">\(T^*\)</span>)
@@ -1087,7 +1079,7 @@ contains <em>B</em> elements, full of missing values (NA) using the <code>matrix
 <span id="cb86-3"><a href="chapter2.html#cb86-3"></a>  Tstar[b] &lt;-<span class="st"> </span><span class="kw">coef</span>(lmP)[<span class="dv">2</span>]</span>
 <span id="cb86-4"><a href="chapter2.html#cb86-4"></a>}</span>
 <span id="cb86-5"><a href="chapter2.html#cb86-5"></a><span class="co">#Print out the results stored in Tstar with the next line of code</span></span></code></pre></div>
-
+<!-- \newpage -->
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="chapter2.html#cb87-1"></a>Tstar</span></code></pre></div>
 <pre><code>##            [,1]
 ## [1,]   9.533333
@@ -1311,7 +1303,7 @@ some of these criticisms, we recommend reporting the strength of evidence of the
 result based on the p-value and also reporting and discussing the size of the
 estimated results (with a measure of precision of the estimated difference). We will explore the implications of how p-values are used in scientific research in Section <a href="chapter2.html#section2-8">2.8</a>.</p>
 
-<div class="figure"><span id="fig:Figure2-12"></span>
+<div class="figure" style="text-align: center"><span id="fig:Figure2-12"></span>
 <img src="chapter2_files/pvalueStrengths.png" alt="Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values." width="100%" />
 <p class="caption">
 Figure 2.12: Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values.
@@ -1779,7 +1771,7 @@ used before.</p>
 <p>The permutation distribution
 
 in Figure <a href="chapter2.html#fig:Figure2-13">2.13</a> looks
-similar to the previous results with slightly different x-axis scaling. The
+similar to the previous results with slightly different <span class="math inline">\(x\)</span>-axis scaling. The
 observed <span class="math inline">\(t\)</span>-statistic was <span class="math inline">\(-2.07\)</span> and the proportion of permuted results that
 were as or more extreme than the observed result
 was 0.041. This difference is due to a different set of random permutations
@@ -1941,8 +1933,8 @@ possibly differ in their centers. In other words, the distributions need not
 look normal for the procedure to work well, but they do need to look similar.
 </li>
 </ol>
-<p>In the bicycle overtake study, we are not able to assume that the independent
-observation condition is met because of multiple measurements taken on the same ride. The fact that the same rider was used for all observations is not really a violation of independence here because there was only one subject used. If multiple subjects had been used, then that also could present a violation of the independence assumption. This violation is important to note as the inferences may not be correct due to the violation of this assumption and more sophisticated statistical methods would be needed to complete this analysis correctly. The equal variance condition does not appear to be violated. The standard deviations are 28.4 vs 39.4, so this difference is not “large”
+<p>In the bicycle overtake study, the independent
+observation condition is violated because of multiple measurements taken on the same ride. The fact that the same rider was used for all observations is not really a violation of independence here because there was only one subject used. If multiple subjects had been used, then that also could present a violation of the independence assumption. This violation is important to note as the inferences may not be correct due to the violation of this assumption and more sophisticated statistical methods would be needed to complete this analysis correctly. The equal variance condition does not appear to be violated. The standard deviations are 28.4 vs 39.4, so this difference is not “large”
 according to the rule of thumb noted above (ratio of SDs is about 1.4). There is also little evidence in the pirate-plots to suggest a violation of the normality condition for each of the groups (Figure <a href="chapter2.html#fig:Figure2-6">2.6</a>). Additionally, the shapes look similar for the two groups so we also could feel comfortable using the permutation approach based on
 its version of condition (3) above. Note that when assessing assumptions, it is important to never state that assumptions are met – we never know the truth and can only look at the information in the sample to look for evidence of problems with particular conditions. Violations of those conditions suggest a need for either more sophisticated statistical tools<a href="references.html#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a> or possibly transformations of the response variable (discussed in Chapter <a href="chapter7.html#chapter7">7</a>).</p>
 <p>The permutation approach is resistant
@@ -1997,6 +1989,7 @@ similar inferences, but both are subject to concerns related to violations of th
 Figure 2.16: Permutation distribution of the <span class="math inline">\(t\)</span>-statistic for <span class="math inline">\(n=1,636\)</span> overtake data set.
 </p>
 </div>
+
 </div>
 <div id="section2-7" class="section level2">
 <h2><span class="header-section-number">2.7</span> Second example of permutation tests</h2>
@@ -2150,7 +2143,7 @@ the Intermediate Statistics students that responded to the survey in that semest
 <p>In the previous examples, some variation in p-values was observed as different methods (parametric, nonparametric) were applied to the same data set and in the permutation approach, the p-values can vary as well from one set of permutations to another. P-values also vary based on randomness in the data that were collected – take a different (random) sample and you will get different data and a different p-value. We want the best estimate of a p-value we can obtain, so should use the best sampling method and inference technique that we can. But it is just an estimate of the evidence against the null hypothesis. These sources of variability make fixed <span class="math inline">\(\alpha\)</span> NHST especially worry-some as sampling variability could take a p-value from just below to just above <span class="math inline">\(\alpha\)</span> and this would lead to completely different inferences if the only focus is on rejecting the null hypothesis at a fixed significance level. But viewing p-values on a gradient from extremely strong (close to 0) to no (1) evidence against the null hypothesis, p-values of, say, 0.046 and 0.054 provide basically the same evidence against the null hypothesis. The fixed <span class="math inline">\(\alpha\)</span> decision-making is tied into the use of the terminology of “significant results” or, slightly better, “statistically significant results”  that are intended to convey that there was sufficient evidence to reject the null hypothesis at some pre-decided <span class="math inline">\(\alpha\)</span> level. You will notice that this is the only time that the “s-word” (significant) is considered here.</p>
 <p></p>
 <p>The focus on p-values has been criticized for a suite of reasons <span class="citation">(Wasserstein and Lazar <a href="#ref-Wasserstein2016" role="doc-biblioref">2016</a>)</span>. There are situations when p-values do not address the question of interest or the fact that a small p-value was obtained is so un-surprising that one wonders why it was even reported. For example, in Smith <span class="citation">(Smith <a href="#ref-Smith2014" role="doc-biblioref">2014</a>)</span> the researcher considered bee sting pain ratings across 27 different body locations<a href="references.html#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a>. I don’t think anyone would be surprised to learn that there was strong evidence against the null hypothesis of no difference in the true mean pain ratings across different body locations. What is really of interest are the differences in the means – especially which locations are most painful and how much more painful those locations were than others, on average.</p>
-<p>As a field, Statistics is trying to encourage a move away from the focus on p-values and the use of the term “significant”, even when modified by “statistically”. There are a variety of reasons for this change. Science (especially in research going into academic journals and in some introductory statistics books) has taken to using p-value &lt; 0.05 and rejected null hypotheses as the only way to “certify” that a result is interesting. It has (and unfortunately still is) hard to publish a paper with a primary result with a p-value that is higher than 0.05, even if the p-value is close to that “magical” threshold. One thing that is lost when using that strict cut-off for decisions is that any p-value that is not exactly 1 suggests that there is at least some evidence against the null hypothesis in the data and that evidence is then on a continuum from none to very strong. And that p-values are both of function of the size of the difference and the sample size. It is easy to get small p-values for small size differences with large data sets. A small p-value can be associated with an unimportant (not practically meaningful) size difference. And large p-values, especially in smaller sample situations, could be associated with very meaningful differences in size even though evidence is not strong against the null hypothesis. It is critical to always try to estimate and discuss the size of the differences, whether a large or small p-value is encountered.</p>
+<p>As a field, Statistics is trying to encourage a move away from the focus on p-values and the use of the term “significant”, even when modified by “statistically”. There are a variety of reasons for this change. Science (especially in research going into academic journals and in some introductory statistics books) has taken to using p-value &lt; 0.05 and rejected null hypotheses as the only way to “certify” that a result is interesting. It has (and unfortunately still is) hard to publish a paper with a primary result with a p-value that is higher than 0.05, even if the p-value is close to that “magical” threshold. One thing that is lost when using that strict cut-off for decisions is that any p-value that is not exactly 1 suggests that there is at least some evidence against the null hypothesis in the data and that evidence is then on a continuum from none to very strong. And that p-values are both a function of the size of the difference and the sample size. It is easy to get small p-values for small size differences with large data sets. A small p-value can be associated with an unimportant (not practically meaningful) size difference. And large p-values, especially in smaller sample situations, could be associated with very meaningful differences in size even though evidence is not strong against the null hypothesis. It is critical to always try to estimate and discuss the size of the differences, whether a large or small p-value is encountered.</p>
 <p>There are some other related issues to consider in working with p-values that help to illustrate some of the issues with how p-values and “statistical significance” are used in practice. In many studies, researchers have a suite of outcome variables that they measure on their subjects. For example, in an agricultural experiment they might measure the yield of the crops, the protein concentration, the digestibility, and other characteristics of the crops. In various “omics” fields such as genomics, proteomics, and metabolomics, responses for each subject on hundreds, thousands, or even millions of variables are considered and a p-value may be generated for each of those variables. In education, researchers might be interested in impacts on grades (as in the previous discussion) but we could also be interested in reading comprehension, student interest in the subject, and the amount of time spent studying, each as response variables in their own right. In each of these situations it means that we are considering not just one null hypothesis and assessing evidence against it, but are doing it many times, from just a few to millions of repetitions. There are two aspects of this process and implications for research to explore further: the impacts on scientific research of focusing solely on “statistically significant” results and the impacts of considering more than one hypothesis test in the same study.</p>
 <p>There is the systematic bias in scientific research that has emerged from scientists having a difficult time publishing research if p-values for their data are not smaller than 0.05. This has two implications. Many researchers have assumed that results with “large” p-values are not interesting – so they either exclude these results from papers (they put them in <em>their</em> file drawer instead of into their papers - the so-called “file-drawer” bias)  or reviewers reject papers because they did not have small p-values to support their discussions (only results with small p-values are judged as being of interest for publication - the so-called “publication bias”).  Some also include bias from researchers only choosing to move forward with attempting to publish results if they are in the same direction that the researchers expect/theorized as part of this problem – ignoring results that contradict their theories is an example of “confirmation bias”  but also would hinder the evolution of scientific theories to ignore contradictory results. But since most researchers focus on p-values and not on estimates of size (and direction) of differences, that will be our focus here.</p>
 <p>We will use some of our new abilities in R to begin to study some of the impacts of systematically favoring only results with small p-values using a “simulation study” inspired by the explorations in <span class="citation">Schneck (<a href="#ref-Schneck2017" role="doc-biblioref">2017</a>)</span>.  Specifically, let’s focus on the bicycle passing data. We start with assuming that there really is no difference in the two groups, so the true mean is the same in both groups, the variability is the same around the means in the two groups, and all responses follow normal distributions. This is basically like the permutation idea where we assumed the group labels could be equivalently swapped among responses if the null hypothesis were true except that observations will be generated by a normal distribution instead of shuffling the original observations among groups. This is a little stronger assumption than in the permutation approach but makes it possible to study Type I error rates, power, and to explore a process that is similar to how statistical results are generated and used in academic research settings.</p>
@@ -2221,18 +2214,59 @@ even more clearly distinguished.</p>
 <p>To fully explore the impacts of either the office drawer or publication bias (they basically have the same impacts on published results even though they are different mechanisms), this process must be repeated many times. The code is a bit more complex here, as the previous code that created ten data sets needs to be replicated <em>B</em> = 1,000 times and four sets of results stored (estimated mean differences and p-values for the first data set and the smallest p-value one). This involves a loop that is very similar to our permutation loop but with more activity inside that loop, with the code for generating and extracting the realization of ten results repeated <em>B</em> times. Figure <a href="chapter2.html#fig:Figure2-20">2.20</a> contains the results for the simulation study. In the left plot that contains the p-values we can immediately see some important differences in the distribution of p-values. In the “first” result, the p-values are evenly spread from 0 to 1 – this is what happens when the null hypothesis is true and you simulate from that scenario one time and track the p-values. A good testing method should make a mistake at the <span class="math inline">\(\alpha\)</span>-level at a rate around <span class="math inline">\(\alpha\)</span> (a 5% significance level test should make a mistake 5% of the time). If the p-values are evenly spread from 0 to 1, then about 0.05 will be between 0 and 0.05 (think of areas in rectangles with a height of 1 where the total area from 0 to 1 has to add up to 1). But when a researcher focuses only on the top result of ten, then the p-value distribution is smashed toward 0. Using <code>favstats</code> on each distribution of p-values shows that the median for the p-values from taking the first result is around 0.5 but for taking the minimum of ten results, the median p-value is 0.065. So half the results are at the “moderate” evidence level or better when selection of results is included. This gets even worse as more results are explored but seems quite problematic here.</p>
 <p>The estimated difference in the means also presents an interesting story. When just reporting the first result, the distribution of the estimated means in panel b of Figure <a href="chapter2.html#fig:Figure2-20">2.20</a> shows a symmetric distribution that is centered around 0 with results extending just past <span class="math inline">\(\pm\)</span> 4 in each tail. When selection of results is included, only more extreme estimated differences are considered and no results close to 0 are even reported. There are two modes here around <span class="math inline">\(\pm\)</span> 2.5 and multiple results close to <span class="math inline">\(\pm\)</span> 5 are observed. Interestingly, the mean of both distributions is close to 0 so both are “unbiased”<a href="references.html#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a> estimators but the distribution for the estimated difference from the selected “top” result is clearly flawed and would not give correct inferences for differences when the null hypothesis is correct. If a one-sided test had been employed, the selection of the top result would result is a clearly biased estimator as only one of the two modes would be selected. The presentation of these results is a great example of why pirate-plots are better than boxplots as a boxplot of these results would not allow the viewer to notice the two distinct groups of results.</p>
 
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="chapter2.html#cb141-1"></a><span class="co"># Simulation study of generating 10 data sets and either using the first</span></span>
+<span id="cb141-2"><a href="chapter2.html#cb141-2"></a><span class="co"># or &quot;best p-value&quot; result:</span></span>
+<span id="cb141-3"><a href="chapter2.html#cb141-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb141-4"><a href="chapter2.html#cb141-4"></a></span>
+<span id="cb141-5"><a href="chapter2.html#cb141-5"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span> <span class="co"># # of simulations</span></span>
+<span id="cb141-6"><a href="chapter2.html#cb141-6"></a><span class="co"># To store results</span></span>
+<span id="cb141-7"><a href="chapter2.html#cb141-7"></a>Diffmeans &lt;-<span class="st"> </span>pvalues &lt;-<span class="st"> </span>Diffmeans_Min &lt;-<span class="st"> </span>pvalues_Min &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B) </span>
+<span id="cb141-8"><a href="chapter2.html#cb141-8"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){ <span class="co">#Simulation study loop to repeat process B times</span></span>
+<span id="cb141-9"><a href="chapter2.html#cb141-9"></a>  <span class="co"># Create empty vectors to store 10 results for each b</span></span>
+<span id="cb141-10"><a href="chapter2.html#cb141-10"></a>  diff10 &lt;-<span class="st"> </span>pval10 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span><span class="dv">10</span>) </span>
+<span id="cb141-11"><a href="chapter2.html#cb141-11"></a>  <span class="cf">for</span> (c <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)){ <span class="co">#Loop to create 10 data sets and extract results</span></span>
+<span id="cb141-12"><a href="chapter2.html#cb141-12"></a>    ddsub<span class="op">$</span>SimDistance &lt;-<span class="st"> </span><span class="kw">simulate</span>(lm_commonmean)[[<span class="dv">1</span>]]</span>
+<span id="cb141-13"><a href="chapter2.html#cb141-13"></a>    <span class="co"># Estimate two group model using simulated responses</span></span>
+<span id="cb141-14"><a href="chapter2.html#cb141-14"></a>    lm_sim &lt;-<span class="st"> </span><span class="kw">lm</span>(SimDistance <span class="op">~</span><span class="st"> </span>Condition, <span class="dt">data=</span>ddsub) </span>
+<span id="cb141-15"><a href="chapter2.html#cb141-15"></a>    diff10[c] &lt;-<span class="st"> </span><span class="kw">coef</span>(lm_sim)[<span class="dv">2</span>]</span>
+<span id="cb141-16"><a href="chapter2.html#cb141-16"></a>    pval10[c] &lt;-<span class="st"> </span><span class="kw">summary</span>(lm_sim)<span class="op">$</span>coef[<span class="dv">2</span>,<span class="dv">4</span>]</span>
+<span id="cb141-17"><a href="chapter2.html#cb141-17"></a>  }</span>
+<span id="cb141-18"><a href="chapter2.html#cb141-18"></a>  </span>
+<span id="cb141-19"><a href="chapter2.html#cb141-19"></a>  pvalues[b] &lt;-<span class="st"> </span>pval10[<span class="dv">1</span>] <span class="co">#Store first result p-value</span></span>
+<span id="cb141-20"><a href="chapter2.html#cb141-20"></a>  Diffmeans[b] &lt;-<span class="st"> </span>diff10[<span class="dv">1</span>] <span class="co">#Store first result estimated difference</span></span>
+<span id="cb141-21"><a href="chapter2.html#cb141-21"></a>  </span>
+<span id="cb141-22"><a href="chapter2.html#cb141-22"></a>  pvalues_Min[b] &lt;-<span class="st"> </span><span class="kw">min</span>(pval10) <span class="co">#Store smallest p-value</span></span>
+<span id="cb141-23"><a href="chapter2.html#cb141-23"></a>  Diffmeans_Min[b] &lt;-<span class="st"> </span>diff10[pval10<span class="op">==</span><span class="kw">min</span>(pval10)] <span class="co">#Store est. diff of smallest p-value</span></span>
+<span id="cb141-24"><a href="chapter2.html#cb141-24"></a>  </span>
+<span id="cb141-25"><a href="chapter2.html#cb141-25"></a>}</span>
+<span id="cb141-26"><a href="chapter2.html#cb141-26"></a></span>
+<span id="cb141-27"><a href="chapter2.html#cb141-27"></a><span class="co">#Put results together</span></span>
+<span id="cb141-28"><a href="chapter2.html#cb141-28"></a>results &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">pvalue_results=</span><span class="kw">c</span>(pvalues,pvalues_Min), </span>
+<span id="cb141-29"><a href="chapter2.html#cb141-29"></a>                  <span class="dt">Diffmeans_results=</span><span class="kw">c</span>(Diffmeans, Diffmeans_Min), </span>
+<span id="cb141-30"><a href="chapter2.html#cb141-30"></a>                  <span class="dt">Scenario =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;First&quot;</span>, <span class="st">&quot;Min&quot;</span>), <span class="dt">each=</span>B))</span>
+<span id="cb141-31"><a href="chapter2.html#cb141-31"></a></span>
+<span id="cb141-32"><a href="chapter2.html#cb141-32"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co">#Plot results</span></span>
+<span id="cb141-33"><a href="chapter2.html#cb141-33"></a><span class="kw">pirateplot</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results, <span class="dt">inf.f.o =</span> <span class="dv">0</span>,<span class="dt">inf.b.o =</span> <span class="dv">0</span>,</span>
+<span id="cb141-34"><a href="chapter2.html#cb141-34"></a>           <span class="dt">avg.line.o =</span> <span class="dv">0</span>, <span class="dt">main=</span><span class="st">&quot;(a) P-value results&quot;</span>)</span>
+<span id="cb141-35"><a href="chapter2.html#cb141-35"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="fl">0.05</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span>
+<span id="cb141-36"><a href="chapter2.html#cb141-36"></a><span class="kw">pirateplot</span>(Diffmeans_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results, <span class="dt">inf.f.o =</span> <span class="dv">0</span>,<span class="dt">inf.b.o =</span> <span class="dv">0</span>,</span>
+<span id="cb141-37"><a href="chapter2.html#cb141-37"></a>           <span class="dt">avg.line.o =</span> <span class="dv">0</span>, <span class="dt">main=</span><span class="st">&quot;(b) Estimated difference in mean results&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure2-20"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-20-1.png" alt="Pirate-plot of a simulation study results. Panel (a) contains the B = 1,000 p-values and (b) contains the B=1,000 estimated differences in the means. Note that the estimated means and confidence intervals normally present in pirate-plots are suppressed here with inf.f.o = 0, inf.b.o = 0, avg.line.o = 0 because these plots are being used to summarize simulation results instead of an original data set." width="960" />
 <p class="caption">
 Figure 2.20: Pirate-plot of a simulation study results. Panel (a) contains the <em>B</em> = 1,000 p-values and (b) contains the <em>B</em>=1,000 estimated differences in the means. Note that the estimated means and confidence intervals normally present in pirate-plots are suppressed here with <code>inf.f.o = 0, inf.b.o = 0, avg.line.o = 0</code> because these plots are being used to summarize simulation results instead of an original data set.
 </p>
 </div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="chapter2.html#cb142-1"></a><span class="co">#Numerical summaries of results</span></span>
+<span id="cb142-2"><a href="chapter2.html#cb142-2"></a><span class="kw">favstats</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results)</span></code></pre></div>
 <pre><code>##   Scenario          min         Q1    median        Q3       max
 ## 1    First 0.0017051496 0.27075755 0.5234412 0.7784957 0.9995293
 ## 2      Min 0.0005727895 0.02718018 0.0646370 0.1273880 0.5830232
 ##         mean         sd    n missing
 ## 1 0.51899179 0.28823469 1000       0
 ## 2 0.09156364 0.08611836 1000       0</code></pre>
+
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="chapter2.html#cb144-1"></a><span class="kw">favstats</span>(Diffmeans_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results)</span></code></pre></div>
 <pre><code>##   Scenario       min         Q1     median       Q3      max       mean
 ## 1    First -4.531864 -0.8424604 0.07360378 1.002228 4.458951 0.05411473
 ## 2      Min -5.136510 -2.6857436 1.24042295 2.736930 5.011190 0.03539750
@@ -2279,23 +2313,52 @@ Figure 2.21: Plot of family-wise error rate (Bold solid line) as the number of t
 <p>All hope is not lost when multiple tests are being considered in the same study or by a researcher and exploring more than one result need not lead to clearly biased and flawed results being reported. To account for multiple testing in the same study/analysis, there are many approaches that adjust results to acknowledge that multiple tests are being considered. A simple approach called the “Bonferroni Correction” <span class="citation">(Bland and Altman <a href="#ref-Bland1995" role="doc-biblioref">1995</a>)</span> is a good starting point for learning about these methods. It works to control the family-wise error rate of a suite of tests by either dividing <span class="math inline">\(\alpha\)</span> by the number of tests (<span class="math inline">\(\alpha/m\)</span>) or, equivalently and more usefully, multiplying the p-value by the number of tests being considered (<span class="math inline">\(p-value_{adjusted} = p-value \cdot m\)</span> or <span class="math inline">\(1\)</span> if <span class="math inline">\(p-value \cdot m &gt; 1\)</span>). The “Bonferroni adjusted p-values” are then used as regular p-values to assess evidence against each null hypothesis but now accounting for exploring many of them together. There are some assumptions that this adjustment method makes that make it to generally be a conservative adjustment method. In particular, it assumes that all <span class="math inline">\(m\)</span> tests are independent of each other and that the null hypothesis was true for all <span class="math inline">\(m\)</span> tests conducted. While all p-values should be reported in this situation when considering ten results, the impacts of using a Bonferroni correction are that the resulting p-values are not driving inflated Type I error rates even if the smallest p-value is the main focus of the results. The correction also provides a suggestion of decreasing evidence in the first test result because it is now incorporated in considering ten results instead of one.</p>
 <p>The following code repeats the simulation study but with the p-values adjusted for multiple testing within each simulation but does not repeat tracking the estimated differences in the means as this is not impacted by the p-value adjustment process. The <code>p.adjust</code> function provides Bonferroni corrections to a vector of p-values (here ten are collected together) using the <code>bonferroni</code> method option (<code>p.adjust(pval10, method="bonferroni")</code>) and then stores those results. Figure <a href="chapter2.html#fig:Figure2-22">2.22</a> shows the results for the first result and minimum result again, but now with these corrections incorporated. The plots may look a bit odd, but in the first data set, so many of the first data sets had p-values that were “large” that they were adjusted to have p-values of 1 (so no evidence against the null once we account for multiple testing). The distribution for the minimum p-value results with adjustment more closely resembles the distribution of the first result p-values from Figure <a href="chapter2.html#fig:Figure2-20">2.20</a>, except for some minor clumping up at adjusted p-values of 1.</p>
 
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="chapter2.html#cb146-1"></a><span class="co"># Simulation study of generating 10 data sets and either using the first </span></span>
+<span id="cb146-2"><a href="chapter2.html#cb146-2"></a><span class="co"># or &quot;best p-value&quot; result:</span></span>
+<span id="cb146-3"><a href="chapter2.html#cb146-3"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb146-4"><a href="chapter2.html#cb146-4"></a></span>
+<span id="cb146-5"><a href="chapter2.html#cb146-5"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span> <span class="co"># # of simulations</span></span>
+<span id="cb146-6"><a href="chapter2.html#cb146-6"></a>pvalues &lt;-<span class="st"> </span>pvalues_Min &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B) <span class="co">#To store results</span></span>
+<span id="cb146-7"><a href="chapter2.html#cb146-7"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){ <span class="co">#Simulation study loop to repeat process B times</span></span>
+<span id="cb146-8"><a href="chapter2.html#cb146-8"></a>  <span class="co"># Create empty vectors to store 10 results for each b</span></span>
+<span id="cb146-9"><a href="chapter2.html#cb146-9"></a>  pval10 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span><span class="dv">10</span>) </span>
+<span id="cb146-10"><a href="chapter2.html#cb146-10"></a>  <span class="cf">for</span> (c <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)){ <span class="co">#Loop to create 10 data sets and extract results</span></span>
+<span id="cb146-11"><a href="chapter2.html#cb146-11"></a>    ddsub<span class="op">$</span>SimDistance &lt;-<span class="st"> </span><span class="kw">simulate</span>(lm_commonmean)[[<span class="dv">1</span>]]</span>
+<span id="cb146-12"><a href="chapter2.html#cb146-12"></a>    <span class="co"># Estimate two group model using simulated responses</span></span>
+<span id="cb146-13"><a href="chapter2.html#cb146-13"></a>    lm_sim &lt;-<span class="st"> </span><span class="kw">lm</span>(SimDistance <span class="op">~</span><span class="st"> </span>Condition, <span class="dt">data=</span>ddsub) </span>
+<span id="cb146-14"><a href="chapter2.html#cb146-14"></a>    pval10[c] &lt;-<span class="st"> </span><span class="kw">summary</span>(lm_sim)<span class="op">$</span>coef[<span class="dv">2</span>,<span class="dv">4</span>]</span>
+<span id="cb146-15"><a href="chapter2.html#cb146-15"></a>  }</span>
+<span id="cb146-16"><a href="chapter2.html#cb146-16"></a>  </span>
+<span id="cb146-17"><a href="chapter2.html#cb146-17"></a>  pval10 &lt;-<span class="st"> </span><span class="kw">p.adjust</span>(pval10, <span class="dt">method=</span><span class="st">&quot;bonferroni&quot;</span>)</span>
+<span id="cb146-18"><a href="chapter2.html#cb146-18"></a>  </span>
+<span id="cb146-19"><a href="chapter2.html#cb146-19"></a>  pvalues[b] &lt;-<span class="st"> </span>pval10[<span class="dv">1</span>] <span class="co">#Store first result adjusted p-value</span></span>
+<span id="cb146-20"><a href="chapter2.html#cb146-20"></a>  </span>
+<span id="cb146-21"><a href="chapter2.html#cb146-21"></a>  pvalues_Min[b] &lt;-<span class="st"> </span><span class="kw">min</span>(pval10) <span class="co">#Store smallest adjusted p-value</span></span>
+<span id="cb146-22"><a href="chapter2.html#cb146-22"></a>  </span>
+<span id="cb146-23"><a href="chapter2.html#cb146-23"></a>}</span>
+<span id="cb146-24"><a href="chapter2.html#cb146-24"></a></span>
+<span id="cb146-25"><a href="chapter2.html#cb146-25"></a><span class="co">#Put results together</span></span>
+<span id="cb146-26"><a href="chapter2.html#cb146-26"></a>results &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">pvalue_results=</span><span class="kw">c</span>(pvalues,pvalues_Min), </span>
+<span id="cb146-27"><a href="chapter2.html#cb146-27"></a>                  <span class="dt">Scenario =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;First&quot;</span>, <span class="st">&quot;Min&quot;</span>), <span class="dt">each=</span>B))</span>
+<span id="cb146-28"><a href="chapter2.html#cb146-28"></a></span>
+<span id="cb146-29"><a href="chapter2.html#cb146-29"></a><span class="kw">pirateplot</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results, <span class="dt">inf.f.o =</span> <span class="dv">0</span>,<span class="dt">inf.b.o =</span> <span class="dv">0</span>,</span>
+<span id="cb146-30"><a href="chapter2.html#cb146-30"></a>           <span class="dt">avg.line.o =</span> <span class="dv">0</span>, <span class="dt">main=</span><span class="st">&quot;(a) P-value results&quot;</span>)</span>
+<span id="cb146-31"><a href="chapter2.html#cb146-31"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="fl">0.05</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure2-22"></span>
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-22-1.png" alt="Pirate-plot of a simulation study results of p-values with Bonferroni correction." width="480" />
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-22-1.png" alt="Pirate-plot of a simulation study results of p-values with Bonferroni correction." width="960" />
 <p class="caption">
 Figure 2.22: Pirate-plot of a simulation study results of p-values with Bonferroni correction.
 </p>
 </div>
 <p>By applying the <code>pdata</code> function to the two groups of results we can directly assess how many of each type of result resulted in p-values less than 0.05. It ends up that if adjust for ten tests and just focus on the first result, it is really hard to find moderate or strong evidence against the null hypothesis as only 3 in 1,000 results had adjusted p-values less than 0.05. When the focus is on the “top” p-value result when ten are considered and adjustments are made, 52 out of 1,000 results (0.052) show at least moderate evidence against the null hypothesis. This is the rate we would expect from a well-behaved hypothesis test when the null hypothesis is true – that we would only make a mistake 5% of the time when <span class="math inline">\(\alpha\)</span> is 0.05.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="chapter2.html#cb143-1"></a><span class="co">#Numerical summaries of results</span></span>
-<span id="cb143-2"><a href="chapter2.html#cb143-2"></a><span class="kw">favstats</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results)</span></code></pre></div>
-<pre><code>##   Scenario         min        Q1  median Q3 max      mean        sd    n
-## 1    First 0.017051496 1.0000000 1.00000  1   1 0.9628911 0.1502805 1000
-## 2      Min 0.005727895 0.2718018 0.64637  1   1 0.6212932 0.3597701 1000
-##   missing
-## 1       0
-## 2       0</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="chapter2.html#cb145-1"></a><span class="co">#Proportion of simulations with adjusted p-values less than 0.05</span></span>
-<span id="cb145-2"><a href="chapter2.html#cb145-2"></a><span class="kw">pdata</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results,.<span class="dv">05</span>, <span class="dt">lower.tail=</span>T)</span></code></pre></div>
+
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="chapter2.html#cb147-1"></a><span class="co">#Numerical summaries of results</span></span>
+<span id="cb147-2"><a href="chapter2.html#cb147-2"></a><span class="kw">favstats</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results)</span></code></pre></div>
+<pre><code>##   Scenario         min        Q1  median Q3 max      mean        sd    n missing
+## 1    First 0.017051496 1.0000000 1.00000  1   1 0.9628911 0.1502805 1000       0
+## 2      Min 0.005727895 0.2718018 0.64637  1   1 0.6212932 0.3597701 1000       0</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="chapter2.html#cb149-1"></a><span class="co">#Proportion of simulations with adjusted p-values less than 0.05</span></span>
+<span id="cb149-2"><a href="chapter2.html#cb149-2"></a><span class="kw">pdata</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results,.<span class="dv">05</span>, <span class="dt">lower.tail=</span>T)</span></code></pre></div>
 <pre><code>##   Scenario pdata_v
 ## 1    First   0.003
 ## 2      Min   0.052</code></pre>
@@ -2349,9 +2412,10 @@ were sampled twice, the 9<sup>th</sup> and 28<sup>th</sup> observations were sam
 times, and the 4<sup>th</sup>, 5<sup>th</sup>, 6<sup>th</sup>, and many others
 were not sampled at all. Bootstrap sampling thus picks some observations
 multiple times and to do that it has to ignore some<a href="references.html#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a> observations.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="chapter2.html#cb147-1"></a><span class="kw">set.seed</span>(<span class="dv">406</span>)</span>
-<span id="cb147-2"><a href="chapter2.html#cb147-2"></a>dsample_BTS &lt;-<span class="st"> </span><span class="kw">resample</span>(dsample)</span>
-<span id="cb147-3"><a href="chapter2.html#cb147-3"></a><span class="kw">table</span>(<span class="kw">as.numeric</span>(dsample_BTS<span class="op">$</span>orig.id))</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="chapter2.html#cb151-1"></a><span class="kw">set.seed</span>(<span class="dv">406</span>)</span>
+<span id="cb151-2"><a href="chapter2.html#cb151-2"></a>dsample_BTS &lt;-<span class="st"> </span><span class="kw">resample</span>(dsample)</span></code></pre></div>
+
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="chapter2.html#cb152-1"></a><span class="kw">table</span>(<span class="kw">as.numeric</span>(dsample_BTS<span class="op">$</span>orig.id))</span></code></pre></div>
 <pre><code>## 
 ##  1  2  3  7  8  9 10 11 12 13 14 16 18 19 23 24 25 26 27 28 30 
 ##  2  1  1  1  1  4  1  1  1  1  2  1  1  1  1  1  1  2  1  4  1</code></pre>
@@ -2364,8 +2428,8 @@ selecting any observation for any slot
 in the new data set is <span class="math inline">\(1/30\)</span> and the expected or mean number of appearances we
 expect to see for an observation is the number of random draws times the probably
 of selection on each so <span class="math inline">\(30*1/30=1\)</span>. So we expect to see each observation in the bootstrap sample on average once but random variability in the samples then creates the possibility of seeing it more than once or not all.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="chapter2.html#cb149-1"></a>dsample_BTS2 &lt;-<span class="st"> </span><span class="kw">resample</span>(dsample)</span>
-<span id="cb149-2"><a href="chapter2.html#cb149-2"></a><span class="kw">table</span>(<span class="kw">as.numeric</span>(dsample_BTS2<span class="op">$</span>orig.id))</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="chapter2.html#cb154-1"></a>dsample_BTS2 &lt;-<span class="st"> </span><span class="kw">resample</span>(dsample)</span>
+<span id="cb154-2"><a href="chapter2.html#cb154-2"></a><span class="kw">table</span>(<span class="kw">as.numeric</span>(dsample_BTS2<span class="op">$</span>orig.id))</span></code></pre></div>
 <pre><code>## 
 ##  1  6  7  8  9 10 11 12 13 16 17 20 22 23 24 25 26 28 30 
 ##  2  2  1  1  2  1  4  1  3  1  1  1  2  2  1  1  2  1  1</code></pre>
@@ -2399,24 +2463,21 @@ mean passing distances for the <em>commuter</em> and <em>casual</em> outfit grou
 bootstrapping code is very similar to the permutation code except that we apply
 the <code>resample</code> function to the entire data set used in <code>lm</code> as opposed to the <code>shuffle</code>
 function that was applied only to the explanatory variable.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="chapter2.html#cb151-1"></a>lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span>dsample)</span>
-<span id="cb151-2"><a href="chapter2.html#cb151-2"></a>Tobs &lt;-<span class="st"> </span><span class="kw">coef</span>(lm1)[<span class="dv">2</span>]; Tobs</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="chapter2.html#cb156-1"></a>lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span>dsample)</span>
+<span id="cb156-2"><a href="chapter2.html#cb156-2"></a>Tobs &lt;-<span class="st"> </span><span class="kw">coef</span>(lm1)[<span class="dv">2</span>]; Tobs</span></code></pre></div>
 <pre><code>## Conditioncommute 
 ##        -25.93333</code></pre>
-
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="chapter2.html#cb153-1"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb153-2"><a href="chapter2.html#cb153-2"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb153-3"><a href="chapter2.html#cb153-3"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
-<span id="cb153-4"><a href="chapter2.html#cb153-4"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</span>
-<span id="cb153-5"><a href="chapter2.html#cb153-5"></a>  lmP &lt;-<span class="st"> </span><span class="kw">lm</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span><span class="kw">resample</span>(dsample))</span>
-<span id="cb153-6"><a href="chapter2.html#cb153-6"></a>  Tstar[b] &lt;-<span class="st"> </span><span class="kw">coef</span>(lmP)[<span class="dv">2</span>]</span>
-<span id="cb153-7"><a href="chapter2.html#cb153-7"></a>}</span>
-<span id="cb153-8"><a href="chapter2.html#cb153-8"></a></span>
-<span id="cb153-9"><a href="chapter2.html#cb153-9"></a><span class="kw">favstats</span>(Tstar)</span></code></pre></div>
-<pre><code>##        min        Q1    median        Q3      max      mean       sd    n
-##  -66.96429 -34.57159 -25.65881 -17.12391 17.17857 -25.73641 12.30987 1000
-##  missing
-##        0</code></pre>
+<!-- \newpage -->
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="chapter2.html#cb158-1"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb158-2"><a href="chapter2.html#cb158-2"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb158-3"><a href="chapter2.html#cb158-3"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
+<span id="cb158-4"><a href="chapter2.html#cb158-4"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</span>
+<span id="cb158-5"><a href="chapter2.html#cb158-5"></a>  lmP &lt;-<span class="st"> </span><span class="kw">lm</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span><span class="kw">resample</span>(dsample))</span>
+<span id="cb158-6"><a href="chapter2.html#cb158-6"></a>  Tstar[b] &lt;-<span class="st"> </span><span class="kw">coef</span>(lmP)[<span class="dv">2</span>]</span>
+<span id="cb158-7"><a href="chapter2.html#cb158-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="chapter2.html#cb159-1"></a><span class="kw">favstats</span>(Tstar)</span></code></pre></div>
+<pre><code>##        min        Q1    median        Q3      max      mean       sd    n missing
+##  -66.96429 -34.57159 -25.65881 -17.12391 17.17857 -25.73641 12.30987 1000       0</code></pre>
 
 <div class="figure"><span id="fig:Figure2-24"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-24-1.png" alt="Histogram and density curve of bootstrap distributions of difference in sample mean Distances with vertical line for the observed difference in the means of -25.933." width="960" />
@@ -2424,10 +2485,10 @@ function that was applied only to the explanatory variable.</p>
 Figure 2.24: Histogram and density curve of bootstrap distributions of difference in sample mean <code>Distances</code> with vertical line for the observed difference in the means of -25.933.
 </p>
 </div>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="chapter2.html#cb155-1"></a><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)</span>
-<span id="cb155-2"><a href="chapter2.html#cb155-2"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb155-3"><a href="chapter2.html#cb155-3"></a><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)</span>
-<span id="cb155-4"><a href="chapter2.html#cb155-4"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="chapter2.html#cb161-1"></a><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)</span>
+<span id="cb161-2"><a href="chapter2.html#cb161-2"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb161-3"><a href="chapter2.html#cb161-3"></a><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)</span>
+<span id="cb161-4"><a href="chapter2.html#cb161-4"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
 <p>In this situation, the observed difference in the mean passing distances is -25.933 cm
 (<em>commute</em> - <em>casual</em>), which is the bold vertical line in Figure
 <a href="chapter2.html#fig:Figure2-24">2.24</a>.
@@ -2458,10 +2519,10 @@ in R, functions are of the form <code>q[Name of distribution]</code>, with the f
 <code>qt</code> extracting percentiles from a <span class="math inline">\(t\)</span>-distribution (examples below). From the
 bootstrap results, use the <code>qdata</code> function on the <code>Tstar</code> results that
 contain the bootstrap distribution of the statistic of interest.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="chapter2.html#cb156-1"></a><span class="kw">qdata</span>(Tstar, <span class="fl">0.025</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="chapter2.html#cb162-1"></a><span class="kw">qdata</span>(Tstar, <span class="fl">0.025</span>)</span></code></pre></div>
 <pre><code>##        p quantile 
 ##   0.0250 -50.0055</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="chapter2.html#cb158-1"></a><span class="kw">qdata</span>(Tstar, <span class="fl">0.975</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="chapter2.html#cb164-1"></a><span class="kw">qdata</span>(Tstar, <span class="fl">0.975</span>)</span></code></pre></div>
 <pre><code>##         p  quantile 
 ##  0.975000 -2.248774</code></pre>
 <p>These results tell us that the 2.5<sup>th</sup> percentile of the bootstrap
@@ -2470,8 +2531,9 @@ distribution is at -50.01 cm and the 97.5<sup>th</sup> percentile is at -2.249 c
 in the true mean distances (<em>commute</em> minus <em>casual</em> groups) is
 between -50 and -2.25 cm. Or we can switch the direction of the comparison and say that we are 95% confident that the difference in the true means is between 2.25 and 50 cm (<em>casual</em> minus <em>commute</em>). This result would be incorporated into step 5 of the hypothesis testing protocol to accompany discussing the size of the estimated difference in the groups or used as a result of interest in itself. Both percentiles can be obtained in one line
 of code using:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="chapter2.html#cb160-1"></a>quantiles &lt;-<span class="st"> </span><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span>
-<span id="cb160-2"><a href="chapter2.html#cb160-2"></a>quantiles</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="chapter2.html#cb166-1"></a>quantiles &lt;-<span class="st"> </span><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span></code></pre></div>
+
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="chapter2.html#cb167-1"></a>quantiles</span></code></pre></div>
 <pre><code>##         quantile     p
 ## 2.5%  -50.005502 0.025
 ## 97.5%  -2.248774 0.975</code></pre>
@@ -2483,10 +2545,10 @@ of code using:</p>
 Figure 2.25: Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold vertical lines).
 </p>
 </div>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="chapter2.html#cb162-1"></a><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)</span>
-<span id="cb162-2"><a href="chapter2.html#cb162-2"></a><span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
-<span id="cb162-3"><a href="chapter2.html#cb162-3"></a><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)</span>
-<span id="cb162-4"><a href="chapter2.html#cb162-4"></a><span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="chapter2.html#cb169-1"></a><span class="kw">hist</span>(Tstar, <span class="dt">labels=</span>T)</span>
+<span id="cb169-2"><a href="chapter2.html#cb169-2"></a><span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb169-3"><a href="chapter2.html#cb169-3"></a><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)</span>
+<span id="cb169-4"><a href="chapter2.html#cb169-4"></a><span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
 <p>Although confidence intervals can exist without referencing hypotheses,
 we can
 revisit our previous hypotheses and see what this confidence interval tells
@@ -2522,7 +2584,7 @@ assumes that the populations
 being sampled from are normally distributed instead of just that they have similar shapes in the bootstrap approach. The parametric method leads to using a <span class="math inline">\(t\)</span>-distribution
 
 to form the interval with the degrees of freedom for the <span class="math inline">\(t\)</span>-distribution of <span class="math inline">\(n-2\)</span> although we can obtain it without direct reference to this distribution using the <code>confint</code> function applied to the <code>lm</code> model. This function generates two confidence intervals and the one in the second row is the one we are interested as it pertains to the difference in the true means of the two groups. The parametric 95% confidence interval here is from -51.6 to -0.26 cm which is a bit different in width from the nonparametric bootstrap interval that was from -50 and -2.25 cm.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="chapter2.html#cb163-1"></a><span class="kw">confint</span>(lm1)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="chapter2.html#cb170-1"></a><span class="kw">confint</span>(lm1)</span></code></pre></div>
 <pre><code>##                      2.5 %      97.5 %
 ## (Intercept)      117.64498 153.9550243
 ## Conditioncommute -51.60841  -0.2582517</code></pre>
@@ -2566,12 +2628,12 @@ need to look up the value for the 97.5<sup>th</sup> percentile and know that the
 multiplier for the 2.5<sup>th</sup> percentile is just <span class="math inline">\(-t^*\)</span>. The <span class="math inline">\(t^*\)</span>
 multiplier to form the confidence interval is 2.0484 for a 95% confidence interval
 when the <span class="math inline">\(df=28\)</span> based on the results from <code>qt</code>:</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="chapter2.html#cb165-1"></a><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">28</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="chapter2.html#cb172-1"></a><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">28</span>)</span></code></pre></div>
 <pre><code>## [1] 2.048407</code></pre>
 <p>Note that the 2.5<sup>th</sup> percentile is just the negative of this value due
 to symmetry and the real source of the minus in the minus/plus in the formula
 for the confidence interval.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="chapter2.html#cb167-1"></a><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dt">df=</span><span class="dv">28</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="chapter2.html#cb174-1"></a><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dt">df=</span><span class="dv">28</span>)</span></code></pre></div>
 <pre><code>## [1] -2.048407</code></pre>
 <p>We can also re-write the confidence interval formula into a slightly more
 general forms as</p>
@@ -2591,47 +2653,47 @@ make sure you are careful with using <code>( )</code> to group items and remembe
 the asterisk (*) is used for multiplication. We need the pertinent
 information which is available from the <code>favstats</code> output repeated below to
 calculate the confidence interval “by hand”<a href="references.html#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a> using R.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="chapter2.html#cb169-1"></a><span class="kw">favstats</span>(Distance <span class="op">~</span><span class="st"> </span>Condition, <span class="dt">data =</span> dsample)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="chapter2.html#cb176-1"></a><span class="kw">favstats</span>(Distance <span class="op">~</span><span class="st"> </span>Condition, <span class="dt">data =</span> dsample)</span></code></pre></div>
 <pre><code>##   Condition min    Q1 median    Q3 max     mean       sd  n missing
 ## 1    casual  72 112.5    143 154.5 208 135.8000 39.36133 15       0
 ## 2   commute  60  88.5    113 123.0 168 109.8667 28.41244 15       0</code></pre>
 <p>Start with typing the following command to calculate <span class="math inline">\(s_p\)</span> and store it in a
 variable named <code>sp</code>:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="chapter2.html#cb171-1"></a>sp &lt;-<span class="st"> </span><span class="kw">sqrt</span>(((<span class="dv">15-1</span>)<span class="op">*</span>(<span class="fl">39.36133</span><span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>(<span class="dv">15-1</span>)<span class="op">*</span>(<span class="fl">28.4124</span><span class="op">^</span><span class="dv">2</span>))<span class="op">/</span>(<span class="dv">15</span><span class="op">+</span><span class="dv">15-2</span>))</span>
-<span id="cb171-2"><a href="chapter2.html#cb171-2"></a>sp</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="chapter2.html#cb178-1"></a>sp &lt;-<span class="st"> </span><span class="kw">sqrt</span>(((<span class="dv">15-1</span>)<span class="op">*</span>(<span class="fl">39.36133</span><span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>(<span class="dv">15-1</span>)<span class="op">*</span>(<span class="fl">28.4124</span><span class="op">^</span><span class="dv">2</span>))<span class="op">/</span>(<span class="dv">15</span><span class="op">+</span><span class="dv">15-2</span>))</span>
+<span id="cb178-2"><a href="chapter2.html#cb178-2"></a>sp</span></code></pre></div>
 <pre><code>## [1] 34.32622</code></pre>
 <p>Then calculate the confidence interval that <code>confint</code> provided using:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="chapter2.html#cb173-1"></a><span class="fl">109.8667-135.8</span> <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">28</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">15</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="chapter2.html#cb180-1"></a><span class="fl">109.8667-135.8</span> <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">28</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">15</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] -51.6083698  -0.2582302</code></pre>
 <p>Or using the information from the model summary:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="chapter2.html#cb175-1"></a><span class="fl">-25.933</span> <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">28</span>)<span class="op">*</span><span class="fl">12.534</span></span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="chapter2.html#cb182-1"></a><span class="fl">-25.933</span> <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">28</span>)<span class="op">*</span><span class="fl">12.534</span></span></code></pre></div>
 <pre><code>## [1] -51.6077351  -0.2582649</code></pre>
 <p>The previous results all use <code>c(-1, 1)</code> times the margin of error to subtract and add
 the ME to the difference in the sample means (<span class="math inline">\(109.8667-135.8\)</span>), which generates the
 lower and then upper bounds of the confidence interval. If desired, we can also
 use just the last portion of the calculation to find the margin of error,
 which is 25.675 here.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="chapter2.html#cb177-1"></a><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">28</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">15</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="chapter2.html#cb184-1"></a><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">28</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">15</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] 25.67507</code></pre>
 <p>For the entire <span class="math inline">\(n=1,636\)</span> data set for these two groups, the results are obtained using the following code. The estimated difference in the means is -3 cm (<em>commute</em> minus <em>casual</em>). The <span class="math inline">\(t\)</span>-based 95% confidence interval is from -5.89 to -0.11.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="chapter2.html#cb179-1"></a>lm_all &lt;-<span class="st"> </span><span class="kw">lm</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span>ddsub)</span>
-<span id="cb179-2"><a href="chapter2.html#cb179-2"></a><span class="kw">confint</span>(lm_all) <span class="co">#Parametric 95% CI</span></span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="chapter2.html#cb186-1"></a>lm_all &lt;-<span class="st"> </span><span class="kw">lm</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span>ddsub)</span>
+<span id="cb186-2"><a href="chapter2.html#cb186-2"></a><span class="kw">confint</span>(lm_all) <span class="co">#Parametric 95% CI</span></span></code></pre></div>
 <pre><code>##                       2.5 %      97.5 %
 ## (Intercept)      115.520697 119.7013823
 ## Conditioncommute  -5.891248  -0.1149621</code></pre>
 <p>The bootstrap 95% confidence interval is from -5.82 to -0.076. With this large data set, the differences between parametric and permutation approaches decrease and they essentially equivalent here. The bootstrap distribution (not displayed) for the differences in the sample means is relatively symmetric and centered around the estimated difference of -3 cm. So using all the observations we would be 95% confident that the true mean difference in overtake distances (<em>commute</em> - <em>casual</em>) is between -5.89 and -0.11 cm, providing additional information about the estimated difference in the sample means of -3 cm.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="chapter2.html#cb181-1"></a>Tobs &lt;-<span class="st"> </span><span class="kw">coef</span>(lm_all)[<span class="dv">2</span>]; Tobs</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="chapter2.html#cb188-1"></a>Tobs &lt;-<span class="st"> </span><span class="kw">coef</span>(lm_all)[<span class="dv">2</span>]; Tobs</span></code></pre></div>
 <pre><code>## Conditioncommute 
 ##        -3.003105</code></pre>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="chapter2.html#cb183-1"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb183-2"><a href="chapter2.html#cb183-2"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb183-3"><a href="chapter2.html#cb183-3"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
-<span id="cb183-4"><a href="chapter2.html#cb183-4"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</span>
-<span id="cb183-5"><a href="chapter2.html#cb183-5"></a>  lmP &lt;-<span class="st"> </span><span class="kw">lm</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span><span class="kw">resample</span>(ddsub))</span>
-<span id="cb183-6"><a href="chapter2.html#cb183-6"></a>  Tstar[b] &lt;-<span class="st"> </span><span class="kw">coef</span>(lmP)[<span class="dv">2</span>]</span>
-<span id="cb183-7"><a href="chapter2.html#cb183-7"></a>}</span></code></pre></div>
-
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="chapter2.html#cb184-1"></a><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="chapter2.html#cb190-1"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb190-2"><a href="chapter2.html#cb190-2"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb190-3"><a href="chapter2.html#cb190-3"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
+<span id="cb190-4"><a href="chapter2.html#cb190-4"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</span>
+<span id="cb190-5"><a href="chapter2.html#cb190-5"></a>  lmP &lt;-<span class="st"> </span><span class="kw">lm</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span><span class="kw">resample</span>(ddsub))</span>
+<span id="cb190-6"><a href="chapter2.html#cb190-6"></a>  Tstar[b] &lt;-<span class="st"> </span><span class="kw">coef</span>(lmP)[<span class="dv">2</span>]</span>
+<span id="cb190-7"><a href="chapter2.html#cb190-7"></a>}</span></code></pre></div>
+<!-- \newpage -->
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="chapter2.html#cb191-1"></a><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##          quantile     p
 ## 2.5%  -5.81626474 0.025
 ## 97.5% -0.07606663 0.975</code></pre>
@@ -2642,26 +2704,27 @@ which is 25.675 here.</p>
 This time we start with the parametric 95% confidence interval “by hand” in R
 and then use <code>lm</code> to verify our result. The <code>favstats</code> output provides
 us with the required information to calculate the confidence interval, with the estimated difference in the sample mean GPAs of <span class="math inline">\(3.338-3.0886 = 0.2494\)</span>:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="chapter2.html#cb186-1"></a><span class="kw">favstats</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="chapter2.html#cb193-1"></a><span class="kw">favstats</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217)</span></code></pre></div>
 <pre><code>##   Sex  min  Q1 median   Q3 max     mean        sd  n missing
 ## 1   F 2.50 3.1  3.400 3.70   4 3.338378 0.4074549 37       0
 ## 2   M 1.96 2.8  3.175 3.46   4 3.088571 0.4151789 42       0</code></pre>
 <p>The <span class="math inline">\(df\)</span> are <span class="math inline">\(37+42-2 = 77\)</span>. Using the SDs from the two groups and their sample
 sizes, we can calculate <span class="math inline">\(s_p\)</span>:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="chapter2.html#cb188-1"></a>sp &lt;-<span class="st"> </span><span class="kw">sqrt</span>(((<span class="dv">37-1</span>)<span class="op">*</span>(<span class="fl">0.4075</span><span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>(<span class="dv">42-1</span>)<span class="op">*</span>(<span class="fl">0.41518</span><span class="op">^</span><span class="dv">2</span>))<span class="op">/</span>(<span class="dv">37</span><span class="op">+</span><span class="dv">42-2</span>))</span>
-<span id="cb188-2"><a href="chapter2.html#cb188-2"></a>sp</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="chapter2.html#cb195-1"></a>sp &lt;-<span class="st"> </span><span class="kw">sqrt</span>(((<span class="dv">37-1</span>)<span class="op">*</span>(<span class="fl">0.4075</span><span class="op">^</span><span class="dv">2</span>)<span class="op">+</span>(<span class="dv">42-1</span>)<span class="op">*</span>(<span class="fl">0.41518</span><span class="op">^</span><span class="dv">2</span>))<span class="op">/</span>(<span class="dv">37</span><span class="op">+</span><span class="dv">42-2</span>))</span>
+<span id="cb195-2"><a href="chapter2.html#cb195-2"></a>sp</span></code></pre></div>
 <pre><code>## [1] 0.4116072</code></pre>
 <p>The margin of error is:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="chapter2.html#cb190-1"></a><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">77</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">37</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">42</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="chapter2.html#cb197-1"></a><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">77</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">37</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">42</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1847982</code></pre>
+
 <p>All together, the 95% confidence interval is:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="chapter2.html#cb192-1"></a><span class="fl">3.338-3.0886</span><span class="op">+</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">77</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">37</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">42</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="chapter2.html#cb199-1"></a><span class="fl">3.338-3.0886</span><span class="op">+</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">77</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">37</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">42</span>)</span></code></pre></div>
 <pre><code>## [1] 0.0646018 0.4341982</code></pre>
 <p>So we are 95% confident that the difference in the true mean GPAs between
 females and males (females minus males) is between 0.065 and 0.434 GPA points.
 We get a similar result from <code>confint</code> on <code>lm</code>, except that <code>lm</code> switched the direction of the comparison from what was done “by hand” above, with the estimated mean difference of -0.25 GPA points (male - female) and similarly switched CI:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="chapter2.html#cb194-1"></a>lm_GPA &lt;-<span class="st"> </span><span class="kw">lm</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217)</span>
-<span id="cb194-2"><a href="chapter2.html#cb194-2"></a><span class="kw">summary</span>(lm_GPA)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="chapter2.html#cb201-1"></a>lm_GPA &lt;-<span class="st"> </span><span class="kw">lm</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217)</span>
+<span id="cb201-2"><a href="chapter2.html#cb201-2"></a><span class="kw">summary</span>(lm_GPA)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = GPA ~ Sex, data = s217)
@@ -2678,22 +2741,22 @@ We get a similar result from <code>confint</code> on <code>lm</code>, except tha
 ## Residual standard error: 0.4116 on 77 degrees of freedom
 ## Multiple R-squared:  0.08601,    Adjusted R-squared:  0.07414 
 ## F-statistic: 7.246 on 1 and 77 DF,  p-value: 0.008713</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="chapter2.html#cb196-1"></a><span class="kw">confint</span>(lm_GPA)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="chapter2.html#cb203-1"></a><span class="kw">confint</span>(lm_GPA)</span></code></pre></div>
 <pre><code>##                  2.5 %      97.5 %
 ## (Intercept)  3.2036416  3.47311517
 ## SexM        -0.4345955 -0.06501838</code></pre>
 <p>Note that we can easily switch to 90% or 99% confidence intervals by simply
 changing the percentile in <code>qt</code> or changing the <code>level</code> option in the
 <code>confint</code> function.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="chapter2.html#cb198-1"></a><span class="kw">qt</span>(<span class="fl">0.95</span>, <span class="dt">df=</span><span class="dv">77</span>) <span class="co">#For 90% confidence and 77 df</span></span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="chapter2.html#cb205-1"></a><span class="kw">qt</span>(<span class="fl">0.95</span>, <span class="dt">df=</span><span class="dv">77</span>) <span class="co">#For 90% confidence and 77 df</span></span></code></pre></div>
 <pre><code>## [1] 1.664885</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="chapter2.html#cb200-1"></a><span class="kw">qt</span>(<span class="fl">0.995</span>, <span class="dt">df=</span><span class="dv">77</span>) <span class="co">#For 99% confidence and 77 df</span></span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="chapter2.html#cb207-1"></a><span class="kw">qt</span>(<span class="fl">0.995</span>, <span class="dt">df=</span><span class="dv">77</span>) <span class="co">#For 99% confidence and 77 df</span></span></code></pre></div>
 <pre><code>## [1] 2.641198</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="chapter2.html#cb202-1"></a><span class="kw">confint</span>(lm_GPA, <span class="dt">level=</span><span class="fl">0.9</span>) <span class="co">#90% confidence interval</span></span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="chapter2.html#cb209-1"></a><span class="kw">confint</span>(lm_GPA, <span class="dt">level=</span><span class="fl">0.9</span>) <span class="co">#90% confidence interval</span></span></code></pre></div>
 <pre><code>##                    5 %        95 %
 ## (Intercept)  3.2257252  3.45103159
 ## SexM        -0.4043084 -0.09530553</code></pre>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="chapter2.html#cb204-1"></a><span class="kw">confint</span>(lm_GPA, <span class="dt">level=</span><span class="fl">0.99</span>) <span class="co">#99% confidence interval</span></span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="chapter2.html#cb211-1"></a><span class="kw">confint</span>(lm_GPA, <span class="dt">level=</span><span class="fl">0.99</span>) <span class="co">#99% confidence interval</span></span></code></pre></div>
 <pre><code>##                  0.5 %       99.5 %
 ## (Intercept)  3.1596636  3.517093108
 ## SexM        -0.4949103 -0.004703598</code></pre>
@@ -2711,19 +2774,19 @@ in this situation whether we are considering the parametric or bootstrap methods
 <p>To finish this example, we will generate the comparable bootstrap 90%
 confidence interval using the bootstrap distribution in
 Figure <a href="chapter2.html#fig:Figure2-27">2.27</a>.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="chapter2.html#cb206-1"></a>Tobs &lt;-<span class="st"> </span><span class="kw">coef</span>(lm_GPA)[<span class="dv">2</span>]; Tobs</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="chapter2.html#cb213-1"></a>Tobs &lt;-<span class="st"> </span><span class="kw">coef</span>(lm_GPA)[<span class="dv">2</span>]; Tobs</span></code></pre></div>
 <pre><code>##       SexM 
 ## -0.2498069</code></pre>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="chapter2.html#cb208-1"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb208-2"><a href="chapter2.html#cb208-2"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb208-3"><a href="chapter2.html#cb208-3"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
-<span id="cb208-4"><a href="chapter2.html#cb208-4"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</span>
-<span id="cb208-5"><a href="chapter2.html#cb208-5"></a>  lmP &lt;-<span class="st"> </span><span class="kw">lm</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span><span class="kw">resample</span>(s217))</span>
-<span id="cb208-6"><a href="chapter2.html#cb208-6"></a>  Tstar[b] &lt;-<span class="st"> </span><span class="kw">coef</span>(lmP)[<span class="dv">2</span>]</span>
-<span id="cb208-7"><a href="chapter2.html#cb208-7"></a>}</span>
-<span id="cb208-8"><a href="chapter2.html#cb208-8"></a></span>
-<span id="cb208-9"><a href="chapter2.html#cb208-9"></a>quantiles &lt;-<span class="st"> </span><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>))</span>
-<span id="cb208-10"><a href="chapter2.html#cb208-10"></a>quantiles</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="chapter2.html#cb215-1"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb215-2"><a href="chapter2.html#cb215-2"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb215-3"><a href="chapter2.html#cb215-3"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
+<span id="cb215-4"><a href="chapter2.html#cb215-4"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</span>
+<span id="cb215-5"><a href="chapter2.html#cb215-5"></a>  lmP &lt;-<span class="st"> </span><span class="kw">lm</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span><span class="kw">resample</span>(s217))</span>
+<span id="cb215-6"><a href="chapter2.html#cb215-6"></a>  Tstar[b] &lt;-<span class="st"> </span><span class="kw">coef</span>(lmP)[<span class="dv">2</span>]</span>
+<span id="cb215-7"><a href="chapter2.html#cb215-7"></a>}</span>
+<span id="cb215-8"><a href="chapter2.html#cb215-8"></a></span>
+<span id="cb215-9"><a href="chapter2.html#cb215-9"></a>quantiles &lt;-<span class="st"> </span><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>))</span>
+<span id="cb215-10"><a href="chapter2.html#cb215-10"></a>quantiles</span></code></pre></div>
 <pre><code>##        quantile    p
 ## 5%  -0.39290566 0.05
 ## 95% -0.09622185 0.95</code></pre>
@@ -2738,13 +2801,13 @@ this code:</p>
 Figure 2.27: Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines).
 </p>
 </div>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="chapter2.html#cb210-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb210-2"><a href="chapter2.html#cb210-2"></a><span class="kw">hist</span>(Tstar,<span class="dt">labels=</span>T)</span>
-<span id="cb210-3"><a href="chapter2.html#cb210-3"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb210-4"><a href="chapter2.html#cb210-4"></a><span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">lwd=</span><span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">2</span>)</span>
-<span id="cb210-5"><a href="chapter2.html#cb210-5"></a><span class="kw">plot</span>(<span class="kw">density</span>(Tstar),<span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)</span>
-<span id="cb210-6"><a href="chapter2.html#cb210-6"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb210-7"><a href="chapter2.html#cb210-7"></a><span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">lwd=</span><span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="chapter2.html#cb217-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb217-2"><a href="chapter2.html#cb217-2"></a><span class="kw">hist</span>(Tstar,<span class="dt">labels=</span>T)</span>
+<span id="cb217-3"><a href="chapter2.html#cb217-3"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb217-4"><a href="chapter2.html#cb217-4"></a><span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">lwd=</span><span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">2</span>)</span>
+<span id="cb217-5"><a href="chapter2.html#cb217-5"></a><span class="kw">plot</span>(<span class="kw">density</span>(Tstar),<span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)</span>
+<span id="cb217-6"><a href="chapter2.html#cb217-6"></a><span class="kw">abline</span>(<span class="dt">v=</span>Tobs,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb217-7"><a href="chapter2.html#cb217-7"></a><span class="kw">abline</span>(<span class="dt">v=</span>quantiles<span class="op">$</span>quantile,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">lwd=</span><span class="dv">3</span>,<span class="dt">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <p>In the previous output, the parametric 90% confidence interval is from
 -0.404 to -0.095, suggesting similar results again from the two approaches. Based on
 the bootstrap CI, we can say that we are 90% confident that the difference in
@@ -2794,7 +2857,6 @@ conclusions to perform the way we want them to. As sample sizes increase
 and/or violations of conditions lessen, then the procedures will perform better.
 In Chapter <a href="chapter3.html#chapter3">3</a>, some new tools for doing diagnostics are introduced
 to help us assess how and how much those validity conditions are violated.</p>
-
 </div>
 <div id="section2-12" class="section level2">
 <h2><span class="header-section-number">2.12</span> Summary of important R code</h2>
@@ -2907,12 +2969,12 @@ missing values and then provide a data set that by
 applying the <code>na.omit</code> function removes any observations with missing
 values.
 </p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="chapter2.html#cb211-1"></a><span class="kw">library</span>(mosaicData)</span>
-<span id="cb211-2"><a href="chapter2.html#cb211-2"></a><span class="kw">data</span>(HELPrct)</span>
-<span id="cb211-3"><a href="chapter2.html#cb211-3"></a>HELPrct2 &lt;-<span class="st"> </span>HELPrct[, <span class="kw">c</span>(<span class="st">&quot;daysanysub&quot;</span>, <span class="st">&quot;sex&quot;</span>)] <span class="co">#Just focus on two variables</span></span>
-<span id="cb211-4"><a href="chapter2.html#cb211-4"></a>HELPrct3 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(HELPrct2) <span class="co">#Removes subjects with missing values</span></span>
-<span id="cb211-5"><a href="chapter2.html#cb211-5"></a><span class="kw">favstats</span>(daysanysub<span class="op">~</span>sex, <span class="dt">data=</span>HELPrct2)</span>
-<span id="cb211-6"><a href="chapter2.html#cb211-6"></a><span class="kw">favstats</span>(daysanysub<span class="op">~</span>sex, <span class="dt">data=</span>HELPrct3)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="chapter2.html#cb218-1"></a><span class="kw">library</span>(mosaicData)</span>
+<span id="cb218-2"><a href="chapter2.html#cb218-2"></a><span class="kw">data</span>(HELPrct)</span>
+<span id="cb218-3"><a href="chapter2.html#cb218-3"></a>HELPrct2 &lt;-<span class="st"> </span>HELPrct[, <span class="kw">c</span>(<span class="st">&quot;daysanysub&quot;</span>, <span class="st">&quot;sex&quot;</span>)] <span class="co">#Just focus on two variables</span></span>
+<span id="cb218-4"><a href="chapter2.html#cb218-4"></a>HELPrct3 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(HELPrct2) <span class="co">#Removes subjects with missing values</span></span>
+<span id="cb218-5"><a href="chapter2.html#cb218-5"></a><span class="kw">favstats</span>(daysanysub<span class="op">~</span>sex, <span class="dt">data=</span>HELPrct2)</span>
+<span id="cb218-6"><a href="chapter2.html#cb218-6"></a><span class="kw">favstats</span>(daysanysub<span class="op">~</span>sex, <span class="dt">data=</span>HELPrct3)</span></code></pre></div>
 <p>2.2.1. Based on the results provided, how many observations were missing for males
 and females? Missing values here likely mean that the subjects didn’t use any
 substances post-detox in the time of the study but might have at a later

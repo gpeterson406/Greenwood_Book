@@ -263,7 +263,7 @@ combination. These data were simulated using a normal distribution with
 constant variance if that gives you some extra confidence in assessing these 
 model assumptions. 
 
-(ref:fig4-1) Pirate-plot of paper towel data by ``Drops`` (x-axis) and ``Brand`` (side of bean, shaded area for ``Brand`` *B1*). 
+(ref:fig4-1) Pirate-plot of paper towel data by ``Brand`` (first row of $x$-axis) and ``Drops`` (second row of $x$-axis). 
 
 
 ```r
@@ -273,7 +273,10 @@ pirateplot(responses~brand*drops, data=pt, xlab="Drops", ylab="Time", inf.method
            point.o=1) 
 ```
 
-![(\#fig:Figure4-1)(ref:fig4-1)](04-twoWayAnova_files/figure-latex/Figure4-1-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-1-1.png" alt="(ref:fig4-1)" width="480" />
+<p class="caption">(\#fig:Figure4-1)(ref:fig4-1)</p>
+</div>
 
 \indent The pirate-plots can handle situations where both variables have more than two 
 levels but it can sometimes get a bit cluttered to actually display the data when our analysis is going to focus on means of the responses.  The means for each combination 
@@ -305,7 +308,10 @@ everything clear.
 intplot(responses~brand*drops, data=pt)
 ```
 
-![(\#fig:Figure4-2)(ref:fig4-2)](04-twoWayAnova_files/figure-latex/Figure4-2-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-2-1.png" alt="(ref:fig4-2)" width="960" />
+<p class="caption">(\#fig:Figure4-2)(ref:fig4-2)</p>
+</div>
 
 Interaction plots can always be made two different ways by switching the order 
 of the variables. Figure \@ref(fig:Figure4-2) contains ``Drops`` on the x-axis 
@@ -321,7 +327,10 @@ but not always. Try both and decide on the one that you like best.
 intplot(responses~drops*brand, data=pt)
 ```
 
-![(\#fig:Figure4-3)(ref:fig4-3)](04-twoWayAnova_files/figure-latex/Figure4-3-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-3-1.png" alt="(ref:fig4-3)" width="960" />
+<p class="caption">(\#fig:Figure4-3)(ref:fig4-3)</p>
+</div>
 
 The formula in this function builds on our previous notation and now we include
 both predictor variables with an "``*``" between them. Using an asterisk between 
@@ -391,7 +400,10 @@ interaction appears to be warranted.
 intplotarray(responses~drops*brand, data=pt)
 ```
 
-![(\#fig:Figure4-4)(ref:fig4-4)](04-twoWayAnova_files/figure-latex/Figure4-4-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-4-1.png" alt="(ref:fig4-4)" width="960" />
+<p class="caption">(\#fig:Figure4-4)(ref:fig4-4)</p>
+</div>
 
 \indent Before we get to the hypothesis tests
 to formally make this assessment (you knew some sort of p-value was coming, right?), 
@@ -405,7 +417,10 @@ levels, or any interaction between them in this data set.
 
 (ref:fig4-5) Interaction plots of four possible scenarios in the paper towel study.
 
-![(\#fig:Figure4-5)(ref:fig4-5)](04-twoWayAnova_files/figure-latex/Figure4-5-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-5-1.png" alt="(ref:fig4-5)" width="624" />
+<p class="caption">(\#fig:Figure4-5)(ref:fig4-5)</p>
+</div>
 
 \indent Scenario 2 (Figure \@ref(fig:Figure4-5) panel (b))
 incorporates differences based on factor A (here that is ``Brand``) but no real 
@@ -445,7 +460,10 @@ of the results in Figure \@ref(fig:Figure4-2).
 
 (ref:fig4-6) Interaction plot of Scenario 5 where it appears that an interaction is present. 
 
-![(\#fig:Figure4-6)(ref:fig4-6)](04-twoWayAnova_files/figure-latex/Figure4-6-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-6-1.png" alt="(ref:fig4-6)" width="432" />
+<p class="caption">(\#fig:Figure4-6)(ref:fig4-6)</p>
+</div>
 
 \indent The typical modeling protocol is to start with assuming that Scenario 5 is a possible
 description of the results, related to fitting what is called the 
@@ -618,7 +636,8 @@ A:B (interaction)                    $(J-1)(K-1)$                           $\te
 
 Error                                $N-JK$                                 $\text{SS}_E$                                 $\text{MS}_E=\text{SS}_E/\text{df}_E$                                          
 
-\textcolor{red}{\textbf{Total}}      $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                                  
+<b><font                             $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                                  
+color='red'>Total</font></b>                                                                                                                                                                             
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table: (\#tab:Table4-1) (ref:tab4-1)
@@ -635,7 +654,8 @@ B                                    $K-1$                                  $\te
 
 Error                                $N-J-K+1$                              $\text{SS}_E$                                 $\text{MS}_E=\text{SS}_E/\text{df}_E$                              
 
-\textcolor{red}{\textbf{Total}}      $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                      
+<b><font                             $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                      
+color='red'>Total</font></b>                                                                                                                                                                 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table: (\#tab:Table4-2) (ref:tab4-2)
@@ -724,7 +744,10 @@ library(effects)
 plot(allEffects(m1), grid=T, multiline=T, lty=c(1,2), ci.style="bars")
 ```
 
-![(\#fig:Figure4-7)(ref:fig4-7)](04-twoWayAnova_files/figure-latex/Figure4-7-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-7-1.png" alt="(ref:fig4-7)" width="960" />
+<p class="caption">(\#fig:Figure4-7)(ref:fig4-7)</p>
+</div>
 
 \indent In the absence of sufficient evidence to include the
 interaction, the model should be simplified to the additive model and the interpretation
@@ -911,7 +934,10 @@ library(effects)
 plot(allEffects(m2))
 ```
 
-![(\#fig:Figure4-8)(ref:fig4-8)](04-twoWayAnova_files/figure-latex/Figure4-8-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-8-1.png" alt="(ref:fig4-8)" width="480" />
+<p class="caption">(\#fig:Figure4-8)(ref:fig4-8)</p>
+</div>
 
 \indent With the first additive model we have considered, it is now the first time where we are working with a model where we can't display the observations together with the means that the model is producing because the results for each predictor are averaged across the levels of the other predictor. To visualize some aspects of the original observations with the estimates from each group, we can turn on an option in the term-plots (``residuals=T``) to obtain the ***partial residuals*** \index{partial residuals} that show the residuals as a function of one variable after adjusting for the effects of other variables. We will avoid the specifics of the calculations, but you can use these to explore the residuals at different levels of each predictor. They will be most useful in the Chapters \@ref(chapter7) and \@ref(chapter8) but give us some insights in unexplained variation in each level of the predictors once we remove the impacts of other predictors in the model. Use plots like Figure \@ref(fig:Figure4-9) to look for different variability at different levels of the predictors and possibly locations of outliers in these models. Note that the points (open circles) are jittered to aid in seeing all of them, the means of each group of residuals are indicated by a filled large circle, and the smaller circles in the center of the bars for the 95% confidence intervals are the means from the model. Term-plots with partial residuals accompany our regular diagnostic plots for assessing equal variance assumptions in these models -- in some cases adding the residuals will clutter the term-plots so much that reporting them is not useful since one of the main purposes of the term-plots is to visualize the model estimates. So use the ``residuals=T`` option judiciously. 
 
@@ -925,7 +951,10 @@ library(effects)
 plot(allEffects(m2, residuals = T))
 ```
 
-![(\#fig:Figure4-9)(ref:fig4-9)](04-twoWayAnova_files/figure-latex/Figure4-9-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-9-1.png" alt="(ref:fig4-9)" width="480" />
+<p class="caption">(\#fig:Figure4-9)(ref:fig4-9)</p>
+</div>
 
 For the One-Way and Two-Way interaction models, the partial residuals are just the original observations so present similar information as the pirate-plots but do show the model estimated 95% confidence intervals. With interaction models, you can use the default the settings in ``effects`` when adding in the partial residuals as seen below in Figure \@ref(fig:Figure4-12).
 
@@ -944,7 +973,10 @@ Figure \@ref(fig:Figure4-10).
 
 (ref:fig4-10) Pirate-plot and interaction plot of the odontoblast growth data set.
 
-![(\#fig:Figure4-10)(ref:fig4-10)](04-twoWayAnova_files/figure-latex/Figure4-10-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-10-1.png" alt="(ref:fig4-10)" width="576" />
+<p class="caption">(\#fig:Figure4-10)(ref:fig4-10)</p>
+</div>
 
 
 ```r
@@ -1043,8 +1075,8 @@ and for the right number of expected model coefficients) to make
 sure they match your expectations. This is one reason why you will be learning
 to fill in ANOVA tables based on information about the study so that you can be
 prepared to detect when your code has let you down^[Just so you don't think 
-that perfect R code should occur on the first try, we
-have all made similarly serious coding mistakes even after accumulating more
+that perfect R code should occur on the first try, I
+have made similarly serious coding mistakes even after accumulating more
 than decade of experience with R. It is finding those mistakes (in time) that matters.]. It
 is also a great reason to explore term-plots and coefficient interpretations as
 that can also help diagnose errors in model construction. 
@@ -1071,7 +1103,10 @@ par(mfrow=c(2,2))
 plot(TG2, pch=16) 
 ```
 
-![(\#fig:Figure4-11)Diagnostic plots for the interaction model for odontoblast growth interaction model.](04-twoWayAnova_files/figure-latex/Figure4-11-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-11-1.png" alt="Diagnostic plots for the interaction model for odontoblast growth interaction model." width="960" />
+<p class="caption">(\#fig:Figure4-11)Diagnostic plots for the interaction model for odontoblast growth interaction model.</p>
+</div>
 
 0. The RQ is whether there is an interaction of dosage and delivery method on odontoblast growth. Data were collected at all combinations of these predictor variables on the size of the cells, so they can address the size of the cells in these condition combinations. The interaction $F$-test will be used to assess the research question.
 
@@ -1114,7 +1149,10 @@ plot(TG2, pch=16)
         plot(allEffects(TG2, residuals = T, x.var="dosef")) 
         ```
         
-        ![(\#fig:Figure4-12)Term-plot for odontoblast growth interaction model with partial residuals added.](04-twoWayAnova_files/figure-latex/Figure4-12-1.pdf) 
+        <div class="figure">
+        <img src="04-twoWayAnova_files/figure-html/Figure4-12-1.png" alt="Term-plot for odontoblast growth interaction model with partial residuals added." width="960" />
+        <p class="caption">(\#fig:Figure4-12)Term-plot for odontoblast growth interaction model with partial residuals added.</p>
+        </div>
 
     * Normality of residuals:
     
@@ -1231,11 +1269,17 @@ our results even if there are too many to be easily interpreted.
 
 (ref:fig4-13) Term-plot for the estimated interaction for the Odontoblast Growth data using the ``multiline=T`` and ``ci.style="bars"`` options. 
 
-![(\#fig:Figure4-13)(ref:fig4-13)](04-twoWayAnova_files/figure-latex/Figure4-13-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-13-1.png" alt="(ref:fig4-13)" width="480" />
+<p class="caption">(\#fig:Figure4-13)(ref:fig4-13)</p>
+</div>
 
 (ref:fig4-14) Interaction plot for Odontoblast data with added CLD from Tukey's HSD. 
 
-![(\#fig:Figure4-14)(ref:fig4-14)](04-twoWayAnova_files/figure-latex/Figure4-14-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-14-1.png" alt="(ref:fig4-14)" width="960" />
+<p class="caption">(\#fig:Figure4-14)(ref:fig4-14)</p>
+</div>
 
 
 ```r
@@ -1371,7 +1415,10 @@ interest is present.
 intplotarray(prodebt~cigbuy*incomegp, data=debtRc, col=c(1,3,4,5,6), lwd=2)
 ```
 
-![(\#fig:Figure4-15)(ref:fig4-15)](04-twoWayAnova_files/figure-latex/Figure4-15-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-15-1.png" alt="(ref:fig4-15)" width="960" />
+<p class="caption">(\#fig:Figure4-15)(ref:fig4-15)</p>
+</div>
 
 \indent As in other situations, and especially
 with observational studies where a single large sample is collected and then the levels of the factor variables are observed, it is
@@ -1438,7 +1485,10 @@ par(mfrow=c(2,2))
 plot(debt1, pch=16)
 ```
 
-![(\#fig:Figure4-16)(ref:fig4-16)](04-twoWayAnova_files/figure-latex/Figure4-16-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-16-1.png" alt="(ref:fig4-16)" width="960" />
+<p class="caption">(\#fig:Figure4-16)(ref:fig4-16)</p>
+</div>
 
 The diagnostic plots (Figure \@ref(fig:Figure4-16)) seem to be pretty 
 well-behaved with no apparent
@@ -1494,7 +1544,10 @@ here. No causal inferences are possible because this is an observational study.
     plot(debt1r, pch=16)
     ```
     
-    ![(\#fig:Figure4-17)Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not](04-twoWayAnova_files/figure-latex/Figure4-17-1.pdf) 
+    <div class="figure">
+    <img src="04-twoWayAnova_files/figure-html/Figure4-17-1.png" alt="Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not" width="960" />
+    <p class="caption">(\#fig:Figure4-17)Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not</p>
+    </div>
 
     \newpage
     
@@ -1513,7 +1566,10 @@ here. No causal inferences are possible because this is an observational study.
         plot(allEffects(debt1r, residuals=T))
         ```
         
-        ![(\#fig:Figure4-18)Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals](04-twoWayAnova_files/figure-latex/Figure4-18-1.pdf) 
+        <div class="figure">
+        <img src="04-twoWayAnova_files/figure-html/Figure4-18-1.png" alt="Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals" width="960" />
+        <p class="caption">(\#fig:Figure4-18)Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals</p>
+        </div>
 
     * Normality of residuals:
     
@@ -1570,7 +1626,10 @@ was related to a lower comfort level with debt but is really no different from t
 plot(allEffects(debt1r))
 ```
 
-![(\#fig:Figure4-19)(ref:fig4-19)](04-twoWayAnova_files/figure-latex/Figure4-19-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-19-1.png" alt="(ref:fig4-19)" width="960" />
+<p class="caption">(\#fig:Figure4-19)(ref:fig4-19)</p>
+</div>
 
 6. **Scope of inference:**
 
@@ -1644,7 +1703,10 @@ group 5 much higher than the other four groups. The minor differences in cigaret
 
 (ref:fig4-20) Illustration of the results from Table \@ref(tab:Table4-2) showing the combined impacts of the components of the additive model for ``prodebt``. Panel (a) uses income groups on the x-axis and different lines for cigarette buyers (1) or not (0). Panel (b) displays the different income groups as lines with the cigarette buying status on the x-axis. 
 
-![(\#fig:Figure4-20)(ref:fig4-20)](04-twoWayAnova_files/figure-latex/Figure4-20-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-20-1.png" alt="(ref:fig4-20)" width="960" />
+<p class="caption">(\#fig:Figure4-20)(ref:fig4-20)</p>
+</div>
 
 <!-- \newpage -->
 
@@ -1686,7 +1748,11 @@ diagnostics are reasonable to proceed:
 Whether you end up favoring an additive or interaction model or do further model refinement, all steps of the
 hypothesis testing protocol should be engaged and a story based on the final results should be compiled, supported by the graphical displays such as the term-plots and interaction plots. 
 
+\sectionmark{Pushing Two-Way ANOVA to the limit}
+
 ## Pushing Two-Way ANOVA to the limit: Un-replicated designs and Estimability	{#section4-6}
+
+\sectionmark{Pushing Two-Way ANOVA to the limit}
 
 In some situations, it is too expensive
 or impossible to replicate combinations of treatments and only one observation at each
@@ -1738,7 +1804,10 @@ plot. \index{replicate}
 
 (ref:fig4-21) Interaction plot in paper towel data set with no replication. 
 
-![(\#fig:Figure4-21)(ref:fig4-21)](04-twoWayAnova_files/figure-latex/Figure4-21-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-21-1.png" alt="(ref:fig4-21)" width="480" />
+<p class="caption">(\#fig:Figure4-21)(ref:fig4-21)</p>
+</div>
 
 
 ```r
@@ -1834,7 +1903,10 @@ seen in the error bars around each point estimate.
 plot(allEffects(norep1))
 ```
 
-![(\#fig:Figure4-22)(ref:fig4-22)](04-twoWayAnova_files/figure-latex/Figure4-22-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-22-1.png" alt="(ref:fig4-22)" width="480" />
+<p class="caption">(\#fig:Figure4-22)(ref:fig4-22)</p>
+</div>
 
 
 \indent In the extreme unreplicated situation it is possible to estimate all model coefficients in the interaction model but we can't do inferences for those estimates since there is no residual variability. Another issue in really any model with categorical predictors but especially noticeable in the Two-Way ANOVA situation is ***estimability*** issues. \index{estimability} Instead of having issues with running out of degrees of freedom for tests we can run into situations where we do not have information to estimate some of the model coefficients. This happens any time you fail to have observations at either a level of a main effect or at a combination of levels in an interaction model. 
@@ -1883,9 +1955,12 @@ options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32)
 tableplot(dd[,-1],sort=Condition2, pals=list("BrBG"))
 ```
 
-![(\#fig:Figure4-23)(ref:fig4-23)](04-twoWayAnova_files/figure-latex/Figure4-23-1.pdf) 
+<div class="figure">
+<img src="04-twoWayAnova_files/figure-html/Figure4-23-1.png" alt="(ref:fig4-23)" width="960" />
+<p class="caption">(\#fig:Figure4-23)(ref:fig4-23)</p>
+</div>
 
-\indent In the tableplot in Figure \@ref(fig:Figure4-23), we can now the six variables created related to aspects of each outfit. For example, the *commuter* helmet (darkest shade in ``Helmet`` column) was worn with all outfits except for the *racer* and *casual*. So maybe we would like to explore differences in overtake distances based on the type of helmet worn. Similarly, it might be nice to explore whether wearing reflective pant clips is useful and maybe there is an interaction between helmet type and leg clips on impacts on overtake distance (should we wear both or just one, for example). So instead of using the seven level ``Condition2`` in the model to assess differences based on all combinations of these outfits delineated in the other variables, we can try to fit a model with ``Helmet`` and ``ReflectClips`` and their interaction for overtake distances:
+\indent In the tableplot in Figure \@ref(fig:Figure4-23), we can now explore the six variables created related to aspects of each outfit. For example, the *commuter* helmet (darkest shade in ``Helmet`` column) was worn with all outfits except for the *racer* and *casual*. So maybe we would like to explore differences in overtake distances based on the type of helmet worn. Similarly, it might be nice to explore whether wearing reflective pant clips is useful and maybe there is an interaction between helmet type and leg clips on impacts on overtake distance (should we wear both or just one, for example). So instead of using the seven level ``Condition2`` in the model to assess differences based on all combinations of these outfits delineated in the other variables, we can try to fit a model with ``Helmet`` and ``ReflectClips`` and their interaction for overtake distances:
 
 \newpage
 
@@ -1933,7 +2008,7 @@ tally(Helmet~ReflectClips, data=dd)
 ##   race        0  852
 ```
 
-There are three combinations that have $n_{jk}=0$ observations (for example for the *commuter* helmet, clips were always worn so no observations were made with this helmet without clips). So we have no hope of estimating a mean for the combinations with 0 observations and these are needed to consider interactions. If we revisit the tableplot, we can see how some of these needed combinations do not occur together. So this is an unbalanced design but also lack necessary information to explore the potential research question of interest. In order to study these two variables and their interaction, the researchers would have had to do rides with all six combinations of these variables. This could be quite informative because it could help someone tailor their outfit choice for optimal safety but also would have created many more than seven different outfit combinations to wear.
+There are three combinations that have $n_{jk}=0$ observations (for example for the *commuter* helmet, clips were always worn so no observations were made with this helmet without clips). So we have no hope of estimating a mean for the combinations with 0 observations and these are needed to consider interactions. If we revisit the tableplot, we can see how some of these needed combinations do not occur together. So this is an unbalanced design but also lacks necessary information to explore the potential research question of interest. In order to study just these two variables and their interaction, the researchers would have had to do rides with all six combinations of these variables. This could be quite informative because it could help someone tailor their outfit choice for optimal safety but also would have created many more than seven different outfit combinations to wear.
 
 \indent Hopefully by pushing the limits there
 are three conclusions available from this section. First, replication is
@@ -2017,8 +2092,8 @@ modify in lighter and/or ALL CAPS text, remembering that any R
 packages mentioned need to be installed and loaded for this code to have a
 chance of working:
 
-* **tally(\textcolor{red}{A}~\textcolor{red}{B},
-data=\textcolor{red}{DATASETNAME})**
+* **tally(<font color='red'>A</font>~<font color='red'>B</font>,
+data=<font color='red'>DATASETNAME</font>)**
 
     * Requires the ``mosaic`` package be loaded. 
     
@@ -2026,15 +2101,15 @@ data=\textcolor{red}{DATASETNAME})**
     predictor variables A and B, used to check for balance and understand sample 
     sizes in each combination. \index{\texttt{tally()}|textbf}
     
-* **\textcolor{red}{DATASETNAME}&#36;\textcolor{red}{VARIABLENAME} ``<-`` 
-factor(\textcolor{red}{DATASETNAME}&#36;\textcolor{red}{VARIABLENAME})**
+* **<font color='red'>DATASETNAME</font>&#36;<font color='red'>VARIABLENAME</font> ``<-`` 
+factor(<font color='red'>DATASETNAME</font>&#36;<font color='red'>VARIABLENAME</font>)**
 
     * Use the ``factor`` function on any numerically coded
     explanatory variable where the numerical codes represent levels of a
     categorical variable. \index{\texttt{factor()}|textbf}
     
-* **intplot(\textcolor{red}{Y}~\textcolor{red}{A}``*``\textcolor{red}{B},
-data=\textcolor{red}{DATASETNAME})**
+* **intplot(<font color='red'>Y</font>~<font color='red'>A</font>``*``<font color='red'>B</font>,
+data=<font color='red'>DATASETNAME</font>)**
 
     * Download and install using: 
     
@@ -2042,8 +2117,8 @@ data=\textcolor{red}{DATASETNAME})**
     
     * Provides interaction plot. \index{\texttt{intplot()}|textbf}
     
-* **intplotarray(\textcolor{red}{Y}~\textcolor{red}{A}``*``\textcolor{red}{B},
-data=\textcolor{red}{DATASETNAME})**
+* **intplotarray(<font color='red'>Y</font>~<font color='red'>A</font>``*``<font color='red'>B</font>,
+data=<font color='red'>DATASETNAME</font>)**
 
     * Download and install using: 
     
@@ -2052,9 +2127,9 @@ data=\textcolor{red}{DATASETNAME})**
     * Provides interaction plot array that makes interaction plots switching explanatory variable roles and makes pirate-plots of the main effects.
     \index{\texttt{intplotarray()}|textbf}
     
-* **\textcolor{red}{INTERACTIONMODELNAME} ``<-`` 
-lm(\textcolor{red}{Y}~\textcolor{red}{A}``*``\textcolor{red}{B},
-data=\textcolor{red}{DATASETNAME})**
+* **<font color='red'>INTERACTIONMODELNAME</font> ``<-`` 
+lm(<font color='red'>Y</font>~<font color='red'>A</font>``*``<font color='red'>B</font>,
+data=<font color='red'>DATASETNAME</font>)**
 
     * Fits the interaction model with main effects for A and B and an 
     interaction between them.
@@ -2062,9 +2137,9 @@ data=\textcolor{red}{DATASETNAME})**
     * This is the first model that should be fit in Two-Way ANOVA 
     modeling situations.
     
-* **\textcolor{red}{ADDITIVEMODELNAME} ``<-``
-lm(\textcolor{red}{Y}~\textcolor{red}{A}+\textcolor{red}{B},
-data=\textcolor{red}{DATASETNAME})**
+* **<font color='red'>ADDITIVEMODELNAME</font> ``<-``
+lm(<font color='red'>Y</font>~<font color='red'>A</font>+<font color='red'>B</font>,
+data=<font color='red'>DATASETNAME</font>)**
 
     * Fits the additive model with only main effects for A and B but no 
     interaction between them.
@@ -2072,12 +2147,12 @@ data=\textcolor{red}{DATASETNAME})**
     * Should only be used if the interaction has been decided to be 
     unimportant using a test for the interaction.
     
-* **summary(\textcolor{red}{MODELNAME})**
+* **summary(<font color='red'>MODELNAME</font>)**
 
     * Generates model summary information including the estimated model coefficients, 
     SEs, $t$-tests, and p-values. 
 
-* **Anova(\textcolor{red}{MODELNAME})** 
+* **Anova(<font color='red'>MODELNAME</font>)** 
 
     * Requires the ``car`` package to be loaded.
     
@@ -2087,19 +2162,19 @@ data=\textcolor{red}{DATASETNAME})**
     each term conditional on the other one. \index{\texttt{Anova()}|textbf}
 
 
-* **par(mfrow=c(2,2)); plot(\textcolor{red}{MODELNAME})**
+* **par(mfrow=c(2,2)); plot(<font color='red'>MODELNAME</font>)**
 
     * Generates four diagnostic plots including the Residuals vs Fitted and 
     Normal Q-Q plot. 
     
-* **plot(allEffects(\textcolor{red}{MODELNAME}))**
+* **plot(allEffects(<font color='red'>MODELNAME</font>))**
     
     * Requires the ``effects`` package be loaded. 
 
     * Plots the results from the estimated model.
     \index{\texttt{allEffects()|textbf}}
     
-* **plot(allEffects(\textcolor{red}{MODELNAME}, residuals = T))**
+* **plot(allEffects(<font color='red'>MODELNAME</font>, residuals = T))**
     
     * Plots the results from the estimated model with partial residuals.
 

@@ -344,12 +344,12 @@ variables might leave out some important predictive information. The following
 code loads the data set and makes the scatterplot matrix
 (Figure <a href="chapter8.html#fig:Figure8-1">8.1</a>) to allow
 some preliminary assessment of the pairwise relationships.</p>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="chapter8.html#cb690-1"></a>snotel_s &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/snotel_s.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="chapter8.html#cb697-1"></a>snotel_s &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/snotel_s.csv&quot;</span>)</span></code></pre></div>
 
-<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="chapter8.html#cb691-1"></a>snotel2 &lt;-<span class="st"> </span>snotel_s[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>,<span class="dv">3</span>)] <span class="co">#Reorders columns for nicer pairs.panel display</span></span>
-<span id="cb691-2"><a href="chapter8.html#cb691-2"></a><span class="kw">library</span>(psych)</span>
-<span id="cb691-3"><a href="chapter8.html#cb691-3"></a><span class="kw">pairs.panels</span>(snotel2[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)], <span class="dt">ellipse=</span>F,</span>
-<span id="cb691-4"><a href="chapter8.html#cb691-4"></a>             <span class="dt">main=</span><span class="st">&quot;Scatterplot matrix of SNOTEL Data&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="chapter8.html#cb698-1"></a>snotel2 &lt;-<span class="st"> </span>snotel_s[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>,<span class="dv">3</span>)] <span class="co">#Reorders columns for nicer pairs.panel display</span></span>
+<span id="cb698-2"><a href="chapter8.html#cb698-2"></a><span class="kw">library</span>(psych)</span>
+<span id="cb698-3"><a href="chapter8.html#cb698-3"></a><span class="kw">pairs.panels</span>(snotel2[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)], <span class="dt">ellipse=</span>F,</span>
+<span id="cb698-4"><a href="chapter8.html#cb698-4"></a>             <span class="dt">main=</span><span class="st">&quot;Scatterplot matrix of SNOTEL Data&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-1"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-1-1.png" alt="Scatterplot matrix of data from a sample of SNOTEL sites in April on four variables. " width="672" />
 <p class="caption">
@@ -449,15 +449,15 @@ Figure 8.3: Plot of the estimated SLR model using Min Temp as predictor.
 Figure 8.4: Plot of the estimated SLR model using Max Temp as predictor.
 </p>
 </div>
-<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="chapter8.html#cb692-1"></a>m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation, <span class="dt">data=</span>snotel2)</span>
-<span id="cb692-2"><a href="chapter8.html#cb692-2"></a>m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Min.Temp, <span class="dt">data=</span>snotel2)</span>
-<span id="cb692-3"><a href="chapter8.html#cb692-3"></a>m3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Max.Temp, <span class="dt">data=</span>snotel2)</span>
-<span id="cb692-4"><a href="chapter8.html#cb692-4"></a><span class="kw">library</span>(effects)</span>
-<span id="cb692-5"><a href="chapter8.html#cb692-5"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m1, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;SLR: Effect of Elevation&quot;</span>)</span>
-<span id="cb692-6"><a href="chapter8.html#cb692-6"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m2, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;SLR: Effect of Min Temp&quot;</span>)</span>
-<span id="cb692-7"><a href="chapter8.html#cb692-7"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m3, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;SLR: Effect of Max Temp&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="chapter8.html#cb699-1"></a>m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation, <span class="dt">data=</span>snotel2)</span>
+<span id="cb699-2"><a href="chapter8.html#cb699-2"></a>m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Min.Temp, <span class="dt">data=</span>snotel2)</span>
+<span id="cb699-3"><a href="chapter8.html#cb699-3"></a>m3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Max.Temp, <span class="dt">data=</span>snotel2)</span>
+<span id="cb699-4"><a href="chapter8.html#cb699-4"></a><span class="kw">library</span>(effects)</span>
+<span id="cb699-5"><a href="chapter8.html#cb699-5"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m1, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;SLR: Effect of Elevation&quot;</span>)</span>
+<span id="cb699-6"><a href="chapter8.html#cb699-6"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m2, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;SLR: Effect of Min Temp&quot;</span>)</span>
+<span id="cb699-7"><a href="chapter8.html#cb699-7"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m3, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;SLR: Effect of Max Temp&quot;</span>)</span></code></pre></div>
 
-<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="chapter8.html#cb693-1"></a><span class="kw">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="chapter8.html#cb700-1"></a><span class="kw">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation, data = snotel2)
@@ -475,7 +475,7 @@ Figure 8.4: Plot of the estimated SLR model using Max Temp as predictor.
 ## Multiple R-squared:  0.634,  Adjusted R-squared:  0.618 
 ## F-statistic: 39.83 on 1 and 23 DF,  p-value: 1.933e-06</code></pre>
 
-<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="chapter8.html#cb695-1"></a><span class="kw">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="chapter8.html#cb702-1"></a><span class="kw">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Min.Temp, data = snotel2)
@@ -492,7 +492,7 @@ Figure 8.4: Plot of the estimated SLR model using Max Temp as predictor.
 ## Residual standard error: 14.65 on 23 degrees of freedom
 ## Multiple R-squared:  0.5534, Adjusted R-squared:  0.534 
 ## F-statistic:  28.5 on 1 and 23 DF,  p-value: 2.022e-05</code></pre>
-<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="chapter8.html#cb697-1"></a><span class="kw">summary</span>(m3)</span></code></pre></div>
+<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="chapter8.html#cb704-1"></a><span class="kw">summary</span>(m3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Max.Temp, data = snotel2)
@@ -516,8 +516,8 @@ as in previous topics but with adding “<code>+</code>” between any additiona
 predictors<a href="references.html#fn114" class="footnote-ref" id="fnref114"><sup>114</sup></a> we want to add to the model,
 <code>y~x1+x2+...+xk</code>: </p>
 
-<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="chapter8.html#cb699-1"></a>m4 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2)</span>
-<span id="cb699-2"><a href="chapter8.html#cb699-2"></a><span class="kw">summary</span>(m4)</span></code></pre></div>
+<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="chapter8.html#cb706-1"></a>m4 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2)</span>
+<span id="cb706-2"><a href="chapter8.html#cb706-2"></a><span class="kw">summary</span>(m4)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel2)
@@ -536,7 +536,7 @@ predictors<a href="references.html#fn114" class="footnote-ref" id="fnref114"><su
 ## Residual standard error: 13.6 on 21 degrees of freedom
 ## Multiple R-squared:  0.6485, Adjusted R-squared:  0.5983 
 ## F-statistic: 12.91 on 3 and 21 DF,  p-value: 5.328e-05</code></pre>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="chapter8.html#cb701-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m4, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;MLR model with Elev, Min &amp; Max Temps&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="chapter8.html#cb708-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m4, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;MLR model with Elev, Min &amp; Max Temps&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-5"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-5-1.png" alt="Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp. Compare this plot that comes from one MLR model to Figures 8.2, 8.3 and 8.4 for comparable SLR models. Note the points in these panels are the partial residuals that are generated after controlling for the other two of the three variables." width="960" />
 <p class="caption">
@@ -661,8 +661,7 @@ some ideas first to understand this measure). </p></li>
 explanatory variables.</p></li>
 <li><p>The <strong><em>leverage</em></strong> values in the Residuals vs Leverage plot are
 scaled to add up to the <em>degrees of freedom (df) used for the model</em>
-which is the number of explanatory variables (<span class="math inline">\(K\)</span>) plus 1, so <span class="math inline">\(K+1\)</span>.
-</p></li>
+which is the number of explanatory variables (<span class="math inline">\(K\)</span>) plus 1, so <span class="math inline">\(K+1\)</span>. </p></li>
 <li><p>The scale of leverages depends on the complexity of the model through
 the <em>df</em> and the sample size.</p></li>
 <li><p>The interpretation is still that the larger the leverage value, the
@@ -733,8 +732,8 @@ as before will provide diagnostic plots. There is some extra code
 (<code>par(...)</code>) added to allow us to add labels to the plots (<code>sub.caption="..."</code>) to know which model
 is being displayed since we have so many to discuss here. We can also employ a new approach, which is to simulate new observations from the model and make plots to compare simulated data sets to what was observed. The <code>simulate</code> function from Chapter <a href="chapter2.html#chapter2">2</a>  can be used to generate new observations from the model based on the estimated coefficients and where we know that the assumptions are true. If the simulated data and the observed data are very different, then the model is likely dangerous to use for inferences because of this mis-match. This method can be used to assess the linearity, constant variance, normality of residuals, and influential points aspects of the model. It is not something used in every situation, but is especially helpful if you are struggling to decide if what you are seeing in the diagnostics is just random variability or is really a clear issue. The regular steps in assessing each assumption are discussed first.</p>
 
-<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="chapter8.html#cb702-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb702-2"><a href="chapter8.html#cb702-2"></a><span class="kw">plot</span>(m4, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m4&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="chapter8.html#cb709-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb709-2"><a href="chapter8.html#cb709-2"></a><span class="kw">plot</span>(m4, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m4&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-6"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-6-1.png" alt="Diagnostic plots for model m4: \(\text{Snow.Depth}\sim \text{Elevation} + \text{Min.Temp} + \text{Max.Temp}\)." width="960" />
 <p class="caption">
@@ -816,7 +815,7 @@ these sites. For the Northeast Entrance, the <em>Max.Temp</em> was 45, the <em>M
 was 28, and the <em>Elevation</em> was 7350 as you can see in
 this printout of just the two rows of the data set available by referencing
 rows 9 and 10 in the bracket from <code>snotel2</code>:</p>
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="chapter8.html#cb703-1"></a>snotel2[<span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">10</span>),]</span></code></pre></div>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="chapter8.html#cb710-1"></a>snotel2[<span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">10</span>),]</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 6
 ##      ID Station            Max.Temp Min.Temp Elevation Snow.Depth
 ##   &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -835,9 +834,9 @@ is found using the estimated model with</p>
 <p><span class="math display">\[e_9=y_9-\widehat{y}_9 = 11.2-40.465 = -29.265 \text{ inches.}\]</span></p>
 <p>So the model “misses” the snow depth by over 29 inches with the model suggesting
 over 40 inches of snow but only 11 inches actually being present<a href="references.html#fn116" class="footnote-ref" id="fnref116"><sup>116</sup></a>.</p>
-<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="chapter8.html#cb705-1"></a><span class="fl">-10.51</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.0123</span><span class="op">*</span><span class="dv">7350</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.505</span><span class="op">*</span><span class="dv">28</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.562</span><span class="op">*</span><span class="dv">45</span></span></code></pre></div>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="chapter8.html#cb712-1"></a><span class="fl">-10.51</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.0123</span><span class="op">*</span><span class="dv">7350</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.505</span><span class="op">*</span><span class="dv">28</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.562</span><span class="op">*</span><span class="dv">45</span></span></code></pre></div>
 <pre><code>## [1] 40.465</code></pre>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="chapter8.html#cb707-1"></a><span class="fl">11.2</span> <span class="op">-</span><span class="st"> </span><span class="fl">40.465</span></span></code></pre></div>
+<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="chapter8.html#cb714-1"></a><span class="fl">11.2</span> <span class="op">-</span><span class="st"> </span><span class="fl">40.465</span></span></code></pre></div>
 <pre><code>## [1] -29.265</code></pre>
 <p>This point is being rated as influential (Cook’s D <span class="math inline">\(\approx\)</span> 1) with a
 leverage of nearly 0.35 and a standardized residual (<span class="math inline">\(y\)</span>-axis of Residuals vs. 
@@ -862,17 +861,17 @@ residual is then</p>
 <p>This results in a standardized residual of around -1. This is still a “miss”
 but not as glaring as the previous result and also is not having a major impact
 on the model’s estimated slope coefficients based on the small Cook’s D value.</p>
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="chapter8.html#cb709-1"></a><span class="fl">-10.51</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.0123</span><span class="op">*</span><span class="dv">5600</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.505</span><span class="op">*</span><span class="dv">28</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.562</span><span class="op">*</span><span class="dv">36</span></span></code></pre></div>
+<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="chapter8.html#cb716-1"></a><span class="fl">-10.51</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.0123</span><span class="op">*</span><span class="dv">5600</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.505</span><span class="op">*</span><span class="dv">28</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.562</span><span class="op">*</span><span class="dv">36</span></span></code></pre></div>
 <pre><code>## [1] 23.998</code></pre>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="chapter8.html#cb711-1"></a><span class="dv">14</span> <span class="op">-</span><span class="st"> </span><span class="fl">23.998</span></span></code></pre></div>
+<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="chapter8.html#cb718-1"></a><span class="dv">14</span> <span class="op">-</span><span class="st"> </span><span class="fl">23.998</span></span></code></pre></div>
 <pre><code>## [1] -9.998</code></pre>
 <p>Note that any predictions using this model presume that it is
 trustworthy, but
 the large Cook’s D on one observation suggests we should consider the model
 after removing that observation. We can re-run the model without the
 9<sup>th</sup> observation using the data set <code>snotel2[-9,]</code>.</p>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="chapter8.html#cb713-1"></a>m5 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="dv">9</span>,])</span>
-<span id="cb713-2"><a href="chapter8.html#cb713-2"></a><span class="kw">summary</span>(m5)</span></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="chapter8.html#cb720-1"></a>m5 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="dv">9</span>,])</span>
+<span id="cb720-2"><a href="chapter8.html#cb720-2"></a><span class="kw">summary</span>(m5)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel2[-9, 
@@ -893,7 +892,7 @@ after removing that observation. We can re-run the model without the
 ## Multiple R-squared:  0.7522, Adjusted R-squared:  0.715 
 ## F-statistic: 20.24 on 3 and 20 DF,  p-value: 2.843e-06</code></pre>
 
-<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="chapter8.html#cb715-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m5, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;MLR model with NE Ent. Removed&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="chapter8.html#cb722-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m5, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;MLR model with NE Ent. Removed&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-7"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-7-1.png" alt="Term-plots for the MLR for Snow Depth based on Elevation, Min Temp, and Max Temp with Northeast entrance observation removed from data set (n=24)." width="960" />
 <p class="caption">
@@ -959,8 +958,8 @@ Additionally, our model contains results that are not what we would have
 expected <em>a priori</em>, so it is not unreasonable to consider removing this
 observation to be able to work towards a model that is fully trustworthy.</p>
 
-<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="chapter8.html#cb716-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb716-2"><a href="chapter8.html#cb716-2"></a><span class="kw">plot</span>(m5, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m5&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="chapter8.html#cb723-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb723-2"><a href="chapter8.html#cb723-2"></a><span class="kw">plot</span>(m5, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m5&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-8"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-8-1.png" alt="Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with Northeast entrance observation removed from data set." width="960" />
 <p class="caption">
@@ -996,7 +995,7 @@ Figure 8.9: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp
 
 <p>This worry-some observation is located in the 22<sup>nd</sup> row of the
 original data set:</p>
-<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="chapter8.html#cb718-1"></a>snotel2[<span class="dv">22</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="chapter8.html#cb725-1"></a>snotel2[<span class="dv">22</span>,]</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
 ##      ID Station          Max.Temp Min.Temp Elevation Snow.Depth
 ##   &lt;dbl&gt; &lt;fct&gt;               &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -1005,10 +1004,10 @@ original data set:</p>
 <span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>” sites, there are <span class="math inline">\(n=23\)</span> observations
 remaining. This model (<code>m6</code>) seems to contain residual diagnostics (Figure
 <a href="chapter8.html#fig:Figure8-9">8.9</a>) that are finally generally reasonable.</p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="chapter8.html#cb720-1"></a>m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</span>
-<span id="cb720-2"><a href="chapter8.html#cb720-2"></a><span class="kw">summary</span>(m6)</span>
-<span id="cb720-3"><a href="chapter8.html#cb720-3"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb720-4"><a href="chapter8.html#cb720-4"></a><span class="kw">plot</span>(m6, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m6&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="chapter8.html#cb727-1"></a>m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</span>
+<span id="cb727-2"><a href="chapter8.html#cb727-2"></a><span class="kw">summary</span>(m6)</span>
+<span id="cb727-3"><a href="chapter8.html#cb727-3"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb727-4"><a href="chapter8.html#cb727-4"></a><span class="kw">plot</span>(m6, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m6&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
 <p>It is hard to suggest that there any curvature issues and the slight variation
 in the Scale-Location plot is mostly
 due to few observations with fitted values around 30 happening to be well
@@ -1028,28 +1027,28 @@ quantitatively assess and compare different regression models that are considere
 in the next sections.
 </p>
 
-<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="chapter8.html#cb721-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m6, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;MLR model with n=23&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="chapter8.html#cb728-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m6, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;MLR model with n=23&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-10"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-10-1.png" alt="Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed." width="768" />
 <p class="caption">
 Figure 8.10: Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed.
 </p>
 </div>
-<p>As a final assessment of this model, we can consider simulating a set of <span class="math inline">\(n=23\)</span> responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called <code>SimulatedSnow</code> in the following codechunk. Figure <a href="chapter8.html#fig:Figure8-11">8.11</a> uses the <code>plot</code> function to just focus on the relationship of the original (<code>Snow.Depth</code>) and new (fake) responses (<code>SimulatedSnow</code>) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions for the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.</p>
+<p>As a final assessment of this model, we can consider simulating a set of <span class="math inline">\(n=23\)</span> responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called <code>SimulatedSnow</code> in the following codechunk. Figure <a href="chapter8.html#fig:Figure8-11">8.11</a> uses the <code>plot</code> function to just focus on the relationship of the original (<code>Snow.Depth</code>) and new (fake) responses (<code>SimulatedSnow</code>) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions and the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.</p>
 
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="chapter8.html#cb722-1"></a><span class="kw">set.seed</span>(<span class="dv">307</span>)</span>
-<span id="cb722-2"><a href="chapter8.html#cb722-2"></a>snotel_final &lt;-<span class="st"> </span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]</span>
-<span id="cb722-3"><a href="chapter8.html#cb722-3"></a>snotel_final<span class="op">$</span>SimulatedSnow &lt;-<span class="st"> </span><span class="kw">simulate</span>(m6)[[<span class="dv">1</span>]] <span class="co">#Creates first set of simulated responses</span></span>
-<span id="cb722-4"><a href="chapter8.html#cb722-4"></a></span>
-<span id="cb722-5"><a href="chapter8.html#cb722-5"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb722-6"><a href="chapter8.html#cb722-6"></a><span class="kw">plot</span>(Snow.Depth<span class="op">~</span>Elevation <span class="op">+</span><span class="st"> </span>Max.Temp <span class="op">+</span><span class="st"> </span>Min.Temp, <span class="dt">data=</span>snotel_final, </span>
-<span id="cb722-7"><a href="chapter8.html#cb722-7"></a>     <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">main=</span><span class="st">&quot;Real Responses&quot;</span>)</span>
-<span id="cb722-8"><a href="chapter8.html#cb722-8"></a><span class="kw">plot</span>(SimulatedSnow<span class="op">~</span>Elevation <span class="op">+</span><span class="st"> </span>Max.Temp <span class="op">+</span><span class="st"> </span>Min.Temp, <span class="dt">data=</span>snotel_final, </span>
-<span id="cb722-9"><a href="chapter8.html#cb722-9"></a>     <span class="dt">pch=</span><span class="dv">17</span>, <span class="dt">main=</span><span class="st">&quot;First Simulated Responses&quot;</span>, <span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>)</span>
-<span id="cb722-10"><a href="chapter8.html#cb722-10"></a><span class="co"># Creates a second set of simulared responses in the same variable name</span></span>
-<span id="cb722-11"><a href="chapter8.html#cb722-11"></a>snotel_final<span class="op">$</span>SimulatedSnow &lt;-<span class="st"> </span><span class="kw">simulate</span>(m6)[[<span class="dv">1</span>]] </span>
-<span id="cb722-12"><a href="chapter8.html#cb722-12"></a><span class="kw">plot</span>(SimulatedSnow<span class="op">~</span>Elevation <span class="op">+</span><span class="st"> </span>Max.Temp <span class="op">+</span><span class="st"> </span>Min.Temp, <span class="dt">data=</span>snotel_final, </span>
-<span id="cb722-13"><a href="chapter8.html#cb722-13"></a>     <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">main=</span><span class="st">&quot;Second Simulated Responses&quot;</span>, <span class="dt">col=</span><span class="st">&quot;skyblue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="chapter8.html#cb729-1"></a><span class="kw">set.seed</span>(<span class="dv">307</span>)</span>
+<span id="cb729-2"><a href="chapter8.html#cb729-2"></a>snotel_final &lt;-<span class="st"> </span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]</span>
+<span id="cb729-3"><a href="chapter8.html#cb729-3"></a>snotel_final<span class="op">$</span>SimulatedSnow &lt;-<span class="st"> </span><span class="kw">simulate</span>(m6)[[<span class="dv">1</span>]] <span class="co">#Creates first set of simulated responses</span></span>
+<span id="cb729-4"><a href="chapter8.html#cb729-4"></a></span>
+<span id="cb729-5"><a href="chapter8.html#cb729-5"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb729-6"><a href="chapter8.html#cb729-6"></a><span class="kw">plot</span>(Snow.Depth<span class="op">~</span>Elevation <span class="op">+</span><span class="st"> </span>Max.Temp <span class="op">+</span><span class="st"> </span>Min.Temp, <span class="dt">data=</span>snotel_final, </span>
+<span id="cb729-7"><a href="chapter8.html#cb729-7"></a>     <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">main=</span><span class="st">&quot;Real Responses&quot;</span>)</span>
+<span id="cb729-8"><a href="chapter8.html#cb729-8"></a><span class="kw">plot</span>(SimulatedSnow<span class="op">~</span>Elevation <span class="op">+</span><span class="st"> </span>Max.Temp <span class="op">+</span><span class="st"> </span>Min.Temp, <span class="dt">data=</span>snotel_final, </span>
+<span id="cb729-9"><a href="chapter8.html#cb729-9"></a>     <span class="dt">pch=</span><span class="dv">17</span>, <span class="dt">main=</span><span class="st">&quot;First Simulated Responses&quot;</span>, <span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>)</span>
+<span id="cb729-10"><a href="chapter8.html#cb729-10"></a><span class="co"># Creates a second set of simulared responses in the same variable name</span></span>
+<span id="cb729-11"><a href="chapter8.html#cb729-11"></a>snotel_final<span class="op">$</span>SimulatedSnow &lt;-<span class="st"> </span><span class="kw">simulate</span>(m6)[[<span class="dv">1</span>]] </span>
+<span id="cb729-12"><a href="chapter8.html#cb729-12"></a><span class="kw">plot</span>(SimulatedSnow<span class="op">~</span>Elevation <span class="op">+</span><span class="st"> </span>Max.Temp <span class="op">+</span><span class="st"> </span>Min.Temp, <span class="dt">data=</span>snotel_final, </span>
+<span id="cb729-13"><a href="chapter8.html#cb729-13"></a>     <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">main=</span><span class="st">&quot;Second Simulated Responses&quot;</span>, <span class="dt">col=</span><span class="st">&quot;skyblue&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-11"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-11-1.png" alt="Plot of the original responses versus the three predictors (\(n\)=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows." width="960" />
 <p class="caption">
@@ -1091,9 +1090,9 @@ constant. More generally, the <strong><em>slope interpretation in an MLR</em></s
 <p>To make this more concrete, we can recreate some points in the Elevation
 term-plot. To do this, we first need the mean of the “other” predictors,
 <em>Min.Temp</em> and <em>Max.Temp</em>.</p>
-<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb723-1"><a href="chapter8.html#cb723-1"></a><span class="kw">mean</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]<span class="op">$</span>Min.Temp)</span></code></pre></div>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="chapter8.html#cb730-1"></a><span class="kw">mean</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]<span class="op">$</span>Min.Temp)</span></code></pre></div>
 <pre><code>## [1] 27.82609</code></pre>
-<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="chapter8.html#cb725-1"></a><span class="kw">mean</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]<span class="op">$</span>Max.Temp)</span></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="chapter8.html#cb732-1"></a><span class="kw">mean</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]<span class="op">$</span>Max.Temp)</span></code></pre></div>
 <pre><code>## [1] 36.3913</code></pre>
 <p>We can put these values into the MLR equation and simplify it by combining like terms, to
 an equation that is in terms of
@@ -1133,12 +1132,12 @@ term-plot’s scaling.</p>
 Figure 8.12: Term-plot for Elevation “by-hand”, holding temperature variables constant at their means.
 </p>
 </div>
-<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="chapter8.html#cb727-1"></a><span class="co">#Making own effect plot:</span></span>
-<span id="cb727-2"><a href="chapter8.html#cb727-2"></a>elevs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5000</span>,<span class="dv">6000</span>,<span class="dv">8000</span>)</span>
-<span id="cb727-3"><a href="chapter8.html#cb727-3"></a>snowdepths &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">6.19</span>,<span class="fl">20.71</span>,<span class="fl">74.51</span>)</span>
-<span id="cb727-4"><a href="chapter8.html#cb727-4"></a><span class="kw">plot</span>(snowdepths<span class="op">~</span>elevs, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">90</span>), <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>,</span>
-<span id="cb727-5"><a href="chapter8.html#cb727-5"></a>     <span class="dt">main=</span><span class="st">&quot;Effect plot of elevation by hand&quot;</span>)</span>
-<span id="cb727-6"><a href="chapter8.html#cb727-6"></a><span class="kw">lines</span>(snowdepths<span class="op">~</span>elevs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="chapter8.html#cb734-1"></a><span class="co">#Making own effect plot:</span></span>
+<span id="cb734-2"><a href="chapter8.html#cb734-2"></a>elevs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5000</span>,<span class="dv">6000</span>,<span class="dv">8000</span>)</span>
+<span id="cb734-3"><a href="chapter8.html#cb734-3"></a>snowdepths &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="fl">6.19</span>,<span class="fl">20.71</span>,<span class="fl">74.51</span>)</span>
+<span id="cb734-4"><a href="chapter8.html#cb734-4"></a><span class="kw">plot</span>(snowdepths<span class="op">~</span>elevs, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">90</span>), <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>,</span>
+<span id="cb734-5"><a href="chapter8.html#cb734-5"></a>     <span class="dt">main=</span><span class="st">&quot;Effect plot of elevation by hand&quot;</span>)</span>
+<span id="cb734-6"><a href="chapter8.html#cb734-6"></a><span class="kw">lines</span>(snowdepths<span class="op">~</span>elevs, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
 <p>Note that we only needed 2 points to
 define the line but need a denser grid of elevations if we want to add the 95%
 CIs for the true mean snow depth across the different elevations since they
@@ -1153,10 +1152,10 @@ temperatures for each of elevation values we need to make the plot. The code
 creates a specific version of the predictor variables to force the <code>predict</code>
 function to provide fitted values and CIs across different elevations with
 temperatures held constant that is stored in <code>newdata1</code>.  </p>
-<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="chapter8.html#cb728-1"></a>elevs &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">5000</span>, <span class="dt">to=</span><span class="dv">8000</span>, <span class="dt">length.out=</span><span class="dv">30</span>)</span>
-<span id="cb728-2"><a href="chapter8.html#cb728-2"></a>newdata1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Elevation=</span>elevs, <span class="dt">Min.Temp=</span><span class="kw">rep</span>(<span class="fl">27.826</span>,<span class="dv">30</span>),</span>
-<span id="cb728-3"><a href="chapter8.html#cb728-3"></a>                       <span class="dt">Max.Temp=</span><span class="kw">rep</span>(<span class="fl">36.3913</span>,<span class="dv">30</span>))</span>
-<span id="cb728-4"><a href="chapter8.html#cb728-4"></a>newdata1</span></code></pre></div>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="chapter8.html#cb735-1"></a>elevs &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">5000</span>, <span class="dt">to=</span><span class="dv">8000</span>, <span class="dt">length.out=</span><span class="dv">30</span>)</span>
+<span id="cb735-2"><a href="chapter8.html#cb735-2"></a>newdata1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Elevation=</span>elevs, <span class="dt">Min.Temp=</span><span class="kw">rep</span>(<span class="fl">27.826</span>,<span class="dv">30</span>),</span>
+<span id="cb735-3"><a href="chapter8.html#cb735-3"></a>                       <span class="dt">Max.Temp=</span><span class="kw">rep</span>(<span class="fl">36.3913</span>,<span class="dv">30</span>))</span>
+<span id="cb735-4"><a href="chapter8.html#cb735-4"></a>newdata1</span></code></pre></div>
 <pre><code>## # A tibble: 30 x 3
 ##    Elevation Min.Temp Max.Temp
 ##        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -1174,7 +1173,7 @@ temperatures held constant that is stored in <code>newdata1</code>.  </p>
 <p>The predicted snow depths along with 95% confidence intervals for the mean,
 holding temperatures at their means, are:</p>
 
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="chapter8.html#cb730-1"></a><span class="kw">predict</span>(m6, <span class="dt">newdata=</span>newdata1, <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="chapter8.html#cb737-1"></a><span class="kw">predict</span>(m6, <span class="dt">newdata=</span>newdata1, <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##           fit        lwr      upr
 ## 1  -6.3680312 -24.913607 12.17754
 ## 2  -3.5898846 -21.078518 13.89875
@@ -1368,8 +1367,8 @@ the responses used change.</p>
 are available. Make sure you are able to pick out the correct one. For the
 reduced data set (<span class="math inline">\(n=23\)</span>) <em>Snow Depth</em> models, the pertinent part of the model
 summary for the model with all three predictors is in the last three lines:</p>
-<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="chapter8.html#cb732-1"></a>m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</span>
-<span id="cb732-2"><a href="chapter8.html#cb732-2"></a><span class="kw">summary</span>(m6)</span></code></pre></div>
+<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="chapter8.html#cb739-1"></a>m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</span>
+<span id="cb739-2"><a href="chapter8.html#cb739-2"></a><span class="kw">summary</span>(m6)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel2[-c(9, 
@@ -1560,11 +1559,11 @@ correlations among the predictors in the SNOTEL data set or visually displayed
 in Figure <a href="chapter8.html#fig:Figure8-14">8.14</a>:
 
 </p>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="chapter8.html#cb734-1"></a><span class="kw">library</span>(corrplot)</span>
-<span id="cb734-2"><a href="chapter8.html#cb734-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
-<span id="cb734-3"><a href="chapter8.html#cb734-3"></a><span class="kw">corrplot.mixed</span>(<span class="kw">cor</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>]), <span class="dt">upper.col=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>),</span>
-<span id="cb734-4"><a href="chapter8.html#cb734-4"></a>               <span class="dt">lower.col=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>))</span>
-<span id="cb734-5"><a href="chapter8.html#cb734-5"></a><span class="kw">round</span>(<span class="kw">cor</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>]),<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="chapter8.html#cb741-1"></a><span class="kw">library</span>(corrplot)</span>
+<span id="cb741-2"><a href="chapter8.html#cb741-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
+<span id="cb741-3"><a href="chapter8.html#cb741-3"></a><span class="kw">corrplot.mixed</span>(<span class="kw">cor</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>]), <span class="dt">upper.col=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>),</span>
+<span id="cb741-4"><a href="chapter8.html#cb741-4"></a>               <span class="dt">lower.col=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>))</span>
+<span id="cb741-5"><a href="chapter8.html#cb741-5"></a><span class="kw">round</span>(<span class="kw">cor</span>(snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>]),<span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-14"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-14-1.png" alt="Plot of correlation matrix in the snow depth data set with influential points removed" width="624" />
 <p class="caption">
@@ -1631,8 +1630,8 @@ It has the advantage of also providing a reasonable
 result when we include categorical variables in models
 (Sections <a href="chapter8.html#section8-9">8.9</a> and <a href="chapter8.html#section8-11">8.11</a>) over some other sources of this information in R. We apply the <code>vif</code>
 function directly to a model of interest and it generates values for each explanatory variable.</p>
-<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="chapter8.html#cb736-1"></a><span class="kw">library</span>(car)</span>
-<span id="cb736-2"><a href="chapter8.html#cb736-2"></a><span class="kw">vif</span>(m6)</span></code></pre></div>
+<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="chapter8.html#cb743-1"></a><span class="kw">library</span>(car)</span>
+<span id="cb743-2"><a href="chapter8.html#cb743-2"></a><span class="kw">vif</span>(m6)</span></code></pre></div>
 <pre><code>## Elevation  Min.Temp  Max.Temp 
 ##  8.164201  5.995301  3.350914</code></pre>
 <p>Not surprisingly, there is an indication of extreme problems with multicollinearity in
@@ -1640,7 +1639,7 @@ two of the three variables in the model with the largest issues identified for
 <em>Elevation</em> and <em>Min.Temp</em>. Both of their VIFs exceed 5 indicating large
 multicollinearity problems. On the square-root scale, the VIFs show more
 interpretation utility.</p>
-<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="chapter8.html#cb738-1"></a><span class="kw">sqrt</span>(<span class="kw">vif</span>(m6))</span></code></pre></div>
+<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="chapter8.html#cb745-1"></a><span class="kw">sqrt</span>(<span class="kw">vif</span>(m6))</span></code></pre></div>
 <pre><code>## Elevation  Min.Temp  Max.Temp 
 ##  2.857307  2.448530  1.830550</code></pre>
 <p>The result for <em>Elevation</em> of 2.86 suggests that the SE for <em>Elevation</em> is 2.86
@@ -1654,9 +1653,9 @@ regress <em>Elevation</em> on <em>Min.Temp</em> and <em>Max.Temp</em>. Note that
 fit to find the percentage of variation in elevation explained by the temperature
 variables. It ends up being 0.8775 – so a high percentage of <em>Elevation</em> can be
 explained by the linear model using min and max temperatures.</p>
-<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="chapter8.html#cb740-1"></a><span class="co"># VIF calc:</span></span>
-<span id="cb740-2"><a href="chapter8.html#cb740-2"></a>elev1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Elevation<span class="op">~</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</span>
-<span id="cb740-3"><a href="chapter8.html#cb740-3"></a><span class="kw">summary</span>(elev1)</span></code></pre></div>
+<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="chapter8.html#cb747-1"></a><span class="co"># VIF calc:</span></span>
+<span id="cb747-2"><a href="chapter8.html#cb747-2"></a>elev1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Elevation<span class="op">~</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</span>
+<span id="cb747-3"><a href="chapter8.html#cb747-3"></a><span class="kw">summary</span>(elev1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Elevation ~ Min.Temp + Max.Temp, data = snotel2[-c(9, 
@@ -1677,10 +1676,10 @@ explained by the linear model using min and max temperatures.</p>
 ## F-statistic: 71.64 on 2 and 20 DF,  p-value: 7.601e-10</code></pre>
 <p>Using this result, we can calculate</p>
 <p><span class="math display">\[\text{VIF}_{\text{elevation}} = \dfrac{1}{1-R^2_{\text{elevation}}} = \dfrac{1}{1-0.8775} = \dfrac{1}{0.1225} = 8.16\]</span></p>
-<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="chapter8.html#cb742-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.8775</span></span></code></pre></div>
+<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="chapter8.html#cb749-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.8775</span></span></code></pre></div>
 <pre><code>## [1] 0.1225</code></pre>
 
-<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="chapter8.html#cb744-1"></a><span class="dv">1</span><span class="op">/</span><span class="fl">0.1225</span></span></code></pre></div>
+<div class="sourceCode" id="cb751"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb751-1"><a href="chapter8.html#cb751-1"></a><span class="dv">1</span><span class="op">/</span><span class="fl">0.1225</span></span></code></pre></div>
 <pre><code>## [1] 8.163265</code></pre>
 <p>Note that when we observe small VIFs (close to 1), that provides us with confidence that
 multicollinearity is not causing problems under the surface of
@@ -1735,8 +1734,8 @@ summary we’ve been working with. You can find the estimated slope
 The degrees of freedom for the <span class="math inline">\(t\)</span>-distributions show up below the coefficients
 and the <span class="math inline">\(df=20\)</span> here. This is because <span class="math inline">\(n=23\)</span> and <span class="math inline">\(K=2\)</span>, so <span class="math inline">\(df=23-2-1=20\)</span>.</p>
 
-<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="chapter8.html#cb746-1"></a>m5 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</span>
-<span id="cb746-2"><a href="chapter8.html#cb746-2"></a><span class="kw">summary</span>(m5)</span></code></pre></div>
+<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="chapter8.html#cb753-1"></a>m5 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</span>
+<span id="cb753-2"><a href="chapter8.html#cb753-2"></a><span class="kw">summary</span>(m5)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Snow.Depth ~ Elevation + Max.Temp, data = snotel2[-c(9, 
@@ -1769,7 +1768,7 @@ using <code>pt</code>:
 
 </p>
 
-<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="chapter8.html#cb748-1"></a><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="fl">2.327</span>, <span class="dt">df=</span><span class="dv">20</span>, <span class="dt">lower.tail=</span>F)</span></code></pre></div>
+<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="chapter8.html#cb755-1"></a><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="fl">2.327</span>, <span class="dt">df=</span><span class="dv">20</span>, <span class="dt">lower.tail=</span>F)</span></code></pre></div>
 <pre><code>## [1] 0.03058319</code></pre>
 <p>The chance of observing a
 slope for <em>Max.Temp</em> as extreme or more extreme than assuming there really is no
@@ -1852,7 +1851,7 @@ adjusting for the other <span class="math inline">\(x\text{&#39;s}\)</span> <str
 </blockquote>
 <p>We can either calculate these intervals as we have many times before or
 rely on the <code>confint</code> function to do this:</p>
-<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="chapter8.html#cb750-1"></a><span class="kw">confint</span>(m5)</span></code></pre></div>
+<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="chapter8.html#cb757-1"></a><span class="kw">confint</span>(m5)</span></code></pre></div>
 <pre><code>##                     2.5 %       97.5 %
 ## (Intercept) -249.37903311 -85.67576239
 ## Elevation      0.01747878   0.03067123
@@ -1948,10 +1947,10 @@ college GPA. There are certainly other possible research questions that can be
 addressed with these data but this will keep us focused.
 </p>
 
-<div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="chapter8.html#cb753-1"></a><span class="kw">library</span>(openintro)</span>
-<span id="cb753-2"><a href="chapter8.html#cb753-2"></a><span class="kw">data</span>(satGPA)</span>
-<span id="cb753-3"><a href="chapter8.html#cb753-3"></a>satGPA &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(satGPA)</span>
-<span id="cb753-4"><a href="chapter8.html#cb753-4"></a><span class="kw">pairs.panels</span>(satGPA[,<span class="op">-</span><span class="dv">4</span>], <span class="dt">ellipse=</span>F, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="chapter8.html#cb760-1"></a><span class="kw">library</span>(openintro)</span>
+<span id="cb760-2"><a href="chapter8.html#cb760-2"></a><span class="kw">data</span>(satGPA)</span>
+<span id="cb760-3"><a href="chapter8.html#cb760-3"></a>satGPA &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(satGPA)</span>
+<span id="cb760-4"><a href="chapter8.html#cb760-4"></a><span class="kw">pairs.panels</span>(satGPA[,<span class="op">-</span><span class="dv">4</span>], <span class="dt">ellipse=</span>F, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-15"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-15-1.png" alt="Scatterplot matrix of SAT and GPA data set." width="960" />
 <p class="caption">
@@ -1994,8 +1993,8 @@ they might apply to… But you could see why the company that administers the SA
 <p>The following code fits the model of interest, provides a model summary,
 and the diagnostic plots, allowing us to consider the tests of interest:</p>
 
-<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="chapter8.html#cb754-1"></a>gpa1 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATV<span class="op">+</span>SATM, <span class="dt">data=</span>satGPA)</span>
-<span id="cb754-2"><a href="chapter8.html#cb754-2"></a><span class="kw">summary</span>(gpa1)</span></code></pre></div>
+<div class="sourceCode" id="cb761"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb761-1"><a href="chapter8.html#cb761-1"></a>gpa1 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATV<span class="op">+</span>SATM, <span class="dt">data=</span>satGPA)</span>
+<span id="cb761-2"><a href="chapter8.html#cb761-2"></a><span class="kw">summary</span>(gpa1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = FYGPA ~ SATV + SATM, data = satGPA)
@@ -2013,8 +2012,8 @@ and the diagnostic plots, allowing us to consider the tests of interest:</p>
 ## Residual standard error: 0.6582 on 997 degrees of freedom
 ## Multiple R-squared:  0.2122, Adjusted R-squared:  0.2106 
 ## F-statistic: 134.2 on 2 and 997 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="chapter8.html#cb756-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb756-2"><a href="chapter8.html#cb756-2"></a><span class="kw">plot</span>(gpa1, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for GPA model with SATV and SATM&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb763-1"><a href="chapter8.html#cb763-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb763-2"><a href="chapter8.html#cb763-2"></a><span class="kw">plot</span>(gpa1, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for GPA model with SATV and SATM&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-16"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-16-1.png" alt="Diagnostic plots for the \(\text{FYGPA}\sim\text{ SATV }+\text{ SATM}\) model." width="960" />
 <p class="caption">
@@ -2071,10 +2070,10 @@ model with the VIFs for both variables the same at 1.278<a href="references.html
 otherwise would have been due to shared information between the two
 predictor variables. </p></li>
 </ul>
-<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="chapter8.html#cb757-1"></a><span class="kw">vif</span>(gpa1)</span></code></pre></div>
+<div class="sourceCode" id="cb764"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb764-1"><a href="chapter8.html#cb764-1"></a><span class="kw">vif</span>(gpa1)</span></code></pre></div>
 <pre><code>##     SATV     SATM 
 ## 1.278278 1.278278</code></pre>
-<div class="sourceCode" id="cb759"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb759-1"><a href="chapter8.html#cb759-1"></a><span class="kw">sqrt</span>(<span class="kw">vif</span>(gpa1))</span></code></pre></div>
+<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="chapter8.html#cb766-1"></a><span class="kw">sqrt</span>(<span class="kw">vif</span>(gpa1))</span></code></pre></div>
 <pre><code>##    SATV    SATM 
 ## 1.13061 1.13061</code></pre></li>
 <li><p><strong>Equal (constant) variance:</strong></p>
@@ -2163,7 +2162,7 @@ sample size as opposed to the model itself explaining most of the variation in t
 responses. </p></li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb761"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb761-1"><a href="chapter8.html#cb761-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(gpa1, <span class="dt">residuals=</span>T))</span></code></pre></div>
+<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="chapter8.html#cb768-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(gpa1, <span class="dt">residuals=</span>T))</span></code></pre></div>
 
 <div class="figure"><span id="fig:Figure8-17"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="Term-plots for the \(\text{FYGPA}\sim\text{SATV} + \text{SATM}\) model with partial residuals." width="576" />
@@ -2171,16 +2170,19 @@ responses. </p></li>
 Figure 8.17: Term-plots for the <span class="math inline">\(\text{FYGPA}\sim\text{SATV} + \text{SATM}\)</span> model with partial residuals.
 </p>
 </div>
-<pre><code>* The confidence intervals also help us pin down the uncertainty in each</code></pre>
-<p>estimated slope coefficient. As always, the “easy” way to get 95% confidence
-intervals is using the <code>confint</code> function:</p>
-<div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb763-1"><a href="chapter8.html#cb763-1"></a><span class="kw">confint</span>(gpa1)</span></code></pre></div>
+<ul>
+<li>The confidence intervals also help us pin down the uncertainty in each
+estimated slope coefficient. As always, the “easy” way to get 95% confidence
+intervals is using the <code>confint</code> function:</li>
+</ul>
+<div class="sourceCode" id="cb769"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb769-1"><a href="chapter8.html#cb769-1"></a><span class="kw">confint</span>(gpa1)</span></code></pre></div>
 <pre><code>##                   2.5 %     97.5 %
 ## (Intercept) -0.29147825 0.30622148
 ## SATV         0.01977864 0.03100106
 ## SATM         0.01692690 0.02786220</code></pre>
-<pre><code>* So, for a 1 percent increase in the *SATV* percentile, we are 95% confident</code></pre>
-<p>that the true mean <em>FYGPA</em> changes between 0.0198 and 0.031 points, in the
+<ul>
+<li>So, for a 1 percent increase in the <em>SATV</em> percentile, we are 95% confident
+that the true mean <em>FYGPA</em> changes between 0.0198 and 0.031 points, in the
 population of students who completed this year at this institution, after
 controlling for <em>SATM</em>. The <em>SATM</em> result is similar with an interval from
 0.0169 and 0.0279. Both of these intervals might benefit from re-scaling
@@ -2188,7 +2190,8 @@ the interpretation to, say, a 10 percentile increase in the predictor variable, 
 the change in the <em>FYGPA</em> for that level of increase of <em>SATV</em> providing an
 interval from 0.198 to 0.31 points and for <em>SATM</em> providing an interval from
 0.169 to 0.279. So a boost of 10% in either exam percentile likely results in a
-noticeable but not huge average <em>FYGPA</em> increase.</p>
+noticeable but not huge average <em>FYGPA</em> increase.</li>
+</ul>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Scope of Inference:</p>
 <ul>
@@ -2216,17 +2219,17 @@ The predicted mean value is</p>
 \end{array}\]</span></p>
 <p>This result and the 95% confidence interval for the mean student <em>GPA</em> at these
 scores can be found using the <code>predict</code> function as: </p>
-<div class="sourceCode" id="cb766"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb766-1"><a href="chapter8.html#cb766-1"></a><span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="dv">30</span>,<span class="dt">SATM=</span><span class="dv">60</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb771"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb771-1"><a href="chapter8.html#cb771-1"></a><span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="dv">30</span>,<span class="dt">SATM=</span><span class="dv">60</span>))</span></code></pre></div>
 <pre><code>##       1 
 ## 2.11274</code></pre>
-<div class="sourceCode" id="cb768"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb768-1"><a href="chapter8.html#cb768-1"></a><span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="dv">30</span>,<span class="dt">SATM=</span><span class="dv">60</span>), <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb773-1"><a href="chapter8.html#cb773-1"></a><span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="dv">30</span>,<span class="dt">SATM=</span><span class="dv">60</span>), <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##       fit      lwr      upr
 ## 1 2.11274 1.982612 2.242868</code></pre>
 <p>For students at the 30<sup>th</sup> percentile of <em>SATV</em> and 60<sup>th</sup>
 percentile of <em>SATM</em>, we are 95% confident that the true mean first year GPA
 is between 1.98 and 2.24 points. For an individual student, we would want the
 95% prediction interval:</p>
-<div class="sourceCode" id="cb770"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb770-1"><a href="chapter8.html#cb770-1"></a><span class="kw">predict</span>(gpa1,<span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="dv">30</span>,<span class="dt">SATM=</span><span class="dv">60</span>),<span class="dt">interval=</span><span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb775"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb775-1"><a href="chapter8.html#cb775-1"></a><span class="kw">predict</span>(gpa1,<span class="dt">newdata=</span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="dv">30</span>,<span class="dt">SATM=</span><span class="dv">60</span>),<span class="dt">interval=</span><span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##       fit       lwr      upr
 ## 1 2.11274 0.8145859 3.410894</code></pre>
 <p>For a student with <em>SATV</em>=30 and <em>SATM</em>=60, we are 95% sure that their first
@@ -2250,33 +2253,33 @@ two types of intervals – to make them in MLR, you have to fix all but one of
 the predictor variables and we usually do that by fixing the other variables at
 their means.  </p>
 
-<div class="sourceCode" id="cb772"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb772-1"><a href="chapter8.html#cb772-1"></a><span class="co">#Remake effects plots with 95% PIs</span></span>
-<span id="cb772-2"><a href="chapter8.html#cb772-2"></a>dv1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">24</span>,<span class="dt">to=</span><span class="dv">76</span>,<span class="dt">length.out=</span><span class="dv">50</span>), <span class="dt">SATM=</span><span class="kw">rep</span>(<span class="fl">54.4</span>,<span class="dv">50</span>))</span>
-<span id="cb772-3"><a href="chapter8.html#cb772-3"></a>dm1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="kw">rep</span>(<span class="fl">48.93</span>,<span class="dv">50</span>), <span class="dt">SATM=</span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">29</span>,<span class="dt">to=</span><span class="dv">77</span>,<span class="dt">length.out=</span><span class="dv">50</span>))</span>
-<span id="cb772-4"><a href="chapter8.html#cb772-4"></a></span>
-<span id="cb772-5"><a href="chapter8.html#cb772-5"></a>mv1 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span>dv1, <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>))</span>
-<span id="cb772-6"><a href="chapter8.html#cb772-6"></a>pv1 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span>dv1, <span class="dt">interval=</span><span class="st">&quot;prediction&quot;</span>))</span>
-<span id="cb772-7"><a href="chapter8.html#cb772-7"></a></span>
-<span id="cb772-8"><a href="chapter8.html#cb772-8"></a>mm1 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span>dm1, <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>))</span>
-<span id="cb772-9"><a href="chapter8.html#cb772-9"></a>pm1 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span>dm1, <span class="dt">interval=</span><span class="st">&quot;prediction&quot;</span>))</span>
-<span id="cb772-10"><a href="chapter8.html#cb772-10"></a></span>
-<span id="cb772-11"><a href="chapter8.html#cb772-11"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb772-12"><a href="chapter8.html#cb772-12"></a></span>
-<span id="cb772-13"><a href="chapter8.html#cb772-13"></a><span class="kw">plot</span>(dv1<span class="op">$</span>SATV, mv1<span class="op">$</span>fit, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">ylim=</span><span class="kw">c</span>(pv1<span class="op">$</span>lwr[<span class="dv">1</span>],pv1<span class="op">$</span>upr[<span class="dv">50</span>]), <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,</span>
-<span id="cb772-14"><a href="chapter8.html#cb772-14"></a>     <span class="dt">xlab=</span><span class="st">&quot;SATV Percentile&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;GPA&quot;</span>, <span class="dt">main=</span><span class="st">&quot;SATV Effect, CI and PI&quot;</span>)</span>
-<span id="cb772-15"><a href="chapter8.html#cb772-15"></a><span class="kw">lines</span>(dv1<span class="op">$</span>SATV, mv1<span class="op">$</span>lwr, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb772-16"><a href="chapter8.html#cb772-16"></a><span class="kw">lines</span>(dv1<span class="op">$</span>SATV, mv1<span class="op">$</span>upr, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb772-17"><a href="chapter8.html#cb772-17"></a><span class="kw">lines</span>(dv1<span class="op">$</span>SATV, pv1<span class="op">$</span>lwr, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
-<span id="cb772-18"><a href="chapter8.html#cb772-18"></a><span class="kw">lines</span>(dv1<span class="op">$</span>SATV, pv1<span class="op">$</span>upr, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
-<span id="cb772-19"><a href="chapter8.html#cb772-19"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;CI&quot;</span>,<span class="st">&quot;PI&quot;</span>), <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
-<span id="cb772-20"><a href="chapter8.html#cb772-20"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>,<span class="st">&quot;grey&quot;</span>))</span>
-<span id="cb772-21"><a href="chapter8.html#cb772-21"></a></span>
-<span id="cb772-22"><a href="chapter8.html#cb772-22"></a><span class="kw">plot</span>(dm1<span class="op">$</span>SATM, mm1<span class="op">$</span>fit, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">ylim=</span><span class="kw">c</span>(pm1<span class="op">$</span>lwr[<span class="dv">1</span>],pm1<span class="op">$</span>upr[<span class="dv">50</span>]), <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,</span>
-<span id="cb772-23"><a href="chapter8.html#cb772-23"></a>     <span class="dt">xlab=</span><span class="st">&quot;SATM Percentile&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;GPA&quot;</span>, <span class="dt">main=</span><span class="st">&quot;SATM Effect, CI and PI&quot;</span>)</span>
-<span id="cb772-24"><a href="chapter8.html#cb772-24"></a><span class="kw">lines</span>(dm1<span class="op">$</span>SATM, mm1<span class="op">$</span>lwr, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb772-25"><a href="chapter8.html#cb772-25"></a><span class="kw">lines</span>(dm1<span class="op">$</span>SATM, mm1<span class="op">$</span>upr, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb772-26"><a href="chapter8.html#cb772-26"></a><span class="kw">lines</span>(dm1<span class="op">$</span>SATM, pm1<span class="op">$</span>lwr, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
-<span id="cb772-27"><a href="chapter8.html#cb772-27"></a><span class="kw">lines</span>(dm1<span class="op">$</span>SATM, pm1<span class="op">$</span>upr, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="chapter8.html#cb777-1"></a><span class="co">#Remake effects plots with 95% PIs</span></span>
+<span id="cb777-2"><a href="chapter8.html#cb777-2"></a>dv1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">24</span>,<span class="dt">to=</span><span class="dv">76</span>,<span class="dt">length.out=</span><span class="dv">50</span>), <span class="dt">SATM=</span><span class="kw">rep</span>(<span class="fl">54.4</span>,<span class="dv">50</span>))</span>
+<span id="cb777-3"><a href="chapter8.html#cb777-3"></a>dm1 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">SATV=</span><span class="kw">rep</span>(<span class="fl">48.93</span>,<span class="dv">50</span>), <span class="dt">SATM=</span><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">29</span>,<span class="dt">to=</span><span class="dv">77</span>,<span class="dt">length.out=</span><span class="dv">50</span>))</span>
+<span id="cb777-4"><a href="chapter8.html#cb777-4"></a></span>
+<span id="cb777-5"><a href="chapter8.html#cb777-5"></a>mv1 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span>dv1, <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>))</span>
+<span id="cb777-6"><a href="chapter8.html#cb777-6"></a>pv1 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span>dv1, <span class="dt">interval=</span><span class="st">&quot;prediction&quot;</span>))</span>
+<span id="cb777-7"><a href="chapter8.html#cb777-7"></a></span>
+<span id="cb777-8"><a href="chapter8.html#cb777-8"></a>mm1 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span>dm1, <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>))</span>
+<span id="cb777-9"><a href="chapter8.html#cb777-9"></a>pm1 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">predict</span>(gpa1, <span class="dt">newdata=</span>dm1, <span class="dt">interval=</span><span class="st">&quot;prediction&quot;</span>))</span>
+<span id="cb777-10"><a href="chapter8.html#cb777-10"></a></span>
+<span id="cb777-11"><a href="chapter8.html#cb777-11"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb777-12"><a href="chapter8.html#cb777-12"></a></span>
+<span id="cb777-13"><a href="chapter8.html#cb777-13"></a><span class="kw">plot</span>(dv1<span class="op">$</span>SATV, mv1<span class="op">$</span>fit, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">ylim=</span><span class="kw">c</span>(pv1<span class="op">$</span>lwr[<span class="dv">1</span>],pv1<span class="op">$</span>upr[<span class="dv">50</span>]), <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,</span>
+<span id="cb777-14"><a href="chapter8.html#cb777-14"></a>     <span class="dt">xlab=</span><span class="st">&quot;SATV Percentile&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;GPA&quot;</span>, <span class="dt">main=</span><span class="st">&quot;SATV Effect, CI and PI&quot;</span>)</span>
+<span id="cb777-15"><a href="chapter8.html#cb777-15"></a><span class="kw">lines</span>(dv1<span class="op">$</span>SATV, mv1<span class="op">$</span>lwr, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb777-16"><a href="chapter8.html#cb777-16"></a><span class="kw">lines</span>(dv1<span class="op">$</span>SATV, mv1<span class="op">$</span>upr, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb777-17"><a href="chapter8.html#cb777-17"></a><span class="kw">lines</span>(dv1<span class="op">$</span>SATV, pv1<span class="op">$</span>lwr, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb777-18"><a href="chapter8.html#cb777-18"></a><span class="kw">lines</span>(dv1<span class="op">$</span>SATV, pv1<span class="op">$</span>upr, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb777-19"><a href="chapter8.html#cb777-19"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;CI&quot;</span>,<span class="st">&quot;PI&quot;</span>), <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb777-20"><a href="chapter8.html#cb777-20"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>,<span class="st">&quot;grey&quot;</span>))</span>
+<span id="cb777-21"><a href="chapter8.html#cb777-21"></a></span>
+<span id="cb777-22"><a href="chapter8.html#cb777-22"></a><span class="kw">plot</span>(dm1<span class="op">$</span>SATM, mm1<span class="op">$</span>fit, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">ylim=</span><span class="kw">c</span>(pm1<span class="op">$</span>lwr[<span class="dv">1</span>],pm1<span class="op">$</span>upr[<span class="dv">50</span>]), <span class="dt">type=</span><span class="st">&quot;l&quot;</span>,</span>
+<span id="cb777-23"><a href="chapter8.html#cb777-23"></a>     <span class="dt">xlab=</span><span class="st">&quot;SATM Percentile&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;GPA&quot;</span>, <span class="dt">main=</span><span class="st">&quot;SATM Effect, CI and PI&quot;</span>)</span>
+<span id="cb777-24"><a href="chapter8.html#cb777-24"></a><span class="kw">lines</span>(dm1<span class="op">$</span>SATM, mm1<span class="op">$</span>lwr, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb777-25"><a href="chapter8.html#cb777-25"></a><span class="kw">lines</span>(dm1<span class="op">$</span>SATM, mm1<span class="op">$</span>upr, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb777-26"><a href="chapter8.html#cb777-26"></a><span class="kw">lines</span>(dm1<span class="op">$</span>SATM, pm1<span class="op">$</span>lwr, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span>
+<span id="cb777-27"><a href="chapter8.html#cb777-27"></a><span class="kw">lines</span>(dm1<span class="op">$</span>SATM, pm1<span class="op">$</span>upr, <span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-18"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-18-1.png" alt="Term-plots for the \(\text{FYGPA}\sim\text{SATV} + \text{SATM}\) model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines)." width="960" />
 <p class="caption">
@@ -2329,13 +2332,13 @@ sexes in their relationship between SATM and GPA and we can safely continue
 using a model that does not differentiate the two groups. We could also just
 subset the data set and do two analyses, but that approach will not allow us
 to assess whether things are “really” different between the two groups.</p>
-<div class="sourceCode" id="cb773"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb773-1"><a href="chapter8.html#cb773-1"></a>satGPA<span class="op">$</span>GENDER &lt;-<span class="st"> </span><span class="kw">factor</span>(satGPA<span class="op">$</span>sex) <span class="co">#Make 1,2 coded sex into factor GENDER</span></span>
-<span id="cb773-2"><a href="chapter8.html#cb773-2"></a><span class="co"># Make category names clear but names might be wrong</span></span>
-<span id="cb773-3"><a href="chapter8.html#cb773-3"></a><span class="kw">levels</span>(satGPA<span class="op">$</span>GENDER) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) </span>
-<span id="cb773-4"><a href="chapter8.html#cb773-4"></a><span class="kw">scatterplot</span>(FYGPA<span class="op">~</span>SATV<span class="op">|</span>GENDER, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">data=</span>satGPA, <span class="dt">smooth=</span>F,</span>
-<span id="cb773-5"><a href="chapter8.html#cb773-5"></a>            <span class="dt">main=</span><span class="st">&quot;Scatterplot of GPA vs SATV by Sex&quot;</span>)</span>
-<span id="cb773-6"><a href="chapter8.html#cb773-6"></a><span class="kw">scatterplot</span>(FYGPA<span class="op">~</span>SATM<span class="op">|</span>GENDER, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">data=</span>satGPA, <span class="dt">smooth=</span>F,</span>
-<span id="cb773-7"><a href="chapter8.html#cb773-7"></a>            <span class="dt">main=</span><span class="st">&quot;Scatterplot of GPA vs SATM by Sex&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="chapter8.html#cb778-1"></a>satGPA<span class="op">$</span>GENDER &lt;-<span class="st"> </span><span class="kw">factor</span>(satGPA<span class="op">$</span>sex) <span class="co">#Make 1,2 coded sex into factor GENDER</span></span>
+<span id="cb778-2"><a href="chapter8.html#cb778-2"></a><span class="co"># Make category names clear but names might be wrong</span></span>
+<span id="cb778-3"><a href="chapter8.html#cb778-3"></a><span class="kw">levels</span>(satGPA<span class="op">$</span>GENDER) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) </span>
+<span id="cb778-4"><a href="chapter8.html#cb778-4"></a><span class="kw">scatterplot</span>(FYGPA<span class="op">~</span>SATV<span class="op">|</span>GENDER, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">data=</span>satGPA, <span class="dt">smooth=</span>F,</span>
+<span id="cb778-5"><a href="chapter8.html#cb778-5"></a>            <span class="dt">main=</span><span class="st">&quot;Scatterplot of GPA vs SATV by Sex&quot;</span>)</span>
+<span id="cb778-6"><a href="chapter8.html#cb778-6"></a><span class="kw">scatterplot</span>(FYGPA<span class="op">~</span>SATM<span class="op">|</span>GENDER, <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">data=</span>satGPA, <span class="dt">smooth=</span>F,</span>
+<span id="cb778-7"><a href="chapter8.html#cb778-7"></a>            <span class="dt">main=</span><span class="st">&quot;Scatterplot of GPA vs SATM by Sex&quot;</span>)</span></code></pre></div>
 <p>To fit one model to a data set that contains multiple groups, we need a way of
 entering categorical variable information in an MLR model. Regression models
 require quantitative predictor variables for the <span class="math inline">\(x\text{&#39;s}\)</span> so we can’t
@@ -2356,11 +2359,11 @@ the <code>factor</code> function and making the factor <code>levels</code> expli
 and 2s.
 
 </p>
-<div class="sourceCode" id="cb774"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb774-1"><a href="chapter8.html#cb774-1"></a>satGPA<span class="op">$</span>GENDER &lt;-<span class="st"> </span><span class="kw">factor</span>(satGPA<span class="op">$</span>sex) <span class="co">#Make 1,2 coded sex into factor GENDER</span></span>
-<span id="cb774-2"><a href="chapter8.html#cb774-2"></a><span class="co"># Make category names clear but names might be wrong</span></span>
-<span id="cb774-3"><a href="chapter8.html#cb774-3"></a><span class="kw">levels</span>(satGPA<span class="op">$</span>GENDER) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) </span>
-<span id="cb774-4"><a href="chapter8.html#cb774-4"></a>SATGENDER1 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATM<span class="op">+</span>GENDER, <span class="dt">data=</span>satGPA) <span class="co">#Fit lm with SATM and SEX</span></span>
-<span id="cb774-5"><a href="chapter8.html#cb774-5"></a><span class="kw">summary</span>(SATGENDER1)</span></code></pre></div>
+<div class="sourceCode" id="cb779"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb779-1"><a href="chapter8.html#cb779-1"></a>satGPA<span class="op">$</span>GENDER &lt;-<span class="st"> </span><span class="kw">factor</span>(satGPA<span class="op">$</span>sex) <span class="co">#Make 1,2 coded sex into factor GENDER</span></span>
+<span id="cb779-2"><a href="chapter8.html#cb779-2"></a><span class="co"># Make category names clear but names might be wrong</span></span>
+<span id="cb779-3"><a href="chapter8.html#cb779-3"></a><span class="kw">levels</span>(satGPA<span class="op">$</span>GENDER) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MALE&quot;</span>, <span class="st">&quot;FEMALE&quot;</span>) </span>
+<span id="cb779-4"><a href="chapter8.html#cb779-4"></a>SATGENDER1 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATM<span class="op">+</span>GENDER, <span class="dt">data=</span>satGPA) <span class="co">#Fit lm with SATM and SEX</span></span>
+<span id="cb779-5"><a href="chapter8.html#cb779-5"></a><span class="kw">summary</span>(SATGENDER1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = FYGPA ~ SATM + GENDER, data = satGPA)
@@ -2398,10 +2401,10 @@ not show up in the output. To see what <code>lm</code> is doing for us when we g
 two-level categorical variable, we can create our own “numerical” predictor that
 is 0 for <em>males</em> and 1 for <em>females</em> that we called <code>GENDERINDICATOR</code>, displayed
 for the first 10 observations:</p>
-<div class="sourceCode" id="cb776"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb776-1"><a href="chapter8.html#cb776-1"></a><span class="co"># Convert logical to 0 for male, 1 for female</span></span>
-<span id="cb776-2"><a href="chapter8.html#cb776-2"></a>satGPA<span class="op">$</span>GENDERINDICATOR &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(satGPA<span class="op">$</span>GENDER<span class="op">==</span><span class="st">&quot;FEMALE&quot;</span>) </span>
-<span id="cb776-3"><a href="chapter8.html#cb776-3"></a><span class="co"># Explore first few observations</span></span>
-<span id="cb776-4"><a href="chapter8.html#cb776-4"></a><span class="kw">head</span>(<span class="kw">tibble</span>(<span class="dt">GENDER=</span>satGPA<span class="op">$</span>GENDER, <span class="dt">GENDERINDICATOR=</span>satGPA<span class="op">$</span>GENDERINDICATOR), <span class="dv">10</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb781"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb781-1"><a href="chapter8.html#cb781-1"></a><span class="co"># Convert logical to 0 for male, 1 for female</span></span>
+<span id="cb781-2"><a href="chapter8.html#cb781-2"></a>satGPA<span class="op">$</span>GENDERINDICATOR &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(satGPA<span class="op">$</span>GENDER<span class="op">==</span><span class="st">&quot;FEMALE&quot;</span>) </span>
+<span id="cb781-3"><a href="chapter8.html#cb781-3"></a><span class="co"># Explore first few observations</span></span>
+<span id="cb781-4"><a href="chapter8.html#cb781-4"></a><span class="kw">head</span>(<span class="kw">tibble</span>(<span class="dt">GENDER=</span>satGPA<span class="op">$</span>GENDER, <span class="dt">GENDERINDICATOR=</span>satGPA<span class="op">$</span>GENDERINDICATOR), <span class="dv">10</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##    GENDER GENDERINDICATOR
 ##    &lt;fct&gt;            &lt;dbl&gt;
@@ -2425,8 +2428,8 @@ directly
 into linear models with other <span class="math inline">\(x\text{&#39;s}\)</span> (quantitative or categorical). If we
 replace the categorical <code>GENDER</code> variable with our quantitative <code>GENDERINDICATOR</code>
 and re-fit the model, we get:</p>
-<div class="sourceCode" id="cb778"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb778-1"><a href="chapter8.html#cb778-1"></a>SATGENDER2 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATM<span class="op">+</span>GENDERINDICATOR, <span class="dt">data=</span>satGPA)</span>
-<span id="cb778-2"><a href="chapter8.html#cb778-2"></a><span class="kw">summary</span>(SATGENDER2)</span></code></pre></div>
+<div class="sourceCode" id="cb783"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb783-1"><a href="chapter8.html#cb783-1"></a>SATGENDER2 &lt;-<span class="st"> </span><span class="kw">lm</span>(FYGPA<span class="op">~</span>SATM<span class="op">+</span>GENDERINDICATOR, <span class="dt">data=</span>satGPA)</span>
+<span id="cb783-2"><a href="chapter8.html#cb783-2"></a><span class="kw">summary</span>(SATGENDER2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = FYGPA ~ SATM + GENDERINDICATOR, data = satGPA)
@@ -2532,12 +2535,12 @@ its mean to make each term-plot). When making the SATM term-plot, the
 categorical variable is held at the most
 frequently occurring value (modal category) in the data set, which is for males in this data set.</p>
 
-<div class="sourceCode" id="cb780"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb780-1"><a href="chapter8.html#cb780-1"></a><span class="kw">tally</span>(GENDER<span class="op">~</span><span class="dv">1</span>, <span class="dt">data=</span>satGPA)</span></code></pre></div>
+<div class="sourceCode" id="cb785"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb785-1"><a href="chapter8.html#cb785-1"></a><span class="kw">tally</span>(GENDER<span class="op">~</span><span class="dv">1</span>, <span class="dt">data=</span>satGPA)</span></code></pre></div>
 <pre><code>##         1
 ## GENDER     1
 ##   MALE   516
 ##   FEMALE 484</code></pre>
-<div class="sourceCode" id="cb782"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb782-1"><a href="chapter8.html#cb782-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(SATGENDER1))</span></code></pre></div>
+<div class="sourceCode" id="cb787"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb787-1"><a href="chapter8.html#cb787-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(SATGENDER1))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-22"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-22-1.png" alt="Term-plots for the estimated model for \(\text{FYGPA}\sim\text{SATM} + \text{GENDER}\)." width="576" />
 <p class="caption">
@@ -2560,7 +2563,7 @@ if the null is true, the p-value is <span class="math inline">\(&lt;0.0001\)</sp
 <span class="math inline">\(y\)</span>-intercept in a <em>SATM</em> model for first year college GPA between <em>males</em> and <em>females</em>, so we would conclude that there is difference in their true mean GPA levels controlled for <em>SATM</em>. The confidence
 interval is also informative:</p>
 <!-- \newpage -->
-<div class="sourceCode" id="cb784"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb784-1"><a href="chapter8.html#cb784-1"></a><span class="kw">confint</span>(SATGENDER1)</span></code></pre></div>
+<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb789-1"><a href="chapter8.html#cb789-1"></a><span class="kw">confint</span>(SATGENDER1)</span></code></pre></div>
 <pre><code>##                    2.5 %     97.5 %
 ## (Intercept)  -0.07566665 0.50744709
 ## SATM          0.03355273 0.04367726
@@ -2601,11 +2604,11 @@ of the results in Figure <a href="chapter8.html#fig:Figure8-23">8.23</a> shows s
 slopes and the intercepts for the groups although the variation in intercepts
 seems more prominent than differences in slopes. Note that the <code>relevel</code> function was applied to the <code>treatment</code> variable with an option of <code>"Control"</code> to make the <em>Control</em> category the baseline category as the person who created the data set had set <code>T1</code> as the baseline in the <code>treatment</code> variable.</p>
 
-<div class="sourceCode" id="cb786"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb786-1"><a href="chapter8.html#cb786-1"></a><span class="kw">library</span>(heplots)</span>
-<span id="cb786-2"><a href="chapter8.html#cb786-2"></a><span class="kw">library</span>(viridis)</span>
-<span id="cb786-3"><a href="chapter8.html#cb786-3"></a><span class="kw">data</span>(Headache)</span>
-<span id="cb786-4"><a href="chapter8.html#cb786-4"></a>Headache &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(Headache)</span>
-<span id="cb786-5"><a href="chapter8.html#cb786-5"></a>Headache</span></code></pre></div>
+<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="chapter8.html#cb791-1"></a><span class="kw">library</span>(heplots)</span>
+<span id="cb791-2"><a href="chapter8.html#cb791-2"></a><span class="kw">library</span>(viridis)</span>
+<span id="cb791-3"><a href="chapter8.html#cb791-3"></a><span class="kw">data</span>(Headache)</span>
+<span id="cb791-4"><a href="chapter8.html#cb791-4"></a>Headache &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(Headache)</span>
+<span id="cb791-5"><a href="chapter8.html#cb791-5"></a>Headache</span></code></pre></div>
 <pre><code>## # A tibble: 98 x 6
 ##    type    treatment    u1   du1    u2   du2
 ##    &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -2620,12 +2623,12 @@ seems more prominent than differences in slopes. Note that the <code>relevel</co
 ##  9 Migrane T1         1.38  2.33  2.23  3.98
 ## 10 Tension T3         0.85  1.42  1.37  1.89
 ## # ... with 88 more rows</code></pre>
-<div class="sourceCode" id="cb788"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb788-1"><a href="chapter8.html#cb788-1"></a>Headache<span class="op">$</span>treatment &lt;-<span class="st"> </span><span class="kw">factor</span>(Headache<span class="op">$</span>treatment)</span>
-<span id="cb788-2"><a href="chapter8.html#cb788-2"></a><span class="co"># Make Control the baseline category</span></span>
-<span id="cb788-3"><a href="chapter8.html#cb788-3"></a>Headache<span class="op">$</span>treatment &lt;-<span class="st"> </span><span class="kw">relevel</span>(Headache<span class="op">$</span>treatment, <span class="st">&quot;Control&quot;</span>) </span>
-<span id="cb788-4"><a href="chapter8.html#cb788-4"></a><span class="kw">scatterplot</span>(du2<span class="op">~</span>du1<span class="op">|</span>treatment, <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>,</span>
-<span id="cb788-5"><a href="chapter8.html#cb788-5"></a>            <span class="dt">main=</span><span class="st">&quot;Plot of Maximum DB tolerances before &amp; after treatment (by treatment)&quot;</span>,</span>
-<span id="cb788-6"><a href="chapter8.html#cb788-6"></a>            <span class="dt">legend=</span><span class="kw">list</span>(<span class="dt">coords=</span><span class="st">&quot;topleft&quot;</span>,<span class="dt">columns=</span><span class="dv">2</span>), <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">4</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="chapter8.html#cb793-1"></a>Headache<span class="op">$</span>treatment &lt;-<span class="st"> </span><span class="kw">factor</span>(Headache<span class="op">$</span>treatment)</span>
+<span id="cb793-2"><a href="chapter8.html#cb793-2"></a><span class="co"># Make Control the baseline category</span></span>
+<span id="cb793-3"><a href="chapter8.html#cb793-3"></a>Headache<span class="op">$</span>treatment &lt;-<span class="st"> </span><span class="kw">relevel</span>(Headache<span class="op">$</span>treatment, <span class="st">&quot;Control&quot;</span>) </span>
+<span id="cb793-4"><a href="chapter8.html#cb793-4"></a><span class="kw">scatterplot</span>(du2<span class="op">~</span>du1<span class="op">|</span>treatment, <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb793-5"><a href="chapter8.html#cb793-5"></a>            <span class="dt">main=</span><span class="st">&quot;Plot of Maximum DB tolerances before &amp; after treatment (by treatment)&quot;</span>,</span>
+<span id="cb793-6"><a href="chapter8.html#cb793-6"></a>            <span class="dt">legend=</span><span class="kw">list</span>(<span class="dt">coords=</span><span class="st">&quot;topleft&quot;</span>,<span class="dt">columns=</span><span class="dv">2</span>), <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">4</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-23"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-23-1.png" alt="Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups)." width="960" />
 <p class="caption">
@@ -2645,8 +2648,7 @@ indicators for <em>T1</em>, <em>T2</em>, and <em>T3</em> treatment levels are:</
 <li><p>Indicator for <em>T3</em>: <span class="math inline">\(I_{T3,i}=\left\{\begin{array}{rl} 1 &amp; \text{if Treatment}=T3 \\ 0 &amp; \text{else} \end{array}\right.\)</span></p></li>
 </ul>
 <p>We can see the values of these indicators for a few observations and their
-original variable (<code>treatment</code>) in the following output. The bolded
-observations show each of the indicators being “turned on”. For <em>Control</em> all the
+original variable (<code>treatment</code>) in the following output. For <em>Control</em> all the
 indicators stay at 0.</p>
 <!-- \newpage -->
 <table>
@@ -2790,8 +2792,8 @@ differences in slopes – we investigate that further in the next section. For
 now, we can proceed with fitting the additive model with different intercepts
 for the four levels of <code>treatment</code> and the quantitative explanatory variable, <code>du1</code>.</p>
 
-<div class="sourceCode" id="cb789"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb789-1"><a href="chapter8.html#cb789-1"></a>head1 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">+</span>treatment, <span class="dt">data=</span>Headache)</span>
-<span id="cb789-2"><a href="chapter8.html#cb789-2"></a><span class="kw">summary</span>(head1)</span></code></pre></div>
+<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="chapter8.html#cb794-1"></a>head1 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">+</span>treatment, <span class="dt">data=</span>Headache)</span>
+<span id="cb794-2"><a href="chapter8.html#cb794-2"></a><span class="kw">summary</span>(head1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = du2 ~ du1 + treatment, data = Headache)
@@ -2828,7 +2830,7 @@ for the four levels of <code>treatment</code> and the quantitative explanatory v
 <p><span class="math display">\[\begin{array}{rl}
 \widehat{\text{du2}}_i &amp;=0.252+0.837\cdot\text{du1}_i +0.558I_{\text{T1},i}+0.634I_{\text{T2},i}+1.367I_{\text{T3},i} \\
 &amp;= 0.252+0.837\cdot\text{du1}_i+0.558*1+0.634*0+1.367*0 \\
-&amp;= 0.809+0.837\cdot\text{du1}_i + 0.558 \\
+&amp;= 0.252+0.837\cdot\text{du1}_i + 0.558 \\
 &amp;= 0.81+0.837\cdot\text{du1}_i.
 \end{array}\]</span></p>
 <!-- \newpage -->
@@ -2869,7 +2871,7 @@ Additionally, sometimes we
 need to add group information to diagnostics to see if any patterns in residuals look
 different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups.</p>
 
-<div class="sourceCode" id="cb791"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb791-1"><a href="chapter8.html#cb791-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(head1, <span class="dt">residuals=</span>T))</span></code></pre></div>
+<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="chapter8.html#cb796-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(head1, <span class="dt">residuals=</span>T))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-25"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-25-1.png" alt="Term-plots of the additive decibel tolerance model with partial residuals." width="576" />
 <p class="caption">
@@ -2884,9 +2886,9 @@ variability as a function of the fitted values as both the Residuals vs. Fitted
 and Scale-Location plots show some fanning out for higher values but this is a
 minor issue. There are no influential points here since all the Cook’s D values are less than 0.5. </p>
 
-<div class="sourceCode" id="cb792"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb792-1"><a href="chapter8.html#cb792-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb792-2"><a href="chapter8.html#cb792-2"></a><span class="kw">plot</span>(head1,<span class="dt">pch=</span><span class="dv">16</span>,</span>
-<span id="cb792-3"><a href="chapter8.html#cb792-3"></a>     <span class="dt">sub.caption=</span><span class="st">&quot;Plot of diagnostics for additive model with du1 and treatment for du2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="chapter8.html#cb797-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb797-2"><a href="chapter8.html#cb797-2"></a><span class="kw">plot</span>(head1,<span class="dt">pch=</span><span class="dv">16</span>,</span>
+<span id="cb797-3"><a href="chapter8.html#cb797-3"></a>     <span class="dt">sub.caption=</span><span class="st">&quot;Plot of diagnostics for additive model with du1 and treatment for du2&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-26"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-26-1.png" alt="Diagnostic plots for the additive decibel tolerance model." width="960" />
 <p class="caption">
@@ -2897,8 +2899,8 @@ Figure 8.26: Diagnostic plots for the additive decibel tolerance model.
 need to add group information to diagnostics to see if any patterns in residuals look
 different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups. We can use the <code>scatterplot</code> function to plot the residuals (extracted using the <code>residuals</code> function) versus the fitted values (extracted using the <code>fitted</code> function) by groups as in Figure <a href="chapter8.html#fig:Figure8-27">8.27</a>. In this example, there are no additional patterns extracted by making this plot, but it is a good additional check in these multi-group situations.</p>
 
-<div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="chapter8.html#cb793-1"></a><span class="kw">scatterplot</span>(<span class="kw">residuals</span>(head1)<span class="op">~</span><span class="kw">fitted</span>(head1)<span class="op">|</span>treatment,</span>
-<span id="cb793-2"><a href="chapter8.html#cb793-2"></a>            <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">4</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb798"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb798-1"><a href="chapter8.html#cb798-1"></a><span class="kw">scatterplot</span>(<span class="kw">residuals</span>(head1)<span class="op">~</span><span class="kw">fitted</span>(head1)<span class="op">|</span>treatment,</span>
+<span id="cb798-2"><a href="chapter8.html#cb798-2"></a>            <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">4</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-27"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-27-1.png" alt="Plot of residuals versus fitted values by treatment group from the additive decibel tolerance model." width="768" />
 <p class="caption">
@@ -2916,7 +2918,7 @@ multicollinearity with other predictors</strong>. In this model, the SE for <cod
 and the SEs for the indicator variables for <code>treatment</code> are 1.003 times larger due to multicollinearity than they otherwise
 would have been. Neither are large so multicollinearity is not a problem in
 this model.</p>
-<div class="sourceCode" id="cb794"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb794-1"><a href="chapter8.html#cb794-1"></a><span class="kw">vif</span>(head1)</span></code></pre></div>
+<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="chapter8.html#cb799-1"></a><span class="kw">vif</span>(head1)</span></code></pre></div>
 <pre><code>##              GVIF Df GVIF^(1/(2*Df))
 ## du1       1.01786  1        1.008891
 ## treatment 1.01786  3        1.002955</code></pre>
@@ -2927,9 +2929,9 @@ to the baseline. In Section <a href="chapter8.html#section8-12">8.12</a>, we see
 model. But we can compare adjusted <strong><em>R</em></strong><sup>2</sup> values with and without
 <em>Treatment</em> to see if including the categorical variable was “worth
 it”:</p>
-<div class="sourceCode" id="cb796"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb796-1"><a href="chapter8.html#cb796-1"></a>head1R &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1, <span class="dt">data=</span>Headache)</span></code></pre></div>
+<div class="sourceCode" id="cb801"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb801-1"><a href="chapter8.html#cb801-1"></a>head1R &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1, <span class="dt">data=</span>Headache)</span></code></pre></div>
 <!-- \newpage -->
-<div class="sourceCode" id="cb797"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb797-1"><a href="chapter8.html#cb797-1"></a><span class="kw">summary</span>(head1R)</span></code></pre></div>
+<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="chapter8.html#cb802-1"></a><span class="kw">summary</span>(head1R)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = du2 ~ du1, data = Headache)
@@ -3024,14 +3026,14 @@ a 1 unit change in IQ score is a 1 SD change and that the <em>y</em>-intercept (
 Figure 8.28: Scatterplot for reading score versus nonverbal IQ by dyslexia group.
 </p>
 </div>
-<div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="chapter8.html#cb799-1"></a><span class="kw">library</span>(smdata)</span>
-<span id="cb799-2"><a href="chapter8.html#cb799-2"></a><span class="kw">data</span>(<span class="st">&quot;dyslexic3&quot;</span>)</span>
-<span id="cb799-3"><a href="chapter8.html#cb799-3"></a>dyslexic3 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(dyslexic3)</span>
-<span id="cb799-4"><a href="chapter8.html#cb799-4"></a>dyslexic3<span class="op">$</span>dys &lt;-<span class="st"> </span><span class="kw">factor</span>(dyslexic3<span class="op">$</span>dys)</span>
-<span id="cb799-5"><a href="chapter8.html#cb799-5"></a><span class="kw">levels</span>(dyslexic3<span class="op">$</span>dys) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>)</span>
-<span id="cb799-6"><a href="chapter8.html#cb799-6"></a><span class="kw">scatterplot</span>(score<span class="op">~</span>ziq<span class="op">|</span>dys, <span class="dt">xlab=</span><span class="st">&quot;Standardized nonverbal IQ scores&quot;</span>,</span>
-<span id="cb799-7"><a href="chapter8.html#cb799-7"></a>            <span class="dt">ylab=</span><span class="st">&quot;Reading score&quot;</span>, <span class="dt">data=</span>dyslexic3, <span class="dt">smooth=</span>F,</span>
-<span id="cb799-8"><a href="chapter8.html#cb799-8"></a>            <span class="dt">main=</span><span class="st">&quot;Plot of IQ vs Reading by dyslexia status&quot;</span>, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">7</span>)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="chapter8.html#cb804-1"></a><span class="kw">library</span>(smdata)</span>
+<span id="cb804-2"><a href="chapter8.html#cb804-2"></a><span class="kw">data</span>(<span class="st">&quot;dyslexic3&quot;</span>)</span>
+<span id="cb804-3"><a href="chapter8.html#cb804-3"></a>dyslexic3 &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(dyslexic3)</span>
+<span id="cb804-4"><a href="chapter8.html#cb804-4"></a>dyslexic3<span class="op">$</span>dys &lt;-<span class="st"> </span><span class="kw">factor</span>(dyslexic3<span class="op">$</span>dys)</span>
+<span id="cb804-5"><a href="chapter8.html#cb804-5"></a><span class="kw">levels</span>(dyslexic3<span class="op">$</span>dys) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>)</span>
+<span id="cb804-6"><a href="chapter8.html#cb804-6"></a><span class="kw">scatterplot</span>(score<span class="op">~</span>ziq<span class="op">|</span>dys, <span class="dt">xlab=</span><span class="st">&quot;Standardized nonverbal IQ scores&quot;</span>,</span>
+<span id="cb804-7"><a href="chapter8.html#cb804-7"></a>            <span class="dt">ylab=</span><span class="st">&quot;Reading score&quot;</span>, <span class="dt">data=</span>dyslexic3, <span class="dt">smooth=</span>F,</span>
+<span id="cb804-8"><a href="chapter8.html#cb804-8"></a>            <span class="dt">main=</span><span class="st">&quot;Plot of IQ vs Reading by dyslexia status&quot;</span>, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">7</span>)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>)])</span></code></pre></div>
 <p>To allow for both different <span class="math inline">\(y\)</span>-intercepts and slope coefficients on the
 quantitative predictor, we need to include a “modification” of the slope
 coefficient. This is performed using an <strong><em>interaction</em></strong> between the two
@@ -3081,8 +3083,8 @@ now <span class="math inline">\(\beta_0+\beta_2\)</span>, <strong>and</strong> a
 </ul>
 <p>We can make this more concrete by applying this to the dyslexia data with
 <code>dys</code> as a categorical variable for dyslexia status of subjects (levels of <em>no</em> and <em>yes</em>) and <code>ziq</code> the standardized IQ. The model is estimated as:</p>
-<div class="sourceCode" id="cb800"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb800-1"><a href="chapter8.html#cb800-1"></a>dys_model &lt;-<span class="st"> </span><span class="kw">lm</span>(score<span class="op">~</span>ziq<span class="op">*</span>dys, <span class="dt">data=</span>dyslexic3)</span>
-<span id="cb800-2"><a href="chapter8.html#cb800-2"></a><span class="kw">summary</span>(dys_model)</span></code></pre></div>
+<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="chapter8.html#cb805-1"></a>dys_model &lt;-<span class="st"> </span><span class="kw">lm</span>(score<span class="op">~</span>ziq<span class="op">*</span>dys, <span class="dt">data=</span>dyslexic3)</span>
+<span id="cb805-2"><a href="chapter8.html#cb805-2"></a><span class="kw">summary</span>(dys_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = score ~ ziq * dys, data = dyslexic3)
@@ -3160,9 +3162,9 @@ scoring on average higher and have a different slope than the results for the
 dyslexic students. The QQ-plot suggests a slightly long left tail but this deviation is not too far from what might happen if we simulated from a normal distribution, so is not clear evidence of a violation of the normality assumption. The influence diagnostics do not suggest any
 influential points because no points have Cook’s D over 0.5. </p>
 
-<div class="sourceCode" id="cb802"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb802-1"><a href="chapter8.html#cb802-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb802-2"><a href="chapter8.html#cb802-2"></a><span class="kw">plot</span>(dys_model,</span>
-<span id="cb802-3"><a href="chapter8.html#cb802-3"></a>     <span class="dt">sub.caption=</span><span class="st">&quot;Plot of diagnostics for Dyslexia Interaction model&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb807"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb807-1"><a href="chapter8.html#cb807-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb807-2"><a href="chapter8.html#cb807-2"></a><span class="kw">plot</span>(dys_model,</span>
+<span id="cb807-3"><a href="chapter8.html#cb807-3"></a>     <span class="dt">sub.caption=</span><span class="st">&quot;Plot of diagnostics for Dyslexia Interaction model&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-29"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-29-1.png" alt="Diagnostic plots for interaction model for reading scores." width="960" />
 <p class="caption">
@@ -3186,8 +3188,8 @@ non-dyslexic group, possibly suggesting that variability in the reading test is
 higher for higher scoring individuals even though we couldn’t observe all of
 that variability because there were so many perfect scores in this group.</p>
 
-<div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="chapter8.html#cb803-1"></a><span class="kw">scatterplot</span>(<span class="kw">residuals</span>(dys_model)<span class="op">~</span><span class="kw">fitted</span>(dys_model)<span class="op">|</span>dys,</span>
-<span id="cb803-2"><a href="chapter8.html#cb803-2"></a>            <span class="dt">data=</span>dyslexic3, <span class="dt">smooth=</span>F, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">7</span>)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="chapter8.html#cb808-1"></a><span class="kw">scatterplot</span>(<span class="kw">residuals</span>(dys_model)<span class="op">~</span><span class="kw">fitted</span>(dys_model)<span class="op">|</span>dys,</span>
+<span id="cb808-2"><a href="chapter8.html#cb808-2"></a>            <span class="dt">data=</span>dyslexic3, <span class="dt">smooth=</span>F, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">7</span>)[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">6</span>)])</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-30"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-30-1.png" alt="Plot of Residuals vs Fitted from interaction dyslexia data model with groups indicated." width="576" />
 <p class="caption">
@@ -3229,7 +3231,7 @@ change the intercept. The plot shows that there are clear differences in the
 means even though we don’t have a test to directly assess that in this
 complicated of a model<a href="references.html#fn132" class="footnote-ref" id="fnref132"><sup>132</sup></a>. Figure Figure <a href="chapter8.html#fig:Figure8-32">8.32</a> splits the plots up and adds partial residuals to the plots. The impact on the estimated model for the perfect scores in the non-dyslexic subjects is very prominent as well as the difference in the relationships between the two variables in the two groups.</p>
 
-<div class="sourceCode" id="cb804"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb804-1"><a href="chapter8.html#cb804-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(dys_model), <span class="dt">ci.style=</span><span class="st">&quot;bands&quot;</span>, <span class="dt">multiline=</span>T, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">grid=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="chapter8.html#cb809-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(dys_model), <span class="dt">ci.style=</span><span class="st">&quot;bands&quot;</span>, <span class="dt">multiline=</span>T, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">grid=</span>T)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-31"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-31-1.png" alt="Term-plots for interaction model for reading scores using the multiline=T option to overlay the results for the two groups on one plot." width="576" />
 <p class="caption">
@@ -3237,7 +3239,7 @@ Figure 8.31: Term-plots for interaction model for reading scores using the <code
 </p>
 </div>
 
-<div class="sourceCode" id="cb805"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb805-1"><a href="chapter8.html#cb805-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(dys_model, <span class="dt">residuals=</span>T), <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">grid=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb810"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb810-1"><a href="chapter8.html#cb810-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(dys_model, <span class="dt">residuals=</span>T), <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">grid=</span>T)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-32"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-32-1.png" alt="Term-plots for interaction model for reading scores with partial residuals and the results for the two groups in different panels of the plot." width="576" />
 <p class="caption">
@@ -3255,8 +3257,8 @@ dangerous conclusion that
 can come from assuming a common slope when that might not be the case.</p>
 
 
-<div class="sourceCode" id="cb806"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb806-1"><a href="chapter8.html#cb806-1"></a>dys_modelR &lt;-<span class="st"> </span><span class="kw">lm</span>(score<span class="op">~</span>ziq<span class="op">+</span>dys, <span class="dt">data=</span>dyslexic3)</span>
-<span id="cb806-2"><a href="chapter8.html#cb806-2"></a><span class="kw">summary</span>(dys_modelR)</span></code></pre></div>
+<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="chapter8.html#cb811-1"></a>dys_modelR &lt;-<span class="st"> </span><span class="kw">lm</span>(score<span class="op">~</span>ziq<span class="op">+</span>dys, <span class="dt">data=</span>dyslexic3)</span>
+<span id="cb811-2"><a href="chapter8.html#cb811-2"></a><span class="kw">summary</span>(dys_modelR)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = score ~ ziq + dys, data = dyslexic3)
@@ -3274,7 +3276,7 @@ can come from assuming a common slope when that might not be the case.</p>
 ## Residual standard error: 0.1049 on 41 degrees of freedom
 ## Multiple R-squared:  0.6858, Adjusted R-squared:  0.6705 
 ## F-statistic: 44.75 on 2 and 41 DF,  p-value: 4.917e-11</code></pre>
-<div class="sourceCode" id="cb808"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb808-1"><a href="chapter8.html#cb808-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(dys_modelR, <span class="dt">residuals=</span>T))</span></code></pre></div>
+<div class="sourceCode" id="cb813"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb813-1"><a href="chapter8.html#cb813-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(dys_modelR, <span class="dt">residuals=</span>T))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-33"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-33-1.png" alt="Term-plots for additive model for reading scores." width="576" />
 <p class="caption">
@@ -3286,8 +3288,8 @@ students (<span class="math inline">\(t_{41}=1.34\)</span>, p-value=0.188), adju
 <span class="math inline">\(y\)</span>-intercepts (<span class="math inline">\(t_{41}=-6.88\)</span>, p-value <span class="math inline">\(&lt;0.00001\)</span>) after adjusting for the verbal IQ score.</p>
 <p>Since the IQ term has a large p-value, we could drop it from the
 model – leaving a model that only includes the grouping variable:</p>
-<div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="chapter8.html#cb809-1"></a>dys_modelR2 &lt;-<span class="st"> </span><span class="kw">lm</span>(score<span class="op">~</span>dys, <span class="dt">data=</span>dyslexic3)</span>
-<span id="cb809-2"><a href="chapter8.html#cb809-2"></a><span class="kw">summary</span>(dys_modelR2)</span></code></pre></div>
+<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="chapter8.html#cb814-1"></a>dys_modelR2 &lt;-<span class="st"> </span><span class="kw">lm</span>(score<span class="op">~</span>dys, <span class="dt">data=</span>dyslexic3)</span>
+<span id="cb814-2"><a href="chapter8.html#cb814-2"></a><span class="kw">summary</span>(dys_modelR2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = score ~ dys, data = dyslexic3)
@@ -3306,7 +3308,7 @@ model – leaving a model that only includes the grouping variable:</p>
 ## F-statistic: 86.08 on 1 and 42 DF,  p-value: 1e-11</code></pre>
 
 
-<div class="sourceCode" id="cb811"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb811-1"><a href="chapter8.html#cb811-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(dys_modelR2, <span class="dt">residuals=</span>T))</span></code></pre></div>
+<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="chapter8.html#cb816-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(dys_modelR2, <span class="dt">residuals=</span>T))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-34"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-34-1.png" alt="Term-plot for dyslexia status only model for reading scores." width="576" />
 <p class="caption">
@@ -3376,8 +3378,8 @@ Figure 8.35: Term-plot for decibel tolerance interaction model with partial resi
 </p>
 </div>
 
-<div class="sourceCode" id="cb812"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb812-1"><a href="chapter8.html#cb812-1"></a>head2 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">*</span>treatment, <span class="dt">data=</span>Headache)</span>
-<span id="cb812-2"><a href="chapter8.html#cb812-2"></a><span class="kw">summary</span>(head2)</span></code></pre></div>
+<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="chapter8.html#cb817-1"></a>head2 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">*</span>treatment, <span class="dt">data=</span>Headache)</span>
+<span id="cb817-2"><a href="chapter8.html#cb817-2"></a><span class="kw">summary</span>(head2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = du2 ~ du1 * treatment, data = Headache)
@@ -3422,8 +3424,8 @@ can’t see all the groups. In these situations, it can be useful to make the te
 Figure 8.36: Term-plot for decibel tolerance interaction model (version 2). This plot is not printed in color because it is impossible to distinguish the four groups whether in color or black and white.
 </p>
 </div>
-<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="chapter8.html#cb814-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(head2, <span class="dt">residuals=</span>T))</span>
-<span id="cb814-2"><a href="chapter8.html#cb814-2"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(head2), <span class="dt">multiline=</span>T, <span class="dt">ci.style=</span><span class="st">&quot;bands&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="chapter8.html#cb819-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(head2, <span class="dt">residuals=</span>T))</span>
+<span id="cb819-2"><a href="chapter8.html#cb819-2"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(head2), <span class="dt">multiline=</span>T, <span class="dt">ci.style=</span><span class="st">&quot;bands&quot;</span>)</span></code></pre></div>
 <p>In situations with more than 2 levels, the <span class="math inline">\(t\)</span>-tests for the interaction or
 changing <span class="math inline">\(y\)</span>-intercepts are not informative for deciding if you really need
 different slopes or intercepts for all the groups.
@@ -3474,7 +3476,7 @@ the assumption that we would proceed through the model, dropping terms if the
 p-values are large (“not significant” in the diagram) to arrive at a final
 model. </p>
 
-<div class="figure"><span id="fig:Figure8-37"></span>
+<div class="figure" style="text-align: center"><span id="fig:Figure8-37"></span>
 <img src="chapter8_files/nestedModelTree_medium.png" alt="Diagram of models to consider in an interaction model." width="100%" />
 <p class="caption">
 Figure 8.37: Diagram of models to consider in an interaction model.
@@ -3568,7 +3570,7 @@ The p-value from this
 distribution is 0.515, showing little to no evidence against
 the null hypothesis, so does not suggest that the slope coefficient for <em>du1</em> in explaining <em>du2</em> is different for
 at least one of the <em>Treatment</em> groups in the population.</p>
-<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="chapter8.html#cb815-1"></a><span class="kw">Anova</span>(head2)</span></code></pre></div>
+<div class="sourceCode" id="cb820"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb820-1"><a href="chapter8.html#cb820-1"></a><span class="kw">Anova</span>(head2)</span></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: du2
@@ -3621,8 +3623,8 @@ between the <em>treatment</em> groups, in a model with <em>du1</em>, in the popu
 could interpret this in the fashion we used initially in MLR by stating this
 result as: there is little evidence against the null hypothesis of no difference in the mean <em>du2</em> for the
 <em>Treatment</em> groups after controlling for <em>du1</em>.</p>
-<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="chapter8.html#cb817-1"></a>head1 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">+</span>treatment, <span class="dt">data=</span>Headache)</span>
-<span id="cb817-2"><a href="chapter8.html#cb817-2"></a><span class="kw">Anova</span>(head1)</span></code></pre></div>
+<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="chapter8.html#cb822-1"></a>head1 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">+</span>treatment, <span class="dt">data=</span>Headache)</span>
+<span id="cb822-2"><a href="chapter8.html#cb822-2"></a><span class="kw">Anova</span>(head1)</span></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: du2
@@ -3660,7 +3662,7 @@ theoretical underpinnings, a slightly more interpretable scale, and, often,
 better performance in picking an optimal<a href="references.html#fn135" class="footnote-ref" id="fnref135"><sup>135</sup></a>
 model than the <strong><em>adjusted</em></strong> <strong><em>R</em></strong><sup>2</sup>. The measure is called the
 <strong><em>AIC</em></strong> (Akaike’s An Information Criterion<a href="references.html#fn136" class="footnote-ref" id="fnref136"><sup>136</sup></a>,
-<span class="citation">(Akaike <a href="#ref-Akaike1974" role="doc-biblioref">1974</a>)</span>. It is extremely popular, but sometimes misused, in some fields
+<span class="citation">(Akaike <a href="#ref-Akaike1974" role="doc-biblioref">1974</a>)</span>). It is extremely popular, but sometimes misused, in some fields
 such as Ecology and has been applied in almost every other potential
 application area where statistical models can be compared. <span class="citation">Burnham and Anderson (<a href="#ref-Burnham2002" role="doc-biblioref">2002</a>)</span>
 have been responsible for popularizing the use of AIC for model
@@ -3722,12 +3724,12 @@ Often researchers will consider any models within 2 AIC units of the top model
 <span class="math inline">\((\Delta\text{AIC}&lt;2)\)</span> as indistinguishable on
 AICs and so either select the simplest model of the choices or report all the
 models with similar “support”, allowing the reader to explore the suite of
-similarly supported potential models . It is important to remember that if you
+similarly supported potential models. It is important to remember that if you
 search across too many models, even with the AIC to support your model
 comparisons, you might find a spuriously top model. Individual results that are
 found by exploring many tests or models have higher chances to be <strong><em>spurious</em></strong>
-and results found in this manner are difficult to <strong><em>reproduce</em></strong> when
-someone repeats a similar study<a href="references.html#fn138" class="footnote-ref" id="fnref138"><sup>138</sup></a>.
+and results found in this manner are difficult to <strong><em>replicate</em></strong> when
+someone repeats a similar study.
 For these reasons, there is a set of general recommendations that have been
 developed for using AICs:</p>
 <ul>
@@ -3741,7 +3743,7 @@ $%#%-mountain, which is not necessarily a good thing.</li>
 </ul></li>
 <li><p>Report a table with the models considered, sorted from smallest to largest
 AICs (<span class="math inline">\(\Delta\text{AICs}\)</span> from smaller to larger) that includes a count of
-number of parameters estimated<a href="references.html#fn139" class="footnote-ref" id="fnref139"><sup>139</sup></a>, the
+number of parameters estimated<a href="references.html#fn138" class="footnote-ref" id="fnref138"><sup>138</sup></a>, the
 AICs, and <span class="math inline">\(\Delta\text{AICs}\)</span>.</p>
 <ul>
 <li>Remember to incorporate the mean-only model in the model selection results. This allows you to compare the top model to one that does not contain any predictors.</li>
@@ -3763,8 +3765,8 @@ intervals to aid in interpretation of the terms in the selected model(s)
 but need to avoid performing hypothesis tests with the confidence intervals.</p></li>
 <li><p>Remember that the selected model is not the “true” model – it is only the
 best model <em>according to AIC</em> among the set of models <em>you provided</em>.</p></li>
-<li><p>Model assumptions need to be met to use AICs. They assume that the model is
-specified correctly up to possibly comparing different predictor variables. Perform diagnostic checks on your initial model and the top model. </p></li>
+<li><p>AICs assume that the model is
+specified correctly up to possibly comparing different predictor variables. Perform diagnostic checks on your initial model and the top model and do not trust AICs when assumptions are clearly violated (p-values are similarly not valid in that situation). </p></li>
 </ul>
 <p>When working with AICs, there are two options. Fit the models of interest and
 then run the <code>AIC</code> function on each model. This can be tedious, especially
@@ -3803,14 +3805,14 @@ with related results found in Section <a href="chapter8.html#section8-4">8.4</a>
 Table <a href="chapter8.html#tab:Table8-1">8.1</a>. In that situation we were considering
 a “full” model that included <em>Elevation</em>, <em>Min.Temp</em>, and <em>Max.Temp</em> as potential
 predictor variables after removing two influential points.   And we considered all
-possible reduced models from that “full”<a href="references.html#fn140" class="footnote-ref" id="fnref140"><sup>140</sup></a> model. Note
+possible reduced models from that “full”<a href="references.html#fn139" class="footnote-ref" id="fnref139"><sup>139</sup></a> model. Note
 that the <code>dredge</code> output adds one more model that adjusted <strong><em>R</em></strong><sup>2</sup>
 can’t consider – the mean-only model that contains no predictor variables. In
 the following output it is the last model in the output (worst ranked on AIC).
 Including the mean-only model in these results helps us “prove” that there is
 support for having something in the model, but only if there is better support for
 other models than this simplest possible model.</p>
-<p>In reading <code>dredge</code> output<a href="references.html#fn141" class="footnote-ref" id="fnref141"><sup>141</sup></a> as it is constructed here, the models are sorted by
+<p>In reading <code>dredge</code> output<a href="references.html#fn140" class="footnote-ref" id="fnref140"><sup>140</sup></a> as it is constructed here, the models are sorted by
 top to bottom AIC values (smallest AIC to largest). The column <code>delta</code> is for
 the <span class="math inline">\(\Delta\text{AICs}\)</span> and shows a 0 for the first row, which is the
 top-ranked AIC model. Here it is for the model with <em>Elevation</em> and <em>Max.Temp</em> but
@@ -3821,11 +3823,11 @@ columns. The <code>df</code> is also a useful column for comparing models as it 
 you see how complex each model is. For example, the top model used up 4
 <em>model df</em> (three <span class="math inline">\(\beta\text{&#39;s}\)</span> and the residual error variance) and the
 most complex model that included four predictor variables used up 5 <em>model df</em>.</p>
-<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="chapter8.html#cb819-1"></a><span class="kw">library</span>(MuMIn)</span>
-<span id="cb819-2"><a href="chapter8.html#cb819-2"></a><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
-<span id="cb819-3"><a href="chapter8.html#cb819-3"></a>snotel2R &lt;-<span class="st"> </span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]</span>
-<span id="cb819-4"><a href="chapter8.html#cb819-4"></a>m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2R)</span>
-<span id="cb819-5"><a href="chapter8.html#cb819-5"></a><span class="kw">dredge</span>(m6, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, <span class="dt">extra =</span> <span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</span></code></pre></div>
+<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="chapter8.html#cb824-1"></a><span class="kw">library</span>(MuMIn)</span>
+<span id="cb824-2"><a href="chapter8.html#cb824-2"></a><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
+<span id="cb824-3"><a href="chapter8.html#cb824-3"></a>snotel2R &lt;-<span class="st"> </span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]</span>
+<span id="cb824-4"><a href="chapter8.html#cb824-4"></a>m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2R)</span>
+<span id="cb824-5"><a href="chapter8.html#cb824-5"></a><span class="kw">dredge</span>(m6, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, <span class="dt">extra =</span> <span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</span></code></pre></div>
 <pre><code>## Global model call: lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel2R)
 ## ---
 ## Model selection table 
@@ -3918,24 +3920,24 @@ involved in the interaction if we don’t need the interaction.</p>
 Figure 8.39: Scatterplot of log(FEV) vs Age by smoking status.
 </p>
 </div>
-<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="chapter8.html#cb821-1"></a><span class="kw">library</span>(coneproj)</span>
-<span id="cb821-2"><a href="chapter8.html#cb821-2"></a><span class="kw">data</span>(FEV)</span>
-<span id="cb821-3"><a href="chapter8.html#cb821-3"></a>FEV &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(FEV)</span>
-<span id="cb821-4"><a href="chapter8.html#cb821-4"></a>FEV<span class="op">$</span>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(FEV<span class="op">$</span>sex) <span class="co">#Make sex a factor</span></span>
-<span id="cb821-5"><a href="chapter8.html#cb821-5"></a><span class="kw">levels</span>(FEV<span class="op">$</span>sex) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Male&quot;</span>)  <span class="co">#Make sex labels explicit</span></span>
-<span id="cb821-6"><a href="chapter8.html#cb821-6"></a>FEV<span class="op">$</span>smoke &lt;-<span class="st"> </span><span class="kw">factor</span>(FEV<span class="op">$</span>smoke) <span class="co">#Make smoking status a factor</span></span>
-<span id="cb821-7"><a href="chapter8.html#cb821-7"></a><span class="kw">levels</span>(FEV<span class="op">$</span>smoke) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Nonsmoker&quot;</span>,<span class="st">&quot;Smoker&quot;</span>) <span class="co">#Make smoking status labels explicit</span></span>
-<span id="cb821-8"><a href="chapter8.html#cb821-8"></a><span class="kw">scatterplot</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>age<span class="op">|</span>smoke, <span class="dt">data=</span>FEV, <span class="dt">smooth=</span>F,</span>
-<span id="cb821-9"><a href="chapter8.html#cb821-9"></a>            <span class="dt">main=</span><span class="st">&quot;Plot of log(FEV) vs Age of children by smoking  status&quot;</span>,</span>
-<span id="cb821-10"><a href="chapter8.html#cb821-10"></a>            <span class="dt">legend=</span><span class="kw">list</span>(<span class="dt">coords=</span><span class="st">&quot;topleft&quot;</span>, <span class="dt">columns=</span><span class="dv">1</span>, <span class="dt">cex.leg=</span><span class="fl">0.75</span>),<span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">6</span>)[<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">1</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb826"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb826-1"><a href="chapter8.html#cb826-1"></a><span class="kw">library</span>(coneproj)</span>
+<span id="cb826-2"><a href="chapter8.html#cb826-2"></a><span class="kw">data</span>(FEV)</span>
+<span id="cb826-3"><a href="chapter8.html#cb826-3"></a>FEV &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(FEV)</span>
+<span id="cb826-4"><a href="chapter8.html#cb826-4"></a>FEV<span class="op">$</span>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(FEV<span class="op">$</span>sex) <span class="co">#Make sex a factor</span></span>
+<span id="cb826-5"><a href="chapter8.html#cb826-5"></a><span class="kw">levels</span>(FEV<span class="op">$</span>sex) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>,<span class="st">&quot;Male&quot;</span>)  <span class="co">#Make sex labels explicit</span></span>
+<span id="cb826-6"><a href="chapter8.html#cb826-6"></a>FEV<span class="op">$</span>smoke &lt;-<span class="st"> </span><span class="kw">factor</span>(FEV<span class="op">$</span>smoke) <span class="co">#Make smoking status a factor</span></span>
+<span id="cb826-7"><a href="chapter8.html#cb826-7"></a><span class="kw">levels</span>(FEV<span class="op">$</span>smoke) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Nonsmoker&quot;</span>,<span class="st">&quot;Smoker&quot;</span>) <span class="co">#Make smoking status labels explicit</span></span>
+<span id="cb826-8"><a href="chapter8.html#cb826-8"></a><span class="kw">scatterplot</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>age<span class="op">|</span>smoke, <span class="dt">data=</span>FEV, <span class="dt">smooth=</span>F,</span>
+<span id="cb826-9"><a href="chapter8.html#cb826-9"></a>            <span class="dt">main=</span><span class="st">&quot;Plot of log(FEV) vs Age of children by smoking  status&quot;</span>,</span>
+<span id="cb826-10"><a href="chapter8.html#cb826-10"></a>            <span class="dt">legend=</span><span class="kw">list</span>(<span class="dt">coords=</span><span class="st">&quot;topleft&quot;</span>, <span class="dt">columns=</span><span class="dv">1</span>, <span class="dt">cex.leg=</span><span class="fl">0.75</span>),<span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">6</span>)[<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">1</span>)])</span></code></pre></div>
 <p>To get the needed results, start with the <strong><em>full model</em></strong> – the most
 complicated model you want to consider. It is good to check assumptions before
 considering reducing the model as they rarely get better in simpler models and
 the <strong>AIC is only appropriate to use if the model assumptions are not clearly violated</strong>. As suggested above, our “fullish” model for the <em>log(FEV)</em> values is
 specified as <code>log(FEV)~height+age*smoke+sex</code>.</p>
 
-<div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="chapter8.html#cb822-1"></a>fm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>height<span class="op">+</span>age<span class="op">*</span>smoke<span class="op">+</span>sex, <span class="dt">data=</span>FEV)</span>
-<span id="cb822-2"><a href="chapter8.html#cb822-2"></a><span class="kw">summary</span>(fm1)</span></code></pre></div>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="chapter8.html#cb827-1"></a>fm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>height<span class="op">+</span>age<span class="op">*</span>smoke<span class="op">+</span>sex, <span class="dt">data=</span>FEV)</span>
+<span id="cb827-2"><a href="chapter8.html#cb827-2"></a><span class="kw">summary</span>(fm1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(FEV) ~ height + age * smoke + sex, data = FEV)
@@ -3956,8 +3958,8 @@ specified as <code>log(FEV)~height+age*smoke+sex</code>.</p>
 ## Residual standard error: 0.1454 on 648 degrees of freedom
 ## Multiple R-squared:  0.8112, Adjusted R-squared:  0.8097 
 ## F-statistic: 556.8 on 5 and 648 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="chapter8.html#cb824-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
-<span id="cb824-2"><a href="chapter8.html#cb824-2"></a><span class="kw">plot</span>(fm1, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for full FEV model&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="chapter8.html#cb829-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
+<span id="cb829-2"><a href="chapter8.html#cb829-2"></a><span class="kw">plot</span>(fm1, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for full FEV model&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-40"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-40-1.png" alt="Diagnostics for the log(FEV) model that includes height, sex, and an interaction between age and smoking status (the full model)." width="960" />
 <p class="caption">
@@ -3976,8 +3978,8 @@ each model if run the function on multiple models. For example, suppose that the
 without the interaction term in the model, called <code>fm1R</code>. You need to fit both
 models and then apply the <code>AIC</code> function to them with commas between the model
 names:</p>
-<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="chapter8.html#cb825-1"></a>fm1R &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>height<span class="op">+</span>age<span class="op">+</span>smoke<span class="op">+</span>sex, <span class="dt">data=</span>FEV)</span>
-<span id="cb825-2"><a href="chapter8.html#cb825-2"></a><span class="kw">AIC</span>(fm1, fm1R)</span></code></pre></div>
+<div class="sourceCode" id="cb830"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb830-1"><a href="chapter8.html#cb830-1"></a>fm1R &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(FEV)<span class="op">~</span>height<span class="op">+</span>age<span class="op">+</span>smoke<span class="op">+</span>sex, <span class="dt">data=</span>FEV)</span>
+<span id="cb830-2"><a href="chapter8.html#cb830-2"></a><span class="kw">AIC</span>(fm1, fm1R)</span></code></pre></div>
 <pre><code>##      df       AIC
 ## fm1   7 -658.5178
 ## fm1R  6 -658.6037</code></pre>
@@ -3992,9 +3994,9 @@ needed in the model. The full suite of results from dredge provide model
 comparisons that help us to assess the presence/absence of each model component
 including the interaction.</p>
 
-<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="chapter8.html#cb827-1"></a><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
-<span id="cb827-2"><a href="chapter8.html#cb827-2"></a><span class="kw">dredge</span>(fm1, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </span>
-<span id="cb827-3"><a href="chapter8.html#cb827-3"></a>       <span class="dt">extra =</span> <span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</span></code></pre></div>
+<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="chapter8.html#cb832-1"></a><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
+<span id="cb832-2"><a href="chapter8.html#cb832-2"></a><span class="kw">dredge</span>(fm1, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </span>
+<span id="cb832-3"><a href="chapter8.html#cb832-3"></a>       <span class="dt">extra =</span> <span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</span></code></pre></div>
 <pre><code>## Global model call: lm(formula = log(FEV) ~ height + age * smoke + sex, data = FEV)
 ## ---
 ## Model selection table 
@@ -4105,20 +4107,20 @@ working with a log(y) model now is that we have to note that the model used to
 generate the slope coefficient had other components and so this estimate is
 after adjusting for them.</strong></p>
 
-<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="chapter8.html#cb829-1"></a>fm1R<span class="op">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="chapter8.html#cb834-1"></a>fm1R<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>## (Intercept)      height         age smokeSmoker     sexMale 
 ## -1.94399818  0.04279579  0.02338721 -0.04606754  0.02931936</code></pre>
-<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="chapter8.html#cb831-1"></a><span class="kw">vif</span>(fm1R)</span></code></pre></div>
+<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="chapter8.html#cb836-1"></a><span class="kw">vif</span>(fm1R)</span></code></pre></div>
 <pre><code>##   height      age    smoke      sex 
 ## 2.829728 3.019010 1.209564 1.060228</code></pre>
-<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="chapter8.html#cb833-1"></a><span class="kw">confint</span>(fm1R)</span></code></pre></div>
+<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="chapter8.html#cb838-1"></a><span class="kw">confint</span>(fm1R)</span></code></pre></div>
 <pre><code>##                    2.5 %       97.5 %
 ## (Intercept) -2.098414941 -1.789581413
 ## height       0.039498923  0.046092655
 ## age          0.016812109  0.029962319
 ## smokeSmoker -0.087127344 -0.005007728
 ## sexMale      0.006308481  0.052330236</code></pre>
-<div class="sourceCode" id="cb835"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb835-1"><a href="chapter8.html#cb835-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(fm1R), <span class="dt">grid=</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="chapter8.html#cb840-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(fm1R), <span class="dt">grid=</span>T)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-42"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-42-1.png" alt="Term-plots for the top AIC model for log(FEV) that includes height, age, smoking status, and sex in the model." width="960" />
 <p class="caption">
@@ -4310,8 +4312,8 @@ measurement but there were actually quite a few variables measured when the
 run time was found – maybe we can replace the treadmill test result with a
 combined prediction built using a few variables using the MLR techniques. The
 following code will get us re-started in this situation.</p>
-<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="chapter8.html#cb836-1"></a>treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/treadmill.csv&quot;</span>)</span>
-<span id="cb836-2"><a href="chapter8.html#cb836-2"></a>tm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(TreadMillOx<span class="op">~</span>RunTime, <span class="dt">data=</span>treadmill)</span></code></pre></div>
+<div class="sourceCode" id="cb841"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb841-1"><a href="chapter8.html#cb841-1"></a>treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/treadmill.csv&quot;</span>)</span>
+<span id="cb841-2"><a href="chapter8.html#cb841-2"></a>tm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(TreadMillOx<span class="op">~</span>RunTime, <span class="dt">data=</span>treadmill)</span></code></pre></div>
 <p>8.1.1. Fit the MLR that also includes the running pulse (<code>RunPulse</code>), the
 resting pulse (<code>RestPulse</code>), body weight (<code>BodyWeight</code>), and Age (<code>Age</code>)
 of the subjects. Report and interpret the <em>R</em><sup>2</sup> for
@@ -4332,10 +4334,10 @@ reduced models and report the top two models according to adjusted
 <strong><em>R</em></strong><sup>2</sup> values. What model had the highest <strong><em>R</em></strong><sup>2</sup>?
 Also discuss and compare the model selection results provided by the delta AICs
 here.</p>
-<div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="chapter8.html#cb837-1"></a><span class="kw">library</span>(MuMIn)</span>
-<span id="cb837-2"><a href="chapter8.html#cb837-2"></a><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
-<span id="cb837-3"><a href="chapter8.html#cb837-3"></a><span class="kw">dredge</span>(MODELNAMEFORFULLMODEL, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </span>
-<span id="cb837-4"><a href="chapter8.html#cb837-4"></a>       <span class="dt">extra=</span><span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</span></code></pre></div>
+<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="chapter8.html#cb842-1"></a><span class="kw">library</span>(MuMIn)</span>
+<span id="cb842-2"><a href="chapter8.html#cb842-2"></a><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
+<span id="cb842-3"><a href="chapter8.html#cb842-3"></a><span class="kw">dredge</span>(MODELNAMEFORFULLMODEL, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </span>
+<span id="cb842-4"><a href="chapter8.html#cb842-4"></a>       <span class="dt">extra=</span><span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</span></code></pre></div>
 <p>8.1.8. For one of the models, interpret the <em>Age</em> slope coefficient. Remember that
 only male subjects between 38 and 57 participated in this study. Discuss how
 this might have impacted the results found as compared to a more general
@@ -4344,10 +4346,10 @@ population that could have been sampled from.</p>
 into low, middle, and high for those observed. The scatterplot lets you
 explore whether the relationship between treadmill oxygen and run time might
 differ across the age groups.</p>
-<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="chapter8.html#cb838-1"></a>treadmill<span class="op">$</span>Ageb &lt;-<span class="st"> </span><span class="kw">cut</span>(treadmill<span class="op">$</span>Age, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">37</span>,<span class="fl">44.5</span>,<span class="fl">50.5</span>,<span class="dv">58</span>))</span>
-<span id="cb838-2"><a href="chapter8.html#cb838-2"></a><span class="kw">summary</span>(treadmill<span class="op">$</span>Ageb)</span>
-<span id="cb838-3"><a href="chapter8.html#cb838-3"></a><span class="kw">library</span>(car)</span>
-<span id="cb838-4"><a href="chapter8.html#cb838-4"></a><span class="kw">scatterplot</span>(TreadMillOx<span class="op">~</span>RunTime<span class="op">|</span>Ageb, <span class="dt">data=</span>treadmill, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="chapter8.html#cb843-1"></a>treadmill<span class="op">$</span>Ageb &lt;-<span class="st"> </span><span class="kw">cut</span>(treadmill<span class="op">$</span>Age, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">37</span>,<span class="fl">44.5</span>,<span class="fl">50.5</span>,<span class="dv">58</span>))</span>
+<span id="cb843-2"><a href="chapter8.html#cb843-2"></a><span class="kw">summary</span>(treadmill<span class="op">$</span>Ageb)</span>
+<span id="cb843-3"><a href="chapter8.html#cb843-3"></a><span class="kw">library</span>(car)</span>
+<span id="cb843-4"><a href="chapter8.html#cb843-4"></a><span class="kw">scatterplot</span>(TreadMillOx<span class="op">~</span>RunTime<span class="op">|</span>Ageb, <span class="dt">data=</span>treadmill, <span class="dt">smooth=</span>F, <span class="dt">lwd=</span><span class="dv">2</span>)</span></code></pre></div>
 <p>Based on the plot, do the lines look approximately parallel or not?</p>
 <p>8.1.10. Fit the MLR that contains a <code>RunTime</code> by <code>Ageb</code> interaction – do not
 include any other variables. Compare the <strong><em>R</em></strong><sup>2</sup> and adjusted

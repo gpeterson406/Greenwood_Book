@@ -441,8 +441,7 @@ validity conditions. For MLR, they are similar to those for SLR:
     
     * The ***leverage*** values in the Residuals vs Leverage plot are
     scaled to add up to the *degrees of freedom (df) used for the model*
-    which is the number of explanatory variables ($K$) plus 1, so $K+1$.
-    \index{Residuals vs Leverage plot}
+    which is the number of explanatory variables ($K$) plus 1, so $K+1$. \index{Residuals vs Leverage plot}
     
     * The scale of leverages depends on the complexity of the model through
     the *df* and the sample size.
@@ -820,7 +819,7 @@ in the next sections.
 plot(allEffects(m6, residuals=T), main="MLR model with n=23")
 ```
 
-\indent As a final assessment of this model, we can consider simulating a set of $n=23$ responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called ``SimulatedSnow`` in the following codechunk. Figure \@ref(fig:Figure8-11) uses the ``plot`` function to just focus on the relationship of the original (``Snow.Depth``) and new (fake) responses (``SimulatedSnow``) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions for the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.
+\indent As a final assessment of this model, we can consider simulating a set of $n=23$ responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called ``SimulatedSnow`` in the following codechunk. Figure \@ref(fig:Figure8-11) uses the ``plot`` function to just focus on the relationship of the original (``Snow.Depth``) and new (fake) responses (``SimulatedSnow``) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions and the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.
 
 (ref:fig8-11) Plot of the original responses versus the three predictors ($n$=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows.
 
@@ -1924,7 +1923,7 @@ plot(allEffects(gpa1, residuals=T))
 ```
 
 
-    * The confidence intervals also help us pin down the uncertainty in each
+* The confidence intervals also help us pin down the uncertainty in each
 estimated slope coefficient. As always, the "easy" way to get 95% confidence
 intervals is using the ``confint`` function:
 
@@ -1932,7 +1931,7 @@ intervals is using the ``confint`` function:
 confint(gpa1)
 ```
 
-    * So, for a 1 percent increase in the *SATV* percentile, we are 95% confident
+* So, for a 1 percent increase in the *SATV* percentile, we are 95% confident
 that the true mean *FYGPA* changes between 0.0198 and 0.031 points, in the
 population of students who completed this year at this institution, after
 controlling for *SATM*. The *SATM* result is similar with an interval from 
@@ -2356,7 +2355,7 @@ called ``du2``). One would expect that there would be a relationship between the
 upper tolerance levels of the subjects before and after treatment. But
 maybe the treatments impact that relationship? We can use our indicator \index{indicator}
 approach to see if the treatments provide a shift to higher tolerances after
-accounting for the relationship between the two measurements^[Models like this with a categorical variable and quantitative variable are often called *ANCOVA* or *analysis of covariance* models but really are just versions of our linear models we've been using throughout this material.]. The scatterplot^[Note that we employed some specific options in the ``legend`` option to get the legend to fit on this scatterplot better. Usually you can avoid this but the ``coords`` option defined a location and the ``columns`` option made it a two column legend. The ``viridis(4)`` code makes the plot in a suite of four colors from the ``viridis`` package. [@R-viridis]] \index{R packages!\textbf{viridis}}
+accounting for the relationship between the two measurements^[Models like this with a categorical variable and quantitative variable are often called *ANCOVA* or *analysis of covariance* models but really are just versions of our linear models we've been using throughout this material.]. The scatterplot^[Note that we employed some specific options in the ``legend`` option to get the legend to fit on this scatterplot better. Usually you can avoid this but the ``coords`` option defined a location and the ``columns`` option made it a two column legend. The ``viridis(4)`` code makes the plot in a suite of four colors from the ``viridis`` package [@R-viridis].] \index{R packages!\textbf{viridis}}
 of the results in Figure \@ref(fig:Figure8-23) shows some variation in the
 slopes and the intercepts for the groups although the variation in intercepts
 seems more prominent than differences in slopes. Note that the ``relevel`` function was applied to the ``treatment`` variable with an option of ``"Control"`` to make the *Control* category the baseline category as the person who created the data set had set ``T1`` as the baseline in the ``treatment`` variable.  
@@ -2393,8 +2392,7 @@ indicators for *T1*, *T2*, and *T3* treatment levels are:
 * Indicator for *T3*: $I_{T3,i}=\left\{\begin{array}{rl} 1 & \text{if Treatment}=T3 \\ 0 & \text{else} \end{array}\right.$
 
 We can see the values of these indicators for a few observations and their
-original variable (``treatment``) in the following output. The bolded
-observations show each of the indicators being "turned on". For *Control* all the
+original variable (``treatment``) in the following output.  For *Control* all the
 indicators stay at 0. 
 
 <!-- \newpage -->
@@ -2470,7 +2468,7 @@ $$\begin{array}{rl}
 $$\begin{array}{rl}
 \widehat{\text{du2}}_i &=0.252+0.837\cdot\text{du1}_i +0.558I_{\text{T1},i}+0.634I_{\text{T2},i}+1.367I_{\text{T3},i} \\
 &= 0.252+0.837\cdot\text{du1}_i+0.558*1+0.634*0+1.367*0 \\
-&= 0.809+0.837\cdot\text{du1}_i + 0.558 \\
+&= 0.252+0.837\cdot\text{du1}_i + 0.558 \\
 &= 0.81+0.837\cdot\text{du1}_i.
 \end{array}$$
 
@@ -3318,7 +3316,7 @@ model than the ***adjusted*** ***R***^2^. The measure is called the
 Akaike's (pronounced **ah-kah-ee-kay**) Information Criterion, but he used the
 AIC nomenclature to mean An Information Criterion -- he was not so vain as to
 name the method after himself in the original paper that proposed it. But it is now common to use "A" for his last name.], 
-[@Akaike1974]. It is extremely popular, but sometimes misused, in some fields
+[@Akaike1974]). It is extremely popular, but sometimes misused, in some fields
 such as Ecology and has been applied in almost every other potential
 application area where statistical models can be compared. @Burnham2002
 have been responsible for popularizing the use of AIC for model
@@ -3386,16 +3384,12 @@ Often researchers will consider any models within 2 AIC units of the top model
 $(\Delta\text{AIC}<2)$ as indistinguishable on
 AICs and so either select the simplest model of the choices or report all the
 models with similar "support", allowing the reader to explore the suite of
-similarly supported potential models . It is important to remember that if you
+similarly supported potential models. It is important to remember that if you
 search across too many models, even with the AIC to support your model
 comparisons, you might find a spuriously top model. Individual results that are
 found by exploring many tests or models have higher chances to be ***spurious***
-and results found in this manner are difficult to ***reproduce*** when
-someone repeats a similar study^[Reproducibility ideas are used in statistics
-first by making data and code used available to others (like all the code and
-data in this book) and second by trying to use methods that when others perform
-similar studies they will find similar results (from Physics, think of the famous
-cold-fusion experiments http://en.wikipedia.org/wiki/Cold_fusion.)]. 
+and results found in this manner are difficult to ***replicate*** when
+someone repeats a similar study. 
 For these reasons, there is a set of general recommendations that have been
 developed for using AICs:
 
@@ -3435,8 +3429,8 @@ but need to avoid performing hypothesis tests with the confidence intervals.
 * Remember that the selected model is not the "true" model -- it is only the
 best model *according to AIC* among the set of models *you provided*.
 
-* Model assumptions need to be met to use AICs. They assume that the model is
-specified correctly up to possibly comparing different predictor variables. Perform diagnostic checks on your initial model and the top model. \index{assumptions}
+* AICs assume that the model is
+specified correctly up to possibly comparing different predictor variables. Perform diagnostic checks on your initial model and the top model and do not trust AICs when assumptions are clearly violated (p-values are similarly not valid in that situation). \index{assumptions}
 
 \indent When working with AICs, there are two options. Fit the models of interest and
 then run the ``AIC`` function on each model. This can be tedious, especially

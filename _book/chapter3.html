@@ -528,7 +528,7 @@ label alphabetically</strong>, but you should always check this<a href="referenc
 there are interpretations available for each coefficient. For <span class="math inline">\(\widehat{\alpha} = 117.61\)</span> cm, this is an estimate of the mean overtake distance for the <em>casual</em> outfit group.
 <span class="math inline">\(\widehat{\tau}_2 =-3.00\)</span> cm is the deviation of the <em>commute</em> group’s mean from
 the <em>causal</em> group’s mean (specifically, it is <span class="math inline">\(3.00\)</span> cm lower and was a quantity we explored in detail in Chapter <a href="chapter2.html#chapter2">2</a> when we just focused on comparing <em>casual</em> and <em>commute</em> groups).
-<span class="math inline">\(\widehat{\tau}_3=0.83\)</span> cm tells us that the <em>hiviz</em> group mean distance is 0.83 cm higher than the <em>casual</em> group mean and <span class="math inline">\(\widehat{\tau}_3=-0.86\)</span> says that the <em>racer</em> sample mean was 0.86 cm lower than for the <em>casual</em> group. These
+<span class="math inline">\(\widehat{\tau}_3=0.83\)</span> cm tells us that the <em>hiviz</em> group mean distance is 0.83 cm higher than the <em>casual</em> group mean and <span class="math inline">\(\widehat{\tau}_7=-0.86\)</span> says that the <em>racer</em> sample mean was 0.86 cm lower than for the <em>casual</em> group. These
 interpretations are interesting as they directly relate to comparisons of groups with the baseline and lead directly to
 reconstructing the estimated means for each group by combining the baseline and
 a pertinent deviation as shown in Table <a href="chapter3.html#tab:Table3-1">3.1</a>.</p>
@@ -561,7 +561,27 @@ a pertinent deviation as shown in Table <a href="chapter3.html#tab:Table3-1">3.1
 <tr class="odd">
 <td align="left">hiviz</td>
 <td align="left"><span class="math inline">\(\widehat{\alpha}+\widehat{\tau}_3\)</span></td>
-<td align="left">117.61 + 0.82 = <strong>118.43</strong> cm</td>
+<td align="left">117.61 + 0.83 = <strong>118.44</strong> cm</td>
+</tr>
+<tr class="even">
+<td align="left">novice</td>
+<td align="left"><span class="math inline">\(\widehat{\alpha}+\widehat{\tau}_4\)</span></td>
+<td align="left">117.61 - 0.67 = <strong>116.94</strong> cm</td>
+</tr>
+<tr class="odd">
+<td align="left">police</td>
+<td align="left"><span class="math inline">\(\widehat{\alpha}+\widehat{\tau}_5\)</span></td>
+<td align="left">117.61 + 4.51 = <strong>122.12</strong> cm</td>
+</tr>
+<tr class="even">
+<td align="left">polite</td>
+<td align="left"><span class="math inline">\(\widehat{\alpha}+\widehat{\tau}_6\)</span></td>
+<td align="left">117.61 - 3.56 = <strong>114.05</strong> cm</td>
+</tr>
+<tr class="odd">
+<td align="left">racer</td>
+<td align="left"><span class="math inline">\(\widehat{\alpha}+\widehat{\tau}_7\)</span></td>
+<td align="left">117.61 - 0.86 = <strong>116.75</strong> cm</td>
 </tr>
 </tbody>
 </table>
@@ -812,6 +832,7 @@ a plot of the resulting permutation distribution:</p>
 Figure 3.5: Histogram and density curve of permutation distribution of <span class="math inline">\(\text{SS}_A\)</span> with the observed value of <span class="math inline">\(\text{SS}_A\)</span> displayed as a bold, vertical line. The proportion of results that are as large or larger than the observed value of <span class="math inline">\(\text{SS}_A\)</span> provides an estimate of the p-value.
 </p>
 </div>
+
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="chapter3.html#cb236-1"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
 <span id="cb236-2"><a href="chapter3.html#cb236-2"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
 <span id="cb236-3"><a href="chapter3.html#cb236-3"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="op">:</span>B)){</span>
@@ -1752,6 +1773,7 @@ there is strong evidence against the null hypothesis of no difference in this pa
 dosage level. We can go further and say that we are 95% confident that the difference
 in the true mean tooth growth between VC.0.5 and OJ.0.5 (VC.0.5-OJ.0.5) is between
 -10.05 and -0.45 microns, after adjusting for comparing all the pairs of groups. The center of this CI is -5.25 which is <span class="math inline">\(\widehat{\tau}_2\)</span> and the estimate difference between VC.0.5 and the baseline category of OJ.0.5. That means we can get an un-adjusted 95% confidence interval from the <code>confint</code> function to compare to this adjusted CI. The interval that does not account for all the comparisons goes from -8.51 to -1.99 microns (second row out <code>confint</code> output), showing the increased width needed in Tukey’s interval to control the family-wise error rate when many pairs are being compared. With 14 other intervals, we obviously can’t give them all this much attention…</p>
+
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="chapter3.html#cb298-1"></a><span class="kw">confint</span>(m2)</span></code></pre></div>
 <pre><code>##                  2.5 %    97.5 %
 ## (Intercept) 10.9276907 15.532309
@@ -1836,8 +1858,7 @@ pairwise differences at higher than the nominal confidence level of (typically)
 constant variance will push the method in the other direction, potentially
 making the technique dangerously liberal. Nonparametric approaches to this
 problem are also possible, but will not be considered here.</p>
-<p>Tukey’s HSD results can also be displayed as p-values for each pair-wise test result. This is a little less common but can allow you to directly assess the strength of evidence for a particular pair instead of using the detected/not result that the family-wise CIs provide. But the family-wise CIs are useful for exploring the size of the differences in the pairs and we need to simplify things to detect/not in these situations because there are so many tests. But if you want to see the Tukey HSD p-values, you can use the <code>summary</code> function on the object that is storing the results:</p>
-
+<p>Tukey’s HSD results can also be displayed as p-values for each pair-wise test result. This is a little less common but can allow you to directly assess the strength of evidence for a particular pair instead of using the detected/not result that the family-wise CIs provide. But the family-wise CIs are useful for exploring the size of the differences in the pairs and we need to simplify things to detect/not in these situations because there are so many tests. But if you want to see the Tukey HSD p-values, you can use</p>
 <div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="chapter3.html#cb303-1"></a><span class="kw">summary</span>(Tm2)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses

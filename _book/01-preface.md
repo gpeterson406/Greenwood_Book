@@ -82,10 +82,14 @@ types of conclusions that are appropriate based on the design of the study.
 
 (ref:fig1-1) Flow chart of methods.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/image002.png" alt="(ref:fig1-1)" width="100%" />
-<p class="caption">(\#fig:Figure1-1)(ref:fig1-1)</p>
-</div>
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/image002} 
+
+}
+
+\caption{(ref:fig1-1)}(\#fig:Figure1-1)
+\end{figure}
 
 \indent We will be spending most of the semester working on methods for quantitative
 response variables (the
@@ -278,10 +282,14 @@ six years...]
  
 (ref:fig1-2) Initial RStudio layout.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/fig1.2.png" alt="(ref:fig1-2)" width="100%" />
-<p class="caption">(\#fig:Figure1-2)(ref:fig1-2)</p>
-</div>
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1.2} 
+
+}
+
+\caption{(ref:fig1-2)}(\#fig:Figure1-2)
+\end{figure}
 
 \indent To get started, we can complete some basic tasks in R using the RStudio
 interface. When you open RStudio, you will see a screen like Figure 
@@ -502,10 +510,14 @@ code (``View(treadmill``)).
 
 (ref:fig1-3) RStudio with initial data set loaded.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/fig1.3.png" alt="(ref:fig1-3)" width="100%" />
-<p class="caption">(\#fig:Figure1-3)(ref:fig1-3)</p>
-</div>
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1.3} 
+
+}
+
+\caption{(ref:fig1-3)}(\#fig:Figure1-3)
+\end{figure}
 
 \indent Just directly typing (or using) a line of code like this is actually the 
 other way that we can read in
@@ -589,10 +601,14 @@ section of code using the "Run" button.
 
 (ref:fig1-4) RStudio with highlighted code run.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/fig1.4.png" alt="(ref:fig1-4)" width="100%" />
-<p class="caption">(\#fig:Figure1-4)(ref:fig1-4)</p>
-</div>
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1.4} 
+
+}
+
+\caption{(ref:fig1-4)}(\#fig:Figure1-4)
+\end{figure}
 
 ## Basic summary statistics, histograms, and boxplots using R {#section1-3}
 
@@ -679,17 +695,18 @@ Figure \@ref(fig:Figure1-5).
 
 (ref:fig1-5) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study, bar heights are counts.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-5-1.png" alt="(ref:fig1-5)" width="480" />
-<p class="caption">(\#fig:Figure1-5)(ref:fig1-5)</p>
-</div>
+![(\#fig:Figure1-5)(ref:fig1-5)](01-preface_files/figure-latex/Figure1-5-1.pdf) 
 
 (ref:fig1-6) RStudio while in the process of copying the histogram.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/image010.png" alt="(ref:fig1-6)" width="100%" />
-<p class="caption">(\#fig:Figure1-6)(ref:fig1-6)</p>
-</div>
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/image010} 
+
+}
+
+\caption{(ref:fig1-6)}(\#fig:Figure1-6)
+\end{figure}
 
 \indent You can save this plot by clicking on the **Export** button found above 
 the plot, followed by **Copy to Clipboard** and clicking on the 
@@ -713,10 +730,7 @@ into each bar. Specifically, we can turn the ``labels`` option "on" by making it
 
 (ref:fig1-7) Histogram of Run Times with counts in bars labeled.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-7-1.png" alt="(ref:fig1-7)" width="480" />
-<p class="caption">(\#fig:Figure1-7)(ref:fig1-7)</p>
-</div>
+![(\#fig:Figure1-7)(ref:fig1-7)](01-preface_files/figure-latex/Figure1-7-1.pdf) 
 
 
 \indent Based on this histogram, it does not appear that there any outliers in the responses
@@ -767,10 +781,7 @@ but worth noting.
 
 (ref:fig1-8) Boxplot of 1.5 mile Run Times.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-8-1.png" alt="(ref:fig1-8)" width="480" />
-<p class="caption">(\#fig:Figure1-8)(ref:fig1-8)</p>
-</div>
+![(\#fig:Figure1-8)(ref:fig1-8)](01-preface_files/figure-latex/Figure1-8-1.pdf) 
 
 ```r
 > boxplot(treadmill$RunTime)
@@ -786,10 +797,7 @@ be assigned into the options ``ylab`` (for y-axis) or ``main``
 
 (ref:fig1-9) Boxplot of Run Times with improved labels.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-9-1.png" alt="(ref:fig1-9)" width="480" />
-<p class="caption">(\#fig:Figure1-9)(ref:fig1-9)</p>
-</div>
+![(\#fig:Figure1-9)(ref:fig1-9)](01-preface_files/figure-latex/Figure1-9-1.pdf) 
 
 ```r
 > boxplot(treadmill$RunTime, ylab="1.5 Mile Run Time (minutes)", 
@@ -837,7 +845,7 @@ results (so "reproducible results") or the original researchers to revisit their
 date and recreate all their results exactly. Scientific publications are currently
 encouraging researchers to work in this way and may someday require it. The term ***reproducible*** can also be related to whether repeated studies get the same result (also called ***replication***) -- further discussion of these terms and the implications for scientific research are discussed in Chapter \@ref(chapter2).
 
-\indent In order to get some practice using R Markdown, create a sample document in this format using File -> New File -> R Markdown... Choose a title for your file and select the "Word" option. This will create a new file in the upper left window where we stored our .R script. Save that file to your computer. Then you can use the "Knit" button to have RStudio run the code and create a word document with the results. R Markdown documents contain basically two components, "code chunks" that contain your code and the rest of the document where you can write descriptions and interpretations of the results that code generates. The code chunks can be inserted using the "Insert" button by selecting the "R" option. Then write your code in between the "```{r}" and "```" lines (it should have grey highlights for those lines and white for the rest of the portions of the .Rmd document). Once you write some code inside a code chunk, you can test your code using the triangle on the upper right side of it to run all the code that resides in that chunk. Keep your write up outside of these code chunks to avoid code errors and failures to compile. Once you think your code and writing is done, you can use the "Knit" button to try to compile the file. As you are learning, you may find this challenging, so start with trying to review the sample document and knit each time you get a line of code written so you know when you broke the file. Also look around for posted examples of .Rmd files to learn how others have incorporated code with write-ups. You might even be given a template of homework or projects as .Rmd files from your instructor. After you do this a couple of times, you will find that the challenge of working with markdown files is more than matched by the simplicity of the final product and, at least to researchers, the reproducibility and documentation of work that this method provides.
+\indent In order to get some practice using R Markdown, create a sample document in this format using File -> New File -> R Markdown... Choose a title for your file and select the "Word" option. This will create a new file in the upper left window where we stored our .R script. Save that file to your computer. Then you can use the "Knit" button to have RStudio run the code and create a word document with the results. R Markdown documents contain basically two components, "code chunks" that contain your code and the rest of the document where you can write descriptions and interpretations of the results that code generates. The code chunks can be inserted using the "Insert" button by selecting the "R" option. Then write your code in between the `` ```{r} `` and `` ``` `` lines (it should have grey highlights for those lines and white for the rest of the portions of the .Rmd document). Once you write some code inside a code chunk, you can test your code using the triangle on the upper right side of it to run all the code that resides in that chunk. Keep your write up outside of these code chunks to avoid code errors and failures to compile. Once you think your code and writing is done, you can use the "Knit" button to try to compile the file. As you are learning, you may find this challenging, so start with trying to review the sample document and knit each time you get a line of code written so you know when you broke the file. Also look around for posted examples of .Rmd files to learn how others have incorporated code with write-ups. You might even be given a template of homework or projects as .Rmd files from your instructor. After you do this a couple of times, you will find that the challenge of working with markdown files is more than matched by the simplicity of the final product and, at least to researchers, the reproducibility and documentation of work that this method provides.
 
 
 
@@ -885,7 +893,7 @@ required. You can use this as a guide to finding the function names and some
 hints about options that will help you to get the code to work. You can also
 revisit the worked examples using each of the functions. 
 
-* <font color='red'>FILENAME</font> ``<-`` **read_csv(**<font color='red'>"path to csv file/FILENAME.csv"</font>**)**
+* \textcolor{red}{FILENAME} ``<-`` **read_csv(**\textcolor{red}{"path to csv file/FILENAME.csv"}**)**
 
     * Can be generated using "Import Dataset" button or by modifying this text. 
     
@@ -894,32 +902,32 @@ revisit the worked examples using each of the functions.
     
     * Imports a text file saved in the CSV format.
 
-* <font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>
+* \textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}
 
     * To access a particular variable in a tibble called DATASETNAME, use 
     a $ and then the VARIABLENAME. 
 
-* **head(**<font color='red'>DATASETNAME</font>**)**
+* **head(**\textcolor{red}{DATASETNAME}**)**
 
     * Provides a list of the first few rows of the data set for all the 
     variables in it. \index{\texttt{head()}|textbf}
 
-* **tail(**<font color='red'>DATASETNAME</font>**)**
+* **tail(**\textcolor{red}{DATASETNAME}**)**
 
     * Provides a list of the last few rows of the data set for all the 
     variables in it. \index{\texttt{tail()}|textbf}
     
-* **mean(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **mean(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Calculates the mean of the observations in a variable. 
     \index{\texttt{mean()}|textbf}
 
-* **sd(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **sd(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Calculates the standard deviation of the observations in a variable. 
     \index{\texttt{sd()}|textbf}
 
-* **favstats(**<font color='red'>DATASETNAME</font>$<font color='red'>VARIABLENAME</font>**)** 
+* **favstats(**\textcolor{red}{DATASETNAME}$\textcolor{red}{VARIABLENAME}**)** 
 
     * Requires the ``mosaic`` package to be loaded (``library(mosaic)``) after
     installing the package). 
@@ -927,11 +935,11 @@ revisit the worked examples using each of the functions.
     * Provides a suite of numerical summaries of the observations in a variable.
     \index{\texttt{favstats()}|textbf}
 
-* **hist(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **hist(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Makes a histogram. \index{\texttt{hist()}|textbf}
     
-* **boxplot(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **boxplot(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
 

@@ -726,6 +726,8 @@ plot(density(Tstar),main="Density curve of Tstar", xlim=c(0,Tobs+100))
 abline(v=Tobs,col="red",lwd=3)
 ```
 
+\newpage
+
 ```{r eval=F}
 B <- 1000
 Tstar <- matrix(NA, nrow=B)
@@ -1746,6 +1748,7 @@ dosage level. We can go further and say that we are 95% confident that the diffe
 in the true mean tooth growth between VC.0.5 and OJ.0.5 (VC.0.5-OJ.0.5) is between 
 -10.05 and -0.45 microns, after adjusting for comparing all the pairs of groups. The center of this CI is -5.25 which is $\widehat{\tau}_2$ and the estimate difference between VC.0.5 and the baseline category of OJ.0.5. That means we can get an un-adjusted 95% confidence interval from the ``confint`` function to compare to this adjusted CI. The interval that does not account for all the comparisons goes from -8.51 to -1.99 microns (second row out ``confint`` output), showing the increased width needed in Tukey's interval to control the family-wise error rate when many pairs are being compared. With 14 other intervals, we obviously can't give them all this much attention...
 
+\newpage
 
 ```{r}
 confint(m2)
@@ -1835,9 +1838,7 @@ constant variance will push the method in the other direction, potentially
 making the technique dangerously liberal. Nonparametric approaches to this
 problem are also possible, but will not be considered here. 
 
-\indent Tukey's HSD results can also be displayed as p-values for each pair-wise test result. This is a little less common but can allow you to directly assess the strength of evidence for a particular pair instead of using the detected/not result that the family-wise CIs provide. But the family-wise CIs are useful for exploring the size of the differences in the pairs and we need to simplify things to detect/not in these situations because there are so many tests. But if you want to see the Tukey HSD p-values, you can use the ``summary`` function on the object that is storing the results:
-
-\newpage
+\indent Tukey's HSD results can also be displayed as p-values for each pair-wise test result. This is a little less common but can allow you to directly assess the strength of evidence for a particular pair instead of using the detected/not result that the family-wise CIs provide. But the family-wise CIs are useful for exploring the size of the differences in the pairs and we need to simplify things to detect/not in these situations because there are so many tests. But if you want to see the Tukey HSD p-values, you can use 
 
 ```{r}
 summary(Tm2)

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="6.8 Measuring the strength of regressions: R2 | Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="6.8 Measuring the strength of regressions: R2 | Intermediate Statistics with R">
+
+<title>6.8 Measuring the strength of regressions: R2 | Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Pirate-plots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Reproducibility Crisis: Moving beyond p &lt; 0.05, publication bias, and multiple testing issues</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Chapter summary</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Summary of important R code</a></li>
+<li><a href="2-13-section2-13.html#section2-13"><span class="toc-section-number">2.13</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for the Overtake data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs and Estimability</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section6-8" class="section level2">
+<h2><span class="header-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></h2>
+<p>At the beginning of the chapter,
+we used the correlation coefficient to measure the strength and direction of
+the linear relationship. The regression line provides an even more detailed
+description of the direction of the linear relationship than the correlation
+provided; in regression we addressed the question of “for a unit change in <span class="math inline">\(x\)</span>,
+what sort of change in <span class="math inline">\(y\)</span> do we expect, on average?” whereas the
+correlation just addressed whether the relationship was positive or negative.
+However, the <strong>regression line tells us nothing about the strength of the
+relationship</strong>. Consider the three scatterplots in Figure <a href="6-8-section6-8.html#fig:Figure6-19">2.118</a>:
+the left panel is the original <em>BAC</em> data and the two right
+panels have fake data that generated exactly the same estimated regression model with a
+weaker (middle panel) and then a stronger (right panel) linear relationship
+between <code>Beers</code> and <code>BAC</code>. This suggests that the regression
+line is a useful but incomplete characterization of relationships between
+variables – we need a measure of strength of the relationship to go with the
+equation.</p>
+<p>We could use the correlation coefficient, <strong><em>r</em></strong>, again to characterize
+strength but it is somewhat redundant to report a measure that contains
+direction information. It also will not extend to multiple
+regression models where we have more than one predictor variable in the same
+model.</p>
+<p>In regression models, we use the <strong><em>coefficient of determination</em></strong>
+(symbol: <strong>R<sup>2</sup></strong>) to accompany our regression line and describe
+the strength of the relationship. It can either be
+scaled between 0 and 1 or 0 to 100% and has “units” of the proportion or
+percentage of the variation in <span class="math inline">\(y\)</span> that is explained by the model that
+includes <span class="math inline">\(x\)</span> (and later more than one <span class="math inline">\(x\)</span>). For example, an <strong>R<sup>2</sup></strong>
+of 0% corresponds to explaining 0% of the variation in the response with our
+model and <span class="math inline">\(\boldsymbol{R^2} = 100\%\)</span> means that all the variation in the
+response was explained by the model. In between, it provides a nice summary
+of how much of the total variability in the response we can account for
+with our model
+including <span class="math inline">\(x\)</span> (and, in Chapter <a href="8-chapter8.html#chapter8"><strong>??</strong></a>, including multiple
+predictor variables).  </p>
+
+<div class="figure"><span id="fig:Figure6-19"></span>
+<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-19-1.png" alt="Three scatterplots with the same estimated regression line." width="576" />
+<p class="caption">
+Figure 2.118: Three scatterplots with the same estimated regression line.
+</p>
+</div>
+<p>The <strong>R<sup>2</sup></strong> is calculated using the sums of squares we encountered in the
+ANOVA methods.
+
+We once again have some total amount of variability that is
+attributed to the variation based on the model fit, here we call it
+<span class="math inline">\(\text{SS}_\text{regression}\)</span>, and the residual variability, still
+<span class="math inline">\(\text{SS}_\text{error}=\Sigma(y-\hat{y})^2\)</span>. The <span class="math inline">\(\text{SS}_\text{regression}\)</span>
+is most easily calculated as
+<span class="math inline">\(\text{SS}_\text{regression} = \text{SS}_\text{Total} - \text{SS}_\text{error}\)</span>,
+the difference between the total
+variability and the variability not explained by the model under consideration.
+Using these quantities, we calculate the portion of the total variability that
+the model explains as</p>
+<p><span class="math display">\[\boldsymbol{R^2}=\frac{\text{SS}_\text{regression}}{\text{SS}_\text{Total}}
+=1 - \frac{\text{SS}_\text{error}}{\text{SS}_\text{Total}}.\]</span></p>
+<p>It also ends up that the
+coefficient of determination for models with one predictor is the correlation
+coefficient (<strong><em>r</em></strong>) squared (<span class="math inline">\(\boldsymbol{R^2} = \boldsymbol{r^2}\)</span>). So we can
+quickly find coefficients of determination if we know correlations in simple
+linear regression models. In the real <em>Beers</em> and <em>BAC</em> data, <strong><em>r</em></strong>=0.8943.
+So <span class="math inline">\(\boldsymbol{R^2} = 0.79998\)</span> or approximately 0.80. So 80% of the variation in
+<em>BAC</em> is explained by <em>Beer</em> consumption. That leaves 20% of the variation in
+the responses to be unexplained by our model. In this case much of the
+unexplained variation is likely attributable to
+differences in physical characteristics (that were not measured) but the
+statistical model places that unexplained variation into the category of
+“random errors”. We don’t actually have to find <strong><em>r</em></strong> to get coefficients of
+determination – the result is part of the regular summary of a regression
+model that we have not discussed.
+We repeat the full <code>lm</code> model summary below – note that a number is reported for the “<code>Multiple R-squared</code>” in the second to last line of the output. It is reported as a
+proportion and it is your choice whether you want to report
+and interpret it as a proportion or percentage, just make that clear in how you
+discuss it.</p>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb555-1" title="1">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(BAC<span class="op">~</span>Beers, <span class="dt">data=</span>BB)</a>
+<a class="sourceLine" id="cb555-2" title="2"><span class="kw">summary</span>(m1)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = BAC ~ Beers, data = BB)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.027118 -0.017350  0.001773  0.008623  0.041027 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) -0.012701   0.012638  -1.005    0.332
+## Beers        0.017964   0.002402   7.480 2.97e-06
+## 
+## Residual standard error: 0.02044 on 14 degrees of freedom
+## Multiple R-squared:  0.7998, Adjusted R-squared:  0.7855 
+## F-statistic: 55.94 on 1 and 14 DF,  p-value: 2.969e-06</code></pre>
+<p>In this output, be careful because there is another related quantity called
+<strong><em>Adjusted</em></strong> <strong>R-squared</strong> that we will discuss later. This other quantity
+is not a measure of the strength of the
+relationship but will be useful.</p>
+<p>We could also revisit the ANOVA
+table for this model to verify the source of the <strong>R<sup>2</sup></strong> of 0.80
+based on <span class="math inline">\(\text{SS}_\text{regression}= 0.02337\)</span> and
+<span class="math inline">\(\text{SS}_\text{Total} = 0.02337+0.00585\)</span>. This provides 0.80 from
+<span class="math inline">\(0.02337/0.02922\)</span>.</p>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb557-1" title="1"><span class="kw">anova</span>(m1)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: BAC
+##           Df    Sum Sq   Mean Sq F value    Pr(&gt;F)
+## Beers      1 0.0233753 0.0233753  55.944 2.969e-06
+## Residuals 14 0.0058497 0.0004178</code></pre>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb559-1" title="1">SStotal &lt;-<span class="st"> </span><span class="fl">0.0233753</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.0058497</span></a>
+<a class="sourceLine" id="cb559-2" title="2">SSregression &lt;-<span class="st"> </span><span class="fl">0.0233753</span></a>
+<a class="sourceLine" id="cb559-3" title="3">SSregression<span class="op">/</span>SStotal</a></code></pre></div>
+<pre><code>## [1] 0.7998392</code></pre>
+<p>In Figure <a href="6-8-section6-8.html#fig:Figure6-19">2.118</a>, there are three
+examples with the same regression model, but different strengths of
+relationships. In the real data set <span class="math inline">\(\boldsymbol{R^2} = 80\%\)</span>. For the first
+fake data set (middle panel), the <strong>R<sup>2</sup></strong> drops to <span class="math inline">\(13.8\%\)</span> and for
+the second fake data set (right panel), <strong>R<sup>2</sup></strong> is <span class="math inline">\(97.3\%\)</span>. As a
+summary, <strong>R<sup>2</sup></strong> provides a natural scale to understand “how good”
+each model is at explaining the responses. We can revisit some of our previous
+models to get a little more practice with using this summary of strength or quality
+of regression models.</p>
+<p>For the Montana fire data, <span class="math inline">\(\boldsymbol{R^2}=66.2\%\)</span>. So the proportion of
+variation of log-area burned that is explained by average summer temperature
+is 0.662. This is “good” but also
+leaves quite a bit of unexplained variation in the responses. There is a long
+list of reasons why this explanatory variable leaves a lot of variation in the
+response unexplained. Note that we were careful about using the scaling of the
+response variable (log(area burned)) in the interpretation – this is because we
+would get a much different answer if area burned vs temperature was considered.</p>
+
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb561-1" title="1">fire1 &lt;-<span class="st"> </span><span class="kw">lm</span>(loghectares<span class="op">~</span>Temperature, <span class="dt">data=</span>mtfires)</a>
+<a class="sourceLine" id="cb561-2" title="2"><span class="kw">summary</span>(fire1)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = loghectares ~ Temperature, data = mtfires)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.0822 -0.9549  0.1210  1.0007  2.4728 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) -69.7845    12.3132  -5.667 1.26e-05
+## Temperature   1.3884     0.2165   6.412 2.35e-06
+## 
+## Residual standard error: 1.476 on 21 degrees of freedom
+## Multiple R-squared:  0.6619, Adjusted R-squared:  0.6458 
+## F-statistic: 41.12 on 1 and 21 DF,  p-value: 2.347e-06</code></pre>
+<p>For the model for female Australian athletes that used <em>Body fat</em> to
+explain <em>Hematocrit</em>, the estimated regression model was
+<span class="math inline">\(\widehat{\text{Hc}}_i = 42.014 - 0.085\cdot\text{BodyFat}_i\)</span> and
+<span class="math inline">\(\boldsymbol{r} = -0.168\)</span>. The coefficient of determination is
+<span class="math inline">\(\boldsymbol{R^2} = (-0.168)^2 = 0.0282\)</span>. So <em>body fat</em> explains 2.8% of
+the variation in <em>Hematocrit</em> in these women. That is not a very good
+regression model with over 97% of the variation in <em>Hematocrit</em> unexplained
+by this model. The scatterplot showed a fairly weak relationship but this
+provides numerical and interpretable information that drives that point home.</p>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb563-1" title="1">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Hc<span class="op">~</span>Bfat, <span class="dt">data=</span><span class="kw">subset</span>(aisR2,Sex<span class="op">==</span><span class="dv">1</span>)) <span class="co">#Results for Females</span></a>
+<a class="sourceLine" id="cb563-2" title="2"><span class="kw">summary</span>(m2)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Hc ~ Bfat, data = subset(aisR2, Sex == 1))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.2399 -2.2132 -0.1061  1.8917  6.6453 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) 42.01378    0.93269  45.046   &lt;2e-16
+## Bfat        -0.08504    0.05067  -1.678   0.0965
+## 
+## Residual standard error: 2.598 on 97 degrees of freedom
+## Multiple R-squared:  0.02822,    Adjusted R-squared:  0.0182 
+## F-statistic: 2.816 on 1 and 97 DF,  p-value: 0.09653</code></pre>
+</div>
+<p style="text-align: center;">
+<a href="6-7-section6-7.html"><button class="btn btn-default">Previous</button></a>
+<a href="6-9-section6-9.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

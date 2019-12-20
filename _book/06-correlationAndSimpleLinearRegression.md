@@ -25,7 +25,7 @@ some other values of the other variable or that knowing
 something about the level of one variable provides information about the
 patterns of values on the other variable. These terms are not specific to the
 "form" of the relationship -- any pattern (strong or weak, negative or positive, 
-easily explained or complicated) satisfy the definition. There are two other
+easily described or complicated) satisfy the definition. There are two other
 aspects to using these terms in a statistical context. First, they are not
 directional -- an association between $x$ and $y$ is the same as saying there is an
 association between $y$ and $x$. Second, they are not causal unless the levels of
@@ -42,7 +42,7 @@ remember that associations and relationships are more general than correlations
 and it is possible to have no correlation where there is a strong relationship
 between variables. "Correlation" is used colloquially as a synonym for
 relationship but we will work to reserve it for its more specialized usage here
-to refer to the linear relationship.
+to refer specifically to the linear relationship. \index{correlation} \index{association}
 
 \indent Assessing and then modeling relationships between quantitative variables drives
 the rest of the chapters, 
@@ -53,10 +53,9 @@ blood alcohol levels (*BAC*, in grams of alcohol per deciliter of blood). A grou
 of $n=16$ student volunteers at The Ohio State University drank a
 randomly assigned number of beers^[Some of the details of this study have been lost, 
 so we will assume that the
-subjects were randomly assigned and that a beer means a can of beer and that
+subjects were randomly assigned and that a beer means a regular sized can of beer and that
 the beer was of regular strength. We don't know if any of that is actually true. 
-I have been asking the Dean of Students to repeat this study as an educational
-activity at MSU with no success yet.]. 
+It would be nice to repeat this study to know more details and possibly have a larger sample size but I doubt if our institutional review board would allow students to drink as much as 9 beers.]. 
 Thirty minutes later, a police officer measured their *BAC*. Your instincts, especially
 as well-educated college students with some chemistry knowledge, should inform
 you about the direction of this relationship -- that there is a ***positive 
@@ -85,7 +84,7 @@ should graphically explore the relationship between ``Beers`` and ``BAC`` in a s
 Figure \@ref(fig:Figure6-1) shows a ***scatterplot*** of the results that display 
 the expected positive relationship. Scatterplots display the response pairs for 
 the two quantitative variables with the
-explanatory variable on the x-axis and the response variable on the y-axis. The
+explanatory variable on the $x$-axis and the response variable on the $y$-axis. The
 relationship between ``Beers`` and ``BAC`` appears to be relatively linear but
 there is possibly more variability than one might expect. For example, for
 students consuming 5 beers, their *BAC*s range from 0.05 to 0.10. If you look
@@ -109,21 +108,24 @@ other than black, an entirely unnecessary addition here.] use
 
 
 
+
+```r
+library(readr)
+BB <- read_csv("http://www.math.montana.edu/courses/s217/documents/beersbac.csv")
+```
+
+
+
 (ref:fig6-1) Scatterplot of *Beers* consumed versus *BAC*.
 
 
 ```r
-require(readr)
-BB <- read_csv("http://www.math.montana.edu/courses/s217/documents/beersbac.csv")
 plot(BAC~Beers, data=BB, pch=16, col=30)
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-1-1.png" alt="(ref:fig6-1)" width="576" />
-<p class="caption">(\#fig:Figure6-1)(ref:fig6-1)</p>
-</div>
+![(\#fig:Figure6-1)(ref:fig6-1)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-1-1.pdf) 
 
-\newpage
+<!-- \newpage -->
 
 There are a few general things to look for in scatterplots:
 
@@ -175,9 +177,9 @@ of 0. We also don't know the exact alcohol concentration of the beer consumed or
 volume. So while this is a fun example to start these methods with, a better version of this data set would be nice...
 
 \indent In making scatterplots, there is always a choice of a variable for the 
-x-axis and the y-axis. It is our
+$x$-axis and the $y$-axis. It is our
 convention to put explanatory or independent variables (the ones used to
-explain or predict the responses) on the x-axis. In studies where the subjects are
+explain or predict the responses) on the $x$-axis. In studies where the subjects are
 randomly assigned to levels of a variable, this is very clearly an explanatory
 variable, and we can go as far as making causal inferences with it. In
 observational studies, it can be less clear which variable explains which. In
@@ -202,7 +204,7 @@ Some of the extra distinctions arise because there are other ways of measuring
 correlations in other situations (for example between two categorical
 variables), but we will not consider them here. 
 
-\newpage
+<!-- \newpage -->
 
 \indent The correlation coefficient, ***r***, is calculated as
 
@@ -235,10 +237,7 @@ Figure \@ref(fig:Figure6-2).
 
 (ref:fig6-2) Scatterplot of an amusing (and strong) relationship that has $r=0$.
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-2-1.png" alt="(ref:fig6-2)" width="576" />
-<p class="caption">(\#fig:Figure6-2)(ref:fig6-2)</p>
-</div>
+![(\#fig:Figure6-2)(ref:fig6-2)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-2-1.pdf) 
 
  
 \indent There are some conditions for trusting the results that the 
@@ -293,11 +292,11 @@ function on a data set it produces a ***correlation matrix*** which
 contains a matrix of correlations where you can triangulate the 
 variables being correlated by the row and column names, noting
 that the correlation between a variable and itself is 1. A matrix of
-correlations is useful for comparing more than two variables, discussed below. \index{correlation matrix}
+correlations is useful for comparing more than two variables, discussed below. \index{correlation matrix} \index{\texttt{cor()}}
 
 
 ```r
-require(mosaic)
+library(mosaic)
 cor(BAC~Beers, data=BB)
 ```
 
@@ -336,7 +335,7 @@ non-negative (strictly greater than 0) variables
 (more on ***transformations*** and their impacts on regression models 
 in Chapter \@ref(chapter7)).
 \index{transformation}
-Based on your experiences with the wildfire season in Montana and before 
+Based on your experiences with the wildfire "season" and before 
 analyzing the data, I'm sure
 you would assume that summer temperature explains the area burned by wildfires. 
 But could it be that more fires are related to having warmer summers? That
@@ -350,7 +349,7 @@ this situation, if there are changes over time, they might be attributed to
 climate change. So there are really three relationships to explore with the
 variables measured here (remembering that the full story might require
 measuring even more!): log-area burned versus temperature, temperature versus
-year, and log-area burned versus year. 
+year, and log-area burned versus year.  \index{log} \index{log10} \index{\texttt{log()}} \index{time series}
 
 \indent With more than two variables, we can use the ``cor`` function on all the 
 variables and end up getting a matrix of correlations or, simply, the
@@ -371,6 +370,12 @@ clear (at least the linear trends).
 
 ```r
 mtfires <- read_csv("http://www.math.montana.edu/courses/s217/documents/climateR2.csv")
+```
+
+
+
+
+```r
 # natural log transformation of area burned
 mtfires$loghectares <- log(mtfires$hectares) 
 
@@ -399,7 +404,7 @@ get lots of information in one place. As in the correlation matrix, you
 triangulate the variables for the pairwise relationship. The upper right
 panel of Figure \@ref(fig:Figure6-3) displays a correlation of 0.36 for 
 ``Year`` and ``loghectares`` and the lower left panel contains the 
-scatterplot with ``Year`` on the x-axis and ``loghectares`` on the y-axis.
+scatterplot with ``Year`` on the $x$-axis and ``loghectares`` on the $y$-axis.
 The correlation between ``Year`` and ``Temperature`` is really small, both
 in magnitude and in display, but appears to be nonlinear (it goes down between
 1985 and 1995 and then goes back up), so the correlation coefficient doesn't
@@ -414,14 +419,11 @@ the second half of the data set.
 
 
 ```r
-require(psych) 
+library(psych) 
 pairs.panels(mtfiresR, ellipses=F, scale=T, smooth=F, col=0)
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-3-1.png" alt="(ref:fig6-3)" width="576" />
-<p class="caption">(\#fig:Figure6-3)(ref:fig6-3)</p>
-</div>
+![(\#fig:Figure6-3)(ref:fig6-3)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-3-1.pdf) 
 
 \indent As one more example, the Australian Institute of Sport collected data 
 on 102 male and 100 female athletes that are available in the ``ais``
@@ -438,9 +440,9 @@ based on the other variables, but for now the associations are of interest.
 
 
 ```r
-require(alr3)
+library(alr3)
 data(ais)
-require(tibble)
+library(tibble)
 ais <- as.tibble(ais)
 aisR <- ais[,c("Ht","Hc","Bfat")]
 summary(aisR)
@@ -460,10 +462,7 @@ summary(aisR)
 pairs.panels(aisR, scale=T, ellipse=F, smooth=F, col=0)
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-4-1.png" alt="(ref:fig6-4)" width="576" />
-<p class="caption">(\#fig:Figure6-4)(ref:fig6-4)</p>
-</div>
+![(\#fig:Figure6-4)(ref:fig6-4)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-4-1.pdf) 
 
 
 
@@ -508,8 +507,7 @@ aisR[c(56,166),]
 We can create a reduced version of the data (``aisR2``) by removing those 
 two rows using ``[-c(56, 166),]`` and then remake the plot:
 
-(ref:fig6-5) Scatterplot matrix of athlete data with two potential 
-outliers removed. \index{outlier}
+(ref:fig6-5) Scatterplot matrix of athlete data with two potential outliers removed. \index{outlier}
 
 
 ```r
@@ -517,10 +515,7 @@ aisR2 <- aisR[-c(56,166),] #Removes observations in rows 56 and 166
 pairs.panels(aisR2, scale=T, ellipse=F, smooth=F, col=0)
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-5-1.png" alt="(ref:fig6-5)" width="576" />
-<p class="caption">(\#fig:Figure6-5)(ref:fig6-5)</p>
-</div>
+![(\#fig:Figure6-5)(ref:fig6-5)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-5-1.pdf) 
 
 \indent After removing these two unusual observations, the relationships between 
 the variables are more obvious (Figure \@ref(fig:Figure6-5)). There is a 
@@ -539,27 +534,22 @@ we trust that
 the correlation is a reasonable description of the results between the
 variables. To make it easier to see patterns of positive and negative
 correlations, we can employ a different version of the same display from 
-the ``corrplot`` package [@R-corrplot].
+the ``corrplot`` package [@R-corrplot] with the ``corrplot.mixed`` function. \index{\texttt{corrplot.mixed()}}
 \index{R packages!\textbf{corrplot}}
 In this case 
 (Figure \@ref(fig:Figure6-6)), it tells much the same story but also allows 
 the viewer to easily distinguish both size and direction and read off the 
 numerical correlations if desired. \index{correlation plot}
 
-(ref:fig6-6) Correlation plot of the athlete data with two potential 
-outliers removed. Lighter (orange) circle for positive correlations 
-and black for negative correlations. 
+(ref:fig6-6) Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations. 
 
 
 ```r
-require(corrplot)
+library(corrplot)
 corrplot.mixed(cor(aisR2), upper.col=c("black", "orange"),lower.col=c("black", "orange"))
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-6-1.png" alt="(ref:fig6-6)" width="336" />
-<p class="caption">(\#fig:Figure6-6)(ref:fig6-6)</p>
-</div>
+![(\#fig:Figure6-6)(ref:fig6-6)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-6-1.pdf) 
 
 
 ## Relationships between variables by groups	{#section6-3}
@@ -588,23 +578,21 @@ here, consider the relationship between $y$ and $x$ by groups in $z$. The other
 options are mainly to make it easier to read the information in the plot...
 Using this enhanced notation, Figure \@ref(fig:Figure6-7) displays the 
 *Height* and *Hematocrit* relationship with information on the sex of the 
-athletes where sex was coded 0 for males and 1 for females. 
+athletes where sex was coded 0 for males and 1 for females. \index{\texttt{scatterplot()}}
 
-(ref:fig6-7) Scatterplot of athlete's height and hematocrit by sex of athletes. 
-Males were coded as 0s and females as 1s.
+(ref:fig6-7) Scatterplot of athlete's height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-7-1.png" alt="(ref:fig6-7)" width="576" />
-<p class="caption">(\#fig:Figure6-7)(ref:fig6-7)</p>
-</div>
+![(\#fig:Figure6-7)(ref:fig6-7)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-7-1.pdf) 
 
 
 ```r
 aisR2 <- ais[-c(56,166),c("Ht","Hc","Bfat","Sex")]
-require(car)
-aisR2$Sex <- as.factor(aisR2$Sex)
+library(car)
+aisR2$Sex <- factor(aisR2$Sex)
 scatterplot(Hc~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
-            boxplots="xy", main="Scatterplot of Height vs Hematocrit by Sex")
+            boxplots="xy", main="Scatterplot of Height vs Hematocrit by Sex") 
+# pch=c(3,21) provides two different symbols that are easy to distinguish. 
+# Drop this option or add more numbers to the list if you have more than 2 groups.
 ```
 
 \indent Adding the grouping information really changes the impressions of the relationship
@@ -614,16 +602,16 @@ moderate strength and positive but the subgroup relationships are weak at best.
 The overall relationship is created by inappropriately combining two groups
 that had different means in both the $x$ and $y$ directions. Men have higher
 mean heights and hematocrit values than women and putting them together in one
-large group creates the misleading overall relationship^[This is related to what is called Simpson's paradox, where the overall analysis (ignoring a grouping variable) leads to a conclusion of a relationship in one direction, but when the relationship is broken down into subgroups it is in the opposite direction in each group. This emphasizes the importance of checking and accounting for differences in groups and the more complex models we are setting the stage to consider in the coming chapters.]. 
+large group creates the misleading overall relationship^[This is related to what is called Simpson's paradox, where the overall analysis (ignoring a grouping variable) leads to a conclusion of a relationship in one direction, but when the relationship is broken down into subgroups it is in the opposite direction in each group. \index{Simpson's paradox} This emphasizes the importance of checking and accounting for differences in groups and the more complex models we are setting the stage to consider in the coming chapters.]. 
 
 \indent To get the correlation coefficients by groups, we can subset the data set using a
 logical inquiry on the ``Sex`` variable in the updated ``aisR2`` data set, using 
-``Sex==0`` to get the male subjects only and ``Sex==1`` for the female subjects, 
+``Sex==0`` in the ``subset`` function to get a tibble with male subjects only and ``Sex==1`` for the female subjects, 
 then running the ``cor`` function on each version of the data set:
 
 
 ```r
-cor(Hc~Ht, data=aisR2[aisR2$Sex==0,]) #Males only
+cor(Hc~Ht, data=subset(aisR2,Sex==0)) #Males only
 ```
 
 ```
@@ -631,7 +619,7 @@ cor(Hc~Ht, data=aisR2[aisR2$Sex==0,]) #Males only
 ```
 
 ```r
-cor(Hc~Ht, data=aisR2[aisR2$Sex==1,]) #Females only
+cor(Hc~Ht, data=subset(aisR2,Sex==1)) #Females only
 ```
 
 ```
@@ -658,7 +646,7 @@ ignoring the group information.
 
 
 ```r
-cor(Hc~Bfat, data=aisR2[aisR2$Sex==0,]) #Males only
+cor(Hc~Bfat, data=subset(aisR2,Sex==0)) #Males only
 ```
 
 ```
@@ -666,22 +654,18 @@ cor(Hc~Bfat, data=aisR2[aisR2$Sex==0,]) #Males only
 ```
 
 ```r
-cor(Hc~Bfat, data=aisR2[aisR2$Sex==1,]) #Females only
+cor(Hc~Bfat, data=subset(aisR2,Sex==1)) #Females only
 ```
 
 ```
 ## [1] -0.1679751
 ```
 
-(ref:fig6-8) Scatterplot of athlete's body fat and hematocrit by sex of athletes. Males
-were coded as 0s and females as 1s. 
+(ref:fig6-8) Scatterplot of athlete's body fat and hematocrit by sex of athletes. Males were coded as 0s and females as 1s. 
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-8-1.png" alt="(ref:fig6-8)" width="576" />
-<p class="caption">(\#fig:Figure6-8)(ref:fig6-8)</p>
-</div>
+![(\#fig:Figure6-8)(ref:fig6-8)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-8-1.pdf) 
 
-\newpage
+<!-- \newpage -->
 
 
 ```r
@@ -705,7 +689,7 @@ variability in *Body Fat* associated with taller athletes (each sort of
 
 
 ```r
-cor(Bfat~Ht, data=aisR2[aisR2$Sex==0,]) #Males only
+cor(Bfat~Ht, data=subset(aisR2,Sex==0)) #Males only
 ```
 
 ```
@@ -713,7 +697,7 @@ cor(Bfat~Ht, data=aisR2[aisR2$Sex==0,]) #Males only
 ```
 
 ```r
-cor(Bfat~Ht, data=aisR2[aisR2$Sex==1,]) #Females only
+cor(Bfat~Ht, data=subset(aisR2,Sex==1)) #Females only
 ```
 
 ```
@@ -722,10 +706,7 @@ cor(Bfat~Ht, data=aisR2[aisR2$Sex==1,]) #Females only
 
 (ref:fig6-9) Scatterplot of athlete's body fat and height by sex.
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-9-1.png" alt="(ref:fig6-9)" width="576" />
-<p class="caption">(\#fig:Figure6-9)(ref:fig6-9)</p>
-</div>
+![(\#fig:Figure6-9)(ref:fig6-9)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-9-1.pdf) 
 
 
 
@@ -738,7 +719,7 @@ scatterplot(Bfat~Ht|Sex, data=aisR2, pch=c(3,21), regLine=F, smooth=F,
 \indent In each of these situations, the sex of the athletes has the potential to cause misleading
 conclusions if ignored. There are two ways that this could occur -- if we did
 not measure it then we would have no hope to account for it OR we could have
-measured it but not adjusted for it in our results, as I did initially. We
+measured it but not adjusted for it in our results, as was done initially. We
 distinguish between these two situations by defining the impacts of this
 additional variable as either a confounding or lurking variable:
 
@@ -753,7 +734,7 @@ and is not considered in the interpretation of the study.
 
 Lurking variables show up in studies sometimes due to lack of knowledge of the 
 system being studied or a lack of
-resources to measure these variables. Note that there may be no satisfying resolution to the confounding variable problem but that it is better to have measured it and know about it than to have it remain a lurking variable. 
+resources to measure these variables. Note that there may be no satisfying resolution to the confounding variable problem but that it is better to have measured it and know about it than to have it remain a lurking variable.
 
 \indent To help think about confounding and lurking variables, consider the following 
 situation. On many
@@ -761,7 +742,7 @@ highways, such as Highway 93 in Montana and north into Canada, recent
 construction efforts have been involved in creating safe passages for animals
 by adding fencing and animal crossing structures. These structures both can
 improve driver safety, save money from costs associated with animal-vehicle
-collisions, and increase connectivity of animal populations. Researchers
+collisions, and increase connectivity of animal populations. Researchers (such as @Clevenger2005)
 involved in these projects are interested in which characteristics of
 underpasses lead to the most successful structures, mainly measured by rates of
 animal usage (number of times they cross under the road). Crossing structures
@@ -782,9 +763,9 @@ also want to have some wide structures that are short and some are tall. Careful
 known in advance and it is possible to control them, but in observational
 studies the observed combinations of variables are uncontrollable. This is why
 we need to employ additional caution in interpreting results from observational
-studies. 
+studies. Here that would mean that even if width was found to be a predictor of animal usage, we would likely want to avoid saying that width of the structures caused differences in animal usage. 
 
-## Inference for the correlation coefficient (Optional section)	{#section6-4}
+## Inference for the correlation coefficient {#section6-4}
 
 We used bootstrapping briefly in
 Chapter \@ref(chapter2) to generate nonparametric confidence intervals based 
@@ -814,12 +795,12 @@ $H_A: \rho \ne 0$. The distribution of the Pearson correlation coefficient
 can be complicated in some situations, so we will use
 bootstrapping methods to generate confidence intervals for $\rho$ based on 
 repeated random samples with replacement from the original data set.
-\index{bootstrap}
-If the 
-confidence contains 0, then we would fail to reject the null
+\index{bootstrap} \index{$\rho$} 
+If the $C\%$
+confidence interval contains 0, then we would find little to no evidence against the null
 hypothesis since 0 is in the interval of our likely values for $\rho$. If 
-the confidence interval does not contain 0, then we can reject the null 
-hypothesis. Along with its use in testing, it is also interesting to be able to generate a confidence interval for $\rho$.
+the $C\%$ confidence interval does not contain 0, then we would find strong evidence against the null 
+hypothesis. Along with its use in testing, it is also interesting to be able to generate a confidence interval for $\rho$ to provide an interval where we are $C\%$ confident that the true parameter lies.
 
 \indent The *beers* and *BAC* example seemed to provide a strong relationship with
 $\boldsymbol{r}=0.89$. As correlations approach -1 or 1, the sampling distribution becomes 
@@ -845,7 +826,7 @@ Tobs <- cor(BAC~Beers, data=BB); Tobs
 ```
 
 ```r
-par(mfrow=c(1,2))
+set.seed(614)
 B <- 1000
 Tstar <- matrix(NA, nrow=B)
 for (b in (1:B)){
@@ -854,12 +835,9 @@ for (b in (1:B)){
 quantiles <- qdata(Tstar, c(0.025,0.975)) #95% Confidence Interval
 ```
 
-\newpage
+<!-- \newpage -->
 
-(ref:fig6-10) Histogram and density curve of the bootstrap distribution of the 
-correlation coefficient with
-bold vertical line for observed correlation and dashed lines for bounds for the 95%
-bootstrap confidence interval.
+(ref:fig6-10) Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval.
 
 
 ```r
@@ -868,8 +846,8 @@ quantiles
 
 ```
 ##        quantile     p
-## 2.5%  0.7580836 0.025
-## 97.5% 0.9532646 0.975
+## 2.5%  0.7633606 0.025
+## 97.5% 0.9541518 0.975
 ```
 
 ```r
@@ -883,14 +861,11 @@ abline(v=Tobs, col="red", lwd=3)
 abline(v=quantiles$quantile, col="blue", lty=2, lwd=3)
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-10-1.png" alt="(ref:fig6-10)" width="960" />
-<p class="caption">(\#fig:Figure6-10)(ref:fig6-10)</p>
-</div>
+![(\#fig:Figure6-10)(ref:fig6-10)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-10-1.pdf) 
 
-These results tell us that the bootstrap 95% CI is from 0.75 to 0.95 -- we are 95%
+These results tell us that the bootstrap 95% CI is from 0.76 to 0.95 -- we are 95%
 confident that the true correlation between *Beers* and *BAC* in all OSU students 
-like those that volunteered for this study is between 0.75 and 0.95. Note that there are no units
+like those that volunteered for this study is between 0.76 and 0.95. Note that there are no units
 on the correlation coefficient or in this interpretation of it. 
 
 \indent We can also use this confidence interval to test for a linear relationship between
@@ -903,17 +878,17 @@ and *BAC* in the population.**
 *Beers* and *BAC* in the population.**
 
 
-The 95% confidence level corresponds to a 5% significance level test. The 95% CI is
-from 0.75 to 0.95, which does not contain 0, so we can reject the null
-hypothesis. We conclude that there is strong^[The interval is "far" from the reference value under the null (0) so this provides at least strong evidence. Without a p-value, we only really get a Reject or Fail to Reject the null answer at a selected confidence level that implies a particular significance level.] evidence to conclude that there is
+The 95% confidence level corresponds to a 5% significance level test and if the 95% CI does not contain 0, you know that the p-value would be less than 0.05 and if it does contain 0 that the p-value would be more than 0.05. The 95% CI is
+from 0.76 to 0.95, which does not contain 0, so we find strong evidence^[The interval is "far" from the reference value under the null (0) so this provides at least strong evidence. With using confidence intervals for tests, we really don't know much about the strength of evidence against the null hypothesis but the hypothesis test here is a bit more complicated to construct and understand and we will have to tolerate just having crude information about the p-value to assess strength of evidence.] against the null
+hypothesis and conclude that there is
 a linear relationship between *Beers* and *BAC* in OSU students. We'll revisit this
 example using the upcoming regression tools to explore the potential for more
-specific conclusions about this relationships. Note that for these inferences to be
+specific conclusions about this relationship. Note that for these inferences to be
 accurate, we need to be able to trust that the sample correlation is reasonable
 for characterizing the relationship between these variables along with the assumptions we will discuss below. 
 
-\indent In this situation with randomly assigned levels of $x$ and a rejected null 
-hypothesis of no relationship, we can further conclude that there is strong evidence that changing beer 
+\indent In this situation with randomly assigned levels of $x$ and strong evidence against the null 
+hypothesis of no relationship, we can further conclude that changing beer 
 consumption **causes** changes in the *BAC*. This is a much stronger conclusion
 than we can typically make based on correlation coefficients. Correlations and
 scatterplots are enticing for infusing causal interpretations in non-causal
@@ -946,16 +921,13 @@ by type of tree.
 
 
 ```r
-require(spuRs) #install.packages("spuRs")
+library(spuRs) #install.packages("spuRs")
 data(ufc)
-ufc <- as.tibble(ufc)
-scatterplot(height.m~dbh.cm, data=ufc, smooth=F, regLine=T)
+ufc <- as_tibble(ufc)
+scatterplot(height.m~dbh.cm, data=ufc, smooth=F, regLine=T, pch=16)
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-11-1.png" alt="(ref:fig6-11)" width="576" />
-<p class="caption">(\#fig:Figure6-11)(ref:fig6-11)</p>
-</div>
+![(\#fig:Figure6-11)(ref:fig6-11)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-11-1.pdf) 
 
 Of particular interest is an observation with a diameter around 58 cm and a height
 of less than 5 m. Observing a tree with a diameter around 60 cm is not unusual
@@ -1001,14 +973,12 @@ cor(dbh.cm~height.m, data=ufc[-168,])
 ## [1] 0.7912053
 ```
 
-$$\underline{\textbf{If you skipped Section 6.4, you can skip the rest of this section:}}$$ 
-
 \indent With the outlier included, the bootstrap 95% confidence interval goes from 0.702 to
 0.820 -- we are 95% confident that the true correlation between *diameter* and *height*
-in the population of trees is between 0.702 and 0.820. When
-the outlier is dropped from the data set, the 95% bootstrap CI is 0.752 to 0.827, 
+in the population of trees is between 0.708 and 0.819. When
+the outlier is dropped from the data set, the 95% bootstrap CI is 0.753 to 0.826, 
 which shifts the lower endpoint of the interval up, reducing the width of the
-interval from 0.118 to 0.075. In other words, the uncertainty regarding the
+interval from 0.111 to 0.073. In other words, the uncertainty regarding the
 value of the population correlation coefficient is reduced. The reason to
 remove the observation is that it is unusual based on the observed pattern, 
 which implies an error in data collection or sampling from a population other
@@ -1019,40 +989,19 @@ our assumptions of using these methods -- we'll see some other ways of detecting
 this issue in Section \@ref(section6-10) and we'll try to "fix" this example using
 transformations in the Chapter \@ref(chapter7). 
 
-(ref:fig6-12) Bootstrap distributions of the correlation coefficient for the 
-full data set (top) and without potential outlier included (bottom) with 
-observed correlation (bold line) and bounds for the 95% confidence interval 
-(dashed lines).
+(ref:fig6-12) Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines). Notice the change in spread of the bootstrap distributions as well as the different centers.
 
+
+```r
+Tobs <- cor(dbh.cm~height.m, data=ufc); Tobs
+```
 
 ```
 ## [1] 0.7699552
 ```
 
-```
-##        quantile     p
-## 2.5%  0.7054866 0.025
-## 97.5% 0.8200069 0.975
-```
-
-```
-## [1] 0.7912053
-```
-
-```
-##        quantile     p
-## 2.5%  0.7499070 0.025
-## 97.5% 0.8285054 0.975
-```
-
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-12-1.png" alt="(ref:fig6-12)" width="960" />
-<p class="caption">(\#fig:Figure6-12)(ref:fig6-12)</p>
-</div>
-
-
 ```r
-Tobs <- cor(dbh.cm~height.m, data=ufc); Tobs
+set.seed(208)
 par(mfrow=c(2,1))
 B <- 1000
 Tstar <- matrix(NA, nrow=B)
@@ -1061,23 +1010,52 @@ for (b in (1:B)){
 }
 quantiles <- qdata(Tstar, c(.025,.975)) #95% Confidence Interval
 quantiles
-hist(Tstar, labels=T, xlim=c(0.6,0.9),
+```
+
+```
+##        quantile     p
+## 2.5%  0.7075771 0.025
+## 97.5% 0.8190283 0.975
+```
+
+```r
+hist(Tstar, labels=T, xlim=c(0.6,0.9), ylim=c(0,275),
      main="Bootstrap distribution of correlation with all data")
 abline(v=Tobs, col="red", lwd=3)
 abline(v=quantiles$quantile, col="blue", lty=2, lwd=3)
 
 Tobs <- cor(dbh.cm~height.m, data=ufc[-168,]); Tobs
+```
+
+```
+## [1] 0.7912053
+```
+
+```r
 Tstar <- matrix(NA, nrow=B)
 for (b in (1:B)){
   Tstar[b] <- cor(dbh.cm~height.m, data=resample(ufc[-168,]))
 }
 quantiles <- qdata(Tstar, c(.025,.975)) #95% Confidence Interval
 quantiles
-hist(Tstar, labels=T, xlim=c(0.6,0.9),
+```
+
+```
+##        quantile     p
+## 2.5%  0.7532338 0.025
+## 97.5% 0.8259416 0.975
+```
+
+```r
+hist(Tstar, labels=T, xlim=c(0.6,0.9), ylim=c(0,275),
      main= "Bootstrap distribution of correlation without outlier")
 abline(v=Tobs, col="red", lwd=3)
 abline(v=quantiles$quantile, col="blue", lty=2, lwd=3)
 ```
+
+![(\#fig:Figure6-12)(ref:fig6-12)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-12-1.pdf) 
+
+\newpage
 
 ## Describing relationships with a regression model	{#section6-6}
 
@@ -1108,62 +1086,58 @@ default in the ``scatterplot`` function with the ``reg.line=T`` option or just
 omitting ``reg.line=F`` from the previous versions of the code since it is a 
 default option to provide the lines. 
 
-(ref:fig6-13) Scatterplot with estimated regression line for the *Beers* and 
-*BAC* data. Horizontal dashed lines for the predicted BAC for 4 and 5 beers consumed.
+(ref:fig6-13) Scatterplot with estimated regression line for the *Beers* and *BAC* data. Horizontal dashed lines for the predicted BAC for 4 and 5 beers consumed.
 
 
 ```r
-scatterplot(BAC~Beers, ylim=c(0,.2), xlim=c(0,9), data=BB,
+scatterplot(BAC~Beers, ylim=c(0,.2), xlim=c(0,9), data=BB, pch=16,
             boxplot=F, main="Scatterplot with regression line",
             lwd=2, smooth=F)
 abline(v=1:9, col="grey")
 abline(h=c(0.05914,0.0771), col="blue", lty=2, lwd=2)
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-13-1.png" alt="(ref:fig6-13)" width="576" />
-<p class="caption">(\#fig:Figure6-13)(ref:fig6-13)</p>
-</div>
+![(\#fig:Figure6-13)(ref:fig6-13)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-13-1.pdf) 
 
 \indent The equation for a line is $y=a+bx$, or maybe $y=mx+b$. In the version 
 $mx+b$ you learned that $m$ is a slope coefficient that relates a 
-change in $x$ to changes in $y$ and that $b$ is a y-intercept (the 
+change in $x$ to changes in $y$ and that $b$ is a $y$-intercept (the 
 value of $y$ when $x$ is 0). In Figure \@ref(fig:Figure6-13), two extra
 horizontal lines are added to help you see the defining characteristics of the line. The
 slope, whatever letter you use, is the change in $y$ for a one-unit 
 increase in $x$. Here, the slope is the change in ``BAC`` for a 1 beer 
 increase in ``Beers``, such as the change from 4 to 5 beers. The 
-y-values (blue, dashed lines) for ``Beers`` = 4 and 5 go from 0.059 to 
+$y$-values (blue, dashed lines) for ``Beers`` = 4 and 5 go from 0.059 to 
 0.077. This means that for a 1 beer increase (+1 unit change in $x$), the 
 ``BAC`` goes up by $0.077-0.059=0.018$ (+0.018 unit change in $y$).
-We can also try to find the y-intercept on the graph by looking for the 
-``BAC`` level for 0 ``Beers`` consumed. The y-value (``BAC``) ends up 
+We can also try to find the $y$-intercept on the graph by looking for the 
+``BAC`` level for 0 ``Beers`` consumed. The $y$-value (``BAC``) ends up 
 being around -0.01 if you extend the regression line to ``Beers``=0. 
 You might assume that the ``BAC`` should be 0 for ``Beers``=0 but the 
 researchers did not observe any students at 0 ``Beers``, so we don't 
 really know what the ``BAC`` might be at this value. We have to
 use our line to ***predict*** this value. This ends up providing a 
 prediction below 0 -- an impossible value for *BAC*. If the 
-y-intercept were positive, it would suggest that the students
-has a *BAC* over 0 even without drinking. 
+$y$-intercept were positive, it would suggest that the students
+has a *BAC* over 0 even without drinking. \index{model!SLR!predict}
 
 \indent The numbers reported were very
 accurate because we weren't using the plot alone to generate the 
 values -- we
-were using a statistical method and R to estimate the equation to 
+were using a linear model to estimate the equation to 
 describe the
 relationship between ``Beers`` and ``BAC``. In statistics, we estimate 
-"$m$" and "$b$". We also write the equation starting with the y-intercept 
-and we use slightly different notation that allows us to extend to more 
+"$m$" and "$b$". We also write the equation starting with the $y$-intercept 
+and use slightly different notation that allows us to extend to more 
 complicated models with more variables.
 \index{model!SLR}
 \index{model!regression!estimated}
 Specifically, the estimated
-regression equation is $\hat{y} = b_0 + b_1x$, where
+regression equation is $\widehat{y} = b_0 + b_1x$, where
 
-* $\hat{y}$ is the estimated value of $y$ for a given $x$,
+* $\widehat{y}$ is the estimated value of $y$ for a given $x$,
 
-* $b_0$ is the estimated y-intercept (predicted value of $y$ when
+* $b_0$ is the estimated $y$-intercept (predicted value of $y$ when
 $x$ is 0),
 
 * $b_1$ is the estimated slope coefficient, and 
@@ -1175,7 +1149,7 @@ classes and our
 situation is that the line is not a perfect description of the relationship
 between $x$ and $y$ -- it is an "on average" description and will usually 
 leave differences between the line and the observations, which we call 
-residuals $(e = y-\hat{y})$.
+residuals $(e = y-\widehat{y})$.
 \index{residuals}
 We worked with residuals in the ANOVA^[The 
 residuals from these methods and ANOVA are the same because they all come
@@ -1202,7 +1176,7 @@ $i^{th}$ observation,
 
 * $\beta_0 + \beta_1x_i$ is the true mean function evaluated at $x_i$,
 
-* $\beta_0$ is the true (or population) y-intercept,
+* $\beta_0$ is the true (or population) $y$-intercept,
 
 * $\beta_1$ is the true (or population) slope coefficient, and
 
@@ -1210,9 +1184,9 @@ $i^{th}$ observation,
 normally distributed with mean 0 and standard deviation $\sigma$ or,
 more compactly, $\varepsilon_i \sim N(0,\sigma^2)$. 
 
-This presents another version of the linear model from Chapters \@ref(chapter3)
+This presents another version of the linear model from Chapters \@ref(chapter2), \@ref(chapter3),
 and \@ref(chapter4), now with a
-quantitative explanatory variable instead of categorical variable(s). This chapter
+quantitative explanatory variable instead of categorical explanatory variable(s). This chapter
 focuses mostly on the estimated regression coefficients, but remember that we
 are doing statistics and our desire is to make inferences to a larger population. 
 So, estimated coefficients, $b_0$ and $b_1$, are approximations to
@@ -1250,7 +1224,7 @@ m1
 ```
 
 More often, we will extract these from the ***coefficient table*** produced 
-by a model ``summary``:
+by a model ``summary``: \index{\texttt{summary()}}
 
 \vspace{11pt}
 
@@ -1278,7 +1252,7 @@ summary(m1)
 ## F-statistic: 55.94 on 1 and 14 DF,  p-value: 2.969e-06
 ```
 
-From either version of the output, you can find the estimated y-intercept 
+From either version of the output, you can find the estimated $y$-intercept 
 in the ``(Intercept)`` part of the output and the slope coefficient in the
 ``Beers``  part of the output. So $b_0 = -0.0127$, $b_1=0.01796$, and
 the ***estimated regression equation*** is
@@ -1301,17 +1275,22 @@ interpret the slope coefficient as: \index{slope interpretation!SLR}
 ***X***, we expect, *on average*, a $\boldsymbol{b_1}$ **[*unit of Y*]** change
 in ***Y***. 
 
+(ref:fig6-14) Diagram of interpretation of slope coefficients.
+
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter6_files/image047} 
+
+}
+
+\caption{(ref:fig6-14)}(\#fig:Figure6-14)
+\end{figure}
+
+
 Figure \@ref(fig:Figure6-14) can help you think about the
 different sorts of slope coefficients we might need to interpret, both
 providing changes in the response variable for 1 unit increases in the
 predictor variable. 
-
-(ref:fig6-14) Diagram of interpretation of slope coefficients.
-
-<div class="figure">
-<img src="chapter6_files/image047.png" alt="(ref:fig6-14)" width="583" />
-<p class="caption">(\#fig:Figure6-14)(ref:fig6-14)</p>
-</div>
 
 \indent Applied to this problem, for each additional 1 beer consumed, we expect 
 a 0.018 gram per dL change in the *BAC* *on average*. Using "change" in 
@@ -1329,22 +1308,22 @@ about. Typically, we will just use the units used in the original variables and
 only change the scale of "change in $x$" when it provides an interpretation we
 are particularly interested in. 
 
-\indent Similarly, the general interpretation for a y-intercept is:
+\indent Similarly, the general interpretation for a $y$-intercept is:
 \index{@$y$-intercept interpretation!SLR}
 
-* **Y-intercept interpretation (general):** For ***X***= 0 **[*units of X*]**,
+* **$Y$-intercept interpretation (general):** For ***X***= 0 **[*units of X*]**,
 we expect, on average, $\boldsymbol{b_0}$ **[*units of Y*]** **in** ***Y***. 
 
 Again, applied to the *BAC* data set: For 0 beers for *Beers* consumed, 
 we expect, on
-average, -0.012 g/dL *BAC*. The y-intercept interpretation is often less
+average, -0.012 g/dL *BAC*. The $y$-intercept interpretation is often less
 interesting than the slope interpretation but can be interesting in some
 situations. Here, it is predicting average *BAC* for ``Beers``=0, which 
 is a value outside the scope of the $x\text{'s}$ (*Beers* was observed 
 between 1 and 9). Prediction outside the scope of the predictor values is 
 called ***extrapolation***. Extrapolation is dangerous at best and 
 misleading at worst. That said, if you are asked to
-interpret the y-intercept you should still interpret it, but it is also good to
+interpret the $y$-intercept you should still interpret it, but it is also good to
 note if it is outside of the region where we had observations on the
 explanatory variable. Another example is useful for practicing how to do these
 interpretations. 
@@ -1361,9 +1340,10 @@ using the ``lm`` function:
 
 ```r
 aisR2 <- ais[-c(56,166), c("Ht","Hc","Bfat","Sex")]
-m2 <- lm(Hc~Bfat, data=aisR2[aisR2$Sex==1,]) #Results for Females 
+m2 <- lm(Hc~Bfat, data=subset(aisR2,Sex==1)) #Results for Females 
 ```
 
+\newpage
 
 (ref:fig6-15) Scatterplot of Hematocrit versus Body Fat for female athletes. 
 
@@ -1375,7 +1355,7 @@ summary(m2)
 ```
 ## 
 ## Call:
-## lm(formula = Hc ~ Bfat, data = aisR2[aisR2$Sex == 1, ])
+## lm(formula = Hc ~ Bfat, data = subset(aisR2, Sex == 1))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -1392,23 +1372,20 @@ summary(m2)
 ```
 
 ```r
-scatterplot(Hc~Bfat, data=aisR2[aisR2$Sex==1,], smooth=F,
+scatterplot(Hc~Bfat, data=subset(aisR2,Sex==1), smooth=F, pch=16,
             main="Scatterplot of Body Fat vs Hematocrit for Female Athletes",
             ylab="Hc (% blood)", xlab="Body fat (% weight)")
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-15-1.png" alt="(ref:fig6-15)" width="576" />
-<p class="caption">(\#fig:Figure6-15)(ref:fig6-15)</p>
-</div>
+![(\#fig:Figure6-15)(ref:fig6-15)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-15-1.pdf) 
 
 Based on these results, the estimated regression equation is
 $\widehat{\text{Hc}}_i = 42.014 - 0.085\cdot\text{BodyFat}_i$ with $b_0 = 42.014$
 and $b_1 = 0.085$. The slope coefficient interpretation is: For a one 
 percent increase in body fat, we expect, on average, a -0.085% (blood) change
-in Hematocrit for Australian female athletes. For the y-intercept, the
+in Hematocrit for Australian female athletes. For the $y$-intercept, the
 interpretation is: For a 0% body fat female athlete, we expect a Hematocrit of
-42.014% on average. Again, this y-intercept involves extrapolation to a region
+42.014% on average. Again, this $y$-intercept involves extrapolation to a region
 of $x$'s that we did not observed. None of the athletes had body fat below 5% so we don't know what would happen to 
 the hematocrit of an athlete that had no body fat except that it probably would not
 continue to follow a linear relationship. 
@@ -1421,16 +1398,16 @@ the estimated coefficients.
 The lines produced probably look reasonable but you
 could imagine drawing other lines that might look equally plausible. Because we
 are interested in explaining variation in the response variable, we want a
-model that in some sense minimizes the residuals $(e_i=y_i-\hat{y}_i)$
-to find a model that explains the responses as well as possible -- has
-$y_i-\hat{y}_i$ as small as possible.
+model that in some sense minimizes the residuals $(e_i=y_i-\widehat{y}_i)$
+and explains the responses as well as possible, in other words has
+$y_i-\widehat{y}_i$ as small as possible.
 \index{residuals}
 \index{model!SLR}
-We can't just add these up because 
+We can't just add these $e_i$'s up because 
 it would always be 0 (remember why we use the variance to measure
 spread from introductory statistics?). We use a similar technique in
 regression, we find the regression line that minimizes the squared residuals
-$e^2_i=(y_i-\hat{y}_i)^2$ over all the observations, minimizing the 
+$e^2_i=(y_i-\widehat{y}_i)^2$ over all the observations, minimizing the 
 ***Sum of Squared Residuals***$\boldsymbol{=\Sigma e^2_i}$.
 Finding the estimated regression coefficients that minimize the sum of squared
 residuals is called ***least squares estimation*** and provides us a 
@@ -1445,14 +1422,9 @@ the squared residuals was minimized for the value that ``lm`` returned at
 it did not do as good **on the least squares criterion** as the least squares
 estimates. 
 
-(ref:fig6-16) Plot of sum of squared residuals vs possible slope coefficients 
-for *Beers* vs *BAC* data, with vertical line for the least squares estimate 
-that minimizes the sum of squared residuals. 
+(ref:fig6-16) Plot of sum of squared residuals vs possible slope coefficients for *Beers* vs *BAC* data, with vertical line for the least squares estimate that minimizes the sum of squared residuals. 
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-16-1.png" alt="(ref:fig6-16)" width="384" />
-<p class="caption">(\#fig:Figure6-16)(ref:fig6-16)</p>
-</div>
+![(\#fig:Figure6-16)(ref:fig6-16)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-16-1.pdf) 
 
 \indent Sometimes it is helpful to have a
 go at finding the estimates yourself. If you install and load the ``tigerstats``
@@ -1464,15 +1436,15 @@ a chance to try to find the optimal slope and intercept for a fake data set.
 Click on the "sprocket" icon in the upper left of the plot and you will see
 something like Figure \@ref(fig:Figure6-17). This interaction can help you see 
 how the residuals
-are being measuring in the y-direction and appreciate that ``lm`` takes care of
+are being measuring in the $y$-direction and appreciate that ``lm`` takes care of
 this for us. 
 \index{residuals}
 
 \newpage
 
 ```r
-> require(tigerstats)
-> require(manipulate)
+> library(tigerstats)
+> library(manipulate)
 > FindRegLine()
 
 Equation of the regression line is:
@@ -1482,20 +1454,21 @@ Your final score is 13143.99
 Thanks for playing!
 ```
 
-(ref:fig6-17) Results of running ``FindRegLine()`` where I 
-didn't quite find the least squares line. The correct line is the bold (red) 
-line and produced a smaller sum of squared residuals than the guessed thinner
-(black) line.
+(ref:fig6-17) Results of running ``FindRegLine()`` where I didn't quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line.
 
-<div class="figure">
-<img src="chapter6_files/image063.png" alt="(ref:fig6-17)" width="440" />
-<p class="caption">(\#fig:Figure6-17)(ref:fig6-17)</p>
-</div>
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter6_files/image063} 
+
+}
+
+\caption{(ref:fig6-17)}(\#fig:Figure6-17)
+\end{figure}
 
 \indent It ends up that the least squares
 criterion does not require a search across coefficients or trial and error --
 there are some "simple" equations available for calculating the estimates of
-the y-intercept and slope:
+the $y$-intercept and slope:
 
 $$b_1 = \frac{\Sigma_i(x_i-\bar{x})(y_i-\bar{y})}{\Sigma_i(x_i-\bar{x})^2}
 =r\frac{s_y}{s_x} \text{ and } b_0 = \bar{y} - b_1\bar{x}.$$
@@ -1514,7 +1487,7 @@ there is no linear relationship between $x$ and $y$ ($r=0$), the least
 squares regression line is a horizontal line with height $\bar{y}$, and
 the line produces the same fitted values for all $x$ values. You can also
 think about this as when there is no relationship between $x$ and $y$, the
-best prediction of $y$ is the mean of the y-values and it doesn't change
+best prediction of $y$ is the mean of the $y$-values and it doesn't change
 based on the values of $x$. It is less obvious in these equations, but they
 also imply that **the regression line ALWAYS goes through the point**
 $\boldsymbol{(\bar{x},\bar{y}).}$ It provides a sort of anchor point
@@ -1555,30 +1528,30 @@ summary(fire1)
 
 * Regression Equation (Completely Specified):
 
-    * $\widehat{\text{log(Ha)}} = -69.78 + 1.39\cdot\text{Temp} \ \ \ \ \text{ OR}$
+    * Estimated model: $\widehat{\text{log(Ha)}} = -69.78 + 1.39\cdot\text{Temp}$
     
-    * $\hat{y} = -69.78 + 1.39x$ with **Y:log(Ha) and X:Temperature**
+    * Or $\widehat{y} = -69.78 + 1.39x$ with **Y=log(Ha) and X=Temperature**
     
 * Response Variable: Yearly *log* Hectares burned by wildfires 
 
 * Explanatory Variable: Average Summer Temperature
 
-* Estimated y-Intercept ($b_0$): -69.78
+* Estimated $y$-Intercept ($b_0$): -69.78
 
 * Estimated slope ($b_1$): 1.39
 
 * Slope Interpretation: For a 1 degree Fahrenheit increase in
-Average Summer Temperature we would expect, **on average**, a 1.39 
+Average Summer Temperature we would expect, **on average**, a 1.39 log(Hectares)
 $\underline{change}$ in log(Hectares) burned in Montana. 
 
-* Y-intercept Interpretation: If temperature were 0 degrees F, we would 
+* $Y$-intercept Interpretation: If temperature were 0 degrees F, we would 
 expect -69.78 log(Hectares) burned **on average** in Montana. 
 
 \indent One other use of regression equations is for prediction. It is a trivial
-exercise (or maybe not -- we'll see when you try it!) to plug an x-value of
+exercise (or maybe not -- we'll see when you try it!) to plug an $x$-value of
 interest into the regression equation and get an estimate for $y$ at that $x$.
 Basically, the regression lines displayed in the scatterplots show the 
-predictions from the regression line across the range of $x\text{'s}$.
+predictions from the regression line across the range of $x\text{'s}$. \index{prediction}
 Formally, ***prediction*** involves estimating the response for a particular 
 value of $x$. We know that it won't be perfect but it is our best guess. 
 Suppose that we are interested in
@@ -1589,7 +1562,7 @@ we get
 
 
 
-$$\begin{array}{rl} \\ \require{cancel} \widehat{\log(\text{Ha})}&= -69.78\text{ log-hectares }+ 1.39\text{ log-hectares}/^\circ \text{F}\bullet 59^\circ\text{F} \\&= -69.78\text{ log-hectares } +1.39\text{ log-hectares}/\cancel{^\circ \text{F}}\bullet 59\cancel{^\circ \text{F}} \\&= 12.23 \text{ log-hectares} \\ \end{array}$$
+$$\begin{array}{rl} \\ \widehat{\log(\text{Ha})}&= -69.78\text{ log-hectares }+ 1.39\text{ log-hectares}/^\circ \text{F}\bullet 59^\circ\text{F} \\&= -69.78\text{ log-hectares } +1.39\text{ log-hectares}/\cancel{^\circ \text{F}}\bullet 59\cancel{^\circ \text{F}} \\&= 12.23 \text{ log-hectares} \\ \end{array}$$
 
 We did not observe any summers at exactly $x=59$ but did observe some 
 nearby and this result seems relatively reasonable. 
@@ -1598,23 +1571,19 @@ nearby and this result seems relatively reasonable.
 $\text{Temperature} = 65^\circ F$. We can run that through the equation:
 $-69.78 + 1.39*65 = 20.57$ log-hectares. But can we trust this prediction? We did
 not observe any summers over 60 degrees F so we are now predicting outside the
-scope of our observations -- performing extrapolation. Having a scatterplot in
+scope of our observations -- performing ***extrapolation***. \index{extrapolation} Having a scatterplot in
 hand helps us to assess the range of values where we can reasonably use the
 equation -- here between 54 and 60 degrees F seems reasonable. 
 
-(ref:fig6-18) Scatterplot of log-hectares burned versus temperature with 
-estimated regression line. 
+(ref:fig6-18) Scatterplot of log-hectares burned versus temperature with estimated regression line. 
 
 
 ```r
-scatterplot(loghectares~Temperature, data=mtfires, regLine=T, smooth=F, spread=F,
+scatterplot(loghectares~Temperature, data=mtfires, regLine=T, smooth=F, spread=F, pch=16,
             main="Scatterplot with regression line for Area burned vs Temperature")
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-18-1.png" alt="(ref:fig6-18)" width="576" />
-<p class="caption">(\#fig:Figure6-18)(ref:fig6-18)</p>
-</div>
+![(\#fig:Figure6-18)(ref:fig6-18)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-18-1.pdf) 
 
 ## Measuring the strength of regressions: R^2^ {#section6-8}
 
@@ -1628,7 +1597,7 @@ correlation just addressed whether the relationship was positive or negative.
 However, the **regression line tells us nothing about the strength of the
 relationship**. Consider the three scatterplots in Figure \@ref(fig:Figure6-19):
 the left panel is the original *BAC* data and the two right
-panels have fake data that generated the same estimated regression model with a
+panels have fake data that generated exactly the same estimated regression model with a
 weaker (middle panel) and then a stronger (right panel) linear relationship
 between ``Beers`` and ``BAC``. This suggests that the regression
 line is a useful but incomplete characterization of relationships between
@@ -1653,14 +1622,11 @@ response was explained by the model. In between, it provides a nice summary
 of how much of the total variability in the response we can account for
 with our model
 including $x$ (and, in Chapter \@ref(chapter8), including multiple 
-predictor variables). 
+predictor variables). \index{coefficient of determination} \index{R-squared}
 
 (ref:fig6-19) Three scatterplots with the same estimated regression line. 
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-19-1.png" alt="(ref:fig6-19)" width="576" />
-<p class="caption">(\#fig:Figure6-19)(ref:fig6-19)</p>
-</div>
+![(\#fig:Figure6-19)(ref:fig6-19)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-19-1.pdf) 
 
 \indent The **R^2^** is calculated using the sums of squares we encountered in the
 ANOVA methods.
@@ -1668,7 +1634,7 @@ ANOVA methods.
 We once again have some total amount of variability that is
 attributed to the variation based on the model fit, here we call it 
 $\text{SS}_\text{regression}$, and the residual variability, still 
-$\text{SS}_\text{error}=\Sigma(y-\hat{y})^2$. The $\text{SS}_\text{regression}$
+$\text{SS}_\text{error}=\Sigma(y-\widehat{y})^2$. The $\text{SS}_\text{regression}$
 is most easily calculated as 
 $\text{SS}_\text{regression} = \text{SS}_\text{Total} - \text{SS}_\text{error}$,
 the difference between the total
@@ -1697,6 +1663,8 @@ We repeat the full ``lm`` model summary below -- note that a number is reported 
 proportion and it is your choice whether you want to report
 and interpret it as a proportion or percentage, just make that clear in how you
 discuss it. 
+
+\newpage
 
 
 ```r
@@ -1778,7 +1746,7 @@ response unexplained. Note that we were careful about using the scaling of the
 response variable (log(area burned)) in the interpretation -- this is because we
 would get a much different answer if area burned vs temperature was considered. 
 
-\vspace{11pt}
+\newpage
 
 
 ```r
@@ -1819,14 +1787,14 @@ provides numerical and interpretable information that drives that point home.
 
 
 ```r
-m2 <- lm(Hc~Bfat, data=aisR2[aisR2$Sex==1,]) #Results for Females
+m2 <- lm(Hc~Bfat, data=subset(aisR2,Sex==1)) #Results for Females
 summary(m2)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = Hc ~ Bfat, data = aisR2[aisR2$Sex == 1, ])
+## lm(formula = Hc ~ Bfat, data = subset(aisR2, Sex == 1))
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -1842,6 +1810,7 @@ summary(m2)
 ## F-statistic: 2.816 on 1 and 97 DF,  p-value: 0.09653
 ```
 
+\newpage
 
 ## Outliers: leverage and influence	{#section6-9}
 
@@ -1869,7 +1838,7 @@ is a positive numerical measure with larger values corresponding to more
 leverage. The scale changes depending on the sample size ($n$) and the
 complexity of the model so all that matters is which observations have 
 more or less relative leverage in a particular data set. The observations 
-with x-values
+with $x$-values
 that provide higher leverage have increased potential to influence the
 estimated regression line. Along with measuring the leverage, we can also
 measure the influence that each point has on the regression line using
@@ -1879,7 +1848,7 @@ Cook's D values over 1.0 correspond to clearly influential points, values over
 0.5 have some influence and values lower than 0.5 indicate points that are not
 influential on the regression model slope coefficients. One part of the regular
 diagnostic plots we will use for regression models displays the leverages on
-the x-axis, the standardized residuals on the y-axis, and adds contour lines
+the $x$-axis, the standardized residuals on the $y$-axis, and adds contour lines
 for Cook's Distances in a panel that is labeled "Residuals vs Leverage".
 \index{Residuals vs Leverage plot}
 This
@@ -1888,13 +1857,17 @@ observation was from the regression line (residual), and to see a measure of
 that point's influence (Cook's D). 
 \index{residuals}
 
+(ref:fig6-20) Scatterplot and Residuals vs Leverage plot for the real BAC data. Two high leverage points are flagged, with only one that has a Cook's D value over 1 ("$\circ$") and is indicated as influential. 
+
+![(\#fig:Figure6-20)(ref:fig6-20)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-20-1.pdf) 
+
 \indent To extract the level of Cook's D on the "Residuals vs Leverage" plot,
 look for contours
 to show up on the upper and lower right of the plot.
 \index{Residuals vs Leverage plot}
 They show increasing
 levels of influence going to the upper and lower right corners as you combine
-higher leverage (x-axis) and larger residuals (y-axis) -- the two ingredients
+higher leverage ($x$-axis) and larger residuals ($y$-axis) -- the two ingredients
 required to be influential on the line. The contours are displayed for Cook's D
 values of 0.5 and 1.0 if there are points near or over those levels. The Cook's
 D values come from a topographical surface of values that is a sort of U-shaped
@@ -1921,23 +1894,6 @@ Cook's D over 1. We might want to consider fitting this model without that
 observation to get a better estimate of the effects of beer consumption on BAC
 or revisit our assumption that the relationship is really linear here.  
 
-(ref:fig6-20) Scatterplot and Residuals vs Leverage plot for the
-real BAC data. Two high leverage points are flagged, with only one that has a Cook's D value over 1 ("$\circ$") and is indicated as influential. 
-
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-20-1.png" alt="(ref:fig6-20)" width="576" />
-<p class="caption">(\#fig:Figure6-20)(ref:fig6-20)</p>
-</div>
-
-
-(ref:fig6-21) Plots exploring the impacts of moving a single 
-additional observation in the BAC example. The added point is indicated with * and the original regression line is the dashed line in the left column.
-
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-21-1.png" alt="(ref:fig6-21)" width="768" />
-<p class="caption">(\#fig:Figure6-21)(ref:fig6-21)</p>
-</div>
-
 \indent To further explore influence, we will add a point to the original data set and
 move it around so you can see how those changes impact the results. For each
 scatterplot in Figure \@ref(fig:Figure6-21), the Residuals vs Leverage 
@@ -1961,15 +1917,19 @@ same set of $x\text{'s}$ and the distance to the mean of the $x$'s is unchanged.
 it is not influential
 since its Cook's D value is less than 0.5. This occurred because it followed the
 overall pattern of observations even though it was "far away" from the other
-observations in the x-direction. The last two rows of plots show what happens
+observations in the $x$-direction. The last two rows of plots show what happens
 when low leverage outliers are encountered. If observations are near the
 center of the $x\text{'s}$, it ends up that to be influential the points have 
 to be very far
 from the pattern of the other observations. The (5, 0.19) example almost
 attains a Cook's D of 0.5 but has little impact on the regression line, 
-especially the slope coefficient. It does impact the y-intercept and drops the
+especially the slope coefficient. It does impact the $y$-intercept and drops the
 R-squared value to 0.57. The same result occurs if the observation is
 noticeably lower than the other points. 
+
+(ref:fig6-21) Plots exploring the impacts of moving a single additional observation in the BAC example. The added point is indicated with * and the original regression line is the dashed line in the left column.
+
+![(\#fig:Figure6-21)(ref:fig6-21)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-21-1.pdf) 
 
 \indent When we are doing regressions, we get very worried about points "at the edges"
 having an undue influence on the results. When we start using multiple
@@ -1993,7 +1953,7 @@ estimation have been discussed previously (the same concerns in estimating
 correlation apply to regression models). The second level is whether the line
 we have will be useful for making inferences for the population that our data
 were collected from and whether the data follow our assumed model. Our window
-into problems of both types is the residuals $(e_i = y_i - \hat{y}_i)$.
+into problems of both types is the residuals $(e_i = y_i - \widehat{y}_i)$.
 \index{residuals}
 By exploring patterns in how the line "misses" the responses we can gain
 information about the reasonableness of using the estimated regression line and
@@ -2031,12 +1991,14 @@ regression models can be assessed using diagnostic plots:
     * We should not report a linear regression model if the data 
     show a curve (curvilinear relationship between $x$ and $y$).
     
+    * Examine the initial scatterplot to assess the potential for a curving relationship.
+    
     * Examine the Residuals vs Fitted (top left panel of diagnostic plot display) plot: 
     \index{Residuals vs Fitted plot}
     
         * If the model missed a curve in the relationship, the residuals 
         often will highlight that missed pattern and a curve will show 
-        up in this plot.
+        up in this plot. 
         
         * Try to explain or understand the pattern in what is left over.
         If we have a good model, there shouldn't be much left to 
@@ -2049,8 +2011,10 @@ regression models can be assessed using diagnostic plots:
     and especially that the variability does not change in the responses 
     as a function of our predictor variables or the fitted values.
     
-    * There are two plots to help with this:
+    * There are three plots to help with this:
     
+        * Examine the original scatterplot and look at the variation around the line and whether it looks constant across values of $x$.
+        
         * Examine the Residuals vs Fitted plot and look for evidence of 
         changing spread in the residuals, being careful to try to 
         separate curving patterns from non-constant variance (and look 
@@ -2062,7 +2026,7 @@ regression models can be assessed using diagnostic plots:
         as a function of the fitted values.
         \index{Scale-Location plot}
         
-            * The y-axis in this plot is the square-root of the absolute 
+            * The $y$-axis in this plot is the square-root of the absolute 
             value of the standardized residual. This scale flips the 
             negative residuals on top of the positive ones to help you 
             better assess changing variability without being distracted 
@@ -2070,9 +2034,9 @@ regression models can be assessed using diagnostic plots:
             
             * Because of the absolute value, curves in the Residuals vs 
             Fitted plot can present as sort of looking like non-constant 
-            variance -- check for nonlinearity in the residuals vs fitted 
+            variance in the Scale-Location plot -- check for nonlinearity in the residuals vs fitted values
             before using this plot. If nonlinearity is present, just use 
-            the Residuals vs Fitted panel for assessing constant variance around 
+            the Residuals vs Fitted and original scatterplot for assessing constant variance around 
             the curving pattern.
             
     * If there are patterns of increasing or decreasing variation (often 
@@ -2080,7 +2044,7 @@ regression models can be assessed using diagnostic plots:
     transformation to fix this problem (more later). It is possible to have
     decreasing and then increasing variability and this also is
     a violation of this condition. 
-    \index{transformation}
+    \index{transformation} \index{non-constant variance}
 
 * **Normality of residuals**
 
@@ -2103,9 +2067,8 @@ regression models can be assessed using diagnostic plots:
         
         * Remember that clear outliers are an example of a violation of 
         the normality assumption but some outliers may just influence 
-        the regression line and make it fit poorly for the results of the
-        observations and this issue will be more clearly observed in the 
-        residuals vs fitted. 
+        the regression line and make it fit poorly and this issue will be more clearly observed in the 
+        residuals vs fitted than in the QQ-plot. 
 
 * **No influential points**
 
@@ -2136,7 +2099,7 @@ examples:
         * We can assume that all the subjects are independent of each 
         other. There is only one measurement per student and it is 
         unlikely that one subject's beer consumption would impact 
-        another's BAC. Unless the students were trading blood it is 
+        another's BAC. Unless the students were trading blood it
         isn't possible for one person's beer consumption to change
         someone else's BAC.
         
@@ -2144,13 +2107,10 @@ examples:
         ```r
         m1 <- lm(BAC~Beers, data=BB)
         par(mfrow=c(2,2))
-        plot(m1, add.smooth=F, main="Beers vs BAC")
+        plot(m1, add.smooth=F, main="Beers vs BAC", pch=16)
         ```
         
-        <div class="figure">
-        <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-22-1.png" alt="Full suite of diagnostics plots for *Beer* vs *BAC* data." width="960" />
-        <p class="caption">(\#fig:Figure6-22)Full suite of diagnostics plots for *Beer* vs *BAC* data.</p>
-        </div>
+        ![(\#fig:Figure6-22)Full suite of diagnostics plots for *Beer* vs *BAC* data.](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-22-1.pdf) 
         
     * Linearity, constant variance from Residuals vs Fitted:
     
@@ -2177,14 +2137,14 @@ examples:
     * Normality from Normal QQ Plot:
     
         * The left tail is a little short and the right tail is a 
-        little long, suggesting a right
-        skewed distribution in the residuals. This corresponds to 
-        having a large positive outlying value.
+        little long, suggesting a slightly right
+        skewed distribution in the residuals. This also corresponds to 
+        having a large positive outlying value. But we would conclude that there is a minor issue with normality in the residuals here. 
         
     * Influential points from Residuals vs Leverage:
     
         * Previously discussed, this plot shows one influential point 
-        with a Cook's D value over 1 that is distorting the fitted model. 
+        with a Cook's D value over 1 that is distorting the fitted model and is likely the biggest issue here. 
 
 * **Tree height and tree diameter** (suspicious observation already removed):
 
@@ -2231,6 +2191,10 @@ examples:
         * The Cook's D contours do not show up in this plot so none of 
         the points are influential. 
 
+(ref:fig6-23) Diagnostics plots for tree height and diameter simple linear regression model. 
+
+![(\#fig:Figure6-23)(ref:fig6-23)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-23-1.pdf) 
+
 So the main issues with this model are the curving relationship and 
 non-constant variance. We'll revisit this example later to see if we can
 find a model on transformed variables that has better diagnostics. Reporting the following regression model that has a decent $R^2$ of 62.6%
@@ -2262,19 +2226,11 @@ summary(tree1)
 ## F-statistic: 557.4 on 1 and 333 DF,  p-value: < 2.2e-16
 ```
 
-(ref:fig6-23) Diagnostics plots for tree height and diameter simple 
-linear regression model. 
-
 
 ```r
 par(mfrow=c(2,2))
 plot(tree1, add.smooth=F)
 ```
-
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-23-1.png" alt="(ref:fig6-23)" width="960" />
-<p class="caption">(\#fig:Figure6-23)(ref:fig6-23)</p>
-</div>
 
 
 ## Old Faithful discharge and waiting times {#section6-11}
@@ -2282,15 +2238,15 @@ plot(tree1, add.smooth=F)
 A study in August 1985 considered time for Old Faithful and how that might 
 relate to *waiting time* for the next eruption (@R-MASS, @Azzalini1990). 
 \index{R packages!\textbf{MASS}}
-This sort of research provides the park staff a way to show tourists a predicted
-time to next eruption so they can quickly see it and then get back in their
-cars. Both variables are measured in minutes and the scatterplot in 
+This sort of research provides the Yellowstone National Park (YNP) staff a way to show tourists a predicted
+time to next eruption so they can quickly see it erupt and then get back in their
+cars, not wasting too much time in the outdoors. Or, less cynically, the opportunity to study the behavior of the eruption of a geyser. Both variables are measured in minutes and the scatterplot in 
 Figure \@ref(fig:Figure6-24)
 shows a moderate to strong positive and relatively linear relationship. We
 added a ***smoothing line*** (dashed line) to this plot. Smoothing lines provide
 regression-like fits but are performed on local areas of the relationship 
-and so can highlight where the relationships
-change and can highlight curvilinear relationships. They can also return
+between the two variables and so can highlight where the relationships
+change, especially highlighting curvilinear relationships. They can also return
 straight lines just like the regression line if that is reasonable. The
 technical details of regression smoothing are not covered here but they are a
 useful graphical addition to help visualize nonlinearity in relationships. 
@@ -2306,30 +2262,25 @@ also indicates that there is one point for an eruption under 1 minute in
 ``Duration`` that might be causing some problems. The story of these data 
 involve some measurements during the night
 that were just noted as being short, medium, and long -- and they were re-coded
-as 2, 3, or 4 minute duration eruptions. We'll see if our diagnostics detect
+as 2, 3, or 4 minute duration eruptions. You can see responses stacking up at 2 and 4 minute durations and this is obviously a problematic aspect of these data. We'll see if our diagnostics detect
 some of these issues when we fit a simple linear regression to try to explain
 waiting time based on duration of prior eruption.
 
-(ref:fig6-24) Scatterplot of Old Faithful waiting times to next eruption 
-(minutes) and duration of prior eruption (minutes) with smoothing line 
-(dashed) and regression line (solid).
+(ref:fig6-24) Scatterplot of Old Faithful waiting times to next eruption (minutes) and duration of prior eruption (minutes) with smoothing line (dashed) and regression line (solid).
 
 
 ```r
-require(MASS)
+library(MASS)
 data(geyser)
-geyser <- as.tibble(geyser)
+geyser <- as_tibble(geyser)
 #Aligns the duration with time to next eruption
 G2 <- tibble(Waiting=geyser$waiting[-1], Duration=geyser$duration[-299]) 
 scatterplot(Waiting~Duration, data=G2, smooth=list(spread=F)) #Adds smoothing line
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-24-1.png" alt="(ref:fig6-24)" width="576" />
-<p class="caption">(\#fig:Figure6-24)(ref:fig6-24)</p>
-</div>
+![(\#fig:Figure6-24)(ref:fig6-24)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-24-1.pdf) 
 
-\indent The first concern with these data
+\indent An initial concern with these data
 is that the observations are likely not independent. Since they were taken
 consecutively, one waiting time might be related to the next waiting time --
 violating the independence assumption. As noted above, there might be two
@@ -2338,7 +2289,7 @@ The Normal QQ-Plot in Figure \@ref(fig:Figure6-25)
 also suggests a few observations creating a slightly long right tail. 
 Those observations might warrant further exploration as they also show up as
 unusual in the Residuals vs Fitted plot. There are no highly influential points
-in the data set with all points having Cook's D smaller than 0.5, so these
+in the data set with all points having Cook's D smaller than 0.5 (contours are not displayed because no points are near or over them), so these
 outliers are not necessarily moving the regression line around. There are two
 distinct groups of observations but the variability is not clearly changing so
 we do not have to worry about non-constant variance here. So these results might
@@ -2350,7 +2301,7 @@ levels of duration of eruptions.
 OF1 <- lm(Waiting~Duration, data=G2)
 ```
 
-\newpage
+<!-- \newpage -->
 
 
 ```r
@@ -2384,10 +2335,7 @@ par(mfrow=c(2,2))
 plot(OF1)
 ```
 
-<div class="figure">
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-25-1.png" alt="(ref:fig6-25)" width="960" />
-<p class="caption">(\#fig:Figure6-25)(ref:fig6-25)</p>
-</div>
+![(\#fig:Figure6-25)(ref:fig6-25)](06-correlationAndSimpleLinearRegression_files/figure-latex/Figure6-25-1.pdf) 
 
 \indent The estimated regression equation is 
 $\widehat{\text{WaitingTime}}_i = 34.95 + 10.78\cdot\text{Duration}_i$, 
@@ -2410,7 +2358,7 @@ The correlation coefficient ($\boldsymbol{r}$ or Pearson's Product Moment
 Correlation Coefficient) measures the strength
 and direction of the linear relationship between two quantitative variables. 
 Regression models estimate the impacts of changes in $x$ on the mean of the
-response variable y. Direction of the assumed relationship (which variable
+response variable $y$. Direction of the assumed relationship (which variable
 explains or causes the other) matters for regression models but does not matter
 for correlation. Regression lines only describe the pattern of the
 relationship; in regression, we use the coefficient of determination to
@@ -2424,19 +2372,18 @@ options.
 
 \indent In this chapter, a wide variety of potential problems were explored when using
 regression models. This included a discussion of the conditions that will be
-required for using the models to perform trustworthy inferences in the next two
-chapters. It is important to remember that correlation and regression models
+required for using the models to perform trustworthy inferences in the remaining chapters. It is important to remember that correlation and regression models
 only measure the **linear** association between variables and that can be
 misleading if a nonlinear relationship is present. Similarly,
 influential observations can completely distort the apparent relationship 
 between variables
-and should be checked for before trusting any regression output. It is also
+and should be assessed before trusting any regression output. It is also
 important to remember that regression lines should not be used outside the
 scope of the original observations -- extrapolation should be checked for and
-avoided whenever possible or at least acknowledged. 
+avoided whenever possible or at least acknowledged when it is being performed. 
 
 \indent Regression models look like they
-estimate the changes in $y$ that are caused by changes in $x$. This is not true
+estimate the changes in $y$ that are caused by changes in $x$, especially when you use $x$ to predict $y$. This is not true
 unless the levels of $x$ are randomly assigned and only then we can make causal
 inferences. Since this is not generally true, you should initially always
 assume that any regression equation describes the relationship -- if you observe
@@ -2456,7 +2403,7 @@ look similar. People still like to distinguish among the different types of
 situations, but the underlying ***linear models*** are actually exactly the 
 same...
 
-\newpage
+<!-- \newpage -->
 
 ## Summary of important R code	{#section6-13}
 
@@ -2464,7 +2411,7 @@ The main components of the R code used in this chapter follow with the
 components to modify in lighter and/or ALL CAPS text where ``y`` is a response variable, 
 ``x`` is an explanatory variable, and the data are in ``DATASETNAME``.
 
-* **pairs.panels(<font color='red'>DATASETNAME</font>, ellipses=F, scale=T,
+* **pairs.panels(\textcolor{red}{DATASETNAME}, ellipses=F, scale=T,
 smooth=F, col=0)**
 
     * Requires the ``psych`` package.
@@ -2472,39 +2419,39 @@ smooth=F, col=0)**
     * Makes a scatterplot matrix that also displays the correlation 
     coefficient. \index{\texttt{pairs.panels()}|textbf}
 
-* **cor(<font color='red'>y</font>~<font color='red'>x</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **cor(\textcolor{red}{y}~\textcolor{red}{x},
+data=\textcolor{red}{DATASETNAME})**
 
     * Provides the estimated correlation coefficient between $x$ and $y$.
     \index{\texttt{cor()}|textbf}
     
-* **plot(<font color='red'>y</font>~<font color='red'>x</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **plot(\textcolor{red}{y}~\textcolor{red}{x},
+data=\textcolor{red}{DATASETNAME})**
 
     * Provides a scatter plot.
     \index{\texttt{plot()}!\texttt{lm()}|textbf}
     
-* **scatterplot(<font color='red'>y</font>~<font color='red'>x</font>,
-data=<font color='red'>DATASETNAME</font>, smooth=F)**
+* **scatterplot(\textcolor{red}{y}~\textcolor{red}{x},
+data=\textcolor{red}{DATASETNAME}, smooth=F)**
 
     * Requires the ``car`` package.
     
     * Provides a scatter plot with a regression line.
     \index{\texttt{scatterplot()}|textbf}
     
-* **<font color='red'>MODELNAME</font> ``<-`` lm(<font color='red'>y</font>~<font color='red'>x</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **\textcolor{red}{MODELNAME} ``<-`` lm(\textcolor{red}{y}~\textcolor{red}{x},
+data=\textcolor{red}{DATASETNAME})**
 
     * Estimates a regression model using least squares.
     \index{\texttt{lm()}|textbf}
     
-* **summary(<font color='red'>MODELNAME</font>)**
+* **summary(\textcolor{red}{MODELNAME})**
 
     * Provides parameter estimates and R-squared (used heavily in 
     Chapter \@ref(chapter7) and \@ref(chapter8) as well).
     \index{\texttt{summary()}|textbf}
     
-* **par(mfrow=c(2, 2)); plot(<font color='red'>MODELNAME</font>)**
+* **par(mfrow=c(2, 2)); plot(\textcolor{red}{MODELNAME})**
 
     * Provides four regression diagnostic plots in one plot. 
 
@@ -2512,7 +2459,7 @@ data=<font color='red'>DATASETNAME</font>)**
 
 ## Practice problems	{#section6-14}
 
-These questions revisit the treadmill data set from Chapter \@ref(chapter1).
+6.1. **Treadmill data analysis** These questions revisit the treadmill data set from Chapter \@ref(chapter1).
 Researchers were
 interested in whether the run test variable could be used to replace the treadmill
 oxygen consumption variable that is expensive to measure. The following code loads
@@ -2520,34 +2467,34 @@ the data set and provides a scatterplot matrix using ``pairs.panel``.
 
 ```r
 treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv")
-require(psych)
+library(psych)
 pairs.panels(treadmill, ellipses=F, smooth=F, col=0)
 ```
 
-6.1. First, 
+6.1.1. First, 
 we should get a sense of the strength of the correlation between the variable
 of primary interest, ``TreadMillOx``, and the other variables and consider
 whether outliers or nonlinearity are going to be
 major issues here. Which variable is it most strongly correlated with? Which
 variables are next most strongly correlated with this variable?
 
-6.2. Fit
+6.1.2. Fit
 the SLR using ``RunTime`` as explanatory variable for ``TreadMillOx``.
 Report the estimated model. 
 
-6.3. Predict the treadmill oxygen value for a subject with a run time 
+6.1.3. Predict the treadmill oxygen value for a subject with a run time 
 of 14 minutes. Repeat for a subject with a run time of 16 minutes. Is there
 something different about these two predictions?
 
-6.4. Interpret the slope coefficient from the estimated model, remembering 
+6.1.4. Interpret the slope coefficient from the estimated model, remembering 
 the units on the variables. 
 
-6.5. Report and interpret the y-intercept from the SLR. 
+6.1.5. Report and interpret the $y$-intercept from the SLR. 
 
-6.6. Report and interpret the $R^2$ value from the output. Show how you can find this 
+6.1.6. Report and interpret the $R^2$ value from the output. Show how you can find this 
 value from the original correlation matrix result. 
 
-6.7. Produce the diagnostic plots and discuss any potential issues. What
+6.1.7. Produce the diagnostic plots and discuss any potential issues. What
 is the approximate leverage of the highest leverage observation and how large
 is its Cook's D? What does that tell you about its potential influence in this
 model?

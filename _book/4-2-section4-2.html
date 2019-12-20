@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="4.2 Designing a two-way experiment and visualizing results | Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="4.2 Designing a two-way experiment and visualizing results | Intermediate Statistics with R">
+
+<title>4.2 Designing a two-way experiment and visualizing results | Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li><a href="acknowledgments.html#acknowledgments">Acknowledgments</a></li>
+<li class="has-sub"><a href="1-chapter1.html#chapter1"><span class="toc-section-number">1</span> Preface</a><ul>
+<li><a href="1-1-section1-1.html#section1-1"><span class="toc-section-number">1.1</span> Overview of methods</a></li>
+<li><a href="1-2-section1-2.html#section1-2"><span class="toc-section-number">1.2</span> Getting started in R</a></li>
+<li><a href="1-3-section1-3.html#section1-3"><span class="toc-section-number">1.3</span> Basic summary statistics, histograms, and boxplots using R</a></li>
+<li><a href="1-4-section1-4.html#section1-4"><span class="toc-section-number">1.4</span> Chapter summary</a></li>
+<li><a href="1-5-section1-5.html#section1-5"><span class="toc-section-number">1.5</span> Summary of important R code</a></li>
+<li><a href="1-6-section1-6.html#section1-6"><span class="toc-section-number">1.6</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter2.html#chapter2"><span class="toc-section-number">2</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="2-1-section2-1.html#section2-1"><span class="toc-section-number">2.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="2-2-section2-2.html#section2-2"><span class="toc-section-number">2.2</span> Pirate-plots</a></li>
+<li><a href="2-3-section2-3.html#section2-3"><span class="toc-section-number">2.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="2-4-section2-4.html#section2-4"><span class="toc-section-number">2.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="2-5-section2-5.html#section2-5"><span class="toc-section-number">2.5</span> Hypothesis testing (general)</a></li>
+<li><a href="2-6-section2-6.html#section2-6"><span class="toc-section-number">2.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="2-7-section2-7.html#section2-7"><span class="toc-section-number">2.7</span> Second example of permutation tests</a></li>
+<li><a href="2-8-section2-8.html#section2-8"><span class="toc-section-number">2.8</span> Reproducibility Crisis: Moving beyond p &lt; 0.05, publication bias, and multiple testing issues</a></li>
+<li><a href="2-9-section2-9.html#section2-9"><span class="toc-section-number">2.9</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="2-10-section2-10.html#section2-10"><span class="toc-section-number">2.10</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="2-11-section2-11.html#section2-11"><span class="toc-section-number">2.11</span> Chapter summary</a></li>
+<li><a href="2-12-section2-12.html#section2-12"><span class="toc-section-number">2.12</span> Summary of important R code</a></li>
+<li><a href="2-13-section2-13.html#section2-13"><span class="toc-section-number">2.13</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter3.html#chapter3"><span class="toc-section-number">3</span> One-Way ANOVA</a><ul>
+<li><a href="3-1-section3-1.html#section3-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section3-2.html#section3-2"><span class="toc-section-number">3.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="3-3-section3-3.html#section3-3"><span class="toc-section-number">3.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="3-4-section3-4.html#section3-4"><span class="toc-section-number">3.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="3-5-section3-5.html#section3-5"><span class="toc-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="3-6-section3-6.html#section3-6"><span class="toc-section-number">3.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="3-7-section3-7.html#section3-7"><span class="toc-section-number">3.7</span> Pair-wise comparisons for the Overtake data</a></li>
+<li><a href="3-8-section3-8.html#section3-8"><span class="toc-section-number">3.8</span> Chapter summary</a></li>
+<li><a href="3-9-section3-9.html#section3-9"><span class="toc-section-number">3.9</span> Summary of important R code</a></li>
+<li><a href="3-10-section3-10.html#section3-10"><span class="toc-section-number">3.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter4.html#chapter4"><span class="toc-section-number">4</span> Two-Way ANOVA</a><ul>
+<li><a href="4-1-section4-1.html#section4-1"><span class="toc-section-number">4.1</span> Situation</a></li>
+<li><a href="4-2-section4-2.html#section4-2"><span class="toc-section-number">4.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="4-3-section4-3.html#section4-3"><span class="toc-section-number">4.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="4-4-section4-4.html#section4-4"><span class="toc-section-number">4.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="4-5-section4-5.html#section4-5"><span class="toc-section-number">4.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="4-6-section4-6.html#section4-6"><span class="toc-section-number">4.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs and Estimability</a></li>
+<li><a href="4-7-section4-7.html#section4-7"><span class="toc-section-number">4.7</span> Chapter summary</a></li>
+<li><a href="4-8-section4-8.html#section4-8"><span class="toc-section-number">4.8</span> Summary of important R code</a></li>
+<li><a href="4-9-section4-9.html#section4-9"><span class="toc-section-number">4.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter5.html#chapter5"><span class="toc-section-number">5</span> Chi-square tests</a><ul>
+<li><a href="5-1-section5-1.html#section5-1"><span class="toc-section-number">5.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="5-2-section5-2.html#section5-2"><span class="toc-section-number">5.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="5-3-section5-3.html#section5-3"><span class="toc-section-number">5.3</span> Independence test hypotheses</a></li>
+<li><a href="5-4-section5-4.html#section5-4"><span class="toc-section-number">5.4</span> Models for R by C tables</a></li>
+<li><a href="5-5-section5-5.html#section5-5"><span class="toc-section-number">5.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-6-section5-6.html#section5-6"><span class="toc-section-number">5.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="5-7-section5-7.html#section5-7"><span class="toc-section-number">5.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="5-8-section5-8.html#section5-8"><span class="toc-section-number">5.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="5-9-section5-9.html#section5-9"><span class="toc-section-number">5.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="5-10-section5-10.html#section5-10"><span class="toc-section-number">5.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="5-11-section5-11.html#section5-11"><span class="toc-section-number">5.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="5-12-section5-12.html#section5-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section5-13.html#section5-13"><span class="toc-section-number">5.13</span> Summary of important R commands</a></li>
+<li><a href="5-14-section5-14.html#section5-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter6.html#chapter6"><span class="toc-section-number">6</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="6-1-section6-1.html#section6-1"><span class="toc-section-number">6.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="6-2-section6-2.html#section6-2"><span class="toc-section-number">6.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="6-3-section6-3.html#section6-3"><span class="toc-section-number">6.3</span> Relationships between variables by groups</a></li>
+<li><a href="6-4-section6-4.html#section6-4"><span class="toc-section-number">6.4</span> Inference for the correlation coefficient</a></li>
+<li><a href="6-5-section6-5.html#section6-5"><span class="toc-section-number">6.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="6-6-section6-6.html#section6-6"><span class="toc-section-number">6.6</span> Describing relationships with a regression model</a></li>
+<li><a href="6-7-section6-7.html#section6-7"><span class="toc-section-number">6.7</span> Least Squares Estimation</a></li>
+<li><a href="6-8-section6-8.html#section6-8"><span class="toc-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="6-9-section6-9.html#section6-9"><span class="toc-section-number">6.9</span> Outliers: leverage and influence</a></li>
+<li><a href="6-10-section6-10.html#section6-10"><span class="toc-section-number">6.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="6-11-section6-11.html#section6-11"><span class="toc-section-number">6.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="6-12-section6-12.html#section6-12"><span class="toc-section-number">6.12</span> Chapter summary</a></li>
+<li><a href="6-13-section6-13.html#section6-13"><span class="toc-section-number">6.13</span> Summary of important R code</a></li>
+<li><a href="6-14-section6-14.html#section6-14"><span class="toc-section-number">6.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter7.html#chapter7"><span class="toc-section-number">7</span> Simple linear regression inference</a><ul>
+<li><a href="7-1-section7-1.html#section7-1"><span class="toc-section-number">7.1</span> Model</a></li>
+<li><a href="7-2-section7-2.html#section7-2"><span class="toc-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="7-3-section7-3.html#section7-3"><span class="toc-section-number">7.3</span> Bozeman temperature trend</a></li>
+<li><a href="7-4-section7-4.html#section7-4"><span class="toc-section-number">7.4</span> Randomization-based inferences for the slope coefficient</a></li>
+<li><a href="7-5-section7-5.html#section7-5"><span class="toc-section-number">7.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="7-6-section7-6.html#section7-6"><span class="toc-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="7-7-section7-7.html#section7-7"><span class="toc-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="7-8-section7-8.html#section7-8"><span class="toc-section-number">7.8</span> Chapter summary</a></li>
+<li><a href="7-9-section7-9.html#section7-9"><span class="toc-section-number">7.9</span> Summary of important R code</a></li>
+<li><a href="7-10-section7-10.html#section7-10"><span class="toc-section-number">7.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter8.html#chapter8"><span class="toc-section-number">8</span> Multiple linear regression</a><ul>
+<li><a href="8-1-section8-1.html#section8-1"><span class="toc-section-number">8.1</span> Going from SLR to MLR</a></li>
+<li><a href="8-2-section8-2.html#section8-2"><span class="toc-section-number">8.2</span> Validity conditions in MLR</a></li>
+<li><a href="8-3-section8-3.html#section8-3"><span class="toc-section-number">8.3</span> Interpretation of MLR terms</a></li>
+<li><a href="8-4-section8-4.html#section8-4"><span class="toc-section-number">8.4</span> Comparing multiple regression models</a></li>
+<li><a href="8-5-section8-5.html#section8-5"><span class="toc-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="8-6-section8-6.html#section8-6"><span class="toc-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="8-7-section8-7.html#section8-7"><span class="toc-section-number">8.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="8-8-section8-8.html#section8-8"><span class="toc-section-number">8.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="8-9-section8-9.html#section8-9"><span class="toc-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="8-10-section8-10.html#section8-10"><span class="toc-section-number">8.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="8-11-section8-11.html#section8-11"><span class="toc-section-number">8.11</span> Different slopes and different intercepts</a></li>
+<li><a href="8-12-section8-12.html#section8-12"><span class="toc-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="8-13-section8-13.html#section8-13"><span class="toc-section-number">8.13</span> AICs for model selection</a></li>
+<li><a href="8-14-section8-14.html#section8-14"><span class="toc-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="8-15-section8-15.html#section8-15"><span class="toc-section-number">8.15</span> Chapter summary</a></li>
+<li><a href="8-16-section8-16.html#section8-16"><span class="toc-section-number">8.16</span> Summary of important R code</a></li>
+<li><a href="8-17-section8-17.html#section8-17"><span class="toc-section-number">8.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="9-chapter9.html#chapter9"><span class="toc-section-number">9</span> Case studies</a><ul>
+<li><a href="9-1-section9-1.html#section9-1"><span class="toc-section-number">9.1</span> Overview of material covered</a></li>
+<li><a href="9-2-section9-2.html#section9-2"><span class="toc-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="9-3-section9-3.html#section9-3"><span class="toc-section-number">9.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="9-4-section9-4.html#section9-4"><span class="toc-section-number">9.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="9-5-section9-5.html#section9-5"><span class="toc-section-number">9.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="9-6-section9-6.html#section9-6"><span class="toc-section-number">9.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section4-2" class="section level2">
+<h2><span class="header-section-number">4.2</span> Designing a two-way experiment and visualizing results</h2>
+<p>Ideally, we want to randomly assign the levels of each factor so that we can
+attribute causality to any detected effects and to reduce the chances of
+<em>confounding</em>, where the differences we think are due to one explanatory variable might be due to another variable that varied with the this explanatory variable of interest.
+
+
+Because there are two factors, we would need to design a random
+assignment scheme to select the levels of both variables. For example, we could
+randomly select a brand and then randomly select the number of drops to apply
+from the levels chosen for each measurement. Or we could decide on how many
+observations we want at each combination of the two factors (ideally having
+them all equal so the design is <strong><em>balanced</em></strong>) and then randomize the order
+of applying the different combinations of levels.
+</p>
+<p>Why might it be important to randomly apply the brand and number of drops in
+an experiment? There are situations where the order of observations can be
+related to changes in the responses and we want to be able to eliminate
+the order of observations from being related to the levels of the factors – otherwise the order of observations and levels of the factors would be <em>confounded</em>.
+For example, suppose that the area where the experiment is being performed
+becomes wet over time and the later measurements have extra water that gets
+onto the paper towels and they tend to fail more quickly. If all the observations
+for the second brand were done later in the study, then the <em>order of observations</em>
+impacts could make the second brand look worse. If the order of measurements to be made is
+randomized, then even if there is some drift in the responses over the order
+of observations it should still be possible to see the differences in the
+randomly assigned effects. If the study incorporates repeated measurements on human or animal subjects, randomizing the order of treatments they are exposed to can
+alleviate impacts of them “learning” through the study or changing just due to being studied, something that we
+would not have to worry about with paper towels.</p>
+<p>In observational studies, we do not have the luxury of random assignment, that
+is, we cannot randomly assign levels of the treatment variables to our
+subjects, so we cannot guarantee that the only differences between the groups
+are based on the differences in the explanatory variables.
+ 
+As discussed before, because we can’t control
+which level of the variables are assigned to the subjects, we cannot make
+causal inferences and have to worry about other variables being the real
+drivers of the results. Although we can never establish causal inference
+with observational studies, we can generalize our results to a larger
+population if we have a representative (ideally random) sample from our population of interest.</p>
+<p>It is also possible that we might have studies where some of the variables are
+randomly assigned and others that are not randomly assignable. The most common
+versions of this are what we sometimes call subject “demographics”, such as
+gender, income, race, etc. We might be performing a study where we can randomly
+assign treatments to these subjects but might also want to account for
+differences based on income level, which we can’t assign. In these cases, the
+scope of inference gets complicated – differences seen on randomized variables
+can be causally interpreted but you have to be careful to not say that the
+demographics caused differences. Suppose that a randomly assigned drug dosage
+is found to show positive differences in older adults and negative changes in younger adults. We
+could say that the dosage causes the increases in older adults and decreases in younger ones, but we can’t say that age caused the the differences in the ages – it just modified how the drug works and what the drug caused to happen in the responses.
+</p>
+<p>Even when we do have random assignment of treatments it is important to think
+about who/what is included in the sample. To get back to the paper towel
+example, we are probably interested in more than the sheets of the rolls
+we have to work with. If we could randomly select the studied paper towels
+from all paper towels made by each brand, our conclusions could be extended
+to those populations. That probably would not be practical, but trying to
+make sure that the towels are representative of all made by each brand by
+checking for defects and maybe picking towels from a few different rolls
+would be a good start to being able to extend inferences beyond the tested
+towels. But if you were doing this study in the factory, it might be possible to randomly sample from the towels produced, at least over the course of a day.</p>
+<p>Once random assignment and random sampling is settled, the final aspect of
+study design involves deciding on the number of observations that should be
+made. The short (glib) answer is to take as many as you can afford. With more
+observations comes higher power to detect differences if they exist, which
+is a desired attribute of all studies.
+
+It is also important to make sure that
+you obtain multiple observations at each combination of the treatment levels,
+which are called <strong><em>replicates</em></strong>.  Having replicate measurements allows
+estimation of the mean for each combination of the treatment levels as well
+as estimation and testing for an interaction.
+
+And we always prefer<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a> having
+balanced designs because they provide resistance to violation of some
+assumptions as was discussed in Chapter <a href="3-chapter3.html#chapter3"><strong>??</strong></a>. A <strong><em>balanced design</em></strong>
+in a Two-Way ANOVA setting involves having the same sample size for every
+combination of the levels of the treatments.
+</p>
+<p>With two categorical explanatory variables, there are now five possible
+scenarios for the truth. Different situations are created depending on
+whether there is an interaction between the two variables,
+whether both variables are important but do not interact, or whether either of the
+variables matter at all.
+
+Basically, there are five different possible outcomes
+in a randomized Two-Way ANOVA study, listed in order of increasing model
+complexity:</p>
+<ol style="list-style-type: decimal">
+<li><p>Neither A or B has an effect on the responses (nothing causes differences
+in responses).</p></li>
+<li><p>A has an effect, B does not (only A causes differences in responses).</p></li>
+<li><p>B has an effect, A does not (only B causes differences in responses).</p></li>
+<li><p>Both A and B have effects on response but no interaction (A and B both
+cause differences in responses but the impacts are <em>additive</em>).</p></li>
+<li><p>Effect of A on response differs based on the levels of B, the opposite is also true
+(means for levels of response across A are different for different levels of B, or, simply,
+A and B interact in their effect on the response).</p></li>
+</ol>
+<p>To illustrate these five potential outcomes, we will consider a fake version of
+the paper towel example. It ended up being really messy and complicated to
+actually perform the experiment as described so these data were simulated. The hope is to use this simple example to illustrate some of the Two-Way ANOVA possibilities. The first step is to understand what has been observed (number
+observations at each combination of factors) and look at some summary
+statistics across all the “groups”. The data set is available via the following link:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" title="1"><span class="kw">require</span>(readr)</a>
+<a class="sourceLine" id="cb313-2" title="2">pt &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/pt.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb313-3" title="3">pt<span class="op">$</span>drops &lt;-<span class="st"> </span><span class="kw">factor</span>(pt<span class="op">$</span>drops)</a>
+<a class="sourceLine" id="cb313-4" title="4">pt<span class="op">$</span>brand &lt;-<span class="st"> </span><span class="kw">factor</span>(pt<span class="op">$</span>brand)</a></code></pre></div>
+<p>The data set contains five observations per combination of treatment levels as
+provided by the <code>tally</code> function. To get counts for combinations of the
+variables, use the general formula of <code>tally(x1~x2, data=...)</code> – noting that the order of <code>x1</code> and <code>x2</code> doesn’t matter here:
+</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1"><span class="kw">require</span>(mosaic)</a>
+<a class="sourceLine" id="cb314-2" title="2"><span class="kw">tally</span>(brand<span class="op">~</span>drops, <span class="dt">data=</span>pt)</a></code></pre></div>
+<pre><code>##      drops
+## brand 10 20 30
+##    B1  5  5  5
+##    B2  5  5  5</code></pre>
+<p>The sample sizes in each of the six treatment level combinations of <code>Brand</code>
+and <code>Drops</code> [(<em>B1</em>, 10), (<em>B1</em>, 20), (<em>B1</em>, 30), (<em>B2</em>, 10), (<em>B2</em>, 20),
+(<em>B2</em>, 30)] are <span class="math inline">\(n_{jk} = 5\)</span> for <span class="math inline">\(j^{th}\)</span> level of <code>Brand</code> (<span class="math inline">\(j=1, 2\)</span>) and
+<span class="math inline">\(k^{th}\)</span> level of <code>Drops</code> (<span class="math inline">\(k=1, 2, 3\)</span>). The <code>tally</code> function gives us an <span class="math inline">\(R\)</span> by <span class="math inline">\(C\)</span>
+<strong><em>contingency table</em></strong> with <span class="math inline">\(R = 2\)</span> rows (<em>B1</em>, <em>B2</em>) and <span class="math inline">\(C = 3\)</span> columns
+(10, 20, and 30).
+
+We’ll have more fun with <span class="math inline">\(R\)</span> by <span class="math inline">\(C\)</span>
+tables in Chapter <a href="5-chapter5.html#chapter5"><strong>??</strong></a> – here it helps us to see the sample size in
+each combination of factor levels. The <code>favstats</code> function also helps us
+dig into the results for all combinations of factor levels. The notation
+involves putting both factor variables after the “~” with a “<code>+</code>” between them.
+In the output, the first row contains summary information for the
+5 observations for <code>Brand</code> <em>B1</em> and <code>Drops</code> amount 10. It also contains the
+sample size in the <code>n</code> column, although here it rolled into a new set of
+rows with the standard deviations of each combination.</p>
+
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1"><span class="kw">favstats</span>(responses<span class="op">~</span>brand<span class="op">+</span>drops, <span class="dt">data=</span>pt)</a></code></pre></div>
+<pre><code>##   brand.drops       min        Q1   median       Q3      max     mean
+## 1       B1.10 0.3892621 1.3158737 1.906436 2.050363 2.333138 1.599015
+## 2       B2.10 2.3078095 2.8556961 3.001147 3.043846 3.050417 2.851783
+## 3       B1.20 0.3838299 0.7737965 1.516424 1.808725 2.105380 1.317631
+## 4       B2.20 1.1415868 1.9382142 2.066681 2.838412 3.001200 2.197219
+## 5       B1.30 0.2387500 0.9804284 1.226804 1.555707 1.829617 1.166261
+## 6       B2.30 0.5470565 1.1205102 1.284117 1.511692 2.106356 1.313946
+##          sd n missing
+## 1 0.7714970 5       0
+## 2 0.3140764 5       0
+## 3 0.7191978 5       0
+## 4 0.7509989 5       0
+## 5 0.6103657 5       0
+## 6 0.5686485 5       0</code></pre>
+<p>The next step is to visually explore the results across the combinations of the two explanatory variables. The pirate-plot can be extended to handle these
+sorts of two-way situations using a formula that is something like <code>y~A*B</code>.<br />
+ The x-axis in the pirate-plot shows two rows of labels based on the two categories and the unique combinations of those categories are directly related to a displayed distribution of responses and mean and confidence interval. For example, in Figure <a href="4-2-section4-2.html#fig:Figure4-1">2.49</a>, the <code>Brand</code> with levels of <em>B1</em> and <em>B2</em> is the first row of x-axis labels and they are repeated across the three levels of <code>Drops</code>. In reading these plots, look for differences in the means across the levels of the first row variable (<code>Brand</code>) for each level of the second row variable (<code>Drops</code>) and then focus on whether those differences change across the levels of the second variable – that is an <em>interaction</em> as the differences in differences change.
+Specifically, start with comparing the two brands at each amount of water.
+Do the brands seem different? Certainly for 10 drops of water the two look
+different but not for 30 drops, suggesting a different impact of brands based on the amount of water present. We can also look for combinations of factors
+that produce the highest or lowest responses in this display. It appears that
+the time to failure is highest in the low water drop groups but as the water
+levels increase, the time to failure falls and the differences in the two
+brands seem to decrease. The fake data seem to have relatively similar
+amounts of variability and distribution shapes except for 10 drops and brand B2 – remembering that there are
+only 5 observations available for describing the shape of responses for each
+combination. These data were simulated using a normal distribution with
+constant variance if that gives you some extra confidence in assessing these
+model assumptions.</p>
+<p>(ref:fig4-1) Pirate-plot of paper towel data by <code>Drops</code> (x-axis) and <code>Brand</code>
+(side of bean, shaded area for <code>Brand</code> <em>B1</em>).</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1"><span class="kw">library</span>(yarrr)</a>
+<a class="sourceLine" id="cb318-2" title="2"><span class="kw">set.seed</span>(<span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb318-3" title="3"><span class="kw">pirateplot</span>(responses<span class="op">~</span>brand<span class="op">*</span>drops, <span class="dt">data=</span>pt, <span class="dt">xlab=</span><span class="st">&quot;Drops&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Time&quot;</span>, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">point.o=</span><span class="dv">1</span>) </a></code></pre></div>
+<div class="figure"><span id="fig:Figure4-1"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-1-1.png" alt="(ref:fig4-1)" width="480" />
+<p class="caption">
+Figure 2.49: (ref:fig4-1)
+</p>
+</div>
+<p>The pirate-plots can handle situations where both variables have more than two
+levels but it can sometimes get a bit cluttered to actually display the data when our analysis is going to focus on means of the responses. The means for each combination
+of levels that you can find in the <code>favstats</code> output are more usefully used
+in what is called an <strong><em>interaction plot</em></strong>.
+
+Interaction plots display the mean
+responses (y-axis) versus levels of one predictor variable on the x-axis,
+adding points and separate lines for each level of the other predictor variable. Because
+we don’t like any of the available functions in R, we wrote our own function,
+called <code>intplot</code> that you can download<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a> using:
+</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" title="1"><span class="kw">source</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R&quot;</span>)</a></code></pre></div>
+<p>The function allows a formula interface like <code>Y~X1*X2</code> and provides the
+means <span class="math inline">\(\pm\)</span> 1 SE (vertical bars) and adds a legend to help make
+everything clear.</p>
+
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" title="1"><span class="kw">intplot</span>(responses<span class="op">~</span>brand<span class="op">*</span>drops, <span class="dt">data=</span>pt)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure4-2"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-2-1.png" alt="Interaction plot of the paper towel data with Drops on the x-axis and different lines based on Brand." width="960" />
+<p class="caption">
+Figure 2.50: Interaction plot of the paper towel data with <code>Drops</code> on the x-axis and different lines based on <code>Brand</code>.
+</p>
+</div>
+<p>Interaction plots can always be made two different ways by switching the order
+of the variables. Figure <a href="4-2-section4-2.html#fig:Figure4-2">2.50</a> contains <code>Drops</code> on the x-axis
+and Figure <a href="4-2-section4-2.html#fig:Figure4-3">2.51</a> has <code>Brand</code> on the x-axis. Typically putting
+the variable with more levels on the x-axis will make interpretation easier,
+but not always. Try both and decide on the one that you like best.
+</p>
+
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" title="1"><span class="kw">intplot</span>(responses<span class="op">~</span>drops<span class="op">*</span>brand, <span class="dt">data=</span>pt)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure4-3"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-3-1.png" alt="Interaction plot of paper towel data with Brand on the x-axis and lines based on Drops." width="960" />
+<p class="caption">
+Figure 2.51: Interaction plot of paper towel data with <code>Brand</code> on the x-axis and lines based on <code>Drops</code>.
+</p>
+</div>
+<p>The formula in this function builds on our previous notation and now we include
+both predictor variables with an “<code>*</code>” between them. Using an asterisk between
+explanatory variables is one way of telling R to include an interaction between
+the variables. While the interaction may or may not be present, the interaction
+plot helps us to explore those potential differences.</p>
+<p>There are a variety of aspects of the interaction plots to pay attention to.
+
+Initially, the question to answer is whether it appears that there is an
+interaction between the predictor variables.
+
+When there is an interaction, you
+will see <strong><em>non-parallel lines</em></strong> in the interaction plot.
+
+You want to look from
+left to right in the plot and assess whether the lines connecting the means are close to parallel,
+relative to the amount of variability in the estimated means as represented by the SEs in the bars. If it seems that there is
+clear visual evidence of non-parallel lines, then the interaction is likely
+worth considering (we will use a hypothesis test to formally assess
+this – see the discussion below). If the lines look to be close to parallel, then
+there probably isn’t an interaction between
+the variables. Without an interaction present, that means that the differences
+in the response across levels of one variable doesn’t change based on the levels of the other
+variable and vice-versa. This means that we can consider the <strong><em>main effects</em></strong>
+of each variable on their own<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a>.
+
+
+Main effects are much like the results we found in
+Chapter <a href="3-chapter3.html#chapter3"><strong>??</strong></a> where we can compare
+means across levels of a single variable except that there are results for two
+variables to extract from the model. With the presence of an interaction, it is
+complicated to summarize how each variable is affecting the response variable
+because their impacts change depending on the level of the other factor. And
+plots like the interaction plot provide us with useful information.</p>
+<p>If the lines are not parallel, then
+focus in on comparing the levels of one variable as the other variable changes.
+Remember that the definition of an interaction is that the differences among
+levels of one variable depends on the level of the other variable being
+considered. “Visually” this means comparing the size of the differences in the
+lines from left to right. In Figures <a href="4-2-section4-2.html#fig:Figure4-2">2.50</a> and <a href="4-2-section4-2.html#fig:Figure4-3">2.51</a>,
+the effect of amount of water
+changes based on the brand being considered. In Figure <a href="4-2-section4-2.html#fig:Figure4-3">2.51</a>,
+the three lines
+represent the three water levels. The difference between the brands (left to
+right, <em>B1</em> to <em>B2</em>) is different depending on how much water was present. It
+appears that <code>Brand</code> <em>B2</em> lasted longer at the lower water levels but that the
+difference between the two brands dropped as the water levels increased. The
+same story appears in Figure <a href="4-2-section4-2.html#fig:Figure4-2">2.50</a>. As the
+water levels increase (left to right, 10 to 20 to 30 drops), the differences
+between the two brands decrease. Of the two versions, Figure <a href="4-2-section4-2.html#fig:Figure4-2">2.50</a>
+is probably easier to read here. Sometimes it is nice to see the interaction plot made both ways simultaneously, so you can also use the <code>intplotarray</code> function, which provides Figure <a href="4-2-section4-2.html#fig:Figure4-4">2.52</a>. This plot also adds pirate-plots to the off-diagonals so you can explore the main effects of each variable, if that is reasonable.
+
+ The interaction plots can be used to
+identify the best and worst mean responses for combinations of the treatment
+levels. For example, 10 <code>Drops</code> and <code>Brand</code> <em>B2</em> lasts longest, on average, and 30 <code>Drops</code> with <code>Brand</code> <em>B1</em> fails fastest, on average. In any version of the plot here, the lines do not appear to be parallel suggesting that further exploration of the
+interaction appears to be warranted.</p>
+
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" title="1"><span class="kw">intplotarray</span>(responses<span class="op">~</span>drops<span class="op">*</span>brand, <span class="dt">data=</span>pt)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure4-4"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-4-1.png" alt="Interaction plot array of paper towel data with two different versions of interaction plots and pirate-plots of the responses versus each explanatory variable." width="960" />
+<p class="caption">
+Figure 2.52: Interaction plot array of paper towel data with two different versions of interaction plots and pirate-plots of the responses versus each explanatory variable.
+</p>
+</div>
+<p>Before we get to the hypothesis tests
+to formally make this assessment (you knew some sort of p-value was coming, right?),
+we can visualize the 5 different scenarios that could characterize the sorts of
+results you could observe in a Two-Way ANOVA situation. Figure <a href="4-2-section4-2.html#fig:Figure4-5">2.53</a>
+shows 4 of the 5 scenarios. In panel (a), when there are no differences from either
+variable (Scenario 1), it provides relatively parallel lines and basically no
+differences either across <code>Drops</code> levels (x-axis) or <code>Brand</code> (lines). Data such as these would
+likely result in little to no evidence related to a difference in brands, water
+levels, or any interaction between them in this data set.</p>
+
+<div class="figure"><span id="fig:Figure4-5"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-5-1.png" alt="Interaction plots of four possible scenarios in the paper towel study." width="624" />
+<p class="caption">
+Figure 2.53: Interaction plots of four possible scenarios in the paper towel study.
+</p>
+</div>
+<p>Scenario 2 (Figure <a href="4-2-section4-2.html#fig:Figure4-5">2.53</a> panel (b))
+incorporates differences based on factor A (here that is <code>Brand</code>) but no real
+difference based on the <code>Drops</code> or any interaction. This results in a clear shift between the lines for the means of the <code>Brands</code> but little to no changes in the level of those lines across water levels.
+These lines are relatively parallel. We can see that <code>Brand</code> <em>B2</em> is better than
+<code>Brand</code> <em>B1</em> but that is all we can show with these sorts of results.</p>
+<p>Scenario 3 (Figure <a href="4-2-section4-2.html#fig:Figure4-5">2.53</a> panel (c)) flips the important variable
+to B (<code>Drops</code>)
+and shows decreasing average times as the water levels increase. Again, the
+interaction panels show near parallel-ness in the lines and really just show differences
+among the levels of the water. In both Scenarios 2 and 3, we could use a single
+variable and drop the other from the model, getting back to a One-Way ANOVA
+model, without losing any important information.</p>
+<p>Scenario 4 (Figure <a href="4-2-section4-2.html#fig:Figure4-5">2.53</a> panel (d)) incorporates
+effects of A and B, but they are <strong><em>additive</em></strong>. That means that the effect
+of one variable is the same across the levels of the other variable. In this
+experiment, that would mean that <code>Drops</code> has the same impact on performance
+regardless of brand and that the brands differ but each type of difference is
+the same regardless of levels of the other variable.
+The interaction plot lines are more or less parallel but now the brands are
+clearly different from each other. The plot shows the decrease in performance
+based on increasing water levels and that <code>Brand</code> <em>B2</em> is better than
+<code>Brand</code> <em>B1</em>. Additive effects show the same difference in lines from left to
+right in the interaction plots.</p>
+<p>Finally, Scenario 5 (Figure <a href="4-2-section4-2.html#fig:Figure4-6">2.54</a>) involves
+an interaction between the two variables (<code>Drops</code> and <code>Brand</code>). There are many ways
+that interactions can present but the main thing is to look for clearly
+non-parallel lines.
+
+As noted in the previous discussion, the <code>Drops</code> effect
+appears to change depending on which level of <code>Brand</code> is being considered.
+Note that the plot here described as Scenario 5 is the same as the initial plot
+of the results in Figure <a href="4-2-section4-2.html#fig:Figure4-2">2.50</a>.</p>
+<p>(ref:fig4-6) Interaction plot of Scenario 5 where it appears that an
+interaction is present.</p>
+<div class="figure"><span id="fig:Figure4-6"></span>
+<img src="04-twoWayAnova_files/figure-html/Figure4-6-1.png" alt="(ref:fig4-6)" width="432" />
+<p class="caption">
+Figure 2.54: (ref:fig4-6)
+</p>
+</div>
+<p>The typical modeling protocol is to start with assuming that Scenario 5 is a possible
+description of the results, related to fitting what is called the
+<strong><em>interaction model</em></strong>, and then attempt to simplify the model (to the
+<strong><em>additive model</em></strong>) if warranted.
+
+We need a hypothesis test to help decide if
+the interaction is “real”. We start with assuming there is no interaction between the two factors in their impacts on the response and assess evidence against that null hypothesis. We need a hypothesis test
+because the lines will never be exactly parallel in real data and, just like in the One-Way
+ANOVA situation, the amount of variation around the lines impacts the ability
+of the model to detect differences, in this case of an interaction.
+</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="70">
+<li id="fn70"><p>We would not suggest throwing away observations to get balanced designs. Plan in advance to try to have a balanced design but analyze the responses you get.<a href="4-2-section4-2.html#fnref70" class="footnote-back">↩</a></p></li>
+<li id="fn71"><p>Copy and include this code in a codechunk any time you want to use the <code>intplot</code> or <code>inplotarray</code> functions<a href="4-2-section4-2.html#fnref71" class="footnote-back">↩</a></p></li>
+<li id="fn72"><p>We will use “main effects” to refer to the two
+explanatory variables in the additive model even if they are not randomly
+assigned to contrast with having those variables interacting in the model.
+It is the one place in the book where we use “effects” without worrying about the causal connotation of that word.<a href="4-2-section4-2.html#fnref72" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="4-1-section4-1.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-3-section4-3.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

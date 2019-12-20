@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="7.2 Validity conditions in MLR | Intermediate Statistics with R" />
+<meta property="og:type" content="book" />
+
+
+
+<meta name="github-repo" content="gpeterson406/Greenwood_Book" />
+
+<meta name="author" content="Mark C Greenwood" />
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="7.2 Validity conditions in MLR | Intermediate Statistics with R">
+
+<title>7.2 Validity conditions in MLR | Intermediate Statistics with R</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="toc.css" type="text/css" />
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#cover">Cover</a></li>
+<li class="has-sub"><a href="acknowledgments.html#acknowledgments">Acknowledgments</a><ul>
+<li><a href="0-1-section1-5.html#section1-5"><span class="toc-section-number">0.1</span> Summary of important R code</a></li>
+</ul></li>
+<li class="has-sub"><a href="1-chapter2.html#chapter2"><span class="toc-section-number">1</span> (R)e-Introduction to statistics</a><ul>
+<li><a href="1-1-section2-1.html#section2-1"><span class="toc-section-number">1.1</span> Histograms, boxplots, and density curves</a></li>
+<li><a href="1-2-section2-2.html#section2-2"><span class="toc-section-number">1.2</span> Pirate-plots</a></li>
+<li><a href="1-3-section2-3.html#section2-3"><span class="toc-section-number">1.3</span> Models, hypotheses, and permutations for the two sample mean situation</a></li>
+<li><a href="1-4-section2-4.html#section2-4"><span class="toc-section-number">1.4</span> Permutation testing for the two sample mean situation</a></li>
+<li><a href="1-5-section2-5.html#section2-5"><span class="toc-section-number">1.5</span> Hypothesis testing (general)</a></li>
+<li><a href="1-6-section2-6.html#section2-6"><span class="toc-section-number">1.6</span> Connecting randomization (nonparametric) and parametric tests</a></li>
+<li><a href="1-7-section2-7.html#section2-7"><span class="toc-section-number">1.7</span> Second example of permutation tests</a></li>
+<li><a href="1-8-section2-8.html#section2-8"><span class="toc-section-number">1.8</span> Reproducibility Crisis: Moving beyond p &lt; 0.05, publication bias, and multiple testing issues</a></li>
+<li><a href="1-9-section2-9.html#section2-9"><span class="toc-section-number">1.9</span> Confidence intervals and bootstrapping</a></li>
+<li><a href="1-10-section2-10.html#section2-10"><span class="toc-section-number">1.10</span> Bootstrap confidence intervals for difference in GPAs</a></li>
+<li><a href="1-11-section2-11.html#section2-11"><span class="toc-section-number">1.11</span> Chapter summary</a></li>
+<li><a href="1-12-section2-12.html#section2-12"><span class="toc-section-number">1.12</span> Summary of important R code</a></li>
+<li><a href="1-13-section2-13.html#section2-13"><span class="toc-section-number">1.13</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-chapter3.html#chapter3"><span class="toc-section-number">2</span> One-Way ANOVA</a><ul>
+<li><a href="2-1-section3-1.html#section3-1"><span class="toc-section-number">2.1</span> Situation</a></li>
+<li><a href="2-2-section3-2.html#section3-2"><span class="toc-section-number">2.2</span> Linear model for One-Way ANOVA (cell-means and reference-coding)</a></li>
+<li><a href="2-3-section3-3.html#section3-3"><span class="toc-section-number">2.3</span> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
+<li><a href="2-4-section3-4.html#section3-4"><span class="toc-section-number">2.4</span> ANOVA model diagnostics including QQ-plots</a></li>
+<li><a href="2-5-section3-5.html#section3-5"><span class="toc-section-number">2.5</span> Guinea pig tooth growth One-Way ANOVA example</a></li>
+<li><a href="2-6-section3-6.html#section3-6"><span class="toc-section-number">2.6</span> Multiple (pair-wise) comparisons using Tukey’s HSD and the compact letter display</a></li>
+<li><a href="2-7-section3-7.html#section3-7"><span class="toc-section-number">2.7</span> Pair-wise comparisons for the Overtake data</a></li>
+<li><a href="2-8-section3-8.html#section3-8"><span class="toc-section-number">2.8</span> Chapter summary</a></li>
+<li><a href="2-9-section3-9.html#section3-9"><span class="toc-section-number">2.9</span> Summary of important R code</a></li>
+<li><a href="2-10-section3-10.html#section3-10"><span class="toc-section-number">2.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-chapter4.html#chapter4"><span class="toc-section-number">3</span> Two-Way ANOVA</a><ul>
+<li><a href="3-1-section4-1.html#section4-1"><span class="toc-section-number">3.1</span> Situation</a></li>
+<li><a href="3-2-section4-2.html#section4-2"><span class="toc-section-number">3.2</span> Designing a two-way experiment and visualizing results</a></li>
+<li><a href="3-3-section4-3.html#section4-3"><span class="toc-section-number">3.3</span> Two-Way ANOVA models and hypothesis tests</a></li>
+<li><a href="3-4-section4-4.html#section4-4"><span class="toc-section-number">3.4</span> Guinea pig tooth growth analysis with Two-Way ANOVA</a></li>
+<li><a href="3-5-section4-5.html#section4-5"><span class="toc-section-number">3.5</span> Observational study example: The Psychology of Debt</a></li>
+<li><a href="3-6-section4-6.html#section4-6"><span class="toc-section-number">3.6</span> Pushing Two-Way ANOVA to the limit: Un-replicated designs and Estimability</a></li>
+<li><a href="3-7-section4-7.html#section4-7"><span class="toc-section-number">3.7</span> Chapter summary</a></li>
+<li><a href="3-8-section4-8.html#section4-8"><span class="toc-section-number">3.8</span> Summary of important R code</a></li>
+<li><a href="3-9-section4-9.html#section4-9"><span class="toc-section-number">3.9</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="4-chapter5.html#chapter5"><span class="toc-section-number">4</span> Chi-square tests</a><ul>
+<li><a href="4-1-section5-1.html#section5-1"><span class="toc-section-number">4.1</span> Situation, contingency tables, and tableplots</a></li>
+<li><a href="4-2-section5-2.html#section5-2"><span class="toc-section-number">4.2</span> Homogeneity test hypotheses</a></li>
+<li><a href="4-3-section5-3.html#section5-3"><span class="toc-section-number">4.3</span> Independence test hypotheses</a></li>
+<li><a href="4-4-section5-4.html#section5-4"><span class="toc-section-number">4.4</span> Models for R by C tables</a></li>
+<li><a href="4-5-section5-5.html#section5-5"><span class="toc-section-number">4.5</span> Permutation tests for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="4-6-section5-6.html#section5-6"><span class="toc-section-number">4.6</span> Chi-square distribution for the <span class="math inline">\(X^2\)</span> statistic</a></li>
+<li><a href="4-7-section5-7.html#section5-7"><span class="toc-section-number">4.7</span> Examining residuals for the source of differences</a></li>
+<li><a href="4-8-section5-8.html#section5-8"><span class="toc-section-number">4.8</span> General protocol for <span class="math inline">\(X^2\)</span> tests</a></li>
+<li><a href="4-9-section5-9.html#section5-9"><span class="toc-section-number">4.9</span> Political party and voting results: Complete analysis</a></li>
+<li><a href="4-10-section5-10.html#section5-10"><span class="toc-section-number">4.10</span> Is cheating and lying related in students?</a></li>
+<li><a href="4-11-section5-11.html#section5-11"><span class="toc-section-number">4.11</span> Analyzing a stratified random sample of California schools</a></li>
+<li><a href="4-12-section5-12.html#section5-12"><span class="toc-section-number">4.12</span> Chapter summary</a></li>
+<li><a href="4-13-section5-13.html#section5-13"><span class="toc-section-number">4.13</span> Summary of important R commands</a></li>
+<li><a href="4-14-section5-14.html#section5-14"><span class="toc-section-number">4.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-chapter6.html#chapter6"><span class="toc-section-number">5</span> Correlation and Simple Linear Regression</a><ul>
+<li><a href="5-1-section6-1.html#section6-1"><span class="toc-section-number">5.1</span> Relationships between two quantitative variables</a></li>
+<li><a href="5-2-section6-2.html#section6-2"><span class="toc-section-number">5.2</span> Estimating the correlation coefficient</a></li>
+<li><a href="5-3-section6-3.html#section6-3"><span class="toc-section-number">5.3</span> Relationships between variables by groups</a></li>
+<li><a href="5-4-section6-4.html#section6-4"><span class="toc-section-number">5.4</span> Inference for the correlation coefficient</a></li>
+<li><a href="5-5-section6-5.html#section6-5"><span class="toc-section-number">5.5</span> Are tree diameters related to tree heights?</a></li>
+<li><a href="5-6-section6-6.html#section6-6"><span class="toc-section-number">5.6</span> Describing relationships with a regression model</a></li>
+<li><a href="5-7-section6-7.html#section6-7"><span class="toc-section-number">5.7</span> Least Squares Estimation</a></li>
+<li><a href="5-8-section6-8.html#section6-8"><span class="toc-section-number">5.8</span> Measuring the strength of regressions: R<sup>2</sup></a></li>
+<li><a href="5-9-section6-9.html#section6-9"><span class="toc-section-number">5.9</span> Outliers: leverage and influence</a></li>
+<li><a href="5-10-section6-10.html#section6-10"><span class="toc-section-number">5.10</span> Residual diagnostics – setting the stage for inference</a></li>
+<li><a href="5-11-section6-11.html#section6-11"><span class="toc-section-number">5.11</span> Old Faithful discharge and waiting times</a></li>
+<li><a href="5-12-section6-12.html#section6-12"><span class="toc-section-number">5.12</span> Chapter summary</a></li>
+<li><a href="5-13-section6-13.html#section6-13"><span class="toc-section-number">5.13</span> Summary of important R code</a></li>
+<li><a href="5-14-section6-14.html#section6-14"><span class="toc-section-number">5.14</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="6-chapter7.html#chapter7"><span class="toc-section-number">6</span> Simple linear regression inference</a><ul>
+<li><a href="6-1-section7-1.html#section7-1"><span class="toc-section-number">6.1</span> Model</a></li>
+<li><a href="6-2-section7-2.html#section7-2"><span class="toc-section-number">6.2</span> Confidence interval and hypothesis tests for the slope and intercept</a></li>
+<li><a href="6-3-section7-3.html#section7-3"><span class="toc-section-number">6.3</span> Bozeman temperature trend</a></li>
+<li><a href="6-4-section7-4.html#section7-4"><span class="toc-section-number">6.4</span> Randomization-based inferences for the slope coefficient</a></li>
+<li><a href="6-5-section7-5.html#section7-5"><span class="toc-section-number">6.5</span> Transformations part I: Linearizing relationships</a></li>
+<li><a href="6-6-section7-6.html#section7-6"><span class="toc-section-number">6.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</a></li>
+<li><a href="6-7-section7-7.html#section7-7"><span class="toc-section-number">6.7</span> Confidence interval for the mean and prediction intervals for a new observation</a></li>
+<li><a href="6-8-section7-8.html#section7-8"><span class="toc-section-number">6.8</span> Chapter summary</a></li>
+<li><a href="6-9-section7-9.html#section7-9"><span class="toc-section-number">6.9</span> Summary of important R code</a></li>
+<li><a href="6-10-section7-10.html#section7-10"><span class="toc-section-number">6.10</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="7-chapter8.html#chapter8"><span class="toc-section-number">7</span> Multiple linear regression</a><ul>
+<li><a href="7-1-section8-1.html#section8-1"><span class="toc-section-number">7.1</span> Going from SLR to MLR</a></li>
+<li><a href="7-2-section8-2.html#section8-2"><span class="toc-section-number">7.2</span> Validity conditions in MLR</a></li>
+<li><a href="7-3-section8-3.html#section8-3"><span class="toc-section-number">7.3</span> Interpretation of MLR terms</a></li>
+<li><a href="7-4-section8-4.html#section8-4"><span class="toc-section-number">7.4</span> Comparing multiple regression models</a></li>
+<li><a href="7-5-section8-5.html#section8-5"><span class="toc-section-number">7.5</span> General recommendations for MLR interpretations and VIFs</a></li>
+<li><a href="7-6-section8-6.html#section8-6"><span class="toc-section-number">7.6</span> MLR inference: Parameter inferences using the t-distribution</a></li>
+<li><a href="7-7-section8-7.html#section8-7"><span class="toc-section-number">7.7</span> Overall F-test in multiple linear regression</a></li>
+<li><a href="7-8-section8-8.html#section8-8"><span class="toc-section-number">7.8</span> Case study: First year college GPA and SATs</a></li>
+<li><a href="7-9-section8-9.html#section8-9"><span class="toc-section-number">7.9</span> Different intercepts for different groups: MLR with indicator variables</a></li>
+<li><a href="7-10-section8-10.html#section8-10"><span class="toc-section-number">7.10</span> Additive MLR with more than two groups: Headache example</a></li>
+<li><a href="7-11-section8-11.html#section8-11"><span class="toc-section-number">7.11</span> Different slopes and different intercepts</a></li>
+<li><a href="7-12-section8-12.html#section8-12"><span class="toc-section-number">7.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</a></li>
+<li><a href="7-13-section8-13.html#section8-13"><span class="toc-section-number">7.13</span> AICs for model selection</a></li>
+<li><a href="7-14-section8-14.html#section8-14"><span class="toc-section-number">7.14</span> Case study: Forced expiratory volume model selection using AICs</a></li>
+<li><a href="7-15-section8-15.html#section8-15"><span class="toc-section-number">7.15</span> Chapter summary</a></li>
+<li><a href="7-16-section8-16.html#section8-16"><span class="toc-section-number">7.16</span> Summary of important R code</a></li>
+<li><a href="7-17-section8-17.html#section8-17"><span class="toc-section-number">7.17</span> Practice problems</a></li>
+</ul></li>
+<li class="has-sub"><a href="8-chapter9.html#chapter9"><span class="toc-section-number">8</span> Case studies</a><ul>
+<li><a href="8-1-section9-1.html#section9-1"><span class="toc-section-number">8.1</span> Overview of material covered</a></li>
+<li><a href="8-2-section9-2.html#section9-2"><span class="toc-section-number">8.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
+<li><a href="8-3-section9-3.html#section9-3"><span class="toc-section-number">8.3</span> Ants learn to rely on more informative attributes during decision-making</a></li>
+<li><a href="8-4-section9-4.html#section9-4"><span class="toc-section-number">8.4</span> Multi-variate models are essential for understanding vertebrate diversification in deep time</a></li>
+<li><a href="8-5-section9-5.html#section9-5"><span class="toc-section-number">8.5</span> What do didgeridoos really do about sleepiness?</a></li>
+<li><a href="8-6-section9-6.html#section9-6"><span class="toc-section-number">8.6</span> General summary</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="section8-2" class="section level2">
+<h2><span class="header-section-number">7.2</span> Validity conditions in MLR</h2>
+<p>But before we get too excited about any results, we should always assess our
+validity conditions. For MLR, they are similar to those for SLR:
+</p>
+<ul>
+<li><p><strong>Quantitative variables condition:</strong></p>
+<ul>
+<li>The response and all predictors need to be quantitative variables.
+This condition is relaxed to allow a categorical predictor in two ways
+in Sections <a href="7-9-section8-9.html#section8-9">7.9</a> and <a href="7-11-section8-11.html#section8-11">7.11</a>.</li>
+</ul></li>
+<li><p><strong>Independence of observations:</strong></p>
+<ul>
+<li><p>This assumption is about the responses – we must assume that they were
+collected in a fashion so that they can be assumed to be independent. This
+implies that we also have independent random errors.
+</p></li>
+<li><p>This is not an assumption about the predictor variables!</p></li>
+</ul></li>
+<li><p><strong>Linearity of relationship (</strong><b><font color='red'>NEW VERSION FOR MLR!</font></b><strong>):</strong></p>
+<ul>
+<li><p>Linearity is assumed between the response variable and <strong>each</strong>
+explanatory variable (<span class="math inline">\(y\)</span> and each <span class="math inline">\(x\)</span>).</p></li>
+<li><p>We can check this two ways:</p>
+<ol style="list-style-type: decimal">
+<li><p>Make plots of the response versus each explanatory variable:</p>
+<ul>
+<li>Only visual evidence of a curving relationship is a problem here.
+Transformations of individual explanatory variables or the
+response are possible.</li>
+</ul></li>
+<li><p>Examine the Residuals vs Fitted plot:</p>
+<ul>
+<li>When using MLR, curves in the residuals vs. fitted values
+suggest a missed curving relationship with at least one predictor
+variable, but it will not be specific as to which one is non-linear.
+Revisit the scatterplots to identify the source of the issue.
+</li>
+</ul></li>
+</ol></li>
+</ul></li>
+<li><p><strong>Multicollinearity effects checked for:</strong></p>
+<ul>
+<li><p>Issues here do not mean we cannot proceed with a given model, but it can
+impact our ability to trust and interpret the estimated terms.</p></li>
+<li><p>Check a scatterplot or correlation matrix  to assess the potential for
+shared information in different predictor variables.</p></li>
+<li><p>Use the diagnostic measure called a <strong><em>variance inflation factor</em></strong>
+(<strong><em>VIF</em></strong>) discussed in Section <a href="7-5-section8-5.html#section8-5">7.5</a> (we need to develop
+some ideas first to understand this measure). </p></li>
+</ul></li>
+<li><p><strong>Equal (constant) variance:</strong></p>
+<ul>
+<li>Same as before since it pertains to the residuals.</li>
+</ul></li>
+<li><p><strong>Normality of residuals:</strong></p>
+<ul>
+<li>Same as before since it pertains to the residuals.</li>
+</ul></li>
+<li><p><strong>No influential points:</strong></p>
+<ul>
+<li><p>Leverage is now determined by how unusual a point is for multiple
+explanatory variables.</p></li>
+<li><p>The <strong><em>leverage</em></strong> values in the Residuals vs Leverage plot are
+scaled to add up to the <em>degrees of freedom (df) used for the model</em>
+which is the number of explanatory variables (<span class="math inline">\(K\)</span>) plus 1, so <span class="math inline">\(K+1\)</span>.
+</p></li>
+<li><p>The scale of leverages depends on the complexity of the model through
+the <em>df</em> and the sample size.</p></li>
+<li><p>The interpretation is still that the larger the leverage value, the
+more leverage the point has.</p></li>
+<li><p>The mean leverage is always <em>(model used df)/n = (K+1)/n</em> – so focus
+on the values with above average leverage.</p>
+<ul>
+<li>For example, with <span class="math inline">\(K=3\)</span> and <span class="math inline">\(n=20\)</span>, the average leverage is
+<span class="math inline">\(4/20=1/5\)</span>.</li>
+</ul></li>
+<li><p>High leverage points whose response does not follow the pattern defined
+by the other observations (now based on patterns for multiple <span class="math inline">\(x\text{&#39;s}\)</span>
+with the response) will be influential.</p></li>
+<li><p>Use the Residual’s vs Leverage plot to identify problematic points.
+Explore further with Cook’s D continuing to provide a measure of the
+influence of each observation.</p>
+<ul>
+<li>The rules and interpretations for Cook’s D are the same as in SLR
+(over 0.5 is possibly influential and over 1 is definitely influential).</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>While not a condition for use of the methods, a note about RA and RS is useful
+here in considering the scope of inference of any results.
+
+To make inferences
+about a population, we need to have a representative sample. If we have
+randomly assigned levels of treatment variables(s), then we can make causal
+inferences to subjects like those that we could have observed. And if we both
+have a representative sample and randomization, we can make causal inferences
+for the population. It is possible to randomly assign levels of variable(s) to
+subjects and still collect additional information from other explanatory
+(sometimes called <strong><em>control</em></strong>) variables. The causal interpretations would
+only be associated with the explanatory variables that were randomly assigned
+even though the model might
+contain other variables. Their interpretation still involves noting all the
+variables included in the model, as demonstrated below. It is even possible to
+include interactions between randomly assigned variables and other variables –
+like drug dosage and sex of the subjects. In these cases, causal inference
+could apply to the treatment levels but noting that the impacts differ based on
+the non-randomly assigned variable.</p>
+<p>For the <em>Snow Depth</em> data, the conditions can be assessed as:</p>
+<ul>
+<li><p><strong>Quantitative variables condition:</strong></p>
+<ul>
+<li>These are all met.</li>
+</ul></li>
+<li><p><strong>Independence of observations:</strong></p>
+<ul>
+<li>The observations are based on a random sample of sites from the
+population and the sites are spread around the mountains in Montana. Many
+people would find it to be reasonable to assume that the sites are
+independent of one another but others would be worried that sites closer
+together in space might be more similar than they are to far-away
+observations (this is called <strong><em>spatial correlation</em></strong>). I have
+been in a heated discussion with statistics colleagues about whether
+spatial dependency should be considered or if it is valid to ignore it in
+this sort of situation. It is certainly possible to be concerned about
+independence of observations here but it takes more advanced statistical
+methods to actually assess whether there is spatial dependency in these data. Even if you were going to pursue models that incorporate spatial correlations, the first task would be to fit this sort of model
+and then explore the results. When data are collected across space, you should note that there might be some sort of spatial dependency that <em>could</em> violate the independence assumption.</li>
+</ul></li>
+</ul>
+<p>We need our diagnostic plots to assess the remaining assumptions.
+
+The same code
+as before will provide diagnostic plots. There is some extra code
+(<code>par(...)</code>) added to allow us to add labels to the plots to know which model
+is being displayed since we have so many to discuss here.</p>
+<p>(ref:fig8-5) Diagnostic plots for model m4:
+<span class="math inline">\(\text{Snow.Depth}\sim \text{Elevation} + \text{Min.Temp} + \text{Max.Temp}\)</span>.</p>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb695-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb695-2" title="2"><span class="kw">plot</span>(m4, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m4&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure8-5"></span>
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-5-1.png" alt="(ref:fig8-5)" width="960" />
+<p class="caption">
+Figure 1.154: (ref:fig8-5)
+</p>
+</div>
+<ul>
+<li><p><strong>Linearity of relationship (</strong><b><font color='red'>NEW VERSION FOR MLR!</font></b><strong>):</strong></p>
+<ul>
+<li><p>Make plots of the response versus each explanatory variable:</p>
+<ul>
+<li>In Figure <a href="7-1-section8-1.html#fig:Figure8-1">1.149</a>, the plots of each variable versus
+snow depth do not clearly show any nonlinearity except for a little
+dip around 7000 feet in the plot vs <em>Elevation</em>.</li>
+</ul></li>
+<li><p>Examine the Residuals vs Fitted plot in Figure <a href="7-2-section8-2.html#fig:Figure8-5">1.154</a>:</p>
+<ul>
+<li>Generally, there is no clear curvature in the Residuals vs Fitted
+panel and that would be an acceptable answer. However, there is some
+pattern in the smoothing line that could suggest a more complicated
+relationship between at least one predictor and the response. This also
+resembles the pattern in the <em>Elevation</em> vs. <em>Snow depth</em> panel in
+Figure <a href="7-1-section8-1.html#fig:Figure8-1">1.149</a> so that might be the source of this
+“problem”. This suggests that there is the potential to do a little
+bit better but that it is not unreasonable to proceed on with the MLR,
+ignoring this little wiggle in the diagnostic plot.</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Multicollinearity effects checked for:</strong></p>
+<ul>
+<li><p>The predictors certainly share information in this application
+(correlations between -0.67 and -0.91) and multicollinearity looks to be
+a major concern in being able to understand/separate the impacts of
+temperatures and elevations on snow depths.</p></li>
+<li><p>See Section <a href="7-5-section8-5.html#section8-5">7.5</a> for more on this issue in these data.</p></li>
+</ul></li>
+</ul>
+
+<ul>
+<li><p><strong>Equal (constant) variance:</strong></p>
+<ul>
+<li>While there is a little bit more variability in the middle of the fitted
+values, this is more an artifact of having a smaller data set with a couple
+of moderate outliers that fell in the same range of fitted values and maybe
+a little bit of missed curvature. So there is not too much of an issue with
+this condition.</li>
+</ul></li>
+<li><p><strong>Normality of residuals:</strong></p>
+<ul>
+<li>The residuals match the normal distribution fairly closely the QQ-plot, showing only a little
+deviation for observation 9 from a normal distribution and that deviation
+is extremely minor. There is certainly no indication of a violation of the normality
+assumption here. </li>
+</ul></li>
+<li><p><strong>No influential points:</strong></p>
+<ul>
+<li><p>With <span class="math inline">\(K=3\)</span> predictors and <span class="math inline">\(n=25\)</span> observations, the average
+leverage is <span class="math inline">\(4/25=0.16\)</span>. This gives us a scale to interpret the leverage
+values on the x-axis of the lower right panel of our diagnostic plots.</p></li>
+<li><p>There are three higher leverage points (leverages over 0.3) with only
+one being influential (point 9) with Cook’s D close to 1.</p>
+<ul>
+<li>Note that point 10 had the same leverage but was not influential with
+Cook’s D less than 0.5.</li>
+</ul></li>
+<li><p>We can explore both of these points to see how two observations can have
+the same leverage and different amounts of influence.</p></li>
+</ul></li>
+</ul>
+<p>The two flagged points, observations 9 and 10 in the data set, are for the
+sites “Northeast Entrance” (to Yellowstone) and “Combination”. We can use the
+MLR equation to do some prediction for each observation and calculate residuals
+to see how far the model’s predictions are from the actual observed values for
+these sites. For the Northeast Entrance, the <em>Max.Temp</em> was 45, the <em>Min.Temp</em>
+was 28, and the <em>Elevation</em> was 7350 as you can see in
+this printout of just the two rows of the data set available by referencing
+rows 9 and 10 in the bracket from <code>snotel2</code>:</p>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb696-1" title="1">snotel2[<span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">10</span>),]</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 6
+##      ID Station            Max.Temp Min.Temp Elevation Snow.Depth
+##   &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1    18 Northeast Entrance       45       28      7350       11.2
+## 2    53 Combination              36       28      5600       14</code></pre>
+<p>The estimated <em>Snow Depth</em> for the <em>Northeast Entrance</em> site (observation 9)
+is found using the estimated model with</p>
+<p><span class="math display">\[\begin{array}{rl}
+\widehat{\text{SnowDepth}}_9 &amp;= -10.51 + 0.0123\cdot\text{Elevation}_9 -
+0.505\cdot\text{MinTemp}_9 - 0.562\cdot\text{MaxTemp}_9 \\
+&amp; = -10.51 + 0.0123*\boldsymbol{7350} -0.505*\boldsymbol{28} - 
+0.562*\boldsymbol{45} \\
+&amp; = 40.465 \text{ inches,}
+\end{array}\]</span></p>
+<p>but the observed snow depth was actually <span class="math inline">\(y_9=11.2\)</span> inches. The observed <strong><em>residual</em></strong> is then</p>
+<p><span class="math display">\[e_9=y_9-\hat{y}_9 = 11.2-40.465 = -29.265 \text{ inches.}\]</span></p>
+<p>So the model “misses” the snow depth by over 29 inches with the model suggesting
+over 40 inches of snow but only 11 inches actually being present<a href="#fn115" class="footnote-ref" id="fnref115"><sup>115</sup></a>.</p>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb698-1" title="1"><span class="fl">-10.51</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.0123</span><span class="op">*</span><span class="dv">7350</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.505</span><span class="op">*</span><span class="dv">28</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.562</span><span class="op">*</span><span class="dv">45</span></a></code></pre></div>
+<pre><code>## [1] 40.465</code></pre>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb700-1" title="1"><span class="fl">11.2</span> <span class="op">-</span><span class="st"> </span><span class="fl">40.465</span></a></code></pre></div>
+<pre><code>## [1] -29.265</code></pre>
+<p>This point is being rated as influential (Cook’s D <span class="math inline">\(\approx\)</span> 1) with a
+leverage of nearly 0.35 and a standardized residual (y-axis of Residuals vs. 
+Leverage plot) of nearly -3. This suggests that even
+with this observation impacting/distorting the slope coefficients (that is what
+<strong><em>influence</em></strong> means), the model is still doing really poorly at fitting this
+observation. We’ll drop it and re-fit the model in a second to see how the slopes
+change. First, let’s compare that result to what happened for data point 10
+(“Combination”) which was just as high leverage but not identified as
+influential.</p>
+<p>The estimated snow depth for “Combination” is </span></p>
+<p><span class="math display">\[\begin{array}{rl}
+\widehat{\text{SnowDepth}}_{10} &amp;= -10.51 + 0.0123\cdot\text{Elevation}_{10} -
+0.505\cdot\text{MinTemp}_{10} - 0.562\cdot\text{MaxTemp}_{10} \\
+&amp; = -10.51 + 0.0123*\boldsymbol{5600} -0.505*\boldsymbol{28} - 
+0.562*\boldsymbol{36} \\
+&amp; = 23.998 \text{ inches.}
+\end{array}\]</span></p>
+<p>The observed snow depth here was <span class="math inline">\(y_{10} = 14.0\)</span> inches so the observed
+residual is then</p>
+<p><span class="math display">\[e_{10}=y_{10}-\hat{y}_{10} = 14.0-23.998 = -9.998 \text{ inches.}\]</span></p>
+<p>This results in a standardized residual of around -1. This is still a “miss”
+but not as glaring as the previous result and also is not having a major impact
+on the model’s estimated slope coefficients based on the small Cook’s D value.</p>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb702-1" title="1"><span class="fl">-10.51</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.0123</span><span class="op">*</span><span class="dv">5600</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.505</span><span class="op">*</span><span class="dv">28</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.562</span><span class="op">*</span><span class="dv">36</span></a></code></pre></div>
+<pre><code>## [1] 23.998</code></pre>
+<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb704-1" title="1"><span class="dv">14</span> <span class="op">-</span><span class="st"> </span><span class="fl">23.998</span></a></code></pre></div>
+<pre><code>## [1] -9.998</code></pre>
+<p>Note that any predictions using this model presume that it is
+trustworthy, but
+the large Cook’s D on one observation suggests we should consider the model
+after removing that observation. We can re-run the model without the
+9<sup>th</sup> observation using the data set <code>snotel2[-9,]</code>.</p>
+<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb706-1" title="1">m5 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="dv">9</span>,])</a>
+<a class="sourceLine" id="cb706-2" title="2"><span class="kw">summary</span>(m5)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel2[-9, 
+##     ])
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -29.2918  -4.9757  -0.9146   5.4292  20.4260 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) -1.424e+02  9.210e+01  -1.546  0.13773
+## Elevation    2.141e-02  6.101e-03   3.509  0.00221
+## Min.Temp     6.722e-01  1.733e+00   0.388  0.70217
+## Max.Temp     5.078e-01  6.486e-01   0.783  0.44283
+## 
+## Residual standard error: 11.29 on 20 degrees of freedom
+## Multiple R-squared:  0.7522, Adjusted R-squared:  0.715 
+## F-statistic: 20.24 on 3 and 20 DF,  p-value: 2.843e-06</code></pre>
+<p>(ref:fig8-6) Term-plots for the MLR for Snow Depth based on Elevation,
+Min Temp, and Max Temp with Northeast entrance observation removed from
+data set (n=24).</p>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb708-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(m5, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;MLR model with NE Ent. Removed&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure8-6"></span>
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-6-1.png" alt="(ref:fig8-6)" width="960" />
+<p class="caption">
+Figure 1.155: (ref:fig8-6)
+</p>
+</div>
+<p>The estimated MLR model with <span class="math inline">\(n=24\)</span> after removing the influential
+“NE Entrance” observation is</p>
+<p><span class="math display">\[\widehat{\text{SnowDepth}}_i = -142.4 + 0.0214\cdot\text{Elevation}_i
++0.672\cdot\text{MinTemp}_i +0.508\cdot\text{MaxTemp}_i\ .\]</span></p>
+<p>Something unusual has happened here: there is a positive slope for both
+temperature terms in Figure <a href="7-2-section8-2.html#fig:Figure8-6">1.155</a> that both
+contradicts reasonable expectations (warmer temperatures are related to higher
+snow levels?) and our original SLR results. So what happened? First, removing
+the influential point has drastically changed the slope coefficients (remember
+that was the definition of an influential point). Second, when there are
+predictors that share information, the results can be somewhat unexpected for
+some or all the predictors when they are all in the model together. Note that
+the <em>Elevation</em> term looks like what we might expect and seems to have a big
+impact on the predicted <em>Snow Depths</em>. So when the temperature variables
+are included in the model they might be functioning to explain some differences
+in sites that the <em>Elevation</em> term could not explain. This is where our
+“adjusting for” terminology comes into play. The unusual-looking slopes for
+the temperature effects can be explained
+by interpreting them as the estimated change in the response for changes in
+temperature <strong>after we control for the impacts of elevation</strong>. Suppose that
+<em>Elevation</em> explains most of the variation in <em>Snow Depth</em> except for a few
+sites where the elevation cannot explain all the variability and the site
+characteristics happen to show higher temperatures and more snow (or lower
+temperatures and less snow). This could be because warmer areas might have been
+hit by a recent snow storm while colder areas might have been missed (this is
+just one day and subject to spatial and temporal fluctuations in precipitation
+patterns). Or maybe there is another factor related to having marginally warmer
+temperatures that are accompanied by more snow (maybe the lower snow sites for
+each elevation were so steep that they couldn’t hold much snow but were also
+relatively colder?). Thinking about it this way, the temperature model
+components could provide useful corrections to what <em>Elevation</em> is providing in
+an overall model and explain more variability than any of the variables could
+alone. It is also possible that the
+temperature variables are not needed in a model with <em>Elevation</em> in it, are just
+“explaining noise”, and should be removed from the model. Each of the next
+sections take on various aspects of these
+issues and eventually lead to a general set of modeling and model selection
+recommendations to help you work in situations as complicated as this.
+Exploring the results for this model assumes we trust it and, once again, we
+need to check diagnostics before getting too focused on any particular results
+from it.</p>
+<p>The Residuals vs. Leverage diagnostic plot in Figure <a href="7-2-section8-2.html#fig:Figure8-7">1.156</a>
+for the model fit to the data set without NE Entrance (now <span class="math inline">\(n=24\)</span>) reveals a new
+point that is somewhat influential (point 22 in the data set has Cook’s D
+<span class="math inline">\(\approx\)</span> 0.5). It is for a location called "Bloody
+<span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span><a href="#fn116" class="footnote-ref" id="fnref116"><sup>116</sup></a> which has a
+leverage of nearly 0.2 and a standardized residual of nearly -3.
+This point did not show up as influential in the original version of the data
+set with the same model but it is now. It also shows up as a potential outlier.
+As we did before, we can explore it a bit by comparing the model predicted snow
+depth to the observed snow depth. The predicted snow depth for this site (see output below for variable values) is</p>
+<p><span class="math display">\[\widehat{\text{SnowDepth}}_{22} = -142.4 + 0.0214*\boldsymbol{7550}
++0.672*\boldsymbol{26} +0.508*\boldsymbol{39} = 56.45 \text{ inches.}\]</span></p>
+<p>The observed snow depth was 27.2 inches, so the estimated residual is -39.25
+inches. Again, this point is potentially influential and an outlier.
+Additionally, our model contains results that are not what we would have
+expected <em>a priori</em>, so it is not unreasonable to consider removing this
+observation to be able to work towards a model that is fully trustworthy.</p>
+<p>(ref:fig8-7) Diagnostic plots for MLR for Snow Depth based on Elevation,
+Min Temp and Max Temp with Northeast entrance observation removed from
+data set.</p>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb709-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb709-2" title="2"><span class="kw">plot</span>(m5, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m5&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure8-7"></span>
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-7-1.png" alt="(ref:fig8-7)" width="960" />
+<p class="caption">
+Figure 1.156: (ref:fig8-7)
+</p>
+</div>
+<p>(ref:fig8-8) Diagnostic plots for MLR for Snow Depth based on Elevation,
+Min Temp and Max Temp with two observations removed (<span class="math inline">\(n=23\)</span>).</p>
+<pre><code>## 
+## Call:
+## lm(formula = Snow.Depth ~ Elevation + Min.Temp + Max.Temp, data = snotel2[-c(9, 
+##     22), ])
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -14.878  -4.486   0.024   3.996  20.728 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) -2.133e+02  7.458e+01  -2.859   0.0100
+## Elevation    2.686e-02  4.997e-03   5.374 3.47e-05
+## Min.Temp     9.843e-01  1.359e+00   0.724   0.4776
+## Max.Temp     1.243e+00  5.452e-01   2.280   0.0343
+## 
+## Residual standard error: 8.832 on 19 degrees of freedom
+## Multiple R-squared:  0.8535, Adjusted R-squared:  0.8304 
+## F-statistic:  36.9 on 3 and 19 DF,  p-value: 4.003e-08</code></pre>
+<div class="figure"><span id="fig:Figure8-8"></span>
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-8-1.png" alt="(ref:fig8-8)" width="960" />
+<p class="caption">
+Figure 1.157: (ref:fig8-8)
+</p>
+</div>
+<p>This worry-some observation is located in the 22<sup>nd</sup> row of the
+original data set:</p>
+<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb711-1" title="1">snotel2[<span class="dv">22</span>,]</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 6
+##      ID Station          Max.Temp Min.Temp Elevation Snow.Depth
+##   &lt;dbl&gt; &lt;fct&gt;               &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1    36 Bloody [Redact.]       39       26      7550       27.2</code></pre>
+<p>With the removal of both the “Northeast Entrance” and “Bloody
+<span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>” sites, there are <span class="math inline">\(n=23\)</span> observations
+remaining. This model (<code>m6</code>) seems to contain residual diagnostics (Figure
+<a href="7-2-section8-2.html#fig:Figure8-8">1.157</a>) that are finally generally reasonable.</p>
+<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb713-1" title="1">m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</a>
+<a class="sourceLine" id="cb713-2" title="2"><span class="kw">summary</span>(m6)</a>
+<a class="sourceLine" id="cb713-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb713-4" title="4"><span class="kw">plot</span>(m6, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m6&quot;</span>)</a></code></pre></div>
+<p>It is hard to suggest that there any curvature issues and the slight variation
+in the Scale-Location plot is mostly
+due to few observations with fitted values around 30 happening to be well
+approximated by the model. The normality assumption is generally reasonable and
+no points seem to be overly influential on this model (finally!).</p>
+<p>The term-plots (Figure <a href="7-2-section8-2.html#fig:Figure8-9">1.158</a>) show that the temperature slopes
+are both positive although in this model <em>Max.Temp</em> seems to be more
+“important” than <em>Min.Temp</em>. We have ruled out individual
+influential points as the source of un-expected directions in slope coefficients
+and the more likely issue is multicollinearity – in a model that
+includes <em>Elevation</em>, the temperature
+effects may be positive, again acting with the <em>Elevation</em> term to generate
+the best possible predictions of the
+observed responses. Throughout this discussion, we have mainly focused on the
+slope coefficients and diagnostics. We have other tools in MLR to more
+quantitatively assess and compare different regression models that are considered
+in the next sections.
+</p>
+<p>(ref:fig8-9) Term-plots for the MLR for Snow Depth based on Elevation,
+Min Temp and Max Temp with two observations removed.</p>
+<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb714-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(m6, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;MLR model with n=23&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:Figure8-9"></span>
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-9-1.png" alt="(ref:fig8-9)" width="768" />
+<p class="caption">
+Figure 1.158: (ref:fig8-9)
+</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="115">
+<li id="fn115"><p>Imagine
+showing up to a ski area expecting a 40 inch base and there only being
+11 inches. I’m sure ski areas are always more accurate than this model in their
+reporting of amounts of snow on the ground…<a href="7-2-section8-2.html#fnref115" class="footnote-back">↩</a></p></li>
+<li id="fn116"><p>The site name is redacted to protect
+the innocence of the reader. More information on this site, located in
+Beaverhead County, is available at
+<a href="http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt" class="uri">http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt</a>.<a href="7-2-section8-2.html#fnref116" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+<p style="text-align: center;">
+<a href="7-1-section8-1.html"><button class="btn btn-default">Previous</button></a>
+<a href="7-3-section8-3.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

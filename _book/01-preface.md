@@ -25,7 +25,7 @@ your introductory statistics out of a particular text, just that you have had a
 course that tried to introduce you to the basic terminology and ideas
 underpinning statistical reasoning. We would expect that you are familiar with
 the logic (or sometimes illogic) of hypothesis testing including null and
-alternative hypothesis \index{hypothesis testing} and confidence interval construction and interpretation
+alternative hypothesis \index{hypothesis testing} and confidence interval \index{confidence interval} construction and interpretation
 and that you have seen all of this in a couple of basic situations. We start
 with a review of these ideas in one and two group situations with a
 quantitative response, something that you should have seen before. 
@@ -65,9 +65,9 @@ variables measured.
 view of the methods we will consider, 
 there are basically two scenarios -- one when the response is quantitative and
 one when the response is categorical. Examples of quantitative responses we will
-see later involve *suggested jail sentence* (in years) and *body fat* (percentage). 
+see later involve *passing distance of cars for a bicycle rider* (in centimeters (cm)) and *body fat* (percentage). 
 Examples of categorical variables include *improvement* (none, some, or marked) 
-in a clinical trial or whether a student has turned in copied work 
+in a clinical trial related to arthritis symptoms or whether a student has turned in copied work 
 (never, done this on an exam or paper, or both). There are going to be some more
 nuanced aspects to all these analyses as the complexity of both sides of Figure
 \@ref(fig:Figure1-1) suggest, but note that near the bottom, each tree converges 
@@ -82,10 +82,14 @@ types of conclusions that are appropriate based on the design of the study.
 
 (ref:fig1-1) Flow chart of methods.
 
-<div class="figure">
-<img src="chapter1_files/image002.png" alt="(ref:fig1-1)" width="661" />
-<p class="caption">(\#fig:Figure1-1)(ref:fig1-1)</p>
-</div>
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/image002} 
+
+}
+
+\caption{(ref:fig1-1)}(\#fig:Figure1-1)
+\end{figure}
 
 \indent We will be spending most of the semester working on methods for quantitative
 response variables (the
@@ -120,7 +124,7 @@ quantitative response. To make
 this somewhat concrete, suppose we are interested in assessing differences in, 
 say, the *yield* of wheat from a field based on the amount of *fertilizer* applied
 (none, low, or high) and *variety* of wheat (two types). Here, *yield* is a quantitative response variable that might be measured in bushels per acre and
-there are two categorical explanatory variables, *fertilizer*, with 3 levels, and *variety*, with two levels. In this material, we introduce the idea of an
+there are two categorical explanatory variables, *fertilizer*, with three levels, and *variety*, with two levels. In this material, we introduce the idea of an
 ***interaction*** between the two explanatory variables: \index{interaction!Two-Way ANOVA} the relationship between one categorical
 variable and the mean of the response changes depending on the levels of the
 other categorical variable. For example, extra fertilizer might enhance the
@@ -176,12 +180,12 @@ predictor, we revisit the idea of an interaction.
 It allows us to consider situations
 where the estimated relationship between a quantitative predictor and the 
 mean response
-varies among different levels of the categorical variable. 
+varies among different levels of the categorical variable. In Chapter \@ref(chapter9), connections among all the methods used for quantitative responses are discussed, showing that they are all just linear models \index{model!linear}. We also show how the methods discussed can be applied to a suite of new problems with a set of case studies and how that relates to further extensions of the methods.
 
 \indent By the end of Chapter \@ref(chapter9) you should be able to identify, perform 
 using the statistical software R [@R-base], and interpret the results from each of these methods. There
 is a lot to learn, but many of the tools for using R and interpreting results
-of the analyses accumulate and repeat during the semester. If you work hard to
+of the analyses accumulate and repeat throughout the textbook. If you work hard to
 understand the initial methods, it will help you when the methods get more
 complicated. You will likely feel like you are just starting to learn how to
 use R at the end of the semester and for learning a new language that is
@@ -206,12 +210,12 @@ first study with random assignment, \index{random assignment} we can say the tut
 differences we observed. In the second, we could only say that the tutoring was
 associated with differences but because students self-selected the group they
 ended up in, we can't say that the tutoring caused the differences. The other
-aspect of scope of inference concerns random sampling: \index{random sampling}If the data were obtained
+aspect of scope of inference concerns random sampling: \index{random sampling} If the data were obtained
 using a random sampling mechanism, then our inferences can be safely extended
 to the population that the sample was taken from. However, if we have a non-random
 sample, our inference can only apply to the sample collected. In the previous
 example, the difference would be studying a random sample of students from the
-population of, say, Introductory Statistics students at a university vs
+population of, say, Introductory Statistics students at a university versus
 studying a sample of students that volunteered for the research project, maybe
 for extra credit in the class. We could still randomly assign them to
 tutoring/not but the non-random sample would only lead to conclusions about
@@ -221,10 +225,10 @@ a population -- conclusions would be about causal impacts that would happen in t
 population. 
 
 \indent By the end of this material, you should have some basic R skills and abilities to create basic ANOVA and
-Regression models, as well as to handle Chi-square testing situations. 
+regression models, as well as to handle Chi-square testing situations. 
 Together, this should prepare you for future statistics courses or for other
 situations where you are expected to be able to identify an appropriate
-analysis, do the calculations for a given data set, and then effectively
+analysis, do the calculations and required graphics using the data set, and then effectively
 communicate interpretations for the methods discussed here. 
 
 ## Getting started in R {#section1-2}
@@ -243,7 +247,7 @@ even though the interface will be a new experience. Do not expect to master R
 quickly -- it takes years (sorry!) even if you know the statistical methods
 being used. We will try to keep all your interactions with R code in a similar
 code format and that should help you in learning how to use R as we move
-through various methods. We will also usually provide you with example code. Everyone
+through various methods. We will also often provide you with example code. Everyone
 that learns R starts with copying other people's code and then making changes
 for specific applications -- so expect to go back to examples from the text and focus
 on learning how to modify that code to work for your particular data set. Only
@@ -253,19 +257,19 @@ more sophisticated things with R, allowing us to compare quantitative responses
 from two groups, make some graphical displays, do hypothesis testing \index{hypothesis testing} and create
 confidence intervals in a couple of different ways. 
 
-\indent You will have two downloading activities to complete before you can do anything
-more than read this book^[I recorded a video that walks through getting R and RStudio installed on a PC available in the digital version [**here**](https://montana.techsmithrelay.com/J1Ww). If you want to see them installed on a mac, you can try [**this version**](https://www.youtube.com/watch?v=GFImMj1lMRI). Or for either version, try searching YouTube for "How to install R and RStudio".
+\indent You will have two^[There is a cloud version of R Studio available at https://rstudio.cloud/ if you want to avoid these steps. We still recommend following the steps to be able to work locally but try this option if you have issues with the installation process.] downloading activities to complete before you can do anything
+more than read this book^[I recorded a video that walks through getting R and RStudio installed on a PC available [**in a recorded video**](https://montana.techsmithrelay.com/ojg6). If you want to see them installed on a mac, you can try [**this video on youtube**](https://www.youtube.com/watch?v=GFImMj1lMRI). Or for either version, try searching YouTube for "How to install R and RStudio".
 ]. First, you need to download R. It is the engine that will do all the computing
 for us, but you will only interact with it once. Go to http://cran.rstudio.com
 and click on the "**Download R for...**" button that
 corresponds to your operating system. On the next page, click on "**base**" and then it will take you 
 to a screen to download the most current version of R that is compiled for your
-operating system, something like "**Download R 3.5.1 for Windows**". Click on that link and then open 
+operating system, something like "**Download R 3.6.1 for Windows**". Click on that link and then open 
 the file you downloaded. You will need to select your preferred language (choose English so your  instructor can help you), then hit "**Next**"
 until it starts to unpack and install the program (all the base settings will be fine). After you hit "**Finish**" you will not do anything further with R directly. 
 
 \indent Second, you need to download RStudio. It is an enhanced interface that will make interacting with
-R less frustrating. To download RStudio, go near the bottom of  https://www.rstudio.com/products/rstudio/download/ and select the correct version under
+R less frustrating and allow you to directly create reports that include the code and output. To download RStudio, go near the bottom of  https://www.rstudio.com/products/rstudio/download/ and select the correct version under
 "Installers for Supported Platforms" for your operating system. Download and
 then install RStudio using the installer. From this point forward, you should only
 open RStudio; it provides your interface with R. Note that both R and RStudio
@@ -273,16 +277,27 @@ are updated frequently (up to four times a year) and if you downloaded either
 more than a few months previously, you should download the up-to-date versions, 
 especially if something you are trying to do is not working. Sometimes code
 will not work in older versions of R and sometimes old code won't work in new
-versions of R.^[The need to keep the code up-to-date as R continues to evolve is one reason that this book is locally published and that this is the 5^th^ version in
-five years...]
+versions of R.^[The need to keep the code up-to-date as R continues to evolve is one reason that this book is locally published and that this is the 6^th^ time it has been revised in
+six years...]
  
+(ref:fig1-2) Initial RStudio layout.
+
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1.2} 
+
+}
+
+\caption{(ref:fig1-2)}(\#fig:Figure1-2)
+\end{figure}
+
 \indent To get started, we can complete some basic tasks in R using the RStudio
 interface. When you open RStudio, you will see a screen like Figure 
 \@ref(fig:Figure1-2). The
 added annotation in this and the following screen-grabs is there to help you
 get initially oriented to the software interface. R is command-line software --
-meaning that most of the time you have to create code and then enter and execute
-it at a command prompt to get any results. RStudio makes the management and
+meaning that in some way or another you have to create code and get it evaluated, either by entering and execute
+it at a command prompt or by using the Rstudio interface to run the code that is stored in a file. RStudio makes the management and
 execution of that code more efficient than the basic version of R. In RStudio, 
 the lower left panel is called the "console" window and is where you can type R
 code directly into R or where you will see the code you run and (most
@@ -290,7 +305,7 @@ importantly!) where the results of your executed commands will show up. The
 most basic interaction with R is available once you get the cursor active at
 the command prompt ">" by clicking in that panel (look for a blinking
 vertical line). The upper left panel is for writing, saving, and running your R
-code. Once you have code available in this window, the "Run" button will
+code either in .R script files or .Rmd (markdown) files, discussed below. Once you have code available in this window, the "Run" button will
 execute the code for the line that your cursor is on or for any text that you
 have highlighted with your mouse. The "data management" or environment panel is
 in the upper right, providing information on what data sets have been loaded. 
@@ -300,12 +315,6 @@ contains information on the "Packages" (additional code we will download and
 install to add functionality to R) that are available and is where you will see
 plots that you make and requests for "Help" on specific functions. 
 
-(ref:fig1-2) Initial RStudio layout.
-
-<div class="figure">
-<img src="chapter1_files/fig1.2.png" alt="(ref:fig1-2)" width="492" />
-<p class="caption">(\#fig:Figure1-2)(ref:fig1-2)</p>
-</div>
 
 \indent As a first interaction with R we can use it as a calculator. To do this, click near the command prompt
 (``>``) in the lower left "console" panel, type 3+4, and then hit enter. It
@@ -339,7 +348,7 @@ observations for our subjects in *variables*.
 Basically, we need to store observations in named vectors (one dimensional 
 arrays) that contain a list of the observations. To create a vector containing
 the four numbers and assign it to a variable named *variable1*, we need to 
-create a vector using the function 
+create a vector using the concatenate function 
 ``c`` which means "combine the items" that follow, if they are inside 
 parentheses and have commas separating the values, 
 as follows:
@@ -395,14 +404,14 @@ management has to be accomplished in a more sophisticated way. While you can
 manage data sets quite effectively in R, it is often easiest to start with your
 data set in something like Microsoft Excel or OpenOffice's Calc. You want to
 make sure that observations are in the rows and the names of variables are in
-the columns and that there is no "extra stuff" in the spreadsheet. If you have
+first row of the columns and that there is no "extra stuff" in the spreadsheet. If you have
 missing observations, they should be represented with blank cells. The file should
 be saved as a ".csv" file (stands for comma-separated values although Excel
 calls it "CSV (Comma Delimited)"), which basically strips off some of the junk
 that Excel adds to the necessary information in the file. Excel will tell you that
 this is a bad idea, but it actually creates a more stable archival format and
 one that R can use directly.^[There are ways to read ".xls" and ".xlsx" files 
-directly into R that we will explore later.]
+directly into R that we will explore later so you can also use that format if you prefer.]
 
 \indent The following code to read in the data set relies on an R package called 
 ``readr`` [@R-readr]. Packages in R provide additional functions and data sets that 
@@ -414,7 +423,7 @@ RStudio. Click on the **Install** button and then type in the name of the packag
 the box (here type in ``readr``). 
 \index{R packages!\textbf{readr}}
 RStudio will try to auto-complete the package name
-you are typing which should help you make sure you got it typed correctly. This will
+you are typing which should help you make sure you got it typed correctly. If you are working in a .Rmd file, a highlighted message may show up on the top of the file to suggest packages to install that are not present -- look for this to help make sure you have the needed packages installed. This will
 be the first of *many* times that we will mention that R is case sensitive -- in
 other words, ``Readr`` is different from ``readr`` in R syntax and this sort of
 thing applies to everything you do in R. You should only need to install each R
@@ -427,11 +436,11 @@ doesn't, repeat the previous steps to install it.
 ---------------------------------------------------------------------------
 
 \indent After installing the package, we need to load it to make it active in a given work
-session. Go to the command prompt and type (or copy and paste) ``require(readr)`` or ``library(readr)``:
+session. Go to the command prompt and type (or copy and paste) ``library(readr)`` or ``require(readr)``:
 \index{R packages!\textbf{readr}}
 
 ```
-> require(readr)
+> library(readr)
 ```
 
 With a data set converted to a CSV file and ``readr`` installed and loaded, we need to read the data set into the active workspace. 
@@ -477,7 +486,7 @@ you are having trouble getting the file converted and read into R, copy and
 run the following code: 
 ``treadmill <- read_csv("http://www.math.montana.edu/courses/s217/documents/treadmill.csv")``.] 
 \index{import data}
-Find your file and click "**Import**". R will store the data set as an object with the same name 
+Click "**Import**" and find your file. R will store the data set as an object with the same name 
 as the .csv file. You could use another name as well, but it is 
 often easiest just to keep the data
 set name in R related to the original file name. You should see some text appear
@@ -501,10 +510,14 @@ code (``View(treadmill``)).
 
 (ref:fig1-3) RStudio with initial data set loaded.
 
-<div class="figure">
-<img src="chapter1_files/fig1.3.png" alt="(ref:fig1-3)" width="484" />
-<p class="caption">(\#fig:Figure1-3)(ref:fig1-3)</p>
-</div>
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1.3} 
+
+}
+
+\caption{(ref:fig1-3)}(\#fig:Figure1-3)
+\end{figure}
 
 \indent Just directly typing (or using) a line of code like this is actually the 
 other way that we can read in
@@ -514,7 +527,7 @@ function that takes a path as an argument. To use it, specify the path to
 your data file, put quotes around it, and put it as the input to 
 ``read_csv(...)``. For some examples later in the book, you will be able to 
 copy a command like this from the text and read data sets and other
-code directly from the course folder, assuming you are connected to the
+code directly from the website, assuming you are connected to the
 internet. 
 
 \indent To verify that you read the data set in correctly, it is always good to check 
@@ -556,7 +569,7 @@ the panels.
  
 \normalsize
 
-\indent When you require a package, you may see a warning message about versions of the package and versions of 
+\indent When you load an installed package with ``library``, you may see a warning message about versions of the package and versions of 
 R -- this is *usually* something you can ignore. Other warning messages could
 be more ominous for proceeding but before getting too concerned, there are 
 couple of basic things to check. 
@@ -565,15 +578,11 @@ First, double check that the package is
 installed (see
 previous steps). Second, check for typographical errors in your code --
 especially for mis-spellings or unintended capitalization. If you are still
-having issues, try repeating the installation process. If that fails, find
-someone more used to using R to help you (for example in the Math Learning
-Center or by emailing your instructor).^[Most computer lab computers at 
-Montana State University have RStudio installed and so provide another venue 
-to work.] 
+having issues, try repeating the installation process. Then click on the "**Update**" button to check for potentially newer versions of packages. If all that fails, try the cloud version of RStudio discussed before and repeat the steps there. 
 
 \indent To help you go from basic to intermediate R usage and especially to help with more
 complicated problems, you will want to learn how to manage and save your R code. 
-The best way to do this is using the upper left panel in RStudio using what
+The best way to do this is using the upper left panel in RStudio. If you just want to manage code, then you can use what
 are called R Scripts, which are files that have a file extension of ".R". To
 start a new ".R" file to store your code, click on **File**, then 
 **New File**, then **R Script**. This will create a blank page to enter and 
@@ -587,15 +596,19 @@ in the console with results just like what you would obtain if you typed it
 after the command prompt and hit enter for each line. Figure \@ref(fig:Figure1-4) 
 shows the screen with the code used in this 
 section in the upper left panel, saved in
-a file called "CH0.R", with the results of highlighting and executing the first
+a file called "Ch1.R", with the results of highlighting and executing the first
 section of code using the "Run" button. 
 
 (ref:fig1-4) RStudio with highlighted code run.
 
-<div class="figure">
-<img src="chapter1_files/fig1.4.png" alt="(ref:fig1-4)" width="1368" />
-<p class="caption">(\#fig:Figure1-4)(ref:fig1-4)</p>
-</div>
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1.4} 
+
+}
+
+\caption{(ref:fig1-4)}(\#fig:Figure1-4)
+\end{figure}
 
 ## Basic summary statistics, histograms, and boxplots using R {#section1-3}
 
@@ -604,13 +617,13 @@ For the following material, you will need to install and load the ``mosaic`` pac
 \index{R packages!\textbf{mosaic}}
 
 ```r
-> require(mosaic)
+> library(mosaic)
 ```
 
 It provides a suite of enhanced functions to aid our initial explorations. With RStudio running, the ``mosaic`` package loaded, a place to write and
 save code, and the ``treadmill`` data set loaded, we can (finally!) start to
 summarize the results of the study. The ``treadmill`` object is what R calls a 
-***tibble***^[Tibbles are R are objects that can contain both 
+***tibble***^[Tibbles are R objects that can contain both 
 categorical and quantitative variables on your $n$ subjects with a name for each
 variable that is also the name of each column in a matrix. \index{tibble} Each subject is a 
 row of the data set. The name (supposedly) is due to the way *table* sounds in the accent of a particularly influential developer at RStudio who is from New Zealand.] and contains columns corresponding to each variable in 
@@ -658,7 +671,7 @@ subjects had measurements available on this variable.
 ```
 
 \indent We are starting to get somewhere with understanding that the runners were 
-somewhat fit with worst runner covering 1.5 miles in 14 minutes 
+somewhat fit with the worst runner covering 1.5 miles in 14 minutes 
 (the equivalent of a 9.3 minute mile)
 and the best running at a 5.4 minute mile pace. The limited variation in the
 results suggests that the sample was obtained from a restricted group with
@@ -682,11 +695,18 @@ Figure \@ref(fig:Figure1-5).
 
 (ref:fig1-5) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study, bar heights are counts.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-5-1.png" alt="(ref:fig1-5)" width="480" />
-<p class="caption">(\#fig:Figure1-5)(ref:fig1-5)</p>
-</div>
+![(\#fig:Figure1-5)(ref:fig1-5)](01-preface_files/figure-latex/Figure1-5-1.pdf) 
 
+(ref:fig1-6) RStudio while in the process of copying the histogram.
+
+\begin{figure}[ht]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/image010} 
+
+}
+
+\caption{(ref:fig1-6)}(\#fig:Figure1-6)
+\end{figure}
 
 \indent You can save this plot by clicking on the **Export** button found above 
 the plot, followed by **Copy to Clipboard** and clicking on the 
@@ -696,13 +716,6 @@ document for writing reports that include the figures. You can see the first
 parts of this process in the screen grab in Figure \@ref(fig:Figure1-6). You can also directly save the figures as separate files using 
 **Save as Image** or **Save as PDF** and then insert them into your word 
 processing documents. 
-
-(ref:fig1-6) RStudio while in the process of copying the histogram.
-
-<div class="figure">
-<img src="chapter1_files/image010.png" alt="(ref:fig1-6)" width="960" />
-<p class="caption">(\#fig:Figure1-6)(ref:fig1-6)</p>
-</div>
 
 \indent The function ``hist`` defaults into providing a histogram on the ***frequency***
 (count) scale. In most R functions, there are the default options that will 
@@ -717,10 +730,7 @@ into each bar. Specifically, we can turn the ``labels`` option "on" by making it
 
 (ref:fig1-7) Histogram of Run Times with counts in bars labeled.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-7-1.png" alt="(ref:fig1-7)" width="384" />
-<p class="caption">(\#fig:Figure1-7)(ref:fig1-7)</p>
-</div>
+![(\#fig:Figure1-7)(ref:fig1-7)](01-preface_files/figure-latex/Figure1-7-1.pdf) 
 
 
 \indent Based on this histogram, it does not appear that there any outliers in the responses
@@ -771,10 +781,7 @@ but worth noting.
 
 (ref:fig1-8) Boxplot of 1.5 mile Run Times.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-8-1.png" alt="(ref:fig1-8)" width="384" />
-<p class="caption">(\#fig:Figure1-8)(ref:fig1-8)</p>
-</div>
+![(\#fig:Figure1-8)(ref:fig1-8)](01-preface_files/figure-latex/Figure1-8-1.pdf) 
 
 ```r
 > boxplot(treadmill$RunTime)
@@ -790,10 +797,7 @@ be assigned into the options ``ylab`` (for y-axis) or ``main``
 
 (ref:fig1-9) Boxplot of Run Times with improved labels.
 
-<div class="figure">
-<img src="01-preface_files/figure-html/Figure1-9-1.png" alt="(ref:fig1-9)" width="384" />
-<p class="caption">(\#fig:Figure1-9)(ref:fig1-9)</p>
-</div>
+![(\#fig:Figure1-9)(ref:fig1-9)](01-preface_files/figure-latex/Figure1-9-1.pdf) 
 
 ```r
 > boxplot(treadmill$RunTime, ylab="1.5 Mile Run Time (minutes)", 
@@ -814,15 +818,14 @@ regardless of how pretty the graphic might be. So maybe it is better to say
 results from either the console or by copying the figure and then pasting the results 
 into the typesetting program. There is another way
 to use RStudio where you can have it compile the results (both output and
-figures) directly into a document together with the code that generated it, 
+figures) directly into a document together with other writing and the code that generated it, 
 using what is called R Markdown (http://shiny.rstudio.com/articles/rmarkdown.html). 
-It adds some additional setup
-complexity we want to avoid for now but is basically what we used to prepare this book. 
-The main reason to mention this is that you will see a
-change in formatting of the R code and output from here forward as you will no
+It is basically what we used to prepare this book and what you should learn to use to do your work. 
+From here forward, you will see a
+change in formatting of the R code and output as you will no
 longer see the command prompt (">") with the code. The output will be
 flagged by having two "##"'s before it. For example, the summary statistics for
-the *RunTime* variable from ``favstats`` function would look like:
+the *RunTime* variable from ``favstats`` function would look like when run using R Markdown:
 
 
 ```r
@@ -834,24 +837,25 @@ favstats(treadmill$RunTime)
 ##  8.17 9.78  10.47 11.27 14.03 10.58613 1.387414 31       0
 ```
 
-\indent Statisticians (and other scientists) are starting to use these methods 
+\indent Statisticians (and other scientists) are starting to use R Markdown and similar methods 
 because they provide what is called "Reproducible
 research" [@Gandrud2015] where all the code and output it produced are
 available in a single place. This allows different researchers to run and verify
-results or the original researchers to revisit their earlier work at a later
+results (so "reproducible results") or the original researchers to revisit their earlier work at a later
 date and recreate all their results exactly. Scientific publications are currently
-encouraging researchers to work in this way and may someday require it. In this
-book, we focus on the R code and show the results from running it, but you may
-want to consider exploring these alternative options. Ask your instructor to show 
-you this way of working and see if you like it better than copying and pasting everything.
+encouraging researchers to work in this way and may someday require it. The term ***reproducible*** can also be related to whether repeated studies get the same result (also called ***replication***) -- further discussion of these terms and the implications for scientific research are discussed in Chapter \@ref(chapter2).
+
+\indent In order to get some practice using R Markdown, create a sample document in this format using File -> New File -> R Markdown... Choose a title for your file and select the "Word" option. This will create a new file in the upper left window where we stored our .R script. Save that file to your computer. Then you can use the "Knit" button to have RStudio run the code and create a word document with the results. R Markdown documents contain basically two components, "code chunks" that contain your code and the rest of the document where you can write descriptions and interpretations of the results that code generates. The code chunks can be inserted using the "Insert" button by selecting the "R" option. Then write your code in between the `` ```{r} `` and `` ``` `` lines (it should have grey highlights for those lines and white for the rest of the portions of the .Rmd document). Once you write some code inside a code chunk, you can test your code using the triangle on the upper right side of it to run all the code that resides in that chunk. Keep your write up outside of these code chunks to avoid code errors and failures to compile. Once you think your code and writing is done, you can use the "Knit" button to try to compile the file. As you are learning, you may find this challenging, so start with trying to review the sample document and knit each time you get a line of code written so you know when you broke the file. Also look around for posted examples of .Rmd files to learn how others have incorporated code with write-ups. You might even be given a template of homework or projects as .Rmd files from your instructor. After you do this a couple of times, you will find that the challenge of working with markdown files is more than matched by the simplicity of the final product and, at least to researchers, the reproducibility and documentation of work that this method provides.
+
+
+
 
 \indent Finally, when you are done with your work and attempt to exit out of RStudio, 
 it will
 ask you to save your workspace. ***DO NOT DO THIS!*** It will just create a cluttered 
-workspace and could even cause you to get incorrect results.  If you
-save your R code (and edit it to only contain the parts of it that worked) via the 
-script window, you can re-create any results by simply
-re-running that code. If you find that you have lots of "stuff" in your
+workspace and could even cause you to get incorrect results.  In fact, you should go into the Tools -> Global Options and then make sure that "Save workspace to .RData on exit" option on the first screen you will see is set to ***Never***. If you
+save your R code either as a .R or (better) an R-markdown file, you can re-create any results by simply
+re-running that code or re-knitting the file. If you find that you have lots of "stuff" in your
 workspace because you accidentally saved your workspace, just run ``rm(list = ls())``. 
 It will delete all the data sets from your workspace. 
 
@@ -862,9 +866,7 @@ R via RStudio. You should be able to read a data set into R and run some basic
 functions, all done using the RStudio interface. If you are struggling with
 this, you should seek additional help with these technical issues so that you
 are ready for more complicated statistical methods that are going to be
-encountered in the following chapters. For most assignments, we will give you a
-seed of the basic R code that you need and then you will modify it to work on
-your data set of interest. As mentioned previously, the way everyone learns R is
+encountered in the following chapters. The way everyone learns R is
 by starting with some example code that does most of what you want to do and
 then you modify it. If you can complete the Practice Problems that follow, you
 are well on your way to learning to use R. 
@@ -874,8 +876,10 @@ review. They involved a quick reminder of summarizing the center, spread, and
 shape of distributions using numerical summaries of the mean and SD and/or the
 min, Q1, median, Q3, and max and the histogram and boxplot as graphical
 summaries. We revisited the ideas of symmetry and skew. But the main point was
-really to get a start on using R to provide results you should be familiar with
+really to get a start on using R via RStudio to provide results you should be familiar with
 from your previous statistics experience(s). 
+
+\newpage
 
 ## Summary of important R code {#section1-5}
 
@@ -889,57 +893,58 @@ required. You can use this as a guide to finding the function names and some
 hints about options that will help you to get the code to work. You can also
 revisit the worked examples using each of the functions. 
 
-* <font color='red'>FILENAME</font> ``<-`` **read_csv(**<font color='red'>"path to csv file/FILENAME.csv"</font>**)**
+* \textcolor{red}{FILENAME} ``<-`` **read_csv(**\textcolor{red}{"path to csv file/FILENAME.csv"}**)**
 
     * Can be generated using "Import Dataset" button or by modifying this text. 
     
-    * Requires the ``readr`` package to be loaded (``require(readr)``) when using 
+    * Requires the ``readr`` package to be loaded (``library(readr)``) when using 
     the code directly.
     
     * Imports a text file saved in the CSV format.
 
-* <font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>
+* \textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}
 
     * To access a particular variable in a tibble called DATASETNAME, use 
     a $ and then the VARIABLENAME. 
 
-* **head(**<font color='red'>DATASETNAME</font>**)**
+* **head(**\textcolor{red}{DATASETNAME}**)**
 
     * Provides a list of the first few rows of the data set for all the 
     variables in it. \index{\texttt{head()}|textbf}
 
-* **tail(**<font color='red'>DATASETNAME</font>**)**
+* **tail(**\textcolor{red}{DATASETNAME}**)**
 
     * Provides a list of the last few rows of the data set for all the 
     variables in it. \index{\texttt{tail()}|textbf}
     
-* **mean(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **mean(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Calculates the mean of the observations in a variable. 
     \index{\texttt{mean()}|textbf}
 
-* **sd(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **sd(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Calculates the standard deviation of the observations in a variable. 
     \index{\texttt{sd()}|textbf}
 
-* **favstats(**<font color='red'>DATASETNAME</font>$<font color='red'>VARIABLENAME</font>**)** 
+* **favstats(**\textcolor{red}{DATASETNAME}$\textcolor{red}{VARIABLENAME}**)** 
 
-    * Requires the ``mosaic`` package to be loaded (``require(mosaic``) after
+    * Requires the ``mosaic`` package to be loaded (``library(mosaic)``) after
     installing the package). 
 
     * Provides a suite of numerical summaries of the observations in a variable.
     \index{\texttt{favstats()}|textbf}
 
-* **hist(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **hist(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Makes a histogram. \index{\texttt{hist()}|textbf}
     
-* **boxplot(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **boxplot(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
 
 
+\newpage
 
 ## Practice problems {#section1-6}
 
@@ -974,7 +979,7 @@ ages does this study pertain to?
 
 1.4. The weight responses are in
 kilograms and you might prefer to see them in pounds. The conversion is
-lbs=2.205``*``kgs. Create a new variable in the ``treadmill``
+``lbs=2.205*kgs``. Create a new variable in the ``treadmill``
 tibble called *BWlb* using this code:
 
 ```r

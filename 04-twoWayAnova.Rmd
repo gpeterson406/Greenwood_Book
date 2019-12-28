@@ -277,7 +277,7 @@ model assumptions.
 ```{r Figure4-1,fig.cap="(ref:fig4-1)"}
 library(yarrr)
 set.seed(12)
-pirateplot(responses~brand*drops, data=pt, xlab="Drops", ylab="Time", inf.method="ci",
+pirateplot(responses~brand*drops, data=pt, xlab="Drops", ylab="Time", inf.method="ci", inf.disp="line", theme=2, 
            point.o=1) 
 ```
 
@@ -524,7 +524,7 @@ for levels $2,\ldots,J$, $\gamma_k$ (gamma $k$) is the deviation for the main
 effect of B from the baseline for levels $2,\ldots,K$, and $\omega_{jk}$ 
 (omega $jk$) is the adjustment for the ***interaction effect*** for level 
 $j$ of factor A and level $k$ of factor B for $j=1,\ldots,J$ and $k=1,\ldots,K$. In this model, $\tau_1$, $\gamma_1$, and $\omega_{11}$ are all fixed at 0 because $\alpha$ is the mean for the combination of the baseline levels of both variables and so no adjustments are needed. 
-As in Chapter \@ref(chapter3), R will typically choose the baseline categories
+Additionally, any $\omega_{jk}$'s that contain the baseline category of either factor A or B are also set to 0 and the model for these levels just involves $\tau_j$ or $\gamma_k$ added to the intercept. Exploring the R output will help clarify which coefficients are present or to 0 (so not displayed) in these models. As in Chapter \@ref(chapter3), R will typically choose the baseline categories
 alphabetically but now it is choosing a baseline for both variables and so our
 detective work will be doubled to sort this out. 
 
@@ -569,7 +569,7 @@ understand and describe the form of the interaction among the variables.
 \index{model!interaction}
 
 \indent If the interaction test does not return
-a small p-value and you decide that you do not have enough evidence against the null hypothesis to suggest that it is needed, it
+a small p-value and you decide that you do not have enough evidence against the null hypothesis to suggest that the interaction is needed, the interaction
 can be dropped from the model. In this situation, we would re-fit the model and
 focus on the results provided by the additive model -- performing tests for the
 two additive main effects. 
@@ -723,7 +723,7 @@ $H_0: \text{ All } \omega_{jk}\text{'s} = 0$ has a
 test statistic of $F(2,24)=1.92$ (in the output from the row with 
 brands:drops) and a p-value of 0.17. So there is weak evidence against the null hypothesis of no interaction, with a 17% chance we would 
 observe a difference in the $\omega_{jk}\text{'s}$ like we did or more
-extreme if the $\omega_{jk}\text{'s}$ really were all 0. So it seems that the interaction probably is not needed. Note that for the interaction 
+extreme if the $\omega_{jk}\text{'s}$ really were all 0. So we would conclude that the interaction probably is not needed^[This does not mean that there is truly no interaction in the population but does mean that we are going to proceed assuming it is not present since we couldn't prove the null was wrong.]. Note that for the interaction 
 model components, R presents them with a colon, ``:``, between the variable 
 names.
 \index{\texttt{anova()}}
@@ -892,7 +892,7 @@ library(effects)
 plot(allEffects(m2))
 ```
 
-\indent With the first additive model we have considered, it is now the first time where we are working with a model where we can't display the observations together with the means that the model is producing because the results for each predictor are averaged across the levels of the other predictor. To visualize some aspects of the original observations with the estimates from each group, we can turn on an option in the term-plots (``residuals=T``) to obtain the ***partial residuals*** \index{partial residuals} that show the residuals as a function of one variable after adjusting for the effects of other variables. We will avoid the specifics of the calculations, but you can use these to explore the residuals at different levels of each predictor. They will be most useful in the Chapters \@ref(chapter7) and \@ref(chapter8) but give us some insights in unexplained variation in each level of the predictors once we remove the impacts of other predictors in the model. Use plots like Figure \@ref(fig:Figure4-9) to look for different variability at different levels of the predictors and possibly locations of outliers in these models. Note that the points (open circles) are jittered to aid in seeing all of them, the means of each group of residuals are indicated by a filled large circle, and the smaller circles in the center of the bars for the 95% confidence intervals are the means from the model. Term-plots with partial residuals accompany our regular diagnostic plots for assessing equal variance assumptions in these models -- in some cases adding the residuals will clutter the term-plots so much that reporting them is not useful since one of the main purposes of the term-plots is to visualize the model estimates. So use the ``residuals=T`` option judiciously. 
+\indent With the first additive model we have considered, it is now the first time where we are working with a model where we can't display the observations together with the means that the model is producing because the results for each predictor are averaged across the levels of the other predictor. To visualize some aspects of the original observations with the estimates from each group, we can turn on an option in the term-plots (``residuals=T``) to obtain the ***partial residuals*** \index{partial residuals} that show the residuals as a function of one variable after adjusting for the effects/impacts of other variables. We will avoid the specifics of the calculations for now, but you can use these to explore the residuals at different levels of each predictor. They will be most useful in the Chapters \@ref(chapter7) and \@ref(chapter8) but give us some insights in unexplained variation in each level of the predictors once we remove the impacts of other predictors in the model. Use plots like Figure \@ref(fig:Figure4-9) to look for different variability at different levels of the predictors and locations of possible outliers in these models. Note that the points (open circles) are jittered to aid in seeing all of them, the means of each group of residuals are indicated by a filled large circle, and the smaller circles in the center of the bars for the 95% confidence intervals are the means from the model. Term-plots with partial residuals accompany our regular diagnostic plots for assessing equal variance assumptions in these models -- in some cases adding the residuals will clutter the term-plots so much that reporting them is not useful since one of the main purposes of the term-plots is to visualize the model estimates. So use the ``residuals=T`` option judiciously. 
 
 
 
@@ -926,7 +926,7 @@ library(tibble)
 ToothGrowth <- as_tibble(ToothGrowth)
 par(mfrow=c(1,2))
 pirateplot(len ~ supp*dose, data=ToothGrowth, ylim=c(0,35),
-         main="Pirate-plot",  xlab="Dosage", ylab="Odontoblast Growth", inf.method="ci", theme=2, point.o = .75)
+         main="Pirate-plot",  xlab="Dosage", ylab="Odontoblast Growth", inf.method="ci", inf.disp="line", theme=2, point.o = .75)
 intplot(len ~ supp*dose, data=ToothGrowth, col=c(1,2), 
         main="Interaction Plot", ylim=c(0,35),xlim=c(0.5,3.5),cex.main=1,
         cex.leg=0.75,x.leg=2.5,y.leg=5,cex.lab=0.75)
@@ -938,7 +938,7 @@ library(tibble)
 ToothGrowth <- as_tibble(ToothGrowth)
 par(mfrow=c(1,2))
 pirateplot(len ~ supp*dose, data=ToothGrowth, ylim=c(0,35),
-         main="Pirate-plot",  xlab="Dosage", ylab="Odontoblast Growth", inf.method="ci")
+         main="Pirate-plot",  xlab="Dosage", ylab="Odontoblast Growth", inf.method="ci", inf.disp="line", theme=2)
 intplot(len~supp*dose, data=ToothGrowth, col=c(1,2), 
         main="Interaction Plot", ylim=c(0,35))
 ```
@@ -947,7 +947,7 @@ It appears that the effect of method changes based on the dosage as the
 interaction plot seems to show some evidence of non-parallel lines.
 \index{non-parallel lines}
 Actually, 
-it appears that the effect of delivery method is parallel for doses 0.5 and 1.0
+it appears that the effect of delivery method is the same (parallel lines) for doses 0.5 and 1.0
 mg/day but that the effect of delivery method changes for 2 mg/day. 
 
 \indent We can use the ANOVA $F$-test for an interaction to assess whether we think the 
@@ -1098,10 +1098,10 @@ Note that these diagnostics and conclusions are the same as in Section \@ref(sec
     
 4. **Conclusion based on p-value:**
 
-    * With a p-value of 0.0219, there is about a 2.19% chance we would observe an interaction like
+    * With a p-value of 0.0219 (from $F(2,54)=4.107$), there is about a 2.19% chance we would observe an interaction like
     we did (or more extreme) if none were truly present. This provides moderate to strong
     evidence against the null hypothesis of no interaction between delivery
-    method and dosage on odontoblast growth so we would retain the interaction in the model.
+    method and dosage on odontoblast growth in the population so we would conclude that there is likely an interaction and would retain the interaction in the model.
     
 5. **Size of differences:**
 
@@ -1309,7 +1309,7 @@ tally(cigbuy~incomegp, data=debtRc)
 how we start our modeling in Two-Way ANOVA situations. The ANOVA table suggests
 that there is little evidence against the null hypothesis of no interaction between the income level and
 buying cigarettes on the opinions of the respondents towards debt 
-($F(4,378)=0.686$, p-value=0.6022). This suggests that the initial assessment 
+($F(4,378)=0.686$, p-value=0.6022), so we would conclude that likely is not an interaction present here and we can drop the interaction from the model. This suggests that the initial assessment 
 that the interaction wasn't too prominent
 was correct. We should move to the additive model here but first need to check
 the assumptions to make sure we can trust this initial test. 
@@ -1415,11 +1415,11 @@ here. No causal inferences are possible because this is an observational study.
 
     * There was initially little to no evidence against the null hypothesis of no interaction 
     between income group and cigarette buying on pro-debt feelings 
-    ($F(4,378)=0.686$, p-value=$0.6022$) so the interaction was dropped 
+    ($F(4,378)=0.686$, p-value=$0.6022$) so we would conclude that there is likely not an interaction in the population and the interaction was dropped 
     from the model. There is strong evidence against the null hypothesis of no difference in the mean
     pro-debt feelings in the population across the income groups, after
     adjusting for cigarette buying ($F(4,382)=5.54$, p-value=$0.00024$), so we would conclude that there is some difference in them. There is little evidence against the null hypothesis of no difference in the mean pro-debt feelings in the population based on
-    cigarette buying/not, after adjusting for income group ($F(1,382)=0.0201$, p-value=$0.887$). 
+    cigarette buying/not, after adjusting for income group ($F(1,382)=0.0201$, p-value=$0.887$), so we would conclude that there is probably not a difference across cigarette buying/not and could consider dropping this term from the model. 
     
 \indent So we learned that the additive model
 was more appropriate for these responses and that the results resemble Scenario

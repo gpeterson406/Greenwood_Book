@@ -265,8 +265,8 @@ intplotarray<-function (formula = NULL, data = NULL, type = "b", x.cont = FALSE,
   
   
   par(mfrow=c(2,2))
-  require(yarrr)
-  require(mosaic)
+  suppressMessages(library(yarrr))
+  suppressMessages(library(mosaic))
   intplot(formula,data=data,type = "b", x.cont = x.cont, 
           legend = legend, trace.label = trace.label, leg.lab = leg.lab, fixed = fixed, 
           x.leg = x.leg, y.leg = y.leg, cex.leg = cex.leg, ncol = ncol, pch = pch, fun = fun, 
@@ -275,10 +275,10 @@ intplotarray<-function (formula = NULL, data = NULL, type = "b", x.cont = FALSE,
   #Strip out second factor
   
   ylabel <- paste("Mean(", deparse(respname),")", "\u00B1", " 1 SE")
-  pirateplot(response~group,data=data, inf.method="se", theme=2,gl.col = "gray",back.col = transparent("blue", .95),inf.f.o = 0,point.o = .5, main="Average differences", ylab=ylabel)
+  pirateplot(response~group,data=data, inf.method="se", inf.disp="line",theme=2,gl.col = "gray",back.col = transparent("blue", .95),inf.f.o = 0.3,point.o = .5, main="Average differences", ylab=ylabel, xlab=grpname)
   #Strip out first factor
   
-  pirateplot(response~x.factor,data=data, inf.method="se", theme=2,gl.col = "gray",back.col = transparent("blue", .95),inf.f.o = 0,point.o = .5, main="Average differences", ylab=ylabel)
+  pirateplot(response~x.factor,data=data, inf.method="se", inf.disp="line",theme=2,gl.col = "gray",back.col = transparent("blue", .95),inf.f.o = 0.3,point.o = .5, main="Average differences", ylab=ylabel, xlab=xfname)
   
   
   
@@ -294,5 +294,3 @@ intplotarray<-function (formula = NULL, data = NULL, type = "b", x.cont = FALSE,
   par(mfrow=c(1,1))
   
 }
-
-

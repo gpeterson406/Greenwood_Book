@@ -17,6 +17,7 @@ library(mosaic)
 library(knitr)
 library(readr)
 library(tibble)
+library(car)
 knitr::opts_chunk$set(cache = F,fig.height=3.5,fig.width=6,fig.pos='ht',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
@@ -305,7 +306,7 @@ ANOVA and this is also additive in terms of these variables. Interaction
 models are discussed later in the chapter.] we want to add to the model, 
 ``y~x1+x2+...+xk``: \index{model!MLR}
 
-(ref:fig8-5) Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp. Compare this plot that comes from one MLR model to Figures \@ref(fig:Figure8-2), \@ref(fig:Figure8-3), and \@ref(fig:Figure8-4) for comparable SLR models. Note the points in these panels are the partial residuals that are generated after controlling for the other two of the three variables. 
+(ref:fig8-5) Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp. Compare this plot that comes from one MLR model to Figures \@ref(fig:Figure8-2), \@ref(fig:Figure8-3), and \@ref(fig:Figure8-4) for comparable SLR models. Note the points in these panels are the partial residuals that are generated after controlling for the other two of the three variables as explained below. 
 
 ```{r Figure8-5,fig.cap="(ref:fig8-5)",fig.width=10,fig.height=5}
 m4 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2)
@@ -847,7 +848,7 @@ we can formally discuss
 interpretations of the slope coefficients and how the term-plots 
 (Figure \@ref(fig:Figure8-10)) aid
 our interpretations. Term-plots in MLR are constructed by holding all the other
-quantitative variables^[They hold factor variables at their modal category but we don't have factor variables in the MLR models, yet.] at their mean and generating predictions and 95% CIs for the mean
+quantitative variables^[Term-plots with additive factor variables use the weighted (based on percentage of the responses in each category) average of their predicted mean responses across their levels but we don't have any factor variables in the MLR models, yet.] at their mean and generating predictions and 95% CIs for the mean
 response across the levels of observed values for each predictor variable. This
 idea also helps us to work towards interpretations of each term in an MLR
 model. For example, for *Elevation*, 
@@ -945,7 +946,10 @@ define the line but need a denser grid of elevations if we want to add the 95%
 CIs for the true mean snow depth across the different elevations since they
 vary as a function of the distance from the mean of the explanatory variables. 
 
-\indent To get the associated 95% CIs, we could return to using the ``predict``
+
+\indent The partial residuals in MLR models^[This also applies to the additive two-way ANOVA model.] highlight the relationship between each predictor and the response after the impacts of the other variables are incorporated. To do this, we start with the raw residuals, $e_i = y_i - \hat{y}_i$ which is the left-over part of the responses after accounting for all the predictors. If we add the component of interest to explore (say $b_kx_{kj}$) to the residuals, $e_i$, we get $e_i + b_kx_{kj} = y_i - \hat{y}_i + b_kx_{kj} = y_i - (b_0 + b_1x_{1i} +b_2x_{2i}+\ldots + b_kx_{ki} + \ldots + b_Kx_{Ki}) + b_kx_{kj}$ $= y_i - (b_0 + b_1x_{1i} +b_2x_{2i}+\ldots + b_{k-1}x_{k-1,i} + b_{k+1}x_{k+1,i} + \ldots + b_Kx_{Ki})$. This new residual is a partial residual (also known as "component-plus-residuals" to indicate that we put the residuals together with the component of interest to create them). \index{partial residual} It contains all of the regular residual as well as what would be explained by $b_kx_{kj}$ given the other variables in the model. Some choose to plot these partial residuals or to center them at 0 and, either way, plot them versus the component, here $x_{kj}$. In effects plots, partial residuals are vertically scaled to match the height that the term-plot has created by holding the other predictors at their means so they can match the y-axis of the lines of the estimated terms based on the model. However they are vertically located, partial residuals help to highlight missed patterns left in the residuals that might be related to a particular predictor.   
+
+\indent To get the associated 95% CIs for an individual term, we could return to using the ``predict``
 function for the MLR, again holding the temperatures at their
 mean values. The ``predict`` function is sensitive and needs the same variable
 names as used in the original model fitting to work. First we create a "new"
@@ -1018,6 +1022,51 @@ Any time we do linear regression, the inferences are contingent upon the
 model we chose. We know our model is not
 perfect, but we hope that it helps us learn something about our research
 question(s) and, to trust its results, we hope it matches the data fairly well. 
+
+\indent To both illustrate the calculation of partial residuals and demonstrate their potential utility, a small simulated example is considered. These are simulated data to help to highlight these patterns but are not too different than results that can be seen in some real applications. This situation has a response of simulated cholesterol levels with (also simulated) predictors of age, exercise level, and healthiness level with a sample size of $n=100$. First, consider the plot of the response versus each of the predictors in Figure \@ref(fig:FigureXX1). It appears that age might be positively related to the response, but exercise and healthiness levels do not appear to be related to the response. But it is important to remember that the response is made up of potential contributions that can be explained by each predictor and unexplained variation, and so plotting the response versus each predictor may not allow us to see the real relationship with each predictor.
+
+```{r echo=F}
+
+n<-100; set.seed(9754)
+x1<-runif(n=100,0,100); x2<-runif(n=100,0,100); x3 <- (runif(n=100,0,100) + x1); x3 <- 100*(x3-min(x3))/(max(x3) - min(x3))
+
+y1<-3+0.5*x1+0.005*(x2-50)^2-.4*x3+rnorm(n=100,0,2)
+
+Age <- 20+(x1/100)*40
+
+ExAmount <- x2
+  
+HealthLevel <- x3
+
+CholLevel <- 100+150*(y1-min(y1))/(max(y1)-min(y1))
+
+d1 <- tibble(CholLevel, Age, ExAmount, HealthLevel)
+```
+
+In the summary it appears that each predictor might be related to the response given the other predictors in the model with p-values of <0.0001, 0.068, and <0.0001 for Age, Exercise, and Healthiness, respectively.
+
+```{r FigureXX1,fig.cap="Scatterplot of Cholesterol level versus three predictors (simulated data).",echo=T,fig.width=5,fig.height=3}
+par(mfrow=c(1,3))
+plot(CholLevel~Age+ExAmount+HealthLevel, data=d1); 
+sim1<-lm(CholLevel~Age+ExAmount+HealthLevel, data=d1)
+summary(sim1)$coefficients
+```
+
+In Figure \@ref(fig:FigureXX2), we can see more of the story here by exploring the partial residuals versus each of the predictors. There are actually quite clear relationships for each partial residual versus its predictor. For *Age* and *HealthLevel*, the relationship after adjusting for other predictors is clearly positive and linear. For *ExAmount* there is a clear relationship but it is actually curving, so would violate the linearity assumption. It is interesting that none of these were easy to see or even at all present in plots of the response versus individual predictors. This demonstrates the power of MLR methods to adjust/control for other variables to help us potentially more clearly see relationships between individual predictors and the response, or at least their part of the response.
+
+
+```{r FigureXX2,fig.cap="Term-plots with partial residuals for Cholesterol level versus three predictors (simulated data).",echo=T,fig.width=8,fig.height=6}
+plot(allEffects(sim1, residuals=T))
+```
+
+
+\indent For those that are interested in these partial residuals, we can re-construct some of the work that the ``effects`` package does to provide them. As noted above, we need to take our regular residuals and add back in the impacts of a predictor of interest to calculate the partial residuals. The regular residuals can be extracted using the ``residuals`` function on the estimated model and the contribution of, say, the *ExAmount* predictor is found by taking the values in that variable times its estimated slope coefficient, $b_2=0.07447965$. Plotting these partial residuals versus *ExAmount* as in Figure \@ref(fig:FigureXX3) provides a plot that is similar to the second term-plot except for differences in the y-axis. The y-axis in term-plots contains an additional adjustment but the two plots provide the same utility in diagnosing a clear missed curve in the partial residuals that is related to the *ExAmount*. Methods to incorporate polynomial functions of the predictor are simple extensions of the `lm` work we have been doing but are beyond the scope of this material -- but you should always be checking the partial residuals to assess the linearity assumption with each predictor and if you see a pattern like this, consult further statistical resources or a statistician for help.
+
+```{r FigureXX3,fig.cap="Plot of partial residual for ExAmount.",echo=T,fig.width=5,fig.height=3}
+
+partres<- residuals(sim1) + d1$ExAmount*0.07447965
+scatterplot(partres~d1$ExAmount, xlab="ExAmount", ylab="Partial Residual", smooth=list(spread=F))
+```
 
 ## Comparing multiple regression models	{#section8-4}
 
@@ -1503,7 +1552,7 @@ linear relationship between *Max.Temp* and *Snow Depth* (in a model with
 
 Conclusion: There is moderate evidence against the null hypothesis of no linear
 relationship between *Max.Temp* and *Snow Depth* ($t_{20}=2.33$, p-value=0.03), once we account for
-*Elevation*, so we can conclude that there is a linear relationship between them given *Elevation* in the population of SNOTEL sites in Montana on this day. Because
+*Elevation*, so we can conclude that there likely is a linear relationship between them given *Elevation* in the population of SNOTEL sites in Montana on this day and we should retain this term in the model. Because
 we cannot randomly assign the temperatures to sites, we cannot conclude that
 temperature causes changes in the snow depth -- in fact it might even be
 possible for a location to have different temperatures because of different
@@ -1517,10 +1566,8 @@ given that *Max.Temp* is in the model:
 
 $t=7.613$ ($df=20$) with a p-value of $0.00000025$ or just $<0.00001$.
 
-So there is strong evidence to
-suggest that there is a linear relationship between *Elevation* and 
-*Snow Depth*, once we adjust for *Max.Temp* in the population of SNOTEL
-sites in Montana on this day. 
+So there is strong evidence against the null hypothesis of no linear relationship between *Elevation* and *Snow Depth*, once we adjust for *Max.Temp* in the population of SNOTEL
+sites in Montana on this day, so we would conclude that they are linearly related and that we should retain the *Elevation* predictor in the model with *Max.Temp*. 
 
 \indent There is one last test that is of dubious interest in almost every 
 situation -- to test that the $y$-intercept $(\boldsymbol{\beta_0})$ in an MLR 
@@ -2242,7 +2289,7 @@ fitfemales <- 0.529+0.0386*dm1$SATM
 
 par(mfrow=c(1,1))
 plot(dm1$SATM,fitmales,ylim=c(min(fitmales),max(fitfemales)),
-     main="Plot of estimated regression lines by  sex",
+     main="Plot of estimated regression lines by gender",
      type="l",lwd=2,xlab="SATM",ylab="FYGPA", col=viridis(8)[7])
 lines(dm1$SATM,fitfemales,lwd=3,col=viridis(8)[1])
 abline(v=50,lty=2,col="grey")
@@ -2287,9 +2334,7 @@ different $y$-intercepts in the two groups. In Figure \@ref(fig:Figure8-22), the
 females are estimated to be that same 0.313 points higher on first year GPA.
 The males have a mean GPA slightly above 2.3 which is the predicted GPA for the
 average SATM percentile for a male (remember that we have to hold the other variable at 
-its mean to make each term-plot). When making the SATM term-plot, the
-categorical variable is held at the most
-frequently occurring value (modal category) in the data set, which is for males in this data set. 
+its mean to make each term-plot). When making the SATM term-plot, the intercept is generated based on a weighted average of the intercept for the baseline category (`male`) of $b_0= 0.216$ and the intercept for the deviation category (`female`) of $b_0 + b_2 = 0.529$ with weights of 516/1000=0.516 for the estimated male intercept and 484/1000=0.484 for estimated female intercept, $0.516 \cdot 0.216 + 0.484 \cdot 0.529 = 0.368$.
 
 (ref:fig8-22) Term-plots for the estimated model for $\text{FYGPA}\sim\text{SATM} + \text{GENDER}$.
 
@@ -2315,7 +2360,7 @@ our regular $t$-test provides the opportunity to test for a difference in
 intercepts between the groups. In this situation, the test
 statistic is $t=7.184$ and, based on a $t_{997}$-distribution
 if the null is true, the p-value is $<0.0001$. We have very strong evidence against the null hypothesis that there is no difference in the true
-$y$-intercept in a *SATM* model for first year college GPA between *males* and *females*, so we would conclude that there is difference in their true mean GPA levels controlled for *SATM*. The confidence
+$y$-intercept in a *SATM* model for first year college GPA between *males* and *females*, so we would conclude that there is a difference in their true mean GPA levels controlled for *SATM*. The confidence
 interval is also informative:
 
 <!-- \newpage -->
@@ -2326,8 +2371,8 @@ confint(SATGENDER1)
 
 We are 95% confident that the true mean GPA for females is between 0.228 and
 0.399 points higher than for males, after adjusting for the *SATM* in the
-population of students. If we had subset the data set and fit two SLRs, we
-could have obtained the same simplified regression models but we never could
+population of students. If we had subset the data set by gender and fit two SLRs, we
+could have obtained the same simplified regression models for each group but we never could
 have performed inferences for the differences between the two groups without
 putting all the observations together in one model and then assessing those
 differences with targeted coefficients. We also would not be able to get an
@@ -2928,7 +2973,7 @@ plot(allEffects(dys_modelR, residuals=T))
 ```
 
 This model provides little evidence against the null hypothesis that IQ is not linearly related to reading score for all
-students ($t_{41}=1.34$, p-value=0.188), adjust for dyslexia status, but strong evidence against the null hypothesis of no difference in the true
+students ($t_{41}=1.34$, p-value=0.188), adjusted for dyslexia status, but strong evidence against the null hypothesis of no difference in the true
 $y$-intercepts ($t_{41}=-6.88$, p-value $<0.00001$) after adjusting for the verbal IQ score. 
 
 \indent Since the IQ term has a large p-value, we could drop it from the 
@@ -3268,7 +3313,7 @@ of 0.164. So we would find weak evidence against the null hypothesis and so does
 between the *treatment* groups, in a model with *du1*, in the population. We
 could interpret this in the fashion we used initially in MLR by stating this
 result as: there is little evidence against the null hypothesis of no difference in the mean *du2* for the
-*Treatment* groups after controlling for *du1*.
+*Treatment* groups after controlling for *du1* so we would conclude that there is possibly no difference between the groups controlled for *du1*.
 
 ```{r}
 head1 <- lm(du2~du1+treatment, data=Headache)
@@ -3375,9 +3420,8 @@ $$\Delta\text{AIC}=\text{AIC}_{\text{model}} - \text{AIC}_{\text{topModel}}$$
 
 and so provides a value of 0 for the top-ranked AIC model and a measure of how
 much worse on the AIC scale the other models are. A rule of thumb is that a 2 
-unit difference on AICs $(\Delta\text{AIC}=2)$ is decent evidence of a
-difference in the models and more than 4 units $(\Delta\text{AIC}>4)$ is a
-really big difference. This is more based on experience than a distinct reason
+unit difference on AICs $(\Delta\text{AIC}=2)$ is moderate evidence of a
+difference in the models and more than 4 units $(\Delta\text{AIC}>4)$ is strong evidence of a difference. This is more based on experience than a distinct reason
 or theoretical result but seems to provide reasonable results in most situations.
 Often researchers will consider any models within 2 AIC units of the top model
 $(\Delta\text{AIC}<2)$ as indistinguishable on

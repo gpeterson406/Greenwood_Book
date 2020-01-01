@@ -520,12 +520,14 @@ ddsub <- subset(dd, Condition %in% c("casual", "commute"))
 There is also a "select" option that we could also use to just focus on certain columns in the data set and we can use that just to focus on the `Condition` and `Distance` variables using:
 
 ```{r}
-ddsub <- subset(dd, Condition %in% c("casual", "commute"), select=c("Distance", "Condition"))
+ddsub <- subset(dd, Condition %in% c("casual", "commute"), 
+                select=c("Distance", "Condition"))
 ```
 
 You will always want to check that the correct observations were dropped 
 either using ``View(ddsub)`` or by doing a quick summary of the 
 ``Condition`` variable in the new tibble. 
+
 
 ```{r}
 summary(ddsub$Condition)

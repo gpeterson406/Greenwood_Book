@@ -1160,6 +1160,8 @@ on the pattern in points in the QQ-plot and whether it matches the 1-1 line that
 normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose -- this is not the software identifying outliers or other problematic points -- that is your responsibility to assess using these plots. For example, the point "2709"  is identified in Figures \@ref(fig:Figure3-9) and \@ref(fig:Figure3-11)  (the 2709^th^
 observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is a great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a *novice* vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the ``fitted`` function on the estimated ``lm`` -- which here is just the sample mean of the group of the observations (*novice*) of 116.94 cm. The residual is stored in the 2,709^th^ value of ``eij`` or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the ``Distance`` variable), it is not too surprising that it ends up as the largest positive residual. \index{\texttt{fitted()}} \index{R packages!\textbf{car}}
 
+\newpage
+
 ```{r}
 dd[2709,c(1:2)]
 fitted(lm2)[2709]
@@ -1917,13 +1919,12 @@ The CLD also reinforces the previous discussion of which levels were detected as
 
 ```{r Figure3-21, fig.cap="(ref:fig3-21)", fig.width=6, echo=T}
 #old.par <- par(mai=c(0.5,1,1,1))
-pirateplot(Distance~Condition2, data=dd, ylab="Distance (cm)", inf.method="ci", inf.disp="line",
-           theme=2) 
+pirateplot(Distance~Condition2, data=dd, ylab="Distance (cm)", inf.method="ci",
+           inf.disp="line", theme=2) 
 text(x=1:5,y=200,"a",col="blue",cex=1.5) #CLD added
 text(x=5.9,y=210,"a",col="blue",cex=1.5)
 text(x=6.1,y=210,"b",col="red",cex=1.5)
 text(x=7,y=215,"b",col="red",cex=1.5)
-
 ```
 
 

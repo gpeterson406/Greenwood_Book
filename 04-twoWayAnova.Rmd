@@ -277,8 +277,8 @@ model assumptions.
 ```{r Figure4-1,fig.cap="(ref:fig4-1)"}
 library(yarrr)
 set.seed(12)
-pirateplot(responses~brand*drops, data=pt, xlab="Drops", ylab="Time", inf.method="ci", inf.disp="line", theme=2, 
-           point.o=1) 
+pirateplot(responses~brand*drops, data=pt, xlab="Drops", ylab="Time", inf.method="ci",
+           inf.disp="line", theme=2, point.o=1) 
 ```
 
 \indent The pirate-plots can handle situations where both variables have more than two 
@@ -524,7 +524,7 @@ for levels $2,\ldots,J$, $\gamma_k$ (gamma $k$) is the deviation for the main
 effect of B from the baseline for levels $2,\ldots,K$, and $\omega_{jk}$ 
 (omega $jk$) is the adjustment for the ***interaction effect*** for level 
 $j$ of factor A and level $k$ of factor B for $j=1,\ldots,J$ and $k=1,\ldots,K$. In this model, $\tau_1$, $\gamma_1$, and $\omega_{11}$ are all fixed at 0 because $\alpha$ is the mean for the combination of the baseline levels of both variables and so no adjustments are needed. 
-Additionally, any $\omega_{jk}$'s that contain the baseline category of either factor A or B are also set to 0 and the model for these levels just involves $\tau_j$ or $\gamma_k$ added to the intercept. Exploring the R output will help clarify which coefficients are present or to 0 (so not displayed) in these models. As in Chapter \@ref(chapter3), R will typically choose the baseline categories
+Additionally, any $\omega_{jk}$'s that contain the baseline category of either factor A or B are also set to 0 and the model for these levels just involves $\tau_j$ or $\gamma_k$ added to the intercept. Exploring the R output will help clarify which coefficients are present or set to 0 (so not displayed) in these models. As in Chapter \@ref(chapter3), R will typically choose the baseline categories
 alphabetically but now it is choosing a baseline for both variables and so our
 detective work will be doubled to sort this out. 
 
@@ -723,7 +723,7 @@ $H_0: \text{ All } \omega_{jk}\text{'s} = 0$ has a
 test statistic of $F(2,24)=1.92$ (in the output from the row with 
 brands:drops) and a p-value of 0.17. So there is weak evidence against the null hypothesis of no interaction, with a 17% chance we would 
 observe a difference in the $\omega_{jk}\text{'s}$ like we did or more
-extreme if the $\omega_{jk}\text{'s}$ really were all 0. So we would conclude that the interaction probably is not needed^[This does not mean that there is truly no interaction in the population but does mean that we are going to proceed assuming it is not present since we couldn't prove the null was wrong.]. Note that for the interaction 
+extreme if the $\omega_{jk}\text{'s}$ really were all 0. So we would conclude that the interaction is probably not needed^[This does not mean that there is truly no interaction in the population but does mean that we are going to proceed assuming it is not present since we couldn't prove the null was wrong.]. Note that for the interaction 
 model components, R presents them with a colon, ``:``, between the variable 
 names.
 \index{\texttt{anova()}}
@@ -926,10 +926,11 @@ library(tibble)
 ToothGrowth <- as_tibble(ToothGrowth)
 par(mfrow=c(1,2))
 pirateplot(len ~ supp*dose, data=ToothGrowth, ylim=c(0,35),
-         main="Pirate-plot",  xlab="Dosage", ylab="Odontoblast Growth", inf.method="ci", inf.disp="line", theme=2, point.o = .75)
+         main="Pirate-plot",  xlab="Dosage", ylab="Odontoblast Growth",
+         inf.method="ci", inf.disp="line", theme=2, point.o = .75)
 intplot(len ~ supp*dose, data=ToothGrowth, col=c(1,2), 
-        main="Interaction Plot", ylim=c(0,35),xlim=c(0.5,3.5),cex.main=1,
-        cex.leg=0.75,x.leg=2.5,y.leg=5,cex.lab=0.75)
+        main="Interaction Plot", ylim=c(0,35), xlim=c(0.5,3.5), cex.main=1,
+        cex.leg=0.75, x.leg=2.5, y.leg=5, cex.lab=0.75)
 ```
 
 ```{r eval=F}
@@ -938,7 +939,8 @@ library(tibble)
 ToothGrowth <- as_tibble(ToothGrowth)
 par(mfrow=c(1,2))
 pirateplot(len ~ supp*dose, data=ToothGrowth, ylim=c(0,35),
-         main="Pirate-plot",  xlab="Dosage", ylab="Odontoblast Growth", inf.method="ci", inf.disp="line", theme=2)
+         main="Pirate-plot",  xlab="Dosage", ylab="Odontoblast Growth",
+         inf.method="ci", inf.disp="line", theme=2)
 intplot(len~supp*dose, data=ToothGrowth, col=c(1,2), 
         main="Interaction Plot", ylim=c(0,35))
 ```
@@ -1250,7 +1252,8 @@ dim(debtc)
 If we just focus on the three variables we are using in this model (``debtR``), the missingness is less dramatic, retaining $N=388$ observations in ``debtRc``.
 
 ```{r}
-debtR <- debt[,c("incomegp", "cigbuy","prodebt")] # Select only variables of interest for model
+# Select only variables of interest for model with the line below
+debtR <- debt[,c("incomegp", "cigbuy","prodebt")] 
 debtRc <- na.omit(debtR)
 dim(debtRc)
 ```
@@ -1309,7 +1312,7 @@ tally(cigbuy~incomegp, data=debtRc)
 how we start our modeling in Two-Way ANOVA situations. The ANOVA table suggests
 that there is little evidence against the null hypothesis of no interaction between the income level and
 buying cigarettes on the opinions of the respondents towards debt 
-($F(4,378)=0.686$, p-value=0.6022), so we would conclude that likely is not an interaction present here and we can drop the interaction from the model. This suggests that the initial assessment 
+($F(4,378)=0.686$, p-value=0.6022), so we would conclude that there is likely not an interaction present here and we can drop the interaction from the model. This suggests that the initial assessment 
 that the interaction wasn't too prominent
 was correct. We should move to the additive model here but first need to check
 the assumptions to make sure we can trust this initial test. 

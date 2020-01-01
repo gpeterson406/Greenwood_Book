@@ -1265,7 +1265,7 @@ variables.
 
 ```{r Figure5-14,fig.cap="(ref:fig5-14)", fig.height=5,fig.width=10}
 election2 <- na.omit(election[,c("VOTEF","PARTY","EDUC","GENDER")])
-tableplot(election2, select=c(VOTEF,PARTY,EDUC,GENDER), sort=1,pals=list("BrBG"))
+tableplot(election2, select=c(VOTEF,PARTY,EDUC,GENDER), sort=1, pals=list("BrBG"))
 ```
  
 
@@ -1741,7 +1741,8 @@ library(survey)
 data(api)
 apistrat <- as.tibble(apistrat)
 apipop <- as.tibble(apipop)
-pirateplot(growth~stype, data=apistrat, inf.method="ci", inf.disp="line", pal="southpark")
+pirateplot(growth~stype, data=apistrat, inf.method="ci", inf.disp="line",
+           pal="southpark")
 ```
 
 In recent decades, there has been a push for quantification of school performance
@@ -1786,7 +1787,7 @@ tally(~stype, data=apistrat) #Sample counts
 ```
 
 ```{r eval=F}
-pirateplot(growth~stype, data=apistratinf.method="ci", inf.disp="line")
+pirateplot(growth~stype, data=apistrat, inf.method="ci", inf.disp="line")
 ```
 
 \indent The One-Way ANOVA $F$-test, provided below, suggests

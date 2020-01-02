@@ -170,22 +170,22 @@ dd[c(1, 2, 780, 781, 1637, 1638, 2374, 2375, 3181, 3182, 3971, 3972, 4839, 4840)
 
 ```
 ## # A tibble: 14 x 8
-##    Condition Distance Shirt      Helmet  Pants Gloves ReflectClips Backpack
-##    <chr>        <dbl> <chr>      <chr>   <chr> <chr>  <chr>        <chr>   
-##  1 casual         132 Rugby      hat     plain plain  no           yes     
-##  2 casual         137 Rugby      hat     plain plain  no           yes     
-##  3 commute         70 PlainJers~ commut~ plain bike   yes          no      
-##  4 commute        151 PlainJers~ commut~ plain bike   yes          no      
-##  5 hiviz           94 Jacket     commut~ plain bike   yes          no      
-##  6 hiviz          145 Jacket     commut~ plain bike   yes          no      
-##  7 novice          12 Vest_Novi~ commut~ plain bike   yes          no      
-##  8 novice         122 Vest_Novi~ commut~ plain bike   yes          no      
-##  9 police         113 Vest_Poli~ commut~ plain bike   yes          no      
-## 10 police         174 Vest_Poli~ commut~ plain bike   yes          no      
-## 11 polite         156 Vest_Poli~ commut~ plain bike   yes          no      
-## 12 polite          14 Vest_Poli~ commut~ plain bike   yes          no      
-## 13 racer          104 TourJersey race    lycra bike   yes          no      
-## 14 racer          141 TourJersey race    lycra bike   yes          no
+##    Condition Distance Shirt       Helmet   Pants Gloves ReflectClips Backpack
+##    <chr>        <dbl> <chr>       <chr>    <chr> <chr>  <chr>        <chr>   
+##  1 casual         132 Rugby       hat      plain plain  no           yes     
+##  2 casual         137 Rugby       hat      plain plain  no           yes     
+##  3 commute         70 PlainJersey commuter plain bike   yes          no      
+##  4 commute        151 PlainJersey commuter plain bike   yes          no      
+##  5 hiviz           94 Jacket      commuter plain bike   yes          no      
+##  6 hiviz          145 Jacket      commuter plain bike   yes          no      
+##  7 novice          12 Vest_Novice commuter plain bike   yes          no      
+##  8 novice         122 Vest_Novice commuter plain bike   yes          no      
+##  9 police         113 Vest_Police commuter plain bike   yes          no      
+## 10 police         174 Vest_Police commuter plain bike   yes          no      
+## 11 polite         156 Vest_Polite commuter plain bike   yes          no      
+## 12 polite          14 Vest_Polite commuter plain bike   yes          no      
+## 13 racer          104 TourJersey  race     lycra bike   yes          no      
+## 14 racer          141 TourJersey  race     lycra bike   yes          no
 ```
 
 Now we can see the `Condition` variable seems to have seven different levels, the `Distance` variable contains the overtake distance, and then a suite of columns that describe aspects of each outfit, such as the type of shirt or whether reflective cycling clips were used or not. We will only use the "Distance" and "Condition" variables to start with.  
@@ -196,13 +196,12 @@ number of subjects in the sample and denote the population size (if
 available) with ***N***. \index{N} Here, the sample size is ***n=5690***. In
 this situation, we do not have a random sample from a population \index{random sampling} 
 (these were all of the overtakes that met the criteria during the rides) so we cannot make inferences from our sample to a larger group (other rides or for other situations like different places, times, or riders). 
-But we can assess whether there is a \index{causal effect} ***causal effect***^[As noted previously, we reserve the term "effect" for situations where random assignment \index{random assignment} allows us to consider causality as the reason for the differences in the response variable among levels of the explanatory variable, but this is only the case if we find evidence against the null hypothesis of no difference
-in the groups.]: if sufficient evidence is found to conclude that there is some difference in
+But we can assess whether there is a \index{causal effect} ***causal effect***^[As noted previously, we reserve the term "effect" for situations where random assignment \index{random assignment} allows us to consider causality as the reason for the differences in the response variable among levels of the explanatory variable.]: if sufficient evidence is found to conclude that there is some difference in
 the responses across the conditions, we can attribute those differences to
 the treatments applied, since the overtake events should be same otherwise due to the
 outfit being randomly assigned to the rides. The story of the data set --
 that it was collected on a particular route for a particular rider in the UK -- becomes pretty important in thinking about
-the ramifications of any results. Are drivers in Montana or South Dakota different from drivers near London? Are the road and traffic conditions likely to be different? If so, 
+the ramifications of any results. Are drivers and roads in Montana or South Dakota different from drivers and roads near London? Are the road and traffic conditions likely to be different? If so, 
 then we should not assume that the detected differences, if detected, would
 also exist in some other location for a different rider. The lack of a random sample \index{random sampling} here from all the overtakes in the area (or more generally all that happen around the world) makes it impossible to assume that this set of overtakes might be like others. So there are definite limitations to the inferences in the following
 results. But it is still interesting to see if the outfits worn caused a difference
@@ -301,7 +300,10 @@ enhanced slightly to add better labels using `xlab`, `ylab`, and `main`.
 
 (ref:fig2-1) Histogram and boxplot of passing distances in cm.
 
-![(\#fig:Figure2-1)(ref:fig2-1)](02-reintroductionToStatistics_files/figure-latex/Figure2-1-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-1-1.png" alt="(ref:fig2-1)" width="576" />
+<p class="caption">(\#fig:Figure2-1)(ref:fig2-1)</p>
+</div>
 
 
 ```r
@@ -360,7 +362,10 @@ hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, main="Histogram of Dis
 lines(density(dd$Distance), lwd=3,col="purple")
 ```
 
-![(\#fig:Figure2-2)(ref:fig2-2)](02-reintroductionToStatistics_files/figure-latex/Figure2-2-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-2-1.png" alt="(ref:fig2-2)" width="480" />
+<p class="caption">(\#fig:Figure2-2)(ref:fig2-2)</p>
+</div>
 
 
 \indent Histograms can be sensitive to the choice of the number of bars and 
@@ -399,7 +404,10 @@ set.seed(900)
 rug(jitter(dd$Distance), col="red", lwd=1)
 ```
 
-![(\#fig:Figure2-3)(ref:fig2-3)](02-reintroductionToStatistics_files/figure-latex/Figure2-3-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-3-1.png" alt="(ref:fig2-3)" width="480" />
+<p class="caption">(\#fig:Figure2-3)(ref:fig2-3)</p>
+</div>
  
 \indent The graphical tools we've just discussed are going to help us move to comparing the
 distribution of responses across more than one group. We will have two displays
@@ -416,7 +424,10 @@ boxplots showing similar distributions for all the groups, with a slightly highe
 
 (ref:fig2-4) Side-by-side boxplot of distances based on outfits. 
 
-![(\#fig:Figure2-4)(ref:fig2-4)](02-reintroductionToStatistics_files/figure-latex/Figure2-4-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-4-1.png" alt="(ref:fig2-4)" width="480" />
+<p class="caption">(\#fig:Figure2-4)(ref:fig2-4)</p>
+</div>
 
 
 ```r
@@ -447,7 +458,7 @@ and that $\sigma$ ("sigma") is the symbol of the
 An alternative graphical display for comparing multiple groups that we will use is a display called a ***pirate-plot*** [@Phillips2017] from the `yarrr` package^[The package and function are intentionally amusingly titled but are based on ideas in the beanplot in @Kampstra2008 and provide what they call an ***RDI graphic*** - ***R***aw data, ***D***escriptive,  and ***I***nferential statistic in the same display.]. \index{pirate-plot} Figure \@ref(fig:Figure2-5) 
 shows an example of a pirate-plot that provides a side-by-side display that 
 contains the density curves, the original observations that generated the 
-density curve as jittered points (jittered both vertically and horizontally a little), the sample mean of each group (wide bar), and a box that represents the confidence interval for the true mean of that group. For each group, the density curves 
+density curve as jittered points (jittered both vertically and horizontally a little), the sample mean of each group (wide bar), and vertical lines to horizontal bars that represents the confidence interval for the true mean of that group. For each group, the density curves 
 are mirrored to aid in visual assessment of the shape of the distribution. This mirroring also
 creates a shape that resembles the outline of a violin with skewed distributions so versions of this
 display have also been called a "violin plot" or a "bean plot". All together this plot shows us information
@@ -460,16 +471,19 @@ package [@R-yarrr].
 \index{R packages!\textbf{yarrr}}
 The function works like the boxplot used previously
 except that options 
-for the type of confidence interval needs to be specified with `inf.method="ci"` - otherwise you will get a different kind of interval than you learned in introductory statistics and we don't want to get caught up in trying to understand the kind of interval it makes by default. There are many other options in the function that might be useful in certain situations, but that is the only one that is really needed to get started with pirate-plots.
+for the type of confidence interval needs to be specified with `inf.method="ci"` - otherwise you will get a different kind of interval than you learned in introductory statistics and we don't want to get caught up in trying to understand the kind of interval it makes by default. And it seems useful to add `inf.disp="line"` as an additional option to add bars for the confidence interval^[The default version seems to get mis-interpreted as the box from a boxplot too easily. This display choice also matches our later plots for confidence intervals in term-plots.]. There are many other options in the function that might be useful in certain situations, but these are the only ones that are really needed to get started with pirate-plots.
 
 (ref:fig2-5) Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals.
 
-![(\#fig:Figure2-5)(ref:fig2-5)](02-reintroductionToStatistics_files/figure-latex/Figure2-5-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-5-1.png" alt="(ref:fig2-5)" width="480" />
+<p class="caption">(\#fig:Figure2-5)(ref:fig2-5)</p>
+</div>
 
 
 ```r
 library(yarrr)
-pirateplot(Distance~Condition,data=dd,inf.method="ci")
+pirateplot(Distance~Condition,data=dd,inf.method="ci", inf.disp="line")
 ```
 
 Figure \@ref(fig:Figure2-5) suggests that the distributions are relatively symmetric which would suggest that the means and medians are similar even though only the means are displayed in these plots. In this display, none of the observations are flagged as outliers (it is not a part of this display). It is up to the consumer of the graphic to decide if observations look to be outside of the overall pattern of the rest of the observations. By plotting the observations by groups, we can also explore the narrowest (and likely most scary) overtakes in the data set. The *police* and *racer* conditions seem to have all observations over 25 cm and the most close passes were in the *novice* and *polite* outfits, including the two 2 cm passes. By displaying the original observations, we are able to explore and identify features that aggregation and summarization in plots can sometimes obfuscate. But the pirate-plots also allow you to compare the shape of the distributions (relatively symmetric and somewhat bell-shaped), variability (they look to have relatively similar variability), and the means of the groups. Our inferences are going to focus on the means but those inferences are only valid if the distributions are either approximately normal or at least have similar shapes and spreads (more on this soon). 
@@ -480,9 +494,9 @@ know the answer to that question, but we
 can assess how likely we are to have seen a result as extreme or more 
 extreme than our result, assuming that there is no difference in the 
 means of the groups. And if the observed result is
-(extremely) unlikely to occur, then we can reject the hypothesis that the
-groups have the same mean and conclude that there is evidence of a real
-difference. After that, we will want to carefully explore how big the estimated differences in the means are - is this enough of a difference to matter to you or the subject in the study? To accompany the pirate-plot, we
+(extremely) unlikely to occur, then we have (extremely) strong evidence against the hypothesis that the
+groups have the same mean and can then conclude that there is likely a real
+difference. If we discover that our result was not very unlikely, given the assumption of no difference in the mean of the groups, then we can't conclude that there is a difference but also can't conclude that they are equal, just that we failed to find enough evidence against the equal means assumption to discard it as a possibility. Whether the result is unusual or not, we will want to carefully explore how big the estimated differences in the means are -- is the difference in means large enough to matter to you? We would be more interested in the implications of the difference in the means when there is strong evidence against the null hypothesis that the means are equal but the size of the estimated differences should always be of some interest. To accompany the pirate-plot that displays estimated means, we
 need to have numerical values to compare. We can get means and standard
 deviations by groups easily using the same formula notation as for the plots with the ``mean``
 and ``sd`` functions, if the ``mosaic`` package is loaded.
@@ -586,12 +600,14 @@ There is also a "select" option that we could also use to just focus on certain 
 
 
 ```r
-ddsub <- subset(dd, Condition %in% c("casual", "commute"), select=c("Distance", "Condition"))
+ddsub <- subset(dd, Condition %in% c("casual", "commute"), 
+                select=c("Distance", "Condition"))
 ```
 
 You will always want to check that the correct observations were dropped 
 either using ``View(ddsub)`` or by doing a quick summary of the 
 ``Condition`` variable in the new tibble. 
+
 
 
 ```r
@@ -629,12 +645,15 @@ the two groups of interest here as seen in Figure \@ref(fig:Figure2-6). Note tha
 
 (ref:fig2-6) Boxplot and pirate-plot of the *Distance* responses on the reduced ``ddsub`` data set. 
 
-![(\#fig:Figure2-6)(ref:fig2-6)](02-reintroductionToStatistics_files/figure-latex/Figure2-6-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-6-1.png" alt="(ref:fig2-6)" width="552" />
+<p class="caption">(\#fig:Figure2-6)(ref:fig2-6)</p>
+</div>
 
 
 ```r
 boxplot(Distance~Condition,data=ddsub) 
-pirateplot(Distance~Condition,data=ddsub,inf.method="ci")
+pirateplot(Distance~Condition,data=ddsub,inf.method="ci", inf.disp="line")
 ```
 
 <!-- \newpage -->
@@ -681,8 +700,8 @@ diffmean(Distance~Condition,data=ddsub)
 There appears to be some evidence that the *casual* clothing group is 
 getting higher average overtake distances than
 the *commute* group of observations, but we want to try to make sure that the difference is 
-real -- that there is evidence to reject the assumption that the means 
-are the same "in the population". First, a ***null hypothesis***^[The 
+real -- to assess evidence against the assumption that the means 
+are the same "in the population" and possibly decide that this is not a reasonable assumption. First, a ***null hypothesis***^[The 
 hypothesis of no difference that is typically generated in the hopes of
 being rejected in favor of the alternative hypothesis, which contains the sort
 of difference that is of interest in the application.] which 
@@ -746,25 +765,21 @@ testing, the null model
 is assumed to be true and then the unusualness of 
 the actual result is assessed relative to that assumption. In hypothesis 
 testing, we have to decide if we have enough evidence to reject the assumption 
-that the null model (or hypothesis) is true. If we reject the null hypothesis, 
+that the null model (or hypothesis) is true. If we think that we have sufficient evidence to conclude that the null hypothesis is wrong, 
 then we would conclude that the other model considered (the alternative 
 model)
 \index{model!alternative}
 is more reasonable. The researchers obviously would have hoped to 
 encounter some sort of noticeable difference in the distances for the
-different outfits and have been able to find enough evidence to reject the null 
-model where the groups "look the same". 
+different outfits and have been able to find enough evidence to against the null 
+model where the groups "look the same" to be able to conclude that they differ. 
 
 (ref:fig2-7) Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.
 
-\begin{figure}[ht]
-
-{\centering \includegraphics[width=1\linewidth]{chapter2_files/image015} 
-
-}
-
-\caption{(ref:fig2-7)}(\#fig:Figure2-7)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="chapter2_files/image015.png" alt="(ref:fig2-7)" width="100%" />
+<p class="caption">(\#fig:Figure2-7)(ref:fig2-7)</p>
+</div>
 
 
 \indent In statistical inference, null hypotheses (and their 
@@ -779,18 +794,18 @@ assume that the null hypothesis is true and randomly re-assign the treatments
 (outfits) to the observations that were obtained. In other words, keep the 
 *Distance* results the same and shuffle the group labels randomly. The
 technical term for this is doing a ***permutation*** \index{permutation} (a random shuffling of 
-a grouping variable relative to the observed responses). If the null is true 
+a grouping^[Later we will shuffle other types of explanatory variables.] variable relative to the observed responses). If the null is true 
 and the means 
 in the two groups are the same, then we should be able to re-shuffle the 
 groups to the observed *Distance* values and get results similar to those we
 actually observed. If the null is false and the means are really different in
 the two groups, then what we observed should differ from what we get under
-other random permutations. The differences between the two groups should be
+other random permutations and the differences between the two groups should be
 more noticeable in the observed data set than in (most) of the shuffled data
 sets. It helps to see an example of a permutation of the labels to understand
 what this means here. 
 
-\indent The data set we are working with is a little on the large size, especially to explore individual observations. So for the moment we are going to work with a random sample of 30 of the $n=1,636$ observations in `ddsub`, fifteen from each group, that are generated using the ``sample`` function. To do this^[While note required, we often set our random number seed using the ``set.seed`` function so that when we re-run code with randomization in it we get the same results. \index{\texttt{set.seed}}], we will use the ``sample`` function \index{\texttt{sample}} twice - once to sample from the subsetted *commute* observations (creating the `s1` data set) and once to sample from the *casual* ones (creating `s2`). A new function for us, called ``rbind``, \index{\texttt{rbind}} is used to bind the rows together --- much like pasting a chunk of rows below another chunk in a spreadsheet program. This operation only works if the columns all have the same names and meanings both for ``rbind`` and in a spreadsheet. Together this code creates the `dsample` data set that we will analyze below and compare to results from the full data set. The sample means are now 135.8 and 109.87 cm for *casual* and *commute* groups, respectively, and so the difference in the sample means has increased in magnitude to -25.93 cm (commute - casual). This difference would vary based on the different random samples from the larger data set, but for the moment pretend this was the entire data set that the researchers had collected and that we want to try to find evidence against the null hypothesis that the true means are the same in these two groups.
+\indent The data set we are working with is a little on the large size, especially to explore individual observations. So for the moment we are going to work with a random sample of 30 of the $n=1,636$ observations in `ddsub`, fifteen from each group, that are generated using the ``sample`` function. To do this^[While not required, we often set our random number seed using the ``set.seed`` function so that when we re-run code with randomization in it we get the same results. \index{\texttt{set.seed}}], we will use the ``sample`` function \index{\texttt{sample}} twice - once to sample from the subsetted *commute* observations (creating the `s1` data set) and once to sample from the *casual* ones (creating `s2`). A new function for us, called ``rbind``, \index{\texttt{rbind}} is used to bind the rows together --- much like pasting a chunk of rows below another chunk in a spreadsheet program. This operation only works if the columns all have the same names and meanings both for ``rbind`` and in a spreadsheet. Together this code creates the `dsample` data set that we will analyze below and compare to results from the full data set. The sample means are now 135.8 and 109.87 cm for *casual* and *commute* groups, respectively, and so the difference in the sample means has increased in magnitude to -25.93 cm (commute - casual). This difference would vary based on the different random samples from the larger data set, but for the moment, pretend this was the entire data set that the researchers had collected and that we want to try to assess how unusual our sample difference was from what we might expect, if the null hypothesis that the true means are the same in these two groups was true.
 
 
 ```r
@@ -807,7 +822,7 @@ mean(Distance~Condition, data=dsample)
 ```
 
 \indent In order to assess evidence against the null hypothesis of no difference, we want to permute the group labels versus the observations. In the ``mosaic`` package, the ``shuffle`` function allows us to easily perform
-a \index{permutation} permutation^[We'll see the ``shuffle`` function in a more common usage below; 
+a \index{permutation} \index{\texttt{shuffle}} permutation^[We'll see the ``shuffle`` function in a more common usage below; 
 while the code to generate ``Perm1`` is provided, it isn't something to worry 
 about right now.].  One permutation of the 
 treatment labels is provided in the ``PermutedCondition`` variable below. Note 
@@ -918,12 +933,15 @@ diffmean(Distance~PermutedCondition, data=Perm1)
 ## 12.06667
 ```
 
-(ref:fig2-8) Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals are more clearly visible than with the original large data set.
+(ref:fig2-8) Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals for each of the means are more clearly visible than with the original large data set.
 
-![(\#fig:Figure2-8)(ref:fig2-8)](02-reintroductionToStatistics_files/figure-latex/Figure2-8-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="(ref:fig2-8)" width="672" />
+<p class="caption">(\#fig:Figure2-8)(ref:fig2-8)</p>
+</div>
 
 
-The ``diffmean`` function is a simple way to get the differences in the means, but we can also start to learn about using the ``lm`` \index{\texttt{lm}} function - that will be used for every chapter except for Chapter \@ref(chapter5). The ``lm`` stands for ***linear model*** \index{linear model} and, as we will see moving forward, encompasses a wide array of different models and scenarios. Here we will consider among its simplest usage^[This is a bit like getting a new convertible sports car and driving it to the grocery store - there might be better ways to get groceries, but we want to drive our new car as soon as we get it.] to be able to estimate the difference in the mean of two groups. Notationally, it is very similar to other functions we have considered, `lm(y ~ x, data=...)` where `y` is the response variable and `x` is the explanatory variable. Here that is  ``lm(Distance~Condition, data=dsample)`` with ``Condition`` defined as a factor variable. With linear models, we will need to interrogate them to obtain a variety of useful information and our first "interrogation" function is usually the ``summary`` function. To use it, it is best to have stored the model into an object, something like ``lm1``, and then we can apply the ``summary()`` \index{\texttt{summary}} function to the stored model object to get a suite of output:
+The ``diffmean`` function is a simple way to get the differences in the means, but we can also start to learn about using the ``lm`` \index{\texttt{lm}} function -- that will be used for every chapter except for Chapter \@ref(chapter5). The ``lm`` stands for ***linear model*** \index{linear model} and, as we will see moving forward, encompasses a wide array of different models and scenarios. The ability to estimate the difference in the mean of two groups is among its simplest uses.^[This is a bit like getting a new convertible sports car and driving it to the grocery store -- there might be better ways to get groceries, but we probably would want to drive our new car as soon as we got it.] Notationally, it is very similar to other functions we have considered, `lm(y ~ x, data=...)` where `y` is the response variable and `x` is the explanatory variable. Here that is  ``lm(Distance~Condition, data=dsample)`` with ``Condition`` defined as a factor variable. With linear models, we will need to interrogate them to obtain a variety of useful information and our first "interrogation" function is usually the ``summary`` function. To use it, it is best to have stored the model into an object, something like ``lm1``, and then we can apply the ``summary()`` \index{\texttt{summary}} function to the stored model object to get a suite of output:
 
 
 ```r
@@ -979,7 +997,7 @@ coef(lmP)[2]
 \indent Comparing the pirate-plots and the estimated difference in the sample means suggests that the observed difference was larger than what we got 
 when we did a single permutation. \index{permutation} Conceptually, permuting observations between group labels is 
 consistent with the null hypothesis -- this is a technique to generate results 
-that we might have gotten if the null hypothesis were true since the responses 
+that we might have gotten if the null hypothesis were true since the true models for the responses 
 are the same in the two groups if the null is true. We just need to repeat the
 permutation process many times and track how unusual our observed result is 
 relative to this distribution of potential responses if the null were true. 
@@ -1089,7 +1107,7 @@ Ts
 
 ```
 ## shuffle(Condition)commute 
-##                      16.6
+##               -0.06666667
 ```
 
 And putting this inside the ``print`` function allows us to find the test 
@@ -1107,15 +1125,15 @@ for (b in (1:B)){
 
 ```
 ## shuffle(Condition)commute 
-##                      -1.8 
+##                      -1.4 
 ## shuffle(Condition)commute 
-##                 -9.533333 
+##                  1.133333 
 ## shuffle(Condition)commute 
-##                       3.8 
+##                  20.86667 
 ## shuffle(Condition)commute 
-##                       9.4 
+##                  3.133333 
 ## shuffle(Condition)commute 
-##                  26.73333
+##                 -2.333333
 ```
 
 Finally, we would like to store the values of the test statistic instead of 
@@ -1158,12 +1176,12 @@ Tstar
 ```
 
 ```
-##            [,1]
-## [1,]   9.533333
-## [2,]   9.933333
-## [3,]  23.000000
-## [4,] -11.000000
-## [5,] -17.400000
+##           [,1]
+## [1,] -5.400000
+## [2,] -3.266667
+## [3,] -7.933333
+## [4,] 13.133333
+## [5,] -6.466667
 ```
 
 \indent Five permutations are still not enough to assess whether our $T_{obs}$
@@ -1185,7 +1203,10 @@ statistics of the results:
 
 (ref:fig2-9) Histogram (left, with counts in bars) and density curve (right) of values of test statistic for *B* = 1,000 permutations. 
 
-![(\#fig:Figure2-9)(ref:fig2-9)](02-reintroductionToStatistics_files/figure-latex/Figure2-9-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-9-1.png" alt="(ref:fig2-9)" width="960" />
+<p class="caption">(\#fig:Figure2-9)(ref:fig2-9)</p>
+</div>
 
 
 ```r
@@ -1205,10 +1226,8 @@ favstats(Tstar)
 ```
 
 ```
-##        min        Q1     median  Q3      max       mean       sd    n
-##  -41.26667 -10.06667 -0.3333333 8.6 37.26667 -0.5054667 13.17156 1000
-##  missing
-##        0
+##        min        Q1     median  Q3      max       mean       sd    n missing
+##  -41.26667 -10.06667 -0.3333333 8.6 37.26667 -0.5054667 13.17156 1000       0
 ```
 
 Figure \@ref(fig:Figure2-9) contains visualizations of $T^*$ and the ``favstats``
@@ -1226,7 +1245,10 @@ line at our $T_{obs}$ value specified in the ``v`` (for vertical) option.
 
 (ref:fig2-10) Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic. 
 
-![(\#fig:Figure2-10)(ref:fig2-10)](02-reintroductionToStatistics_files/figure-latex/Figure2-10-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-10-1.png" alt="(ref:fig2-10)" width="960" />
+<p class="caption">(\#fig:Figure2-10)(ref:fig2-10)</p>
+</div>
 
 
 ```r
@@ -1319,7 +1341,10 @@ Figure \@ref(fig:Figure2-11) shows both cut-offs on the histogram and density cu
 
 (ref:fig2-11) Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test.
 
-![(\#fig:Figure2-11)(ref:fig2-11)](02-reintroductionToStatistics_files/figure-latex/Figure2-11-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-11-1.png" alt="(ref:fig2-11)" width="960" />
+<p class="caption">(\#fig:Figure2-11)(ref:fig2-11)</p>
+</div>
 
 
 ```r
@@ -1370,12 +1395,12 @@ should interpret them on a graded scale from strong evidence (close to 0) to lit
 evidence (1). We will discuss the use of a fixed ***significance level*** 
 below as it is still commonly used in many fields and is necessary to discuss to think 
 about the theory of hypothesis testing, but, for the moment,
-we can conclude that there is moderate evidence against the null hypothesis 
+we can say that there is moderate evidence against the null hypothesis 
 presented by having a p-value of 0.044 because our observed result is somewhat 
 rare relative to what we would expect if the null hypothesis was true. And so 
 we might conclude (in the direction 
 of the alternative) that there is a difference in the population means in the 
-two groups, but that depends on what you think about how unusual that result was.  
+two groups, but that depends on what you think about how unusual that result was. It is also reasonable to feel that this is not sufficient evidence to conclude that there is a difference in the true means even though many people feel that p-values less than 0.05 are fairly strong evidence against the null hypothesis. If you do not rate this as strong enough evidence (or in general obtain weak evidence) to conclude that there is a difference, then you can only say that there might not be a difference in the means. We can't conclude that the null hypothesis is true -- we just failed to find enough evidence to be sure that it is wrong. It might still be wrong but we couldn't detect it, either as a mistake because of an unusual sample from our population, or because our sample size was not large enough to detect the size of difference in the populations, or results with larger p-values could happen because there really isn't a difference. We don't know which of these might be the truth and certainly don't know that the null hypothesis is true even if the p-value obtained is 1^[P-values of 1 are the only result that provide no evidence against the null hypothesis but this still doesn't prove that the null hypothesis is true.]. 
  
 
 \indent Before we move on, let's note some interesting features of the permutation 
@@ -1439,14 +1464,10 @@ estimated results (with a measure of precision of the estimated difference). We 
 
 (ref:fig2-12) Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values.
 
-\begin{figure}[ht]
-
-{\centering \includegraphics[width=1\linewidth]{chapter2_files/pvalueStrengths} 
-
-}
-
-\caption{(ref:fig2-12)}(\#fig:Figure2-12)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="chapter2_files/pvalueStrengths.png" alt="(ref:fig2-12)" width="100%" />
+<p class="caption">(\#fig:Figure2-12)(ref:fig2-12)</p>
+</div>
 
 ## Hypothesis testing (general) {#section2-5}
 
@@ -1517,7 +1538,7 @@ Interpret the p-values
 using strength of evidence against the null hypothesis,
 remembering that smaller (but not really small) p-values can still be 
 interesting. And if you think the p-value is small enough, then you can reject 
-the null hypothesis and conclude that the alternative hypothesis is a better characterization of the truth -- and then estimate the size of the differences.
+the null hypothesis and conclude that the alternative hypothesis is a better characterization of the truth -- and then make sure to estimate and think about the size of the differences.
 
 \indent Throughout this material, we will continue to re-iterate the distinctions 
 between parameters and statistics and want you to be clear about the 
@@ -1739,7 +1760,7 @@ that selection. Note that there are many ways $H_0$ can be false and the power c
 based on how false the null hypothesis actually is. To make this concrete, 
 suppose that the true mean overtake distances differed by either 1 or 30 cm in 
 previous example. The chances of rejecting the null hypothesis are much larger 
-when the groups actually differ by 30 cm than if they differ by just 1 cm, 
+when the group means actually differ by 30 cm than if they differ by just 1 cm, 
 given the same sample size. The null hypothesis is false in both cases. Similarly, for a given difference in the true means, the larger 
 the sample, the higher the power \index{power} of the study to actually find evidence of a
 difference in the groups. We will see this difference when we return to using the entire overtake data set instead of the sample of $n=30$ used to illustrate the permutation procedures. 
@@ -1772,11 +1793,11 @@ Preliminary steps:
 
 * What model/statistic (T) is needed to address RQ?
 
-1. Write the null and alternative hypotheses,
+1. Write the null and alternative hypotheses.
 
-2. Plot the data and assess the “Validity Conditions” for the procedure being used (discussed below),
+2. Plot the data and assess the “Validity Conditions” for the procedure being used (discussed below).
 
-3. Find the value of the appropriate test statistic and p-value for your hypotheses, \index{p-value}
+3. Find the value of the appropriate test statistic and p-value for your hypotheses. \index{p-value}
 
 4. Write a conclusion specific to the problem based on the p-value, reporting the strength of evidence \index{strength of evidence} against the null hypothesis (include test statistic, its distribution under the null hypothesis, and p-value).
 
@@ -1895,7 +1916,10 @@ be surprised if your results vary if you use different random number seeds.
 
 (ref:fig2-13) Permutation distribution of the $t$-statistic.
 
-![(\#fig:Figure2-13)(ref:fig2-13)](02-reintroductionToStatistics_files/figure-latex/Figure2-13-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-13-1.png" alt="(ref:fig2-13)" width="960" />
+<p class="caption">(\#fig:Figure2-13)(ref:fig2-13)</p>
+</div>
 
 
 
@@ -1931,7 +1955,10 @@ will be our focus for the two group problem and is what we get when using the ``
 
 (ref:fig2-14) Plots of $t$-distributions with 2, 10, and 20 degrees of freedom and a normal distribution (dashed line). Note how the $t$-distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the $t$-distribution *almost* matches a standard normal curve.
 
-![(\#fig:Figure2-14)(ref:fig2-14)](02-reintroductionToStatistics_files/figure-latex/Figure2-14-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-14-1.png" alt="(ref:fig2-14)" width="672" />
+<p class="caption">(\#fig:Figure2-14)(ref:fig2-14)</p>
+</div>
 
 \indent If the assumptions for the equal variance $t$-test and the null 
 hypothesis are true, then the sampling distribution of the test statistic should 
@@ -1987,7 +2014,10 @@ happened to be here, where the only difference in shape is near the peak of the 
 
 (ref:fig2-15) Plot of permutation and $t$-distribution with $df=28$. Note the close match in the two distributions, especially in the tails of the distributions where we are obtaining the p-values.
 
-![(\#fig:Figure2-15)(ref:fig2-15)](02-reintroductionToStatistics_files/figure-latex/Figure2-15-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-15-1.png" alt="(ref:fig2-15)" width="576" />
+<p class="caption">(\#fig:Figure2-15)(ref:fig2-15)</p>
+</div>
 
 \indent In your previous statistics course, you might have used an applet or 
 a table to find p-values such as what was provided in the previous R output. 
@@ -2163,7 +2193,10 @@ pdata(abs(Tstar), abs(Tobs), lower.tail=F)
 
 (ref:fig2-16) Permutation distribution of the $t$-statistic for $n=1,636$ overtake data set.
 
-![(\#fig:Figure2-16)(ref:fig2-16)](02-reintroductionToStatistics_files/figure-latex/Figure2-16-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-16-1.png" alt="(ref:fig2-16)" width="960" />
+<p class="caption">(\#fig:Figure2-16)(ref:fig2-16)</p>
+</div>
 
 \newpage
 
@@ -2209,14 +2242,17 @@ favstats(GPA~Sex, data=s217)
 ## 2   M 1.96 2.8  3.175 3.46   4 3.088571 0.4151789 42       0
 ```
 
-(ref:fig2-17) Side-by-side boxplot and pirate-plot of GPAs of Intermediate Statistics students by sex.
+(ref:fig2-17) Side-by-side boxplot and pirate-plot of GPAs of Intermediate Statistics students by gender.
 
-![(\#fig:Figure2-17)(ref:fig2-17)](02-reintroductionToStatistics_files/figure-latex/Figure2-17-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-17-1.png" alt="(ref:fig2-17)" width="480" />
+<p class="caption">(\#fig:Figure2-17)(ref:fig2-17)</p>
+</div>
 
 
 ```r
 boxplot(GPA~Sex, data=s217)
-pirateplot(GPA~Sex, data=s217, inf.method="ci")
+pirateplot(GPA~Sex, data=s217, inf.method="ci", inf.disp="line")
 ```
 
 In these data, the distributions of the GPAs look to be left skewed. The 
@@ -2277,7 +2313,10 @@ pdata(abs(Tstar),abs(Tobs),lower.tail=F)[[1]]
 
 (ref:fig2-18) Histogram and density curve of permutation distribution of test statistic for Intermediate Statistics student GPAs.
 
-![(\#fig:Figure2-18)(ref:fig2-18)](02-reintroductionToStatistics_files/figure-latex/Figure2-18-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-18-1.png" alt="(ref:fig2-18)" width="960" />
+<p class="caption">(\#fig:Figure2-18)(ref:fig2-18)</p>
+</div>
 
 
 ```r
@@ -2415,7 +2454,10 @@ The second new R code needed is the `simulate` \index{\texttt{simulate()}} funct
 
 (ref:fig2-19) Pirate-plot of a simulated data set that assumes the same mean for both groups. The means in the two groups are very similar.
 
-![(\#fig:Figure2-19)(ref:fig2-19)](02-reintroductionToStatistics_files/figure-latex/Figure2-19-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-19-1.png" alt="(ref:fig2-19)" width="960" />
+<p class="caption">(\#fig:Figure2-19)(ref:fig2-19)</p>
+</div>
 
 \indent The following codechunk generates one run through generating ten data sets as the loop works through the index `c`, simulates a new set of responses (`ddsub$SimDistance`), fits a model that explores the difference in the means of the two groups (`lm_sim`), and extracts the ten p-values (stored in `pval10`) and estimated difference in the means (stored in `diff10`).  The smallest p-value of the ten p-values (`min(pval10)`) is 0.00576. By finding the value of `diff10` where `pval10` is equal to (`==`) the `min(pval10)`, the estimated difference in the means from the simulated responses that produced the smallest p-value can be extracted. The difference was -4.17 here. As in the previous initial explorations of permutations, this is just one realization of this process and it needs to be repeated many times to study the impacts of using (1) the first realization of the responses to estimate the difference and p-value and (2) the result with the smallest p-value from ten different realizations of the responses to estimate the difference and p-value. In the following code, we added 
 octothorpes (#)^[You can correctly call octothorpes *number* symbols or, in the 
@@ -2524,7 +2566,10 @@ pirateplot(Diffmeans_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
            avg.line.o = 0, main="(b) Estimated difference in mean results")
 ```
 
-![(\#fig:Figure2-20)(ref:fig2-20)](02-reintroductionToStatistics_files/figure-latex/Figure2-20-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-20-1.png" alt="(ref:fig2-20)" width="960" />
+<p class="caption">(\#fig:Figure2-20)(ref:fig2-20)</p>
+</div>
 
 ```r
 #Numerical summaries of results
@@ -2532,12 +2577,12 @@ favstats(pvalue_results~Scenario,data=results)
 ```
 
 ```
-##   Scenario          min         Q1    median        Q3       max
-## 1    First 0.0017051496 0.27075755 0.5234412 0.7784957 0.9995293
-## 2      Min 0.0005727895 0.02718018 0.0646370 0.1273880 0.5830232
-##         mean         sd    n missing
-## 1 0.51899179 0.28823469 1000       0
-## 2 0.09156364 0.08611836 1000       0
+##   Scenario          min         Q1    median        Q3       max       mean
+## 1    First 0.0017051496 0.27075755 0.5234412 0.7784957 0.9995293 0.51899179
+## 2      Min 0.0005727895 0.02718018 0.0646370 0.1273880 0.5830232 0.09156364
+##           sd    n missing
+## 1 0.28823469 1000       0
+## 2 0.08611836 1000       0
 ```
 
 \newpage
@@ -2592,7 +2637,10 @@ second data set. This also has problems but the only way to develop an understan
 
 (ref:fig2-21) Plot of family-wise error rate (Bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on $m$=10 tests. 
 
-![(\#fig:Figure2-21)(ref:fig2-21)](02-reintroductionToStatistics_files/figure-latex/Figure2-21-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-21-1.png" alt="(ref:fig2-21)" width="480" />
+<p class="caption">(\#fig:Figure2-21)(ref:fig2-21)</p>
+</div>
 
 \indent All hope is not lost when multiple tests are being considered in the same study or by a researcher and exploring more than one result need not lead to clearly biased and flawed results being reported. To account for multiple testing in the same study/analysis, there are many approaches that adjust results to acknowledge that multiple tests are being considered. A simple approach called the "Bonferroni Correction" [@Bland1995] is a good starting point for learning about these methods. It works to control the family-wise error rate of a suite of tests by either dividing $\alpha$ by the number of tests ($\alpha/m$) or, equivalently and more usefully, multiplying the p-value by the number of tests being considered ($p-value_{adjusted} = p-value \cdot m$ or $1$ if $p-value \cdot m > 1$). The "Bonferroni adjusted p-values" are then used as regular p-values to assess evidence against each null hypothesis but now accounting for exploring many of them together. There are some assumptions that this adjustment method makes that make it to generally be a conservative adjustment method. In particular, it assumes that all $m$ tests are independent of each other and that the null hypothesis was true for all $m$ tests conducted. While all p-values should be reported in this situation when considering ten results, the impacts of using a Bonferroni correction are that the resulting p-values are not driving inflated Type I error rates even if the smallest p-value is the main focus of the results. The correction also provides a suggestion of decreasing evidence in the first test result because it is now incorporated in considering ten results instead of one. 
 
@@ -2632,13 +2680,16 @@ results <- tibble(pvalue_results=c(pvalues,pvalues_Min),
                   Scenario = rep(c("First", "Min"), each=B))
 
 pirateplot(pvalue_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
-           avg.line.o = 0, main="(a) P-value results")
+           avg.line.o = 0, main="P-value results")
 abline(h=0.05, lwd=2, col="red", lty=2)
 ```
 
-![(\#fig:Figure2-22)(ref:fig2-22)](02-reintroductionToStatistics_files/figure-latex/Figure2-22-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-22-1.png" alt="(ref:fig2-22)" width="960" />
+<p class="caption">(\#fig:Figure2-22)(ref:fig2-22)</p>
+</div>
 
-By applying the `pdata` function to the two groups of results we can directly assess how many of each type of result resulted in p-values less than 0.05. It ends up that if adjust for ten tests and just focus on the first result, it is really hard to find moderate or strong evidence against the null hypothesis as only 3 in 1,000 results had adjusted p-values less than 0.05. When the focus is on the "top" p-value result when ten are considered and adjustments are made, 52 out of 1,000 results (0.052) show at least moderate evidence against the null hypothesis. This is the rate we would expect from a well-behaved hypothesis test when the null hypothesis is true -- that we would only make a mistake 5% of the time when $\alpha$ is 0.05. 
+By applying the `pdata` function to the two groups of results, we can directly assess how many of each type ("First" or "Min") resulted in p-values less than 0.05. It ends up that if we adjust for ten tests and just focus on the first result, it is really hard to find moderate or strong evidence against the null hypothesis as only 3 in 1,000 results had adjusted p-values less than 0.05. When the focus is on the "best" (or minimum) p-value result when ten are considered and adjustments are made, 52 out of 1,000 results (0.052) show at least moderate evidence against the null hypothesis. This is the rate we would expect from a well-behaved hypothesis test when the null hypothesis is true -- that we would only make a mistake 5% of the time when $\alpha$ is 0.05. 
 
 \newpage
 
@@ -2778,7 +2829,10 @@ using bootstrapping methods.
 
 (ref:fig2-23) Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples. 
 
-![(\#fig:Figure2-23)(ref:fig2-23)](02-reintroductionToStatistics_files/figure-latex/Figure2-23-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-23-1.png" alt="(ref:fig2-23)" width="480" />
+<p class="caption">(\#fig:Figure2-23)(ref:fig2-23)</p>
+</div>
 
 \indent The main point of this exploration was to see that each run of the
 ``resample`` function provides a new version of the data set. Repeating this 
@@ -2841,7 +2895,10 @@ favstats(Tstar)
 
 (ref:fig2-24) Histogram and density curve of bootstrap distributions of difference in sample mean ``Distances`` with vertical line for the observed difference in the means of -25.933.
 
-![(\#fig:Figure2-24)(ref:fig2-24)](02-reintroductionToStatistics_files/figure-latex/Figure2-24-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-24-1.png" alt="(ref:fig2-24)" width="960" />
+<p class="caption">(\#fig:Figure2-24)(ref:fig2-24)</p>
+</div>
 
 
 ```r
@@ -2932,7 +2989,10 @@ Figure \@ref(fig:Figure2-25) displays those same percentiles on the bootstrap di
 
 (ref:fig2-25) Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold vertical lines).
 
-![(\#fig:Figure2-25)(ref:fig2-25)](02-reintroductionToStatistics_files/figure-latex/Figure2-25-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-25-1.png" alt="(ref:fig2-25)" width="960" />
+<p class="caption">(\#fig:Figure2-25)(ref:fig2-25)</p>
+</div>
 
 
 ```r
@@ -3022,7 +3082,10 @@ area in the middle.
 
 (ref:fig2-26) Plot of $t(28)$ with cut-offs for putting 95% of distribution in the middle that delineate the $t^*$ multiplier to make a 95% confidence interval. 
 
-![(\#fig:Figure2-26)(ref:fig2-26)](02-reintroductionToStatistics_files/figure-latex/Figure2-26-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-26-1.png" alt="(ref:fig2-26)" width="480" />
+<p class="caption">(\#fig:Figure2-26)(ref:fig2-26)</p>
+</div>
 
 For 95% confidence intervals, the multiplier is going to be close to 2 and 
 anything else is a likely indication of a mistake. We can use R to get the multipliers for
@@ -3384,7 +3447,10 @@ this code:
 
 (ref:fig2-27) Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines). 
 
-![(\#fig:Figure2-27)(ref:fig2-27)](02-reintroductionToStatistics_files/figure-latex/Figure2-27-1.pdf) 
+<div class="figure">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-27-1.png" alt="(ref:fig2-27)" width="960" />
+<p class="caption">(\#fig:Figure2-27)(ref:fig2-27)</p>
+</div>
 
 
 ```r
@@ -3448,7 +3514,15 @@ and/or violations of conditions lessen, then the procedures will perform better.
 In Chapter \@ref(chapter3), some new tools for doing diagnostics are introduced
 to help us assess how and how much those validity conditions are violated. 
 
+\indent It is good to review how to report hypothesis test conclusions and compare those for when we have strong, moderate, or weak evidence. Suppose that we are doing parametric inferences with `lm` for differences between groups A and B, are extracting the $t$-statistics, have 15 degrees of freedom, and obtain the following test statistics and p-values:
 
+* $t_{15}=3.5$, p-value=0.0016: There is strong evidence against the null hypothesis of no difference in the true means of the response between A and B ($t_{15}=3.5$, p-value=0.0016), so we would conclude that there is a difference in the true means.
+
+* $t_{15}=1.75$, p-value=0.0503: There is moderate evidence against the null hypothesis of no difference in the true means of the response between A and B ($t_{15}=1.75$, p-value=0.0503), so we would conclude that there is likely^[Note that this modifier is added to note less certainty than when we encounter strong evidence against the null. Also note that someone else might decide that this more like weak evidence against the null and might choose to interpret it as in the "weak" case. In cases that are near boundaries for evidence levels, it becomes difficult to find a universal answer and it is best to report that the evidence is both not strong and not weak and is somewhere in between and let the reader decide what they think it means to them. This is complicated by often needing to make decisions about next steps based on p-values where we might choose to focus on the model with a difference or without it.] a difference in the true means.
+
+* $t_{15}=0.75$, p-value=0.232: There is weak evidence against the null hypothesis of no difference in the true means of the response between A and B ($t_{15}=1.75$, p-value=0.0503), so we would conclude that there is likely not a difference in the true means.
+
+The last conclusion also suggests an action to take when we encounter weak evidence against null hypotheses -- we could potentially model the responses using the null model since we couldn't prove it was wrong. We would take this action knowing that we could be wrong, but the "simpler" model that the null hypothesis suggests is often an attractive option in very complex models, such as what we are going to encounter in the coming chapters, especially in Chapters \@ref(chapter5) and \@ref(chapter8). 
 
 ## Summary of important R code {#section2-12}
 
@@ -3456,59 +3530,61 @@ The main components of R code used in this chapter follow with components to
 modify in lighter and/or ALL CAPS text, remembering that any R packages mentioned 
 need to be installed and loaded for this code to have a chance of working:
 
-* **summary(\textcolor{red}{DATASETNAME})**
+* **summary(<font color='red'>DATASETNAME</font>)**
 
     * Provides numerical summaries of all variables in the data set. 
     \index{\texttt{summary()}|textbf}
 
-* **summary(lm(\textcolor{red}{Y} ~ \textcolor{red}{X}, 
-data=\textcolor{red}{DATASETNAME}))**
+* **summary(lm(<font color='red'>Y</font> ~ <font color='red'>X</font>, 
+data=<font color='red'>DATASETNAME</font>))**
 
     * Provides estimate, SE, test statistic, and p-value for difference in second row of coefficient table. \index{\texttt{summary(lm())}|textbf}
 
-* **confint(lm(\textcolor{red}{Y} ~ \textcolor{red}{X}, 
-data=\textcolor{red}{DATASETNAME}), level=0.95)**
+* **confint(lm(<font color='red'>Y</font> ~ <font color='red'>X</font>, 
+data=<font color='red'>DATASETNAME</font>), level=0.95)**
 
     * Provides 95% 
     confidence interval for difference in second row of output. \index{\texttt{confint(lm())}|textbf}
 
     
-* **2``*``pt(abs(\textcolor{red}{Tobs}), df=\textcolor{red}{DF}, lower.tail=F)**
+* **2``*``pt(abs(<font color='red'>Tobs</font>), df=<font color='red'>DF</font>, lower.tail=F)**
 
     * Finds the two-sided test p-value for an observed 2-sample t-test 
     statistic of ``Tobs``. \index{\texttt{pt()}|textbf}
 
-* **hist(\textcolor{red}{DATASETNAME\$Y})**
+* **hist(<font color='red'>DATASETNAME\$Y</font>)**
 
     * Makes a histogram of a variable named ``Y`` from the data set of 
     interest. 
     
-* **boxplot(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME})**
+* **boxplot(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>)**
 
     * Makes a boxplot of a variable named Y for groups in X from the data set. 
     
-* **pirateplot(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME}, inf.method="ci")**
+* **pirateplot(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>, inf.method="ci", inf.disp="line")**
 
     * Requires the ``yarrr`` package is loaded. 
     
     * Makes a pirate-plot of a variable named Y for groups in X from the data set with estimated means and 95% confidence intervals for each group.     \index{\texttt{pirateplot()}|textbf}
     
-* **mean(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME}); sd(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME})** 
+    * Add `theme=2` if the confidence intervals extend outside the density curves and you can't see how far they extend.
+    
+* **mean(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>); sd(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>)** 
 
     * This usage of ``mean`` and ``sd`` requires the ``mosaic`` package.
 
     * Provides the mean and sd of responses of Y for each group described in X. 
     
 
-* **favstats(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME})** 
+* **favstats(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>)** 
 
     * Provides numerical summaries of Y by groups described in X. 
 
-* **Tobs ``<-`` coef(lm(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME}))[2]; Tobs  
+* **Tobs ``<-`` coef(lm(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>))[2]; Tobs  
     B ``<-`` 1000  
     Tstar ``<-`` matrix(NA, nrow=B)  
     for (b in (1:B)){  
-      lmP ``<-`` lm(\textcolor{red}{Y}~shuffle(\textcolor{red}{X}), data=\textcolor{red}{DATASETNAME})  
+      lmP ``<-`` lm(<font color='red'>Y</font>~shuffle(<font color='red'>X</font>), data=<font color='red'>DATASETNAME</font>)  
       Tstar[b] ``<-`` coef(lmP)[2]  
     }**
 
@@ -3516,7 +3592,7 @@ data=\textcolor{red}{DATASETNAME}), level=0.95)**
     statistic using the ``shuffle`` function and keep track of the results in 
     ``Tstar`` 
     
-* **pdata(Tstar, abs(\textcolor{red}{Tobs}), lower.tail=F)[[1]]**
+* **pdata(Tstar, abs(<font color='red'>Tobs</font>), lower.tail=F)[[1]]**
 
     * Finds the proportion of the permuted test statistics in Tstar that are 
     less than -|Tobs| or greater than |Tobs|, useful for finding the two-sided 
@@ -3524,11 +3600,11 @@ data=\textcolor{red}{DATASETNAME}), level=0.95)**
 
 <!-- \newpage -->
 
-* **Tobs ``<-`` coef(lm(\textcolor{red}{Y}~\textcolor{red}{X}, data=\textcolor{red}{DATASETNAME}))[2]; Tobs  
+* **Tobs ``<-`` coef(lm(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>))[2]; Tobs  
     B ``<-`` 1000  
     Tstar ``<-`` matrix(NA, nrow=B)  
     for (b in (1:B)){  
-      lmP ``<-`` lm(\textcolor{red}{Y}~\textcolor{red}{X}, data=resample(\textcolor{red}{DATASETNAME}))  
+      lmP ``<-`` lm(<font color='red'>Y</font>~<font color='red'>X</font>, data=resample(<font color='red'>DATASETNAME</font>))  
       Tstar[b] ``<-`` coef(lmP)[2]  
     }**
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Simple linear regression inference | Intermediate Statistics with R</title>
-  <meta name="description" content="Chapter 7 Simple linear regression inference | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <title>7 Simple linear regression inference | Intermediate Statistics with R</title>
+  <meta name="description" content="7 Simple linear regression inference | Intermediate Statistics with R" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Simple linear regression inference | Intermediate Statistics with R" />
+  <meta property="og:title" content="7 Simple linear regression inference | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="gpeterson406/Greenwood_Book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Simple linear regression inference | Intermediate Statistics with R" />
+  <meta name="twitter:title" content="7 Simple linear regression inference | Intermediate Statistics with R" />
   
   
   
@@ -30,15 +30,19 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter6.html">
-<link rel="next" href="chapter8.html">
+<link rel="prev" href="chapter6.html"/>
+<link rel="next" href="chapter8.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -49,18 +53,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -80,7 +83,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,7 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover</a></li>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
-<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#section1-1"><i class="fa fa-check"></i><b>1.1</b> Overview of methods</a></li>
 <li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section1-2"><i class="fa fa-check"></i><b>1.2</b> Getting started in R</a></li>
 <li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section1-3"><i class="fa fa-check"></i><b>1.3</b> Basic summary statistics, histograms, and boxplots using R</a></li>
@@ -139,7 +143,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section1-5"><i class="fa fa-check"></i><b>1.5</b> Summary of important R code</a></li>
 <li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#section1-6"><i class="fa fa-check"></i><b>1.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> (R)e-Introduction to statistics</a><ul>
+<li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> (R)e-Introduction to statistics</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="chapter2.html"><a href="chapter2.html#section2-1"><i class="fa fa-check"></i><b>2.1</b> Histograms, boxplots, and density curves</a></li>
 <li class="chapter" data-level="2.2" data-path="chapter2.html"><a href="chapter2.html#section2-2"><i class="fa fa-check"></i><b>2.2</b> Pirate-plots</a></li>
 <li class="chapter" data-level="2.3" data-path="chapter2.html"><a href="chapter2.html#section2-3"><i class="fa fa-check"></i><b>2.3</b> Models, hypotheses, and permutations for the two sample mean situation</a></li>
@@ -154,7 +159,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.12" data-path="chapter2.html"><a href="chapter2.html#section2-12"><i class="fa fa-check"></i><b>2.12</b> Summary of important R code</a></li>
 <li class="chapter" data-level="2.13" data-path="chapter2.html"><a href="chapter2.html#section2-13"><i class="fa fa-check"></i><b>2.13</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a><ul>
+<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#section3-1"><i class="fa fa-check"></i><b>3.1</b> Situation</a></li>
 <li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#section3-2"><i class="fa fa-check"></i><b>3.2</b> Linear model for One-Way ANOVA (cell means and reference-coding)</a></li>
 <li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#section3-3"><i class="fa fa-check"></i><b>3.3</b> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
@@ -166,7 +172,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9" data-path="chapter3.html"><a href="chapter3.html#section3-9"><i class="fa fa-check"></i><b>3.9</b> Summary of important R code</a></li>
 <li class="chapter" data-level="3.10" data-path="chapter3.html"><a href="chapter3.html#section3-10"><i class="fa fa-check"></i><b>3.10</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="chapter4.html"><a href="chapter4.html"><i class="fa fa-check"></i><b>4</b> Two-Way ANOVA</a><ul>
+<li class="chapter" data-level="4" data-path="chapter4.html"><a href="chapter4.html"><i class="fa fa-check"></i><b>4</b> Two-Way ANOVA</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="chapter4.html"><a href="chapter4.html#section4-1"><i class="fa fa-check"></i><b>4.1</b> Situation</a></li>
 <li class="chapter" data-level="4.2" data-path="chapter4.html"><a href="chapter4.html#section4-2"><i class="fa fa-check"></i><b>4.2</b> Designing a two-way experiment and visualizing results</a></li>
 <li class="chapter" data-level="4.3" data-path="chapter4.html"><a href="chapter4.html#section4-3"><i class="fa fa-check"></i><b>4.3</b> Two-Way ANOVA models and hypothesis tests</a></li>
@@ -177,7 +184,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.8" data-path="chapter4.html"><a href="chapter4.html#section4-8"><i class="fa fa-check"></i><b>4.8</b> Summary of important R code</a></li>
 <li class="chapter" data-level="4.9" data-path="chapter4.html"><a href="chapter4.html#section4-9"><i class="fa fa-check"></i><b>4.9</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="chapter5.html"><a href="chapter5.html"><i class="fa fa-check"></i><b>5</b> Chi-square tests</a><ul>
+<li class="chapter" data-level="5" data-path="chapter5.html"><a href="chapter5.html"><i class="fa fa-check"></i><b>5</b> Chi-square tests</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="chapter5.html"><a href="chapter5.html#section5-1"><i class="fa fa-check"></i><b>5.1</b> Situation, contingency tables, and tableplots</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter5.html"><a href="chapter5.html#section5-2"><i class="fa fa-check"></i><b>5.2</b> Homogeneity test hypotheses</a></li>
 <li class="chapter" data-level="5.3" data-path="chapter5.html"><a href="chapter5.html#section5-3"><i class="fa fa-check"></i><b>5.3</b> Independence test hypotheses</a></li>
@@ -193,7 +201,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.13" data-path="chapter5.html"><a href="chapter5.html#section5-13"><i class="fa fa-check"></i><b>5.13</b> Summary of important R commands</a></li>
 <li class="chapter" data-level="5.14" data-path="chapter5.html"><a href="chapter5.html#section5-14"><i class="fa fa-check"></i><b>5.14</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="chapter6.html"><a href="chapter6.html"><i class="fa fa-check"></i><b>6</b> Correlation and Simple Linear Regression</a><ul>
+<li class="chapter" data-level="6" data-path="chapter6.html"><a href="chapter6.html"><i class="fa fa-check"></i><b>6</b> Correlation and Simple Linear Regression</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="chapter6.html"><a href="chapter6.html#section6-1"><i class="fa fa-check"></i><b>6.1</b> Relationships between two quantitative variables</a></li>
 <li class="chapter" data-level="6.2" data-path="chapter6.html"><a href="chapter6.html#section6-2"><i class="fa fa-check"></i><b>6.2</b> Estimating the correlation coefficient</a></li>
 <li class="chapter" data-level="6.3" data-path="chapter6.html"><a href="chapter6.html#section6-3"><i class="fa fa-check"></i><b>6.3</b> Relationships between variables by groups</a></li>
@@ -209,7 +218,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.13" data-path="chapter6.html"><a href="chapter6.html#section6-13"><i class="fa fa-check"></i><b>6.13</b> Summary of important R code</a></li>
 <li class="chapter" data-level="6.14" data-path="chapter6.html"><a href="chapter6.html#section6-14"><i class="fa fa-check"></i><b>6.14</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="chapter7.html"><a href="chapter7.html"><i class="fa fa-check"></i><b>7</b> Simple linear regression inference</a><ul>
+<li class="chapter" data-level="7" data-path="chapter7.html"><a href="chapter7.html"><i class="fa fa-check"></i><b>7</b> Simple linear regression inference</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="chapter7.html"><a href="chapter7.html#section7-1"><i class="fa fa-check"></i><b>7.1</b> Model</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter7.html"><a href="chapter7.html#section7-2"><i class="fa fa-check"></i><b>7.2</b> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li class="chapter" data-level="7.3" data-path="chapter7.html"><a href="chapter7.html#section7-3"><i class="fa fa-check"></i><b>7.3</b> Bozeman temperature trend</a></li>
@@ -221,7 +231,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="chapter7.html"><a href="chapter7.html#section7-9"><i class="fa fa-check"></i><b>7.9</b> Summary of important R code</a></li>
 <li class="chapter" data-level="7.10" data-path="chapter7.html"><a href="chapter7.html#section7-10"><i class="fa fa-check"></i><b>7.10</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="chapter8.html"><a href="chapter8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression</a><ul>
+<li class="chapter" data-level="8" data-path="chapter8.html"><a href="chapter8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="chapter8.html"><a href="chapter8.html#section8-1"><i class="fa fa-check"></i><b>8.1</b> Going from SLR to MLR</a></li>
 <li class="chapter" data-level="8.2" data-path="chapter8.html"><a href="chapter8.html#section8-2"><i class="fa fa-check"></i><b>8.2</b> Validity conditions in MLR</a></li>
 <li class="chapter" data-level="8.3" data-path="chapter8.html"><a href="chapter8.html#section8-3"><i class="fa fa-check"></i><b>8.3</b> Interpretation of MLR terms</a></li>
@@ -240,7 +251,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.16" data-path="chapter8.html"><a href="chapter8.html#section8-16"><i class="fa fa-check"></i><b>8.16</b> Summary of important R code</a></li>
 <li class="chapter" data-level="8.17" data-path="chapter8.html"><a href="chapter8.html#section8-17"><i class="fa fa-check"></i><b>8.17</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="chapter9.html"><a href="chapter9.html"><i class="fa fa-check"></i><b>9</b> Case studies</a><ul>
+<li class="chapter" data-level="9" data-path="chapter9.html"><a href="chapter9.html"><i class="fa fa-check"></i><b>9</b> Case studies</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="chapter9.html"><a href="chapter9.html#section9-1"><i class="fa fa-check"></i><b>9.1</b> Overview of material covered</a></li>
 <li class="chapter" data-level="9.2" data-path="chapter9.html"><a href="chapter9.html#section9-2"><i class="fa fa-check"></i><b>9.2</b> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li class="chapter" data-level="9.3" data-path="chapter9.html"><a href="chapter9.html#section9-3"><i class="fa fa-check"></i><b>9.3</b> Ants learn to rely on more informative attributes during decision-making</a></li>
@@ -269,11 +281,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter7" class="section level1">
-<h1><span class="header-section-number">Chapter 7</span> Simple linear regression inference</h1>
-<div id="section7-1" class="section level2">
-<h2><span class="header-section-number">7.1</span> Model</h2>
-<p>In Chapter <a href="chapter6.html#chapter6">6</a>, we learned how to estimate and interpret
+<div id="chapter7" class="section level1" number="7">
+<h1 number="7"><span class="header-section-number">7</span> Simple linear regression inference</h1>
+<div id="section7-1" class="section level2" number="7.1">
+<h2 number="7.1"><span class="header-section-number">7.1</span> Model</h2>
+<p>In Chapter <a href="chapter6.html#chapter6"><strong>??</strong></a>, we learned how to estimate and interpret
 correlations and regression
 equations with a single predictor variable (<strong><em>simple linear regression</em></strong>
 or SLR).
@@ -292,7 +304,7 @@ a random variable is statistically denoted as <span class="math inline">\(E(y_i)
 response variable in a simple linear model is specified by
 <span class="math inline">\(E(y_i) = \mu_{y_i} = \beta_0 + \beta_1x_i\)</span>. This uses the true regression line
 to define the model for the mean of the responses as a function of the value of
-the explanatory variable<a href="references.html#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a>.</p>
+the explanatory variable<a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a>.</p>
 <p>The other part of any statistical model is specifying a model for the
 variability around the mean.
 There are two aspects to the variability to specify here – the shape of the
@@ -328,7 +340,7 @@ regression model: </p>
 <li><p>The model for the mean is “correct” (<strong><em>Linearity, No Influential points,
 Only one group</em></strong>).</p></li>
 </ol>
-<p>The diagnostics described at the end of Chapter <a href="chapter6.html#chapter6">6</a> provide
+<p>The diagnostics described at the end of Chapter <a href="chapter6.html#chapter6"><strong>??</strong></a> provide
 techniques for checking these assumptions – at least not having clear issues with those assumptions is fundamental to having a regression line that we trust and
 inferences from it that we also can trust.</p>
 <p>To make this clearer, suppose that in the <em>Beers</em> and <em>BAC</em> study that
@@ -342,11 +354,11 @@ values are normally distributed around the mean for each <em>Beer</em> level,
 the mean defined by the regression equation. We actually do not need to
 obtain more than one observation at each <span class="math inline">\(x\)</span> value to
 make this assumption or assess it, but the plots below show you what this could
-look like. The sketch in Figure <a href="chapter7.html#fig:Figure7-1">7.1</a> attempts to show
+look like. The sketch in Figure <a href="chapter7.html#fig:Figure7-1">134</a> attempts to show
 the idea of normal
 distributions that are centered at the true regression line, all with the same
 shape and variance that is an assumption of the regression model. Figure
-<a href="chapter7.html#fig:Figure7-2">7.2</a> contains simulated realizations from a normal
+<a href="chapter7.html#fig:Figure7-2">135</a> contains simulated realizations from a normal
 distribution of 20 subjects at each <em>Beer</em> level around the assumed true
 regression line with two different residual SEs of 0.02 and 0.06. The original
 BAC model has a residual SE of 0.02 but had many fewer observations at each
@@ -355,7 +367,7 @@ BAC model has a residual SE of 0.02 but had many fewer observations at each
 <div class="figure" style="text-align: center"><span id="fig:Figure7-1"></span>
 <img src="chapter7_files/image029small.png" alt="Sketch of assumed normal distributions for the responses centered at the regression line." width="100%" />
 <p class="caption">
-Figure 7.1: Sketch of assumed normal distributions for the responses centered at the regression line.
+Figure 134: Sketch of assumed normal distributions for the responses centered at the regression line.
 </p>
 </div>
 <div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="chapter7.html#cb588-1"></a>BB &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/beersbac.csv&quot;</span>)</span></code></pre></div>
@@ -363,7 +375,7 @@ Figure 7.1: Sketch of assumed normal distributions for the responses centered at
 <div class="figure"><span id="fig:Figure7-2"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-2-1.png" alt="Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06)." width="576" />
 <p class="caption">
-Figure 7.2: Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06).
+Figure 135: Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06).
 </p>
 </div>
 <p>Along with getting the idea that regression models define normal
@@ -381,7 +393,7 @@ of each estimator around its
 true value. This variability leads to the potential variability in estimated
 regression lines (think of a suite of potential estimated regression lines that
 would be created by different random samples from the same population).
-Figure <a href="chapter7.html#fig:Figure7-3">7.3</a> contains the true regression line (bold, red)
+Figure <a href="chapter7.html#fig:Figure7-3">136</a> contains the true regression line (bold, red)
 and realizations of the
 estimated regression line in simulated data based on results similar to the
 real data set. This variability due to random sampling is something that needs to be
@@ -392,17 +404,15 @@ estimates.
 The next sections develop those inferential tools.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure7-3"></span>
-<img src="chapter7_files/image034.png" alt="Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the simulate function as was used in Chapter 2 were used to create this plot. " width="100%" />
+<img src="chapter7_files/image034.png" alt="Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the simulate function as was used in Chapter ?? were used to create this plot. " width="100%" />
 <p class="caption">
-Figure 7.3: Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the <code>simulate</code> function as was used in Chapter <a href="chapter2.html#chapter2">2</a> were used to create this plot. 
+Figure 136: Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the <code>simulate</code> function as was used in Chapter <a href="chapter2.html#chapter2"><strong>??</strong></a> were used to create this plot. 
 </p>
 </div>
 <!-- \newpage -->
-
 </div>
-<div id="section7-2" class="section level2">
-<h2><span class="header-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</h2>
-
+<div id="section7-2" class="section level2" number="7.2">
+<h2 number="7.2"><span class="header-section-number">7.2</span> Confidence interval and hypothesis tests for the slope and intercept</h2>
 <p>Our inference techniques will resemble previous material with an
 interest in forming confidence intervals and
 doing hypothesis testing, although the interpretation of confidence intervals
@@ -426,7 +436,7 @@ that is almost always of interest is for the true slope coefficient,
 The slope confidence interval is used to do two
 things: (1) inference for the amount of change in the mean of <span class="math inline">\(y\)</span> for a unit
 change in <span class="math inline">\(x\)</span> in the population and (2) to potentially do hypothesis testing by
-checking whether 0 is in the CI or not. The sketch in Figure <a href="chapter7.html#fig:Figure7-4">7.4</a>
+checking whether 0 is in the CI or not. The sketch in Figure <a href="chapter7.html#fig:Figure7-4">137</a>
 illustrates the roles of the
 CI for the slope in terms of determining where the population slope, <span class="math inline">\(\beta_1\)</span>, coefficient
 might be – centered at the sample slope coefficient – our best guess for the
@@ -436,7 +446,7 @@ confidence interval</em></strong>:</p>
 <div class="figure" style="text-align: center"><span id="fig:Figure7-4"></span>
 <img src="chapter7_files/image045_resized.png" alt="Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in \(x\)." width="50%" />
 <p class="caption">
-Figure 7.4: Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in <span class="math inline">\(x\)</span>.
+Figure 137: Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in <span class="math inline">\(x\)</span>.
 </p>
 </div>
 <blockquote>
@@ -459,7 +469,7 @@ the true mean of <strong><em>Y</em></strong> will be between <strong>LL</strong>
 <p>This is really only interesting if the value of <span class="math inline">\(x=0\)</span> is interesting –
 we’ll see a method for generating CIs
 for the true mean at potentially more interesting values of <span class="math inline">\(x\)</span> in
-Section <a href="chapter7.html#section7-7">7.7</a>. To trust the results from these
+Section <a href="chapter7.html#section7-7"><strong>??</strong></a>. To trust the results from these
 confidence intervals, it is critical that any issues with the regression validity conditions are minor. </p>
 <p>The only hypothesis test of interest in this situation is for the slope
 coefficient.
@@ -530,7 +540,6 @@ calculation in the model summary and from <code>qt(0.975, df=n-2)</code> which w
 7.48 in the model summary to
 make confidence intervals – that is the test statistic used below. The related
 calculations are shown at the bottom of the following code:</p>
-
 <div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="chapter7.html#cb589-1"></a>m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(BAC<span class="op">~</span>Beers, <span class="dt">data=</span>BB)</span>
 <span id="cb589-2"><a href="chapter7.html#cb589-2"></a></span>
 <span id="cb589-3"><a href="chapter7.html#cb589-3"></a><span class="kw">summary</span>(m1)</span></code></pre></div>
@@ -550,14 +559,12 @@ calculations are shown at the bottom of the following code:</p>
 ## Residual standard error: 0.02044 on 14 degrees of freedom
 ## Multiple R-squared:  0.7998, Adjusted R-squared:  0.7855 
 ## F-statistic: 55.94 on 1 and 14 DF,  p-value: 2.969e-06</code></pre>
-
 <div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="chapter7.html#cb591-1"></a><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">14</span>) <span class="co"># t* multiplier for 95% CI</span></span></code></pre></div>
 <pre><code>## [1] 2.144787</code></pre>
 <div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="chapter7.html#cb593-1"></a><span class="fl">0.017964</span> <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">14</span>)<span class="op">*</span><span class="fl">0.002402</span></span></code></pre></div>
 <pre><code>## [1] 0.01281222 0.02311578</code></pre>
 <div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="chapter7.html#cb595-1"></a><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">14</span>)<span class="op">*</span><span class="fl">0.002402</span></span></code></pre></div>
 <pre><code>## [1] 0.005151778</code></pre>
-
 <p>We can also get the confidence interval
 directly from the <code>confint</code> function run on our regression model,
 saving some calculation
@@ -589,7 +596,7 @@ the location of <span class="math inline">\(x\)</span>-values can impact the pre
 revisit this in the context of <strong><em>multi-collinearity</em></strong> in the next chapter,
 and often we have no control of <span class="math inline">\(x\)</span>-values, but just note that different
 patterns of <span class="math inline">\(x\)</span>-values can lead to different precision of estimated slope
-coefficients<a href="references.html#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a>.</p>
+coefficients<a href="#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a>.</p>
 <p>For hypothesis testing, we will almost always stick with two-sided tests
 in regression modeling as it is a more conservative approach and does not require
 us to have an expectation of a direction for relationships <em>a priori</em>. In this
@@ -621,7 +628,7 @@ regression models is to be at the right level for the slope to “work” to mak
 line that describes the responses and thus is usually of lesser interest even though it plays an important role in the model.</p>
 <p>As a second example, we can revisit modeling the <em>Hematocrit</em> of female
 Australian athletes as a function of <em>body fat %</em>. The sample size is <span class="math inline">\(n=99\)</span>
-so the <em>df</em> are 97 in any <span class="math inline">\(t\)</span>-distributions. In Chapter <a href="chapter6.html#chapter6">6</a>, the
+so the <em>df</em> are 97 in any <span class="math inline">\(t\)</span>-distributions. In Chapter <a href="chapter6.html#chapter6"><strong>??</strong></a>, the
 relationship between <em>Hematocrit</em> and <em>body fat %</em> for females appeared to
 be a weak negative linear
 association. The 95% confidence interval for the slope is -0.186 to 0.0155. For
@@ -635,7 +642,6 @@ interpret this sort of marginal result as having some or marginal evidence again
 but certainly would never say that this presents strong evidence.
 
 </p>
-
 <div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="chapter7.html#cb599-1"></a><span class="kw">library</span>(alr3)</span>
 <span id="cb599-2"><a href="chapter7.html#cb599-2"></a><span class="kw">data</span>(ais)</span>
 <span id="cb599-3"><a href="chapter7.html#cb599-3"></a><span class="kw">library</span>(tibble)</span>
@@ -764,8 +770,8 @@ of the variation in <em>log(Hectares) burned</em>. Or that the linear regression
 model built using <em>Temperature</em> explains 66.2% of the variation in yearly
 <em>log(Hectares) burned</em> so this model explains quite a bit but not all the variation in the responses.</p>
 </div>
-<div id="section7-3" class="section level2">
-<h2><span class="header-section-number">7.3</span> Bozeman temperature trend</h2>
+<div id="section7-3" class="section level2" number="7.3">
+<h2 number="7.3"><span class="header-section-number">7.3</span> Bozeman temperature trend</h2>
 <p>For a new example, consider the yearly average maximum temperatures in Bozeman, MT.
 For over 100 years, daily measurements have been taken of the minimum and
 maximum temperatures at hundreds of weather stations across the US. In early
@@ -775,7 +781,7 @@ measures have been replaced by digital temperature recording devices that
 continue to track this sort of information with much less human effort and,
 possibly, errors. This sort of information is often aggregated to monthly or
 yearly averages to be able to see “on average” changes from month-to-month or
-year-to-year as opposed to the day-to-day variation in the temperature<a href="references.html#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a>. Often the local information is aggregated further to
+year-to-year as opposed to the day-to-day variation in the temperature<a href="#fn106" class="footnote-ref" id="fnref106"><sup>106</sup></a>. Often the local information is aggregated further to
 provide regional, hemispheric, or even global average temperatures. Climate
 change research involves attempting to quantify the changes over time in these
 and other long-term temperature or temperature proxies.</p>
@@ -805,14 +811,14 @@ complicated than that to arrive at the response variable we are analyzing.</p>
 <div class="figure"><span id="fig:Figure7-5"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-5-1.png" alt="Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines." width="960" />
 <p class="caption">
-Figure 7.5: Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines.
+Figure 138: Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines.
 </p>
 </div>
-<p>The scatterplot in Figure <a href="chapter7.html#fig:Figure7-5">7.5</a> shows the results between
+<p>The scatterplot in Figure <a href="chapter7.html#fig:Figure7-5">138</a> shows the results between
 1901 and 2014 based on a sample of <span class="math inline">\(n=109\)</span> years because four years had too
 many missing months to fairly include in the responses. Missing values occur
 for many reasons and in
-this case were likely just machine or human error<a href="references.html#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a>.
+this case were likely just machine or human error<a href="#fn107" class="footnote-ref" id="fnref107"><sup>107</sup></a>.
 These are time series data and in time series analysis we assume that the
 population of interest for inference is all possible realizations from the
 underlying process over this time frame even though we only ever get to observe
@@ -835,7 +841,7 @@ interval interpretation to discuss the size of the change.
 
 First, we need to select our hypotheses (the 2-sided test
 would be a <strong><em>conservative</em></strong> choice and no one that does climate change
-research wants to be accused of taking a <strong><em>liberal</em></strong> approach in their analyses<a href="references.html#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a>) and our test statistic, <span class="math inline">\(t=\frac{b_1}{\text{SE}_{b_1}}\)</span>. The scatterplot is the perfect tool to illustrate the situation.</p>
+research wants to be accused of taking a <strong><em>liberal</em></strong> approach in their analyses<a href="#fn108" class="footnote-ref" id="fnref108"><sup>108</sup></a>) and our test statistic, <span class="math inline">\(t=\frac{b_1}{\text{SE}_{b_1}}\)</span>. The scatterplot is the perfect tool to illustrate the situation.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Hypotheses for the slope coefficient test:</strong></li>
 </ol>
@@ -864,7 +870,7 @@ reasonably correct even in the presence of some autocorrelation. </li>
 </ul></li>
 </ul>
 <p>To assess the remaining conditions, we need to fit the regression model and use
-the diagnostic plots in Figure <a href="chapter7.html#fig:Figure7-6">7.6</a> to aid our assessment:</p>
+the diagnostic plots in Figure <a href="chapter7.html#fig:Figure7-6">139</a> to aid our assessment:</p>
 
 <div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="chapter7.html#cb616-1"></a>temp1 &lt;-<span class="st"> </span><span class="kw">lm</span>(meanmax<span class="op">~</span>Year, <span class="dt">data=</span>bozemantemps)</span>
 <span id="cb616-2"><a href="chapter7.html#cb616-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
@@ -872,7 +878,7 @@ the diagnostic plots in Figure <a href="chapter7.html#fig:Figure7-6">7.6</a> to 
 <div class="figure"><span id="fig:Figure7-6"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-6-1.png" alt="Diagnostic plots of the Bozeman yearly temperature simple linear regression model." width="960" />
 <p class="caption">
-Figure 7.6: Diagnostic plots of the Bozeman yearly temperature simple linear regression model.
+Figure 139: Diagnostic plots of the Bozeman yearly temperature simple linear regression model.
 </p>
 </div>
 <ul>
@@ -905,7 +911,7 @@ assumption shows only one real problem in the outlier from the
 which was identified as a large outlier when examining the original scatterplot.
 
 We should be careful about inferences that assume normality and contain this
-point in the analysis. We might consider running the analysis with it and
+point in the analysis. We might consider running the analysis with and
 without that point to see how much it impacts the results just to be sure
 it isn’t creating evidence of a trend because of a violation of the
 normality assumption. The next check reassures us that re-running the
@@ -972,17 +978,17 @@ normality assumption a bit.</p>
 </ul></li>
 <li><p><strong>Write a conclusion:</strong></p>
 <ul>
-<li>There is very strong evidence against the null hypothesis of no linear relationship
+<li>There is very strong evidence (<span class="math inline">\(t_{107}=11.02\)</span>, p-value &lt; 0.0001) against the null hypothesis of no linear relationship
 between <em>Year</em> and yearly mean <em>Temperature</em> so we can conclude that
 there is, in fact, some linear relationship between <em>Year</em> and yearly mean
 maximum <em>Temperature</em> in Bozeman.</li>
 </ul></li>
 </ol>
-
+<div style="page-break-after: always;"></div>
 <ol start="5" style="list-style-type: decimal">
 <li><p><strong>Size:</strong></p>
 <ul>
-<li>For a one year increase in Year, we estimate that, on average, the yearly average maximum temperature will change by 0.0524 <span class="math inline">\(^\circ F\)</span> (95% CI: 0.043 to 0.062). This suggests a modest but noticeable change in the mean temperature in Bozeman and the confidence suggests minimal variation around this estimate, going from 0.04 to 0.06 <span class="math inline">\(^\circ F\)</span>. The “size” of this change is discussed more in Section <a href="chapter7.html#section7-5">7.5</a>.</li>
+<li>For a one year increase in Year, we estimate that, on average, the yearly average maximum temperature will change by 0.0524 <span class="math inline">\(^\circ F\)</span> (95% CI: 0.043 to 0.062). This suggests a modest but noticeable change in the mean temperature in Bozeman and the confidence suggests minimal variation around this estimate, going from 0.04 to 0.06 <span class="math inline">\(^\circ F\)</span>. The “size” of this change is discussed more in Section <a href="chapter7.html#section7-5"><strong>??</strong></a>.</li>
 </ul>
 <div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="chapter7.html#cb621-1"></a><span class="kw">confint</span>(temp1)</span></code></pre></div>
 <pre><code>##                    2.5 %       97.5 %
@@ -1041,16 +1047,16 @@ temperature, why not also do the same analysis of the minimum temperature time
 series as well? And if I did the analysis for Bozeman, what about Butte and
 Helena and…?). Remember our discussion of multiple testing issues? This issue can arise when regression
 modeling is repeated in many similar data sets, say different sites or
-different response variables or both, in one study. In <span class="citation">Moore, Harper, and Greenwood (<a href="#ref-Moore2007" role="doc-biblioref">2007</a>)</span>, we considered the impacts on the assessment of evidence of trends
+different response variables or both, in one study. In <span class="citation">Moore, Harper, and Greenwood (<a href="references.html#ref-Moore2007" role="doc-biblioref">2007</a>)</span>, we considered the impacts on the assessment of evidence of trends
 of earlier spring onset timing in the Mountain West when the number of tests
 across many sites is accounted for. We found that the evidence for time trends
-decreases substantially but does not disappear. In a related study, <span class="citation">Greenwood, Harper, and Moore (<a href="#ref-Greenwood2011" role="doc-biblioref">2011</a>)</span>
+decreases substantially but does not disappear. In a related study, <span class="citation">Greenwood, Harper, and Moore (<a href="references.html#ref-Greenwood2011" role="doc-biblioref">2011</a>)</span>
 found evidence for regional trends to earlier spring
 onset using more sophisticated statistical models. The main point here is to
 <strong>be careful when using simple statistical methods repeatedly if you are
 not accounting for the number of tests performed</strong>. </p>
 <p>Along with the confidence interval, we can also plot the estimated model
-(Figure <a href="chapter7.html#fig:Figure7-7">7.7</a>) using a term-plot from the <code>effects</code> package
+(Figure <a href="chapter7.html#fig:Figure7-7">140</a>) using a term-plot from the <code>effects</code> package
 (Fox, 2003). This is the same function we used for visualizing results
 in the ANOVA models and in its basic application you just need
 <code>plot(allEffects(MODELNAME))</code> although we from time to time, we will add some options.
@@ -1071,7 +1077,7 @@ broken teeth in a comb. Also not used here, we can also turn on the <code>residu
 <div class="figure"><span id="fig:Figure7-7"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-7-1.png" alt="Term-plot for the Bozeman mean yearly maximum temperature linear regression model with 95% confidence interval bands for the mean in each year." width="576" />
 <p class="caption">
-Figure 7.7: Term-plot for the Bozeman mean yearly maximum temperature linear regression model with 95% confidence interval bands for the mean in each year.
+Figure 140: Term-plot for the Bozeman mean yearly maximum temperature linear regression model with 95% confidence interval bands for the mean in each year.
 </p>
 </div>
 <p>If we extended the plot for the model to <code>Year</code> = 0, we could see the
@@ -1079,7 +1085,7 @@ reason that the y-intercept in this model is -47.4<span class="math inline">\(^\
 obviously a large extrapolation for these data and provides a silly result.
 However, in paleoclimate data that goes back
 thousands of years using tree rings, ice cores, or sea sediments, the estimated
-mean in year 0 might be interesting and within the scope of observed values or it might not. For example, in <span class="citation">Santibáñez et al. (<a href="#ref-Santibanez2018" role="doc-biblioref">2018</a>)</span>, the data were a time series from 27,000 to about 9,000 years before present extracted from Antarctic ice cores. It all depends on the application.</p>
+mean in year 0 might be interesting and within the scope of observed values or it might not. For example, in <span class="citation">Santibáñez et al. (<a href="references.html#ref-Santibanez2018" role="doc-biblioref">2018</a>)</span>, the data were a time series from 27,000 to about 9,000 years before present extracted from Antarctic ice cores. It all depends on the application.</p>
 <p>To make the y-intercept more interesting for our data set, we can re-scale
 the <span class="math inline">\(x\text{&#39;s}\)</span> before we fit the
 model to have the first year in the data set (1901) be “0”. This is
@@ -1095,7 +1101,7 @@ has changed dramatically with a 95% CI from 51.72<span class="math inline">\(^\c
 for <code>Year2</code>=0. But we know that <code>Year2</code> has a 0 value for 1901 because
 of our subtraction. That means that this CI is
 for the true mean in 1901 and is now at least somewhat interesting. If you
-revisit Figure <a href="chapter7.html#fig:Figure7-7">7.7</a> you will actually see that the displayed
+revisit Figure <a href="chapter7.html#fig:Figure7-7">140</a> you will actually see that the displayed
 confidence intervals
 provide upper and lower bounds that match this result for 1901 – the
 y-intercept CI matches the 95% CI for the true mean in the first year of the data set.</p>
@@ -1127,11 +1133,11 @@ with a small p-value. If any of these are not the case, then we are
 not completely satisfied with the regression and <strong>should be suspicious
 of any inference we perform</strong>. We can sometimes resolve some of the
 systematic issues noted above using <strong><em>transformations</em></strong>, discussed in
-Sections <a href="chapter7.html#section7-5">7.5</a> and <a href="chapter7.html#section7-6">7.6</a>.
+Sections <a href="chapter7.html#section7-5"><strong>??</strong></a> and <a href="chapter7.html#section7-6"><strong>??</strong></a>.
 </p>
 </div>
-<div id="section7-4" class="section level2">
-<h2><span class="header-section-number">7.4</span> Randomization-based inferences for the slope coefficient</h2>
+<div id="section7-4" class="section level2" number="7.4">
+<h2 number="7.4"><span class="header-section-number">7.4</span> Randomization-based inferences for the slope coefficient</h2>
 <p>Exploring permutation testing in SLR provides an opportunity to gauge the observed
 relationship against the sorts of relationships we would expect to see if there
 was no linear relationship between the variables. If the relationship is linear
@@ -1141,14 +1147,14 @@ predictor variable’s values is as good as any other.
 
 Consider the four scatterplots of
 the Bozeman temperature data versus <code>Year</code> and permuted versions of <code>Year</code>
-in Figure <a href="chapter7.html#fig:Figure7-8">7.8</a>. First, think about which of the panels you
+in Figure <a href="chapter7.html#fig:Figure7-8">141</a>. First, think about which of the panels you
 think present the most
 evidence of a linear relationship between <code>Year</code> and <code>Temperature</code>?</p>
 
 <div class="figure"><span id="fig:Figure7-8"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-8-1.png" alt="Plot of the Temperature responses versus four versions of Year, three of which are permutations of the Year variable relative to the Temperatures." width="768" />
 <p class="caption">
-Figure 7.8: Plot of the <code>Temperature</code> responses versus four versions of <code>Year</code>, three of which are permutations of the Year variable relative to the Temperatures.
+Figure 141: Plot of the <code>Temperature</code> responses versus four versions of <code>Year</code>, three of which are permutations of the Year variable relative to the Temperatures.
 </p>
 </div>
 <p>Hopefully you can see that panel (c) contains the most clear linear
@@ -1157,7 +1163,7 @@ panel (c) is actually the real data set and pretty clearly presents itself as
 “different” from the other results. When we have small p-values, the real data
 set will be clearly different from the permuted results because it will be
 almost impossible to find a permuted data set that can attain as large a slope
-coefficient as was observed in the real data set<a href="references.html#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a>. This result ties back into our original interests
+coefficient as was observed in the real data set<a href="#fn109" class="footnote-ref" id="fnref109"><sup>109</sup></a>. This result ties back into our original interests
 in this climate change research
 situation – does our result look like it is different from what could have been
 observed just by chance if there were no linear relationship between <span class="math inline">\(x\)</span>
@@ -1169,13 +1175,13 @@ the slope coefficient and would provide the same p-values but the sampling
 distribution would have a
 different <span class="math inline">\(x\)</span>-axis scaling. In this situation, the observed slope of 0.052 is
 really far from any possible values that can be obtained using permutations as
-shown in Figure <a href="chapter7.html#fig:Figure7-9">7.9</a>. The p-value would be reported as
+shown in Figure <a href="chapter7.html#fig:Figure7-9">142</a>. The p-value would be reported as
 <span class="math inline">\(&lt;0.001\)</span> for the two-sided permutation test.</p>
 <div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="chapter7.html#cb630-1"></a>Tobs &lt;-<span class="st"> </span><span class="kw">lm</span>(meanmax<span class="op">~</span>Year, <span class="dt">data=</span>bozemantemps)<span class="op">$</span>coef[<span class="dv">2</span>]</span>
 <span id="cb630-2"><a href="chapter7.html#cb630-2"></a>Tobs</span></code></pre></div>
 <pre><code>##       Year 
 ## 0.05244213</code></pre>
-
+<div style="page-break-after: always;"></div>
 
 <div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="chapter7.html#cb632-1"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
 <span id="cb632-2"><a href="chapter7.html#cb632-2"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
@@ -1192,11 +1198,11 @@ shown in Figure <a href="chapter7.html#fig:Figure7-9">7.9</a>. The p-value would
 <div class="figure"><span id="fig:Figure7-9"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-9-1.png" alt="Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at \(\pm b_1=0.56\) based on the observed estimated slope." width="960" />
 <p class="caption">
-Figure 7.9: Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at <span class="math inline">\(\pm b_1=0.56\)</span> based on the observed estimated slope.
+Figure 142: Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at <span class="math inline">\(\pm b_1=0.56\)</span> based on the observed estimated slope.
 </p>
 </div>
 <p>One other interesting aspect of exploring the permuted data sets as in
-Figure <a href="chapter7.html#fig:Figure7-8">7.8</a> is that the outlier
+Figure <a href="chapter7.html#fig:Figure7-8">141</a> is that the outlier
 in the late 1930s “disappears” in the permuted data sets because there were
 many other observations that were that warm, just none that happened around
 that time of the century in the real data set. This reinforces the evidence for
@@ -1217,10 +1223,10 @@ And the previous scatterplots show what the
 coefficients but are not completely comfortable with the normality assumption,
 it is also possible to generate bootstrap confidence intervals by sampling with
 replacement from the data set. This idea was introduced in
-Sections <a href="chapter2.html#section2-8">2.8</a> and <a href="chapter2.html#section2-9">2.9</a>. This provides a 95%
+Sections <a href="chapter2.html#section2-8"><strong>??</strong></a> and <a href="chapter2.html#section2-9"><strong>??</strong></a>. This provides a 95%
 bootstrap confidence interval from 0.433 to 0.61,
 which almost exactly matches the parametric <span class="math inline">\(t\)</span>-based confidence interval. The
-bootstrap distributions are very symmetric (Figure <a href="chapter7.html#fig:Figure7-10">7.10</a>).
+bootstrap distributions are very symmetric (Figure <a href="chapter7.html#fig:Figure7-10">143</a>).
 The interpretation is
 the same and this result reinforces the other assessments that the parametric
 approach is not unreasonable here except possibly for the independence assumption. These randomization approaches provide no robustness against violations of the independence assumption. </p>
@@ -1249,12 +1255,12 @@ approach is not unreasonable here except possibly for the independence assumptio
 <div class="figure"><span id="fig:Figure7-10"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-10-1.png" alt="Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines delineating the 95% confidence interval and observed slope of 0.52." width="960" />
 <p class="caption">
-Figure 7.10: Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines delineating the 95% confidence interval and observed slope of 0.52.
+Figure 143: Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines delineating the 95% confidence interval and observed slope of 0.52.
 </p>
 </div>
 </div>
-<div id="section7-5" class="section level2">
-<h2><span class="header-section-number">7.5</span> Transformations part I: Linearizing relationships</h2>
+<div id="section7-5" class="section level2" number="7.5">
+<h2 number="7.5"><span class="header-section-number">7.5</span> Transformations part I: Linearizing relationships</h2>
 <p>When the influential point, linearity, constant variance and/or normality
 assumptions are clearly violated, we cannot trust any of the inferences generated by the
 regression model. The violations occur on gradients from minor to really major
@@ -1265,7 +1271,7 @@ situations with the previous tools. There are three potential solutions to viola
 of the validity conditions: </p>
 <ol style="list-style-type: decimal">
 <li><p>Consider removing an offending point or two and see if this improves the results,
-presenting results both with and without those points to describe their impact<a href="references.html#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a>,</p></li>
+presenting results both with and without those points to describe their impact<a href="#fn110" class="footnote-ref" id="fnref110"><sup>110</sup></a>,</p></li>
 <li><p>Try to transform the response, explanatory, or both variables and see if you can
 force the data set to meet our SLR assumptions after transformation (the focus
 of this and the next section), or  </p></li>
@@ -1285,7 +1291,7 @@ the <code>Year</code> variable to have <code>Year2</code> start at 0 and go up t
 also apply a linear transformation to change Temperature from being measured in
 <span class="math inline">\(^\circ F\)</span> to <span class="math inline">\(^\circ C\)</span> using <span class="math inline">\(^\circ C=[^\circ F - 32] *(5/9)\)</span>. The
 scatterplots on both the original and transformed scales are provided in
-Figure <a href="chapter7.html#fig:Figure7-11">7.11</a>. All the
+Figure <a href="chapter7.html#fig:Figure7-11">144</a>. All the
 coefficients in the regression model and the labels on the axes change, but the
 “picture” is still the same. Additionally, all the inferences remain the same –
 p-values are unchanged by linear transformations. So linear transformations
@@ -1299,10 +1305,9 @@ a 1 year increase, the slope coefficient is 0.052. More useful than this is the 
 <div class="figure"><span id="fig:Figure7-11"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-11-1.png" alt="Scatterplots of Temperature (\(^\circ F\)) versus Year (left) and Temperature (\(^\circ C\)) vs Years since 1901 (right)." width="960" />
 <p class="caption">
-Figure 7.11: Scatterplots of <em>Temperature</em> (<span class="math inline">\(^\circ F\)</span>) versus <em>Year</em> (left) and <em>Temperature</em> (<span class="math inline">\(^\circ C\)</span>) vs <em>Years</em> since 1901 (right).
+Figure 144: Scatterplots of <em>Temperature</em> (<span class="math inline">\(^\circ F\)</span>) versus <em>Year</em> (left) and <em>Temperature</em> (<span class="math inline">\(^\circ C\)</span>) vs <em>Years</em> since 1901 (right).
 </p>
 </div>
-
 <div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="chapter7.html#cb640-1"></a>bozemantemps<span class="op">$</span>meanmaxC &lt;-<span class="st"> </span>(bozemantemps<span class="op">$</span>meanmax <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)<span class="op">*</span>(<span class="dv">5</span><span class="op">/</span><span class="dv">9</span>)</span>
 <span id="cb640-2"><a href="chapter7.html#cb640-2"></a>temp3 &lt;-<span class="st"> </span><span class="kw">lm</span>(meanmaxC<span class="op">~</span>Year2, <span class="dt">data=</span>bozemantemps)</span>
 <span id="cb640-3"><a href="chapter7.html#cb640-3"></a><span class="kw">summary</span>(temp1)</span></code></pre></div>
@@ -1339,7 +1344,7 @@ Figure 7.11: Scatterplots of <em>Temperature</em> (<span class="math inline">\(^
 ## Residual standard error: 0.9022 on 107 degrees of freedom
 ## Multiple R-squared:  0.5315, Adjusted R-squared:  0.5271 
 ## F-statistic: 121.4 on 1 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
-
+<div style="page-break-after: always;"></div>
 <p><strong><em>Nonlinear transformation functions</em></strong>
 are where we apply something more complicated than this
 shift and scaling, something like <span class="math inline">\(y_{\text{new}}=f(y)\)</span>, where <span class="math inline">\(f(\cdot)\)</span> could be
@@ -1349,7 +1354,7 @@ interesting things can happen to our linear models and their problems.
 
 Some
 examples of transformations that are at least occasionally used for transforming
-the response variable are provided in Table <a href="chapter7.html#tab:Table7-1">7.1</a>, ranging from taking
+the response variable are provided in Table <a href="chapter7.html#tab:Table7-1">12</a>, ranging from taking
 <span class="math inline">\(y\)</span> to different powers from <span class="math inline">\(y^{-2}\)</span> to <span class="math inline">\(y^2\)</span>. Typical transformations used in statistical
 modeling exist along a gradient of powers of the response variable, defined as <span class="math inline">\(y^{\lambda}\)</span>
 with <span class="math inline">\(\boldsymbol{\lambda}\)</span> being the power of the transformation of the response
@@ -1359,12 +1364,12 @@ transformations are all nonlinear functions of <span class="math inline">\(y\)</
 <div class="figure"><span id="fig:Figure7-12"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-12-1.png" alt="Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature." width="960" />
 <p class="caption">
-Figure 7.12: Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature.
+Figure 145: Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature.
 </p>
 </div>
 
 <table>
-<caption><span id="tab:Table7-1">Table 7.1: </span> Ladder of powers of transformations that are often used in statistical modeling.</caption>
+<caption><span id="tab:Table7-1">Table 12: </span> Ladder of powers of transformations that are often used in statistical modeling.</caption>
 <colgroup>
 <col width="13%" />
 <col width="34%" />
@@ -1431,16 +1436,16 @@ earthquake size (Richter scale), the measurements are already on logarithmic
 scales.</p>
 <p>Actually, we have already analyzed data that benefited from a
 <strong><em>log-transformation</em></strong> – the <em>log-area burned</em> vs. <em>summer temperature</em>
-data for Montana. Figure <a href="chapter7.html#fig:Figure7-12">7.12</a> compares the
+data for Montana. Figure <a href="chapter7.html#fig:Figure7-12">145</a> compares the
 relationship between these variables on the original hectares scale and the
 log-hectares scale.</p>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="chapter7.html#cb644-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
 <span id="cb644-2"><a href="chapter7.html#cb644-2"></a><span class="kw">plot</span>(hectares<span class="op">~</span>Temperature, <span class="dt">data=</span>mtfires, <span class="dt">main=</span><span class="st">&quot;(a)&quot;</span>,</span>
 <span id="cb644-3"><a href="chapter7.html#cb644-3"></a>     <span class="dt">ylab=</span><span class="st">&quot;Hectares&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span>
 <span id="cb644-4"><a href="chapter7.html#cb644-4"></a><span class="kw">plot</span>(loghectares<span class="op">~</span>Temperature, <span class="dt">data=</span>mtfires, <span class="dt">main=</span><span class="st">&quot;(b)&quot;</span>,</span>
 <span id="cb644-5"><a href="chapter7.html#cb644-5"></a>     <span class="dt">ylab=</span><span class="st">&quot;log-Hectares&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
-<p>Figure <a href="chapter7.html#fig:Figure7-12">7.12</a>(a) displays a relationship
+<p>Figure <a href="chapter7.html#fig:Figure7-12">145</a>(a) displays a relationship
 that would be hard fit using SLR – it has a curve and the
 variance is increasing with increasing temperatures. With a
 log-transformation of <em>Hectares</em>, the relationship appears to be relatively
@@ -1453,8 +1458,8 @@ relationships, in fact
 in some situations it can make the relationship more nonlinear. For example,
 reconsider the relationship between tree diameter and tree height, which
 contained some curvature that we could not account for in an SLR.
-Figure <a href="chapter7.html#fig:Figure7-13">7.13</a> shows
-the original version of the variables and Figure <a href="chapter7.html#fig:Figure7-14">7.14</a>
+Figure <a href="chapter7.html#fig:Figure7-13">146</a> shows
+the original version of the variables and Figure <a href="chapter7.html#fig:Figure7-14">147</a>
 shows the same
 information with the response variable (height) log-transformed.
 
@@ -1470,10 +1475,10 @@ information with the response variable (height) log-transformed.
 <div class="figure"><span id="fig:Figure7-13"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-13-1.png" alt="Scatterplot of tree height versus tree diameter." width="576" />
 <p class="caption">
-Figure 7.13: Scatterplot of tree height versus tree diameter.
+Figure 146: Scatterplot of tree height versus tree diameter.
 </p>
 </div>
-<p>Figure <a href="chapter7.html#fig:Figure7-14">7.14</a> with the log-transformed height response seems
+<p>Figure <a href="chapter7.html#fig:Figure7-14">147</a> with the log-transformed height response seems
 to show a more nonlinear relationship and may even have more
 issues with non-constant variance. This example shows that log-transforming
 the response variable cannot fix all problems, even though I’ve seen some
@@ -1484,14 +1489,14 @@ situation worse.</p>
 <div class="figure"><span id="fig:Figure7-14"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-14-1.png" alt="Scatterplot of log(tree height) versus tree diameter." width="576" />
 <p class="caption">
-Figure 7.14: Scatterplot of log(tree height) versus tree diameter.
+Figure 147: Scatterplot of log(tree height) versus tree diameter.
 </p>
 </div>
 <p>All is not lost in this situation, we can consider two other potential
 uses of the log-transformation
 and see if they can “fix” the relationship up a bit. One option is to apply the
 transformation to the explanatory variable (<code>y~log(x)</code>), displayed in
-Figure <a href="chapter7.html#fig:Figure7-15">7.15</a>. If the distribution of the explanatory
+Figure <a href="chapter7.html#fig:Figure7-15">148</a>. If the distribution of the explanatory
 variable is right skewed (see the boxplot on
 the <span class="math inline">\(x\)</span>-axis), then consider log-transforming the explanatory variable. This will
 often reduce the leverage of those most extreme observations which can be
@@ -1503,25 +1508,25 @@ the original scale.</p>
 <div class="figure"><span id="fig:Figure7-15"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-15-1.png" alt="Scatterplot of tree height versus log(tree diameter)." width="576" />
 <p class="caption">
-Figure 7.15: Scatterplot of tree height versus log(tree diameter).
+Figure 148: Scatterplot of tree height versus log(tree diameter).
 </p>
 </div>
 <p>The other option, especially when everything else fails, is to apply the
 log-transformation to
 both the explanatory and response variables (<code>log(y)~log(x)</code>), as
-displayed in Figure <a href="chapter7.html#fig:Figure7-16">7.16</a>. For this example, the
+displayed in Figure <a href="chapter7.html#fig:Figure7-16">149</a>. For this example, the
 transformation seems to be better than the first two options
 (none and only <span class="math inline">\(\log(y)\)</span>), but demonstrates some decreasing variability with
 larger <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values. It has also created a new and different curve in the relationship (see the smoothing (dashed) line start below the SLR line, then go above it, and the finish below it). In the end, we might prefer to fit an SLR model to the
 tree <em>height</em> vs <em>log(diameter)</em> versions of the variables
-(Figure <a href="chapter7.html#fig:Figure7-15">7.15</a>).</p>
+(Figure <a href="chapter7.html#fig:Figure7-15">148</a>).</p>
 
 <div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="chapter7.html#cb646-1"></a><span class="kw">scatterplot</span>(<span class="kw">log</span>(height.m)<span class="op">~</span><span class="kw">log</span>(dbh.cm), <span class="dt">data=</span>ufc[<span class="op">-</span><span class="dv">168</span>,], <span class="dt">smooth=</span><span class="kw">list</span>(<span class="dt">spread=</span>F),</span>
 <span id="cb646-2"><a href="chapter7.html#cb646-2"></a>            <span class="dt">main=</span><span class="st">&quot;log-Tree height vs log-tree diameter&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure7-16"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-16-1.png" alt="Scatterplot of log(tree height) versus log(tree diameter)." width="576" />
 <p class="caption">
-Figure 7.16: Scatterplot of log(tree height) versus log(tree diameter).
+Figure 149: Scatterplot of log(tree height) versus log(tree diameter).
 </p>
 </div>
 <p>Economists also like to use <span class="math inline">\(\log(y) \sim \log(x)\)</span> transformations. The
@@ -1538,10 +1543,10 @@ looks like an initially hopeless situation for our linear modeling approach.</p>
 (infant deaths per 1,000
 live births) and gross domestic product (GDP) per capita (in 1998 US dollars)
 from <span class="math inline">\(n=207\)</span> countries. These data are available from the <code>carData</code> package
-(<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-carData" role="doc-biblioref">2018</a>)</span>, <span class="citation">Fox (<a href="#ref-Fox2003" role="doc-biblioref">2003</a>)</span>) in a data set called <code>UN</code>.
+(<span class="citation">Fox, Weisberg, and Price (<a href="references.html#ref-R-carData" role="doc-biblioref">2019</a><a href="references.html#ref-R-carData" role="doc-biblioref">b</a>)</span>, <span class="citation">Fox (<a href="references.html#ref-Fox2003" role="doc-biblioref">2003</a>)</span>) in a data set called <code>UN</code>.
 
 The four panels in
-Figure <a href="chapter7.html#fig:Figure7-17">7.17</a> show the original relationship and the impacts of
+Figure <a href="chapter7.html#fig:Figure7-17">150</a> show the original relationship and the impacts of
 log-transforming one or both variables.
 The only scatterplot that could potentially be modeled using SLR is the lower
 right panel (d) that shows the relationship between <em>log(infant mortality)</em>
@@ -1552,7 +1557,7 @@ the transformations.</p>
 <div class="figure"><span id="fig:Figure7-17"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-17-1.png" alt="Scatterplots of Infant Mortality vs GDP under four different combinations of log-transformations." width="960" />
 <p class="caption">
-Figure 7.17: Scatterplots of Infant Mortality vs GDP under four different combinations of log-transformations.
+Figure 150: Scatterplots of Infant Mortality vs GDP under four different combinations of log-transformations.
 </p>
 </div>
 <p>Almost all nonlinear transformations assume that the variables are strictly
@@ -1573,7 +1578,7 @@ regression model to a data set with NaNs (not a number) and/or
 <p>Sometimes the log-transformations will not be entirely successful. If the
 relationship is <strong><em>monotonic</em></strong> (strictly positive or strictly negative
 but not both), then possibly another stop
-on the ladder of transformations in Table <a href="chapter7.html#tab:Table7-1">7.1</a> might work.
+on the ladder of transformations in Table <a href="chapter7.html#tab:Table7-1">12</a> might work.
 If the relationship
 is not monotonic, then it may be better to consider a more complex regression
 model that can accommodate the shape in the relationship or to bin the predictor, response, or both into categories so you can use ANOVA or Chi-square methods and avoid at least the linearity assumption.</p>
@@ -1584,7 +1589,7 @@ to the variables would lead to very similar results, but readers may assume
 you used <em>ln</em> if you don’t state that you used <span class="math inline">\(log_{10}\)</span>. The main thing
 to remember to do is to be clear when communicating the version you are
 using. As an example, I was working with researchers on a study
-<span class="citation">(Dieser, Greenwood, and Foreman <a href="#ref-Dieser2010" role="doc-biblioref">2010</a>)</span> related to impacts of environmental
+<span class="citation">(Dieser, Greenwood, and Foreman <a href="references.html#ref-Dieser2010" role="doc-biblioref">2010</a>)</span> related to impacts of environmental
 stresses on bacterial survival. The response variable was log-transformed
 counts and involved smoothed regression lines fit on this scale. I was using
 natural logs to fit the models and then shared the fitted values from the
@@ -1603,11 +1608,9 @@ defaulted to different bases.</p>
 </tr>
 </tbody>
 </table>
-
 </div>
-<div id="section7-6" class="section level2">
-<h2><span class="header-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</h2>
-
+<div id="section7-6" class="section level2" number="7.6">
+<h2 number="7.6"><span class="header-section-number">7.6</span> Transformations part II: Impacts on SLR interpretations: log(y), log(x), &amp; both log(y) &amp; log(x)</h2>
 <p>The previous attempts to linearize relationships imply a desire to be
 able to fit SLR models.
 
@@ -1630,11 +1633,11 @@ long as it provides
 a situation where the SLR assumptions are reasonably well-satisfied.  To
 understand the properties and eventually the interpretation of
 transformed-variables models, we need to try to “reverse” our transformation.
-If we exponentiate<a href="references.html#fn106" class="footnote-ref" id="fnref106"><sup>106</sup></a> both sides of <span class="math inline">\(\log(y)=b_0 + b_1x\)</span>, we get:</p>
+If we exponentiate<a href="#fn111" class="footnote-ref" id="fnref111"><sup>111</sup></a> both sides of <span class="math inline">\(\log(y)=b_0 + b_1x\)</span>, we get:</p>
 <div class="figure"><span id="fig:Figure7-18"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-18-1.png" alt="Plot of the estimated SLR (a) and implied model for the median on the original Hectares scale (b) for the area burned vs temperature data." width="960" />
 <p class="caption">
-Figure 7.18: Plot of the estimated SLR (a) and implied model for the median on the original Hectares scale (b) for the area burned vs temperature data.
+Figure 151: Plot of the estimated SLR (a) and implied model for the median on the original Hectares scale (b) for the area burned vs temperature data.
 </p>
 </div>
 <ul>
@@ -1702,7 +1705,7 @@ these ideas can be used in applications.</p>
 <span class="math inline">\(\log(\widehat{\text{hectares}})=-69.8+1.39\cdot\text{ Temp}\)</span>. On the
 original scale, this implies that the model is
 <span class="math inline">\(\widehat{\text{hectares}}=\exp(-69.8)\exp(1.39\text{ Temp})\)</span>.
-Figure <a href="chapter7.html#fig:Figure7-18">7.18</a> provides the <span class="math inline">\(\log(y)\)</span> scale version of
+Figure <a href="chapter7.html#fig:Figure7-18">151</a> provides the <span class="math inline">\(\log(y)\)</span> scale version of
 the model and the model transformed to the
 original scale of measurement. On the log-hectares scale, the interpretation of
 the slope is: For a 1<span class="math inline">\(^\circ F\)</span> increase in summer temperature, we
@@ -1758,7 +1761,7 @@ since we haven’t changed the <span class="math inline">\(y\sim\)</span> part o
 <div class="figure"><span id="fig:Figure7-19"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-19-1.png" alt="Plot of the observations and estimated SLR model (mortality~ log(GDP)) (top) and implied model (bottom) for the infant mortality data." width="960" />
 <p class="caption">
-Figure 7.19: Plot of the observations and estimated SLR model (mortality~ log(GDP)) (top) and implied model (bottom) for the infant mortality data.
+Figure 152: Plot of the observations and estimated SLR model (mortality~ log(GDP)) (top) and implied model (bottom) for the infant mortality data.
 </p>
 </div>
 <p>While it is not a perfect model (no model is), let’s consider the model
@@ -1772,11 +1775,10 @@ second interpretation is on the original GDP scale: For a doubling of GDP, we
 estimate infant mortality to change, on average, by <span class="math inline">\(-14.86\log(2) = -10.3\)</span>
 deaths/1000 live births. Or, the mean infant mortality is reduced by
 10.3 deaths per 1000 live births for each doubling of
-GDP. Both versions of the model are displayed in Figure <a href="chapter7.html#fig:Figure7-19">7.19</a>
+GDP. Both versions of the model are displayed in Figure <a href="chapter7.html#fig:Figure7-19">152</a>
 – one on the scale
 the SLR model was fit (panel a) and the other on the original <span class="math inline">\(x\)</span>-scale (panel b)
 that matches these last interpretations.</p>
-
 <div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="chapter7.html#cb653-1"></a>ID1 &lt;-<span class="st"> </span><span class="kw">lm</span>(infantMortality<span class="op">~</span><span class="kw">log</span>(ppgdp), <span class="dt">data=</span>UN)</span>
 <span id="cb653-2"><a href="chapter7.html#cb653-2"></a><span class="kw">summary</span>(ID1)</span></code></pre></div>
 <pre><code>## 
@@ -1800,7 +1802,7 @@ that matches these last interpretations.</p>
 <pre><code>## [1] -10.30017</code></pre>
 <p>It appears that our model does not fit too well and that there might be
 some non-constant variance so we
-should check the diagnostic plots (available in Figure <a href="chapter7.html#fig:Figure7-20">7.20</a>)
+should check the diagnostic plots (available in Figure <a href="chapter7.html#fig:Figure7-20">153</a>)
 before we trust
 any of those previous interpretations.</p>
 
@@ -1809,7 +1811,7 @@ any of those previous interpretations.</p>
 <div class="figure"><span id="fig:Figure7-20"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-20-1.png" alt="Diagnostics plots of the infant mortality model with log(GDP)." width="960" />
 <p class="caption">
-Figure 7.20: Diagnostics plots of the infant mortality model with log(GDP).
+Figure 153: Diagnostics plots of the infant mortality model with log(GDP).
 </p>
 </div>
 <p>There appear to be issues with outliers and a long right tail violating
@@ -1829,7 +1831,7 @@ where <span class="math inline">\(y\)</span> is thought to be proportional to <s
 of <span class="math inline">\(\beta_1\)</span> (linear if <span class="math inline">\(\beta_1=1\)</span> and quadratic if <span class="math inline">\(\beta_1=2\)</span>). It is
 one of the models that has been used in Geomorphology to model the shape of
 glaciated valley elevation profiles
-(that classic U-shape that comes with glacier-eroded mountain valleys)<a href="references.html#fn107" class="footnote-ref" id="fnref107"><sup>107</sup></a>. If you
+(that classic U-shape that comes with glacier-eroded mountain valleys)<a href="#fn112" class="footnote-ref" id="fnref112"><sup>112</sup></a>. If you
 ignore the error term, it is possible to estimate the power-law model using our
 SLR approach. Consider the log-transformation of both sides of this equation
 starting with the power-law version:</p>
@@ -1844,7 +1846,7 @@ for logs:</em> <span class="math inline">\(\log(x^b) = b\log(x)\)</span>.</p></l
 <div class="figure"><span id="fig:Figure7-21"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-21-1.png" alt="Plot of the observations and estimated SLR model log(mortality) \(\sim\) log(GDP) (left) and implied model (right) for the infant mortality data." width="576" />
 <p class="caption">
-Figure 7.21: Plot of the observations and estimated SLR model log(mortality) <span class="math inline">\(\sim\)</span> log(GDP) (left) and implied model (right) for the infant mortality data.
+Figure 154: Plot of the observations and estimated SLR model log(mortality) <span class="math inline">\(\sim\)</span> log(GDP) (left) and implied model (right) for the infant mortality data.
 </p>
 </div>
 <p>So other than <span class="math inline">\(\log(\beta_0)\)</span> in the model, this looks just like our
@@ -1855,7 +1857,7 @@ the relationship between the original <span class="math inline">\(x\)</span> and
 is linear <span class="math inline">\((y=\beta_0x^1)\)</span> or quadratic <span class="math inline">\((y=\beta_0x^2)\)</span> or even quartic
 <span class="math inline">\((y=\beta_0x^4)\)</span> in some really heavily glacier carved
 U-shaped valleys. There are some issues with “ignoring the errors” in using SLR
-to estimate these models <span class="citation">(Greenwood and Humphrey <a href="#ref-Greenwood2002" role="doc-biblioref">2002</a>)</span> but it is still a
+to estimate these models <span class="citation">(Greenwood and Humphrey <a href="references.html#ref-Greenwood2002" role="doc-biblioref">2002</a>)</span> but it is still a
 pretty powerful result to be able to estimate the coefficients in
 <span class="math inline">\((y=\beta_0x^{\beta_1})\)</span> using SLR.</p>
 <p>We don’t typically use
@@ -1882,7 +1884,7 @@ exponents and logs, simplifying.</em></p></li>
 of <span class="math inline">\(2^{b_1}\)</span>.</p>
 <p>Let’s apply this idea to the GDP and infant mortality data where a
 <span class="math inline">\(\log(x) \sim \log(y)\)</span> transformation
-actually made the resulting relationship look like it might be close to being reasonably modeled with an SLR. The regression line in Figure <a href="chapter7.html#fig:Figure7-21">7.21</a> actually looks
+actually made the resulting relationship look like it might be close to being reasonably modeled with an SLR. The regression line in Figure <a href="chapter7.html#fig:Figure7-21">154</a> actually looks
 pretty good on both
 the estimated log-log scale (panel a) and on the original scale (panel b) as it
 captures the severe nonlinearity in the relationship between the two variables.</p>
@@ -1890,7 +1892,7 @@ captures the severe nonlinearity in the relationship between the two variables.<
 <div class="figure"><span id="fig:Figure7-22"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-22-1.png" alt="Diagnostic plots for the log-log infant mortality model." width="960" />
 <p class="caption">
-Figure 7.22: Diagnostic plots for the log-log infant mortality model.
+Figure 155: Diagnostic plots for the log-log infant mortality model.
 </p>
 </div>
 <div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="chapter7.html#cb658-1"></a>ID2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(infantMortality)<span class="op">~</span><span class="kw">log</span>(ppgdp), <span class="dt">data=</span>UN)</span>
@@ -1924,32 +1926,30 @@ a change of <span class="math inline">\(-0.617\)</span> log(deaths/1000 live bir
 That is a 34.8%
 decrease in the estimated median <em>infant mortality</em> for each doubling of <em>GDP</em>.</p></li>
 </ol>
-<p>The diagnostics of the log-log SLR model (Figure <a href="chapter7.html#fig:Figure7-22">7.22</a>)
+<p>The diagnostics of the log-log SLR model (Figure <a href="chapter7.html#fig:Figure7-22">155</a>)
 show minimal evidence of violations of assumptions although the tails of
 the residuals are a little heavy (more spread out than a normal distribution)
 and there might still be a little pattern remaining in the residuals vs fitted values.
 
 There are no influential points to be concerned about in this situation.</p>
 <p>While we will not revisit this at all except in the case-studies
-in Chapter <a href="chapter9.html#chapter9">9</a>,
+in Chapter <a href="chapter9.html#chapter9"><strong>??</strong></a>,
 log-transformations can be applied to the response variable in ONE and TWO-WAY
 ANOVA models when we are concerned about non-constant variance and
-non-normality issues<a href="references.html#fn108" class="footnote-ref" id="fnref108"><sup>108</sup></a>. The remaining methods in this chapter return to SLR and assuming
-that the model is at least reasonable to consider in each situation, possibly after transformation(s). In fact, the methods in Section <a href="chapter7.html#section7-7">7.7</a>
+non-normality issues<a href="#fn113" class="footnote-ref" id="fnref113"><sup>113</sup></a>. The remaining methods in this chapter return to SLR and assuming
+that the model is at least reasonable to consider in each situation, possibly after transformation(s). In fact, the methods in Section <a href="chapter7.html#section7-7"><strong>??</strong></a>
 are some of the most sensitive results to violations of the assumptions that we
 will explore.</p>
 <!-- \newpage -->
-
 </div>
-<div id="section7-7" class="section level2">
-<h2><span class="header-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</h2>
-
-<p>Figure <a href="chapter7.html#fig:Figure7-7">7.7</a> provided a term-plot of the estimated
+<div id="section7-7" class="section level2" number="7.7">
+<h2 number="7.7"><span class="header-section-number">7.7</span> Confidence interval for the mean and prediction intervals for a new observation</h2>
+<p>Figure <a href="chapter7.html#fig:Figure7-7">140</a> provided a term-plot of the estimated
 regression line and a shaded area surrounding
 the estimated regression equation. Those shaded areas are based on connecting
 the dots on 95% confidence intervals constructed for the true mean <span class="math inline">\(y\)</span> value
 across all the <span class="math inline">\(x\)</span>-values. To formalize this idea, consider a specific value
-of <span class="math inline">\(x\)</span>, and call it <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> (pronounced <strong>x-new</strong><a href="references.html#fn109" class="footnote-ref" id="fnref109"><sup>109</sup></a>).
+of <span class="math inline">\(x\)</span>, and call it <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> (pronounced <strong>x-new</strong><a href="#fn114" class="footnote-ref" id="fnref114"><sup>114</sup></a>).
 Then the true mean response for this <strong><em>subpopulation</em></strong> (a subpopulation
 is all observations we could obtain at <span class="math inline">\(\boldsymbol{x=x_{\nu}}\)</span>) is given by
 <span class="math inline">\(\boldsymbol{E(Y)=\mu_\nu=\beta_0+\beta_1x_{\nu}}\)</span>. To estimate the mean
@@ -2030,7 +2030,7 @@ and form our own PIs. If you want CIs, run
 prediction at an <span class="math inline">\(x\)</span>-value that was not in the original
 observations, add the option <code>newdata=tibble(XVARIABLENAME_FROM_ORIGINAL_MODEL=Xnu)</code>
 to the <code>predict</code> function call.</p>
-<p>Some examples of using the predict function follow<a href="references.html#fn110" class="footnote-ref" id="fnref110"><sup>110</sup></a>. For example, it might be interesting to use the regression
+<p>Some examples of using the predict function follow<a href="#fn115" class="footnote-ref" id="fnref115"><sup>115</sup></a>. For example, it might be interesting to use the regression
 model to find a 95%
 CI and PI for the <em>Beers</em> vs <em>BAC</em> study for a student who would
 consume 8 beers. Four different applications of the predict function follow.
@@ -2141,7 +2141,7 @@ with a legend. The <code>lines</code> function connects the points with a line t
 <div class="figure"><span id="fig:Figure7-23"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-23-1.png" alt="Estimated SLR for BAC data with 95% confidence (darker, dashed lines) and 95% prediction (lighter, dotted lines) intervals." width="960" />
 <p class="caption">
-Figure 7.23: Estimated SLR for BAC data with 95% confidence (darker, dashed lines) and 95% prediction (lighter, dotted lines) intervals.
+Figure 156: Estimated SLR for BAC data with 95% confidence (darker, dashed lines) and 95% prediction (lighter, dotted lines) intervals.
 </p>
 </div>
 <div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="chapter7.html#cb684-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
@@ -2154,7 +2154,7 @@ Figure 7.23: Estimated SLR for BAC data with 95% confidence (darker, dashed line
 <span id="cb684-8"><a href="chapter7.html#cb684-8"></a><span class="kw">lines</span>(upr<span class="op">~</span>beerf, <span class="dt">data=</span>BBPI,<span class="dt">col=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">lty=</span><span class="dv">3</span>, <span class="dt">lwd=</span><span class="dv">3</span>) <span class="co">#Plot the PI upper bound</span></span>
 <span id="cb684-9"><a href="chapter7.html#cb684-9"></a><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Estimate&quot;</span>,<span class="st">&quot;CI&quot;</span>,<span class="st">&quot;PI&quot;</span>), <span class="dt">lwd=</span><span class="dv">3</span>, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
 <span id="cb684-10"><a href="chapter7.html#cb684-10"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;grey&quot;</span>)) <span class="co">#Add a legend to explain lines</span></span></code></pre></div>
-<p>More importantly, note that the CI in Figure <a href="chapter7.html#fig:Figure7-23">7.23</a> clearly
+<p>More importantly, note that the CI in Figure <a href="chapter7.html#fig:Figure7-23">156</a> clearly
 shows widening as we move further away from the mean of the
 <span class="math inline">\(x\text{&#39;s}\)</span> to the edges of the observed <span class="math inline">\(x\)</span>-values. This reflects a decrease
 in knowledge of the true mean as we move away from the mean of the
@@ -2163,7 +2163,7 @@ also is widening slightly but not as clearly in this situation. The difference
 in widths in the two types of intervals becomes extremely clear when they are
 displayed together, with the PI much wider than the CI for any <span class="math inline">\(x\)</span>-value.</p>
 <p>Similarly, the 95% CI and PIs for the Bozeman yearly average maximum
-temperatures in Figure <a href="chapter7.html#fig:Figure7-24">7.24</a> provide
+temperatures in Figure <a href="chapter7.html#fig:Figure7-24">157</a> provide
 interesting information on the uncertainty in the estimated mean temperature
 over time. It is also interesting to explore how many of the observations fall
 within the 95% prediction intervals. The PIs are for new observations, but you
@@ -2192,7 +2192,7 @@ more than 95% of the observations used to make it.</p>
 <div class="figure"><span id="fig:Figure7-24"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-24-1.png" alt="Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals." width="960" />
 <p class="caption">
-Figure 7.24: Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals.
+Figure 157: Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals.
 </p>
 </div>
 <p>We can also use these same methods to do a prediction for the year after the
@@ -2216,14 +2216,14 @@ yearly average maximum temperature in 2015 will be (I guess “would have been�
 between 59.2<span class="math inline">\(^\circ F\)</span> and 61.1<span class="math inline">\(^\circ F\)</span>. Obviously, 2015 has occurred, but
 since the data were not published when the data set was downloaded in July
 2016, we can probably best treat 2015 as a potential “future” observation. The
-results for 2050 are clearly for the future mean and a new observation<a href="references.html#fn111" class="footnote-ref" id="fnref111"><sup>111</sup></a> in 2050.
+results for 2050 are clearly for the future mean and a new observation<a href="#fn116" class="footnote-ref" id="fnref116"><sup>116</sup></a> in 2050.
 Note that up to 2014, no values of this response had been observed above 60<span class="math inline">\(^\circ F\)</span> and the predicted mean in 2050 is over 60<span class="math inline">\(^\circ F\)</span> if the trend
 persists. It is easy to criticize the use of this model for 2050 because of its extreme amount
 of extrapolation.</p>
 <!-- \newpage -->
 </div>
-<div id="section7-8" class="section level2">
-<h2><span class="header-section-number">7.8</span> Chapter summary</h2>
+<div id="section7-8" class="section level2" number="7.8">
+<h2 number="7.8"><span class="header-section-number">7.8</span> Chapter summary</h2>
 <p>In this chapter, we raised our SLR modeling to a new level, considering
 inference techniques for relationships between two quantitative variables. The next
 chapter will build on these same techniques but add in additional explanatory
@@ -2243,8 +2243,8 @@ completely new initially but it actually contains very little new material,
 just more complicated models that use the same concepts. There will be a
 couple of new issues to consider for MLR and we’ll need to learn how to work
 with categorical variables in a regression setting – but we actually fit
-linear models with categorical variables in Chapters <a href="chapter2.html#chapter2">2</a>, <a href="chapter3.html#chapter3">3</a>, and
-<a href="chapter4.html#chapter4">4</a> so that isn’t actually completely new either.</p>
+linear models with categorical variables in Chapters <a href="chapter2.html#chapter2"><strong>??</strong></a>, <a href="chapter3.html#chapter3"><strong>??</strong></a>, and
+<a href="chapter4.html#chapter4"><strong>??</strong></a> so that isn’t actually completely new either.</p>
 <p>SLR is a simple (thus its name) tool for analyzing the relationship
 between two
 quantitative variables. It contains assumptions about the estimated regression
@@ -2263,8 +2263,8 @@ big changes in the results depending on which scale (original or transformed)
 the results are being interpreted on.</p>
 <!-- \newpage -->
 </div>
-<div id="section7-9" class="section level2">
-<h2><span class="header-section-number">7.9</span> Summary of important R code</h2>
+<div id="section7-9" class="section level2" number="7.9">
+<h2 number="7.9"><span class="header-section-number">7.9</span> Summary of important R code</h2>
 <p>The main components of the R code used in this chapter follow with the
 components to modify in lighter and/or ALL CAPS text where <code>y</code> is a response variable, <code>x</code> is an
 explanatory variable, and the data are in <code>DATASETNAME</code>.</p>
@@ -2287,7 +2287,7 @@ nonlinear relationships.
 <li><p><strong>summary(<font color='red'>MODELNAME</font>)</strong></p>
 <ul>
 <li>Provides parameter estimates and R-squared (used heavily in
-Chapter <a href="chapter8.html#chapter8">8</a> as well).
+Chapter <a href="chapter8.html#chapter8"><strong>??</strong></a> as well).
 </li>
 </ul></li>
 <li><p><strong>par(mfrow=c(2, 2)); plot(<font color='red'>MODELNAME</font>)</strong></p>
@@ -2339,14 +2339,14 @@ by the sample size – 2.
 </li>
 </ul></li>
 </ul>
-
+<div style="page-break-after: always;"></div>
 </div>
-<div id="section7-10" class="section level2">
-<h2><span class="header-section-number">7.10</span> Practice problems</h2>
+<div id="section7-10" class="section level2" number="7.10">
+<h2 number="7.10"><span class="header-section-number">7.10</span> Practice problems</h2>
 <p>7.1. <strong>Treadmill data analysis</strong> We will continue with the treadmill data set introduced in Chapter
-<a href="chapter1.html#chapter1">1</a> and the SLR fit in the practice problems in
-Chapter <a href="chapter6.html#chapter6">6</a>. The following code will get you back to where we
-stopped at the end of Chapter <a href="chapter6.html#chapter6">6</a>:</p>
+<a href="chapter1.html#chapter1"><strong>??</strong></a> and the SLR fit in the practice problems in
+Chapter <a href="chapter6.html#chapter6"><strong>??</strong></a>. The following code will get you back to where we
+stopped at the end of Chapter <a href="chapter6.html#chapter6"><strong>??</strong></a>:</p>
 <div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="chapter7.html#cb694-1"></a>treadmill &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/treadmill.csv&quot;</span>)</span>
 <span id="cb694-2"><a href="chapter7.html#cb694-2"></a><span class="kw">plot</span>(TreadMillOx<span class="op">~</span>RunTime, <span class="dt">data=</span>treadmill)</span>
 <span id="cb694-3"><a href="chapter7.html#cb694-3"></a>tm &lt;-<span class="st"> </span><span class="kw">lm</span>(TreadMillOx<span class="op">~</span>RunTime, <span class="dt">data=</span>treadmill)</span>
@@ -2368,7 +2368,7 @@ prediction intervals for run times of 11 and 16 minutes.</p>
 <p>7.1.6. Compare the width of either set of CIs and PIs – why are they different?
 For the two different predictions, why are the intervals wider for 16 minutes
 than for 11 minutes?</p>
-<p>7.1.7. The Residuals vs Fitted plot considered in Chapter <a href="chapter6.html#chapter6">6</a> should
+<p>7.1.7. The Residuals vs Fitted plot considered in Chapter <a href="chapter6.html#chapter6"><strong>??</strong></a> should
 have suggested slight non-constant variance and maybe a little missed
 nonlinearity. Perform a log-transformation of the treadmill oxygen response
 variable and re-fit the SLR model. Remake the diagnostic plots and discuss
@@ -2379,29 +2379,13 @@ question.</p>
 
 </div>
 </div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-Dieser2010">
-<p>Dieser, Markus, Mark C. Greenwood, and Christine M. Foreman. 2010. “Carotenoid Pigmentation in Antarctic Heterotrophic Bacteria as a Strategy to Withstand Environmental Stresses.” <em>Arctic, Antarctic, and Alpine Research</em> 42(4): 396–405. <a href="https://doi.org/10.1657/1938-4246-42.4.396">https://doi.org/10.1657/1938-4246-42.4.396</a>.</p>
-</div>
-<div id="ref-Fox2003">
-<p>Fox, John. 2003. “Effect Displays in R for Generalised Linear Models.” <em>Journal of Statistical Software</em> 8 (15): 1–27. <a href="http://www.jstatsoft.org/v08/i15/">http://www.jstatsoft.org/v08/i15/</a>.</p>
-</div>
-<div id="ref-R-carData">
-<p>Fox, John, Sanford Weisberg, and Brad Price. 2018. <em>CarData: Companion to Applied Regression Data Sets</em>. <a href="https://CRAN.R-project.org/package=carData">https://CRAN.R-project.org/package=carData</a>.</p>
-</div>
-<div id="ref-Greenwood2011">
-<p>Greenwood, Mark C., Joel Harper, and Johnnie Moore. 2011. “An Application of Statistics in Climate Change: Detection of Nonlinear Changes in a Streamflow Timing Measure in the Columbia and Missouri Headwaters.” In <em>Handbook of the Philosophy of Science, Vol. 7: Statistics</em>, edited by P. S. Bandyopadhyay and M. Forster, 1117–42. Elsevier.</p>
-</div>
-<div id="ref-Greenwood2002">
-<p>Greenwood, Mark C., and N. F. Humphrey. 2002. “Glaciated Valley Profiles: An Application of Nonlinear Regression.” <em>Computing Science and Statistics</em> 34: 452–60.</p>
-</div>
-<div id="ref-Moore2007">
-<p>Moore, Johnnie N., Joel T. Harper, and Mark C. Greenwood. 2007. “Significance of Trends Toward Earlier Snowmelt Runoff, Columbia and Missouri Basin Headwaters, Western United States.” <em>Geophysical Research Letters</em> 34 (16). <a href="https://doi.org/10.1029/2007GL031022">https://doi.org/10.1029/2007GL031022</a>.</p>
-</div>
-<div id="ref-Santibanez2018">
-<p>Santibáñez, Pamela A., Olivia J. Maselli, Mark C. Greenwood, Mackenzie M. Grieman, Eric S. Saltzman, Joseph R. McConnell, and John C. Priscu. 2018. “Prokaryotes in the Wais Divide Ice Core Reflect Source and Transport Changes Between Last Glacial Maximum and the Early Holocene.” <em>Global Change Biology</em> 24 (5): 2182–97. <a href="https://doi.org/10.1111/gcb.14042">https://doi.org/10.1111/gcb.14042</a>.</p>
-</div>
+<div class="footnotes">
+<hr />
+<ol start="112">
+<li id="fn112"><p>You can read my dissertation if you want my take on modeling U and V-shaped valley elevation profiles that included some discussion of these models and some related discussions in <span class="citation">Greenwood and Humphrey (<a href="references.html#ref-Greenwood2002" role="doc-biblioref">2002</a>)</span>.<a href="chapter7.html#fnref112" class="footnote-back">↩︎</a></p></li>
+<li id="fn113"><p>This transformation could not be applied directly to the education growth score data in Chapter <a href="chapter5.html#chapter5"><strong>??</strong></a> because there were negative “growth” scores.<a href="chapter7.html#fnref113" class="footnote-back">↩︎</a></p></li>
+<li id="fn116"><p>I have really enjoyed writing this book but kind of hope to at least have updated this data set before 2050.<a href="chapter7.html#fnref116" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -2414,11 +2398,13 @@ question.</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -2433,6 +2419,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -2454,8 +2444,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

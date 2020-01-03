@@ -1059,7 +1059,7 @@ In Figure \@ref(fig:Figure8-14), we can see more of the story here by exploring 
 
 (ref:fig8-14) Term-plots with partial residuals for Cholesterol level versus three predictors (simulated data).
 
-```{r Figure8-14,fig.cap="(ref:fig8-14)",echo=T,fig.width=8,fig.height=6}
+```{r Figure8-14,fig.cap="(ref:fig8-14)",echo=T,fig.width=10,fig.height=4.5}
 plot(allEffects(sim1, residuals=T))
 ```
 
@@ -1335,8 +1335,6 @@ regression models that can result in common mistakes.
     conditionality of the relationships being estimated in MLR and the potential
     for sharing of information in the predictors when it is present. 
 
-\newpage
-
 * **Multicollinearity in MLR models:**
 
     When explanatory variables are not independent (related) to one another, then
@@ -1462,7 +1460,6 @@ $$\text{VIF}_{\text{elevation}} = \dfrac{1}{1-R^2_{\text{elevation}}} = \dfrac{1
 1 - 0.8775
 ```
 
-\newpage
 
 ```{r}
 1/0.1225
@@ -1769,8 +1766,11 @@ There are positive relationships in Figure \@ref(fig:Figure8-18) among all the
 pre-college measures and the *college GPA* but none are above the moderate
 strength level. The *HSGPA* has a highest correlation with
 first year of college results but its correlation is not that strong. Maybe
-together in a model the SAT percentiles can also be useful... Also note that
-plot shows an odd *HSGPA* of 4.5 that probably should be removed^[Either
+together in a model the SAT percentiles can also be useful... 
+
+\newpage 
+
+\indent Also note this plot shows an odd *HSGPA* of 4.5 that probably should be removed^[Either
 someone had a weighted GPA with bonus points, or more likely here, there
 was a coding error in the data set since only one observation was over 4.0 in
 the GPA data. Either way, we could remove it and note that our inferences for
@@ -2968,7 +2968,7 @@ and term-plots (Figure \@ref(fig:Figure8-36)) suggest the potentially
 dangerous conclusion that
 can come from assuming a common slope when that might not be the case. 
 
-\newpage
+\vspace{33pt}
 
 (ref:fig8-36) Term-plots for additive model for reading scores.
 
@@ -3166,7 +3166,7 @@ model. \index{model!nested}
 
 (ref:fig8-40) Diagram of models to consider in an interaction model. 
 
-```{r Figure8-40,fig.cap="(ref:fig8-40)",echo=F,warning=F,message=F,out.width="100%",fig.align="center"}
+```{r Figure8-40,fig.cap="(ref:fig8-40)",echo=F,warning=F,message=F,out.width="90%",fig.align="center"}
 knitr::include_graphics("chapter8_files/nestedModelTree_medium.png")
 ```
 
@@ -3550,6 +3550,8 @@ oldWidth <- options()$width
 options(width=80)
 ```
 
+\small
+
 ```{r message=FALSE, warning=FALSE}
 library(MuMIn)
 options(na.action = "na.fail") #Must run this code once to use dredge
@@ -3557,6 +3559,8 @@ snotel2R <- snotel2[-c(9,22),]
 m6 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2R)
 dredge(m6, rank="AIC", extra = c("R^2", adjRsq=function(x) summary(x)$adj.r.squared))
 ```
+
+\normalsize
 
 ```{r echo=F}
 options(width=oldWidth)

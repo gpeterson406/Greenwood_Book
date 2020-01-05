@@ -33,7 +33,7 @@ header-includes:
 
 # Cover {-}
 
-<img src="frontMatter/titlepage_2019.png" width="674" />
+<img src="frontMatter/titlepage_spring_2020.png" width="656" />
 
 <!-- \frontmatter -->
 

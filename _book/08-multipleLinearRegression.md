@@ -1284,7 +1284,7 @@ plot(allEffects(sim1, residuals=T))
 ```
 
 <div class="figure">
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-14-1.png" alt="(ref:fig8-14)" width="768" />
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-14-1.png" alt="(ref:fig8-14)" width="960" />
 <p class="caption">(\#fig:Figure8-14)(ref:fig8-14)</p>
 </div>
 
@@ -1592,8 +1592,6 @@ regression models that can result in common mistakes.
     conditionality of the relationships being estimated in MLR and the potential
     for sharing of information in the predictors when it is present. 
 
-\newpage
-
 * **Multicollinearity in MLR models:**
 
     When explanatory variables are not independent (related) to one another, then
@@ -1765,7 +1763,6 @@ $$\text{VIF}_{\text{elevation}} = \dfrac{1}{1-R^2_{\text{elevation}}} = \dfrac{1
 ## [1] 0.1225
 ```
 
-\newpage
 
 
 ```r
@@ -2118,8 +2115,11 @@ There are positive relationships in Figure \@ref(fig:Figure8-18) among all the
 pre-college measures and the *college GPA* but none are above the moderate
 strength level. The *HSGPA* has a highest correlation with
 first year of college results but its correlation is not that strong. Maybe
-together in a model the SAT percentiles can also be useful... Also note that
-plot shows an odd *HSGPA* of 4.5 that probably should be removed^[Either
+together in a model the SAT percentiles can also be useful... 
+
+\newpage 
+
+\indent Also note this plot shows an odd *HSGPA* of 4.5 that probably should be removed^[Either
 someone had a weighted GPA with bonus points, or more likely here, there
 was a coding error in the data set since only one observation was over 4.0 in
 the GPA data. Either way, we could remove it and note that our inferences for
@@ -3605,7 +3605,7 @@ and term-plots (Figure \@ref(fig:Figure8-36)) suggest the potentially
 dangerous conclusion that
 can come from assuming a common slope when that might not be the case. 
 
-\newpage
+\vspace{33pt}
 
 (ref:fig8-36) Term-plots for additive model for reading scores.
 
@@ -3887,7 +3887,7 @@ model. \index{model!nested}
 (ref:fig8-40) Diagram of models to consider in an interaction model. 
 
 <div class="figure" style="text-align: center">
-<img src="chapter8_files/nestedModelTree_medium.png" alt="(ref:fig8-40)" width="100%" />
+<img src="chapter8_files/nestedModelTree_medium.png" alt="(ref:fig8-40)" width="90%" />
 <p class="caption">(\#fig:Figure8-40)(ref:fig8-40)</p>
 </div>
 
@@ -4291,6 +4291,8 @@ most complex model that included four predictor variables used up 5 *model df*.
 
 
 
+\small
+
 
 ```r
 library(MuMIn)
@@ -4315,6 +4317,8 @@ dredge(m6, rank="AIC", extra = c("R^2", adjRsq=function(x) summary(x)$adj.r.squa
 ## 1   40.21                         0.0000 0.0000  2 -102.630 209.3 39.55  0.000
 ## Models ranked by AIC(x)
 ```
+
+\normalsize
 
 
 

@@ -260,7 +260,7 @@ for us, but you will only interact with it once. Go to http://cran.rstudio.com
 and click on the "**Download R for...**" button that
 corresponds to your operating system. On the next page, click on "**base**" and then it will take you 
 to a screen to download the most current version of R that is compiled for your
-operating system, something like "**Download R 3.6.1 for Windows**". Click on that link and then open 
+operating system, something like "**Download R 3.6.2 for Windows**". Click on that link and then open 
 the file you downloaded. You will need to select your preferred language (choose English so your  instructor can help you), then hit "**Next**"
 until it starts to unpack and install the program (all the base settings will be fine). After you hit "**Finish**" you will not do anything further with R directly. 
 
@@ -687,7 +687,7 @@ Figure \@ref(fig:Figure1-5).
 (ref:fig1-6) RStudio while in the process of copying the histogram.
 
 <div class="figure" style="text-align: center">
-<img src="chapter1_files/image010.png" alt="(ref:fig1-6)" width="100%" />
+<img src="chapter1_files/Fig1-6.png" alt="(ref:fig1-6)" width="100%" />
 <p class="caption">(\#fig:Figure1-6)(ref:fig1-6)</p>
 </div>
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Correlation and Simple Linear Regression | Intermediate Statistics with R</title>
-  <meta name="description" content="6 Correlation and Simple Linear Regression | Intermediate Statistics with R" />
+  <title>Chapter 6 Correlation and Simple Linear Regression | Intermediate Statistics with R</title>
+  <meta name="description" content="Chapter 6 Correlation and Simple Linear Regression | Intermediate Statistics with R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Correlation and Simple Linear Regression | Intermediate Statistics with R" />
+  <meta property="og:title" content="Chapter 6 Correlation and Simple Linear Regression | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="gpeterson406/Greenwood_Book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Correlation and Simple Linear Regression | Intermediate Statistics with R" />
+  <meta name="twitter:title" content="Chapter 6 Correlation and Simple Linear Regression | Intermediate Statistics with R" />
   
   
   
@@ -33,7 +33,6 @@
 <link rel="prev" href="chapter5.html"/>
 <link rel="next" href="chapter7.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<script src="libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -53,17 +52,18 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -83,7 +83,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -117,6 +117,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+<link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
 </head>
 
 <body>
@@ -134,8 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover</a></li>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
-<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
-<ul>
+<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
 <li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#section1-1"><i class="fa fa-check"></i><b>1.1</b> Overview of methods</a></li>
 <li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section1-2"><i class="fa fa-check"></i><b>1.2</b> Getting started in R</a></li>
 <li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section1-3"><i class="fa fa-check"></i><b>1.3</b> Basic summary statistics, histograms, and boxplots using R</a></li>
@@ -143,8 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section1-5"><i class="fa fa-check"></i><b>1.5</b> Summary of important R code</a></li>
 <li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#section1-6"><i class="fa fa-check"></i><b>1.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> (R)e-Introduction to statistics</a>
-<ul>
+<li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> (R)e-Introduction to statistics</a><ul>
 <li class="chapter" data-level="2.1" data-path="chapter2.html"><a href="chapter2.html#section2-1"><i class="fa fa-check"></i><b>2.1</b> Histograms, boxplots, and density curves</a></li>
 <li class="chapter" data-level="2.2" data-path="chapter2.html"><a href="chapter2.html#section2-2"><i class="fa fa-check"></i><b>2.2</b> Pirate-plots</a></li>
 <li class="chapter" data-level="2.3" data-path="chapter2.html"><a href="chapter2.html#section2-3"><i class="fa fa-check"></i><b>2.3</b> Models, hypotheses, and permutations for the two sample mean situation</a></li>
@@ -159,8 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.12" data-path="chapter2.html"><a href="chapter2.html#section2-12"><i class="fa fa-check"></i><b>2.12</b> Summary of important R code</a></li>
 <li class="chapter" data-level="2.13" data-path="chapter2.html"><a href="chapter2.html#section2-13"><i class="fa fa-check"></i><b>2.13</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a>
-<ul>
+<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a><ul>
 <li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#section3-1"><i class="fa fa-check"></i><b>3.1</b> Situation</a></li>
 <li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#section3-2"><i class="fa fa-check"></i><b>3.2</b> Linear model for One-Way ANOVA (cell means and reference-coding)</a></li>
 <li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#section3-3"><i class="fa fa-check"></i><b>3.3</b> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
@@ -172,8 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9" data-path="chapter3.html"><a href="chapter3.html#section3-9"><i class="fa fa-check"></i><b>3.9</b> Summary of important R code</a></li>
 <li class="chapter" data-level="3.10" data-path="chapter3.html"><a href="chapter3.html#section3-10"><i class="fa fa-check"></i><b>3.10</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="chapter4.html"><a href="chapter4.html"><i class="fa fa-check"></i><b>4</b> Two-Way ANOVA</a>
-<ul>
+<li class="chapter" data-level="4" data-path="chapter4.html"><a href="chapter4.html"><i class="fa fa-check"></i><b>4</b> Two-Way ANOVA</a><ul>
 <li class="chapter" data-level="4.1" data-path="chapter4.html"><a href="chapter4.html#section4-1"><i class="fa fa-check"></i><b>4.1</b> Situation</a></li>
 <li class="chapter" data-level="4.2" data-path="chapter4.html"><a href="chapter4.html#section4-2"><i class="fa fa-check"></i><b>4.2</b> Designing a two-way experiment and visualizing results</a></li>
 <li class="chapter" data-level="4.3" data-path="chapter4.html"><a href="chapter4.html#section4-3"><i class="fa fa-check"></i><b>4.3</b> Two-Way ANOVA models and hypothesis tests</a></li>
@@ -184,8 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.8" data-path="chapter4.html"><a href="chapter4.html#section4-8"><i class="fa fa-check"></i><b>4.8</b> Summary of important R code</a></li>
 <li class="chapter" data-level="4.9" data-path="chapter4.html"><a href="chapter4.html#section4-9"><i class="fa fa-check"></i><b>4.9</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="chapter5.html"><a href="chapter5.html"><i class="fa fa-check"></i><b>5</b> Chi-square tests</a>
-<ul>
+<li class="chapter" data-level="5" data-path="chapter5.html"><a href="chapter5.html"><i class="fa fa-check"></i><b>5</b> Chi-square tests</a><ul>
 <li class="chapter" data-level="5.1" data-path="chapter5.html"><a href="chapter5.html#section5-1"><i class="fa fa-check"></i><b>5.1</b> Situation, contingency tables, and tableplots</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter5.html"><a href="chapter5.html#section5-2"><i class="fa fa-check"></i><b>5.2</b> Homogeneity test hypotheses</a></li>
 <li class="chapter" data-level="5.3" data-path="chapter5.html"><a href="chapter5.html#section5-3"><i class="fa fa-check"></i><b>5.3</b> Independence test hypotheses</a></li>
@@ -201,8 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.13" data-path="chapter5.html"><a href="chapter5.html#section5-13"><i class="fa fa-check"></i><b>5.13</b> Summary of important R commands</a></li>
 <li class="chapter" data-level="5.14" data-path="chapter5.html"><a href="chapter5.html#section5-14"><i class="fa fa-check"></i><b>5.14</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="chapter6.html"><a href="chapter6.html"><i class="fa fa-check"></i><b>6</b> Correlation and Simple Linear Regression</a>
-<ul>
+<li class="chapter" data-level="6" data-path="chapter6.html"><a href="chapter6.html"><i class="fa fa-check"></i><b>6</b> Correlation and Simple Linear Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="chapter6.html"><a href="chapter6.html#section6-1"><i class="fa fa-check"></i><b>6.1</b> Relationships between two quantitative variables</a></li>
 <li class="chapter" data-level="6.2" data-path="chapter6.html"><a href="chapter6.html#section6-2"><i class="fa fa-check"></i><b>6.2</b> Estimating the correlation coefficient</a></li>
 <li class="chapter" data-level="6.3" data-path="chapter6.html"><a href="chapter6.html#section6-3"><i class="fa fa-check"></i><b>6.3</b> Relationships between variables by groups</a></li>
@@ -218,8 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.13" data-path="chapter6.html"><a href="chapter6.html#section6-13"><i class="fa fa-check"></i><b>6.13</b> Summary of important R code</a></li>
 <li class="chapter" data-level="6.14" data-path="chapter6.html"><a href="chapter6.html#section6-14"><i class="fa fa-check"></i><b>6.14</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="chapter7.html"><a href="chapter7.html"><i class="fa fa-check"></i><b>7</b> Simple linear regression inference</a>
-<ul>
+<li class="chapter" data-level="7" data-path="chapter7.html"><a href="chapter7.html"><i class="fa fa-check"></i><b>7</b> Simple linear regression inference</a><ul>
 <li class="chapter" data-level="7.1" data-path="chapter7.html"><a href="chapter7.html#section7-1"><i class="fa fa-check"></i><b>7.1</b> Model</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter7.html"><a href="chapter7.html#section7-2"><i class="fa fa-check"></i><b>7.2</b> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li class="chapter" data-level="7.3" data-path="chapter7.html"><a href="chapter7.html#section7-3"><i class="fa fa-check"></i><b>7.3</b> Bozeman temperature trend</a></li>
@@ -231,8 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="chapter7.html"><a href="chapter7.html#section7-9"><i class="fa fa-check"></i><b>7.9</b> Summary of important R code</a></li>
 <li class="chapter" data-level="7.10" data-path="chapter7.html"><a href="chapter7.html#section7-10"><i class="fa fa-check"></i><b>7.10</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="chapter8.html"><a href="chapter8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression</a>
-<ul>
+<li class="chapter" data-level="8" data-path="chapter8.html"><a href="chapter8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression</a><ul>
 <li class="chapter" data-level="8.1" data-path="chapter8.html"><a href="chapter8.html#section8-1"><i class="fa fa-check"></i><b>8.1</b> Going from SLR to MLR</a></li>
 <li class="chapter" data-level="8.2" data-path="chapter8.html"><a href="chapter8.html#section8-2"><i class="fa fa-check"></i><b>8.2</b> Validity conditions in MLR</a></li>
 <li class="chapter" data-level="8.3" data-path="chapter8.html"><a href="chapter8.html#section8-3"><i class="fa fa-check"></i><b>8.3</b> Interpretation of MLR terms</a></li>
@@ -251,8 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.16" data-path="chapter8.html"><a href="chapter8.html#section8-16"><i class="fa fa-check"></i><b>8.16</b> Summary of important R code</a></li>
 <li class="chapter" data-level="8.17" data-path="chapter8.html"><a href="chapter8.html#section8-17"><i class="fa fa-check"></i><b>8.17</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="chapter9.html"><a href="chapter9.html"><i class="fa fa-check"></i><b>9</b> Case studies</a>
-<ul>
+<li class="chapter" data-level="9" data-path="chapter9.html"><a href="chapter9.html"><i class="fa fa-check"></i><b>9</b> Case studies</a><ul>
 <li class="chapter" data-level="9.1" data-path="chapter9.html"><a href="chapter9.html#section9-1"><i class="fa fa-check"></i><b>9.1</b> Overview of material covered</a></li>
 <li class="chapter" data-level="9.2" data-path="chapter9.html"><a href="chapter9.html#section9-2"><i class="fa fa-check"></i><b>9.2</b> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li class="chapter" data-level="9.3" data-path="chapter9.html"><a href="chapter9.html#section9-3"><i class="fa fa-check"></i><b>9.3</b> Ants learn to rely on more informative attributes during decision-making</a></li>
@@ -281,11 +274,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter6" class="section level1" number="6">
-<h1 number="6"><span class="header-section-number">6</span> Correlation and Simple Linear Regression</h1>
-<div id="section6-1" class="section level2" number="6.1">
-<h2 number="6.1"><span class="header-section-number">6.1</span> Relationships between two quantitative variables</h2>
-<p>The independence test in Chapter <a href="chapter5.html#chapter5"><strong>??</strong></a> provided a technique for assessing evidence of a
+<div id="chapter6" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Correlation and Simple Linear Regression</h1>
+<div id="section6-1" class="section level2">
+<h2><span class="header-section-number">6.1</span> Relationships between two quantitative variables</h2>
+<p>The independence test in Chapter <a href="chapter5.html#chapter5">5</a> provided a technique for assessing evidence of a
 relationship between two categorical variables. The terms <strong><em>relationship</em></strong> and <strong><em>association</em></strong>
 are synonyms that, in statistics, imply that particular values on one variable tend to occur more often with
 some other values of the other variable or that knowing
@@ -339,7 +332,7 @@ the models that we are going to develop to pick a total number of beers you
 will consume and get a predicted <em>BAC</em>, which employs the entire equation we will estimate.</p>
 <p>Before we get to the specifics of this model and how we measure correlation, we
 should graphically explore the relationship between <code>Beers</code> and <code>BAC</code> in a scatterplot.
-Figure <a href="chapter6.html#fig:Figure6-1">109</a> shows a <strong><em>scatterplot</em></strong> of the results that display
+Figure <a href="chapter6.html#fig:Figure6-1">6.1</a> shows a <strong><em>scatterplot</em></strong> of the results that display
 the expected positive relationship. Scatterplots display the response pairs for
 the two quantitative variables with the
 explanatory variable on the <span class="math inline">\(x\)</span>-axis and the response variable on the <span class="math inline">\(y\)</span>-axis. The
@@ -349,7 +342,7 @@ students consuming 5 beers, their <em>BAC</em>s range from 0.05 to 0.10. If you 
 at the online <em>BAC</em> calculators, you will see that other factors such as weight,
 sex, and beer percent alcohol can impact
 the results. We might also be interested in previous alcohol consumption. In
-Chapter <a href="chapter8.html#chapter8"><strong>??</strong></a>, we will learn how to estimate the relationship between
+Chapter <a href="chapter8.html#chapter8">8</a>, we will learn how to estimate the relationship between
 <code>Beers</code> and <code>BAC</code> after correcting or controlling for those “other variables” using
 <strong><em>multiple linear regression</em></strong>, where we incorporate more than one
 quantitative explanatory variable into the linear model (somewhat like in the
@@ -359,7 +352,7 @@ quantitative explanatory variable into the linear model (somewhat like in the
 Some of this variability might be hard or impossible to explain
 regardless of the other variables available and is considered unexplained variation
 and goes into the residual errors in our models, just like in the ANOVA models.
-To make scatterplots as in Figure <a href="chapter6.html#fig:Figure6-1">109</a>, you can simply<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> use
+To make scatterplots as in Figure <a href="chapter6.html#fig:Figure6-1">6.1</a>, you can simply<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> use
 <code>plot(y~x, data=...)</code>.</p>
 <div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="chapter6.html#cb499-1"></a><span class="kw">library</span>(readr)</span>
 <span id="cb499-2"><a href="chapter6.html#cb499-2"></a>BB &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/beersbac.csv&quot;</span>)</span></code></pre></div>
@@ -368,7 +361,7 @@ To make scatterplots as in Figure <a href="chapter6.html#fig:Figure6-1">109</a>,
 <div class="figure"><span id="fig:Figure6-1"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-1-1.png" alt="Scatterplot of Beers consumed versus BAC." width="576" />
 <p class="caption">
-Figure 109: Scatterplot of <em>Beers</em> consumed versus <em>BAC</em>.
+Figure 6.1: Scatterplot of <em>Beers</em> consumed versus <em>BAC</em>.
 </p>
 </div>
 <!-- \newpage -->
@@ -397,7 +390,7 @@ This might suggest that observations from two populations, say males and females
 were combined but the relationship between the two quantitative variables
 might be different for the two groups.</p></li>
 </ol>
-<p>Going back to Figure <a href="chapter6.html#fig:Figure6-1">109</a> it appears that there is a
+<p>Going back to Figure <a href="chapter6.html#fig:Figure6-1">6.1</a> it appears that there is a
 moderately strong linear
 relationship between <code>Beers</code> and <code>BAC</code> – not weak but with some variability
 around what appears to be a fairly clear to see straight-line relationship. There might even be a
@@ -426,8 +419,8 @@ these cases, make the most reasonable choice based on the observed variables but
 remember that, when the direction of relationship is unclear, you could have
 switched the axes and thus the implication of which variable is explanatory.</p>
 </div>
-<div id="section6-2" class="section level2" number="6.2">
-<h2 number="6.2"><span class="header-section-number">6.2</span> Estimating the correlation coefficient</h2>
+<div id="section6-2" class="section level2">
+<h2><span class="header-section-number">6.2</span> Estimating the correlation coefficient</h2>
 <p>In terms of quantifying relationships between variables, we start with
 the correlation coefficient, a
 measure that is the same regardless of your choice of variables as
@@ -465,12 +458,12 @@ attain -1 for a perfect negative linear relationship, 1 for a perfect positive
 linear relationship, and 0 for no linear relationship. We are being careful
 here to say <strong><em>linear relationship</em></strong> because you can have a strong nonlinear
 relationship with a correlation of 0. For example, consider
-Figure <a href="chapter6.html#fig:Figure6-2">110</a>.</p>
+Figure <a href="chapter6.html#fig:Figure6-2">6.2</a>.</p>
 
 <div class="figure"><span id="fig:Figure6-2"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-2-1.png" alt="Scatterplot of an amusing (and strong) relationship that has \(r=0\)." width="576" />
 <p class="caption">
-Figure 110: Scatterplot of an amusing (and strong) relationship that has <span class="math inline">\(r=0\)</span>.
+Figure 6.2: Scatterplot of an amusing (and strong) relationship that has <span class="math inline">\(r=0\)</span>.
 </p>
 </div>
 <p>There are some conditions for trusting the results that the
@@ -534,14 +527,14 @@ two variables. Examples are about the only way to build up enough experience to
 become skillful in using the correlation coefficient. Some additional
 complications arise in more complicated studies as the next example
 demonstrates.</p>
-<p><span class="citation">Gude et al. (<a href="references.html#ref-Gude2009" role="doc-biblioref">2009</a>)</span> explored the relationship
+<p><span class="citation">Gude et al. (<a href="#ref-Gude2009" role="doc-biblioref">2009</a>)</span> explored the relationship
 between average summer
 temperature (degrees F) and area burned (natural log of hectares<a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a> = log(hectares)) by wildfires in Montana
 from 1985 to 2007. The <strong><em>log-transformation</em></strong> is often used to reduce
 the impacts of really large observations with
 non-negative (strictly greater than 0) variables
 (more on <strong><em>transformations</em></strong> and their impacts on regression models
-in Chapter <a href="chapter7.html#chapter7"><strong>??</strong></a>).
+in Chapter <a href="chapter7.html#chapter7">7</a>).
 
 Based on your experiences with the wildfire “season” and before
 analyzing the data, I’m sure
@@ -588,14 +581,14 @@ clear (at least the linear trends).</p>
 to check for nonlinear
 relationships, outliers, and clustering of observations that may be distorting
 the numerical measure of the linear relationship.  The <code>pairs.panels</code>
-function from the <code>psych</code> package <span class="citation">(Revelle <a href="references.html#ref-R-psych" role="doc-biblioref">2019</a>)</span> combines the numerical
+function from the <code>psych</code> package <span class="citation">(Revelle <a href="#ref-R-psych" role="doc-biblioref">2019</a>)</span> combines the numerical
 correlation information and scatterplots in one display.
 
 There are
 some options to turn off for the moment but it is an easy function to use to
 get lots of information in one place. As in the correlation matrix, you
 triangulate the variables for the pairwise relationship. The upper right
-panel of Figure <a href="chapter6.html#fig:Figure6-3">111</a> displays a correlation of 0.36 for
+panel of Figure <a href="chapter6.html#fig:Figure6-3">6.3</a> displays a correlation of 0.36 for
 <code>Year</code> and <code>loghectares</code> and the lower left panel contains the
 scatterplot with <code>Year</code> on the <span class="math inline">\(x\)</span>-axis and <code>loghectares</code> on the <span class="math inline">\(y\)</span>-axis.
 The correlation between <code>Year</code> and <code>Temperature</code> is really small, both
@@ -612,12 +605,12 @@ the second half of the data set.</p>
 <div class="figure"><span id="fig:Figure6-3"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-3-1.png" alt="Scatterplot matrix of Montana fires data." width="576" />
 <p class="caption">
-Figure 111: Scatterplot matrix of Montana fires data.
+Figure 6.3: Scatterplot matrix of Montana fires data.
 </p>
 </div>
 <p>As one more example, the Australian Institute of Sport collected data
 on 102 male and 100 female athletes that are available in the <code>ais</code>
-data set from the <code>alr3</code> package (<span class="citation">Weisberg (<a href="references.html#ref-R-alr3" role="doc-biblioref">2018</a>)</span>, <span class="citation">Weisberg (<a href="references.html#ref-Weisberg2005" role="doc-biblioref">2005</a>)</span>).
+data set from the <code>alr3</code> package (<span class="citation">Weisberg (<a href="#ref-R-alr3" role="doc-biblioref">2018</a>)</span>, <span class="citation">Weisberg (<a href="#ref-Weisberg2005" role="doc-biblioref">2005</a>)</span>).
 
 They measured a
 variety of variables including the athlete’s Hematocrit (<code>Hc</code>,
@@ -643,7 +636,7 @@ based on the other variables, but for now the associations are of interest.</p>
 <div class="figure"><span id="fig:Figure6-4"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-4-1.png" alt="Scatterplot matrix of athlete data." width="576" />
 <p class="caption">
-Figure 112: Scatterplot matrix of athlete data.
+Figure 6.4: Scatterplot matrix of athlete data.
 </p>
 </div>
 <div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="chapter6.html#cb512-1"></a><span class="kw">cor</span>(aisR)</span></code></pre></div>
@@ -678,11 +671,11 @@ two rows using <code>[-c(56, 166),]</code> and then remake the plot:</p>
 <div class="figure"><span id="fig:Figure6-5"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-5-1.png" alt="Scatterplot matrix of athlete data with two potential outliers removed. " width="576" />
 <p class="caption">
-Figure 113: Scatterplot matrix of athlete data with two potential outliers removed. 
+Figure 6.5: Scatterplot matrix of athlete data with two potential outliers removed. 
 </p>
 </div>
 <p>After removing these two unusual observations, the relationships between
-the variables are more obvious (Figure <a href="chapter6.html#fig:Figure6-5">113</a>). There is a
+the variables are more obvious (Figure <a href="chapter6.html#fig:Figure6-5">6.5</a>). There is a
 moderate strength, relatively linear relationship between <em>Height</em> and
 <em>Hematocrit</em>. There is almost no relationship between <em>Height</em> and
 <em>Body Fat %</em> <span class="math inline">\((\boldsymbol{r}=-0.20)\)</span>. There is a negative, moderate strength,
@@ -697,10 +690,10 @@ we trust that
 the correlation is a reasonable description of the results between the
 variables. To make it easier to see patterns of positive and negative
 correlations, we can employ a different version of the same display from
-the <code>corrplot</code> package <span class="citation">(Wei and Simko <a href="references.html#ref-R-corrplot" role="doc-biblioref">2017</a>)</span> with the <code>corrplot.mixed</code> function. 
+the <code>corrplot</code> package <span class="citation">(Wei and Simko <a href="#ref-R-corrplot" role="doc-biblioref">2017</a>)</span> with the <code>corrplot.mixed</code> function. 
 
 In this case
-(Figure <a href="chapter6.html#fig:Figure6-6">114</a>), it tells much the same story but also allows
+(Figure <a href="chapter6.html#fig:Figure6-6">6.6</a>), it tells much the same story but also allows
 the viewer to easily distinguish both size and direction and read off the
 numerical correlations if desired. </p>
 
@@ -709,12 +702,12 @@ numerical correlations if desired. </p>
 <div class="figure"><span id="fig:Figure6-6"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-6-1.png" alt="Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations." width="336" />
 <p class="caption">
-Figure 114: Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations.
+Figure 6.6: Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations.
 </p>
 </div>
 </div>
-<div id="section6-3" class="section level2" number="6.3">
-<h2 number="6.3"><span class="header-section-number">6.3</span> Relationships between variables by groups</h2>
+<div id="section6-3" class="section level2">
+<h2><span class="header-section-number">6.3</span> Relationships between variables by groups</h2>
 <p>In assessing the relationship
 between variables, incorporating information from a third variable can often
 enhance the information gathered by either showing that the relationship
@@ -729,21 +722,21 @@ relationships might be the same for both sexes but for others, there are likely
 some physiological differences to consider.</p>
 <p>We could continue to use the <code>plot</code> function here, but it would require
 additional lines of code to add these extra features. The <code>scatterplot</code>
-function from the <code>car</code> package (<span class="citation">Fox, Weisberg, and Price (<a href="references.html#ref-R-carData" role="doc-biblioref">2019</a><a href="references.html#ref-R-carData" role="doc-biblioref">b</a>)</span>, <span class="citation">Fox and Weisberg (<a href="references.html#ref-Fox2011" role="doc-biblioref">2011</a>)</span>) makes it easy
+function from the <code>car</code> package (<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-carData" role="doc-biblioref">2019</a><a href="#ref-R-carData" role="doc-biblioref">b</a>)</span>, <span class="citation">Fox and Weisberg (<a href="#ref-Fox2011" role="doc-biblioref">2011</a>)</span>) makes it easy
 to incorporate information from an
 additional categorical variable. We’ll add to our regular formula idea (<code>y~x</code>)
 the vertical line “|” followed by the categorical variable <code>z</code>, such as
 <code>y~x|z</code>. As noted earlier, in statistics, “|” means “to condition on” or,
 here, consider the relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> by groups in <span class="math inline">\(z\)</span>. The other
 options are mainly to make it easier to read the information in the plot…
-Using this enhanced notation, Figure <a href="chapter6.html#fig:Figure6-7">115</a> displays the
+Using this enhanced notation, Figure <a href="chapter6.html#fig:Figure6-7">6.7</a> displays the
 <em>Height</em> and <em>Hematocrit</em> relationship with information on the sex of the
 athletes where sex was coded 0 for males and 1 for females. </p>
 
 <div class="figure"><span id="fig:Figure6-7"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-7-1.png" alt="Scatterplot of athlete’s height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s." width="576" />
 <p class="caption">
-Figure 115: Scatterplot of athlete’s height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
+Figure 6.7: Scatterplot of athlete’s height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
 </p>
 </div>
 <div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="chapter6.html#cb518-1"></a>aisR2 &lt;-<span class="st"> </span>ais[<span class="op">-</span><span class="kw">c</span>(<span class="dv">56</span>,<span class="dv">166</span>),<span class="kw">c</span>(<span class="st">&quot;Ht&quot;</span>,<span class="st">&quot;Hc&quot;</span>,<span class="st">&quot;Bfat&quot;</span>,<span class="st">&quot;Sex&quot;</span>)]</span>
@@ -779,7 +772,7 @@ conclusion here is that correlations on data sets that contain groups can be
 very misleading (if the groups are ignored). It also emphasizes the importance of exploring for potential
 subgroups in the data set – these two groups were not obvious in the initial
 plot, but with added information the real story became clear.</p>
-<p>For the <em>Body Fat</em> vs <em>Hematocrit</em> results in Figure <a href="chapter6.html#fig:Figure6-8">116</a>, with
+<p>For the <em>Body Fat</em> vs <em>Hematocrit</em> results in Figure <a href="chapter6.html#fig:Figure6-8">6.8</a>, with
 an overall correlation of <span class="math inline">\(\boldsymbol{r}=-0.54\)</span>, the subgroup correlations
 show weaker relationships that also appear to be in different directions
 (<span class="math inline">\(\boldsymbol{r}=0.13\)</span> for men and <span class="math inline">\(\boldsymbol{r}=-0.17\)</span> for women). This
@@ -793,14 +786,14 @@ ignoring the group information.</p>
 <div class="figure"><span id="fig:Figure6-8"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-8-1.png" alt="Scatterplot of athlete’s body fat and hematocrit by sex of athletes. Males were coded as 0s and females as 1s." width="576" />
 <p class="caption">
-Figure 116: Scatterplot of athlete’s body fat and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
+Figure 6.8: Scatterplot of athlete’s body fat and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
 </p>
 </div>
 <!-- \newpage -->
 <div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="chapter6.html#cb527-1"></a><span class="kw">scatterplot</span>(Hc<span class="op">~</span>Bfat<span class="op">|</span>Sex, <span class="dt">data=</span>aisR2, <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">21</span>), <span class="dt">regLine=</span>F, <span class="dt">smooth=</span>F,</span>
 <span id="cb527-2"><a href="chapter6.html#cb527-2"></a>            <span class="dt">boxplots=</span><span class="st">&quot;xy&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Scatterplot of Body Fat vs Hematocrit by Sex&quot;</span>)</span></code></pre></div>
 <p>One final exploration for these data involves the <em>body fat </em>and <em>height</em> relationship
-displayed in Figure <a href="chapter6.html#fig:Figure6-9">117</a>. This relationship shows an even greater
+displayed in Figure <a href="chapter6.html#fig:Figure6-9">6.9</a>. This relationship shows an even greater
 disparity between overall and subgroup results. The overall relationship is
 characterized as a weak negative relationship <span class="math inline">\((\boldsymbol{r}=-0.20)\)</span> that
 is not clearly linear or nonlinear. The subgroup relationships are both clearly
@@ -820,7 +813,7 @@ variability in <em>Body Fat</em> associated with taller athletes (each sort of
 <div class="figure"><span id="fig:Figure6-9"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-9-1.png" alt="Scatterplot of athlete’s body fat and height by sex." width="576" />
 <p class="caption">
-Figure 117: Scatterplot of athlete’s body fat and height by sex.
+Figure 6.9: Scatterplot of athlete’s body fat and height by sex.
 </p>
 </div>
 <div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="chapter6.html#cb532-1"></a><span class="kw">scatterplot</span>(Bfat<span class="op">~</span>Ht<span class="op">|</span>Sex, <span class="dt">data=</span>aisR2, <span class="dt">pch=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">21</span>), <span class="dt">regLine=</span>F, <span class="dt">smooth=</span>F,</span>
@@ -849,7 +842,7 @@ highways, such as Highway 93 in Montana and north into Canada, recent
 construction efforts have been involved in creating safe passages for animals
 by adding fencing and animal crossing structures. These structures both can
 improve driver safety, save money from costs associated with animal-vehicle
-collisions, and increase connectivity of animal populations. Researchers (such as <span class="citation">Clevenger and Waltho (<a href="references.html#ref-Clevenger2005" role="doc-biblioref">2005</a>)</span>)
+collisions, and increase connectivity of animal populations. Researchers (such as <span class="citation">Clevenger and Waltho (<a href="#ref-Clevenger2005" role="doc-biblioref">2005</a>)</span>)
 involved in these projects are interested in which characteristics of
 underpasses lead to the most successful structures, mainly measured by rates of
 animal usage (number of times they cross under the road). Crossing structures
@@ -872,10 +865,10 @@ studies the observed combinations of variables are uncontrollable. This is why
 we need to employ additional caution in interpreting results from observational
 studies. Here that would mean that even if width was found to be a predictor of animal usage, we would likely want to avoid saying that width of the structures caused differences in animal usage.</p>
 </div>
-<div id="section6-4" class="section level2" number="6.4">
-<h2 number="6.4"><span class="header-section-number">6.4</span> Inference for the correlation coefficient</h2>
+<div id="section6-4" class="section level2">
+<h2><span class="header-section-number">6.4</span> Inference for the correlation coefficient</h2>
 <p>We used bootstrapping briefly in
-Chapter <a href="chapter2.html#chapter2"><strong>??</strong></a> to generate nonparametric confidence intervals based
+Chapter <a href="chapter2.html#chapter2">2</a> to generate nonparametric confidence intervals based
 on the middle
 95% of the bootstrapped version of the statistic. Remember that bootstrapping
 involves sampling <em>with replacement</em>
@@ -910,11 +903,11 @@ hypothesis. Along with its use in testing, it is also interesting to be able to 
 <p>The <em>beers</em> and <em>BAC</em> example seemed to provide a strong relationship with
 <span class="math inline">\(\boldsymbol{r}=0.89\)</span>. As correlations approach -1 or 1, the sampling distribution becomes
 more and more skewed. This certainly shows up in the bootstrap distribution
-that the following code produces (Figure <a href="chapter6.html#fig:Figure6-10">118</a>). Remember that
+that the following code produces (Figure <a href="chapter6.html#fig:Figure6-10">6.10</a>). Remember that
 bootstrapping utilizes the <code>resample</code> function applied to the data set to
 create new realizations of the data set by re-sampling
 with replacement from those observations. The bold vertical line in
-Figure <a href="chapter6.html#fig:Figure6-10">118</a> corresponds to the estimated correlation
+Figure <a href="chapter6.html#fig:Figure6-10">6.10</a> corresponds to the estimated correlation
 <span class="math inline">\(\boldsymbol{r}=0.89\)</span> and the distribution contains a noticeable left skew
 with a few much smaller <span class="math inline">\(T^*\text{&#39;s}\)</span> possible in bootstrap samples. The
 <span class="math inline">\(C\%\)</span> confidence interval is found based
@@ -946,7 +939,7 @@ on the middle <span class="math inline">\(C\%\)</span> of the distribution or by
 <div class="figure"><span id="fig:Figure6-10"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-10-1.png" alt="Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval." width="960" />
 <p class="caption">
-Figure 118: Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval.
+Figure 6.10: Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval.
 </p>
 </div>
 <p>These results tell us that the bootstrap 95% CI is from 0.76 to 0.95 – we are 95%
@@ -981,19 +974,19 @@ researchers either to assign, or even to be able to assign, levels of
 quantitative variables so correlations should be viewed as non-causal unless
 the details of the study suggest otherwise.</p>
 </div>
-<div id="section6-5" class="section level2" number="6.5">
-<h2 number="6.5"><span class="header-section-number">6.5</span> Are tree diameters related to tree heights?</h2>
+<div id="section6-5" class="section level2">
+<h2><span class="header-section-number">6.5</span> Are tree diameters related to tree heights?</h2>
 <p>In a study at the Upper Flat Creek
 study area in the University of Idaho Experimental Forest, a random sample of
 <span class="math inline">\(n=336\)</span> trees was selected from the forest, with measurements recorded on Douglas
 Fir, Grand Fir, Western Red
 Cedar, and Western Larch trees. The data set called <code>ufc</code> is available from the
-<code>spuRs</code> package <span class="citation">(Jones et al. <a href="references.html#ref-R-spuRs" role="doc-biblioref">2018</a>)</span> and
+<code>spuRs</code> package <span class="citation">(Jones et al. <a href="#ref-R-spuRs" role="doc-biblioref">2018</a>)</span> and
 contains <code>dbh.cm</code> (tree diameter at 1.37 m from the ground, measured in cm) and
 <code>height.m</code> (tree height in meters).
 
 The relationship displayed in
-Figure <a href="chapter6.html#fig:Figure6-11">119</a> is positive,
+Figure <a href="chapter6.html#fig:Figure6-11">6.11</a> is positive,
 moderately strong with some curvature and increasing variability as the
 diameter increases. There do not appear to be groups in the data set but since
 this contains four different types of trees, we would want to revisit this plot
@@ -1006,7 +999,7 @@ by type of tree.</p>
 <div class="figure"><span id="fig:Figure6-11"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-11-1.png" alt="Scatterplot of tree heights (m) vs tree diameters (cm)." width="576" />
 <p class="caption">
-Figure 119: Scatterplot of tree heights (m) vs tree diameters (cm).
+Figure 6.11: Scatterplot of tree heights (m) vs tree diameters (cm).
 </p>
 </div>
 <p>Of particular interest is an observation with a diameter around 58 cm and a height
@@ -1042,8 +1035,8 @@ than the one used for the other observations and, if the removal is justified,
 it helps us refine our inferences for the population parameter. But measuring
 the linear relationship in these data where there is a clear curve violates one of
 our assumptions of using these methods – we’ll see some other ways of detecting
-this issue in Section <a href="chapter6.html#section6-10"><strong>??</strong></a> and we’ll try to “fix” this example using
-transformations in the Chapter <a href="chapter7.html#chapter7"><strong>??</strong></a>.</p>
+this issue in Section <a href="chapter6.html#section6-10">6.10</a> and we’ll try to “fix” this example using
+transformations in the Chapter <a href="chapter7.html#chapter7">7</a>.</p>
 
 <div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="chapter6.html#cb546-1"></a>Tobs &lt;-<span class="st"> </span><span class="kw">cor</span>(dbh.cm<span class="op">~</span>height.m, <span class="dt">data=</span>ufc); Tobs</span></code></pre></div>
 <pre><code>## [1] 0.7699552</code></pre>
@@ -1082,13 +1075,13 @@ transformations in the Chapter <a href="chapter7.html#chapter7"><strong>??</stro
 <div class="figure"><span id="fig:Figure6-12"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-12-1.png" alt="Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines). Notice the change in spread of the bootstrap distributions as well as the different centers." width="960" />
 <p class="caption">
-Figure 120: Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines). Notice the change in spread of the bootstrap distributions as well as the different centers.
+Figure 6.12: Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines). Notice the change in spread of the bootstrap distributions as well as the different centers.
 </p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="section6-6" class="section level2" number="6.6">
-<h2 number="6.6"><span class="header-section-number">6.6</span> Describing relationships with a regression model</h2>
+<div id="section6-6" class="section level2">
+<h2><span class="header-section-number">6.6</span> Describing relationships with a regression model</h2>
 <p>When the relationship appears to
 be relatively linear, it makes sense to estimate and then interpret a line to
 represent the relationship between the variables. This line is called a
@@ -1120,13 +1113,13 @@ default option to provide the lines.</p>
 <div class="figure"><span id="fig:Figure6-13"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-13-1.png" alt="Scatterplot with estimated regression line for the Beers and BAC data. Horizontal dashed lines for the predicted BAC for 4 and 5 beers consumed." width="576" />
 <p class="caption">
-Figure 121: Scatterplot with estimated regression line for the <em>Beers</em> and <em>BAC</em> data. Horizontal dashed lines for the predicted BAC for 4 and 5 beers consumed.
+Figure 6.13: Scatterplot with estimated regression line for the <em>Beers</em> and <em>BAC</em> data. Horizontal dashed lines for the predicted BAC for 4 and 5 beers consumed.
 </p>
 </div>
 <p>The equation for a line is <span class="math inline">\(y=a+bx\)</span>, or maybe <span class="math inline">\(y=mx+b\)</span>. In the version
 <span class="math inline">\(mx+b\)</span> you learned that <span class="math inline">\(m\)</span> is a slope coefficient that relates a
 change in <span class="math inline">\(x\)</span> to changes in <span class="math inline">\(y\)</span> and that <span class="math inline">\(b\)</span> is a <span class="math inline">\(y\)</span>-intercept (the
-value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is 0). In Figure <a href="chapter6.html#fig:Figure6-13">121</a>, two extra
+value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is 0). In Figure <a href="chapter6.html#fig:Figure6-13">6.13</a>, two extra
 horizontal lines are added to help you see the defining characteristics of the line. The
 slope, whatever letter you use, is the change in <span class="math inline">\(y\)</span> for a one-unit
 increase in <span class="math inline">\(x\)</span>. Here, the slope is the change in <code>BAC</code> for a 1 beer
@@ -1193,8 +1186,8 @@ regression model</em></strong>:
 normally distributed with mean 0 and standard deviation <span class="math inline">\(\sigma\)</span> or,
 more compactly, <span class="math inline">\(\varepsilon_i \sim N(0,\sigma^2)\)</span>.</p></li>
 </ul>
-<p>This presents another version of the linear model from Chapters <a href="chapter2.html#chapter2"><strong>??</strong></a>, <a href="chapter3.html#chapter3"><strong>??</strong></a>,
-and <a href="chapter4.html#chapter4"><strong>??</strong></a>, now with a
+<p>This presents another version of the linear model from Chapters <a href="chapter2.html#chapter2">2</a>, <a href="chapter3.html#chapter3">3</a>,
+and <a href="chapter4.html#chapter4">4</a>, now with a
 quantitative explanatory variable instead of categorical explanatory variable(s). This chapter
 focuses mostly on the estimated regression coefficients, but remember that we
 are doing statistics and our desire is to make inferences to a larger population.
@@ -1212,6 +1205,7 @@ will look familiar. In fact, the ties between ANOVA and regression are
 deep and fundamental but not the topic of this section. For the <em>Beers</em>
 and <em>BAC</em> example, the <strong><em>estimated regression coefficients</em></strong> can be
 found from:</p>
+
 <div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="chapter6.html#cb556-1"></a>m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(BAC<span class="op">~</span>Beers, <span class="dt">data=</span>BB)</span>
 <span id="cb556-2"><a href="chapter6.html#cb556-2"></a>m1</span></code></pre></div>
 <pre><code>## 
@@ -1223,6 +1217,7 @@ found from:</p>
 ##    -0.01270      0.01796</code></pre>
 <p>More often, we will extract these from the <strong><em>coefficient table</em></strong> produced
 by a model <code>summary</code>: </p>
+
 <div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="chapter6.html#cb558-1"></a><span class="kw">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -1245,7 +1240,7 @@ in the <code>(Intercept)</code> part of the output and the slope coefficient in 
 <code>Beers</code> part of the output. So <span class="math inline">\(b_0 = -0.0127\)</span>, <span class="math inline">\(b_1=0.01796\)</span>, and
 the <strong><em>estimated regression equation</em></strong> is</p>
 <p><span class="math display">\[\widehat{\text{BAC}}_i = -0.0127 + 0.01796\cdot\text{Beers}_i.\]</span></p>
-<p>This is the equation that was plotted in Figure <a href="chapter6.html#fig:Figure6-13">121</a>.
+<p>This is the equation that was plotted in Figure <a href="chapter6.html#fig:Figure6-13">6.13</a>.
 In writing out the equation, it is
 good to replace <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> with the variable names to make the predictor
 and response variables clear. <strong>If you prefer to write all equations with</strong>
@@ -1264,10 +1259,10 @@ in <strong><em>Y</em></strong>.</li>
 <div class="figure" style="text-align: center"><span id="fig:Figure6-14"></span>
 <img src="chapter6_files/image047.png" alt="Diagram of interpretation of slope coefficients." width="100%" />
 <p class="caption">
-Figure 122: Diagram of interpretation of slope coefficients.
+Figure 6.14: Diagram of interpretation of slope coefficients.
 </p>
 </div>
-<p>Figure <a href="chapter6.html#fig:Figure6-14">122</a> can help you think about the
+<p>Figure <a href="chapter6.html#fig:Figure6-14">6.14</a> can help you think about the
 different sorts of slope coefficients we might need to interpret, both
 providing changes in the response variable for 1 unit increases in the
 predictor variable.</p>
@@ -1308,7 +1303,7 @@ interpretations.</p>
 <p>In the Australian Athlete data, we
 saw a weak negative relationship between <em>Body Fat</em> (% body weight that
 is fat) and <em>Hematocrit</em> (% red blood cells in the blood). The scatterplot
-in Figure <a href="chapter6.html#fig:Figure6-15">123</a> shows just the
+in Figure <a href="chapter6.html#fig:Figure6-15">6.15</a> shows just the
 results for the female athletes along with the regression line which has a
 negative slope coefficient. The estimated regression coefficients are found
 using the <code>lm</code> function:
@@ -1340,7 +1335,7 @@ using the <code>lm</code> function:
 <div class="figure"><span id="fig:Figure6-15"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-15-1.png" alt="Scatterplot of Hematocrit versus Body Fat for female athletes." width="576" />
 <p class="caption">
-Figure 123: Scatterplot of Hematocrit versus Body Fat for female athletes.
+Figure 6.15: Scatterplot of Hematocrit versus Body Fat for female athletes.
 </p>
 </div>
 <p>Based on these results, the estimated regression equation is
@@ -1354,8 +1349,8 @@ of <span class="math inline">\(x\)</span>’s that we did not observed. None of 
 the hematocrit of an athlete that had no body fat except that it probably would not
 continue to follow a linear relationship.</p>
 </div>
-<div id="section6-7" class="section level2" number="6.7">
-<h2 number="6.7"><span class="header-section-number">6.7</span> Least Squares Estimation</h2>
+<div id="section6-7" class="section level2">
+<h2><span class="header-section-number">6.7</span> Least Squares Estimation</h2>
 <p>The previous results used the <code>lm</code> function as a “black box” to generate
 the estimated coefficients.
 
@@ -1377,7 +1372,7 @@ Finding the estimated regression coefficients that minimize the sum of squared
 residuals is called <strong><em>least squares estimation</em></strong> and provides us a
 reasonable method for finding the “best” estimated regression line of all
 the possible choices.</p>
-<p>For the <em>Beers</em> vs <em>BAC</em> data, Figure <a href="chapter6.html#fig:Figure6-16">124</a> shows the
+<p>For the <em>Beers</em> vs <em>BAC</em> data, Figure <a href="chapter6.html#fig:Figure6-16">6.16</a> shows the
 result of a search for the optimal slope coefficient between values of 0 and
 0.03. The plot shows how the sum of
 the squared residuals was minimized for the value that <code>lm</code> returned at
@@ -1388,18 +1383,18 @@ estimates.</p>
 <div class="figure"><span id="fig:Figure6-16"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-16-1.png" alt="Plot of sum of squared residuals vs possible slope coefficients for Beers vs BAC data, with vertical line for the least squares estimate that minimizes the sum of squared residuals." width="384" />
 <p class="caption">
-Figure 124: Plot of sum of squared residuals vs possible slope coefficients for <em>Beers</em> vs <em>BAC</em> data, with vertical line for the least squares estimate that minimizes the sum of squared residuals.
+Figure 6.16: Plot of sum of squared residuals vs possible slope coefficients for <em>Beers</em> vs <em>BAC</em> data, with vertical line for the least squares estimate that minimizes the sum of squared residuals.
 </p>
 </div>
 <p>Sometimes it is helpful to have a
 go at finding the estimates yourself. If you install and load the <code>tigerstats</code>
-<span class="citation">(Robinson and White <a href="references.html#ref-R-tigerstats" role="doc-biblioref">2016</a>)</span> and <code>manipulate</code> <span class="citation">(Allaire <a href="references.html#ref-R-manipulate" role="doc-biblioref">2014</a>)</span> packages in RStudio
+<span class="citation">(Robinson and White <a href="#ref-R-tigerstats" role="doc-biblioref">2016</a>)</span> and <code>manipulate</code> <span class="citation">(Allaire <a href="#ref-R-manipulate" role="doc-biblioref">2014</a>)</span> packages in RStudio
 and then run <code>FindRegLine()</code>, you get
 a chance to try to find the optimal slope and intercept for a fake data set.
 
 
 Click on the “sprocket” icon in the upper left of the plot and you will see
-something like Figure <a href="chapter6.html#fig:Figure6-17">125</a>. This interaction can help you see
+something like Figure <a href="chapter6.html#fig:Figure6-17">6.17</a>. This interaction can help you see
 how the residuals
 are being measuring in the <span class="math inline">\(y\)</span>-direction and appreciate that <code>lm</code> takes care of
 this for us.
@@ -1418,7 +1413,7 @@ this for us.
 <div class="figure" style="text-align: center"><span id="fig:Figure6-17"></span>
 <img src="chapter6_files/image063.png" alt="Results of running FindRegLine() where I didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line." width="100%" />
 <p class="caption">
-Figure 125: Results of running <code>FindRegLine()</code> where I didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line.
+Figure 6.17: Results of running <code>FindRegLine()</code> where I didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line.
 </p>
 </div>
 <p>It ends up that the least squares
@@ -1514,12 +1509,12 @@ equation – here between 54 and 60 degrees F seems reasonable.</p>
 <div class="figure"><span id="fig:Figure6-18"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-18-1.png" alt="Scatterplot of log-hectares burned versus temperature with estimated regression line." width="576" />
 <p class="caption">
-Figure 126: Scatterplot of log-hectares burned versus temperature with estimated regression line.
+Figure 6.18: Scatterplot of log-hectares burned versus temperature with estimated regression line.
 </p>
 </div>
 </div>
-<div id="section6-8" class="section level2" number="6.8">
-<h2 number="6.8"><span class="header-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></h2>
+<div id="section6-8" class="section level2">
+<h2><span class="header-section-number">6.8</span> Measuring the strength of regressions: R<sup>2</sup></h2>
 <p>At the beginning of the chapter,
 we used the correlation coefficient to measure the strength and direction of
 the linear relationship. The regression line provides an even more detailed
@@ -1528,7 +1523,7 @@ provided; in regression we addressed the question of “for a unit change in <sp
 what sort of change in <span class="math inline">\(y\)</span> do we expect, on average?” whereas the
 correlation just addressed whether the relationship was positive or negative.
 However, the <strong>regression line tells us nothing about the strength of the
-relationship</strong>. Consider the three scatterplots in Figure <a href="chapter6.html#fig:Figure6-19">127</a>:
+relationship</strong>. Consider the three scatterplots in Figure <a href="chapter6.html#fig:Figure6-19">6.19</a>:
 the left panel is the original <em>BAC</em> data and the two right
 panels have fake data that generated exactly the same estimated regression model with a
 weaker (middle panel) and then a stronger (right panel) linear relationship
@@ -1552,13 +1547,13 @@ model and <span class="math inline">\(\boldsymbol{R^2} = 100\%\)</span> means th
 response was explained by the model. In between, it provides a nice summary
 of how much of the total variability in the response we can account for
 with our model
-including <span class="math inline">\(x\)</span> (and, in Chapter <a href="chapter8.html#chapter8"><strong>??</strong></a>, including multiple
+including <span class="math inline">\(x\)</span> (and, in Chapter <a href="chapter8.html#chapter8">8</a>, including multiple
 predictor variables).  </p>
 
 <div class="figure"><span id="fig:Figure6-19"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-19-1.png" alt="Three scatterplots with the same estimated regression line." width="576" />
 <p class="caption">
-Figure 127: Three scatterplots with the same estimated regression line.
+Figure 6.19: Three scatterplots with the same estimated regression line.
 </p>
 </div>
 <p>The <strong>R<sup>2</sup></strong> is calculated using the sums of squares we encountered in the
@@ -1633,7 +1628,7 @@ based on <span class="math inline">\(\text{SS}_\text{regression}= 0.02337\)</spa
 <span id="cb572-2"><a href="chapter6.html#cb572-2"></a>SSregression &lt;-<span class="st"> </span><span class="fl">0.0233753</span></span>
 <span id="cb572-3"><a href="chapter6.html#cb572-3"></a>SSregression<span class="op">/</span>SStotal</span></code></pre></div>
 <pre><code>## [1] 0.7998392</code></pre>
-<p>In Figure <a href="chapter6.html#fig:Figure6-19">127</a>, there are three
+<p>In Figure <a href="chapter6.html#fig:Figure6-19">6.19</a>, there are three
 examples with the same regression model, but different strengths of
 relationships. In the real data set <span class="math inline">\(\boldsymbol{R^2} = 80\%\)</span>. For the first
 fake data set (middle panel), the <strong>R<sup>2</sup></strong> drops to <span class="math inline">\(13.8\%\)</span> and for
@@ -1698,13 +1693,13 @@ provides numerical and interpretable information that drives that point home.</p
 ## F-statistic: 2.816 on 1 and 97 DF,  p-value: 0.09653</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="section6-9" class="section level2" number="6.9">
-<h2 number="6.9"><span class="header-section-number">6.9</span> Outliers: leverage and influence</h2>
+<div id="section6-9" class="section level2">
+<h2><span class="header-section-number">6.9</span> Outliers: leverage and influence</h2>
 <p>In the review of correlation, we
 loosely considered the impacts of outliers on the correlation.  We removed
 unusual points to see both the visual changes (in the scatterplot) as well as
-changes in the correlation coefficient in Figures <a href="chapter6.html#fig:Figure6-4">112</a>
-and <a href="chapter6.html#fig:Figure6-5">113</a>. In this section,
+changes in the correlation coefficient in Figures <a href="chapter6.html#fig:Figure6-4">6.4</a>
+and <a href="chapter6.html#fig:Figure6-5">6.5</a>. In this section,
 we formalize these ideas in the context of impacts of unusual points on our
 regression equation. In regression, it is possible for a single point to have a
 big impact on the overall regression results but it is also possible to have a
@@ -1745,7 +1740,7 @@ that point’s influence (Cook’s D).
 <div class="figure"><span id="fig:Figure6-20"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-20-1.png" alt="Scatterplot and Residuals vs Leverage plot for the real BAC data. Two high leverage points are flagged, with only one that has a Cook’s D value over 1 (“\(\circ\)”) and is indicated as influential." width="576" />
 <p class="caption">
-Figure 128: Scatterplot and Residuals vs Leverage plot for the real BAC data. Two high leverage points are flagged, with only one that has a Cook’s D value over 1 (“<span class="math inline">\(\circ\)</span>”) and is indicated as influential.
+Figure 6.20: Scatterplot and Residuals vs Leverage plot for the real BAC data. Two high leverage points are flagged, with only one that has a Cook’s D value over 1 (“<span class="math inline">\(\circ\)</span>”) and is indicated as influential.
 </p>
 </div>
 <p>To extract the level of Cook’s D on the “Residuals vs Leverage” plot,
@@ -1764,7 +1759,7 @@ upper right or lower right corners, the influence increases and the edges of
 the valley get steeper. If you do not see any contours in the plot, then no
 points were even close to being influential based on Cook’s D.</p>
 <p>To illustrate these concepts, the original <em>Beers</em> and <em>BAC</em> data
-are used again. In the scatter plot in Figure <a href="chapter6.html#fig:Figure6-20">128</a>,
+are used again. In the scatter plot in Figure <a href="chapter6.html#fig:Figure6-20">6.20</a>,
 two points are plotted with different characters.
 The point for 1 <em>Beer</em> and <em>BAC</em> of 0.010 is displayed as a “<span class="math inline">\(\diamond\)</span>”
 and the 9 <em>Beer</em> and <em>BAC</em> 0.19 observation is displayed with a “<span class="math inline">\(\circ\)</span>”.
@@ -1781,12 +1776,12 @@ observation to get a better estimate of the effects of beer consumption on BAC
 or revisit our assumption that the relationship is really linear here.</p>
 <p>To further explore influence, we will add a point to the original data set and
 move it around so you can see how those changes impact the results. For each
-scatterplot in Figure <a href="chapter6.html#fig:Figure6-21">129</a>, the Residuals vs Leverage
+scatterplot in Figure <a href="chapter6.html#fig:Figure6-21">6.21</a>, the Residuals vs Leverage
 plot is displayed to its right.
 
 The original data are “<span class="math inline">\(\color{Grey}{\bullet}\)</span>”
 and the original regression line is the dashed line in
-Figure <a href="chapter6.html#fig:Figure6-21">129</a>. First, a fake observation at 11 <em>Beers</em> and
+Figure <a href="chapter6.html#fig:Figure6-21">6.21</a>. First, a fake observation at 11 <em>Beers</em> and
 0.1 <em>BAC</em> is added,
 at (11, 0.1), in the top panels of the figure. This observation is clearly an
 outlier and heavily impacts the slope of the regression line (so is clearly
@@ -1815,7 +1810,7 @@ noticeably lower than the other points.</p>
 <div class="figure"><span id="fig:Figure6-21"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-21-1.png" alt="Plots exploring the impacts of moving a single additional observation in the BAC example. The added point is indicated with * and the original regression line is the dashed line in the left column." width="768" />
 <p class="caption">
-Figure 129: Plots exploring the impacts of moving a single additional observation in the BAC example. The added point is indicated with * and the original regression line is the dashed line in the left column.
+Figure 6.21: Plots exploring the impacts of moving a single additional observation in the BAC example. The added point is indicated with * and the original regression line is the dashed line in the left column.
 </p>
 </div>
 <p>When we are doing regressions, we get very worried about points “at the edges”
@@ -1824,12 +1819,12 @@ predictors, say if we had body weight data on these subjects as well as beer
 consumption, it becomes harder to “see” if the points are “far away” from the
 other observations and we will trust the Residuals vs Leverage plots to help us
 identify the influential points. These techniques work the same in the multiple
-regression models in Chapter <a href="chapter8.html#chapter8"><strong>??</strong></a> as they do in these
+regression models in Chapter <a href="chapter8.html#chapter8">8</a> as they do in these
 simpler, single predictor
 regression models.</p>
 </div>
-<div id="section6-10" class="section level2" number="6.10">
-<h2 number="6.10"><span class="header-section-number">6.10</span> Residual diagnostics – setting the stage for inference</h2>
+<div id="section6-10" class="section level2">
+<h2><span class="header-section-number">6.10</span> Residual diagnostics – setting the stage for inference</h2>
 <p>Influential points are not the
 only potential issue that can cause us to have concerns about our regression
 model. There are two levels to these considerations. The first is related to
@@ -1845,7 +1840,7 @@ into problems of both types is the residuals <span class="math inline">\((e_i = 
 By exploring patterns in how the line “misses” the responses we can gain
 information about the reasonableness of using the estimated regression line and
 sometimes information about how we might fix problems. The validity conditions
-for doing inference in a regression setting (Chapter <a href="chapter7.html#chapter7"><strong>??</strong></a>)
+for doing inference in a regression setting (Chapter <a href="chapter7.html#chapter7">7</a>)
 involve two sets of considerations,
 those that are assessed based on the data collection and measurement process
 and those that can be assessed using diagnostic plots.
@@ -1931,7 +1926,7 @@ a violation of this condition.
 <li><p><strong>Normality of residuals</strong></p>
 <ul>
 <li><p>Examine the Normal QQ-plot for violations of the normality assumption
-as in Chapters <a href="chapter3.html#chapter3"><strong>??</strong></a> and <a href="chapter4.html#chapter4"><strong>??</strong></a>.
+as in Chapters <a href="chapter3.html#chapter3">3</a> and <a href="chapter4.html#chapter4">4</a>.
 </p>
 <ul>
 <li><p>Specifically review the discussion of identifying skews in
@@ -1961,7 +1956,7 @@ those points in the data set.</p></li>
 <p>To assess these later assumptions, we will use the four residual diagnostic
 plots that R provides from <code>lm</code> fitted models. They are similar to the
 results from ANOVA models but the Residuals vs Leverage plot is
-now interesting as was discussed in Section <a href="chapter6.html#section6-9"><strong>??</strong></a>.
+now interesting as was discussed in Section <a href="chapter6.html#section6-9">6.9</a>.
 
 Now we can
 fully assess the
@@ -1989,14 +1984,14 @@ someone else’s BAC.</li>
 <div class="figure"><span id="fig:Figure6-22"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-22-1.png" alt="Full suite of diagnostics plots for *Beer* vs *BAC* data." width="960" />
 <p class="caption">
-Figure 130: Full suite of diagnostics plots for <em>Beer</em> vs <em>BAC</em> data.
+Figure 6.22: Full suite of diagnostics plots for <em>Beer</em> vs <em>BAC</em> data.
 </p>
 </div></li>
 <li><p>Linearity, constant variance from Residuals vs Fitted:</p>
 <ul>
 <li>We previously have identified a potentially influential
 outlier point in these data. Consulting the Residuals vs
-Fitted plot in Figure <a href="chapter6.html#fig:Figure6-22">130</a>, if you trust
+Fitted plot in Figure <a href="chapter6.html#fig:Figure6-22">6.22</a>, if you trust
 that influential point, shows some curvature with a pattern of
 decreasing residuals as a function of the fitted values and then an increase at the right. Or, if
 you do not trust that highest BAC observation, then there is
@@ -2046,7 +2041,7 @@ inferences might be slightly over-stated due to some potential
 dependency in the measurements.</li>
 </ul></li>
 <li><p>Linearity, constant variance from Residuals vs Fitted in
-Figure <a href="chapter6.html#fig:Figure6-23">131</a>.</p>
+Figure <a href="chapter6.html#fig:Figure6-23">6.23</a>.</p>
 <ul>
 <li><p>There is evidence of a curve that was missed by the linear model.</p></li>
 <li><p>There is also evidence of increasing variability AROUND the curve
@@ -2076,7 +2071,7 @@ the points are influential.</li>
 <div class="figure"><span id="fig:Figure6-23"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-23-1.png" alt="Diagnostics plots for tree height and diameter simple linear regression model." width="960" />
 <p class="caption">
-Figure 131: Diagnostics plots for tree height and diameter simple linear regression model.
+Figure 6.23: Diagnostics plots for tree height and diameter simple linear regression model.
 </p>
 </div>
 <p>So the main issues with this model are the curving relationship and
@@ -2105,15 +2100,15 @@ between tree diameter and tree height.</p>
 <div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="chapter6.html#cb581-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb581-2"><a href="chapter6.html#cb581-2"></a><span class="kw">plot</span>(tree1, <span class="dt">add.smooth=</span>F)</span></code></pre></div>
 </div>
-<div id="section6-11" class="section level2" number="6.11">
-<h2 number="6.11"><span class="header-section-number">6.11</span> Old Faithful discharge and waiting times</h2>
+<div id="section6-11" class="section level2">
+<h2><span class="header-section-number">6.11</span> Old Faithful discharge and waiting times</h2>
 <p>A study in August 1985 considered time for Old Faithful and how that might
-relate to <em>waiting time</em> for the next eruption (<span class="citation">Ripley (<a href="references.html#ref-R-MASS" role="doc-biblioref">2019</a>)</span>, <span class="citation">Azzalini and Bowman (<a href="references.html#ref-Azzalini1990" role="doc-biblioref">1990</a>)</span>).
+relate to <em>waiting time</em> for the next eruption (<span class="citation">Ripley (<a href="#ref-R-MASS" role="doc-biblioref">2019</a>)</span>, <span class="citation">Azzalini and Bowman (<a href="#ref-Azzalini1990" role="doc-biblioref">1990</a>)</span>).
 
 This sort of research provides the Yellowstone National Park (YNP) staff a way to show tourists a predicted
 time to next eruption so they can quickly see it erupt and then get back in their
 cars, not wasting too much time in the outdoors. Or, less cynically, the opportunity to study the behavior of the eruption of a geyser. Both variables are measured in minutes and the scatterplot in
-Figure <a href="chapter6.html#fig:Figure6-24">132</a>
+Figure <a href="chapter6.html#fig:Figure6-24">6.24</a>
 shows a moderate to strong positive and relatively linear relationship. We
 added a <strong><em>smoothing line</em></strong> (dashed line) to this plot. Smoothing lines provide
 regression-like fits but are performed on local areas of the relationship
@@ -2146,7 +2141,7 @@ waiting time based on duration of prior eruption.</p>
 <div class="figure"><span id="fig:Figure6-24"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-24-1.png" alt="Scatterplot of Old Faithful waiting times to next eruption (minutes) and duration of prior eruption (minutes) with smoothing line (dashed) and regression line (solid)." width="576" />
 <p class="caption">
-Figure 132: Scatterplot of Old Faithful waiting times to next eruption (minutes) and duration of prior eruption (minutes) with smoothing line (dashed) and regression line (solid).
+Figure 6.24: Scatterplot of Old Faithful waiting times to next eruption (minutes) and duration of prior eruption (minutes) with smoothing line (dashed) and regression line (solid).
 </p>
 </div>
 <p>An initial concern with these data
@@ -2154,7 +2149,7 @@ is that the observations are likely not independent. Since they were taken
 consecutively, one waiting time might be related to the next waiting time –
 violating the independence assumption. As noted above, there might be two
 groups (types) of eruptions – short ones and long ones.
-The Normal QQ-Plot in Figure <a href="chapter6.html#fig:Figure6-25">133</a>
+The Normal QQ-Plot in Figure <a href="chapter6.html#fig:Figure6-25">6.25</a>
 also suggests a few observations creating a slightly long right tail.
 Those observations might warrant further exploration as they also show up as
 unusual in the Residuals vs Fitted plot. There are no highly influential points
@@ -2189,7 +2184,7 @@ levels of duration of eruptions.</p>
 <div class="figure"><span id="fig:Figure6-25"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-25-1.png" alt="Diagnostic plots for Old Faithful waiting time model." width="960" />
 <p class="caption">
-Figure 133: Diagnostic plots for Old Faithful waiting time model.
+Figure 6.25: Diagnostic plots for Old Faithful waiting time model.
 </p>
 </div>
 <p>The estimated regression equation is
@@ -2207,8 +2202,8 @@ is difficult to know where to split the explanatory variable into two groups.
 Maybe we really need to measure additional information that might explain why
 there are two groups in the responses…</p>
 </div>
-<div id="section6-12" class="section level2" number="6.12">
-<h2 number="6.12"><span class="header-section-number">6.12</span> Chapter summary</h2>
+<div id="section6-12" class="section level2">
+<h2><span class="header-section-number">6.12</span> Chapter summary</h2>
 <p>The correlation coefficient (<span class="math inline">\(\boldsymbol{r}\)</span> or Pearson’s Product Moment
 Correlation Coefficient) measures the strength
 and direction of the linear relationship between two quantitative variables.
@@ -2220,7 +2215,7 @@ relationship; in regression, we use the coefficient of determination to
 describe the strength of the relationship between the variables as a percentage
 of the response variable that is explained by the model. If we are choosing
 between models, we prefer them to have higher <span class="math inline">\(R^2\)</span> values for obvious
-reasons, but we will discover in Chapter <a href="chapter8.html#chapter8"><strong>??</strong></a> that maximizing
+reasons, but we will discover in Chapter <a href="chapter8.html#chapter8">8</a> that maximizing
 the coefficient of
 determination is not a good way to pick a model when we have multiple candidate
 options.</p>
@@ -2257,8 +2252,8 @@ situations, but the underlying <strong><em>linear models</em></strong> are actua
 same…</p>
 <!-- \newpage -->
 </div>
-<div id="section6-13" class="section level2" number="6.13">
-<h2 number="6.13"><span class="header-section-number">6.13</span> Summary of important R code</h2>
+<div id="section6-13" class="section level2">
+<h2><span class="header-section-number">6.13</span> Summary of important R code</h2>
 <p>The main components of the R code used in this chapter follow with the
 components to modify in lighter and/or ALL CAPS text where <code>y</code> is a response variable,
 <code>x</code> is an explanatory variable, and the data are in <code>DATASETNAME</code>.</p>
@@ -2298,7 +2293,7 @@ data=<font color='red'>DATASETNAME</font>)</strong></p>
 <li><p><strong>summary(<font color='red'>MODELNAME</font>)</strong></p>
 <ul>
 <li>Provides parameter estimates and R-squared (used heavily in
-Chapter <a href="chapter7.html#chapter7"><strong>??</strong></a> and <a href="chapter8.html#chapter8"><strong>??</strong></a> as well).
+Chapter <a href="chapter7.html#chapter7">7</a> and <a href="chapter8.html#chapter8">8</a> as well).
 </li>
 </ul></li>
 <li><p><strong>par(mfrow=c(2, 2)); plot(<font color='red'>MODELNAME</font>)</strong></p>
@@ -2308,9 +2303,9 @@ Chapter <a href="chapter7.html#chapter7"><strong>??</strong></a> and <a href="ch
 </ul>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="section6-14" class="section level2" number="6.14">
-<h2 number="6.14"><span class="header-section-number">6.14</span> Practice problems</h2>
-<p>6.1. <strong>Treadmill data analysis</strong> These questions revisit the treadmill data set from Chapter <a href="chapter1.html#chapter1"><strong>??</strong></a>.
+<div id="section6-14" class="section level2">
+<h2><span class="header-section-number">6.14</span> Practice problems</h2>
+<p>6.1. <strong>Treadmill data analysis</strong> These questions revisit the treadmill data set from Chapter <a href="chapter1.html#chapter1">1</a>.
 Researchers were
 interested in whether the run test variable could be used to replace the treadmill
 oxygen consumption variable that is expensive to measure. The following code loads
@@ -2340,6 +2335,48 @@ is the approximate leverage of the highest leverage observation and how large
 is its Cook’s D? What does that tell you about its potential influence in this
 model?</p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-manipulate">
+<p>Allaire, JJ. 2014. <em>Manipulate: Interactive Plots for Rstudio</em>. <a href="https://CRAN.R-project.org/package=manipulate">https://CRAN.R-project.org/package=manipulate</a>.</p>
+</div>
+<div id="ref-Azzalini1990">
+<p>Azzalini, Adelchi, and Adrian W. Bowman. 1990. “A Look at Some Data on the Old Faithful Geyser.” <em>Applied Statistics</em> 39: 357–65.</p>
+</div>
+<div id="ref-Clevenger2005">
+<p>Clevenger, Anthony P, and Nigel Waltho. 2005. “Performance Indices to Identify Attributes of Highway Crossing Structures Facilitating Movement of Large Mammals.” <em>Biological Conservation</em> 121 (3): 453–64.</p>
+</div>
+<div id="ref-Fox2011">
+<p>Fox, John, and Sanford Weisberg. 2011. <em>An R-Companion to Applied Regression, Second Edition</em>. Thousand Oaks, CA: SAGE Publications. <a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Companion">http://socserv.socsci.mcmaster.ca/jfox/Books/Companion</a>.</p>
+</div>
+<div id="ref-R-carData">
+<p>Fox, John, Sanford Weisberg, and Brad Price. 2019b. <em>CarData: Companion to Applied Regression Data Sets</em>. <a href="https://CRAN.R-project.org/package=carData">https://CRAN.R-project.org/package=carData</a>.</p>
+</div>
+<div id="ref-Gude2009">
+<p>Gude, Patricia H., J. Anthony Cookson, Mark C. Greenwood, and Mark Haggerty. 2009. “Homes in Wildfire-Prone Areas: An Empirical Analysis of Wildfire Suppression Costs and Climate Change.” <a href="www.headwaterseconomics.org">www.headwaterseconomics.org</a>.</p>
+</div>
+<div id="ref-R-spuRs">
+<p>Jones, Owen, Robert Maillardet, Andrew Robinson, Olga Borovkova, and Steven Carnie. 2018. <em>SpuRs: Functions and Datasets for "Introduction to Scientific Programming and Simulation Using R"</em>. <a href="https://CRAN.R-project.org/package=spuRs">https://CRAN.R-project.org/package=spuRs</a>.</p>
+</div>
+<div id="ref-R-psych">
+<p>Revelle, William. 2019. <em>Psych: Procedures for Psychological, Psychometric, and Personality Research</em>. <a href="https://CRAN.R-project.org/package=psych">https://CRAN.R-project.org/package=psych</a>.</p>
+</div>
+<div id="ref-R-MASS">
+<p>Ripley, Brian. 2019. <em>MASS: Support Functions and Datasets for Venables and Ripley’s Mass</em>. <a href="https://CRAN.R-project.org/package=MASS">https://CRAN.R-project.org/package=MASS</a>.</p>
+</div>
+<div id="ref-R-tigerstats">
+<p>Robinson, Rebekah, and Homer White. 2016. <em>Tigerstats: R Functions for Elementary Statistics</em>. <a href="https://CRAN.R-project.org/package=tigerstats">https://CRAN.R-project.org/package=tigerstats</a>.</p>
+</div>
+<div id="ref-R-corrplot">
+<p>Wei, Taiyun, and Viliam Simko. 2017. <em>Corrplot: Visualization of a Correlation Matrix</em>. <a href="https://CRAN.R-project.org/package=corrplot">https://CRAN.R-project.org/package=corrplot</a>.</p>
+</div>
+<div id="ref-Weisberg2005">
+<p>Weisberg, Sanford. 2005. <em>Applied Linear Regression, Third Edition</em>. Hoboken, NJ: Wiley.</p>
+</div>
+<div id="ref-R-alr3">
+<p>Weisberg, Sanford. 2018. <em>Alr3: Data to Accompany Applied Linear Regression 3rd Edition</em>. <a href="https://CRAN.R-project.org/package=alr3">https://CRAN.R-project.org/package=alr3</a>.</p>
 </div>
 </div>
 <div class="footnotes">

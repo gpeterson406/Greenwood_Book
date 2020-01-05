@@ -1443,8 +1443,6 @@ data for Montana. Figure \@ref(fig:Figure7-12) compares the
 relationship between these variables on the original hectares scale and the
 log-hectares scale. 
 
-\newpage
-
 
 ```r
 par(mfrow=c(1,2))
@@ -1954,7 +1952,11 @@ $(y=\beta_0x^{\beta_1})$ using SLR.
 \indent We don't typically use
 the previous ideas to interpret the typical log-log regression model, instead
 we combine our two previous interpretation techniques to generate our
-interpretation. We need to work out the mathematics of doubling $x$ and the
+interpretation. 
+
+\newpage
+
+We need to work out the mathematics of doubling $x$ and the
 changes in $y$ starting with the $\mathit{\boldsymbol{\log(y)\sim \log(x)}}$
 ***model*** that we would get out of fitting the SLR with both variables
 log-transformed:

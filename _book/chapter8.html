@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8 Multiple linear regression | Intermediate Statistics with R</title>
-  <meta name="description" content="8 Multiple linear regression | Intermediate Statistics with R" />
+  <title>Chapter 8 Multiple linear regression | Intermediate Statistics with R</title>
+  <meta name="description" content="Chapter 8 Multiple linear regression | Intermediate Statistics with R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8 Multiple linear regression | Intermediate Statistics with R" />
+  <meta property="og:title" content="Chapter 8 Multiple linear regression | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="gpeterson406/Greenwood_Book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8 Multiple linear regression | Intermediate Statistics with R" />
+  <meta name="twitter:title" content="Chapter 8 Multiple linear regression | Intermediate Statistics with R" />
   
   
   
@@ -33,7 +33,6 @@
 <link rel="prev" href="chapter7.html"/>
 <link rel="next" href="chapter9.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<script src="libs/elevate-section-attrs-2.0/elevate-section-attrs.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -53,17 +52,18 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -83,7 +83,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -117,6 +117,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+<link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
 </head>
 
 <body>
@@ -134,8 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Cover</a></li>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
-<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
-<ul>
+<li class="chapter" data-level="1" data-path="chapter1.html"><a href="chapter1.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
 <li class="chapter" data-level="1.1" data-path="chapter1.html"><a href="chapter1.html#section1-1"><i class="fa fa-check"></i><b>1.1</b> Overview of methods</a></li>
 <li class="chapter" data-level="1.2" data-path="chapter1.html"><a href="chapter1.html#section1-2"><i class="fa fa-check"></i><b>1.2</b> Getting started in R</a></li>
 <li class="chapter" data-level="1.3" data-path="chapter1.html"><a href="chapter1.html#section1-3"><i class="fa fa-check"></i><b>1.3</b> Basic summary statistics, histograms, and boxplots using R</a></li>
@@ -143,8 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="chapter1.html"><a href="chapter1.html#section1-5"><i class="fa fa-check"></i><b>1.5</b> Summary of important R code</a></li>
 <li class="chapter" data-level="1.6" data-path="chapter1.html"><a href="chapter1.html#section1-6"><i class="fa fa-check"></i><b>1.6</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> (R)e-Introduction to statistics</a>
-<ul>
+<li class="chapter" data-level="2" data-path="chapter2.html"><a href="chapter2.html"><i class="fa fa-check"></i><b>2</b> (R)e-Introduction to statistics</a><ul>
 <li class="chapter" data-level="2.1" data-path="chapter2.html"><a href="chapter2.html#section2-1"><i class="fa fa-check"></i><b>2.1</b> Histograms, boxplots, and density curves</a></li>
 <li class="chapter" data-level="2.2" data-path="chapter2.html"><a href="chapter2.html#section2-2"><i class="fa fa-check"></i><b>2.2</b> Pirate-plots</a></li>
 <li class="chapter" data-level="2.3" data-path="chapter2.html"><a href="chapter2.html#section2-3"><i class="fa fa-check"></i><b>2.3</b> Models, hypotheses, and permutations for the two sample mean situation</a></li>
@@ -159,8 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.12" data-path="chapter2.html"><a href="chapter2.html#section2-12"><i class="fa fa-check"></i><b>2.12</b> Summary of important R code</a></li>
 <li class="chapter" data-level="2.13" data-path="chapter2.html"><a href="chapter2.html#section2-13"><i class="fa fa-check"></i><b>2.13</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a>
-<ul>
+<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> One-Way ANOVA</a><ul>
 <li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#section3-1"><i class="fa fa-check"></i><b>3.1</b> Situation</a></li>
 <li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#section3-2"><i class="fa fa-check"></i><b>3.2</b> Linear model for One-Way ANOVA (cell means and reference-coding)</a></li>
 <li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#section3-3"><i class="fa fa-check"></i><b>3.3</b> One-Way ANOVA Sums of Squares, Mean Squares, and F-test</a></li>
@@ -172,8 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9" data-path="chapter3.html"><a href="chapter3.html#section3-9"><i class="fa fa-check"></i><b>3.9</b> Summary of important R code</a></li>
 <li class="chapter" data-level="3.10" data-path="chapter3.html"><a href="chapter3.html#section3-10"><i class="fa fa-check"></i><b>3.10</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="chapter4.html"><a href="chapter4.html"><i class="fa fa-check"></i><b>4</b> Two-Way ANOVA</a>
-<ul>
+<li class="chapter" data-level="4" data-path="chapter4.html"><a href="chapter4.html"><i class="fa fa-check"></i><b>4</b> Two-Way ANOVA</a><ul>
 <li class="chapter" data-level="4.1" data-path="chapter4.html"><a href="chapter4.html#section4-1"><i class="fa fa-check"></i><b>4.1</b> Situation</a></li>
 <li class="chapter" data-level="4.2" data-path="chapter4.html"><a href="chapter4.html#section4-2"><i class="fa fa-check"></i><b>4.2</b> Designing a two-way experiment and visualizing results</a></li>
 <li class="chapter" data-level="4.3" data-path="chapter4.html"><a href="chapter4.html#section4-3"><i class="fa fa-check"></i><b>4.3</b> Two-Way ANOVA models and hypothesis tests</a></li>
@@ -184,8 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.8" data-path="chapter4.html"><a href="chapter4.html#section4-8"><i class="fa fa-check"></i><b>4.8</b> Summary of important R code</a></li>
 <li class="chapter" data-level="4.9" data-path="chapter4.html"><a href="chapter4.html#section4-9"><i class="fa fa-check"></i><b>4.9</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="chapter5.html"><a href="chapter5.html"><i class="fa fa-check"></i><b>5</b> Chi-square tests</a>
-<ul>
+<li class="chapter" data-level="5" data-path="chapter5.html"><a href="chapter5.html"><i class="fa fa-check"></i><b>5</b> Chi-square tests</a><ul>
 <li class="chapter" data-level="5.1" data-path="chapter5.html"><a href="chapter5.html#section5-1"><i class="fa fa-check"></i><b>5.1</b> Situation, contingency tables, and tableplots</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter5.html"><a href="chapter5.html#section5-2"><i class="fa fa-check"></i><b>5.2</b> Homogeneity test hypotheses</a></li>
 <li class="chapter" data-level="5.3" data-path="chapter5.html"><a href="chapter5.html#section5-3"><i class="fa fa-check"></i><b>5.3</b> Independence test hypotheses</a></li>
@@ -201,8 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.13" data-path="chapter5.html"><a href="chapter5.html#section5-13"><i class="fa fa-check"></i><b>5.13</b> Summary of important R commands</a></li>
 <li class="chapter" data-level="5.14" data-path="chapter5.html"><a href="chapter5.html#section5-14"><i class="fa fa-check"></i><b>5.14</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="chapter6.html"><a href="chapter6.html"><i class="fa fa-check"></i><b>6</b> Correlation and Simple Linear Regression</a>
-<ul>
+<li class="chapter" data-level="6" data-path="chapter6.html"><a href="chapter6.html"><i class="fa fa-check"></i><b>6</b> Correlation and Simple Linear Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="chapter6.html"><a href="chapter6.html#section6-1"><i class="fa fa-check"></i><b>6.1</b> Relationships between two quantitative variables</a></li>
 <li class="chapter" data-level="6.2" data-path="chapter6.html"><a href="chapter6.html#section6-2"><i class="fa fa-check"></i><b>6.2</b> Estimating the correlation coefficient</a></li>
 <li class="chapter" data-level="6.3" data-path="chapter6.html"><a href="chapter6.html#section6-3"><i class="fa fa-check"></i><b>6.3</b> Relationships between variables by groups</a></li>
@@ -218,8 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.13" data-path="chapter6.html"><a href="chapter6.html#section6-13"><i class="fa fa-check"></i><b>6.13</b> Summary of important R code</a></li>
 <li class="chapter" data-level="6.14" data-path="chapter6.html"><a href="chapter6.html#section6-14"><i class="fa fa-check"></i><b>6.14</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="chapter7.html"><a href="chapter7.html"><i class="fa fa-check"></i><b>7</b> Simple linear regression inference</a>
-<ul>
+<li class="chapter" data-level="7" data-path="chapter7.html"><a href="chapter7.html"><i class="fa fa-check"></i><b>7</b> Simple linear regression inference</a><ul>
 <li class="chapter" data-level="7.1" data-path="chapter7.html"><a href="chapter7.html#section7-1"><i class="fa fa-check"></i><b>7.1</b> Model</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter7.html"><a href="chapter7.html#section7-2"><i class="fa fa-check"></i><b>7.2</b> Confidence interval and hypothesis tests for the slope and intercept</a></li>
 <li class="chapter" data-level="7.3" data-path="chapter7.html"><a href="chapter7.html#section7-3"><i class="fa fa-check"></i><b>7.3</b> Bozeman temperature trend</a></li>
@@ -231,8 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="chapter7.html"><a href="chapter7.html#section7-9"><i class="fa fa-check"></i><b>7.9</b> Summary of important R code</a></li>
 <li class="chapter" data-level="7.10" data-path="chapter7.html"><a href="chapter7.html#section7-10"><i class="fa fa-check"></i><b>7.10</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="chapter8.html"><a href="chapter8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression</a>
-<ul>
+<li class="chapter" data-level="8" data-path="chapter8.html"><a href="chapter8.html"><i class="fa fa-check"></i><b>8</b> Multiple linear regression</a><ul>
 <li class="chapter" data-level="8.1" data-path="chapter8.html"><a href="chapter8.html#section8-1"><i class="fa fa-check"></i><b>8.1</b> Going from SLR to MLR</a></li>
 <li class="chapter" data-level="8.2" data-path="chapter8.html"><a href="chapter8.html#section8-2"><i class="fa fa-check"></i><b>8.2</b> Validity conditions in MLR</a></li>
 <li class="chapter" data-level="8.3" data-path="chapter8.html"><a href="chapter8.html#section8-3"><i class="fa fa-check"></i><b>8.3</b> Interpretation of MLR terms</a></li>
@@ -251,8 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.16" data-path="chapter8.html"><a href="chapter8.html#section8-16"><i class="fa fa-check"></i><b>8.16</b> Summary of important R code</a></li>
 <li class="chapter" data-level="8.17" data-path="chapter8.html"><a href="chapter8.html#section8-17"><i class="fa fa-check"></i><b>8.17</b> Practice problems</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="chapter9.html"><a href="chapter9.html"><i class="fa fa-check"></i><b>9</b> Case studies</a>
-<ul>
+<li class="chapter" data-level="9" data-path="chapter9.html"><a href="chapter9.html"><i class="fa fa-check"></i><b>9</b> Case studies</a><ul>
 <li class="chapter" data-level="9.1" data-path="chapter9.html"><a href="chapter9.html#section9-1"><i class="fa fa-check"></i><b>9.1</b> Overview of material covered</a></li>
 <li class="chapter" data-level="9.2" data-path="chapter9.html"><a href="chapter9.html#section9-2"><i class="fa fa-check"></i><b>9.2</b> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</a></li>
 <li class="chapter" data-level="9.3" data-path="chapter9.html"><a href="chapter9.html#section9-3"><i class="fa fa-check"></i><b>9.3</b> Ants learn to rely on more informative attributes during decision-making</a></li>
@@ -281,10 +274,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter8" class="section level1" number="8">
-<h1 number="8"><span class="header-section-number">8</span> Multiple linear regression</h1>
-<div id="section8-1" class="section level2" number="8.1">
-<h2 number="8.1"><span class="header-section-number">8.1</span> Going from SLR to MLR</h2>
+<div id="chapter8" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Multiple linear regression</h1>
+<div id="section8-1" class="section level2">
+<h2><span class="header-section-number">8.1</span> Going from SLR to MLR</h2>
 <p>In many situations, especially in observational studies, it is unlikely that
 the system is simple enough to be characterized
 by a single predictor variable. In experiments, if we randomly assign levels of
@@ -328,7 +321,7 @@ predictors and we still have a
 <span class="math inline">\(y\)</span>-intercept.
 
 The MLR model carries the same assumptions as an SLR model with a
-couple of slight tweaks specific to MLR (see Section <a href="chapter8.html#section8-2"><strong>??</strong></a>
+couple of slight tweaks specific to MLR (see Section <a href="chapter8.html#section8-2">8.2</a>
 for the details on the changes to the validity conditions).</p>
 <p>We are able to use the
 least squares criterion for estimating the regression coefficients in MLR, but
@@ -354,7 +347,7 @@ One might assume that colder
 and higher places will have more snow, but using just one of the predictor
 variables might leave out some important predictive information. The following
 code loads the data set and makes the scatterplot matrix
-(Figure <a href="chapter8.html#fig:Figure8-1">158</a>) to allow
+(Figure <a href="chapter8.html#fig:Figure8-1">8.1</a>) to allow
 some preliminary assessment of the pairwise relationships.</p>
 <div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="chapter8.html#cb697-1"></a>snotel_s &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/snotel_s.csv&quot;</span>)</span></code></pre></div>
 
@@ -365,7 +358,7 @@ some preliminary assessment of the pairwise relationships.</p>
 <div class="figure"><span id="fig:Figure8-1"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-1-1.png" alt="Scatterplot matrix of data from a sample of SNOTEL sites in April on four variables. " width="672" />
 <p class="caption">
-Figure 158: Scatterplot matrix of data from a sample of SNOTEL sites in April on four variables. 
+Figure 8.1: Scatterplot matrix of data from a sample of SNOTEL sites in April on four variables. 
 </p>
 </div>
 <p>It appears that there are many strong linear relationships between the variables,
@@ -381,7 +374,7 @@ problem if we try to put them both into a model to explain snow depth. Is it
 the elevation, temperature, or the combination of both that matters for getting
 and retaining more snow? <strong>Correlation between predictor variables</strong> is called
 multicollinearity and <strong>makes estimation and interpretation of MLR models more
-complicated than in SLR</strong>. Section <a href="chapter8.html#section8-5"><strong>??</strong></a> deals with this issue
+complicated than in SLR</strong>. Section <a href="chapter8.html#section8-5">8.5</a> deals with this issue
 directly and discusses methods
 for detecting its presence. For now, remember that in MLR this issue sometimes
 makes it difficult to disentangle the impacts of different predictor variables
@@ -389,9 +382,9 @@ on the response when the predictors share information – when they are
 correlated.</p>
 <p>To get familiar with this example, we can start with fitting some
 potential SLR
-models and plotting the estimated models. Figure <a href="chapter8.html#fig:Figure8-2">159</a> contains
+models and plotting the estimated models. Figure <a href="chapter8.html#fig:Figure8-2">8.2</a> contains
 the result for the SLR using <em>Elevation</em> and results for two temperature based
-models are in Figures <a href="chapter8.html#fig:Figure8-3">160</a> and <a href="chapter8.html#fig:Figure8-4">161</a>.
+models are in Figures <a href="chapter8.html#fig:Figure8-3">8.3</a> and <a href="chapter8.html#fig:Figure8-4">8.4</a>.
 <em>Snow Depth</em> is selected as the
 obvious response variable both due to skier interest and potential scientific
 causation (snow can’t change elevation but elevation could be the driver of
@@ -400,7 +393,7 @@ snow deposition and retention).</p>
 <div class="figure"><span id="fig:Figure8-2"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-2-1.png" alt="Plot of the estimated SLR model for Snow Depth with Elevation as the predictor along with observations and smoothing line generated by the residuals=T option being specified. " width="480" />
 <p class="caption">
-Figure 159: Plot of the estimated SLR model for Snow Depth with Elevation as the predictor along with observations and smoothing line generated by the <code>residuals=T</code> option being specified. 
+Figure 8.2: Plot of the estimated SLR model for Snow Depth with Elevation as the predictor along with observations and smoothing line generated by the <code>residuals=T</code> option being specified. 
 </p>
 </div>
 <p>Based on the model summaries provided below, the three estimated SLR models
@@ -415,7 +408,7 @@ our expected results, showing a positive change in <em>Snow Depth</em> for highe
 <em>Elevations</em> and negative impacts for increasing temperatures on <em>Snow Depth</em>.
 These plots are made across the observed range<a href="#fn118" class="footnote-ref" id="fnref118"><sup>118</sup></a> of the predictor
 variable and help us to get a sense of the total impacts of
-predictors. For example, for elevation in Figure <a href="chapter8.html#fig:Figure8-2">159</a>, the
+predictors. For example, for elevation in Figure <a href="chapter8.html#fig:Figure8-2">8.2</a>, the
 smallest observed
 value was 4925 feet and the largest was 8300 feet. The regression line goes
 from estimating a mean snow depth of 8 inches to 63 inches. That gives you some
@@ -435,7 +428,7 @@ of values of <span class="math inline">\(x\)</span>. If the <em>Elevation</em> h
 then the slope would have been estimated to be <span class="math inline">\(0.0163*1000=16.3\)</span> inches change in mean
 <em>Snow Depth</em> for a 1000 foot increase in elevation.</p>
 <p>The plots of the two estimated temperature models in
-Figures <a href="chapter8.html#fig:Figure8-3">160</a> and <a href="chapter8.html#fig:Figure8-4">161</a> suggest a similar change
+Figures <a href="chapter8.html#fig:Figure8-3">8.3</a> and <a href="chapter8.html#fig:Figure8-4">8.4</a> suggest a similar change
 in the responses over
 the range of observed temperatures. Those predictors range from 22<span class="math inline">\(^\circ F\)</span>
 to 34<span class="math inline">\(^\circ F\)</span> (minimum temperature) and from 26<span class="math inline">\(^\circ F\)</span> to 50<span class="math inline">\(^\circ F\)</span>
@@ -451,14 +444,14 @@ compared to the other models.</p>
 <div class="figure"><span id="fig:Figure8-3"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-3-1.png" alt="Plot of the estimated SLR model using Min Temp as predictor." width="480" />
 <p class="caption">
-Figure 160: Plot of the estimated SLR model using Min Temp as predictor.
+Figure 8.3: Plot of the estimated SLR model using Min Temp as predictor.
 </p>
 </div>
 
 <div class="figure"><span id="fig:Figure8-4"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-4-1.png" alt="Plot of the estimated SLR model using Max Temp as predictor." width="480" />
 <p class="caption">
-Figure 161: Plot of the estimated SLR model using Max Temp as predictor.
+Figure 8.4: Plot of the estimated SLR model using Max Temp as predictor.
 </p>
 </div>
 <div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="chapter8.html#cb699-1"></a>m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation, <span class="dt">data=</span>snotel2)</span>
@@ -486,6 +479,7 @@ Figure 161: Plot of the estimated SLR model using Max Temp as predictor.
 ## Residual standard error: 13.27 on 23 degrees of freedom
 ## Multiple R-squared:  0.634,  Adjusted R-squared:  0.618 
 ## F-statistic: 39.83 on 1 and 23 DF,  p-value: 1.933e-06</code></pre>
+
 <div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="chapter8.html#cb702-1"></a><span class="kw">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -549,9 +543,9 @@ predictors<a href="#fn119" class="footnote-ref" id="fnref119"><sup>119</sup></a>
 ## F-statistic: 12.91 on 3 and 21 DF,  p-value: 5.328e-05</code></pre>
 <div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb708-1"><a href="chapter8.html#cb708-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(m4, <span class="dt">residuals=</span>T), <span class="dt">main=</span><span class="st">&quot;MLR model with Elev, Min &amp; Max Temps&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-5"></span>
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-5-1.png" alt="Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp. Compare this plot that comes from one MLR model to Figures 159, 160, and 161 for comparable SLR models. Note the points in these panels are the partial residuals that are generated after controlling for the other two of the three variables as explained below." width="960" />
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-5-1.png" alt="Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp. Compare this plot that comes from one MLR model to Figures 8.2, 8.3, and 8.4 for comparable SLR models. Note the points in these panels are the partial residuals that are generated after controlling for the other two of the three variables as explained below." width="960" />
 <p class="caption">
-Figure 162: Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp. Compare this plot that comes from one MLR model to Figures <a href="chapter8.html#fig:Figure8-2">159</a>, <a href="chapter8.html#fig:Figure8-3">160</a>, and <a href="chapter8.html#fig:Figure8-4">161</a> for comparable SLR models. Note the points in these panels are the partial residuals that are generated after controlling for the other two of the three variables as explained below.
+Figure 8.5: Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp. Compare this plot that comes from one MLR model to Figures <a href="chapter8.html#fig:Figure8-2">8.2</a>, <a href="chapter8.html#fig:Figure8-3">8.3</a>, and <a href="chapter8.html#fig:Figure8-4">8.4</a> for comparable SLR models. Note the points in these panels are the partial residuals that are generated after controlling for the other two of the three variables as explained below.
 </p>
 </div>
 <p>Based on the output, the estimated MLR model is</p>
@@ -559,7 +553,7 @@ Figure 162: Term-plots for the MLR for Snow Depth based on Elevation, Min Temp a
 -0.505\cdot\text{MinTemp}_i - 0.562\cdot\text{MaxTemp}_i\ .\]</span></p>
 <p>The direction of the estimated slope coefficients were similar but they
 all changed in magnitude as compared to the respective SLRs, as seen in the
-estimated term-plots from the MLR model in Figure <a href="chapter8.html#fig:Figure8-5">162</a>.</p>
+estimated term-plots from the MLR model in Figure <a href="chapter8.html#fig:Figure8-5">8.5</a>.</p>
 <p>There are two ways to think about the changes from individual SLR slope
 coefficients to the similar MLR results here.</p>
 <ol style="list-style-type: decimal">
@@ -602,8 +596,8 @@ variable that is of most interest with it in the model alone (SLR) and in models
 after adjusting for the other variables that are expected to matter. The “adjusted for other variables” results are built with MLR or related multiple-predictor models like MLR.
 </p>
 </div>
-<div id="section8-2" class="section level2" number="8.2">
-<h2 number="8.2"><span class="header-section-number">8.2</span> Validity conditions in MLR</h2>
+<div id="section8-2" class="section level2">
+<h2><span class="header-section-number">8.2</span> Validity conditions in MLR</h2>
 <p>But before we get too excited about any results, we should always assess our
 validity conditions. For MLR, they are similar to those for SLR:
 </p>
@@ -612,7 +606,7 @@ validity conditions. For MLR, they are similar to those for SLR:
 <ul>
 <li>The response and all predictors need to be quantitative variables.
 This condition is relaxed to allow a categorical predictor in two ways
-in Sections <a href="chapter8.html#section8-9"><strong>??</strong></a> and <a href="chapter8.html#section8-11"><strong>??</strong></a>.</li>
+in Sections <a href="chapter8.html#section8-9">8.9</a> and <a href="chapter8.html#section8-11">8.11</a>.</li>
 </ul></li>
 <li><p><strong>Independence of observations:</strong></p>
 <ul>
@@ -655,7 +649,7 @@ impact our ability to trust and interpret the estimated terms. Extreme issues mi
 <li><p>Check a scatterplot or correlation matrix  to assess the potential for
 shared information in different predictor variables.</p></li>
 <li><p>Use the diagnostic measure called a <strong><em>variance inflation factor</em></strong>
-(<strong><em>VIF</em></strong>) discussed in Section <a href="chapter8.html#section8-5"><strong>??</strong></a> (we need to develop
+(<strong><em>VIF</em></strong>) discussed in Section <a href="chapter8.html#section8-5">8.5</a> (we need to develop
 some ideas first to understand this measure). </p></li>
 </ul></li>
 <li><p><strong>Equal (constant) variance:</strong></p>
@@ -741,14 +735,14 @@ and then explore the results. When data are collected across space, you should n
 The same code
 as before will provide diagnostic plots. There is some extra code
 (<code>par(...)</code>) added to allow us to add labels to the plots (<code>sub.caption="..."</code>) to know which model
-is being displayed since we have so many to discuss here. We can also employ a new approach, which is to simulate new observations from the model and make plots to compare simulated data sets to what was observed. The <code>simulate</code> function from Chapter <a href="chapter2.html#chapter2"><strong>??</strong></a>  can be used to generate new observations from the model based on the estimated coefficients and where we know that the assumptions are true. If the simulated data and the observed data are very different, then the model is likely dangerous to use for inferences because of this mis-match. This method can be used to assess the linearity, constant variance, normality of residuals, and influential points aspects of the model. It is not something used in every situation, but is especially helpful if you are struggling to decide if what you are seeing in the diagnostics is just random variability or is really a clear issue. The regular steps in assessing each assumption are discussed first.</p>
+is being displayed since we have so many to discuss here. We can also employ a new approach, which is to simulate new observations from the model and make plots to compare simulated data sets to what was observed. The <code>simulate</code> function from Chapter <a href="chapter2.html#chapter2">2</a>  can be used to generate new observations from the model based on the estimated coefficients and where we know that the assumptions are true. If the simulated data and the observed data are very different, then the model is likely dangerous to use for inferences because of this mis-match. This method can be used to assess the linearity, constant variance, normality of residuals, and influential points aspects of the model. It is not something used in every situation, but is especially helpful if you are struggling to decide if what you are seeing in the diagnostics is just random variability or is really a clear issue. The regular steps in assessing each assumption are discussed first.</p>
 
 <div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="chapter8.html#cb709-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
 <span id="cb709-2"><a href="chapter8.html#cb709-2"></a><span class="kw">plot</span>(m4, <span class="dt">sub.caption=</span><span class="st">&quot;Diagnostics for m4&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-6"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-6-1.png" alt="Diagnostic plots for model m4: \(\text{Snow.Depth}\sim \text{Elevation} + \text{Min.Temp} + \text{Max.Temp}\)." width="960" />
 <p class="caption">
-Figure 163: Diagnostic plots for model m4: <span class="math inline">\(\text{Snow.Depth}\sim \text{Elevation} + \text{Min.Temp} + \text{Max.Temp}\)</span>.
+Figure 8.6: Diagnostic plots for model m4: <span class="math inline">\(\text{Snow.Depth}\sim \text{Elevation} + \text{Min.Temp} + \text{Max.Temp}\)</span>.
 </p>
 </div>
 <ul>
@@ -756,23 +750,23 @@ Figure 163: Diagnostic plots for model m4: <span class="math inline">\(\text{Sno
 <ul>
 <li><p>Make plots of the response versus each explanatory variable:</p>
 <ul>
-<li>In Figure <a href="chapter8.html#fig:Figure8-1">158</a>, the plots of each variable versus
+<li>In Figure <a href="chapter8.html#fig:Figure8-1">8.1</a>, the plots of each variable versus
 snow depth do not clearly show any nonlinearity except for a little
 dip around 7000 feet in the plot vs <em>Elevation</em>.</li>
 </ul></li>
-<li><p>Examine the Residuals vs Fitted plot in Figure <a href="chapter8.html#fig:Figure8-6">163</a>:</p>
+<li><p>Examine the Residuals vs Fitted plot in Figure <a href="chapter8.html#fig:Figure8-6">8.6</a>:</p>
 <ul>
 <li>Generally, there is no clear curvature in the Residuals vs Fitted
 panel and that would be an acceptable answer. However, there is some
 pattern in the smoothing line that could suggest a more complicated
 relationship between at least one predictor and the response. This also
 resembles the pattern in the <em>Elevation</em> vs. <em>Snow depth</em> panel in
-Figure <a href="chapter8.html#fig:Figure8-1">158</a> so that might be the source of this
+Figure <a href="chapter8.html#fig:Figure8-1">8.1</a> so that might be the source of this
 “problem”. This suggests that there is the potential to do a little
 bit better but that it is not unreasonable to proceed on with the MLR,
 ignoring this little wiggle in the diagnostic plot.</li>
 </ul></li>
-<li><p>Examine partial residuals as seen in Figure <a href="chapter8.html#fig:Figure8-5">162</a>:</p>
+<li><p>Examine partial residuals as seen in Figure <a href="chapter8.html#fig:Figure8-5">8.5</a>:</p>
 <ul>
 <li>In the term-plot for elevation from this model, there is a slight pattern in the partial residuals between 6,500 and 7,500 feet. This was also apparent in the original plot and suggests a slight nonlinearity in the pattern of responses versus this explanatory variable.</li>
 </ul></li>
@@ -783,7 +777,7 @@ ignoring this little wiggle in the diagnostic plot.</li>
 (correlations between -0.67 and -0.91) and multicollinearity looks to be
 a major concern in being able to understand/separate the impacts of
 temperatures and elevations on snow depths.</p></li>
-<li><p>See Section <a href="chapter8.html#section8-5"><strong>??</strong></a> for more on this issue in these data.</p></li>
+<li><p>See Section <a href="chapter8.html#section8-5">8.5</a> for more on this issue in these data.</p></li>
 </ul></li>
 </ul>
 <!-- \newpage -->
@@ -907,7 +901,7 @@ after removing that observation. We can re-run the model without the
 <div class="figure"><span id="fig:Figure8-7"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-7-1.png" alt="Term-plots for the MLR for Snow Depth based on Elevation, Min Temp, and Max Temp with Northeast entrance observation removed from data set (n=24)." width="960" />
 <p class="caption">
-Figure 164: Term-plots for the MLR for Snow Depth based on Elevation, Min Temp, and Max Temp with Northeast entrance observation removed from data set (n=24).
+Figure 8.7: Term-plots for the MLR for Snow Depth based on Elevation, Min Temp, and Max Temp with Northeast entrance observation removed from data set (n=24).
 </p>
 </div>
 <p>The estimated MLR model with <span class="math inline">\(n=24\)</span> after removing the influential
@@ -915,7 +909,7 @@ Figure 164: Term-plots for the MLR for Snow Depth based on Elevation, Min Temp, 
 <p><span class="math display">\[\widehat{\text{SnowDepth}}_i = -142.4 + 0.0214\cdot\text{Elevation}_i
 +0.672\cdot\text{MinTemp}_i +0.508\cdot\text{MaxTemp}_i\ .\]</span></p>
 <p>Something unusual has happened here: there is a positive slope for both
-temperature terms in Figure <a href="chapter8.html#fig:Figure8-7">164</a> that both
+temperature terms in Figure <a href="chapter8.html#fig:Figure8-7">8.7</a> that both
 contradicts reasonable expectations (warmer temperatures are related to higher
 snow levels?) and our original SLR results. So what happened? First, removing
 the influential point has drastically changed the slope coefficients (remember
@@ -951,7 +945,7 @@ recommendations to help you work in situations as complicated as this.
 Exploring the results for this model assumes we trust it and, once again, we
 need to check diagnostics before getting too focused on any particular results
 from it.</p>
-<p>The Residuals vs. Leverage diagnostic plot in Figure <a href="chapter8.html#fig:Figure8-8">165</a>
+<p>The Residuals vs. Leverage diagnostic plot in Figure <a href="chapter8.html#fig:Figure8-8">8.8</a>
 for the model fit to the data set without NE Entrance (now <span class="math inline">\(n=24\)</span>) reveals a new
 point that is somewhat influential (point 22 in the data set has Cook’s D
 <span class="math inline">\(\approx\)</span> 0.5). It is for a location called "Bloody
@@ -974,7 +968,7 @@ observation to be able to work towards a model that is fully trustworthy.</p>
 <div class="figure"><span id="fig:Figure8-8"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-8-1.png" alt="Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with Northeast entrance observation removed from data set." width="960" />
 <p class="caption">
-Figure 165: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with Northeast entrance observation removed from data set.
+Figure 8.8: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with Northeast entrance observation removed from data set.
 </p>
 </div>
 
@@ -1000,7 +994,7 @@ Figure 165: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp
 <div class="figure"><span id="fig:Figure8-9"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-9-1.png" alt="Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed (\(n=23\))." width="960" />
 <p class="caption">
-Figure 166: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed (<span class="math inline">\(n=23\)</span>).
+Figure 8.9: Diagnostic plots for MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed (<span class="math inline">\(n=23\)</span>).
 </p>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1014,7 +1008,7 @@ original data set:</p>
 <p>With the removal of both the “Northeast Entrance” and “Bloody
 <span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span>” sites, there are <span class="math inline">\(n=23\)</span> observations
 remaining. This model (<code>m6</code>) seems to contain residual diagnostics (Figure
-<a href="chapter8.html#fig:Figure8-9">166</a>) that are finally generally reasonable.</p>
+<a href="chapter8.html#fig:Figure8-9">8.9</a>) that are finally generally reasonable.</p>
 <div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="chapter8.html#cb727-1"></a>m6 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Min.Temp<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</span>
 <span id="cb727-2"><a href="chapter8.html#cb727-2"></a><span class="kw">summary</span>(m6)</span>
 <span id="cb727-3"><a href="chapter8.html#cb727-3"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">oma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
@@ -1024,7 +1018,7 @@ in the Scale-Location plot is mostly
 due to few observations with fitted values around 30 happening to be well
 approximated by the model. The normality assumption is generally reasonable and
 no points seem to be overly influential on this model (finally!).</p>
-<p>The term-plots (Figure <a href="chapter8.html#fig:Figure8-10">167</a>) show that the temperature slopes
+<p>The term-plots (Figure <a href="chapter8.html#fig:Figure8-10">8.10</a>) show that the temperature slopes
 are both positive although in this model <em>Max.Temp</em> seems to be more
 “important” than <em>Min.Temp</em>. We have ruled out individual
 influential points as the source of un-expected directions in slope coefficients
@@ -1042,10 +1036,10 @@ in the next sections.
 <div class="figure"><span id="fig:Figure8-10"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-10-1.png" alt="Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed." width="768" />
 <p class="caption">
-Figure 167: Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed.
+Figure 8.10: Term-plots for the MLR for Snow Depth based on Elevation, Min Temp and Max Temp with two observations removed.
 </p>
 </div>
-<p>As a final assessment of this model, we can consider simulating a set of <span class="math inline">\(n=23\)</span> responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called <code>SimulatedSnow</code> in the following codechunk. Figure <a href="chapter8.html#fig:Figure8-11">168</a> uses the <code>plot</code> function to just focus on the relationship of the original (<code>Snow.Depth</code>) and new (fake) responses (<code>SimulatedSnow</code>) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions and the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.</p>
+<p>As a final assessment of this model, we can consider simulating a set of <span class="math inline">\(n=23\)</span> responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called <code>SimulatedSnow</code> in the following codechunk. Figure <a href="chapter8.html#fig:Figure8-11">8.11</a> uses the <code>plot</code> function to just focus on the relationship of the original (<code>Snow.Depth</code>) and new (fake) responses (<code>SimulatedSnow</code>) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions and the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.</p>
 
 <div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="chapter8.html#cb729-1"></a><span class="kw">set.seed</span>(<span class="dv">307</span>)</span>
 <span id="cb729-2"><a href="chapter8.html#cb729-2"></a>snotel_final &lt;-<span class="st"> </span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]</span>
@@ -1063,16 +1057,16 @@ Figure 167: Term-plots for the MLR for Snow Depth based on Elevation, Min Temp a
 <div class="figure"><span id="fig:Figure8-11"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-11-1.png" alt="Plot of the original responses versus the three predictors (\(n\)=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows." width="960" />
 <p class="caption">
-Figure 168: Plot of the original responses versus the three predictors (<span class="math inline">\(n\)</span>=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows.
+Figure 8.11: Plot of the original responses versus the three predictors (<span class="math inline">\(n\)</span>=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows.
 </p>
 </div>
 </div>
-<div id="section8-3" class="section level2" number="8.3">
-<h2 number="8.3"><span class="header-section-number">8.3</span> Interpretation of MLR terms</h2>
+<div id="section8-3" class="section level2">
+<h2><span class="header-section-number">8.3</span> Interpretation of MLR terms</h2>
 <p>Since these results (finally) do not contain any highly influential points,
 we can formally discuss
 interpretations of the slope coefficients and how the term-plots
-(Figure <a href="chapter8.html#fig:Figure8-10">167</a>) aid
+(Figure <a href="chapter8.html#fig:Figure8-10">8.10</a>) aid
 our interpretations. Term-plots in MLR are constructed by holding all the other
 quantitative variables<a href="#fn123" class="footnote-ref" id="fnref123"><sup>123</sup></a> at their mean and generating predictions and 95% CIs for the mean
 response across the levels of observed values for each predictor variable. This
@@ -1131,7 +1125,7 @@ depth of <span class="math inline">\(-140.69 + 0.0269*6000 = 20.71\)</span> inch
 <li><p>For an elevation of 8000 at the average temperatures, we predict a mean snow
 depth of <span class="math inline">\(-140.69 + 0.0269*8000 = 74.51\)</span> inches.</p></li>
 </ul>
-<p>We can plot this information (Figure <a href="chapter8.html#fig:Figure8-12">169</a>) using the <code>plot</code>
+<p>We can plot this information (Figure <a href="chapter8.html#fig:Figure8-12">8.12</a>) using the <code>plot</code>
 function to show the points we calculated and the <code>lines</code> function to add
 a line that connects the dots. In the <code>plot</code> function, we used the
 <code>ylim=...</code> option to make the scaling on the <span class="math inline">\(y\)</span>-axis match the previous
@@ -1140,7 +1134,7 @@ term-plot’s scaling.</p>
 <div class="figure"><span id="fig:Figure8-12"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-12-1.png" alt="Term-plot for Elevation “by-hand”, holding temperature variables constant at their means." width="576" />
 <p class="caption">
-Figure 169: Term-plot for Elevation “by-hand”, holding temperature variables constant at their means.
+Figure 8.12: Term-plot for Elevation “by-hand”, holding temperature variables constant at their means.
 </p>
 </div>
 <div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="chapter8.html#cb734-1"></a><span class="co">#Making own effect plot:</span></span>
@@ -1184,6 +1178,7 @@ temperatures held constant that is stored in <code>newdata1</code>.  </p>
 ## # … with 20 more rows</code></pre>
 <p>The predicted snow depths along with 95% confidence intervals for the mean,
 holding temperatures at their means, are:</p>
+
 <div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="chapter8.html#cb737-1"></a><span class="kw">predict</span>(m6, <span class="dt">newdata=</span>newdata1, <span class="dt">interval=</span><span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##           fit        lwr      upr
 ## 1  -6.3680312 -24.913607 12.17754
@@ -1216,6 +1211,7 @@ holding temperatures at their means, are:</p>
 ## 28 68.6419295  56.916422 80.36744
 ## 29 71.4200762  58.667725 84.17243
 ## 30 74.1982229  60.410585 87.98586</code></pre>
+
 <p>So we could do this with any model <strong>for each predictor</strong> variable to create
 term-plots, or we can just use the <code>allEffects</code> function to do this for us.
 This exercise is useful to complete once to understand what is being displayed
@@ -1255,14 +1251,14 @@ Any time we do linear regression, the inferences are contingent upon the
 model we chose. We know our model is not
 perfect, but we hope that it helps us learn something about our research
 question(s) and, to trust its results, we hope it matches the data fairly well.</p>
-<p>To both illustrate the calculation of partial residuals and demonstrate their potential utility, a small simulated example is considered. These are simulated data to help to highlight these patterns but are not too different than results that can be seen in some real applications. This situation has a response of simulated cholesterol levels with (also simulated) predictors of age, exercise level, and healthiness level with a sample size of <span class="math inline">\(n=100\)</span>. First, consider the plot of the response versus each of the predictors in Figure <a href="chapter8.html#fig:Figure8-13">170</a>. It appears that age might be positively related to the response, but exercise and healthiness levels do not appear to be related to the response. But it is important to remember that the response is made up of potential contributions that can be explained by each predictor and unexplained variation, and so plotting the response versus each predictor may not allow us to see the real relationship with each predictor.</p>
+<p>To both illustrate the calculation of partial residuals and demonstrate their potential utility, a small simulated example is considered. These are simulated data to help to highlight these patterns but are not too different than results that can be seen in some real applications. This situation has a response of simulated cholesterol levels with (also simulated) predictors of age, exercise level, and healthiness level with a sample size of <span class="math inline">\(n=100\)</span>. First, consider the plot of the response versus each of the predictors in Figure <a href="chapter8.html#fig:Figure8-13">8.13</a>. It appears that age might be positively related to the response, but exercise and healthiness levels do not appear to be related to the response. But it is important to remember that the response is made up of potential contributions that can be explained by each predictor and unexplained variation, and so plotting the response versus each predictor may not allow us to see the real relationship with each predictor.</p>
 
 <div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="chapter8.html#cb739-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
 <span id="cb739-2"><a href="chapter8.html#cb739-2"></a><span class="kw">plot</span>(CholLevel<span class="op">~</span>Age<span class="op">+</span>ExAmount<span class="op">+</span>HealthLevel, <span class="dt">data=</span>d1); </span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-13"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-13-1.png" alt="Scatterplot of Cholesterol level versus three predictors (simulated data)." width="480" />
 <p class="caption">
-Figure 170: Scatterplot of Cholesterol level versus three predictors (simulated data).
+Figure 8.13: Scatterplot of Cholesterol level versus three predictors (simulated data).
 </p>
 </div>
 <div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="chapter8.html#cb740-1"></a>sim1&lt;-<span class="kw">lm</span>(CholLevel<span class="op">~</span>Age<span class="op">+</span>ExAmount<span class="op">+</span>HealthLevel, <span class="dt">data=</span>d1)</span>
@@ -1273,16 +1269,16 @@ Figure 170: Scatterplot of Cholesterol level versus three predictors (simulated 
 ## ExAmount     0.07447965 0.04029175   1.848508 6.760692e-02
 ## HealthLevel -1.16373873 0.07212890 -16.134153 4.339546e-29</code></pre>
 <p>In the summary it appears that each predictor might be related to the response given the other predictors in the model with p-values of &lt;0.0001, 0.068, and &lt;0.0001 for Age, Exercise, and Healthiness, respectively.</p>
-<p>In Figure <a href="chapter8.html#fig:Figure8-14">171</a>, we can see more of the story here by exploring the partial residuals versus each of the predictors. There are actually quite clear relationships for each partial residual versus its predictor. For <em>Age</em> and <em>HealthLevel</em>, the relationship after adjusting for other predictors is clearly positive and linear. For <em>ExAmount</em> there is a clear relationship but it is actually curving, so would violate the linearity assumption. It is interesting that none of these were easy to see or even at all present in plots of the response versus individual predictors. This demonstrates the power of MLR methods to adjust/control for other variables to help us potentially more clearly see relationships between individual predictors and the response, or at least their part of the response.</p>
+<p>In Figure <a href="chapter8.html#fig:Figure8-14">8.14</a>, we can see more of the story here by exploring the partial residuals versus each of the predictors. There are actually quite clear relationships for each partial residual versus its predictor. For <em>Age</em> and <em>HealthLevel</em>, the relationship after adjusting for other predictors is clearly positive and linear. For <em>ExAmount</em> there is a clear relationship but it is actually curving, so would violate the linearity assumption. It is interesting that none of these were easy to see or even at all present in plots of the response versus individual predictors. This demonstrates the power of MLR methods to adjust/control for other variables to help us potentially more clearly see relationships between individual predictors and the response, or at least their part of the response.</p>
 
 <div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="chapter8.html#cb742-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(sim1, <span class="dt">residuals=</span>T))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-14"></span>
-<img src="08-multipleLinearRegression_files/figure-html/Figure8-14-1.png" alt="Term-plots with partial residuals for Cholesterol level versus three predictors (simulated data)." width="768" />
+<img src="08-multipleLinearRegression_files/figure-html/Figure8-14-1.png" alt="Term-plots with partial residuals for Cholesterol level versus three predictors (simulated data)." width="960" />
 <p class="caption">
-Figure 171: Term-plots with partial residuals for Cholesterol level versus three predictors (simulated data).
+Figure 8.14: Term-plots with partial residuals for Cholesterol level versus three predictors (simulated data).
 </p>
 </div>
-<p>For those that are interested in these partial residuals, we can re-construct some of the work that the <code>effects</code> package does to provide them. As noted above, we need to take our regular residuals and add back in the impacts of a predictor of interest to calculate the partial residuals. The regular residuals can be extracted using the <code>residuals</code> function on the estimated model and the contribution of, say, the <em>ExAmount</em> predictor is found by taking the values in that variable times its estimated slope coefficient, <span class="math inline">\(b_2=0.07447965\)</span>. Plotting these partial residuals versus <em>ExAmount</em> as in Figure <a href="chapter8.html#fig:Figure8-15">172</a> provides a plot that is similar to the second term-plot except for differences in the y-axis. The y-axis in term-plots contains an additional adjustment but the two plots provide the same utility in diagnosing a clear missed curve in the partial residuals that is related to the <em>ExAmount</em>. Methods to incorporate polynomial functions of the predictor are simple extensions of the <code>lm</code> work we have been doing but are beyond the scope of this material – but you should always be checking the partial residuals to assess the linearity assumption with each predictor and if you see a pattern like this, consult further statistical resources or a statistician for help.</p>
+<p>For those that are interested in these partial residuals, we can re-construct some of the work that the <code>effects</code> package does to provide them. As noted above, we need to take our regular residuals and add back in the impacts of a predictor of interest to calculate the partial residuals. The regular residuals can be extracted using the <code>residuals</code> function on the estimated model and the contribution of, say, the <em>ExAmount</em> predictor is found by taking the values in that variable times its estimated slope coefficient, <span class="math inline">\(b_2=0.07447965\)</span>. Plotting these partial residuals versus <em>ExAmount</em> as in Figure <a href="chapter8.html#fig:Figure8-15">8.15</a> provides a plot that is similar to the second term-plot except for differences in the y-axis. The y-axis in term-plots contains an additional adjustment but the two plots provide the same utility in diagnosing a clear missed curve in the partial residuals that is related to the <em>ExAmount</em>. Methods to incorporate polynomial functions of the predictor are simple extensions of the <code>lm</code> work we have been doing but are beyond the scope of this material – but you should always be checking the partial residuals to assess the linearity assumption with each predictor and if you see a pattern like this, consult further statistical resources or a statistician for help.</p>
 
 <div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="chapter8.html#cb743-1"></a>partres&lt;-<span class="st"> </span><span class="kw">residuals</span>(sim1) <span class="op">+</span><span class="st"> </span>d1<span class="op">$</span>ExAmount<span class="op">*</span><span class="fl">0.07447965</span></span>
 <span id="cb743-2"><a href="chapter8.html#cb743-2"></a><span class="kw">scatterplot</span>(partres<span class="op">~</span>d1<span class="op">$</span>ExAmount, <span class="dt">xlab=</span><span class="st">&quot;ExAmount&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Partial Residual&quot;</span>,</span>
@@ -1290,12 +1286,12 @@ Figure 171: Term-plots with partial residuals for Cholesterol level versus three
 <div class="figure"><span id="fig:Figure8-15"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-15-1.png" alt="Plot of partial residual for ExAmount." width="480" />
 <p class="caption">
-Figure 172: Plot of partial residual for ExAmount.
+Figure 8.15: Plot of partial residual for ExAmount.
 </p>
 </div>
 </div>
-<div id="section8-4" class="section level2" number="8.4">
-<h2 number="8.4"><span class="header-section-number">8.4</span> Comparing multiple regression models</h2>
+<div id="section8-4" class="section level2">
+<h2><span class="header-section-number">8.4</span> Comparing multiple regression models</h2>
 <p>With more than one variable, we now have many potential models that we could
 consider.
 
@@ -1322,7 +1318,7 @@ research always introduces the potential for multicollinearity to complicate the
 interpretation of each predictor in the presence of others. Because of this,
 multiple models are often considered, where “unimportant” variables are dropped
 from the model. The assessment of “importance” using p-values will be discussed
-in Section <a href="chapter8.html#section8-6"><strong>??</strong></a>, but for now we will consider other reasons to pick
+in Section <a href="chapter8.html#section8-6">8.6</a>, but for now we will consider other reasons to pick
 one model over another. </p>
 <p>There are some general reasons to choose a particular model:</p>
 <ol style="list-style-type: decimal">
@@ -1443,14 +1439,14 @@ this is the <strong><em>R</em></strong><sup>2</sup> value and suggests that the 
 available further to the right labeled as
 <span class="math inline">\(\color{red}{{\textbf{Adjusted R-Squared}}}\)</span>. We repeated this for a
 suite of different models for this same <span class="math inline">\(n=23\)</span> data set and found the following
-results in Table <a href="chapter8.html#tab:Table8-1">13</a>. The top <span class="math inline">\(\boldsymbol{R}^2_{\text{adjusted}}\)</span>
+results in Table <a href="chapter8.html#tab:Table8-1">8.1</a>. The top <span class="math inline">\(\boldsymbol{R}^2_{\text{adjusted}}\)</span>
 model is the model with <em>Elevation</em> and <em>Max.Temp</em>, which beats out the model with
 all three variables on <span class="math inline">\(\boldsymbol{R}^2_{\text{adjusted}}\)</span>. Note that the top
 <em>R</em><sup>2</sup> model is the model with three predictors, but the most complicated model
 will always have that characteristic.</p>
 
 <table style="width:100%;">
-<caption><span id="tab:Table8-1">Table 13: </span> Model comparisons for Snow Depth data, sorted by model complexity.</caption>
+<caption><span id="tab:Table8-1">Table 8.1: </span> Model comparisons for Snow Depth data, sorted by model complexity.</caption>
 <colgroup>
 <col width="33%" />
 <col width="10%" />
@@ -1529,12 +1525,12 @@ in <em>Snow Depth</em> and also that this model was selected based on the
 <span class="math inline">\(\boldsymbol{R}^2_{\text{adjusted}}\)</span> is available in this example – adding
 variables often does not always increase its value even though
 <strong><em>R</em></strong><sup>2</sup> does increase with <strong>any</strong> addition. In
-Section <a href="chapter8.html#section8-13"><strong>??</strong></a> we consider a competitor for this model selection
+Section <a href="chapter8.html#section8-13">8.13</a> we consider a competitor for this model selection
 criterion that may “work” a bit better and be extendable into more complicated
 modeling situations; that measure is called the <strong><em>AIC</em></strong>.</p>
 </div>
-<div id="section8-5" class="section level2" number="8.5">
-<h2 number="8.5"><span class="header-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</h2>
+<div id="section8-5" class="section level2">
+<h2><span class="header-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</h2>
 <p>There are some important issues to remember<a href="#fn127" class="footnote-ref" id="fnref127"><sup>127</sup></a> when interpreting
 regression models that can result in common mistakes.</p>
 <ul>
@@ -1572,7 +1568,7 @@ the design of the study.</p></li>
 <p>It is harder to know if you are doing extrapolation in MLR since you could be
 in a region of the <span class="math inline">\(x\text{&#39;s}\)</span> that no observations were obtained. Suppose we
 want to predict the <em>Snow Depth</em> for an <em>Elevation</em> of 6000 and <em>Max.Temp</em>
-of 30. Is this extrapolation based on Figure <a href="chapter8.html#fig:Figure8-16">173</a>? In other
+of 30. Is this extrapolation based on Figure <a href="chapter8.html#fig:Figure8-16">8.16</a>? In other
 words, can you find any observations “nearby” in the plot of the two
 variables together? What about an <em>Elevation</em> of 6000 and a <em>Max.Temp</em> of
 40? The first prediction is in a different proximity to observations than
@@ -1582,13 +1578,13 @@ and the problem grows as the number of dimensions to search increases… In
 fact, in complicated MLR models we typically do not know whether there are
 observations “nearby” if we are doing predictions for unobserved
 combinations of our predictors. Note that Figure
-<a href="chapter8.html#fig:Figure8-16">173</a> also reinforces our potential collinearity problem
+<a href="chapter8.html#fig:Figure8-16">8.16</a> also reinforces our potential collinearity problem
 between <em>Elevation</em> and <em>Max.Temp</em> with higher elevations being strongly
 associated with lower temperatures.</p>
 <div class="figure"><span id="fig:Figure8-16"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-16-1.png" alt="Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data." width="480" />
 <p class="caption">
-Figure 173: Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data.
+Figure 8.16: Scatterplot of observed Elevations and Maximum Temperatures for SNOTEL data.
 </p>
 </div></li>
 <li><p><strong>Don’t think that the sign of a coefficient is special…</strong></p>
@@ -1597,14 +1593,11 @@ coefficients or change their magnitude or make them go from “important” to
 “unimportant” without changing the slope too much. This is related to the
 conditionality of the relationships being estimated in MLR and the potential
 for sharing of information in the predictors when it is present.</p></li>
-</ul>
-<div style="page-break-after: always;"></div>
-<ul>
 <li><p><strong>Multicollinearity in MLR models:</strong></p>
 <p>When explanatory variables are not independent (related) to one another, then
 including/excluding one variable will have an impact on the other variable. Consider the
 correlations among the predictors in the SNOTEL data set or visually displayed
-in Figure <a href="chapter8.html#fig:Figure8-17">174</a>:
+in Figure <a href="chapter8.html#fig:Figure8-17">8.17</a>:
 
 </p>
 <div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="chapter8.html#cb746-1"></a><span class="kw">library</span>(corrplot)</span>
@@ -1615,7 +1608,7 @@ in Figure <a href="chapter8.html#fig:Figure8-17">174</a>:
 <div class="figure"><span id="fig:Figure8-17"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="Plot of correlation matrix in the snow depth data set with influential points removed" width="624" />
 <p class="caption">
-Figure 174: Plot of correlation matrix in the snow depth data set with influential points removed
+Figure 8.17: Plot of correlation matrix in the snow depth data set with influential points removed
 </p>
 </div>
 <pre><code>##            Max.Temp Min.Temp Elevation Snow.Depth
@@ -1672,11 +1665,11 @@ slope for variable <span class="math inline">\(k\)</span> is due to collinearity
 This is the most useful scale to understand VIFs and allows you to make your own assessment of whether you think the multicollinearity is “important” based on how inflated the SEs are in a particular situation. An example will show how to easily get these results
 and where the results come from.</p>
 <p>In general, the easy way to obtain VIFs is using the <code>vif</code> function from the
-<code>car</code> package (<span class="citation">Fox, Weisberg, and Price (<a href="references.html#ref-R-carData" role="doc-biblioref">2019</a><a href="references.html#ref-R-carData" role="doc-biblioref">b</a>)</span>, <span class="citation">Fox (<a href="references.html#ref-Fox2003" role="doc-biblioref">2003</a>)</span>).
+<code>car</code> package (<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-carData" role="doc-biblioref">2019</a><a href="#ref-R-carData" role="doc-biblioref">b</a>)</span>, <span class="citation">Fox (<a href="#ref-Fox2003" role="doc-biblioref">2003</a>)</span>).
  
 It has the advantage of also providing a reasonable
 result when we include categorical variables in models
-(Sections <a href="chapter8.html#section8-9"><strong>??</strong></a> and <a href="chapter8.html#section8-11"><strong>??</strong></a>) over some other sources of this information in R. We apply the <code>vif</code>
+(Sections <a href="chapter8.html#section8-9">8.9</a> and <a href="chapter8.html#section8-11">8.11</a>) over some other sources of this information in R. We apply the <code>vif</code>
 function directly to a model of interest and it generates values for each explanatory variable.</p>
 <div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="chapter8.html#cb748-1"></a><span class="kw">library</span>(car)</span>
 <span id="cb748-2"><a href="chapter8.html#cb748-2"></a><span class="kw">vif</span>(m6)</span></code></pre></div>
@@ -1726,7 +1719,6 @@ explained by the linear model using min and max temperatures.</p>
 <p><span class="math display">\[\text{VIF}_{\text{elevation}} = \dfrac{1}{1-R^2_{\text{elevation}}} = \dfrac{1}{1-0.8775} = \dfrac{1}{0.1225} = 8.16\]</span></p>
 <div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="chapter8.html#cb754-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.8775</span></span></code></pre></div>
 <pre><code>## [1] 0.1225</code></pre>
-<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="chapter8.html#cb756-1"></a><span class="dv">1</span><span class="op">/</span><span class="fl">0.1225</span></span></code></pre></div>
 <pre><code>## [1] 8.163265</code></pre>
 <p>Note that when we observe small VIFs (close to 1), that provides us with confidence that
@@ -1735,8 +1727,8 @@ a particular MLR model. Also note that we can’t use the VIFs to do anything ab
 multicollinearity in the models – it is just a diagnostic to understand the
 magnitude of the problem.</p>
 </div>
-<div id="section8-6" class="section level2" number="8.6">
-<h2 number="8.6"><span class="header-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</h2>
+<div id="section8-6" class="section level2">
+<h2><span class="header-section-number">8.6</span> MLR inference: Parameter inferences using the t-distribution</h2>
 <p>I have been deliberately vague about what an important variable is up to this
 point, and chose to focus on some bigger modeling issues. Now we turn our
 attention to one
@@ -1781,6 +1773,7 @@ summary we’ve been working with. You can find the estimated slope
 <span class="math inline">\(t\)</span>-statistics (<code>t value</code> column), and the p-values (<code>Pr(&gt;|t|)</code> column).
 The degrees of freedom for the <span class="math inline">\(t\)</span>-distributions show up below the coefficients
 and the <span class="math inline">\(df=20\)</span> here. This is because <span class="math inline">\(n=23\)</span> and <span class="math inline">\(K=2\)</span>, so <span class="math inline">\(df=23-2-1=20\)</span>.</p>
+
 <div class="sourceCode" id="cb758"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb758-1"><a href="chapter8.html#cb758-1"></a>m5 &lt;-<span class="st"> </span><span class="kw">lm</span>(Snow.Depth<span class="op">~</span>Elevation<span class="op">+</span>Max.Temp, <span class="dt">data=</span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),])</span>
 <span id="cb758-2"><a href="chapter8.html#cb758-2"></a><span class="kw">summary</span>(m5)</span></code></pre></div>
 <pre><code>## 
@@ -1814,6 +1807,7 @@ the test statistic follows a <span class="math inline">\(t_{20}\)</span>-distrib
 using <code>pt</code>:
 
 </p>
+
 <div class="sourceCode" id="cb760"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb760-1"><a href="chapter8.html#cb760-1"></a><span class="dv">2</span><span class="op">*</span><span class="kw">pt</span>(<span class="fl">2.327</span>, <span class="dt">df=</span><span class="dv">20</span>, <span class="dt">lower.tail=</span>F)</span></code></pre></div>
 <pre><code>## [1] 0.03058319</code></pre>
 <p>The chance of observing a
@@ -1907,8 +1901,8 @@ for a 1 foot increase in <em>Elevation</em>, we are 95% confident that the true 
 <em>Snow Depth</em> will change by between 0.0175 and 0.0307 inches in the population,
 after adjusting for the <em>Maximum Temperature</em> of the sites.</p>
 </div>
-<div id="section8-7" class="section level2" number="8.7">
-<h2 number="8.7"><span class="header-section-number">8.7</span> Overall F-test in multiple linear regression</h2>
+<div id="section8-7" class="section level2">
+<h2><span class="header-section-number">8.7</span> Overall F-test in multiple linear regression</h2>
 <p>In the MLR summary, there is an <span class="math inline">\(F\)</span>-test and p-value reported at the bottom
 of the output. For the model with <em>Elevation</em> and <em>Maximum Temperature</em>, the
 last row of the model summary is:</p>
@@ -1956,11 +1950,11 @@ too informative. There is one situation where this test is really interesting,
 when there is only one predictor variable in the model (SLR). In that situation,
 this test provides exactly the same p-value as the <span class="math inline">\(t\)</span>-test. <span class="math inline">\(F\)</span>-tests will be
 important when we are mixing categorical and quantitative predictor variables
-in our MLR models (Section <a href="chapter8.html#section8-12"><strong>??</strong></a>), but the overall <span class="math inline">\(F\)</span>-test is of
+in our MLR models (Section <a href="chapter8.html#section8-12">8.12</a>), but the overall <span class="math inline">\(F\)</span>-test is of
 <strong>very</strong> limited utility.</p>
 </div>
-<div id="section8-8" class="section level2" number="8.8">
-<h2 number="8.8"><span class="header-section-number">8.8</span> Case study: First year college GPA and SATs</h2>
+<div id="section8-8" class="section level2">
+<h2><span class="header-section-number">8.8</span> Case study: First year college GPA and SATs</h2>
 <p>Many universities require students to have certain test scores in order to be
 admitted into their institutions. They
 obviously must think that those scores are useful predictors of student success
@@ -1968,7 +1962,7 @@ to use them in this way. Quality assessments of recruiting classes are also
 based on their test scores. The Educational Testing Service (the company behind
 such fun exams as the SAT and GRE) collected a data set to validate their SAT
 on <span class="math inline">\(n=1000\)</span> students from an unnamed Midwestern university; the data set is
-available in the <code>openintro</code> package <span class="citation">(Diez, Barr, and Cetinkaya-Rundel <a href="references.html#ref-R-openintro" role="doc-biblioref">2017</a>)</span>
+available in the <code>openintro</code> package <span class="citation">(Diez, Barr, and Cetinkaya-Rundel <a href="#ref-R-openintro" role="doc-biblioref">2017</a>)</span>
 in the <code>satGPA</code> data set.
 
 It is unclear from the documentation whether a
@@ -1998,15 +1992,16 @@ addressed with these data but this will keep us focused.
 <div class="figure"><span id="fig:Figure8-18"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-18-1.png" alt="Scatterplot matrix of SAT and GPA data set." width="960" />
 <p class="caption">
-Figure 175: Scatterplot matrix of SAT and GPA data set.
+Figure 8.18: Scatterplot matrix of SAT and GPA data set.
 </p>
 </div>
-<p>There are positive relationships in Figure <a href="chapter8.html#fig:Figure8-18">175</a> among all the
+<p>There are positive relationships in Figure <a href="chapter8.html#fig:Figure8-18">8.18</a> among all the
 pre-college measures and the <em>college GPA</em> but none are above the moderate
 strength level. The <em>HSGPA</em> has a highest correlation with
 first year of college results but its correlation is not that strong. Maybe
-together in a model the SAT percentiles can also be useful… Also note that
-plot shows an odd <em>HSGPA</em> of 4.5 that probably should be removed<a href="#fn129" class="footnote-ref" id="fnref129"><sup>129</sup></a> if that variable is going to be used (<em>HSGPA</em>
+together in a model the SAT percentiles can also be useful…</p>
+<div style="page-break-after: always;"></div>
+<p>Also note this plot shows an odd <em>HSGPA</em> of 4.5 that probably should be removed<a href="#fn129" class="footnote-ref" id="fnref129"><sup>129</sup></a> if that variable is going to be used (<em>HSGPA</em>
 was not used in the following models so the observation remains in the data).</p>
 <p>In MLR, the modeling process is a bit more complex and often involves
 more than one model, so we will often avoid the 6+ steps in testing initially
@@ -2061,7 +2056,7 @@ and the diagnostic plots, allowing us to consider the tests of interest:</p>
 <div class="figure"><span id="fig:Figure8-19"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-19-1.png" alt="Diagnostic plots for the \(\text{FYGPA}\sim\text{ SATV }+\text{ SATM}\) model." width="960" />
 <p class="caption">
-Figure 176: Diagnostic plots for the <span class="math inline">\(\text{FYGPA}\sim\text{ SATV }+\text{ SATM}\)</span> model.
+Figure 8.19: Diagnostic plots for the <span class="math inline">\(\text{FYGPA}\sim\text{ SATV }+\text{ SATM}\)</span> model.
 </p>
 </div>
 <ol style="list-style-type: decimal">
@@ -2091,12 +2086,12 @@ violation of the independence assumption. If there was information about student
 </ul></li>
 <li><p><strong>Linearity of relationships:</strong></p>
 <ul>
-<li><p>The initial scatterplots (Figure <a href="chapter8.html#fig:Figure8-18">175</a>) do not show
+<li><p>The initial scatterplots (Figure <a href="chapter8.html#fig:Figure8-18">8.18</a>) do not show
 any clear nonlinearities with each predictor used in this model.</p></li>
 <li><p>The Residuals vs Fitted and Scale-Location plots (Figure
-<a href="chapter8.html#fig:Figure8-19">176</a>) do not show much more than a football shape,
+<a href="chapter8.html#fig:Figure8-19">8.19</a>) do not show much more than a football shape,
 which is our desired result.</p></li>
-<li><p>The partial residuals are displayed in Figure <a href="chapter8.html#fig:Figure8-20">177</a> and do not suggest any clear missed curvature.</p>
+<li><p>The partial residuals are displayed in Figure <a href="chapter8.html#fig:Figure8-20">8.20</a> and do not suggest any clear missed curvature.</p>
 <ul>
 <li>Together, there is no suggestion of a violation of the linearity
 assumption.</li>
@@ -2188,7 +2183,7 @@ the size of the estimated slope coefficients, we can add to the information abou
 <li><p>So for a 1 percent increase in the <em>SATV</em> percentile, we estimate, on average, a 0.0254 point change in <em>GPA</em>, after controlling for <em>SATM</em> percentile. Similarly, for a 1 percent increase in the <em>SATM</em> percentile, we estimate, on average, a 0.0224 point change in <em>GPA</em>, after controlling for <em>SATV</em> percentile. While this is a correct interpretation of the slope coefficients,
 it is often easier to assess “practical” importance of the results by considering
 how much change this implies over the range of observed predictor values.</p></li>
-<li><p>The term-plots (Figure <a href="chapter8.html#fig:Figure8-20">177</a>) provide a visualization of the “size” of the differences in the response variable explained by each predictor.  The <em>SATV</em> term-plot shows that for the range of percentiles from around the
+<li><p>The term-plots (Figure <a href="chapter8.html#fig:Figure8-20">8.20</a>) provide a visualization of the “size” of the differences in the response variable explained by each predictor.  The <em>SATV</em> term-plot shows that for the range of percentiles from around the
 30<sup>th</sup> percentile to the 70<sup>th</sup> percentile, the mean first
 year <em>GPA</em> is predicted to go from approximately 1.9 to 3.0. That is a pretty
 wide range of differences in GPAs across the range of observed percentiles.
@@ -2211,7 +2206,7 @@ responses. </p></li>
 <div class="figure"><span id="fig:Figure8-20"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-20-1.png" alt="Term-plots for the \(\text{FYGPA}\sim\text{SATV} + \text{SATM}\) model with partial residuals." width="576" />
 <p class="caption">
-Figure 177: Term-plots for the <span class="math inline">\(\text{FYGPA}\sim\text{SATV} + \text{SATM}\)</span> model with partial residuals.
+Figure 8.20: Term-plots for the <span class="math inline">\(\text{FYGPA}\sim\text{SATV} + \text{SATM}\)</span> model with partial residuals.
 </p>
 </div>
 <ul>
@@ -2288,7 +2283,7 @@ SE, <span class="math inline">\(\widehat{\sigma}\)</span>, is also informative i
 remember that it is the standard deviation of the residuals around the
 regression line. It is 0.6582, so the SD of new observations around the line is
 0.66 GPA points and that is pretty large on a GPA scale. Remember that if the residuals meet our assumptions and follow a normal distribution around the line, observations within 2 or 3 SDs of the mean would be expected which is a large range of GPA values.
-Figure <a href="chapter8.html#fig:Figure8-21">178</a> remakes
+Figure <a href="chapter8.html#fig:Figure8-21">8.21</a> remakes
 both term-plots, holding the other predictor at its mean, and adds the 95%
 prediction intervals to show the difference in variability between estimating
 the mean and pinning down the value of a new observation. The R code is very messy
@@ -2327,12 +2322,14 @@ their means.  </p>
 <div class="figure"><span id="fig:Figure8-21"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-21-1.png" alt="Term-plots for the \(\text{FYGPA}\sim\text{SATV} + \text{SATM}\) model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines)." width="960" />
 <p class="caption">
-Figure 178: Term-plots for the <span class="math inline">\(\text{FYGPA}\sim\text{SATV} + \text{SATM}\)</span> model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines).
+Figure 8.21: Term-plots for the <span class="math inline">\(\text{FYGPA}\sim\text{SATV} + \text{SATM}\)</span> model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines).
 </p>
 </div>
+
 </div>
-<div id="section8-9" class="section level2" number="8.9">
-<h2 number="8.9"><span class="header-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</h2>
+<div id="section8-9" class="section level2">
+<h2><span class="header-section-number">8.9</span> Different intercepts for different groups: MLR with indicator variables</h2>
+
 <p>One of the implicit assumptions up to this point was that the models were being
 applied to a single homogeneous population.
  
@@ -2346,7 +2343,7 @@ research questions by comparing groups. We will be able to compare the
 intercepts (mean levels) and the slopes to see if they differ between the
 groups. For example, does the relationship between the <em>SATV</em> and <em>FYGPA</em>
 differ for male and female students? We can add the grouping information to
-the scatterplot of <em>FYGPA</em> vs <em>SATV</em> (Figure <a href="chapter8.html#fig:Figure8-22">179</a>) and
+the scatterplot of <em>FYGPA</em> vs <em>SATV</em> (Figure <a href="chapter8.html#fig:Figure8-22">8.22</a>) and
 consider whether there is visual evidence of a difference in the slope and/or
 intercept between the two groups, with men coded<a href="#fn131" class="footnote-ref" id="fnref131"><sup>131</sup></a> as 1 and women coded as 2. Code below changes this variable to <code>GENDER</code> with more explicit labels, even though they might not be correct and the students were likely forced to choose one or the other.
 </p>
@@ -2354,12 +2351,12 @@ intercept between the two groups, with men coded<a href="#fn131" class="footnote
 relationship than it is for
 males. So increases in SAT Verbal percentiles for females might have more of an
 impact on the average first year GPA. We’ll handle this sort of situation in
-Section <a href="chapter8.html#section8-11"><strong>??</strong></a>, where we will formally consider how to change the
+Section <a href="chapter8.html#section8-11">8.11</a>, where we will formally consider how to change the
 slopes for different groups. In this section, we develop new methods needed to
 begin to handle these situations and explore creating models that assume the same
 slope coefficient for all groups but allow for different <span class="math inline">\(y\)</span>-intercepts. This material
 ends up resembling what we did for the Two-Way ANOVA additive model.</p>
-<p>The results for <em>SATV</em> contrast with Figure <a href="chapter8.html#fig:Figure8-23">180</a> for the relationship
+<p>The results for <em>SATV</em> contrast with Figure <a href="chapter8.html#fig:Figure8-23">8.23</a> for the relationship
 between first year college <em>GPA</em> and <em>SATM</em>
 percentile by gender of the students. The lines for the two groups appear to be
 mostly parallel and just seem to have different <span class="math inline">\(y\)</span>-intercepts. In this section, we will learn how we can use our
@@ -2427,14 +2424,14 @@ and 2s.
 <div class="figure"><span id="fig:Figure8-22"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-22-1.png" alt="Plot of FYGPA vs SATV by Sex of students." width="960" />
 <p class="caption">
-Figure 179: Plot of FYGPA vs SATV by Sex of students.
+Figure 8.22: Plot of FYGPA vs SATV by Sex of students.
 </p>
 </div>
 
 <div class="figure"><span id="fig:Figure8-23"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-23-1.png" alt="Plot of FYGPA vs SATM by Sex of students." width="960" />
 <p class="caption">
-Figure 180: Plot of FYGPA vs SATM by Sex of students.
+Figure 8.23: Plot of FYGPA vs SATM by Sex of students.
 </p>
 </div>
 <p>The <code>GENDER</code> row contains information that the linear model chose <em>MALE</em> as
@@ -2523,7 +2520,7 @@ between these two models is in the <span class="math inline">\(y\)</span>-interc
 adding indicator variables into models does in general<a href="#fn133" class="footnote-ref" id="fnref133"><sup>133</sup></a> – it shifts the intercept up or down from
 the baseline group (here selected as <em>males</em>) to get a new intercept for the
 deviation group (here <em>females</em>).</p>
-<p>To make this visually clearer, Figure <a href="chapter8.html#fig:Figure8-24">181</a> contains the
+<p>To make this visually clearer, Figure <a href="chapter8.html#fig:Figure8-24">8.24</a> contains the
 regression lines that were estimated for each
 group. For any <em>SATM</em>, the difference in the groups is the 0.313 coefficient from
 the <code>GENDERFEMALE</code> or <code>GENDERINDICATOR</code> row of the model summaries. For example,
@@ -2532,12 +2529,12 @@ between males and females is displayed as a difference between 2.15 and 2.46.
 This model assumes that the slope on <em>SATM</em> is the same for both groups except
 that they are allowed to have different <span class="math inline">\(y\)</span>-intercepts, which is reasonable here
 because we saw approximately parallel relationships for the two groups in
-Figure <a href="chapter8.html#fig:Figure8-23">180</a>.</p>
+Figure <a href="chapter8.html#fig:Figure8-23">8.23</a>.</p>
 
 <div class="figure"><span id="fig:Figure8-24"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-24-1.png" alt="Plot of estimated model for FYGPA vs SATM by GENDER of students (female line is thicker dark line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group." width="576" />
 <p class="caption">
-Figure 181: Plot of estimated model for <em>FYGPA</em> vs <em>SATM</em> by <em>GENDER</em> of students (female line is thicker dark line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group.
+Figure 8.24: Plot of estimated model for <em>FYGPA</em> vs <em>SATM</em> by <em>GENDER</em> of students (female line is thicker dark line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group.
 </p>
 </div>
 <p>Remember that <code>lm</code> selects baseline categories typically based on the
@@ -2569,7 +2566,7 @@ the model that includes <span class="math inline">\(x_i\)</span>. When we make t
 a quantitative and additive categorical variable, the two reported model
 components match with the previous discussion – the same estimated term from
 the quantitative variable for all observations and a shift to reflect the
-different <span class="math inline">\(y\)</span>-intercepts in the two groups. In Figure <a href="chapter8.html#fig:Figure8-25">182</a>, the
+different <span class="math inline">\(y\)</span>-intercepts in the two groups. In Figure <a href="chapter8.html#fig:Figure8-25">8.25</a>, the
 females are estimated to be that same 0.313 points higher on first year GPA.
 The males have a mean GPA slightly above 2.3 which is the predicted GPA for the
 average SATM percentile for a male (remember that we have to hold the other variable at
@@ -2584,7 +2581,7 @@ its mean to make each term-plot). When making the SATM term-plot, the intercept 
 <div class="figure"><span id="fig:Figure8-25"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-25-1.png" alt="Term-plots for the estimated model for \(\text{FYGPA}\sim\text{SATM} + \text{GENDER}\)." width="576" />
 <p class="caption">
-Figure 182: Term-plots for the estimated model for <span class="math inline">\(\text{FYGPA}\sim\text{SATM} + \text{GENDER}\)</span>.
+Figure 8.25: Term-plots for the estimated model for <span class="math inline">\(\text{FYGPA}\sim\text{SATM} + \text{GENDER}\)</span>.
 </p>
 </div>
 <p>The model summary and confidence intervals provide some potential interesting
@@ -2618,12 +2615,12 @@ differences with targeted coefficients. We also would not be able to get an
 estimate of their common slope for <em>SATM</em>, after adjusting for differences
 in the intercept for each group.</p>
 </div>
-<div id="section8-10" class="section level2" number="8.10">
-<h2 number="8.10"><span class="header-section-number">8.10</span> Additive MLR with more than two groups: Headache example</h2>
+<div id="section8-10" class="section level2">
+<h2><span class="header-section-number">8.10</span> Additive MLR with more than two groups: Headache example</h2>
 <p>The same techniques can be extended to more than two groups. A study was
 conducted to explore sound tolerances using <span class="math inline">\(n=98\)</span> subjects with the data
 available in the <code>Headache</code> data set from the <code>heplots</code> package
-<span class="citation">(Fox and Friendly <a href="references.html#ref-R-heplots" role="doc-biblioref">2018</a>)</span>.
+<span class="citation">(Fox and Friendly <a href="#ref-R-heplots" role="doc-biblioref">2018</a>)</span>.
 
 Each
 subject was initially exposed to a tone, stopping when the tone became definitely
@@ -2640,7 +2637,7 @@ upper tolerance levels of the subjects before and after treatment. But
 maybe the treatments impact that relationship? We can use our indicator 
 approach to see if the treatments provide a shift to higher tolerances after
 accounting for the relationship between the two measurements<a href="#fn134" class="footnote-ref" id="fnref134"><sup>134</sup></a>. The scatterplot<a href="#fn135" class="footnote-ref" id="fnref135"><sup>135</sup></a> 
-of the results in Figure <a href="chapter8.html#fig:Figure8-26">183</a> shows some variation in the
+of the results in Figure <a href="chapter8.html#fig:Figure8-26">8.26</a> shows some variation in the
 slopes and the intercepts for the groups although the variation in intercepts
 seems more prominent than differences in slopes. Note that the <code>relevel</code> function was applied to the <code>treatment</code> variable with an option of <code>"Control"</code> to make the <em>Control</em> category the baseline category as the person who created the data set had set <code>T1</code> as the baseline in the <code>treatment</code> variable.</p>
 
@@ -2672,7 +2669,7 @@ seems more prominent than differences in slopes. Note that the <code>relevel</co
 <div class="figure"><span id="fig:Figure8-26"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-26-1.png" alt="Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups)." width="960" />
 <p class="caption">
-Figure 183: Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups).
+Figure 8.26: Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups).
 </p>
 </div>
 <p>This data set contains a categorical variable with 4 levels. To go beyond two
@@ -2827,10 +2824,11 @@ coefficients for the groups as discussed in the next section.</p>
 set with regression lines for each group – assessing whether the lines look
 relatively parallel or not.
 
-In Figure <a href="chapter8.html#fig:Figure8-26">183</a>, there are some
+In Figure <a href="chapter8.html#fig:Figure8-26">8.26</a>, there are some
 differences in slopes – we investigate that further in the next section. For
 now, we can proceed with fitting the additive model with different intercepts
 for the four levels of <code>treatment</code> and the quantitative explanatory variable, <code>du1</code>.</p>
+
 <div class="sourceCode" id="cb799"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb799-1"><a href="chapter8.html#cb799-1"></a>head1 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">+</span>treatment, <span class="dt">data=</span>Headache)</span>
 <span id="cb799-2"><a href="chapter8.html#cb799-2"></a><span class="kw">summary</span>(head1)</span></code></pre></div>
 <pre><code>## 
@@ -2881,7 +2879,7 @@ for the four levels of <code>treatment</code> and the quantitative explanatory v
 <li>Finally for <em>T3</em>:</li>
 </ul>
 <p><span class="math display">\[\widehat{\text{du2}}_i = 1.62 + 0.837\cdot\text{du1}_i\ .\]</span></p>
-<p>To reinforce what this additive model is doing, Figure <a href="chapter8.html#fig:Figure8-27">184</a>
+<p>To reinforce what this additive model is doing, Figure <a href="chapter8.html#fig:Figure8-27">8.27</a>
 displays the estimated regression lines for all four
 groups, showing the shifts in the <em>y</em>-intercepts among the groups.
 </p>
@@ -2889,10 +2887,10 @@ groups, showing the shifts in the <em>y</em>-intercepts among the groups.
 <div class="figure"><span id="fig:Figure8-27"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-27-1.png" alt="Plot of estimated noise tolerance additive model." width="672" />
 <p class="caption">
-Figure 184: Plot of estimated noise tolerance additive model.
+Figure 8.27: Plot of estimated noise tolerance additive model.
 </p>
 </div>
-<p>The right panel of the term-plot (Figure <a href="chapter8.html#fig:Figure8-28">185</a>) shows how the <em>T3</em> group
+<p>The right panel of the term-plot (Figure <a href="chapter8.html#fig:Figure8-28">8.28</a>) shows how the <em>T3</em> group
 seems to have shifted up the most relative to
 the others and the <em>Control</em> group seems to have a mean that is a bit lower than the others,
 in the model that otherwise assumes that the same linear relationship holds between
@@ -2914,10 +2912,10 @@ different in different groups, like linearity or non-constant variance, when we 
 <div class="figure"><span id="fig:Figure8-28"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-28-1.png" alt="Term-plots of the additive decibel tolerance model with partial residuals." width="576" />
 <p class="caption">
-Figure 185: Term-plots of the additive decibel tolerance model with partial residuals.
+Figure 8.28: Term-plots of the additive decibel tolerance model with partial residuals.
 </p>
 </div>
-<p>The diagnostic plots in Figure <a href="chapter8.html#fig:Figure8-29">186</a> provides some
+<p>The diagnostic plots in Figure <a href="chapter8.html#fig:Figure8-29">8.29</a> provides some
 indications of a few observations in the tails that deviate from a normal
 distribution to having slightly heavier tails but
 only one outlier is of real concern and causes some concern about the normality assumption. There is a small indication of increasing
@@ -2931,19 +2929,19 @@ minor issue. There are no influential points here since all the Cook’s D value
 <div class="figure"><span id="fig:Figure8-29"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-29-1.png" alt="Diagnostic plots for the additive decibel tolerance model." width="960" />
 <p class="caption">
-Figure 186: Diagnostic plots for the additive decibel tolerance model.
+Figure 8.29: Diagnostic plots for the additive decibel tolerance model.
 </p>
 </div>
 <p>Additionally, sometimes we
 need to add group information to diagnostics to see if any patterns in residuals look
-different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups. We can use the <code>scatterplot</code> function to plot the residuals (extracted using the <code>residuals</code> function) versus the fitted values (extracted using the <code>fitted</code> function) by groups as in Figure <a href="chapter8.html#fig:Figure8-30">187</a>. In this example, there are no additional patterns extracted by making this plot, but it is a good additional check in these multi-group situations.</p>
+different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups. We can use the <code>scatterplot</code> function to plot the residuals (extracted using the <code>residuals</code> function) versus the fitted values (extracted using the <code>fitted</code> function) by groups as in Figure <a href="chapter8.html#fig:Figure8-30">8.30</a>. In this example, there are no additional patterns extracted by making this plot, but it is a good additional check in these multi-group situations.</p>
 
 <div class="sourceCode" id="cb803"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb803-1"><a href="chapter8.html#cb803-1"></a><span class="kw">scatterplot</span>(<span class="kw">residuals</span>(head1)<span class="op">~</span><span class="kw">fitted</span>(head1)<span class="op">|</span>treatment,</span>
 <span id="cb803-2"><a href="chapter8.html#cb803-2"></a>            <span class="dt">data=</span>Headache, <span class="dt">smooth=</span>F, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">4</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-30"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-30-1.png" alt="Plot of residuals versus fitted values by treatment group from the additive decibel tolerance model." width="768" />
 <p class="caption">
-Figure 187: Plot of residuals versus fitted values by treatment group from the additive decibel tolerance model.
+Figure 8.30: Plot of residuals versus fitted values by treatment group from the additive decibel tolerance model.
 </p>
 </div>
 <p>The VIFs are different for categorical variables than for quantitative
@@ -2963,7 +2961,7 @@ this model.</p>
 ## treatment 1.01786  3        1.002955</code></pre>
 <p>While there are inferences available in the model output, the tests for the
 indicator variables are not too informative since they only compare each group
-to the baseline. In Section <a href="chapter8.html#section8-12"><strong>??</strong></a>, we see how to use ANOVA
+to the baseline. In Section <a href="chapter8.html#section8-12">8.12</a>, we see how to use ANOVA
 <em>F</em>-tests to help us ask general questions about including a categorical predictor in the
 model. But we can compare adjusted <strong><em>R</em></strong><sup>2</sup> values with and without
 <em>Treatment</em> to see if including the categorical variable was “worth
@@ -2995,8 +2993,8 @@ quantitative predictor for each group. Comparing those results to the results
 for the additive model allows assessment of the assumption in this section that
 all the groups had the same slope coefficient for the quantitative variable.</p>
 </div>
-<div id="section8-11" class="section level2" number="8.11">
-<h2 number="8.11"><span class="header-section-number">8.11</span> Different slopes and different intercepts</h2>
+<div id="section8-11" class="section level2">
+<h2><span class="header-section-number">8.11</span> Different slopes and different intercepts</h2>
 <p>Sometimes researchers are specifically interested in whether the slopes vary
 across groups or the regression lines in the scatterplot for the different
 groups may not look parallel or it may just be hard to tell visually if there
@@ -3027,7 +3025,7 @@ reading accuracy differs between dyslexic and non-dyslexic students. Two groups
 of students were identified, one group of <em>dyslexic</em> students was identified
 first (19 students) and then a group of gender and age similar student matches
 were identified (25 students) for a total sample size of <span class="math inline">\(n=44\)</span>, provided in the
-<code>dyslexic3</code> data set from the <code>smdata</code> package <span class="citation">(Merkle and Smithson <a href="references.html#ref-R-smdata" role="doc-biblioref">2018</a>)</span>.
+<code>dyslexic3</code> data set from the <code>smdata</code> package <span class="citation">(Merkle and Smithson <a href="#ref-R-smdata" role="doc-biblioref">2018</a>)</span>.
 
 This type of study design is an attempt to “balance” the data from the two
 groups on some important characteristics to make the comparisons of the groups
@@ -3052,7 +3050,7 @@ correct. The fact that there is an
 upper limit to the response variable attained by many students will cause
 complications below, but we can still learn something from our attempts to
 analyze these data using an MLR model. The scatterplot in
-Figure <a href="chapter8.html#fig:Figure8-31">188</a> seems to indicate some clear differences in the
+Figure <a href="chapter8.html#fig:Figure8-31">8.31</a> seems to indicate some clear differences in the
 <em>IQ</em> vs <em>reading score</em> relationship between the <em>dys</em>=0 (non-dyslexic) and
 <em>dys</em>=1 (dyslexic) students (code below makes these levels more explicit in the data set). Note that the IQ is standardized to have mean 0
 and standard deviation of 1 which means that
@@ -3062,7 +3060,7 @@ a 1 unit change in IQ score is a 1 SD change and that the <em>y</em>-intercept (
 <div class="figure"><span id="fig:Figure8-31"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-31-1.png" alt="Scatterplot for reading score versus nonverbal IQ by dyslexia group." width="768" />
 <p class="caption">
-Figure 188: Scatterplot for reading score versus nonverbal IQ by dyslexia group.
+Figure 8.31: Scatterplot for reading score versus nonverbal IQ by dyslexia group.
 </p>
 </div>
 <div class="sourceCode" id="cb809"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb809-1"><a href="chapter8.html#cb809-1"></a><span class="kw">library</span>(smdata)</span>
@@ -3186,7 +3184,7 @@ fitted values (<span class="math inline">\(x\)</span>-axis in Residuals vs Fitte
 You
 should look for issues in the residuals for each group but the residuals should
 overall still be normally distributed and have the same variability everywhere.
-It is a bit hard to see issues in Figure <a href="chapter8.html#fig:Figure8-32">189</a> because of the
+It is a bit hard to see issues in Figure <a href="chapter8.html#fig:Figure8-32">8.32</a> because of the
 group differences,
 but note the line of residuals for the higher fitted values. This is an
 artifact of the upper threshold in the reading accuracy test used. As in the
@@ -3207,7 +3205,7 @@ influential points because no points have Cook’s D over 0.5. </p>
 <div class="figure"><span id="fig:Figure8-32"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-32-1.png" alt="Diagnostic plots for interaction model for reading scores." width="960" />
 <p class="caption">
-Figure 189: Diagnostic plots for interaction model for reading scores.
+Figure 8.32: Diagnostic plots for interaction model for reading scores.
 </p>
 </div>
 <p>For these models, we have relaxed an earlier assumption that data were collected
@@ -3220,7 +3218,7 @@ can be difficult to check the assumptions by looking at the overall diagnostic
 plots and it may be easier to go back to the original scatterplot or plot the
 residuals vs fitted values by group to fully assess the results.
 
-Figure <a href="chapter8.html#fig:Figure8-33">190</a>
+Figure <a href="chapter8.html#fig:Figure8-33">8.33</a>
 shows a scatterplot of the residuals vs the quantitative explanatory variable
 by the groups. The variability in the residuals is a bit larger in the
 non-dyslexic group, possibly suggesting that variability in the reading test is
@@ -3232,7 +3230,7 @@ that variability because there were so many perfect scores in this group.</p>
 <div class="figure"><span id="fig:Figure8-33"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-33-1.png" alt="Plot of Residuals vs Fitted from interaction dyslexia data model with groups indicated." width="576" />
 <p class="caption">
-Figure 190: Plot of Residuals vs Fitted from interaction dyslexia data model with groups indicated.
+Figure 8.33: Plot of Residuals vs Fitted from interaction dyslexia data model with groups indicated.
 </p>
 </div>
 <p>If we feel comfortable enough with the assumptions to trust the inferences here
@@ -3262,19 +3260,19 @@ slopes for the two groups.</p>
 be generated that plot the results for each group on the same display or on separate facets for each level of the categorical variable. The first version is useful for comparing the different lines and the second version is useful to add the partial residuals and get a final exploration of model assumptions and ranges of values where predictor variables were observed in each group.
 
 The term-plots basically provide a plot of the “simplified” SLR models for each group. In
-Figure <a href="chapter8.html#fig:Figure8-34">191</a> we can see noticeable differences in the slopes
+Figure <a href="chapter8.html#fig:Figure8-34">8.34</a> we can see noticeable differences in the slopes
 and intercepts. Note that
 testing for differences in intercepts between groups is not very interesting
 when there are different slopes because if you change the slope, you have to
 change the intercept. The plot shows that there are clear differences in the
 means even though we don’t have a test to directly assess that in this
-complicated of a model<a href="#fn138" class="footnote-ref" id="fnref138"><sup>138</sup></a>. Figure Figure <a href="chapter8.html#fig:Figure8-35">192</a> splits the plots up and adds partial residuals to the plots. The impact on the estimated model for the perfect scores in the non-dyslexic subjects is very prominent as well as the difference in the relationships between the two variables in the two groups.</p>
+complicated of a model<a href="#fn138" class="footnote-ref" id="fnref138"><sup>138</sup></a>. Figure Figure <a href="chapter8.html#fig:Figure8-35">8.35</a> splits the plots up and adds partial residuals to the plots. The impact on the estimated model for the perfect scores in the non-dyslexic subjects is very prominent as well as the difference in the relationships between the two variables in the two groups.</p>
 
 <div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="chapter8.html#cb814-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(dys_model), <span class="dt">ci.style=</span><span class="st">&quot;bands&quot;</span>, <span class="dt">multiline=</span>T, <span class="dt">lty=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">grid=</span>T)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-34"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-34-1.png" alt="Term-plots for interaction model for reading scores using the multiline=T option to overlay the results for the two groups on one plot." width="576" />
 <p class="caption">
-Figure 191: Term-plots for interaction model for reading scores using the <code>multiline=T</code> option to overlay the results for the two groups on one plot.
+Figure 8.34: Term-plots for interaction model for reading scores using the <code>multiline=T</code> option to overlay the results for the two groups on one plot.
 </p>
 </div>
 
@@ -3282,7 +3280,7 @@ Figure 191: Term-plots for interaction model for reading scores using the <code>
 <div class="figure"><span id="fig:Figure8-35"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-35-1.png" alt="Term-plots for interaction model for reading scores with partial residuals and the results for the two groups in different panels of the plot." width="576" />
 <p class="caption">
-Figure 192: Term-plots for interaction model for reading scores with partial residuals and the results for the two groups in different panels of the plot.
+Figure 8.35: Term-plots for interaction model for reading scores with partial residuals and the results for the two groups in different panels of the plot.
 </p>
 </div>
 <p>It certainly appears in the plots that IQ has a different impact on the mean
@@ -3291,10 +3289,10 @@ evidence in support of the interaction). To
 reinforce the potential dangers of forcing the same slope for both groups,
 consider the additive model for these data. Again, this just shifts one group
 off the other one, but both have the same slope. The following model summary
-and term-plots (Figure <a href="chapter8.html#fig:Figure8-36">193</a>) suggest the potentially
+and term-plots (Figure <a href="chapter8.html#fig:Figure8-36">8.36</a>) suggest the potentially
 dangerous conclusion that
 can come from assuming a common slope when that might not be the case.</p>
-<div style="page-break-after: always;"></div>
+
 
 <div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="chapter8.html#cb816-1"></a>dys_modelR &lt;-<span class="st"> </span><span class="kw">lm</span>(score<span class="op">~</span>ziq<span class="op">+</span>dys, <span class="dt">data=</span>dyslexic3)</span>
 <span id="cb816-2"><a href="chapter8.html#cb816-2"></a><span class="kw">summary</span>(dys_modelR)</span></code></pre></div>
@@ -3319,7 +3317,7 @@ can come from assuming a common slope when that might not be the case.</p>
 <div class="figure"><span id="fig:Figure8-36"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-36-1.png" alt="Term-plots for additive model for reading scores." width="576" />
 <p class="caption">
-Figure 193: Term-plots for additive model for reading scores.
+Figure 8.36: Term-plots for additive model for reading scores.
 </p>
 </div>
 <p>This model provides little evidence against the null hypothesis that IQ is not linearly related to reading score for all
@@ -3346,14 +3344,15 @@ model – leaving a model that only includes the grouping variable:</p>
 ## Multiple R-squared:  0.6721, Adjusted R-squared:  0.6643 
 ## F-statistic: 86.08 on 1 and 42 DF,  p-value: 1e-11</code></pre>
 
+
 <div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="chapter8.html#cb821-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(dys_modelR2, <span class="dt">residuals=</span>T))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-37"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-37-1.png" alt="Term-plot for dyslexia status only model for reading scores." width="576" />
 <p class="caption">
-Figure 194: Term-plot for dyslexia status only model for reading scores.
+Figure 8.37: Term-plot for dyslexia status only model for reading scores.
 </p>
 </div>
-<p>These results, including the term-plot in Figure <a href="chapter8.html#fig:Figure8-37">194</a>, suggest a difference in the mean reading scores
+<p>These results, including the term-plot in Figure <a href="chapter8.html#fig:Figure8-37">8.37</a>, suggest a difference in the mean reading scores
 between the two groups and maybe that is all these data really say… This is the
 logical outcome if we decide that the interaction is not important <em>in this data set</em>. In general, if the interaction is dropped, the interaction model can be
 reduced to considering an additive model with the categorical and quantitative
@@ -3365,7 +3364,7 @@ for removal, usually starting with the variable with the larger p-value,
 leaving a string of ever-simpler models possible if large p-values are continually
 encountered<a href="#fn139" class="footnote-ref" id="fnref139"><sup>139</sup></a>.</p>
 <p>It is useful to note that the last model has returned us to the first
-model we encountered in Chapter <a href="chapter2.html#chapter2"><strong>??</strong></a> where we were just comparing
+model we encountered in Chapter <a href="chapter2.html#chapter2">2</a> where we were just comparing
 the means for two groups.
 However, the researchers probably were not seeking to make the discovery that
 dyslexic students have a tougher time than non-dyslexic students on a reading
@@ -3411,9 +3410,10 @@ the indicators with 0. For example, for the <em>T1</em> group:</p>
 <div class="figure"><span id="fig:Figure8-38"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-38-1.png" alt="Term-plot for decibel tolerance interaction model with partial residuals (version 1)." width="672" />
 <p class="caption">
-Figure 195: Term-plot for decibel tolerance interaction model with partial residuals (version 1).
+Figure 8.38: Term-plot for decibel tolerance interaction model with partial residuals (version 1).
 </p>
 </div>
+
 <div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="chapter8.html#cb822-1"></a>head2 &lt;-<span class="st"> </span><span class="kw">lm</span>(du2<span class="op">~</span>du1<span class="op">*</span>treatment, <span class="dt">data=</span>Headache)</span>
 <span id="cb822-2"><a href="chapter8.html#cb822-2"></a><span class="kw">summary</span>(head2)</span></code></pre></div>
 <pre><code>## 
@@ -3438,8 +3438,8 @@ Figure 195: Term-plot for decibel tolerance interaction model with partial resid
 ## Residual standard error: 2.148 on 90 degrees of freedom
 ## Multiple R-squared:  0.7573, Adjusted R-squared:  0.7384 
 ## F-statistic: 40.12 on 7 and 90 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Or we can let the term-plots (Figures <a href="chapter8.html#fig:Figure8-38">195</a> and
-<a href="chapter8.html#fig:Figure8-39">196</a>) show us all four different simplified models. Here we
+<p>Or we can let the term-plots (Figures <a href="chapter8.html#fig:Figure8-38">8.38</a> and
+<a href="chapter8.html#fig:Figure8-39">8.39</a>) show us all four different simplified models. Here we
 can see that all the slopes “look” to be pretty similar. When the interaction
 model is fit and the results “look” like the additive model, there is a good
 chance that we will be able to avoid all this complication and just use the
@@ -3447,9 +3447,9 @@ additive model without missing anything interesting.
 
 There are two different
 options for displaying interaction models. Version 1 (Figure
-<a href="chapter8.html#fig:Figure8-38">195</a>) has a
+<a href="chapter8.html#fig:Figure8-38">8.38</a>) has a
 different panel for each level of the categorical variable and Version 2
-(Figure <a href="chapter8.html#fig:Figure8-39">196</a>) puts all the lines on the same plot. In this
+(Figure <a href="chapter8.html#fig:Figure8-39">8.39</a>) puts all the lines on the same plot. In this
 case, neither
 version shows much of a difference and Version 2 overlaps so much that you
 can’t see all the groups. In these situations, it can be useful to make the term-plots with <code>multiline=T</code> and <code>multiline=F</code> and select the version that captures the results best.</p>
@@ -3457,7 +3457,7 @@ can’t see all the groups. In these situations, it can be useful to make the te
 <div class="figure"><span id="fig:Figure8-39"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-39-1.png" alt="Term-plot for decibel tolerance interaction model (version 2). This plot is not printed in color because it is impossible to distinguish the four groups whether in color or black and white." width="576" />
 <p class="caption">
-Figure 196: Term-plot for decibel tolerance interaction model (version 2). This plot is not printed in color because it is impossible to distinguish the four groups whether in color or black and white.
+Figure 8.39: Term-plot for decibel tolerance interaction model (version 2). This plot is not printed in color because it is impossible to distinguish the four groups whether in color or black and white.
 </p>
 </div>
 <div class="sourceCode" id="cb824"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb824-1"><a href="chapter8.html#cb824-1"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(head2, <span class="dt">residuals=</span>T))</span>
@@ -3472,9 +3472,12 @@ the choice of the baseline is arbitrary. To assess whether we really need to
 have varying slopes or intercepts with more than two groups we need to develop
 <span class="math inline">\(F\)</span>-tests for the interaction part of the model.</p>
 <!-- \newpage -->
+
+
 </div>
-<div id="section8-12" class="section level2" number="8.12">
-<h2 number="8.12"><span class="header-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</h2>
+<div id="section8-12" class="section level2">
+<h2><span class="header-section-number">8.12</span> F-tests for MLR models with quantitative and categorical variables and interactions</h2>
+
 <p>For models with multi-category <span class="math inline">\((J&gt;2)\)</span> categorical variables we need a method
 for deciding if all the extra
 complexity present in the additive or interaction models is necessary. We can
@@ -3503,16 +3506,16 @@ a reasonable next step.
 
 Basically this establishes a set of <strong><em>nested models</em></strong>
 (each model is a reduced version of another more complicated
-model higher in the tree of models and we can move down the tree by setting a set of slope coefficients to 0) displayed in Figure <a href="chapter8.html#fig:Figure8-40">197</a>.
+model higher in the tree of models and we can move down the tree by setting a set of slope coefficients to 0) displayed in Figure <a href="chapter8.html#fig:Figure8-40">8.40</a>.
 This is based on
 the assumption that we would proceed through the model, dropping terms if the
 p-values are large (“not significant” in the diagram) to arrive at a final
 model. </p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure8-40"></span>
-<img src="chapter8_files/nestedModelTree_medium.png" alt="Diagram of models to consider in an interaction model." width="100%" />
+<img src="chapter8_files/nestedModelTree_medium.png" alt="Diagram of models to consider in an interaction model." width="90%" />
 <p class="caption">
-Figure 197: Diagram of models to consider in an interaction model.
+Figure 8.40: Diagram of models to consider in an interaction model.
 </p>
 </div>
 <p>If the initial interaction test suggests the interaction is important, then no
@@ -3561,7 +3564,7 @@ differs from the others in the population.</strong></p></li>
 hypothesis. With <span class="math inline">\(J=2\)</span>, the p-value from this test matches the results for the
 <span class="math inline">\(t\)</span>-test <span class="math inline">\((t_{n-4})\)</span> for the single slope-changing coefficient in the model
 summary output. The noise tolerance study, introduced in Section
-<a href="chapter8.html#section8-10"><strong>??</strong></a>, provides a situation for exploring the results in
+<a href="chapter8.html#section8-10">8.10</a>, provides a situation for exploring the results in
 detail.</p>
 <p>With the <span class="math inline">\(J=4\)</span> level categorical variable (<em>Treatment</em>), the model for the
 second noise tolerance measurement (<em>du2</em>) as a function of the interaction
@@ -3678,8 +3681,8 @@ p-value or it did not. If you want an unconditional interpretation for a variabl
 will need to refit the model without the other variable(s) after deciding that
 they are not important.</p>
 </div>
-<div id="section8-13" class="section level2" number="8.13">
-<h2 number="8.13"><span class="header-section-number">8.13</span> AICs for model selection</h2>
+<div id="section8-13" class="section level2">
+<h2><span class="header-section-number">8.13</span> AICs for model selection</h2>
 <p>There are a variety of techniques for selecting among a set of potential models
 or refining an initially fit MLR
 model. Hypothesis testing can be used (in the case where we have nested models either by adding or deleting a single term at a time)
@@ -3695,9 +3698,9 @@ theoretical underpinnings, a slightly more interpretable scale, and, often,
 better performance in picking an optimal<a href="#fn141" class="footnote-ref" id="fnref141"><sup>141</sup></a>
 model than the <strong><em>adjusted</em></strong> <strong><em>R</em></strong><sup>2</sup>. The measure is called the
 <strong><em>AIC</em></strong> (Akaike’s An Information Criterion<a href="#fn142" class="footnote-ref" id="fnref142"><sup>142</sup></a>,
-<span class="citation">(Akaike <a href="references.html#ref-Akaike1974" role="doc-biblioref">1974</a>)</span>). It is extremely popular, but sometimes misused, in some fields
+<span class="citation">(Akaike <a href="#ref-Akaike1974" role="doc-biblioref">1974</a>)</span>). It is extremely popular, but sometimes misused, in some fields
 such as Ecology and has been applied in almost every other potential
-application area where statistical models can be compared. <span class="citation">Burnham and Anderson (<a href="references.html#ref-Burnham2002" role="doc-biblioref">2002</a>)</span>
+application area where statistical models can be compared. <span class="citation">Burnham and Anderson (<a href="#ref-Burnham2002" role="doc-biblioref">2002</a>)</span>
 have been responsible for popularizing the use of AIC for model
 selection, especially in Ecology. The <strong>AIC is an estimate of the distance
 (or discrepancy or divergence) between a candidate model and the true model,
@@ -3805,7 +3808,7 @@ then run the <code>AIC</code> function on each model. This can be tedious, espec
 when we have many possible models to consider. We can make
 it easy to fit all the potential candidate models that are implied by a
 complicated starting model by using the <code>dredge</code> function from the <code>MuMIn</code>
-package <span class="citation">(Barton <a href="references.html#ref-R-MuMIn" role="doc-biblioref">2019</a>)</span>.
+package <span class="citation">(Barton <a href="#ref-R-MuMIn" role="doc-biblioref">2019</a>)</span>.
 
 The name (dredge) actually speaks to what <strong><em>fitting
 all possible models</em></strong> really engages – what is called <strong><em>data dredging</em></strong>.
@@ -3833,8 +3836,8 @@ that you must run the <code>options(na.action = "na.fail")</code> code to get <c
 to work.</p>
 <p>To explore the AICs and compare their results to the adjusted <strong><em>R</em></strong><sup>2</sup>
 that we used before for model selection, we can revisit the <em>Snow Depth</em> data set
-with related results found in Section <a href="chapter8.html#section8-4"><strong>??</strong></a> and
-Table <a href="chapter8.html#tab:Table8-1">13</a>. In that situation we were considering
+with related results found in Section <a href="chapter8.html#section8-4">8.4</a> and
+Table <a href="chapter8.html#tab:Table8-1">8.1</a>. In that situation we were considering
 a “full” model that included <em>Elevation</em>, <em>Min.Temp</em>, and <em>Max.Temp</em> as potential
 predictor variables after removing two influential points.   And we considered all
 possible reduced models from that “full”<a href="#fn145" class="footnote-ref" id="fnref145"><sup>145</sup></a> model. Note
@@ -3855,6 +3858,7 @@ columns. The <code>df</code> is also a useful column for comparing models as it 
 you see how complex each model is. For example, the top model used up 4
 <em>model df</em> (three <span class="math inline">\(\beta\text{&#39;s}\)</span> and the residual error variance) and the
 most complex model that included four predictor variables used up 5 <em>model df</em>.</p>
+
 <div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="chapter8.html#cb829-1"></a><span class="kw">library</span>(MuMIn)</span>
 <span id="cb829-2"><a href="chapter8.html#cb829-2"></a><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
 <span id="cb829-3"><a href="chapter8.html#cb829-3"></a>snotel2R &lt;-<span class="st"> </span>snotel2[<span class="op">-</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">22</span>),]</span>
@@ -3873,6 +3877,7 @@ most complex model that included four predictor variables used up 5 <em>model df
 ## 3  119.50         -2.1800         0.4131 0.3852  3  -96.500 199.0 29.29  0.000
 ## 1   40.21                         0.0000 0.0000  2 -102.630 209.3 39.55  0.000
 ## Models ranked by AIC(x)</code></pre>
+
 <p>You can use the table of results from <code>dredge</code> to find information to compare the estimated models. There are two models that are clearly favored over the others with
 <span class="math inline">\(\Delta\text{AICs}\)</span> for the model with <em>Elevation</em> and <em>Max.Temp</em> of 0 and for
 the model with all three predictors of 1.37. The <span class="math inline">\(\Delta\text{AIC}\)</span> for the
@@ -3884,12 +3889,12 @@ And the mean-only model had a <span class="math inline">\(\Delta\text{AIC}\)</sp
 extremely strong evidence for the top model versus using no predictors. So we
 have pretty clear support for models that include the <em>Elevation</em> and <em>Max.Temp</em>
 variables (in both top models) and some support for also including the
-<em>Min.Temp</em>, but the top model did not require its inclusion. It is also possible to think about the AICs as a result on a number line from “closest to the truth” to “farthest” for the suite of models considered, as shown in Figure <a href="chapter8.html#fig:Figure8-41">198</a>.</p>
+<em>Min.Temp</em>, but the top model did not require its inclusion. It is also possible to think about the AICs as a result on a number line from “closest to the truth” to “farthest” for the suite of models considered, as shown in Figure <a href="chapter8.html#fig:Figure8-41">8.41</a>.</p>
 
 <div class="figure"><span id="fig:Figure8-41"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-41-1.png" alt="Display of AIC results on a number line with models indicated by their number in the dredge output. Note that the actual truth is unknown but further left in the plot corresponds to the models that are estimated to be closer to the truth and so there is stronger evidence for those models versus the others." width="768" />
 <p class="caption">
-Figure 198: Display of AIC results on a number line with models indicated by their number in the <code>dredge</code> output. Note that the actual truth is unknown but further left in the plot corresponds to the models that are estimated to be closer to the truth and so there is stronger evidence for those models versus the others.
+Figure 8.41: Display of AIC results on a number line with models indicated by their number in the <code>dredge</code> output. Note that the actual truth is unknown but further left in the plot corresponds to the models that are estimated to be closer to the truth and so there is stronger evidence for those models versus the others.
 </p>
 </div>
 <p>We could add further explorations of the term-plots and confidence
@@ -3913,13 +3918,13 @@ of a treatment on the subjects, it also makes sense to see if the differences
 created are beyond what you might expect by chance if the treatment didn’t
 matter.</p>
 </div>
-<div id="section8-14" class="section level2" number="8.14">
-<h2 number="8.14"><span class="header-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</h2>
+<div id="section8-14" class="section level2">
+<h2><span class="header-section-number">8.14</span> Case study: Forced expiratory volume model selection using AICs</h2>
 <p>Researchers were interested in studying the effects of smoking by children on
 their lung development by measuring the forced expiratory volume (<em>FEV</em>,
 measured in Liters) in a representative sample of children (<span class="math inline">\(n=654\)</span>) between
 the ages of 3 and 19; this data set is available in the <code>FEV</code> data set in the
-<code>coneproj</code> package (<span class="citation">Meyer and Liao (<a href="references.html#ref-R-coneproj" role="doc-biblioref">2018</a>)</span>, <span class="citation">Liao and Meyer (<a href="references.html#ref-Liao2014" role="doc-biblioref">2014</a>)</span>).
+<code>coneproj</code> package (<span class="citation">Meyer and Liao (<a href="#ref-R-coneproj" role="doc-biblioref">2018</a>)</span>, <span class="citation">Liao and Meyer (<a href="#ref-Liao2014" role="doc-biblioref">2014</a>)</span>).
 
 Measurements on the <em>age</em> (in years)
 and <em>height</em> (in inches) as well as the <em>sex</em> and <em>smoking status</em> of the
@@ -3935,7 +3940,7 @@ the potential for including up to four variables (<em>age</em>, <em>height</em>,
 <em>smoking status</em>) and possibly the interaction between <em>age</em> and <em>smoking status</em>.
 Initial explorations suggested that modeling the log-FEV would be more successful
 than trying to model the responses on the original scale. Figure
-<a href="chapter8.html#fig:Figure8-42">199</a> shows the suggestion of different slopes for the
+<a href="chapter8.html#fig:Figure8-42">8.42</a> shows the suggestion of different slopes for the
 smokers than non-smokers and that there aren’t very many smokers under 9 years
 old in the data set.</p>
 <p>So we will start with a model that contains an <em>age</em> by <em>smoking</em> interaction
@@ -3949,7 +3954,7 @@ involved in the interaction if we don’t need the interaction.</p>
 <div class="figure"><span id="fig:Figure8-42"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-42-1.png" alt="Scatterplot of log(FEV) vs Age by smoking status." width="960" />
 <p class="caption">
-Figure 199: Scatterplot of log(FEV) vs Age by smoking status.
+Figure 8.42: Scatterplot of log(FEV) vs Age by smoking status.
 </p>
 </div>
 <div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="chapter8.html#cb831-1"></a><span class="kw">library</span>(coneproj)</span>
@@ -3995,10 +4000,10 @@ specified as <code>log(FEV)~height+age*smoke+sex</code>.</p>
 <div class="figure"><span id="fig:Figure8-43"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-43-1.png" alt="Diagnostics for the log(FEV) model that includes height, sex, and an interaction between age and smoking status (the full model)." width="960" />
 <p class="caption">
-Figure 200: Diagnostics for the log(FEV) model that includes height, sex, and an interaction between age and smoking status (the full model).
+Figure 8.43: Diagnostics for the log(FEV) model that includes height, sex, and an interaction between age and smoking status (the full model).
 </p>
 </div>
-<p>The diagnostic plots suggest that there are a few outlying points (Figure <a href="chapter8.html#fig:Figure8-43">200</a>) but they
+<p>The diagnostic plots suggest that there are a few outlying points (Figure <a href="chapter8.html#fig:Figure8-43">8.43</a>) but they
 are not influential and there is no indication of violations of the constant
 variance assumption. There is a slight left skew with a long left tail to cause a very minor concern with the normality assumption but not enough to be concerned about our inferences from this model. If we select a different
 model(s), we would want to check its diagnostics and make sure that the results
@@ -4025,6 +4030,7 @@ We are probably also interested in whether the other terms are
 needed in the model. The full suite of results from dredge provide model
 comparisons that help us to assess the presence/absence of each model component
 including the interaction.</p>
+
 <div class="sourceCode" id="cb837"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb837-1"><a href="chapter8.html#cb837-1"></a><span class="kw">options</span>(<span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>) <span class="co">#Must run this code once to use dredge</span></span>
 <span id="cb837-2"><a href="chapter8.html#cb837-2"></a><span class="kw">dredge</span>(fm1, <span class="dt">rank=</span><span class="st">&quot;AIC&quot;</span>, </span>
 <span id="cb837-3"><a href="chapter8.html#cb837-3"></a>       <span class="dt">extra =</span> <span class="kw">c</span>(<span class="st">&quot;R^2&quot;</span>, <span class="dt">adjRsq=</span><span class="cf">function</span>(x) <span class="kw">summary</span>(x)<span class="op">$</span>adj.r.squared))</span></code></pre></div>
@@ -4053,6 +4059,7 @@ including the interaction.</p>
 ## 5   0.857400                   +             0.02878 0.02729  3 -199.310  404.6 1063.22  0.000
 ## 1   0.915400                                 0.00000 0.00000  2 -208.859  421.7 1080.32  0.000
 ## Models ranked by AIC(x)</code></pre>
+
 <p>There is a lot of information in the output and some of the needed information
 in the second set of rows, so we will try to point out some useful features to
 consider. The left columns describe the models being estimated. For example, the
@@ -4077,7 +4084,7 @@ last in the list with the least support on AICs with a <span class="math inline"
 of 1080.32, suggesting it is not worth considering in comparison with the top
 model. <strong>Comparing the mean-only model to our favorite model on AICs is a bit
 like the overall <span class="math inline">\(\boldsymbol{F}\)</span>-test we considered in Section</strong>
-<a href="chapter8.html#section8-7"><strong>??</strong></a> <strong>because it compares a model with no predictors to a
+<a href="chapter8.html#section8-7">8.7</a> <strong>because it compares a model with no predictors to a
 complicated model.</strong> Each model with just one predictor included is available
 in the table as well, with the top single predictor model based on <em>height</em>
 having a <span class="math inline">\(\Delta\text{AIC}\)</span> of 43.96. So we certainly need to
@@ -4090,7 +4097,7 @@ be considered in detail.</p>
 <div class="figure"><span id="fig:Figure8-44"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-44-1.png" alt="Display of AIC results on a number line with models indicated by their number in the dredge output. In more complex models, the dredge model numbers are just labels and not a meaningful numeration of the models being considered (there are 20 models considered here but labels go up to 32). Panel (a) presents results for all the models and panel (b) focuses just on the top 10 models so some differences in those models can be explored. Note that the spacing of the vertical grid lines in panel (a) are 10 AIC units and in (b) they are 1 AIC unit apart." width="960" />
 <p class="caption">
-Figure 201: Display of AIC results on a number line with models indicated by their number in the <code>dredge</code> output. In more complex models, the <code>dredge</code> model numbers are just labels and not a meaningful numeration of the models being considered (there are 20 models considered here but labels go up to 32). Panel (a) presents results for all the models and panel (b) focuses just on the top 10 models so some differences in those models can be explored. Note that the spacing of the vertical grid lines in panel (a) are 10 AIC units and in (b) they are 1 AIC unit apart.
+Figure 8.44: Display of AIC results on a number line with models indicated by their number in the <code>dredge</code> output. In more complex models, the <code>dredge</code> model numbers are just labels and not a meaningful numeration of the models being considered (there are 20 models considered here but labels go up to 32). Panel (a) presents results for all the models and panel (b) focuses just on the top 10 models so some differences in those models can be explored. Note that the spacing of the vertical grid lines in panel (a) are 10 AIC units and in (b) they are 1 AIC unit apart.
 </p>
 </div>
 <p>The dredge results also provides the opportunity to compare the model selection
@@ -4121,18 +4128,18 @@ adjusted <em>R</em><sup>2</sup>. But you can discuss the estimated model compone
 <p><span class="math display">\[\log(\widehat{\text{FEV}})_i = -1.94 + 0.043\cdot\text{Height}_i+ 0.0234\cdot\text{Age}_i
 -0.046I_{\text{Smoker},i}+0.0293I_{\text{Male},i}\]</span></p>
 <p>based on the estimated coefficients provided below. Using these results and the
-term-plots (Figure <a href="chapter8.html#fig:Figure8-45">202</a>) we see that in this model there are positive slopes
+term-plots (Figure <a href="chapter8.html#fig:Figure8-45">8.45</a>) we see that in this model there are positive slopes
 for <em>Age</em> and <em>Height</em> on <em>log-FEV</em>, a negative coefficient for <em>smoking</em>
 (<em>Smoker</em>), and a positive coefficient for <em>sex</em> (<em>Males</em>). There is some multicollinearity impacting the estimates for <em>height</em> and <em>age</em> based on having VIFs near 3 but these are not extreme issues. We could go further with interpretations
 such as for the <em>age</em> term: For a 1 year increase in <em>age</em>, we estimate, on
 average, a 0.0234 log-liter increase in <em>FEV</em>, after controlling for the
 <em>height</em>, <em>smoking status</em>, and <em>sex</em> of the children. We can even interpret
 this on the original scale since this was a <em>log(y)</em> response model using the same techniques as in Section
-<a href="chapter7.html#section7-6"><strong>??</strong></a>. If we exponentiate the slope coefficient of the quantitative
+<a href="chapter7.html#section7-6">7.6</a>. If we exponentiate the slope coefficient of the quantitative
 variable, <span class="math inline">\(\exp(0.0234)=1.0237\)</span>. This provides the interpretation on the original
 <em>FEV</em> scale, for a 1 year increase in <em>age</em>, we estimate a 2.4% increase in the
 median <em>FEV</em>, after controlling for the <em>height</em>, <em>smoking status</em>, and <em>sex</em> of
-the children. <strong>The only difference from Section</strong> <a href="chapter7.html#section7-6"><strong>??</strong></a> <strong>when
+the children. <strong>The only difference from Section</strong> <a href="chapter7.html#section7-6">7.6</a> <strong>when
 working with a log(y) model now is that we have to note that the model used to
 generate the slope coefficient had other components and so this estimate is
 after adjusting for them.</strong></p>
@@ -4154,7 +4161,7 @@ after adjusting for them.</strong></p>
 <div class="figure"><span id="fig:Figure8-45"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-45-1.png" alt="Term-plots for the top AIC model for log(FEV) that includes height, age, smoking status, and sex in the model." width="960" />
 <p class="caption">
-Figure 202: Term-plots for the top AIC model for log(FEV) that includes height, age, smoking status, and sex in the model.
+Figure 8.45: Term-plots for the top AIC model for log(FEV) that includes height, age, smoking status, and sex in the model.
 </p>
 </div>
 <p>Like any statistical method, the AIC works better with larger sample sizes and
@@ -4188,8 +4195,8 @@ consideration of all possible models in the <code>dredge</code> function should 
 considered in all situations but can be useful in a preliminary model exploration
 study where no clear knowledge exists about useful models to consider. Where some knowledge exists of possible models of interest <em>a priori</em>, fit those models and use the AIC function to get AICs to compare. Reporting the summary of AIC results beyond just reporting the top model(s) that were selected for focused exploration provides the evidence to support that selection – not p-values!</p>
 </div>
-<div id="section8-15" class="section level2" number="8.15">
-<h2 number="8.15"><span class="header-section-number">8.15</span> Chapter summary</h2>
+<div id="section8-15" class="section level2">
+<h2><span class="header-section-number">8.15</span> Chapter summary</h2>
 <p>This chapter explored the most complicated models we’re
 going to explore. MLR models can incorporate features of SLR and ANOVAs. The
 MLR’s used in this chapter highlight the flexibility of the linear modeling
@@ -4203,7 +4210,7 @@ power comes with some responsibility in that you need to know what you are
 trying to fit and how to interpret the results provided. We introduced each scenario
 working from simple to the most complicated version of the models, trying to
 motivate when you would encounter them, and the specific details of the
-interpretations of each type of model. In Chapter <a href="chapter9.html#chapter9"><strong>??</strong></a>, case studies
+interpretations of each type of model. In Chapter <a href="chapter9.html#chapter9">9</a>, case studies
 are used to review the different methods discussed with reminders of how to
 identify and interpret the particular methods used.</p>
 <p>When you have to make modeling decisions, you should remember the main
@@ -4223,8 +4230,8 @@ than one quantitative predictor at a time or else you could remove two variables
 that are important but were “hiding” when both were included in the model.</p>
 <!-- \newpage -->
 </div>
-<div id="section8-16" class="section level2" number="8.16">
-<h2 number="8.16"><span class="header-section-number">8.16</span> Summary of important R code</h2>
+<div id="section8-16" class="section level2">
+<h2><span class="header-section-number">8.16</span> Summary of important R code</h2>
 <p>There is very little “new” R code in this chapter since all these methods were
 either used in the ANOVA or SLR chapters. The models are more complicated but
 are built off of methods from previous chapters. In this code, <code>y</code> is a
@@ -4333,8 +4340,8 @@ a full model called <code>FULL_MODELNAME</code>.
 </ul>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="section8-17" class="section level2" number="8.17">
-<h2 number="8.17"><span class="header-section-number">8.17</span> Practice problems</h2>
+<div id="section8-17" class="section level2">
+<h2><span class="header-section-number">8.17</span> Practice problems</h2>
 <p>8.1. <strong>Treadmill data analysis</strong> The original research goal for the treadmill data set used for practice
 problems in the last two chapters was to
 replace the costly treadmill oxygen test with a cheap to find running time
@@ -4396,6 +4403,39 @@ model. Report and interpret those results.</p>
 
 </div>
 </div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Akaike1974">
+<p>Akaike, Hirotugu. 1974. “A New Look at the Statistical Model Identification.” <em>IEEE Transactions on Automatic Control</em> 19: 716–23.</p>
+</div>
+<div id="ref-R-MuMIn">
+<p>Barton, Kamil. 2019. <em>MuMIn: Multi-Model Inference</em>. <a href="https://CRAN.R-project.org/package=MuMIn">https://CRAN.R-project.org/package=MuMIn</a>.</p>
+</div>
+<div id="ref-Burnham2002">
+<p>Burnham, Kenneth P., and David R. Anderson. 2002. <em>Model Selection and Multimodel Inference</em>. NY: Springer.</p>
+</div>
+<div id="ref-R-openintro">
+<p>Diez, David M, Christopher D Barr, and Mine Cetinkaya-Rundel. 2017. <em>Openintro: Data Sets and Supplemental Functions from ’Openintro’ Textbooks</em>. <a href="https://CRAN.R-project.org/package=openintro">https://CRAN.R-project.org/package=openintro</a>.</p>
+</div>
+<div id="ref-Fox2003">
+<p>Fox, John. 2003. “Effect Displays in R for Generalised Linear Models.” <em>Journal of Statistical Software</em> 8 (15): 1–27. <a href="http://www.jstatsoft.org/v08/i15/">http://www.jstatsoft.org/v08/i15/</a>.</p>
+</div>
+<div id="ref-R-heplots">
+<p>Fox, John, and Michael Friendly. 2018. <em>Heplots: Visualizing Hypothesis Tests in Multivariate Linear Models</em>. <a href="https://CRAN.R-project.org/package=heplots">https://CRAN.R-project.org/package=heplots</a>.</p>
+</div>
+<div id="ref-R-carData">
+<p>Fox, John, Sanford Weisberg, and Brad Price. 2019b. <em>CarData: Companion to Applied Regression Data Sets</em>. <a href="https://CRAN.R-project.org/package=carData">https://CRAN.R-project.org/package=carData</a>.</p>
+</div>
+<div id="ref-Liao2014">
+<p>Liao, Xiyue, and Mary C. Meyer. 2014. “Coneproj: An R Package for the Primal or Dual Cone Projections with Routines for Constrained Regression.” <em>Journal of Statistical Software</em> 61 (12): 1–22. <a href="http://www.jstatsoft.org/v61/i12/">http://www.jstatsoft.org/v61/i12/</a>.</p>
+</div>
+<div id="ref-R-smdata">
+<p>Merkle, Ed, and Michael Smithson. 2018. <em>Smdata: Data to Accompany Smithson &amp; Merkle, 2013</em>. <a href="https://CRAN.R-project.org/package=smdata">https://CRAN.R-project.org/package=smdata</a>.</p>
+</div>
+<div id="ref-R-coneproj">
+<p>Meyer, Mary C., and Xiyue Liao. 2018. <em>Coneproj: Primal or Dual Cone Projections with Routines for Constrained Regression</em>. <a href="https://CRAN.R-project.org/package=coneproj">https://CRAN.R-project.org/package=coneproj</a>.</p>
+</div>
+</div>
 <div class="footnotes">
 <hr />
 <ol start="120">
@@ -4404,7 +4444,7 @@ model. Report and interpret those results.</p>
 <li id="fn124"><p>This also applies to the additive two-way ANOVA model.<a href="chapter8.html#fnref124" class="footnote-back">↩︎</a></p></li>
 <li id="fn132"><p>Some people also call them <strong><em>dummy variables</em></strong> to reflect that they are stand-ins for dealing with the categorical information. But it seems like a harsh anthropomorphism so I prefer “indicators”.<a href="chapter8.html#fnref132" class="footnote-back">↩︎</a></p></li>
 <li id="fn134"><p>Models like this with a categorical variable and quantitative variable are often called <em>ANCOVA</em> or <em>analysis of covariance</em> models but really are just versions of our linear models we’ve been using throughout this material.<a href="chapter8.html#fnref134" class="footnote-back">↩︎</a></p></li>
-<li id="fn135"><p>Note that we employed some specific options in the <code>legend</code> option to get the legend to fit on this scatterplot better. Usually you can avoid this but the <code>coords</code> option defined a location and the <code>columns</code> option made it a two column legend. The <code>viridis(4)</code> code makes the plot in a suite of four colors from the <code>viridis</code> package <span class="citation">(Garnier <a href="references.html#ref-R-viridis" role="doc-biblioref">2018</a>)</span>.<a href="chapter8.html#fnref135" class="footnote-back">↩︎</a></p></li>
+<li id="fn135"><p>Note that we employed some specific options in the <code>legend</code> option to get the legend to fit on this scatterplot better. Usually you can avoid this but the <code>coords</code> option defined a location and the <code>columns</code> option made it a two column legend. The <code>viridis(4)</code> code makes the plot in a suite of four colors from the <code>viridis</code> package <span class="citation">(Garnier <a href="#ref-R-viridis" role="doc-biblioref">2018</a>)</span>.<a href="chapter8.html#fnref135" class="footnote-back">↩︎</a></p></li>
 <li id="fn136"><p>The strength of this recommendation drops when you have many predictors as you can’t do this for every variable, but the concern remains about an assumption of no interaction whenever you fit models without them. In more complex situations, think about variables that are most likely to interact in their impacts on the response based on the situation being studied and try to explore those.<a href="chapter8.html#fnref136" class="footnote-back">↩︎</a></p></li>
 <li id="fn137"><p>Standardizing quantitative predictor variables is popular in social sciences, often where the response variable is also standardized. In those situations, they generate what are called “standardized betas” (<a href="https://en.wikipedia.org/wiki/Standardized_coefficient" class="uri">https://en.wikipedia.org/wiki/Standardized_coefficient</a>) that estimate the change in SDs in the response for a 1 SD increase in the explanatory variable.<a href="chapter8.html#fnref137" class="footnote-back">↩︎</a></p></li>
 <li id="fn138"><p>There is a way to test for a difference in the two lines at a particular <span class="math inline">\(x\)</span> value but it is beyond the scope of this material.<a href="chapter8.html#fnref138" class="footnote-back">↩︎</a></p></li>

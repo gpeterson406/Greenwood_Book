@@ -14,6 +14,18 @@ dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mo
 library(yarrr)
 library(viridis)
 set.seed(12345)
-pirateplot(Distance~Condition,data=dd,inf.method="ci", point.o=0.25,main="Pirate-plot of Car Overtaking Bike Distances", ylab="Distance(cm)",sortx="mean", pal=viridis(9),bean.f.o=.6)
+dd$Condition <- factor(dd$Condition)
+dd$Condition <- with(dd, reorder(x=Condition, X=Distance, FUN=mean))
+lm1 <- lm(Distance~Condition,data=dd)
+library(multcomp)
+Tm <- glht(lm1, linfct = mcp(Condition = "Tukey"))
+cldres <- cld(Tm)
+
+pirateplot(Distance~Condition,data=dd,inf.method="ci", point.o=0.25,main="Pirate-plot of Car Overtaking Bike Distances", ylab="Distance(cm)", pal=viridis(10)[-1],bean.f.o=.6, inf.disp="line")
 abline(h=117.12,col=viridis(9)[8],lty=2,lwd=2)
+text(x=1:5, y=200, "a", cex=2, col=viridis(10)[1])
+text(x=6, y=200, "ab", cex=2, col=viridis(10)[8])
+text(x=7, y=200, "b", cex=2, col=viridis(10)[9])
+
+
 ```

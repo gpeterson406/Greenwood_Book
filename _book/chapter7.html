@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Simple linear regression inference | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 7 Simple linear regression inference | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Simple linear regression inference | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter6.html">
-<link rel="next" href="chapter8.html">
+<link rel="prev" href="chapter6.html"/>
+<link rel="next" href="chapter8.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -114,6 +117,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+<link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
 </head>
 
 <body>
@@ -292,7 +297,7 @@ a random variable is statistically denoted as <span class="math inline">\(E(y_i)
 response variable in a simple linear model is specified by
 <span class="math inline">\(E(y_i) = \mu_{y_i} = \beta_0 + \beta_1x_i\)</span>. This uses the true regression line
 to define the model for the mean of the responses as a function of the value of
-the explanatory variable<a href="references.html#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a>.</p>
+the explanatory variable<a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a>.</p>
 <p>The other part of any statistical model is specifying a model for the
 variability around the mean.
 There are two aspects to the variability to specify here – the shape of the
@@ -589,7 +594,7 @@ the location of <span class="math inline">\(x\)</span>-values can impact the pre
 revisit this in the context of <strong><em>multi-collinearity</em></strong> in the next chapter,
 and often we have no control of <span class="math inline">\(x\)</span>-values, but just note that different
 patterns of <span class="math inline">\(x\)</span>-values can lead to different precision of estimated slope
-coefficients<a href="references.html#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a>.</p>
+coefficients<a href="#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a>.</p>
 <p>For hypothesis testing, we will almost always stick with two-sided tests
 in regression modeling as it is a more conservative approach and does not require
 us to have an expectation of a direction for relationships <em>a priori</em>. In this
@@ -775,7 +780,7 @@ measures have been replaced by digital temperature recording devices that
 continue to track this sort of information with much less human effort and,
 possibly, errors. This sort of information is often aggregated to monthly or
 yearly averages to be able to see “on average” changes from month-to-month or
-year-to-year as opposed to the day-to-day variation in the temperature<a href="references.html#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a>. Often the local information is aggregated further to
+year-to-year as opposed to the day-to-day variation in the temperature<a href="#fn106" class="footnote-ref" id="fnref106"><sup>106</sup></a>. Often the local information is aggregated further to
 provide regional, hemispheric, or even global average temperatures. Climate
 change research involves attempting to quantify the changes over time in these
 and other long-term temperature or temperature proxies.</p>
@@ -812,7 +817,7 @@ Figure 7.5: Scatterplot of average yearly maximum temperatures in Bozeman from 1
 1901 and 2014 based on a sample of <span class="math inline">\(n=109\)</span> years because four years had too
 many missing months to fairly include in the responses. Missing values occur
 for many reasons and in
-this case were likely just machine or human error<a href="references.html#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a>.
+this case were likely just machine or human error<a href="#fn107" class="footnote-ref" id="fnref107"><sup>107</sup></a>.
 These are time series data and in time series analysis we assume that the
 population of interest for inference is all possible realizations from the
 underlying process over this time frame even though we only ever get to observe
@@ -835,7 +840,7 @@ interval interpretation to discuss the size of the change.
 
 First, we need to select our hypotheses (the 2-sided test
 would be a <strong><em>conservative</em></strong> choice and no one that does climate change
-research wants to be accused of taking a <strong><em>liberal</em></strong> approach in their analyses<a href="references.html#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a>) and our test statistic, <span class="math inline">\(t=\frac{b_1}{\text{SE}_{b_1}}\)</span>. The scatterplot is the perfect tool to illustrate the situation.</p>
+research wants to be accused of taking a <strong><em>liberal</em></strong> approach in their analyses<a href="#fn108" class="footnote-ref" id="fnref108"><sup>108</sup></a>) and our test statistic, <span class="math inline">\(t=\frac{b_1}{\text{SE}_{b_1}}\)</span>. The scatterplot is the perfect tool to illustrate the situation.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Hypotheses for the slope coefficient test:</strong></li>
 </ol>
@@ -905,7 +910,7 @@ assumption shows only one real problem in the outlier from the
 which was identified as a large outlier when examining the original scatterplot.
 
 We should be careful about inferences that assume normality and contain this
-point in the analysis. We might consider running the analysis with it and
+point in the analysis. We might consider running the analysis with and
 without that point to see how much it impacts the results just to be sure
 it isn’t creating evidence of a trend because of a violation of the
 normality assumption. The next check reassures us that re-running the
@@ -972,13 +977,13 @@ normality assumption a bit.</p>
 </ul></li>
 <li><p><strong>Write a conclusion:</strong></p>
 <ul>
-<li>There is very strong evidence against the null hypothesis of no linear relationship
+<li>There is very strong evidence (<span class="math inline">\(t_{107}=11.02\)</span>, p-value &lt; 0.0001) against the null hypothesis of no linear relationship
 between <em>Year</em> and yearly mean <em>Temperature</em> so we can conclude that
 there is, in fact, some linear relationship between <em>Year</em> and yearly mean
 maximum <em>Temperature</em> in Bozeman.</li>
 </ul></li>
 </ol>
-
+<div style="page-break-after: always;"></div>
 <ol start="5" style="list-style-type: decimal">
 <li><p><strong>Size:</strong></p>
 <ul>
@@ -1157,7 +1162,7 @@ panel (c) is actually the real data set and pretty clearly presents itself as
 “different” from the other results. When we have small p-values, the real data
 set will be clearly different from the permuted results because it will be
 almost impossible to find a permuted data set that can attain as large a slope
-coefficient as was observed in the real data set<a href="references.html#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a>. This result ties back into our original interests
+coefficient as was observed in the real data set<a href="#fn109" class="footnote-ref" id="fnref109"><sup>109</sup></a>. This result ties back into our original interests
 in this climate change research
 situation – does our result look like it is different from what could have been
 observed just by chance if there were no linear relationship between <span class="math inline">\(x\)</span>
@@ -1175,7 +1180,7 @@ shown in Figure <a href="chapter7.html#fig:Figure7-9">7.9</a>. The p-value would
 <span id="cb630-2"><a href="chapter7.html#cb630-2"></a>Tobs</span></code></pre></div>
 <pre><code>##       Year 
 ## 0.05244213</code></pre>
-
+<div style="page-break-after: always;"></div>
 
 <div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="chapter7.html#cb632-1"></a>B &lt;-<span class="st"> </span><span class="dv">1000</span></span>
 <span id="cb632-2"><a href="chapter7.html#cb632-2"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
@@ -1265,7 +1270,7 @@ situations with the previous tools. There are three potential solutions to viola
 of the validity conditions: </p>
 <ol style="list-style-type: decimal">
 <li><p>Consider removing an offending point or two and see if this improves the results,
-presenting results both with and without those points to describe their impact<a href="references.html#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a>,</p></li>
+presenting results both with and without those points to describe their impact<a href="#fn110" class="footnote-ref" id="fnref110"><sup>110</sup></a>,</p></li>
 <li><p>Try to transform the response, explanatory, or both variables and see if you can
 force the data set to meet our SLR assumptions after transformation (the focus
 of this and the next section), or  </p></li>
@@ -1339,7 +1344,7 @@ Figure 7.11: Scatterplots of <em>Temperature</em> (<span class="math inline">\(^
 ## Residual standard error: 0.9022 on 107 degrees of freedom
 ## Multiple R-squared:  0.5315, Adjusted R-squared:  0.5271 
 ## F-statistic: 121.4 on 1 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
-
+<div style="page-break-after: always;"></div>
 <p><strong><em>Nonlinear transformation functions</em></strong>
 are where we apply something more complicated than this
 shift and scaling, something like <span class="math inline">\(y_{\text{new}}=f(y)\)</span>, where <span class="math inline">\(f(\cdot)\)</span> could be
@@ -1434,7 +1439,6 @@ scales.</p>
 data for Montana. Figure <a href="chapter7.html#fig:Figure7-12">7.12</a> compares the
 relationship between these variables on the original hectares scale and the
 log-hectares scale.</p>
-
 <div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="chapter7.html#cb644-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
 <span id="cb644-2"><a href="chapter7.html#cb644-2"></a><span class="kw">plot</span>(hectares<span class="op">~</span>Temperature, <span class="dt">data=</span>mtfires, <span class="dt">main=</span><span class="st">&quot;(a)&quot;</span>,</span>
 <span id="cb644-3"><a href="chapter7.html#cb644-3"></a>     <span class="dt">ylab=</span><span class="st">&quot;Hectares&quot;</span>, <span class="dt">pch=</span><span class="dv">16</span>)</span>
@@ -1538,7 +1542,7 @@ looks like an initially hopeless situation for our linear modeling approach.</p>
 (infant deaths per 1,000
 live births) and gross domestic product (GDP) per capita (in 1998 US dollars)
 from <span class="math inline">\(n=207\)</span> countries. These data are available from the <code>carData</code> package
-(<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-carData" role="doc-biblioref">2018</a>)</span>, <span class="citation">Fox (<a href="#ref-Fox2003" role="doc-biblioref">2003</a>)</span>) in a data set called <code>UN</code>.
+(<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-carData" role="doc-biblioref">2019</a><a href="#ref-R-carData" role="doc-biblioref">b</a>)</span>, <span class="citation">Fox (<a href="#ref-Fox2003" role="doc-biblioref">2003</a>)</span>) in a data set called <code>UN</code>.
 
 The four panels in
 Figure <a href="chapter7.html#fig:Figure7-17">7.17</a> show the original relationship and the impacts of
@@ -1630,7 +1634,7 @@ long as it provides
 a situation where the SLR assumptions are reasonably well-satisfied.  To
 understand the properties and eventually the interpretation of
 transformed-variables models, we need to try to “reverse” our transformation.
-If we exponentiate<a href="references.html#fn106" class="footnote-ref" id="fnref106"><sup>106</sup></a> both sides of <span class="math inline">\(\log(y)=b_0 + b_1x\)</span>, we get:</p>
+If we exponentiate<a href="#fn111" class="footnote-ref" id="fnref111"><sup>111</sup></a> both sides of <span class="math inline">\(\log(y)=b_0 + b_1x\)</span>, we get:</p>
 <div class="figure"><span id="fig:Figure7-18"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-18-1.png" alt="Plot of the estimated SLR (a) and implied model for the median on the original Hectares scale (b) for the area burned vs temperature data." width="960" />
 <p class="caption">
@@ -1829,7 +1833,7 @@ where <span class="math inline">\(y\)</span> is thought to be proportional to <s
 of <span class="math inline">\(\beta_1\)</span> (linear if <span class="math inline">\(\beta_1=1\)</span> and quadratic if <span class="math inline">\(\beta_1=2\)</span>). It is
 one of the models that has been used in Geomorphology to model the shape of
 glaciated valley elevation profiles
-(that classic U-shape that comes with glacier-eroded mountain valleys)<a href="references.html#fn107" class="footnote-ref" id="fnref107"><sup>107</sup></a>. If you
+(that classic U-shape that comes with glacier-eroded mountain valleys)<a href="#fn112" class="footnote-ref" id="fnref112"><sup>112</sup></a>. If you
 ignore the error term, it is possible to estimate the power-law model using our
 SLR approach. Consider the log-transformation of both sides of this equation
 starting with the power-law version:</p>
@@ -1861,7 +1865,9 @@ pretty powerful result to be able to estimate the coefficients in
 <p>We don’t typically use
 the previous ideas to interpret the typical log-log regression model, instead
 we combine our two previous interpretation techniques to generate our
-interpretation. We need to work out the mathematics of doubling <span class="math inline">\(x\)</span> and the
+interpretation.</p>
+<div style="page-break-after: always;"></div>
+<p>We need to work out the mathematics of doubling <span class="math inline">\(x\)</span> and the
 changes in <span class="math inline">\(y\)</span> starting with the <span class="math inline">\(\mathit{\boldsymbol{\log(y)\sim \log(x)}}\)</span>
 <strong><em>model</em></strong> that we would get out of fitting the SLR with both variables
 log-transformed:</p>
@@ -1934,7 +1940,7 @@ There are no influential points to be concerned about in this situation.</p>
 in Chapter <a href="chapter9.html#chapter9">9</a>,
 log-transformations can be applied to the response variable in ONE and TWO-WAY
 ANOVA models when we are concerned about non-constant variance and
-non-normality issues<a href="references.html#fn108" class="footnote-ref" id="fnref108"><sup>108</sup></a>. The remaining methods in this chapter return to SLR and assuming
+non-normality issues<a href="#fn113" class="footnote-ref" id="fnref113"><sup>113</sup></a>. The remaining methods in this chapter return to SLR and assuming
 that the model is at least reasonable to consider in each situation, possibly after transformation(s). In fact, the methods in Section <a href="chapter7.html#section7-7">7.7</a>
 are some of the most sensitive results to violations of the assumptions that we
 will explore.</p>
@@ -1949,7 +1955,7 @@ regression line and a shaded area surrounding
 the estimated regression equation. Those shaded areas are based on connecting
 the dots on 95% confidence intervals constructed for the true mean <span class="math inline">\(y\)</span> value
 across all the <span class="math inline">\(x\)</span>-values. To formalize this idea, consider a specific value
-of <span class="math inline">\(x\)</span>, and call it <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> (pronounced <strong>x-new</strong><a href="references.html#fn109" class="footnote-ref" id="fnref109"><sup>109</sup></a>).
+of <span class="math inline">\(x\)</span>, and call it <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> (pronounced <strong>x-new</strong><a href="#fn114" class="footnote-ref" id="fnref114"><sup>114</sup></a>).
 Then the true mean response for this <strong><em>subpopulation</em></strong> (a subpopulation
 is all observations we could obtain at <span class="math inline">\(\boldsymbol{x=x_{\nu}}\)</span>) is given by
 <span class="math inline">\(\boldsymbol{E(Y)=\mu_\nu=\beta_0+\beta_1x_{\nu}}\)</span>. To estimate the mean
@@ -2030,7 +2036,7 @@ and form our own PIs. If you want CIs, run
 prediction at an <span class="math inline">\(x\)</span>-value that was not in the original
 observations, add the option <code>newdata=tibble(XVARIABLENAME_FROM_ORIGINAL_MODEL=Xnu)</code>
 to the <code>predict</code> function call.</p>
-<p>Some examples of using the predict function follow<a href="references.html#fn110" class="footnote-ref" id="fnref110"><sup>110</sup></a>. For example, it might be interesting to use the regression
+<p>Some examples of using the predict function follow<a href="#fn115" class="footnote-ref" id="fnref115"><sup>115</sup></a>. For example, it might be interesting to use the regression
 model to find a 95%
 CI and PI for the <em>Beers</em> vs <em>BAC</em> study for a student who would
 consume 8 beers. Four different applications of the predict function follow.
@@ -2216,7 +2222,7 @@ yearly average maximum temperature in 2015 will be (I guess “would have been�
 between 59.2<span class="math inline">\(^\circ F\)</span> and 61.1<span class="math inline">\(^\circ F\)</span>. Obviously, 2015 has occurred, but
 since the data were not published when the data set was downloaded in July
 2016, we can probably best treat 2015 as a potential “future” observation. The
-results for 2050 are clearly for the future mean and a new observation<a href="references.html#fn111" class="footnote-ref" id="fnref111"><sup>111</sup></a> in 2050.
+results for 2050 are clearly for the future mean and a new observation<a href="#fn116" class="footnote-ref" id="fnref116"><sup>116</sup></a> in 2050.
 Note that up to 2014, no values of this response had been observed above 60<span class="math inline">\(^\circ F\)</span> and the predicted mean in 2050 is over 60<span class="math inline">\(^\circ F\)</span> if the trend
 persists. It is easy to criticize the use of this model for 2050 because of its extreme amount
 of extrapolation.</p>
@@ -2339,7 +2345,7 @@ by the sample size – 2.
 </li>
 </ul></li>
 </ul>
-
+<div style="page-break-after: always;"></div>
 </div>
 <div id="section7-10" class="section level2">
 <h2><span class="header-section-number">7.10</span> Practice problems</h2>
@@ -2388,7 +2394,7 @@ question.</p>
 <p>Fox, John. 2003. “Effect Displays in R for Generalised Linear Models.” <em>Journal of Statistical Software</em> 8 (15): 1–27. <a href="http://www.jstatsoft.org/v08/i15/">http://www.jstatsoft.org/v08/i15/</a>.</p>
 </div>
 <div id="ref-R-carData">
-<p>Fox, John, Sanford Weisberg, and Brad Price. 2018. <em>CarData: Companion to Applied Regression Data Sets</em>. <a href="https://CRAN.R-project.org/package=carData">https://CRAN.R-project.org/package=carData</a>.</p>
+<p>Fox, John, Sanford Weisberg, and Brad Price. 2019b. <em>CarData: Companion to Applied Regression Data Sets</em>. <a href="https://CRAN.R-project.org/package=carData">https://CRAN.R-project.org/package=carData</a>.</p>
 </div>
 <div id="ref-Greenwood2011">
 <p>Greenwood, Mark C., Joel Harper, and Johnnie Moore. 2011. “An Application of Statistics in Climate Change: Detection of Nonlinear Changes in a Streamflow Timing Measure in the Columbia and Missouri Headwaters.” In <em>Handbook of the Philosophy of Science, Vol. 7: Statistics</em>, edited by P. S. Bandyopadhyay and M. Forster, 1117–42. Elsevier.</p>
@@ -2403,6 +2409,14 @@ question.</p>
 <p>Santibáñez, Pamela A., Olivia J. Maselli, Mark C. Greenwood, Mackenzie M. Grieman, Eric S. Saltzman, Joseph R. McConnell, and John C. Priscu. 2018. “Prokaryotes in the Wais Divide Ice Core Reflect Source and Transport Changes Between Last Glacial Maximum and the Early Holocene.” <em>Global Change Biology</em> 24 (5): 2182–97. <a href="https://doi.org/10.1111/gcb.14042">https://doi.org/10.1111/gcb.14042</a>.</p>
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="112">
+<li id="fn112"><p>You can read my dissertation if you want my take on modeling U and V-shaped valley elevation profiles that included some discussion of these models and some related discussions in <span class="citation">Greenwood and Humphrey (<a href="#ref-Greenwood2002" role="doc-biblioref">2002</a>)</span>.<a href="chapter7.html#fnref112" class="footnote-back">↩︎</a></p></li>
+<li id="fn113"><p>This transformation could not be applied directly to the education growth score data in Chapter <a href="chapter5.html#chapter5">5</a> because there were negative “growth” scores.<a href="chapter7.html#fnref113" class="footnote-back">↩︎</a></p></li>
+<li id="fn116"><p>I have really enjoyed writing this book but kind of hope to at least have updated this data set before 2050.<a href="chapter7.html#fnref116" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
@@ -2414,11 +2428,13 @@ question.</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -2433,6 +2449,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -2454,8 +2474,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

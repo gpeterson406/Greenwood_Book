@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 (R)e-Introduction to statistics | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 2 (R)e-Introduction to statistics | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 (R)e-Introduction to statistics | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter1.html">
-<link rel="next" href="chapter3.html">
+<link rel="prev" href="chapter1.html"/>
+<link rel="next" href="chapter3.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -114,6 +117,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+<link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
 </head>
 
 <body>
@@ -291,14 +296,14 @@ Once we move to discussing data, we are now referring to more than one
 observation, again on one, or possibly more than one, random variable, and
 so we need to use “<strong>data are…</strong>” when talking about our observations. We want
 to distinguish our use of the term “data” from its more
-colloquial<a href="references.html#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> usage that often involves treating it as singular.
+colloquial<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> usage that often involves treating it as singular.
 In a statistical setting
 “data” refers to measurements of our cases or units. When we summarize the
 results of a study (say providing the mean and SD), that information is not
 “data”. We used our data to generate that information. Sometimes we also use
 the term “data set” to refer to all our observations and this is a singular
 term to refer to the group of observations and this makes it really easy to
-make mistakes on the usage of “data”<a href="references.html#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>.</p>
+make mistakes on the usage of “data”<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>.</p>
 <p>It is also really important to note that <strong><em>variables</em></strong> have to vary –
 if you measure the level of education of your subjects but all are high school graduates, then you do
 not have a “variable”. You may not know if you have real variability in a
@@ -323,12 +328,12 @@ out, just critical thinking about the context of the measurements.</p>
 <li><p>POLICE: Yellow reflective vest with “POLICEwitness.com – Move Over – Camera Cyclist” and plain pants, reflective cycle clips, commuting helmet, and bike gloves.</p></li>
 <li><p>POLITE: Yellow reflective vest with blue and white checked banding and the words “POLITE notice, Pass Slowly” looking similar to a police jacket and plain pants, reflective cycle clips, commuting helmet, and bike gloves.</p></li>
 </ul>
-<p>They collected data (distance to the vehicle in cm for each car “overtake”) on between 8 and 11 rides in each outfit and between 737 and 868 “overtakings” across these rides. The outfit is a categorical <em>predictor</em> or <em>explanatory</em> variable)  that has seven different levels here. The distance is the <em>response</em> variable  and is a quantitative variable here<a href="references.html#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>. Note that we do not have the information on which overtake came from which ride in the data provided or the conditions related to individual overtake observations other than the distance to the vehicle (they only included overtakings that had consistent conditions for the road and riding).</p>
-<p>The data are posted on my website<a href="references.html#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> at <a href="http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv" class="uri">http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv</a> if you want to download the file to a local directory and then import the data into R using “Import Dataset”. Or you can use the code in the following codechunk to directly read the data set into R using the URL.</p>
+<p>They collected data (distance to the vehicle in cm for each car “overtake”) on between 8 and 11 rides in each outfit and between 737 and 868 “overtakings” across these rides. The outfit is a categorical <em>predictor</em> or <em>explanatory</em> variable)  that has seven different levels here. The distance is the <em>response</em> variable  and is a quantitative variable here<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>. Note that we do not have the information on which overtake came from which ride in the data provided or the conditions related to individual overtake observations other than the distance to the vehicle (they only included overtakings that had consistent conditions for the road and riding).</p>
+<p>The data are posted on my website<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> at <a href="http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv" class="uri">http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv</a> if you want to download the file to a local directory and then import the data into R using “Import Dataset”. Or you can use the code in the following codechunk to directly read the data set into R using the URL.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="chapter2.html#cb24-1"></a><span class="kw">suppressMessages</span>(<span class="kw">library</span>(readr))</span>
 <span id="cb24-2"><a href="chapter2.html#cb24-2"></a>dd &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv&quot;</span>)</span></code></pre></div>
 <p>It is always good to review the data you have read by running the code and printing the tibble  by typing the tibble name (here <code>&gt; dd</code>) at the command prompt in the console, using the <code>View</code> function, (here <code>View(dd)</code>), to open a spreadsheet-like view, or using the <code>head</code> and <code>tail</code> functions have been show the first and last ten observations:</p>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chapter2.html#cb25-1"></a><span class="kw">head</span>(dd)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 8
 ##   Condition Distance Shirt Helmet Pants Gloves ReflectClips Backpack
@@ -364,22 +369,22 @@ out, just critical thinking about the context of the measurements.</p>
 <p>So this was an observation from the <code>casual</code> condition that had a passing distance of 82 cm. The other columns describe some other specific aspects of the condition. To get a more complete sense of the data set, we can extract a suite of observations from each condition using their row numbers concatenated, <code>c()</code>, together, extracting all columns for two observations from each of the conditions based on their rows.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="chapter2.html#cb33-1"></a>dd[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">780</span>, <span class="dv">781</span>, <span class="dv">1637</span>, <span class="dv">1638</span>, <span class="dv">2374</span>, <span class="dv">2375</span>, <span class="dv">3181</span>, <span class="dv">3182</span>, <span class="dv">3971</span>, <span class="dv">3972</span>, <span class="dv">4839</span>, <span class="dv">4840</span>),]</span></code></pre></div>
 <pre><code>## # A tibble: 14 x 8
-##    Condition Distance Shirt      Helmet  Pants Gloves ReflectClips Backpack
-##    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;   
-##  1 casual         132 Rugby      hat     plain plain  no           yes     
-##  2 casual         137 Rugby      hat     plain plain  no           yes     
-##  3 commute         70 PlainJers~ commut~ plain bike   yes          no      
-##  4 commute        151 PlainJers~ commut~ plain bike   yes          no      
-##  5 hiviz           94 Jacket     commut~ plain bike   yes          no      
-##  6 hiviz          145 Jacket     commut~ plain bike   yes          no      
-##  7 novice          12 Vest_Novi~ commut~ plain bike   yes          no      
-##  8 novice         122 Vest_Novi~ commut~ plain bike   yes          no      
-##  9 police         113 Vest_Poli~ commut~ plain bike   yes          no      
-## 10 police         174 Vest_Poli~ commut~ plain bike   yes          no      
-## 11 polite         156 Vest_Poli~ commut~ plain bike   yes          no      
-## 12 polite          14 Vest_Poli~ commut~ plain bike   yes          no      
-## 13 racer          104 TourJersey race    lycra bike   yes          no      
-## 14 racer          141 TourJersey race    lycra bike   yes          no</code></pre>
+##    Condition Distance Shirt       Helmet   Pants Gloves ReflectClips Backpack
+##    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;   
+##  1 casual         132 Rugby       hat      plain plain  no           yes     
+##  2 casual         137 Rugby       hat      plain plain  no           yes     
+##  3 commute         70 PlainJersey commuter plain bike   yes          no      
+##  4 commute        151 PlainJersey commuter plain bike   yes          no      
+##  5 hiviz           94 Jacket      commuter plain bike   yes          no      
+##  6 hiviz          145 Jacket      commuter plain bike   yes          no      
+##  7 novice          12 Vest_Novice commuter plain bike   yes          no      
+##  8 novice         122 Vest_Novice commuter plain bike   yes          no      
+##  9 police         113 Vest_Police commuter plain bike   yes          no      
+## 10 police         174 Vest_Police commuter plain bike   yes          no      
+## 11 polite         156 Vest_Polite commuter plain bike   yes          no      
+## 12 polite          14 Vest_Polite commuter plain bike   yes          no      
+## 13 racer          104 TourJersey  race     lycra bike   yes          no      
+## 14 racer          141 TourJersey  race     lycra bike   yes          no</code></pre>
 <p>Now we can see the <code>Condition</code> variable seems to have seven different levels, the <code>Distance</code> variable contains the overtake distance, and then a suite of columns that describe aspects of each outfit, such as the type of shirt or whether reflective cycling clips were used or not. We will only use the “Distance” and “Condition” variables to start with.</p>
 <p>When working with data, we should always start with
 summarizing the sample size. We will use <strong><em>n</em></strong>  for the
@@ -387,12 +392,12 @@ number of subjects in the sample and denote the population size (if
 available) with <strong><em>N</em></strong>.  Here, the sample size is <strong><em>n=5690</em></strong>. In
 this situation, we do not have a random sample from a population 
 (these were all of the overtakes that met the criteria during the rides) so we cannot make inferences from our sample to a larger group (other rides or for other situations like different places, times, or riders).
-But we can assess whether there is a  <strong><em>causal effect</em></strong><a href="references.html#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>: if sufficient evidence is found to conclude that there is some difference in
+But we can assess whether there is a  <strong><em>causal effect</em></strong><a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>: if sufficient evidence is found to conclude that there is some difference in
 the responses across the conditions, we can attribute those differences to
 the treatments applied, since the overtake events should be same otherwise due to the
 outfit being randomly assigned to the rides. The story of the data set –
 that it was collected on a particular route for a particular rider in the UK – becomes pretty important in thinking about
-the ramifications of any results. Are drivers in Montana or South Dakota different from drivers near London? Are the road and traffic conditions likely to be different? If so,
+the ramifications of any results. Are drivers and roads in Montana or South Dakota different from drivers and roads near London? Are the road and traffic conditions likely to be different? If so,
 then we should not assume that the detected differences, if detected, would
 also exist in some other location for a different rider. The lack of a random sample  here from all the overtakes in the area (or more generally all that happen around the world) makes it impossible to assume that this set of overtakes might be like others. So there are definite limitations to the inferences in the following
 results. But it is still interesting to see if the outfits worn caused a difference
@@ -484,7 +489,7 @@ that represents the observed distribution of the responses. Density curves can
 sometimes help us see features of the data sets more clearly. </p>
 <p>To understand the density curve, it is useful to initially see
 the histogram and density curve together. The height of the density curve is scaled
-so that the total area under the curve<a href="references.html#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> is 1. To make a comparable histogram, the
+so that the total area under the curve<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> is 1. To make a comparable histogram, the
 y-axis needs to be scaled so that the histogram is also on the “density”
 scale which makes the bar heights adjust so that the proportion of the
 total data set in each bar is represented by the area in each bar
@@ -518,7 +523,7 @@ can add information on the original observations being included in each bar to
 better understand the choices that <code>hist</code> is making. In the previous
 display, we can add what is called a <strong><em>rug</em></strong> to the plot, where a tick
 mark is made on the x-axis for each observation.  Because the responses appear to be rounded to the nearest cm, there is some discreteness in the responses and we need to use a graphical
-technique called <strong><em>jittering</em></strong> to add a little noise<a href="references.html#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> to each observation so all the
+technique called <strong><em>jittering</em></strong> to add a little noise<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> to each observation so all the
 observations at each distance value do not
 plot as a single line.  In Figure <a href="chapter2.html#fig:Figure2-3">2.3</a>, the added tick marks
 on the x-axis show the approximate locations of the original observations.
@@ -560,13 +565,13 @@ Figure 2.4: Side-by-side boxplot of distances based on outfits.
 </p>
 </div>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="chapter2.html#cb43-1"></a><span class="kw">boxplot</span>(Distance <span class="op">~</span><span class="st"> </span>Condition, <span class="dt">data=</span>dd)</span></code></pre></div>
-<p>The “~” (which is read as the <em>tilde</em> symbol<a href="references.html#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>, which you can find in the
+<p>The “~” (which is read as the <em>tilde</em> symbol<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>, which you can find in the
 upper left corner of your keyboard) notation will be used in two ways in this
 material.  The formula use in R employed previously declares that the
 response variable here is <em>Distance</em> and the explanatory variable is <em>Condition</em>.
 The other use for “~” is as shorthand for “is distributed as” and is used in
 the context of <span class="math inline">\(Y \sim N(0,1)\)</span>, which translates (in statistics) to defining the
-random variable <em>Y</em> as following a Normal distribution<a href="references.html#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>
+random variable <em>Y</em> as following a Normal distribution<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>
 
 with mean 0
 and standard deviation of 1. In the current situation, we could ask whether
@@ -579,10 +584,10 @@ and that <span class="math inline">\(\sigma\)</span> (“sigma”) is the symbol
 </div>
 <div id="section2-2" class="section level2">
 <h2><span class="header-section-number">2.2</span> Pirate-plots</h2>
-<p>An alternative graphical display for comparing multiple groups that we will use is a display called a <strong><em>pirate-plot</em></strong> <span class="citation">(Phillips <a href="#ref-Phillips2017" role="doc-biblioref">2017</a><a href="#ref-Phillips2017" role="doc-biblioref">a</a>)</span> from the <code>yarrr</code> package<a href="references.html#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>.  Figure <a href="chapter2.html#fig:Figure2-5">2.5</a>
+<p>An alternative graphical display for comparing multiple groups that we will use is a display called a <strong><em>pirate-plot</em></strong> <span class="citation">(Phillips <a href="#ref-Phillips2017" role="doc-biblioref">2017</a><a href="#ref-Phillips2017" role="doc-biblioref">a</a>)</span> from the <code>yarrr</code> package<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>.  Figure <a href="chapter2.html#fig:Figure2-5">2.5</a>
 shows an example of a pirate-plot that provides a side-by-side display that
 contains the density curves, the original observations that generated the
-density curve as jittered points (jittered both vertically and horizontally a little), the sample mean of each group (wide bar), and a box that represents the confidence interval for the true mean of that group. For each group, the density curves
+density curve as jittered points (jittered both vertically and horizontally a little), the sample mean of each group (wide bar), and vertical lines to horizontal bars that represents the confidence interval for the true mean of that group. For each group, the density curves
 are mirrored to aid in visual assessment of the shape of the distribution. This mirroring also
 creates a shape that resembles the outline of a violin with skewed distributions so versions of this
 display have also been called a “violin plot” or a “bean plot”. All together this plot shows us information
@@ -594,7 +599,7 @@ package <span class="citation">(Phillips <a href="#ref-R-yarrr" role="doc-biblio
 
 The function works like the boxplot used previously
 except that options
-for the type of confidence interval needs to be specified with <code>inf.method="ci"</code> - otherwise you will get a different kind of interval than you learned in introductory statistics and we don’t want to get caught up in trying to understand the kind of interval it makes by default. There are many other options in the function that might be useful in certain situations, but that is the only one that is really needed to get started with pirate-plots.</p>
+for the type of confidence interval needs to be specified with <code>inf.method="ci"</code> - otherwise you will get a different kind of interval than you learned in introductory statistics and we don’t want to get caught up in trying to understand the kind of interval it makes by default. And it seems useful to add <code>inf.disp="line"</code> as an additional option to add bars for the confidence interval<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>. There are many other options in the function that might be useful in certain situations, but these are the only ones that are really needed to get started with pirate-plots.</p>
 
 <div class="figure"><span id="fig:Figure2-5"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-5-1.png" alt="Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals." width="480" />
@@ -603,16 +608,16 @@ Figure 2.5: Pirate-plot of distances by outfit group. Bold horizontal lines corr
 </p>
 </div>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="chapter2.html#cb44-1"></a><span class="kw">library</span>(yarrr)</span>
-<span id="cb44-2"><a href="chapter2.html#cb44-2"></a><span class="kw">pirateplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>dd,<span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>)</span></code></pre></div>
+<span id="cb44-2"><a href="chapter2.html#cb44-2"></a><span class="kw">pirateplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>dd,<span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">inf.disp=</span><span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <p>Figure <a href="chapter2.html#fig:Figure2-5">2.5</a> suggests that the distributions are relatively symmetric which would suggest that the means and medians are similar even though only the means are displayed in these plots. In this display, none of the observations are flagged as outliers (it is not a part of this display). It is up to the consumer of the graphic to decide if observations look to be outside of the overall pattern of the rest of the observations. By plotting the observations by groups, we can also explore the narrowest (and likely most scary) overtakes in the data set. The <em>police</em> and <em>racer</em> conditions seem to have all observations over 25 cm and the most close passes were in the <em>novice</em> and <em>polite</em> outfits, including the two 2 cm passes. By displaying the original observations, we are able to explore and identify features that aggregation and summarization in plots can sometimes obfuscate. But the pirate-plots also allow you to compare the shape of the distributions (relatively symmetric and somewhat bell-shaped), variability (they look to have relatively similar variability), and the means of the groups. Our inferences are going to focus on the means but those inferences are only valid if the distributions are either approximately normal or at least have similar shapes and spreads (more on this soon).</p>
 <p>It appears that the mean for <em>police</em> is higher than the other groups but that the others are not too different. But is this difference real? We will never
 know the answer to that question, but we
 can assess how likely we are to have seen a result as extreme or more
 extreme than our result, assuming that there is no difference in the
 means of the groups. And if the observed result is
-(extremely) unlikely to occur, then we can reject the hypothesis that the
-groups have the same mean and conclude that there is evidence of a real
-difference. After that, we will want to carefully explore how big the estimated differences in the means are - is this enough of a difference to matter to you or the subject in the study? To accompany the pirate-plot, we
+(extremely) unlikely to occur, then we have (extremely) strong evidence against the hypothesis that the
+groups have the same mean and can then conclude that there is likely a real
+difference. If we discover that our result was not very unlikely, given the assumption of no difference in the mean of the groups, then we can’t conclude that there is a difference but also can’t conclude that they are equal, just that we failed to find enough evidence against the equal means assumption to discard it as a possibility. Whether the result is unusual or not, we will want to carefully explore how big the estimated differences in the means are – is the difference in means large enough to matter to you? We would be more interested in the implications of the difference in the means when there is strong evidence against the null hypothesis that the means are equal but the size of the estimated differences should always be of some interest. To accompany the pirate-plot that displays estimated means, we
 need to have numerical values to compare. We can get means and standard
 deviations by groups easily using the same formula notation as for the plots with the <code>mean</code>
 and <code>sd</code> functions, if the <code>mosaic</code> package is loaded.</p>
@@ -679,7 +684,8 @@ management once the data set is loaded. It is also a better scientific process t
 <p>We would actually want to save that new subsetted data set into a new tibble for future work, so we can use the following to save the reduced data set into <code>ddsub</code>:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="chapter2.html#cb52-1"></a>ddsub &lt;-<span class="st"> </span><span class="kw">subset</span>(dd, Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;casual&quot;</span>, <span class="st">&quot;commute&quot;</span>))</span></code></pre></div>
 <p>There is also a “select” option that we could also use to just focus on certain columns in the data set and we can use that just to focus on the <code>Condition</code> and <code>Distance</code> variables using:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="chapter2.html#cb53-1"></a>ddsub &lt;-<span class="st"> </span><span class="kw">subset</span>(dd, Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;casual&quot;</span>, <span class="st">&quot;commute&quot;</span>), <span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;Distance&quot;</span>, <span class="st">&quot;Condition&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="chapter2.html#cb53-1"></a>ddsub &lt;-<span class="st"> </span><span class="kw">subset</span>(dd, Condition <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;casual&quot;</span>, <span class="st">&quot;commute&quot;</span>), </span>
+<span id="cb53-2"><a href="chapter2.html#cb53-2"></a>                <span class="dt">select=</span><span class="kw">c</span>(<span class="st">&quot;Distance&quot;</span>, <span class="st">&quot;Condition&quot;</span>))</span></code></pre></div>
 <p>You will always want to check that the correct observations were dropped
 either using <code>View(ddsub)</code> or by doing a quick summary of the
 <code>Condition</code> variable in the new tibble.</p>
@@ -708,7 +714,7 @@ Figure 2.6: Boxplot and pirate-plot of the <em>Distance</em> responses on the re
 </p>
 </div>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="chapter2.html#cb58-1"></a><span class="kw">boxplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>ddsub) </span>
-<span id="cb58-2"><a href="chapter2.html#cb58-2"></a><span class="kw">pirateplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>ddsub,<span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>)</span></code></pre></div>
+<span id="cb58-2"><a href="chapter2.html#cb58-2"></a><span class="kw">pirateplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>ddsub,<span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">inf.disp=</span><span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <!-- \newpage -->
 <p>The two-sample mean techniques you learned in your previous course all
 start with comparing the means the two groups. We can obtain the two
@@ -736,9 +742,9 @@ having a difference of <span class="math inline">\(-3.003\)</span> cm versus <sp
 <p>There appears to be some evidence that the <em>casual</em> clothing group is
 getting higher average overtake distances than
 the <em>commute</em> group of observations, but we want to try to make sure that the difference is
-real – that there is evidence to reject the assumption that the means
-are the same “in the population”. First, a <strong><em>null hypothesis</em></strong><a href="references.html#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> which
-defines a <strong><em>null model</em></strong><a href="references.html#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>
+real – to assess evidence against the assumption that the means
+are the same “in the population” and possibly decide that this is not a reasonable assumption. First, a <strong><em>null hypothesis</em></strong><a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a> which
+defines a <strong><em>null model</em></strong><a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>
 
 needs to be determined in terms of <strong><em>parameters</em></strong> (the true values in
 the population). The research question should help you determine the form of the
@@ -793,14 +799,14 @@ testing, the null model
 is assumed to be true and then the unusualness of
 the actual result is assessed relative to that assumption. In hypothesis
 testing, we have to decide if we have enough evidence to reject the assumption
-that the null model (or hypothesis) is true. If we reject the null hypothesis,
+that the null model (or hypothesis) is true. If we think that we have sufficient evidence to conclude that the null hypothesis is wrong,
 then we would conclude that the other model considered (the alternative
 model)
 
 is more reasonable. The researchers obviously would have hoped to
 encounter some sort of noticeable difference in the distances for the
-different outfits and have been able to find enough evidence to reject the null
-model where the groups “look the same”.</p>
+different outfits and have been able to find enough evidence to against the null
+model where the groups “look the same” to be able to conclude that they differ.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure2-7"></span>
 <img src="chapter2_files/image015.png" alt="Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis." width="100%" />
@@ -820,17 +826,17 @@ assume that the null hypothesis is true and randomly re-assign the treatments
 (outfits) to the observations that were obtained. In other words, keep the
 <em>Distance</em> results the same and shuffle the group labels randomly. The
 technical term for this is doing a <strong><em>permutation</em></strong>  (a random shuffling of
-a grouping variable relative to the observed responses). If the null is true
+a grouping<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> variable relative to the observed responses). If the null is true
 and the means
 in the two groups are the same, then we should be able to re-shuffle the
 groups to the observed <em>Distance</em> values and get results similar to those we
 actually observed. If the null is false and the means are really different in
 the two groups, then what we observed should differ from what we get under
-other random permutations. The differences between the two groups should be
+other random permutations and the differences between the two groups should be
 more noticeable in the observed data set than in (most) of the shuffled data
 sets. It helps to see an example of a permutation of the labels to understand
 what this means here.</p>
-<p>The data set we are working with is a little on the large size, especially to explore individual observations. So for the moment we are going to work with a random sample of 30 of the <span class="math inline">\(n=1,636\)</span> observations in <code>ddsub</code>, fifteen from each group, that are generated using the <code>sample</code> function. To do this<a href="references.html#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>, we will use the <code>sample</code> function  twice - once to sample from the subsetted <em>commute</em> observations (creating the <code>s1</code> data set) and once to sample from the <em>casual</em> ones (creating <code>s2</code>). A new function for us, called <code>rbind</code>,  is used to bind the rows together — much like pasting a chunk of rows below another chunk in a spreadsheet program. This operation only works if the columns all have the same names and meanings both for <code>rbind</code> and in a spreadsheet. Together this code creates the <code>dsample</code> data set that we will analyze below and compare to results from the full data set. The sample means are now 135.8 and 109.87 cm for <em>casual</em> and <em>commute</em> groups, respectively, and so the difference in the sample means has increased in magnitude to -25.93 cm (commute - casual). This difference would vary based on the different random samples from the larger data set, but for the moment pretend this was the entire data set that the researchers had collected and that we want to try to find evidence against the null hypothesis that the true means are the same in these two groups.</p>
+<p>The data set we are working with is a little on the large size, especially to explore individual observations. So for the moment we are going to work with a random sample of 30 of the <span class="math inline">\(n=1,636\)</span> observations in <code>ddsub</code>, fifteen from each group, that are generated using the <code>sample</code> function. To do this<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>, we will use the <code>sample</code> function  twice - once to sample from the subsetted <em>commute</em> observations (creating the <code>s1</code> data set) and once to sample from the <em>casual</em> ones (creating <code>s2</code>). A new function for us, called <code>rbind</code>,  is used to bind the rows together — much like pasting a chunk of rows below another chunk in a spreadsheet program. This operation only works if the columns all have the same names and meanings both for <code>rbind</code> and in a spreadsheet. Together this code creates the <code>dsample</code> data set that we will analyze below and compare to results from the full data set. The sample means are now 135.8 and 109.87 cm for <em>casual</em> and <em>commute</em> groups, respectively, and so the difference in the sample means has increased in magnitude to -25.93 cm (commute - casual). This difference would vary based on the different random samples from the larger data set, but for the moment, pretend this was the entire data set that the researchers had collected and that we want to try to assess how unusual our sample difference was from what we might expect, if the null hypothesis that the true means are the same in these two groups was true.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="chapter2.html#cb63-1"></a><span class="kw">set.seed</span>(<span class="dv">9432</span>)</span>
 <span id="cb63-2"><a href="chapter2.html#cb63-2"></a>s1 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">subset</span>(ddsub, Condition <span class="op">%in%</span><span class="st"> &quot;commute&quot;</span>), <span class="dt">size=</span><span class="dv">15</span>)</span>
 <span id="cb63-3"><a href="chapter2.html#cb63-3"></a>s2 &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">subset</span>(ddsub, Condition <span class="op">%in%</span><span class="st"> &quot;casual&quot;</span>), <span class="dt">size=</span><span class="dv">15</span>)</span>
@@ -839,7 +845,7 @@ what this means here.</p>
 <pre><code>##   casual  commute 
 ## 135.8000 109.8667</code></pre>
 <p>In order to assess evidence against the null hypothesis of no difference, we want to permute the group labels versus the observations. In the <code>mosaic</code> package, the <code>shuffle</code> function allows us to easily perform
-a  permutation<a href="references.html#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>. One permutation of the
+a   permutation<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>. One permutation of the
 treatment labels is provided in the <code>PermutedCondition</code> variable below. Note
 that the <code>Distances</code> are held in the same place while the group labels are shuffled.</p>
 <!-- \newpage -->
@@ -922,12 +928,12 @@ direction (the <em>commute</em> group had a higher mean than <em>casual</em> in 
 ## 12.06667</code></pre>
 
 <div class="figure"><span id="fig:Figure2-8"></span>
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals are more clearly visible than with the original large data set." width="672" />
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals for each of the means are more clearly visible than with the original large data set." width="672" />
 <p class="caption">
-Figure 2.8: Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals are more clearly visible than with the original large data set.
+Figure 2.8: Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals for each of the means are more clearly visible than with the original large data set.
 </p>
 </div>
-<p>The <code>diffmean</code> function is a simple way to get the differences in the means, but we can also start to learn about using the <code>lm</code>  function - that will be used for every chapter except for Chapter <a href="chapter5.html#chapter5">5</a>. The <code>lm</code> stands for <strong><em>linear model</em></strong>  and, as we will see moving forward, encompasses a wide array of different models and scenarios. Here we will consider among its simplest usage<a href="references.html#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a> to be able to estimate the difference in the mean of two groups. Notationally, it is very similar to other functions we have considered, <code>lm(y ~ x, data=...)</code> where <code>y</code> is the response variable and <code>x</code> is the explanatory variable. Here that is <code>lm(Distance~Condition, data=dsample)</code> with <code>Condition</code> defined as a factor variable. With linear models, we will need to interrogate them to obtain a variety of useful information and our first “interrogation” function is usually the <code>summary</code> function. To use it, it is best to have stored the model into an object, something like <code>lm1</code>, and then we can apply the <code>summary()</code>  function to the stored model object to get a suite of output:</p>
+<p>The <code>diffmean</code> function is a simple way to get the differences in the means, but we can also start to learn about using the <code>lm</code>  function – that will be used for every chapter except for Chapter <a href="chapter5.html#chapter5">5</a>. The <code>lm</code> stands for <strong><em>linear model</em></strong>  and, as we will see moving forward, encompasses a wide array of different models and scenarios. The ability to estimate the difference in the mean of two groups is among its simplest uses.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> Notationally, it is very similar to other functions we have considered, <code>lm(y ~ x, data=...)</code> where <code>y</code> is the response variable and <code>x</code> is the explanatory variable. Here that is <code>lm(Distance~Condition, data=dsample)</code> with <code>Condition</code> defined as a factor variable. With linear models, we will need to interrogate them to obtain a variety of useful information and our first “interrogation” function is usually the <code>summary</code> function. To use it, it is best to have stored the model into an object, something like <code>lm1</code>, and then we can apply the <code>summary()</code>  function to the stored model object to get a suite of output:</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="chapter2.html#cb71-1"></a>lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span>dsample)</span>
 <span id="cb71-2"><a href="chapter2.html#cb71-2"></a><span class="kw">summary</span>(lm1)</span></code></pre></div>
 <pre><code>## 
@@ -946,7 +952,7 @@ Figure 2.8: Pirate-plots of Distance responses versus actual treatment groups an
 ## Residual standard error: 34.33 on 28 degrees of freedom
 ## Multiple R-squared:  0.1326, Adjusted R-squared:  0.1016 
 ## F-statistic: 4.281 on 1 and 28 DF,  p-value: 0.04789</code></pre>
-<p>This output is explored more in Chapter <a href="chapter3.html#chapter3">3</a>, but for the moment, focus on the row labeled as <code>Conditioncommute</code> in the middle of the output. In the first (<code>Estimate</code>) column, there is -25.933. This is a number we saw before – it is the difference in the sample means between <em>commute</em> and <em>casual</em> (<em>commute</em> - <em>casual</em>). When <code>lm</code> denotes a category in the row of the output (here <code>commute</code>), it is trying to indicate that the information to follow relates to the difference between this category and a baseline or reference category (here <code>casual</code>). The first (<code>(Intercept)</code>) row also contains a number we have seen before: - 135.8 is the sample mean for the <em>casual</em> group. So the <code>lm</code> is generating a coefficient for the mean of one of the groups and another as the difference in the two groups<a href="references.html#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>. In developing a test to assess evidence against the null hypothesis, we will focus on the difference in the sample means. So we want to be able to extract that number from this large suite of information. It ends up that we can apply the <code>coef</code>  function to <code>lm</code> models and then access that second coefficient using the bracket notation. Specifically:</p>
+<p>This output is explored more in Chapter <a href="chapter3.html#chapter3">3</a>, but for the moment, focus on the row labeled as <code>Conditioncommute</code> in the middle of the output. In the first (<code>Estimate</code>) column, there is -25.933. This is a number we saw before – it is the difference in the sample means between <em>commute</em> and <em>casual</em> (<em>commute</em> - <em>casual</em>). When <code>lm</code> denotes a category in the row of the output (here <code>commute</code>), it is trying to indicate that the information to follow relates to the difference between this category and a baseline or reference category (here <code>casual</code>). The first (<code>(Intercept)</code>) row also contains a number we have seen before: - 135.8 is the sample mean for the <em>casual</em> group. So the <code>lm</code> is generating a coefficient for the mean of one of the groups and another as the difference in the two groups<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a>. In developing a test to assess evidence against the null hypothesis, we will focus on the difference in the sample means. So we want to be able to extract that number from this large suite of information. It ends up that we can apply the <code>coef</code>  function to <code>lm</code> models and then access that second coefficient using the bracket notation. Specifically:</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="chapter2.html#cb73-1"></a><span class="kw">coef</span>(lm1)[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## Conditioncommute 
 ##        -25.93333</code></pre>
@@ -958,7 +964,7 @@ Figure 2.8: Pirate-plots of Distance responses versus actual treatment groups an
 <p>Comparing the pirate-plots and the estimated difference in the sample means suggests that the observed difference was larger than what we got
 when we did a single permutation.  Conceptually, permuting observations between group labels is
 consistent with the null hypothesis – this is a technique to generate results
-that we might have gotten if the null hypothesis were true since the responses
+that we might have gotten if the null hypothesis were true since the true models for the responses
 are the same in the two groups if the null is true. We just need to repeat the
 permutation process many times and track how unusual our observed result is
 relative to this distribution of potential responses if the null were true.
@@ -979,7 +985,7 @@ have names like <span class="math inline">\(t\)</span> or <span class="math inli
 
 (named)
 distributions so we know where to look up
-<strong><em>p-values</em></strong><a href="references.html#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a>. In randomization settings, they can
+<strong><em>p-values</em></strong><a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>. In randomization settings, they can
 have simpler forms because we use the data set to find the
 distribution of the statistic under the null hypothesis and don’t need to rely on a
 named distribution. We will label our test statistic <strong><em>T</em></strong>
@@ -1041,7 +1047,7 @@ finding the difference in the means, storing it in a variable called <code>Ts</c
 <span id="cb80-2"><a href="chapter2.html#cb80-2"></a>Ts &lt;-<span class="st"> </span><span class="kw">coef</span>(lmP)[<span class="dv">2</span>]</span>
 <span id="cb80-3"><a href="chapter2.html#cb80-3"></a>Ts</span></code></pre></div>
 <pre><code>## shuffle(Condition)commute 
-##                      16.6</code></pre>
+##               -0.06666667</code></pre>
 <p>And putting this inside the <code>print</code> function allows us to find the test
 statistic under 5 different permutations easily:</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="chapter2.html#cb82-1"></a>B &lt;-<span class="st"> </span><span class="dv">5</span></span>
@@ -1051,19 +1057,19 @@ statistic under 5 different permutations easily:</p>
 <span id="cb82-5"><a href="chapter2.html#cb82-5"></a>  <span class="kw">print</span>(Ts)</span>
 <span id="cb82-6"><a href="chapter2.html#cb82-6"></a>}</span></code></pre></div>
 <pre><code>## shuffle(Condition)commute 
-##                      -1.8 
+##                      -1.4 
 ## shuffle(Condition)commute 
-##                 -9.533333 
+##                  1.133333 
 ## shuffle(Condition)commute 
-##                       3.8 
+##                  20.86667 
 ## shuffle(Condition)commute 
-##                       9.4 
+##                  3.133333 
 ## shuffle(Condition)commute 
-##                  26.73333</code></pre>
+##                 -2.333333</code></pre>
 <p>Finally, we would like to store the values of the test statistic instead of
 just printing them out on each pass through the loop. To do this, we need to
 create a variable to store the results, let’s call it <code>Tstar</code>. We know that
-we need to store <code>B</code> results so will create a vector<a href="references.html#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> of length <em>B</em>, which
+we need to store <code>B</code> results so will create a vector<a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a> of length <em>B</em>, which
 contains <em>B</em> elements, full of missing values (NA) using the <code>matrix</code>  function with the <code>nrow</code> option specifying the number of elements:</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="chapter2.html#cb84-1"></a>Tstar &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow=</span>B)</span>
 <span id="cb84-2"><a href="chapter2.html#cb84-2"></a>Tstar</span></code></pre></div>
@@ -1081,12 +1087,12 @@ contains <em>B</em> elements, full of missing values (NA) using the <code>matrix
 <span id="cb86-5"><a href="chapter2.html#cb86-5"></a><span class="co">#Print out the results stored in Tstar with the next line of code</span></span></code></pre></div>
 <!-- \newpage -->
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="chapter2.html#cb87-1"></a>Tstar</span></code></pre></div>
-<pre><code>##            [,1]
-## [1,]   9.533333
-## [2,]   9.933333
-## [3,]  23.000000
-## [4,] -11.000000
-## [5,] -17.400000</code></pre>
+<pre><code>##           [,1]
+## [1,] -5.400000
+## [2,] -3.266667
+## [3,] -7.933333
+## [4,] 13.133333
+## [5,] -6.466667</code></pre>
 <p>Five permutations are still not enough to assess whether our <span class="math inline">\(T_{obs}\)</span>
 of -25.933 is unusual and we need to do many permutations to get an accurate
 assessment of the possibilities under the null hypothesis.
@@ -1094,7 +1100,7 @@ assessment of the possibilities under the null hypothesis.
 It is common practice
 to consider something like 1,000 permutations. The <code>Tstar</code> vector when we set
 <em>B</em> to be large, say <code>B=1000</code>, contains the permutation distribution  for the
-selected test statistic under<a href="references.html#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a> the null
+selected test statistic under<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a> the null
 hypothesis – what is called the <strong><em>null distribution</em></strong> of the statistic. The
 null distribution is the distribution of possible values of a statistic
 under the null hypothesis. We want to visualize this distribution and use it to
@@ -1118,10 +1124,8 @@ Figure 2.9: Histogram (left, with counts in bars) and density curve (right) of v
 <span id="cb89-7"><a href="chapter2.html#cb89-7"></a><span class="kw">hist</span>(Tstar, <span class="dt">label=</span>T,<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">300</span>))</span>
 <span id="cb89-8"><a href="chapter2.html#cb89-8"></a><span class="kw">plot</span>(<span class="kw">density</span>(Tstar), <span class="dt">main=</span><span class="st">&quot;Density curve of Tstar&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="chapter2.html#cb90-1"></a><span class="kw">favstats</span>(Tstar)</span></code></pre></div>
-<pre><code>##        min        Q1     median  Q3      max       mean       sd    n
-##  -41.26667 -10.06667 -0.3333333 8.6 37.26667 -0.5054667 13.17156 1000
-##  missing
-##        0</code></pre>
+<pre><code>##        min        Q1     median  Q3      max       mean       sd    n missing
+##  -41.26667 -10.06667 -0.3333333 8.6 37.26667 -0.5054667 13.17156 1000       0</code></pre>
 <p>Figure <a href="chapter2.html#fig:Figure2-9">2.9</a> contains visualizations of <span class="math inline">\(T^*\)</span> and the <code>favstats</code>
 summary provides the related numerical summaries. Our observed <span class="math inline">\(T_{obs}\)</span>
 of -25.933 seems somewhat unusual relative to these results with only
@@ -1176,19 +1180,19 @@ although it is not impossible.</p>
 <p>When testing hypotheses for two groups, there are two types of alternative
 hypotheses, one-sided or two-sided. <strong><em>One-sided tests</em></strong> involve only considering
 differences in one-direction (like <span class="math inline">\(\mu_1 &gt; \mu_2\)</span>) and are performed when
-researchers can decide <strong><em>a priori</em></strong><a href="references.html#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a> which group should have a larger mean
+researchers can decide <strong><em>a priori</em></strong><a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a> which group should have a larger mean
 if there is going to be any sort of difference. In this situation, we did not
 know enough about the potential impacts of the outfits to know which group should
 be larger than the other so should do a two-sided test. It is important to
 remember that you can’t look at the responses to decide on the hypotheses. It is
-often safer and more <strong><em>conservative</em></strong><a href="references.html#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a>   to start with a
+often safer and more <strong><em>conservative</em></strong><a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a>   to start with a
 <strong><em>two-sided alternative</em></strong> (<span class="math inline">\(\mathbf{H_A: \mu_1 \ne \mu_2}\)</span>). To do a 2-sided
 test, find the area smaller than what we observed as above (or larger if the test statistic had been positive). We also need to add
 the area in the other tail (here the right tail) similar to what we observed in the
 right tail. Some statisticians suggest doubling the area in one tail but we will collect
 information on the number that were as or more extreme than the same
 value in the other
-tail<a href="references.html#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a>. In other words, we count the proportion below -25.933 and over 25.933. So
+tail<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>. In other words, we count the proportion below -25.933 and over 25.933. So
 we need to find how many of the permuted results were larger than or equal
 to 25.933 cm
 to add to our previous proportion. Using <code>pdata</code> with <code>-Tobs</code> as the cut-off
@@ -1243,12 +1247,12 @@ should interpret them on a graded scale from strong evidence (close to 0) to lit
 evidence (1). We will discuss the use of a fixed <strong><em>significance level</em></strong>
 below as it is still commonly used in many fields and is necessary to discuss to think
 about the theory of hypothesis testing, but, for the moment,
-we can conclude that there is moderate evidence against the null hypothesis
+we can say that there is moderate evidence against the null hypothesis
 presented by having a p-value of 0.044 because our observed result is somewhat
 rare relative to what we would expect if the null hypothesis was true. And so
 we might conclude (in the direction
 of the alternative) that there is a difference in the population means in the
-two groups, but that depends on what you think about how unusual that result was.</p>
+two groups, but that depends on what you think about how unusual that result was. It is also reasonable to feel that this is not sufficient evidence to conclude that there is a difference in the true means even though many people feel that p-values less than 0.05 are fairly strong evidence against the null hypothesis. If you do not rate this as strong enough evidence (or in general obtain weak evidence) to conclude that there is a difference, then you can only say that there might not be a difference in the means. We can’t conclude that the null hypothesis is true – we just failed to find enough evidence to be sure that it is wrong. It might still be wrong but we couldn’t detect it, either as a mistake because of an unusual sample from our population, or because our sample size was not large enough to detect the size of difference in the populations, or results with larger p-values could happen because there really isn’t a difference. We don’t know which of these might be the truth and certainly don’t know that the null hypothesis is true even if the p-value obtained is 1<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>.</p>
 <p>Before we move on, let’s note some interesting features of the permutation
 distribution of the difference in the sample means shown in
 Figure <a href="chapter2.html#fig:Figure2-11">2.11</a>. </p>
@@ -1257,7 +1261,7 @@ Figure <a href="chapter2.html#fig:Figure2-11">2.11</a>. </p>
 the null model is true, we are assuming that <span class="math inline">\(\mu_1 = \mu_2\)</span> which implies that
 <span class="math inline">\(\mu_1 - \mu_2 = 0\)</span>. This also suggests that 0 should be the center of the
 permutation distribution and it was.</p></li>
-<li><p>It is approximately normally distributed. This is due to the <strong><em>Central Limit Theorem</em></strong><a href="references.html#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a>, where the
+<li><p>It is approximately normally distributed. This is due to the <strong><em>Central Limit Theorem</em></strong><a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a>, where the
 <strong><em>sampling distribution</em></strong> (distribution of all possible results for samples
 of this size) of the difference in sample means (<span class="math inline">\(\bar{x}_1 - \bar{x}_2\)</span>) becomes
 more normally distributed as the sample sizes increase. With 15
@@ -1377,7 +1381,7 @@ Interpret the p-values
 using strength of evidence against the null hypothesis,
 remembering that smaller (but not really small) p-values can still be
 interesting. And if you think the p-value is small enough, then you can reject
-the null hypothesis and conclude that the alternative hypothesis is a better characterization of the truth – and then estimate the size of the differences.</p>
+the null hypothesis and conclude that the alternative hypothesis is a better characterization of the truth – and then make sure to estimate and think about the size of the differences.</p>
 <p>Throughout this material, we will continue to re-iterate the distinctions
 between parameters and statistics and want you to be clear about the
 distinctions between estimates based on the sample and inferences for the
@@ -1644,7 +1648,7 @@ that selection. Note that there are many ways <span class="math inline">\(H_0\)<
 based on how false the null hypothesis actually is. To make this concrete,
 suppose that the true mean overtake distances differed by either 1 or 30 cm in
 previous example. The chances of rejecting the null hypothesis are much larger
-when the groups actually differ by 30 cm than if they differ by just 1 cm,
+when the group means actually differ by 30 cm than if they differ by just 1 cm,
 given the same sample size. The null hypothesis is false in both cases. Similarly, for a given difference in the true means, the larger
 the sample, the higher the power  of the study to actually find evidence of a
 difference in the groups. We will see this difference when we return to using the entire overtake data set instead of the sample of <span class="math inline">\(n=30\)</span> used to illustrate the permutation procedures.</p>
@@ -1683,13 +1687,13 @@ complete to make sure you have thought through and reported all aspects of the r
 <td align="left">* What model/statistic (T) is needed to address RQ?</td>
 </tr>
 <tr class="even">
-<td align="left">1. Write the null and alternative hypotheses,</td>
+<td align="left">1. Write the null and alternative hypotheses.</td>
 </tr>
 <tr class="odd">
-<td align="left">2. Plot the data and assess the “Validity Conditions” for the procedure being used (discussed below),</td>
+<td align="left">2. Plot the data and assess the “Validity Conditions” for the procedure being used (discussed below).</td>
 </tr>
 <tr class="even">
-<td align="left">3. Find the value of the appropriate test statistic and p-value for your hypotheses, </td>
+<td align="left">3. Find the value of the appropriate test statistic and p-value for your hypotheses. </td>
 </tr>
 <tr class="odd">
 <td align="left">4. Write a conclusion specific to the problem based on the p-value, reporting the strength of evidence  against the null hypothesis (include test statistic, its distribution under the null hypothesis, and p-value).</td>
@@ -1746,7 +1750,7 @@ that <span class="math inline">\(t\)</span> will follow a <span class="math inli
 certain assumptions are met. But first we should see if standardizing the
 difference in the means had an impact on our permutation test
 
-results. It ends up that, while not too obvious, the <code>summary</code> of the <code>lm</code> we fit earlier contains this test statistic<a href="references.html#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>. Instead
+results. It ends up that, while not too obvious, the <code>summary</code> of the <code>lm</code> we fit earlier contains this test statistic<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>. Instead
 of using the second model coefficient that estimates the difference in the means of the groups, we will extract the test statistic from the table of summary output that is in the <code>coef</code> object in the summary – using <code>$</code> to reference the <code>coef</code> information only. In the <code>coef</code> object in the summary, results related to the <code>ConditionCommute</code> are again useful for the comparison of two groups.</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="chapter2.html#cb100-1"></a><span class="kw">summary</span>(lm1)<span class="op">$</span>coef</span></code></pre></div>
 <pre><code>##                   Estimate Std. Error   t value     Pr(&gt;|t|)
@@ -1871,7 +1875,7 @@ Figure 2.15: Plot of permutation and <span class="math inline">\(t\)</span>-dist
 <p>In your previous statistics course, you might have used an applet or
 a table to find p-values such as what was provided in the previous R output.
 When not directly provided in the output of a function, R can be used to look up
-p-values<a href="references.html#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a> from
+p-values<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a> from
 named distributions such as the <span class="math inline">\(t\)</span>-distribution. In this case, the distribution
 of the test statistic under the null hypothesis is a <span class="math inline">\(t(28)\)</span> or a <span class="math inline">\(t\)</span> with 28
 degrees of freedom. The <code>pt</code> function is used to get p-values from the
@@ -1909,7 +1913,7 @@ Each observation obtained is unrelated to all other
 observations. To assess this, consider whether anything in the data collection
 might lead to clustered or related observations that are un-related to the
 differences in the groups. For example, was the same person measured more than
-once<a href="references.html#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a>?</p></li>
+once<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a>?</p></li>
 <li><p><strong>Equal variances</strong> in the groups (because we used a procedure that assumes
 equal variances! – there is another procedure that allows you to relax this
 assumption if needed…). To assess this, compare the standard deviations and
@@ -1936,7 +1940,7 @@ look normal for the procedure to work well, but they do need to look similar.
 <p>In the bicycle overtake study, the independent
 observation condition is violated because of multiple measurements taken on the same ride. The fact that the same rider was used for all observations is not really a violation of independence here because there was only one subject used. If multiple subjects had been used, then that also could present a violation of the independence assumption. This violation is important to note as the inferences may not be correct due to the violation of this assumption and more sophisticated statistical methods would be needed to complete this analysis correctly. The equal variance condition does not appear to be violated. The standard deviations are 28.4 vs 39.4, so this difference is not “large”
 according to the rule of thumb noted above (ratio of SDs is about 1.4). There is also little evidence in the pirate-plots to suggest a violation of the normality condition for each of the groups (Figure <a href="chapter2.html#fig:Figure2-6">2.6</a>). Additionally, the shapes look similar for the two groups so we also could feel comfortable using the permutation approach based on
-its version of condition (3) above. Note that when assessing assumptions, it is important to never state that assumptions are met – we never know the truth and can only look at the information in the sample to look for evidence of problems with particular conditions. Violations of those conditions suggest a need for either more sophisticated statistical tools<a href="references.html#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a> or possibly transformations of the response variable (discussed in Chapter <a href="chapter7.html#chapter7">7</a>).</p>
+its version of condition (3) above. Note that when assessing assumptions, it is important to never state that assumptions are met – we never know the truth and can only look at the information in the sample to look for evidence of problems with particular conditions. Violations of those conditions suggest a need for either more sophisticated statistical tools<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a> or possibly transformations of the response variable (discussed in Chapter <a href="chapter7.html#chapter7">7</a>).</p>
 <p>The permutation approach is resistant
 
 to impacts of violations of the
@@ -1989,7 +1993,7 @@ similar inferences, but both are subject to concerns related to violations of th
 Figure 2.16: Permutation distribution of the <span class="math inline">\(t\)</span>-statistic for <span class="math inline">\(n=1,636\)</span> overtake data set.
 </p>
 </div>
-
+<div style="page-break-after: always;"></div>
 </div>
 <div id="section2-7" class="section level2">
 <h2><span class="header-section-number">2.7</span> Second example of permutation tests</h2>
@@ -1997,7 +2001,7 @@ Figure 2.16: Permutation distribution of the <span class="math inline">\(t\)</sp
 the methods, is followed with a “worked” example where we focus just on the
 results. In a
 previous semester, some of the Intermediate Statistics students at Montana State University (<strong><em>n</em></strong>=79) provided
-information on their <em>Sex</em><a href="references.html#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a>, <em>Age</em>, and current cumulative <em>GPA</em>. We might be
+information on their <em>Sex</em><a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>, <em>Age</em>, and current cumulative <em>GPA</em>. We might be
 interested in whether Males and Females had different average GPAs. First,
 we can take a look at the difference in the responses by groups based on the
 output and as displayed in Figure <a href="chapter2.html#fig:Figure2-17">2.17</a>.</p>
@@ -2014,13 +2018,13 @@ output and as displayed in Figure <a href="chapter2.html#fig:Figure2-17">2.17</a
 ## 2   M 1.96 2.8  3.175 3.46   4 3.088571 0.4151789 42       0</code></pre>
 
 <div class="figure"><span id="fig:Figure2-17"></span>
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-17-1.png" alt="Side-by-side boxplot and pirate-plot of GPAs of Intermediate Statistics students by sex." width="480" />
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-17-1.png" alt="Side-by-side boxplot and pirate-plot of GPAs of Intermediate Statistics students by gender." width="480" />
 <p class="caption">
-Figure 2.17: Side-by-side boxplot and pirate-plot of GPAs of Intermediate Statistics students by sex.
+Figure 2.17: Side-by-side boxplot and pirate-plot of GPAs of Intermediate Statistics students by gender.
 </p>
 </div>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="chapter2.html#cb126-1"></a><span class="kw">boxplot</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217)</span>
-<span id="cb126-2"><a href="chapter2.html#cb126-2"></a><span class="kw">pirateplot</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>)</span></code></pre></div>
+<span id="cb126-2"><a href="chapter2.html#cb126-2"></a><span class="kw">pirateplot</span>(GPA<span class="op">~</span>Sex, <span class="dt">data=</span>s217, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">inf.disp=</span><span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <p>In these data, the distributions of the GPAs look to be left skewed. The
 Female GPAs look to be slightly higher than for Males (0.25 GPA difference in the
 means) but is that a “real” difference? We need our inference tools to more fully
@@ -2142,7 +2146,7 @@ the Intermediate Statistics students that responded to the survey in that semest
 
 <p>In the previous examples, some variation in p-values was observed as different methods (parametric, nonparametric) were applied to the same data set and in the permutation approach, the p-values can vary as well from one set of permutations to another. P-values also vary based on randomness in the data that were collected – take a different (random) sample and you will get different data and a different p-value. We want the best estimate of a p-value we can obtain, so should use the best sampling method and inference technique that we can. But it is just an estimate of the evidence against the null hypothesis. These sources of variability make fixed <span class="math inline">\(\alpha\)</span> NHST especially worry-some as sampling variability could take a p-value from just below to just above <span class="math inline">\(\alpha\)</span> and this would lead to completely different inferences if the only focus is on rejecting the null hypothesis at a fixed significance level. But viewing p-values on a gradient from extremely strong (close to 0) to no (1) evidence against the null hypothesis, p-values of, say, 0.046 and 0.054 provide basically the same evidence against the null hypothesis. The fixed <span class="math inline">\(\alpha\)</span> decision-making is tied into the use of the terminology of “significant results” or, slightly better, “statistically significant results”  that are intended to convey that there was sufficient evidence to reject the null hypothesis at some pre-decided <span class="math inline">\(\alpha\)</span> level. You will notice that this is the only time that the “s-word” (significant) is considered here.</p>
 <p></p>
-<p>The focus on p-values has been criticized for a suite of reasons <span class="citation">(Wasserstein and Lazar <a href="#ref-Wasserstein2016" role="doc-biblioref">2016</a>)</span>. There are situations when p-values do not address the question of interest or the fact that a small p-value was obtained is so un-surprising that one wonders why it was even reported. For example, in Smith <span class="citation">(Smith <a href="#ref-Smith2014" role="doc-biblioref">2014</a>)</span> the researcher considered bee sting pain ratings across 27 different body locations<a href="references.html#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a>. I don’t think anyone would be surprised to learn that there was strong evidence against the null hypothesis of no difference in the true mean pain ratings across different body locations. What is really of interest are the differences in the means – especially which locations are most painful and how much more painful those locations were than others, on average.</p>
+<p>The focus on p-values has been criticized for a suite of reasons <span class="citation">(Wasserstein and Lazar <a href="#ref-Wasserstein2016" role="doc-biblioref">2016</a>)</span>. There are situations when p-values do not address the question of interest or the fact that a small p-value was obtained is so un-surprising that one wonders why it was even reported. For example, in Smith <span class="citation">(Smith <a href="#ref-Smith2014" role="doc-biblioref">2014</a>)</span> the researcher considered bee sting pain ratings across 27 different body locations<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a>. I don’t think anyone would be surprised to learn that there was strong evidence against the null hypothesis of no difference in the true mean pain ratings across different body locations. What is really of interest are the differences in the means – especially which locations are most painful and how much more painful those locations were than others, on average.</p>
 <p>As a field, Statistics is trying to encourage a move away from the focus on p-values and the use of the term “significant”, even when modified by “statistically”. There are a variety of reasons for this change. Science (especially in research going into academic journals and in some introductory statistics books) has taken to using p-value &lt; 0.05 and rejected null hypotheses as the only way to “certify” that a result is interesting. It has (and unfortunately still is) hard to publish a paper with a primary result with a p-value that is higher than 0.05, even if the p-value is close to that “magical” threshold. One thing that is lost when using that strict cut-off for decisions is that any p-value that is not exactly 1 suggests that there is at least some evidence against the null hypothesis in the data and that evidence is then on a continuum from none to very strong. And that p-values are both a function of the size of the difference and the sample size. It is easy to get small p-values for small size differences with large data sets. A small p-value can be associated with an unimportant (not practically meaningful) size difference. And large p-values, especially in smaller sample situations, could be associated with very meaningful differences in size even though evidence is not strong against the null hypothesis. It is critical to always try to estimate and discuss the size of the differences, whether a large or small p-value is encountered.</p>
 <p>There are some other related issues to consider in working with p-values that help to illustrate some of the issues with how p-values and “statistical significance” are used in practice. In many studies, researchers have a suite of outcome variables that they measure on their subjects. For example, in an agricultural experiment they might measure the yield of the crops, the protein concentration, the digestibility, and other characteristics of the crops. In various “omics” fields such as genomics, proteomics, and metabolomics, responses for each subject on hundreds, thousands, or even millions of variables are considered and a p-value may be generated for each of those variables. In education, researchers might be interested in impacts on grades (as in the previous discussion) but we could also be interested in reading comprehension, student interest in the subject, and the amount of time spent studying, each as response variables in their own right. In each of these situations it means that we are considering not just one null hypothesis and assessing evidence against it, but are doing it many times, from just a few to millions of repetitions. There are two aspects of this process and implications for research to explore further: the impacts on scientific research of focusing solely on “statistically significant” results and the impacts of considering more than one hypothesis test in the same study.</p>
 <p>There is the systematic bias in scientific research that has emerged from scientists having a difficult time publishing research if p-values for their data are not smaller than 0.05. This has two implications. Many researchers have assumed that results with “large” p-values are not interesting – so they either exclude these results from papers (they put them in <em>their</em> file drawer instead of into their papers - the so-called “file-drawer” bias)  or reviewers reject papers because they did not have small p-values to support their discussions (only results with small p-values are judged as being of interest for publication - the so-called “publication bias”).  Some also include bias from researchers only choosing to move forward with attempting to publish results if they are in the same direction that the researchers expect/theorized as part of this problem – ignoring results that contradict their theories is an example of “confirmation bias”  but also would hinder the evolution of scientific theories to ignore contradictory results. But since most researchers focus on p-values and not on estimates of size (and direction) of differences, that will be our focus here.</p>
@@ -2176,7 +2180,7 @@ Figure 2.19: Pirate-plot of a simulated data set that assumes the same mean for 
 </p>
 </div>
 <p>The following codechunk generates one run through generating ten data sets as the loop works through the index <code>c</code>, simulates a new set of responses (<code>ddsub$SimDistance</code>), fits a model that explores the difference in the means of the two groups (<code>lm_sim</code>), and extracts the ten p-values (stored in <code>pval10</code>) and estimated difference in the means (stored in <code>diff10</code>). The smallest p-value of the ten p-values (<code>min(pval10)</code>) is 0.00576. By finding the value of <code>diff10</code> where <code>pval10</code> is equal to (<code>==</code>) the <code>min(pval10)</code>, the estimated difference in the means from the simulated responses that produced the smallest p-value can be extracted. The difference was -4.17 here. As in the previous initial explorations of permutations, this is just one realization of this process and it needs to be repeated many times to study the impacts of using (1) the first realization of the responses to estimate the difference and p-value and (2) the result with the smallest p-value from ten different realizations of the responses to estimate the difference and p-value. In the following code, we added
-octothorpes (#)<a href="references.html#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a> and then some text to explain what is being calculated. In computer code, octothorpes
+octothorpes (#)<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a> and then some text to explain what is being calculated. In computer code, octothorpes
 provide a way of adding comments that tell the software (here R) to ignore any
 text after a “#” on a given line. In the color version of the text, comments are
 even more clearly distinguished.</p>
@@ -2212,7 +2216,7 @@ even more clearly distinguished.</p>
 <pre><code>## [1] -4.170526</code></pre>
 <p>In these results, the first data set shows little evidence against the null hypothesis with a p-value of 0.735 and an estimated difference of -0.49. But if you repeat this process and focus just on the “top” p-value result, you think that there is moderate evidence against the null hypothesis with a p-value from the sixth data set due to its p-value of 0.0057. Remember that these are all data sets simulated with the null hypothesis being true, so we should not reject the null hypothesis. But we would expect an occasional false detection (Type I error – rejecting the null hypothesis when it is true) due to sampling variability in the data sets. But by exploring many results and selecting a single result from that suite of results (and not accounting for that selection process in the results), there is a clear issue with exaggerating the strength of evidence. While not obvious yet, we also create an issue with the estimated mean difference in the groups that is demonstrated below.</p>
 <p>To fully explore the impacts of either the office drawer or publication bias (they basically have the same impacts on published results even though they are different mechanisms), this process must be repeated many times. The code is a bit more complex here, as the previous code that created ten data sets needs to be replicated <em>B</em> = 1,000 times and four sets of results stored (estimated mean differences and p-values for the first data set and the smallest p-value one). This involves a loop that is very similar to our permutation loop but with more activity inside that loop, with the code for generating and extracting the realization of ten results repeated <em>B</em> times. Figure <a href="chapter2.html#fig:Figure2-20">2.20</a> contains the results for the simulation study. In the left plot that contains the p-values we can immediately see some important differences in the distribution of p-values. In the “first” result, the p-values are evenly spread from 0 to 1 – this is what happens when the null hypothesis is true and you simulate from that scenario one time and track the p-values. A good testing method should make a mistake at the <span class="math inline">\(\alpha\)</span>-level at a rate around <span class="math inline">\(\alpha\)</span> (a 5% significance level test should make a mistake 5% of the time). If the p-values are evenly spread from 0 to 1, then about 0.05 will be between 0 and 0.05 (think of areas in rectangles with a height of 1 where the total area from 0 to 1 has to add up to 1). But when a researcher focuses only on the top result of ten, then the p-value distribution is smashed toward 0. Using <code>favstats</code> on each distribution of p-values shows that the median for the p-values from taking the first result is around 0.5 but for taking the minimum of ten results, the median p-value is 0.065. So half the results are at the “moderate” evidence level or better when selection of results is included. This gets even worse as more results are explored but seems quite problematic here.</p>
-<p>The estimated difference in the means also presents an interesting story. When just reporting the first result, the distribution of the estimated means in panel b of Figure <a href="chapter2.html#fig:Figure2-20">2.20</a> shows a symmetric distribution that is centered around 0 with results extending just past <span class="math inline">\(\pm\)</span> 4 in each tail. When selection of results is included, only more extreme estimated differences are considered and no results close to 0 are even reported. There are two modes here around <span class="math inline">\(\pm\)</span> 2.5 and multiple results close to <span class="math inline">\(\pm\)</span> 5 are observed. Interestingly, the mean of both distributions is close to 0 so both are “unbiased”<a href="references.html#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a> estimators but the distribution for the estimated difference from the selected “top” result is clearly flawed and would not give correct inferences for differences when the null hypothesis is correct. If a one-sided test had been employed, the selection of the top result would result is a clearly biased estimator as only one of the two modes would be selected. The presentation of these results is a great example of why pirate-plots are better than boxplots as a boxplot of these results would not allow the viewer to notice the two distinct groups of results.</p>
+<p>The estimated difference in the means also presents an interesting story. When just reporting the first result, the distribution of the estimated means in panel b of Figure <a href="chapter2.html#fig:Figure2-20">2.20</a> shows a symmetric distribution that is centered around 0 with results extending just past <span class="math inline">\(\pm\)</span> 4 in each tail. When selection of results is included, only more extreme estimated differences are considered and no results close to 0 are even reported. There are two modes here around <span class="math inline">\(\pm\)</span> 2.5 and multiple results close to <span class="math inline">\(\pm\)</span> 5 are observed. Interestingly, the mean of both distributions is close to 0 so both are “unbiased”<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a> estimators but the distribution for the estimated difference from the selected “top” result is clearly flawed and would not give correct inferences for differences when the null hypothesis is correct. If a one-sided test had been employed, the selection of the top result would result is a clearly biased estimator as only one of the two modes would be selected. The presentation of these results is a great example of why pirate-plots are better than boxplots as a boxplot of these results would not allow the viewer to notice the two distinct groups of results.</p>
 
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="chapter2.html#cb141-1"></a><span class="co"># Simulation study of generating 10 data sets and either using the first</span></span>
 <span id="cb141-2"><a href="chapter2.html#cb141-2"></a><span class="co"># or &quot;best p-value&quot; result:</span></span>
@@ -2259,13 +2263,13 @@ Figure 2.20: Pirate-plot of a simulation study results. Panel (a) contains the <
 </div>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="chapter2.html#cb142-1"></a><span class="co">#Numerical summaries of results</span></span>
 <span id="cb142-2"><a href="chapter2.html#cb142-2"></a><span class="kw">favstats</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results)</span></code></pre></div>
-<pre><code>##   Scenario          min         Q1    median        Q3       max
-## 1    First 0.0017051496 0.27075755 0.5234412 0.7784957 0.9995293
-## 2      Min 0.0005727895 0.02718018 0.0646370 0.1273880 0.5830232
-##         mean         sd    n missing
-## 1 0.51899179 0.28823469 1000       0
-## 2 0.09156364 0.08611836 1000       0</code></pre>
-
+<pre><code>##   Scenario          min         Q1    median        Q3       max       mean
+## 1    First 0.0017051496 0.27075755 0.5234412 0.7784957 0.9995293 0.51899179
+## 2      Min 0.0005727895 0.02718018 0.0646370 0.1273880 0.5830232 0.09156364
+##           sd    n missing
+## 1 0.28823469 1000       0
+## 2 0.08611836 1000       0</code></pre>
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="chapter2.html#cb144-1"></a><span class="kw">favstats</span>(Diffmeans_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results)</span></code></pre></div>
 <pre><code>##   Scenario       min         Q1     median       Q3      max       mean
 ## 1    First -4.531864 -0.8424604 0.07360378 1.002228 4.458951 0.05411473
@@ -2342,7 +2346,7 @@ Figure 2.21: Plot of family-wise error rate (Bold solid line) as the number of t
 <span id="cb146-27"><a href="chapter2.html#cb146-27"></a>                  <span class="dt">Scenario =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;First&quot;</span>, <span class="st">&quot;Min&quot;</span>), <span class="dt">each=</span>B))</span>
 <span id="cb146-28"><a href="chapter2.html#cb146-28"></a></span>
 <span id="cb146-29"><a href="chapter2.html#cb146-29"></a><span class="kw">pirateplot</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results, <span class="dt">inf.f.o =</span> <span class="dv">0</span>,<span class="dt">inf.b.o =</span> <span class="dv">0</span>,</span>
-<span id="cb146-30"><a href="chapter2.html#cb146-30"></a>           <span class="dt">avg.line.o =</span> <span class="dv">0</span>, <span class="dt">main=</span><span class="st">&quot;(a) P-value results&quot;</span>)</span>
+<span id="cb146-30"><a href="chapter2.html#cb146-30"></a>           <span class="dt">avg.line.o =</span> <span class="dv">0</span>, <span class="dt">main=</span><span class="st">&quot;P-value results&quot;</span>)</span>
 <span id="cb146-31"><a href="chapter2.html#cb146-31"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="fl">0.05</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure2-22"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-22-1.png" alt="Pirate-plot of a simulation study results of p-values with Bonferroni correction." width="960" />
@@ -2350,8 +2354,8 @@ Figure 2.21: Plot of family-wise error rate (Bold solid line) as the number of t
 Figure 2.22: Pirate-plot of a simulation study results of p-values with Bonferroni correction.
 </p>
 </div>
-<p>By applying the <code>pdata</code> function to the two groups of results we can directly assess how many of each type of result resulted in p-values less than 0.05. It ends up that if adjust for ten tests and just focus on the first result, it is really hard to find moderate or strong evidence against the null hypothesis as only 3 in 1,000 results had adjusted p-values less than 0.05. When the focus is on the “top” p-value result when ten are considered and adjustments are made, 52 out of 1,000 results (0.052) show at least moderate evidence against the null hypothesis. This is the rate we would expect from a well-behaved hypothesis test when the null hypothesis is true – that we would only make a mistake 5% of the time when <span class="math inline">\(\alpha\)</span> is 0.05.</p>
-
+<p>By applying the <code>pdata</code> function to the two groups of results, we can directly assess how many of each type (“First” or “Min”) resulted in p-values less than 0.05. It ends up that if we adjust for ten tests and just focus on the first result, it is really hard to find moderate or strong evidence against the null hypothesis as only 3 in 1,000 results had adjusted p-values less than 0.05. When the focus is on the “best” (or minimum) p-value result when ten are considered and adjustments are made, 52 out of 1,000 results (0.052) show at least moderate evidence against the null hypothesis. This is the rate we would expect from a well-behaved hypothesis test when the null hypothesis is true – that we would only make a mistake 5% of the time when <span class="math inline">\(\alpha\)</span> is 0.05.</p>
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="chapter2.html#cb147-1"></a><span class="co">#Numerical summaries of results</span></span>
 <span id="cb147-2"><a href="chapter2.html#cb147-2"></a><span class="kw">favstats</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results)</span></code></pre></div>
 <pre><code>##   Scenario         min        Q1  median Q3 max      mean        sd    n missing
@@ -2397,7 +2401,7 @@ assumptions (especially normality) might be violated for our parametric confiden
 <p>To perform bootstrapping, the <code>resample</code> function from the
 <code>mosaic</code> package will be used. We can apply this function to a data set and get a new
 version of the
-data set by sampling new observations <em>with replacement</em> from the original one<a href="references.html#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a>.
+data set by sampling new observations <em>with replacement</em> from the original one<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a>.
 The new, bootstrapped version of the data set (called <code>dsample_BTS</code> below)
 contains a new variable called <code>orig.id</code> which is the number of the subject
 from the original data set. By summarizing how often each of these id’s
@@ -2406,15 +2410,15 @@ The <code>table</code> function will count up how many times each observation wa
 the bootstrap sample,
 
 providing a row with the id followed by a row with the
-count<a href="references.html#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>. In the first bootstrap
+count<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a>. In the first bootstrap
 sample shown, the 1<sup>st</sup>, 14<sup>th</sup>, and 26<sup>th</sup> observations
 were sampled twice, the 9<sup>th</sup> and 28<sup>th</sup> observations were sampled four
 times, and the 4<sup>th</sup>, 5<sup>th</sup>, 6<sup>th</sup>, and many others
 were not sampled at all. Bootstrap sampling thus picks some observations
-multiple times and to do that it has to ignore some<a href="references.html#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a> observations.</p>
+multiple times and to do that it has to ignore some<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a> observations.</p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="chapter2.html#cb151-1"></a><span class="kw">set.seed</span>(<span class="dv">406</span>)</span>
 <span id="cb151-2"><a href="chapter2.html#cb151-2"></a>dsample_BTS &lt;-<span class="st"> </span><span class="kw">resample</span>(dsample)</span></code></pre></div>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="chapter2.html#cb152-1"></a><span class="kw">table</span>(<span class="kw">as.numeric</span>(dsample_BTS<span class="op">$</span>orig.id))</span></code></pre></div>
 <pre><code>## 
 ##  1  2  3  7  8  9 10 11 12 13 14 16 18 19 23 24 25 26 27 28 30 
@@ -2456,7 +2460,7 @@ bootstrapped
 
 <span class="math inline">\(T^*\)</span> statistics tells us about the range of results to expect
 for the statistic. The middle <strong>% of the <span class="math inline">\(T^*\)</span>’s provides a </strong>%
-<strong><em>bootstrap confidence interval</em></strong><a href="references.html#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a> for the true parameter – here the <em>difference in the two population means</em>.</p>
+<strong><em>bootstrap confidence interval</em></strong><a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a> for the true parameter – here the <em>difference in the two population means</em>.</p>
 <p>To make this concrete, we can revisit our previous examples, starting
 with the <code>dsample</code> data created before and our interest in comparing the
 mean passing distances for the <em>commuter</em> and <em>casual</em> outfit groups in the <span class="math inline">\(n=30\)</span> stratified random sample that was extracted. The
@@ -2532,7 +2536,7 @@ in the true mean distances (<em>commute</em> minus <em>casual</em> groups) is
 between -50 and -2.25 cm. Or we can switch the direction of the comparison and say that we are 95% confident that the difference in the true means is between 2.25 and 50 cm (<em>casual</em> minus <em>commute</em>). This result would be incorporated into step 5 of the hypothesis testing protocol to accompany discussing the size of the estimated difference in the groups or used as a result of interest in itself. Both percentiles can be obtained in one line
 of code using:</p>
 <div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="chapter2.html#cb166-1"></a>quantiles &lt;-<span class="st"> </span><span class="kw">qdata</span>(Tstar, <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>))</span></code></pre></div>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="chapter2.html#cb167-1"></a>quantiles</span></code></pre></div>
 <pre><code>##         quantile     p
 ## 2.5%  -50.005502 0.025
@@ -2591,7 +2595,7 @@ to form the interval with the degrees of freedom for the <span class="math inlin
 <p>The bootstrap interval was narrower by almost 4 cm and its upper limit was much further from 0. The bootstrap CI can vary depending on the random number seed used and additional runs of the code produced intervals of (-49.6, -2.8), (-48.3, -2.5), and (-50.9, -1.1) so the differences between the parametric and nonparametric approaches was not just due to an unusual bootstrap distribution. It is not entirely clear why the two intervals differ but there are slightly more results in the left tail of Figure <a href="chapter2.html#fig:Figure2-25">2.25</a> than in the right tail and this shifts the 95% confidence slightly away from 0 as compared to the parametric approach. All intervals have the same interpretation, only the methods for calculating the
 intervals and the assumptions differ. Specifically, the bootstrap interval can
 tolerate different distribution shapes other than normal and still provide
-intervals that work well<a href="references.html#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a>. The other assumptions
+intervals that work well<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>. The other assumptions
 
 are all the same as for the hypothesis
 test, where we continue to assume that we have independent observations with
@@ -2652,7 +2656,7 @@ like a calculator except with much more power “under the hood”. You have to
 make sure you are careful with using <code>( )</code> to group items and remember that
 the asterisk (*) is used for multiplication. We need the pertinent
 information which is available from the <code>favstats</code> output repeated below to
-calculate the confidence interval “by hand”<a href="references.html#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a> using R.</p>
+calculate the confidence interval “by hand”<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a> using R.</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="chapter2.html#cb176-1"></a><span class="kw">favstats</span>(Distance <span class="op">~</span><span class="st"> </span>Condition, <span class="dt">data =</span> dsample)</span></code></pre></div>
 <pre><code>##   Condition min    Q1 median    Q3 max     mean       sd  n missing
 ## 1    casual  72 112.5    143 154.5 208 135.8000 39.36133 15       0
@@ -2716,7 +2720,7 @@ sizes, we can calculate <span class="math inline">\(s_p\)</span>:</p>
 <p>The margin of error is:</p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="chapter2.html#cb197-1"></a><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">77</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">37</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">42</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1847982</code></pre>
-
+<div style="page-break-after: always;"></div>
 <p>All together, the 95% confidence interval is:</p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="chapter2.html#cb199-1"></a><span class="fl">3.338-3.0886</span><span class="op">+</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>, <span class="dt">df=</span><span class="dv">77</span>)<span class="op">*</span>sp<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">37</span><span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">42</span>)</span></code></pre></div>
 <pre><code>## [1] 0.0646018 0.4341982</code></pre>
@@ -2857,6 +2861,13 @@ conclusions to perform the way we want them to. As sample sizes increase
 and/or violations of conditions lessen, then the procedures will perform better.
 In Chapter <a href="chapter3.html#chapter3">3</a>, some new tools for doing diagnostics are introduced
 to help us assess how and how much those validity conditions are violated.</p>
+<p>It is good to review how to report hypothesis test conclusions and compare those for when we have strong, moderate, or weak evidence. Suppose that we are doing parametric inferences with <code>lm</code> for differences between groups A and B, are extracting the <span class="math inline">\(t\)</span>-statistics, have 15 degrees of freedom, and obtain the following test statistics and p-values:</p>
+<ul>
+<li><p><span class="math inline">\(t_{15}=3.5\)</span>, p-value=0.0016: There is strong evidence against the null hypothesis of no difference in the true means of the response between A and B (<span class="math inline">\(t_{15}=3.5\)</span>, p-value=0.0016), so we would conclude that there is a difference in the true means.</p></li>
+<li><p><span class="math inline">\(t_{15}=1.75\)</span>, p-value=0.0503: There is moderate evidence against the null hypothesis of no difference in the true means of the response between A and B (<span class="math inline">\(t_{15}=1.75\)</span>, p-value=0.0503), so we would conclude that there is likely<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a> a difference in the true means.</p></li>
+<li><p><span class="math inline">\(t_{15}=0.75\)</span>, p-value=0.232: There is weak evidence against the null hypothesis of no difference in the true means of the response between A and B (<span class="math inline">\(t_{15}=1.75\)</span>, p-value=0.0503), so we would conclude that there is likely not a difference in the true means.</p></li>
+</ul>
+<p>The last conclusion also suggests an action to take when we encounter weak evidence against null hypotheses – we could potentially model the responses using the null model since we couldn’t prove it was wrong. We would take this action knowing that we could be wrong, but the “simpler” model that the null hypothesis suggests is often an attractive option in very complex models, such as what we are going to encounter in the coming chapters, especially in Chapters <a href="chapter5.html#chapter5">5</a> and <a href="chapter8.html#chapter8">8</a>.</p>
 </div>
 <div id="section2-12" class="section level2">
 <h2><span class="header-section-number">2.12</span> Summary of important R code</h2>
@@ -2894,10 +2905,11 @@ interest.</li>
 <ul>
 <li>Makes a boxplot of a variable named Y for groups in X from the data set.</li>
 </ul></li>
-<li><p><strong>pirateplot(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>, inf.method=“ci”)</strong></p>
+<li><p><strong>pirateplot(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>, inf.method=“ci”, inf.disp=“line”)</strong></p>
 <ul>
 <li><p>Requires the <code>yarrr</code> package is loaded.</p></li>
 <li><p>Makes a pirate-plot of a variable named Y for groups in X from the data set with estimated means and 95% confidence intervals for each group. </p></li>
+<li><p>Add <code>theme=2</code> if the confidence intervals extend outside the density curves and you can’t see how far they extend.</p></li>
 </ul></li>
 <li><p><strong>mean(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>); sd(<font color='red'>Y</font>~<font color='red'>X</font>, data=<font color='red'>DATASETNAME</font>)</strong></p>
 <ul>
@@ -2947,7 +2959,7 @@ the statistic in <code>Tstar</code>.</li>
 bootstrap distribution (<code>Tstar</code>). </li>
 </ul></li>
 </ul>
-
+<div style="page-break-after: always;"></div>
 </div>
 <div id="section2-13" class="section level2">
 <h2><span class="header-section-number">2.13</span> Practice problems</h2>
@@ -3025,6 +3037,33 @@ in the means.</p>
 <p>Wasserstein, Ronald L., and Nicole A. Lazar. 2016. “The Asa Statement on P-Values: Context, Process, and Purpose.” <em>The American Statistician</em> 70 (2): 129–33. <a href="https://doi.org/10.1080/00031305.2016.1154108">https://doi.org/10.1080/00031305.2016.1154108</a>.</p>
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="12">
+<li id="fn12"><p>Either try to remember “data is a plural word” or replace “data” with “things” in your sentence and consider whether it sounds right.<a href="chapter2.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>Of particular interest to the bicycle rider might be the “close” passes and we will revisit this as a categorical response with “close” and “not close” as its two categories later.<a href="chapter2.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>Thanks to Ian Walker for allowing me to use and post these data.<a href="chapter2.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>As noted previously, we reserve the term “effect” for situations where random assignment  allows us to consider causality as the reason for the differences in the response variable among levels of the explanatory variable.<a href="chapter2.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>If you want to type this character in Rmarkdown, try <code>$\sim$</code> outside of codechunks.<a href="chapter2.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>The package and function are intentionally amusingly titled but are based on ideas in the beanplot in <span class="citation">Kampstra (<a href="#ref-Kampstra2008" role="doc-biblioref">2008</a>)</span> and provide what they call an <strong><em>RDI graphic</em></strong> - <strong><em>R</em></strong>aw data, <strong><em>D</em></strong>escriptive, and <strong><em>I</em></strong>nferential statistic in the same display.<a href="chapter2.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>The default version seems to get mis-interpreted as the box from a boxplot too easily. This display choice also matches our later plots for confidence intervals in term-plots.<a href="chapter2.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn24"><p>Later we will shuffle other types of explanatory variables.<a href="chapter2.html#fnref24" class="footnote-back">↩︎</a></p></li>
+<li id="fn25"><p>While not required, we often set our random number seed using the <code>set.seed</code> function so that when we re-run code with randomization in it we get the same results. <a href="chapter2.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn27"><p>This is a bit like getting a new convertible sports car and driving it to the grocery store – there might be better ways to get groceries, but we probably would want to drive our new car as soon as we got it.<a href="chapter2.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<li id="fn28"><p>This will be formalized and explained more in the next chapter when we encounter more than two groups in these same models. For now, it is recommended to start with the sample means from <code>favstats</code> for the two groups and then use that to sort out which direction the differencing was done in the <code>lm</code> output.<a href="chapter2.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<li id="fn30"><p>In statistics, vectors are one dimensional lists of numeric elements – basically a column from a matrix of our tibble.<a href="chapter2.html#fnref30" class="footnote-back">↩︎</a></p></li>
+<li id="fn34"><p>Both approaches are reasonable. By using both tails of the distribution we can incorporate potential differences in shape in both tails of the permutation distribution.<a href="chapter2.html#fnref34" class="footnote-back">↩︎</a></p></li>
+<li id="fn35"><p>P-values of 1 are the only result that provide no evidence against the null hypothesis but this still doesn’t prove that the null hypothesis is true.<a href="chapter2.html#fnref35" class="footnote-back">↩︎</a></p></li>
+<li id="fn37"><p>The <code>t.test</code> function with the <code>var.equal=T</code> option is the more direct route to calculating this statistic (here that would be <code>t.test(Distance~Condition, data=dsamp, var.equal=T)</code>), but since we can get the result of interest by fitting a linear model, we will use that approach.<a href="chapter2.html#fnref37" class="footnote-back">↩︎</a></p></li>
+<li id="fn40"><p>At this level, it is critical to learn the tools and learn where they might provide inaccurate inferences. If you explore more advanced statistical resources, you will encounter methods that can allow you to obtain valid inferences in even more scenarios.<a href="chapter2.html#fnref40" class="footnote-back">↩︎</a></p></li>
+<li id="fn41"><p>Only male and female were provided as options on the survey. These data were collected as part of a project to study learning of material using online versus paper versions of the book but we focus just on the gender differences in GPA here.<a href="chapter2.html#fnref41" class="footnote-back">↩︎</a></p></li>
+<li id="fn42"><p>The data are provided and briefly discussed in the Practice Problems for Chapter <a href="chapter3.html#chapter3">3</a>.<a href="chapter2.html#fnref42" class="footnote-back">↩︎</a></p></li>
+<li id="fn44"><p>An unbiased estimator  is a statistic that is on average equal to the population parameter.<a href="chapter2.html#fnref44" class="footnote-back">↩︎</a></p></li>
+<li id="fn45"><p>Some perform bootstrap sampling in this situation by re-sampling within each of the groups. We will discuss using this technique in situations without clearly defined groups, so prefer to sample with replacement from the entire data set. It also directly corresponds to situations where the data came from one large sample and then the grouping variable of interest was measured on the <span class="math inline">\(n\)</span> subjects.<a href="chapter2.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn47"><p>In any bootstrap sample, about 1/3 of the observations are not used at all.<a href="chapter2.html#fnref47" class="footnote-back">↩︎</a></p></li>
+<li id="fn51"><p>Note that this modifier is added to note less certainty than when we encounter strong evidence against the null. Also note that someone else might decide that this more like weak evidence against the null and might choose to interpret it as in the “weak” case. In cases that are near boundaries for evidence levels, it becomes difficult to find a universal answer and it is best to report that the evidence is both not strong and not weak and is somewhere in between and let the reader decide what they think it means to them. This is complicated by often needing to make decisions about next steps based on p-values where we might choose to focus on the model with a difference or without it.<a href="chapter2.html#fnref51" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
@@ -3036,11 +3075,13 @@ in the means.</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -3055,6 +3096,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -3076,8 +3121,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

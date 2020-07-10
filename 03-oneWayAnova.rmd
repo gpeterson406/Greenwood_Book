@@ -82,7 +82,7 @@ dd$Gloves <- factor(dd$Gloves)
 dd$ReflectClips <- factor(dd$ReflectClips)
 dd$Backpack <- factor(dd$Backpack) 
 
-pirateplot(Distance~Condition,data=dd,inf.method="ci")
+pirateplot(Distance~Condition,data=dd, inf.method="ci", inf.disp="line")
 abline(h=mean(dd$Distance), lwd=2, col="green", lty=2)
 ```
 
@@ -97,7 +97,7 @@ library(yarrr)
 dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
 dd$Condition <- factor(dd$Condition)
 
-pirateplot(Distance~Condition,data=dd,inf.method="ci")
+pirateplot(Distance~Condition,data=dd, inf.method="ci", inf.disp="line")
 abline(h=mean(dd$Distance), lwd=2, col="green", lty=2) # Adds overall mean to plot
 favstats(Distance~Condition,data=dd)
 ```
@@ -390,7 +390,7 @@ library(effects)
 plot(allEffects(lm2))
 ```
 
-\indent In order to assess overall evidence against having the same means for the all groups (vs not having the same means), we 
+\indent In order to assess overall evidence against having the same means for the all groups (vs having at least one mean different from the others), we 
 compare either of the previous models (cell means or reference-coded) to a null 
 model based on the null hypothesis of $H_0: \mu_1 = \ldots = \mu_J$, which implies a
 model of $\color{red}{y_{ij} = \mu+\varepsilon_{ij}}$ in the cell means version 
@@ -468,7 +468,7 @@ Scenario 4 since it has the largest difference in the means and the least
 variability around those means. Our test statistic somehow needs to allow a
 comparison of the variability in the means to the overall variability to help
 us get results that reflect that Scenario 4 has the strongest evidence of a
-difference (most variability in the means and least variability around those means) and Scenario 1 would have the least evidence(least variability in the means and most variability around those means). 
+difference (most variability in the means and least variability around those means) and Scenario 1 would have the least evidence (least variability in the means and most variability around those means). 
 
 (ref:fig3-3) Demonstration of different amounts of difference in means relative to variability. Scenarios have the same means in rows and same variance around means in columns of plot. Confidence intervals not reported in the pirate-plots.
 
@@ -1160,6 +1160,8 @@ on the pattern in points in the QQ-plot and whether it matches the 1-1 line that
 normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose -- this is not the software identifying outliers or other problematic points -- that is your responsibility to assess using these plots. For example, the point "2709"  is identified in Figures \@ref(fig:Figure3-9) and \@ref(fig:Figure3-11)  (the 2709^th^
 observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is a great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a *novice* vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the ``fitted`` function on the estimated ``lm`` -- which here is just the sample mean of the group of the observations (*novice*) of 116.94 cm. The residual is stored in the 2,709^th^ value of ``eij`` or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the ``Distance`` variable), it is not too surprising that it ends up as the largest positive residual. \index{\texttt{fitted()}} \index{R packages!\textbf{car}}
 
+\newpage
+
 ```{r}
 dd[2709,c(1:2)]
 fitted(lm2)[2709]
@@ -1168,8 +1170,8 @@ eij[2709]
 ```
 
 \indent Generally, when both tails deviate on the same side of the line (forming a 
-sort of quadratic curve, especially in more extreme cases), that is evidence 
-of a clearly skewed residual distribution (the one above has a very minor skew so this does not occur). To see some different potential shapes in QQ-plots, six different 
+sort of quadratic curve, especially in more extreme cases), that indicates 
+a skewed residual distribution (the one above has a very minor skew so this does not occur) and presence of a skew is evidence of a violation of the normality assumption. To see some different potential shapes in QQ-plots, six different 
 data sets are displayed in Figures \@ref(fig:Figure3-12) and \@ref(fig:Figure3-13).
 In each row, a QQ-plot and associated density curve are displayed. If the points 
 form a pattern where all are above the 1-1 line in the lower and upper tails as in 
@@ -1357,7 +1359,7 @@ favstats(len~Treat, data=ToothGrowth)
 (ref:fig3-14) Pirate-plot of odontoblast growth responses for the six treatment level combinations. 
 
 ```{r Figure3-14, fig.cap="(ref:fig3-14)",fig.height=5.5,fig.width=10}
-pirateplot(len~Treat, data=ToothGrowth, inf.method="ci", 
+pirateplot(len~Treat, data=ToothGrowth, inf.method="ci", inf.disp="line",
            ylab="Odontoblast Growth in microns", point.o=.7)
 ```
 
@@ -1512,7 +1514,7 @@ with these observations.
 
 4. **Write a conclusion:** 
 
-    * There is strong evidence against the null hypothesis that the different treatments 
+    * There is strong evidence ($F=41.56$, permutation p-value < 0.001) against the null hypothesis that the different treatments 
     (combinations of OJ/VC and dosage levels) have the same  **true**
     mean odontoblast growth for **these** guinea pigs, so we would conclude that the treatments **cause** at least one of the combinations to have a different true mean. 
     
@@ -1629,7 +1631,7 @@ plot(allEffects(m2))
 
 \sectionmark{Multiple (pair-wise) comparisons using Tukey's HSD and CLD}
 
-With evidence that the true means are likely not all equal, many researchers 
+With evidence against all the true means being equal and concluding that not all are equal, many researchers 
 want to explore which groups show evidence of differing from one another. This 
 provides information on the source of the overall difference that was 
 detected and detailed information on which groups differed from one another. 
@@ -1814,8 +1816,8 @@ reporting 15 confidence intervals for all the pair-wise differences, either in a
 
 ```{r Figure3-19, fig.cap="(ref:fig3-19)",echo=T,fig.width=10,fig.height=6}
 #Options theme=2,inf.f.o = 0,point.o = .5 added to focus on CLD
-pirateplot(len~Treat, data=ToothGrowth, ylab="Growth (microns)", inf.method="ci",
-           theme=2,inf.f.o = 0,point.o = .5) 
+pirateplot(len~Treat, data=ToothGrowth, ylab="Growth (microns)", inf.method="ci", inf.disp="line",
+           theme=2, inf.f.o = 0.3, point.o = .5) 
 text(x=2,y=10,"a",col="blue",cex=1.5) #CLD added
 text(x=c(1,4),y=c(15,18),"b",col="red",cex=1.5)
 text(x=c(3,5,6),y=c(25,28,28),"c",col="green",cex=1.5)
@@ -1858,7 +1860,7 @@ HSD when there is not sufficient evidence to reject the overall null hypothesis.
 
 In our previous work with the overtake data, the overall ANOVA test
 led to a conclusion that there is some difference in the true means across the
-seven groups with a p-value < 0.001 giving very strong evidence against the null hypothesis. The original authors followed up their overall $F$-test with comparing every pair of outfits using one of the other methods for multiple testing adjustments available in the ``p.adjust`` function and detected differences between the *police* outfit and all others except for *hiviz* and no other pairs had p-values less than 0.05 using their approach. We will employ the Tukey's HSD approach to address the same exploration and get basically the same results as they obtained. 
+seven groups with a p-value < 0.001 giving very strong evidence against the null hypothesis of them all being equal. The original authors followed up their overall $F$-test with comparing every pair of outfits using one of the other methods for multiple testing adjustments available in the ``p.adjust`` function and detected differences between the *police* outfit and all others except for *hiviz* and no other pairs had p-values less than 0.05 using their approach. We will employ the Tukey's HSD approach to address the same exploration and get basically the same results as they obtained, as well as estimated differences in the means in all the pairs of groups. 
 
 \newpage
 
@@ -1916,14 +1918,12 @@ The CLD also reinforces the previous discussion of which levels were detected as
 (ref:fig3-21) Pirate-plot of overtake distances by group, sorted by sample means with Tukey's HSD CLD displayed. 
 
 ```{r Figure3-21, fig.cap="(ref:fig3-21)", fig.width=6, echo=T}
-#old.par <- par(mai=c(0.5,1,1,1))
 pirateplot(Distance~Condition2, data=dd, ylab="Distance (cm)", inf.method="ci",
-           theme=2,inf.f.o = 0) 
+           inf.disp="line", theme=2) 
 text(x=1:5,y=200,"a",col="blue",cex=1.5) #CLD added
 text(x=5.9,y=210,"a",col="blue",cex=1.5)
 text(x=6.1,y=210,"b",col="red",cex=1.5)
 text(x=7,y=215,"b",col="red",cex=1.5)
-
 ```
 
 

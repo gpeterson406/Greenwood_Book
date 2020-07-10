@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Correlation and Simple Linear Regression | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 6 Correlation and Simple Linear Regression | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Correlation and Simple Linear Regression | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter5.html">
-<link rel="next" href="chapter7.html">
+<link rel="prev" href="chapter5.html"/>
+<link rel="next" href="chapter7.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -114,6 +117,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+<link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
 </head>
 
 <body>
@@ -288,7 +293,7 @@ one of the variables are randomly assigned in an experimental context. We add
 to this terminology the idea of correlation between variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.
 <strong><em>Correlation</em></strong>, in most statistical contexts, is a measure of the specific type
 of relationship between the variables: the <strong>linear relationship between two
-quantitative variables</strong><a href="references.html#fn89" class="footnote-ref" id="fnref89"><sup>89</sup></a>.
+quantitative variables</strong><a href="#fn94" class="footnote-ref" id="fnref94"><sup>94</sup></a>.
 So as we start to review these ideas from your previous statistics course,
 remember that associations and relationships are more general than correlations
 and it is possible to have no correlation where there is a strong relationship
@@ -302,7 +307,7 @@ what relationships between quantitative variables “look like”… To motivate
 these methods, we will start with a study of the effects of beer consumption on
 blood alcohol levels (<em>BAC</em>, in grams of alcohol per deciliter of blood). A group
 of <span class="math inline">\(n=16\)</span> student volunteers at The Ohio State University drank a
-randomly assigned number of beers<a href="references.html#fn90" class="footnote-ref" id="fnref90"><sup>90</sup></a>.
+randomly assigned number of beers<a href="#fn95" class="footnote-ref" id="fnref95"><sup>95</sup></a>.
 Thirty minutes later, a police officer measured their <em>BAC</em>. Your instincts, especially
 as well-educated college students with some chemistry knowledge, should inform
 you about the direction of this relationship – that there is a <strong><em>positive
@@ -347,7 +352,7 @@ quantitative explanatory variable into the linear model (somewhat like in the
 Some of this variability might be hard or impossible to explain
 regardless of the other variables available and is considered unexplained variation
 and goes into the residual errors in our models, just like in the ANOVA models.
-To make scatterplots as in Figure <a href="chapter6.html#fig:Figure6-1">6.1</a>, you can simply<a href="references.html#fn91" class="footnote-ref" id="fnref91"><sup>91</sup></a> use
+To make scatterplots as in Figure <a href="chapter6.html#fig:Figure6-1">6.1</a>, you can simply<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> use
 <code>plot(y~x, data=...)</code>.</p>
 <div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="chapter6.html#cb499-1"></a><span class="kw">library</span>(readr)</span>
 <span id="cb499-2"><a href="chapter6.html#cb499-2"></a>BB &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/beersbac.csv&quot;</span>)</span></code></pre></div>
@@ -502,7 +507,7 @@ within fields. Use this scale until you develop your own experience:</p>
 the relationship between the variables.</p>
 <p>When we have linear relationships between two quantitative variables,
 <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, we can obtain estimated correlations from the <code>cor</code>
-function either using <code>y~x</code> or by running the <code>cor</code> function<a href="references.html#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></a> on the entire data set. When you run the <code>cor</code>
+function either using <code>y~x</code> or by running the <code>cor</code> function<a href="#fn97" class="footnote-ref" id="fnref97"><sup>97</sup></a> on the entire data set. When you run the <code>cor</code>
 function on a data set it produces a <strong><em>correlation matrix</em></strong> which
 contains a matrix of correlations where you can triangulate the
 variables being correlated by the row and column names, noting
@@ -524,7 +529,7 @@ complications arise in more complicated studies as the next example
 demonstrates.</p>
 <p><span class="citation">Gude et al. (<a href="#ref-Gude2009" role="doc-biblioref">2009</a>)</span> explored the relationship
 between average summer
-temperature (degrees F) and area burned (natural log of hectares<a href="references.html#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a> = log(hectares)) by wildfires in Montana
+temperature (degrees F) and area burned (natural log of hectares<a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a> = log(hectares)) by wildfires in Montana
 from 1985 to 2007. The <strong><em>log-transformation</em></strong> is often used to reduce
 the impacts of really large observations with
 non-negative (strictly greater than 0) variables
@@ -717,7 +722,7 @@ relationships might be the same for both sexes but for others, there are likely
 some physiological differences to consider.</p>
 <p>We could continue to use the <code>plot</code> function here, but it would require
 additional lines of code to add these extra features. The <code>scatterplot</code>
-function from the <code>car</code> package (<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-carData" role="doc-biblioref">2018</a>)</span>, <span class="citation">Fox and Weisberg (<a href="#ref-Fox2011" role="doc-biblioref">2011</a>)</span>) makes it easy
+function from the <code>car</code> package (<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-carData" role="doc-biblioref">2019</a><a href="#ref-R-carData" role="doc-biblioref">b</a>)</span>, <span class="citation">Fox and Weisberg (<a href="#ref-Fox2011" role="doc-biblioref">2011</a>)</span>) makes it easy
 to incorporate information from an
 additional categorical variable. We’ll add to our regular formula idea (<code>y~x</code>)
 the vertical line “|” followed by the categorical variable <code>z</code>, such as
@@ -748,7 +753,7 @@ moderate strength and positive but the subgroup relationships are weak at best.
 The overall relationship is created by inappropriately combining two groups
 that had different means in both the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> directions. Men have higher
 mean heights and hematocrit values than women and putting them together in one
-large group creates the misleading overall relationship<a href="references.html#fn94" class="footnote-ref" id="fnref94"><sup>94</sup></a>.</p>
+large group creates the misleading overall relationship<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a>.</p>
 <p>To get the correlation coefficients by groups, we can subset the data set using a
 logical inquiry on the <code>Sex</code> variable in the updated <code>aisR2</code> data set, using
 <code>Sex==0</code> in the <code>subset</code> function to get a tibble with male subjects only and <code>Sex==1</code> for the female subjects,
@@ -950,7 +955,7 @@ and <em>BAC</em> in the population.</strong></p></li>
 <em>Beers</em> and <em>BAC</em> in the population.</strong></p></li>
 </ul>
 <p>The 95% confidence level corresponds to a 5% significance level test and if the 95% CI does not contain 0, you know that the p-value would be less than 0.05 and if it does contain 0 that the p-value would be more than 0.05. The 95% CI is
-from 0.76 to 0.95, which does not contain 0, so we find strong evidence<a href="references.html#fn95" class="footnote-ref" id="fnref95"><sup>95</sup></a> against the null
+from 0.76 to 0.95, which does not contain 0, so we find strong evidence<a href="#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a> against the null
 hypothesis and conclude that there is
 a linear relationship between <em>Beers</em> and <em>BAC</em> in OSU students. We’ll revisit this
 example using the upcoming regression tools to explore the potential for more
@@ -1011,7 +1016,7 @@ recording error.</p>
 <p>With the outlier in the data set, the correlation is 0.77 and without it, the
 correlation increases to 0.79. The removal does not create a big change because
 the data set is relatively large and the <em>diameter</em> value is close to the mean of the
-<span class="math inline">\(x\text{&#39;s}\)</span><a href="references.html#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a> but it has some impact on the
+<span class="math inline">\(x\text{&#39;s}\)</span><a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a> but it has some impact on the
 strength of the correlation.</p>
 <div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="chapter6.html#cb542-1"></a><span class="kw">cor</span>(dbh.cm<span class="op">~</span>height.m, <span class="dt">data=</span>ufc)</span></code></pre></div>
 <pre><code>## [1] 0.7699552</code></pre>
@@ -1073,7 +1078,7 @@ transformations in the Chapter <a href="chapter7.html#chapter7">7</a>.</p>
 Figure 6.12: Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines). Notice the change in spread of the bootstrap distributions as well as the different centers.
 </p>
 </div>
-
+<div style="page-break-after: always;"></div>
 </div>
 <div id="section6-6" class="section level2">
 <h2><span class="header-section-number">6.6</span> Describing relationships with a regression model</h2>
@@ -1095,7 +1100,7 @@ detectable in the story because (1) it was randomly assigned to subjects and
 (2) basic science supports beer consumption amount being an explanatory
 variable for <em>BAC</em>. In some situations, this will not be so clear, but look for
 random assignment or scientific logic to guide your choices of variables as
-explanatory or response<a href="references.html#fn97" class="footnote-ref" id="fnref97"><sup>97</sup></a>. Regression lines are actually provided by
+explanatory or response<a href="#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a>. Regression lines are actually provided by
 default in the <code>scatterplot</code> function with the <code>reg.line=T</code> option or just
 omitting <code>reg.line=F</code> from the previous versions of the code since it is a
 default option to provide the lines.</p>
@@ -1159,7 +1164,7 @@ between <span class="math inline">\(x\)</span> and <span class="math inline">\(y
 leave differences between the line and the observations, which we call
 residuals <span class="math inline">\((e = y-\widehat{y})\)</span>.
 
-We worked with residuals in the ANOVA<a href="references.html#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a>
+We worked with residuals in the ANOVA<a href="#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a>
 material. The residuals describe the vertical distance in the scatterplot between
 our model (regression line) and the actual observed data point. The lack of a
 perfect fit of the line to the observations distinguishes statistical equations
@@ -1305,7 +1310,7 @@ using the <code>lm</code> function:
 </p>
 <div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="chapter6.html#cb560-1"></a>aisR2 &lt;-<span class="st"> </span>ais[<span class="op">-</span><span class="kw">c</span>(<span class="dv">56</span>,<span class="dv">166</span>), <span class="kw">c</span>(<span class="st">&quot;Ht&quot;</span>,<span class="st">&quot;Hc&quot;</span>,<span class="st">&quot;Bfat&quot;</span>,<span class="st">&quot;Sex&quot;</span>)]</span>
 <span id="cb560-2"><a href="chapter6.html#cb560-2"></a>m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Hc<span class="op">~</span>Bfat, <span class="dt">data=</span><span class="kw">subset</span>(aisR2,Sex<span class="op">==</span><span class="dv">1</span>)) <span class="co">#Results for Females </span></span></code></pre></div>
-
+<div style="page-break-after: always;"></div>
 
 <div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="chapter6.html#cb561-1"></a><span class="kw">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
@@ -1394,7 +1399,7 @@ how the residuals
 are being measuring in the <span class="math inline">\(y\)</span>-direction and appreciate that <code>lm</code> takes care of
 this for us.
 </p>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="chapter6.html#cb564-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(tigerstats)</span>
 <span id="cb564-2"><a href="chapter6.html#cb564-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">library</span>(manipulate)</span>
 <span id="cb564-3"><a href="chapter6.html#cb564-3"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">FindRegLine</span>()</span>
@@ -1584,7 +1589,7 @@ We repeat the full <code>lm</code> model summary below – note that a number is
 proportion and it is your choice whether you want to report
 and interpret it as a proportion or percentage, just make that clear in how you
 discuss it.</p>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="chapter6.html#cb568-1"></a>m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(BAC<span class="op">~</span>Beers, <span class="dt">data=</span>BB)</span>
 <span id="cb568-2"><a href="chapter6.html#cb568-2"></a><span class="kw">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
@@ -1640,7 +1645,7 @@ list of reasons why this explanatory variable leaves a lot of variation in the
 response unexplained. Note that we were careful about using the scaling of the
 response variable (log(area burned)) in the interpretation – this is because we
 would get a much different answer if area burned vs temperature was considered.</p>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="chapter6.html#cb574-1"></a>fire1 &lt;-<span class="st"> </span><span class="kw">lm</span>(loghectares<span class="op">~</span>Temperature, <span class="dt">data=</span>mtfires)</span>
 <span id="cb574-2"><a href="chapter6.html#cb574-2"></a><span class="kw">summary</span>(fire1)</span></code></pre></div>
 <pre><code>## 
@@ -1686,7 +1691,7 @@ provides numerical and interpretable information that drives that point home.</p
 ## Residual standard error: 2.598 on 97 degrees of freedom
 ## Multiple R-squared:  0.02822,    Adjusted R-squared:  0.0182 
 ## F-statistic: 2.816 on 1 and 97 DF,  p-value: 0.09653</code></pre>
-
+<div style="page-break-after: always;"></div>
 </div>
 <div id="section6-9" class="section level2">
 <h2><span class="header-section-number">6.9</span> Outliers: leverage and influence</h2>
@@ -2296,7 +2301,7 @@ Chapter <a href="chapter7.html#chapter7">7</a> and <a href="chapter8.html#chapte
 <li>Provides four regression diagnostic plots in one plot.</li>
 </ul></li>
 </ul>
-
+<div style="page-break-after: always;"></div>
 </div>
 <div id="section6-14" class="section level2">
 <h2><span class="header-section-number">6.14</span> Practice problems</h2>
@@ -2347,7 +2352,7 @@ model?</p>
 <p>Fox, John, and Sanford Weisberg. 2011. <em>An R-Companion to Applied Regression, Second Edition</em>. Thousand Oaks, CA: SAGE Publications. <a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Companion">http://socserv.socsci.mcmaster.ca/jfox/Books/Companion</a>.</p>
 </div>
 <div id="ref-R-carData">
-<p>Fox, John, Sanford Weisberg, and Brad Price. 2018. <em>CarData: Companion to Applied Regression Data Sets</em>. <a href="https://CRAN.R-project.org/package=carData">https://CRAN.R-project.org/package=carData</a>.</p>
+<p>Fox, John, Sanford Weisberg, and Brad Price. 2019b. <em>CarData: Companion to Applied Regression Data Sets</em>. <a href="https://CRAN.R-project.org/package=carData">https://CRAN.R-project.org/package=carData</a>.</p>
 </div>
 <div id="ref-Gude2009">
 <p>Gude, Patricia H., J. Anthony Cookson, Mark C. Greenwood, and Mark Haggerty. 2009. “Homes in Wildfire-Prone Areas: An Empirical Analysis of Wildfire Suppression Costs and Climate Change.” <a href="www.headwaterseconomics.org">www.headwaterseconomics.org</a>.</p>
@@ -2374,6 +2379,13 @@ model?</p>
 <p>Weisberg, Sanford. 2018. <em>Alr3: Data to Accompany Applied Linear Regression 3rd Edition</em>. <a href="https://CRAN.R-project.org/package=alr3">https://CRAN.R-project.org/package=alr3</a>.</p>
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="99">
+<li id="fn99"><p>This is related to what is called Simpson’s paradox, where the overall analysis (ignoring a grouping variable) leads to a conclusion of a relationship in one direction, but when the relationship is broken down into subgroups it is in the opposite direction in each group.  This emphasizes the importance of checking and accounting for differences in groups and the more complex models we are setting the stage to consider in the coming chapters.<a href="chapter6.html#fnref99" class="footnote-back">↩︎</a></p></li>
+<li id="fn100"><p>The interval is “far” from the reference value under the null (0) so this provides at least strong evidence. With using confidence intervals for tests, we really don’t know much about the strength of evidence against the null hypothesis but the hypothesis test here is a bit more complicated to construct and understand and we will have to tolerate just having crude information about the p-value to assess strength of evidence.<a href="chapter6.html#fnref100" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
@@ -2385,11 +2397,13 @@ model?</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -2404,6 +2418,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -2425,8 +2443,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

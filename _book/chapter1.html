@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Preface | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 1 Preface | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Preface | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="acknowledgments.html">
-<link rel="next" href="chapter2.html">
+<link rel="prev" href="acknowledgments.html"/>
+<link rel="next" href="chapter2.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -114,6 +117,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+<link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
 </head>
 
 <body>
@@ -384,8 +389,8 @@ analyzing data where the response is categorical, called the <strong><em>Chi-squ
 in Chapter <a href="chapter5.html#chapter5">5</a>. This most closely matches the One-Way ANOVA
 situation with a single categorical explanatory variable, except now the
 response variable is categorical. For example, we will assess whether taking a
-drug (vs taking a <strong><em>placebo</em></strong><a href="references.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>)
-has an <strong><em>effect</em></strong><a href="references.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> on the type of improvement the subjects demonstrate. There
+drug (vs taking a <strong><em>placebo</em></strong><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>)
+has an <strong><em>effect</em></strong><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> on the type of improvement the subjects demonstrate. There
 are two different scenarios
 for study design that impact the analysis technique and hypotheses tested in
 Chapter <a href="chapter5.html#chapter5">5</a>. If the explanatory variable reflects the group that
@@ -492,13 +497,13 @@ resources. After we complete this basic introduction, Chapter <a href="chapter2.
 more sophisticated things with R, allowing us to compare quantitative responses
 from two groups, make some graphical displays, do hypothesis testing  and create
 confidence intervals in a couple of different ways.</p>
-<p>You will have two<a href="references.html#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> downloading activities to complete before you can do anything
-more than read this book<a href="references.html#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. First, you need to download R. It is the engine that will do all the computing
+<p>You will have two<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> downloading activities to complete before you can do anything
+more than read this book<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. First, you need to download R. It is the engine that will do all the computing
 for us, but you will only interact with it once. Go to <a href="http://cran.rstudio.com" class="uri">http://cran.rstudio.com</a>
 and click on the “<strong>Download R for…</strong>” button that
 corresponds to your operating system. On the next page, click on “<strong>base</strong>” and then it will take you
 to a screen to download the most current version of R that is compiled for your
-operating system, something like “<strong>Download R 3.6.1 for Windows</strong>”. Click on that link and then open
+operating system, something like “<strong>Download R 3.6.2 for Windows</strong>”. Click on that link and then open
 the file you downloaded. You will need to select your preferred language (choose English so your instructor can help you), then hit “<strong>Next</strong>”
 until it starts to unpack and install the program (all the base settings will be fine). After you hit “<strong>Finish</strong>” you will not do anything further with R directly.</p>
 <p>Second, you need to download RStudio. It is an enhanced interface that will make interacting with
@@ -510,10 +515,10 @@ are updated frequently (up to four times a year) and if you downloaded either
 more than a few months previously, you should download the up-to-date versions,
 especially if something you are trying to do is not working. Sometimes code
 will not work in older versions of R and sometimes old code won’t work in new
-versions of R.<a href="references.html#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+versions of R.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure1-2"></span>
-<img src="chapter1_files/fig1.2.png" alt="Initial RStudio layout." width="100%" />
+<img src="chapter1_files/Fig1-2.png" alt="Initial RStudio layout." width="100%" />
 <p class="caption">
 Figure 1.2: Initial RStudio layout.
 </p>
@@ -606,7 +611,7 @@ be saved as a “.csv” file (stands for comma-separated values although Excel
 calls it “CSV (Comma Delimited)”), which basically strips off some of the junk
 that Excel adds to the necessary information in the file. Excel will tell you that
 this is a bad idea, but it actually creates a more stable archival format and
-one that R can use directly.<a href="references.html#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+one that R can use directly.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
 <p>The following code to read in the data set relies on an R package called
 <code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr" role="doc-biblioref">2018</a>)</span>. Packages in R provide additional functions and data sets that
 are not available in the initial download of R or RStudio. To get access to the packages,
@@ -736,7 +741,7 @@ during 1.5 mile run (<em>RunPulse</em>, in beats per minute), resting pulse rate
 (<em>RestPulse</em>, beats per minute), Body Weight (<em>BodyWeight</em>, in kg), and <em>Age</em>
 (in years). Open the file in Excel or equivalent software and then save it as
 a .csv file in a location you can find on your computer. Then go to RStudio
-and click on <strong>File</strong>, then <strong>Import Dataset</strong>, then <strong>From Text (readr)…</strong><a href="references.html#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>
+and click on <strong>File</strong>, then <strong>Import Dataset</strong>, then <strong>From Text (readr)…</strong><a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>
 
 Click “<strong>Import</strong>” and find your file. R will store the data set as an object with the same name
 as the .csv file. You could use another name as well, but it is
@@ -754,7 +759,7 @@ spreadsheet will appear in the upper left window due to the second line of
 code (<code>View(treadmill</code>)).</p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure1-3"></span>
-<img src="chapter1_files/fig1.3.png" alt="RStudio with initial data set loaded." width="100%" />
+<img src="chapter1_files/Fig1-3.png" alt="RStudio with initial data set loaded." width="100%" />
 <p class="caption">
 Figure 1.3: RStudio with initial data set loaded.
 </p>
@@ -822,7 +827,7 @@ edit code – then save the file as something like “MyFileName.R” in your pr
 Saving your code will mean that you can return to where you
 were working last by simply re-running the saved script file. With code in the
 script window, you can place the cursor on a line of code or highlight a chunk
-of code and hit the “Run” button<a href="references.html#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
+of code and hit the “Run” button<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
 on the upper part of the panel. It will appear
 in the console with results just like what you would obtain if you typed it
 after the command prompt and hit enter for each line. Figure <a href="chapter1.html#fig:Figure1-4">1.4</a>
@@ -832,7 +837,7 @@ a file called “Ch1.R”, with the results of highlighting and executing the fi
 section of code using the “Run” button.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure1-4"></span>
-<img src="chapter1_files/fig1.4.png" alt="RStudio with highlighted code run." width="100%" />
+<img src="chapter1_files/Fig1-4.png" alt="RStudio with highlighted code run." width="100%" />
 <p class="caption">
 Figure 1.4: RStudio with highlighted code run.
 </p>
@@ -846,7 +851,7 @@ Figure 1.4: RStudio with highlighted code run.
 <p>It provides a suite of enhanced functions to aid our initial explorations. With RStudio running, the <code>mosaic</code> package loaded, a place to write and
 save code, and the <code>treadmill</code> data set loaded, we can (finally!) start to
 summarize the results of the study. The <code>treadmill</code> object is what R calls a
-<strong><em>tibble</em></strong><a href="references.html#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> and contains columns corresponding to each variable in
+<strong><em>tibble</em></strong><a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> and contains columns corresponding to each variable in
 the spreadsheet. Every
 function in R will involve specifying the variable(s) of interest and how you
 want to use them. To access a particular variable (column) in a tibble, you
@@ -906,7 +911,7 @@ Figure 1.5: Histogram of Run Times (minutes) of <span class="math inline">\(n\)<
 </div>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure1-6"></span>
-<img src="chapter1_files/image010.png" alt="RStudio while in the process of copying the histogram." width="100%" />
+<img src="chapter1_files/Fig1-6.png" alt="RStudio while in the process of copying the histogram." width="100%" />
 <p class="caption">
 Figure 1.6: RStudio while in the process of copying the histogram.
 </p>
@@ -953,7 +958,7 @@ are plotted with circles and the <em>Whiskers</em> (lines that extend from Q1 an
 the minimum and maximum) are shortened to only go as far as
 observations that are within <span class="math inline">\(1.5*\)</span>IQR of the upper and lower quartiles. The <em>box</em>
 part of the boxplot is a box that goes from Q1 to Q3 and the median is displayed as a line
-somewhere inside the box.<a href="references.html#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> Looking back at the summary statistics above, Q1=9.78 and Q3=11.27, providing an IQR of:</p>
+somewhere inside the box.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> Looking back at the summary statistics above, Q1=9.78 and Q3=11.27, providing an IQR of:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chapter1.html#cb17-1"></a><span class="op">&gt;</span><span class="st"> </span>IQR &lt;-<span class="st"> </span><span class="fl">11.27</span> <span class="op">-</span><span class="st"> </span><span class="fl">9.78</span></span>
 <span id="cb17-2"><a href="chapter1.html#cb17-2"></a><span class="op">&gt;</span><span class="st"> </span>IQR</span>
 <span id="cb17-3"><a href="chapter1.html#cb17-3"></a>[<span class="dv">1</span>] <span class="fl">1.49</span></span></code></pre></div>
@@ -1049,7 +1054,7 @@ min, Q1, median, Q3, and max and the histogram and boxplot as graphical
 summaries. We revisited the ideas of symmetry and skew. But the main point was
 really to get a start on using R via RStudio to provide results you should be familiar with
 from your previous statistics experience(s).</p>
-
+<div style="page-break-after: always;"></div>
 </div>
 <div id="section1-5" class="section level2">
 <h2><span class="header-section-number">1.5</span> Summary of important R code</h2>
@@ -1111,7 +1116,7 @@ installing the package).</p></li>
 <li>Makes a boxplot. </li>
 </ul></li>
 </ul>
-
+<div style="page-break-after: always;"></div>
 </div>
 <div id="section1-6" class="section level2">
 <h2><span class="header-section-number">1.6</span> Practice problems</h2>
@@ -1174,6 +1179,14 @@ transformation from kilograms to pounds. What does this tell you about changing 
 <p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.</p>
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>There is a cloud version of R Studio available at <a href="https://rstudio.cloud/" class="uri">https://rstudio.cloud/</a> if you want to avoid these steps. We still recommend following the steps to be able to work locally but try this option if you have issues with the installation process.<a href="chapter1.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>I recorded a video that walks through getting R and RStudio installed on a PC available <a href="https://montana.techsmithrelay.com/ojg6"><strong>in a recorded video</strong></a>. If you want to see them installed on a mac, you can try <a href="https://www.youtube.com/watch?v=GFImMj1lMRI"><strong>this video on youtube</strong></a>. Or for either version, try searching YouTube for “How to install R and RStudio”.<a href="chapter1.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>You can also use Ctrl+Enter if you like hot keys.<a href="chapter1.html#fnref8" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
@@ -1185,11 +1198,13 @@ transformation from kilograms to pounds. What does this tell you about changing 
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -1204,6 +1219,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -1225,8 +1244,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

@@ -169,8 +169,8 @@ gdn <- read_csv("gundalebachnordin_2.csv")
 gdn$Species <- factor(gdn$Species)
 gdn$Treatment <- factor(gdn$Treatment)
 library(yarrr)
-pirateplot(Massperha~Species+Treatment, data=gdn, inf.method="ci",
-           ylab="Biomass",point.o=1, inf.f.o=0.2,pal="southpark")
+pirateplot(Massperha~Species+Treatment, data=gdn, inf.method="ci", inf.disp="line", 
+           theme=2, ylab="Biomass", point.o=1, pal="southpark")
 ```
 
 In a 16-year experiment, @Gundale2013 studied the impacts
@@ -212,8 +212,8 @@ gdn <- read_csv("http://www.math.montana.edu/courses/s217/documents/gundalebachn
 gdn$Species <- factor(gdn$Species)
 gdn$Treatment <- factor(gdn$Treatment)
 library(yarrr)
-pirateplot(Massperha~Species+Treatment, data=gdn, inf.method="ci",
-           ylab="Biomass",point.o=1, inf.f.o=0.5,pal="southpark")
+pirateplot(Massperha~Species+Treatment, data=gdn, inf.method="ci", inf.disp="line", 
+           theme=2, ylab="Biomass",point.o=1, pal="southpark")
 ```
 
 \indent The Two-WAY ANOVA model that contains a *species* by *treatment* interaction is
@@ -294,8 +294,8 @@ the response variable (*Biomass*) and repeat the previous plots:
 ```{r Figure9-5,fig.cap="(ref:fig9-5)",fig.width=6, fig.height=8}
 gdn$logMassperha <- log(gdn$Massperha)
 par(mfrow=c(2,1))
-pirateplot(logMassperha~Species+Treatment, data=gdn, inf.method="ci",
-           ylab="Biomass",point.o=1, inf.f.o=0.5,pal="southpark", main="(a)")
+pirateplot(logMassperha~Species+Treatment, data=gdn, inf.method="ci", inf.disp="line", 
+           theme=2, ylab="Biomass",point.o=1, pal="southpark", main="(a)")
 intplot(logMassperha~Species*Treatment, data=gdn, col=viridis(4)[1:3], lwd=2, main="(b)")
 ```
 
@@ -382,7 +382,7 @@ variable ``SpTrt`` by the ``interaction`` function with new levels of
 *HS.Control*, *PS.Control*, *HS.N12.5*, *PS.N12.5*, *HS.N50*, and *PS.N50*. \index{\texttt{interaction()}} The
 One-Way ANOVA $F$-test ($F(5,30)=23.96$, p-value $<0.0001$) suggests that there
 is strong evidence against the null hypothesis of no difference in the true mean log-biomass among the six
-treatment/species combinations and so we would conclude that at least on differs from the others. Note that the One-Way ANOVA table contains the test for
+treatment/species combinations and so we would conclude that at least one differs from the others. Note that the One-Way ANOVA table contains the test for
 at least one of those means being different from the others; the interaction
 test above was testing a more refined hypothesis -- does the effect of
 treatment differ between the two species? As in any situation with a small p-value from the overall

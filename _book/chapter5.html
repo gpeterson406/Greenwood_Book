@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Chi-square tests | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 5 Chi-square tests | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Chi-square tests | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter4.html">
-<link rel="next" href="chapter6.html">
+<link rel="prev" href="chapter4.html"/>
+<link rel="next" href="chapter6.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -114,6 +117,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+<link rel="stylesheet" href="font-awesome.min.css" type="text/css" />
 </head>
 
 <body>
@@ -363,7 +368,7 @@ have worried about whether sex and treatment were confounded and whether any
 differences in the responses might be due to sex instead of the treatment. The
 random assignment of treatment/placebo to the subjects appears to have been
 successful here in generating a mix of ages and sexes among the
-two treatment groups<a href="references.html#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a>. The main benefit of this sort of plot is the ability to
+two treatment groups<a href="#fn86" class="footnote-ref" id="fnref86"><sup>86</sup></a>. The main benefit of this sort of plot is the ability to
 visualize more than two categorical variables simultaneously. But now we want
 to focus more directly on the researchers’ main question – does the treatment
 lead to different improvement outcomes than the placebo?</p>
@@ -503,7 +508,7 @@ function formula to <code>~ y|x</code> and adding the <code>format="proportion"<
 option provides the proportions in the response categories conditional on the
 category of the predictor (these are
 called <strong><em>conditional proportions</em></strong> or the <strong><em>conditional distribution</em></strong> of,
-here, <em>Improved</em> on <em>Treatment</em>)<a href="references.html#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>.
+here, <em>Improved</em> on <em>Treatment</em>)<a href="#fn87" class="footnote-ref" id="fnref87"><sup>87</sup></a>.
 
 Note that they sum to 1.0 in each level of x, <em>placebo</em> or <em>treated</em>:</p>
 <div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="chapter5.html#cb396-1"></a><span class="kw">tally</span>(<span class="op">~</span>Improved<span class="op">|</span>Treatment, <span class="dt">data=</span>Arthritis, <span class="dt">format=</span><span class="st">&quot;proportion&quot;</span>, <span class="dt">margins=</span>T)</span></code></pre></div>
@@ -709,7 +714,7 @@ This means that the null hypothesis is:</p>
 \mathbf{H_0:}\  &amp; \mathbf{p_{11}=p_{21}=\ldots=p_{R1}} \textbf{ and } \mathbf{p_{12}=p_{22}=\ldots=p_{R2}}  \textbf{ and } \mathbf{p_{13}=p_{23}=\ldots=p_{R3}} \\ 
 &amp; \textbf{ and } \mathbf{\ldots} \textbf{ and }\mathbf{p_{1C}=p_{2C}=\ldots=p_{RC}}. \\
 \end{array}\]</span></p>
-
+<div style="page-break-after: always;"></div>
 <p>If all the groups are the same, then they all have the same conditional proportions and we can
 more simply write the null hypothesis as:</p>
 <p><span class="math display">\[\mathbf{H_0:(p_{r1},p_{r2},\ldots,p_{rC})=(p_1,p_2,\ldots,p_C)} \textbf{ for all } \mathbf{r}.\]</span></p>
@@ -956,7 +961,7 @@ under the null hypothesis, with large differences between what
 we observed and what we
 expect under the null leading to evidence against the null hypothesis. To help
 this statistic to follow a named parametric distribution and provide some
-insights into sources of interesting differences from the null hypothesis, we <strong><em>standardize</em></strong><a href="references.html#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a>
+insights into sources of interesting differences from the null hypothesis, we <strong><em>standardize</em></strong><a href="#fn88" class="footnote-ref" id="fnref88"><sup>88</sup></a>
 the difference between the observed and expected counts by the square-root of
 the expected count.
  
@@ -1071,13 +1076,13 @@ function.  It operates on a table of
 counts that has been produced <strong>without row or column totals</strong>.</p>
 <!-- \newpage -->
 <p>For example, <code>Arthtable</code> below contains just the observed cell
-counts. Applying the <code>chisq.test</code> function<a href="references.html#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a> to <code>Arthtable</code>
+counts. Applying the <code>chisq.test</code> function<a href="#fn89" class="footnote-ref" id="fnref89"><sup>89</sup></a> to <code>Arthtable</code>
 provides a variety of useful output. For the moment, we are just
 going to extract the information in the “<code>expected</code>” attribute of
 the results from running this function (using <code>chisq.test(TABLENAME)$expected)</code>.
 These are the expected cell counts which match the previous calculations
 except for some rounding in the hand-calculations.</p>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="chapter5.html#cb404-1"></a>Arthtable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>Treatment<span class="op">+</span>Improved, <span class="dt">data=</span>Arthritis)</span>
 <span id="cb404-2"><a href="chapter5.html#cb404-2"></a>Arthtable</span></code></pre></div>
 <pre><code>##          Improved
@@ -1168,7 +1173,7 @@ default. Before we discover how it got that result, we can rely on our
 permutation methods to obtain a distribution for the <span class="math inline">\(X^2\)</span> statistic
 under the null hypothesis. As in Chapters <a href="chapter2.html#chapter2">2</a> and <a href="chapter3.html#chapter3">3</a>,
 this will allow us to find a
-p-value while relaxing one of our assumptions<a href="references.html#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a>.
+p-value while relaxing one of our assumptions<a href="#fn90" class="footnote-ref" id="fnref90"><sup>90</sup></a>.
 In the One-WAY ANOVA in Chapter <a href="chapter3.html#chapter3">3</a>, we permuted the
 grouping variable relative
 to the responses, mimicking the null hypothesis that the groups are the same
@@ -1375,7 +1380,7 @@ earlier, knowing that we have strong evidence against the null hypothesis
 of no difference between <em>Placebo</em> and <em>Treated</em> groups, what can we
 say about the effectiveness of the arthritis medication? It seems that there is a real and important increase in the proportion
 of patients getting improvement (<em>Some</em> or <em>Marked</em>). If the differences
-“looked” smaller, even with a small p-value you<a href="references.html#fn86" class="footnote-ref" id="fnref86"><sup>86</sup></a> might not recommend someone take the drug…</p>
+“looked” smaller, even with a small p-value you<a href="#fn91" class="footnote-ref" id="fnref91"><sup>91</sup></a> might not recommend someone take the drug…</p>
 
 <div class="figure"><span id="fig:Figure5-11"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-11-1.png" alt="Stacked bar chart of the Arthritis data comparing Treated and Placebo." width="960" />
@@ -1546,7 +1551,7 @@ other variables can sometimes help to see other relationships between
 variables.</p>
 
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="chapter5.html#cb432-1"></a>election2 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(election[,<span class="kw">c</span>(<span class="st">&quot;VOTEF&quot;</span>,<span class="st">&quot;PARTY&quot;</span>,<span class="st">&quot;EDUC&quot;</span>,<span class="st">&quot;GENDER&quot;</span>)])</span>
-<span id="cb432-2"><a href="chapter5.html#cb432-2"></a><span class="kw">tableplot</span>(election2, <span class="dt">select=</span><span class="kw">c</span>(VOTEF,PARTY,EDUC,GENDER), <span class="dt">sort=</span><span class="dv">1</span>,<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
+<span id="cb432-2"><a href="chapter5.html#cb432-2"></a><span class="kw">tableplot</span>(election2, <span class="dt">select=</span><span class="kw">c</span>(VOTEF,PARTY,EDUC,GENDER), <span class="dt">sort=</span><span class="dv">1</span>, <span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-14"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-14-1.png" alt="Tableplot of election data with subjects without any missing responses (complete cases)." width="960" />
 <p class="caption">
@@ -1587,7 +1592,7 @@ the request to answer the survey but should be cautious in extending it to all
 Americans or even voters in the year 2000. When we say “population” below, this
 nuanced discussion is what we mean. Because the political party is not randomly
 assigned to the subjects, we cannot make causal inferences for political
-affiliation causing different voting patterns<a href="references.html#fn87" class="footnote-ref" id="fnref87"><sup>87</sup></a>.</p>
+affiliation causing different voting patterns<a href="#fn92" class="footnote-ref" id="fnref92"><sup>92</sup></a>.</p>
 <p>Here are our 6+ steps applied to this example:</p>
 <ol start="0" style="list-style-type: decimal">
 <li><p>The desired RQ is about assessing the relationship between part affiliation and vote choice, but this is constrained by the large rate of non-response in this data set. This is an Independence test and so the tableplot and mosaic plot are good visualizations to consider and the <span class="math inline">\(X^2\)</span>-statistic will be used.</p></li>
@@ -1618,8 +1623,7 @@ a large national population and we have no information that could suggest depend
 able to check this condition:</li>
 </ul>
 <div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="chapter5.html#cb435-1"></a><span class="kw">chisq.test</span>(electable)<span class="op">$</span>expected</span></code></pre></div>
-<pre><code>## Warning in chisq.test(electable): Chi-squared approximation may be
-## incorrect</code></pre>
+<pre><code>## Warning in chisq.test(electable): Chi-squared approximation may be incorrect</code></pre>
 <pre><code>##      VOTEF
 ## PARTY      Gore      Bush    Other
 ##     1 124.81984 112.18799 8.992167
@@ -1712,7 +1716,7 @@ observed configuration was really far from the null
 hypothesis of no relationship between party status and voting.</li>
 </ul></li>
 </ol>
-
+<div style="page-break-after: always;"></div>
 <ol start="4" style="list-style-type: decimal">
 <li><p><strong>Conclusion:</strong></p>
 <ul>
@@ -1743,7 +1747,7 @@ obtain from the same voters on the other side of the middle? Exploring the relat
 scientist would easily obtain many more (useful) theories based on this combination of results.</li>
 </ul></li>
 </ol>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="chapter5.html#cb447-1"></a><span class="kw">chisq.test</span>(electable)<span class="op">$</span>residuals <span class="co">#(Obs - expected)/sqrt(expected)</span></span></code></pre></div>
 <pre><code>##      VOTEF
 ## PARTY        Gore        Bush       Other
@@ -1862,7 +1866,7 @@ in this situation. </p>
 <span id="cb451-4"><a href="chapter5.html#cb451-4"></a>cheating<span class="op">$</span>copier &lt;-<span class="st"> </span><span class="kw">interaction</span>(cheating<span class="op">$</span>FRAUD, cheating<span class="op">$</span>COPYEXAM)</span>
 <span id="cb451-5"><a href="chapter5.html#cb451-5"></a><span class="kw">levels</span>(cheating<span class="op">$</span>copier) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;None&quot;</span>,<span class="st">&quot;PaperCheat&quot;</span>,<span class="st">&quot;ExamCheat&quot;</span>,<span class="st">&quot;PaperExamCheat&quot;</span>)</span>
 <span id="cb451-6"><a href="chapter5.html#cb451-6"></a><span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>liar, <span class="dt">select=</span><span class="kw">c</span>(liar,copier),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="chapter5.html#cb452-1"></a>cheatlietable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>liar<span class="op">+</span>copier, <span class="dt">data=</span>cheating)</span>
 <span id="cb452-2"><a href="chapter5.html#cb452-2"></a>cheatlietable</span></code></pre></div>
 <pre><code>##           copier
@@ -2062,7 +2066,7 @@ metric might differ between different levels of schools. Maybe it is easier or
 harder for elementary, middle, or high schools to attain growth? The researcher
 has a list of most of the schools in the state of each level that are using a
 database that the researcher has access to. In order to assess this question,
-the researcher takes a <strong><em>stratified random sample</em></strong><a href="references.html#fn88" class="footnote-ref" id="fnref88"><sup>88</sup></a>, selecting
+the researcher takes a <strong><em>stratified random sample</em></strong><a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a>, selecting
 <span class="math inline">\(n_{\text{elementary}}=100\)</span> schools from the population of 4421 elementary
 schools, <span class="math inline">\(n_{\text{middle}}=50\)</span> from the population of 1018 middle schools,
 and <span class="math inline">\(n_{\text{high}}=50\)</span> from the population of 755 high
@@ -2087,7 +2091,7 @@ rates among the different levels. There are also a few schools flagged as being 
 <pre><code>## stype
 ##   E   H   M 
 ## 100  50  50</code></pre>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="chapter5.html#cb474-1"></a><span class="kw">pirateplot</span>(growth<span class="op">~</span>stype, <span class="dt">data=</span>apistrat, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="chapter5.html#cb474-1"></a><span class="kw">pirateplot</span>(growth<span class="op">~</span>stype, <span class="dt">data=</span>apistrat, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">inf.disp=</span><span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <p>The One-Way ANOVA <span class="math inline">\(F\)</span>-test, provided below, suggests
 strong evidence against the null hypothesis of no difference in the true mean growth scores among the different
 types of schools (<span class="math inline">\(F(2,197)=23.56,\text{ p-value}&lt;0.0001\)</span>). But the
@@ -2193,7 +2197,7 @@ finding district-level average growth rates and exploring whether those vary
 systematically but this is beyond the scope of the current exploration.</p>
 <p>Checking the expected cell counts gives insight into the assumption for
 using the <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution to find the p-value:</p>
-
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="chapter5.html#cb484-1"></a>growthtable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>stype<span class="op">+</span>growthcut, <span class="dt">data=</span>apistrat)</span>
 <span id="cb484-2"><a href="chapter5.html#cb484-2"></a>growthtable</span></code></pre></div>
 <pre><code>##      growthcut
@@ -2219,7 +2223,7 @@ so we can use the parametric approach.</p>
 <span class="math inline">\(\boldsymbol{\chi^2}(6)\)</span> distribution, the p-value is 0.0000008. This p-value
 suggests that there is very strong evidence against the null hypothesis of no difference in the distribution of API growth of schools among
 <em>Elementary</em>, <em>Middle</em> and <em>High School</em> in the population of schools in
-California between 1999 and 2000, and can conclude that there is some difference in the population (California
+California between 1999 and 2000, and we can conclude that there is some difference in the population (California
 schools). Because the schools were randomly selected from all the California
 schools we can make valid inferences to all the schools but because the level of schools, obviously, cannot be randomly
 assigned, we cannot say that level of school causes these differences.</p>
@@ -2354,7 +2358,7 @@ permutation-based p-value. </p></li>
 <li>Provides a mosaic plot with shading based on standardized residuals.</li>
 </ul></li>
 </ul>
-
+<div style="page-break-after: always;"></div>
 </div>
 <div id="section5-14" class="section level2">
 <h2><span class="header-section-number">5.14</span> Practice problems</h2>
@@ -2537,6 +2541,14 @@ Figure 5.28: Stacked bar chart of the close calls/not (overtakes less than or eq
 <p>Meyer, David, Achim Zeileis, and Kurt Hornik. 2017. <em>Vcd: Visualizing Categorical Data</em>. <a href="https://CRAN.R-project.org/package=vcd">https://CRAN.R-project.org/package=vcd</a>.</p>
 </div>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="86">
+<li id="fn86"><p>While randomization is typically useful in trying to “equalize” the composition of groups, a possible randomization of subjects to the groups is to put all the males into the treatment group. Sometimes we add additional constraints to randomization of subjects to treatments to guarantee that we don’t get stuck with an unusual and highly unlikely assignment like that. It is important at least to check the demographics of different treatment groups to see if anything odd occurred.<a href="chapter5.html#fnref86" class="footnote-back">↩︎</a></p></li>
+<li id="fn89"><p>Note that in smaller data sets to get results as discussed here, use the <code>correct=F</code> option. If you get output that contains “<code>...with Yate's continuity correction</code>”, a slightly modified version of this test is being used.<a href="chapter5.html#fnref89" class="footnote-back">↩︎</a></p></li>
+<li id="fn91"><p>Doctors are faced with this exact dilemma – with little more training than you have now in statistics, they read a result like this in a paper and used to be encouraged to focus on the p-value to decide about treatment recommendations. Would you recommend the treatment here just based on the small p-value? Would having Figure <a href="chapter5.html#fig:Figure5-11">5.11</a> to go with the small p-value help you make a more educated decision? Now the recommendations are starting to move past just focusing on the p-values and thinking about the practical importance and size of the differences. The potential benefits of a treatment need to be balanced with risks of complications too, but that takes us back into discussing having multiple analyses in the same study (treatment improvement, complications/not, etc.).<a href="chapter5.html#fnref91" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
@@ -2548,11 +2560,13 @@ Figure 5.28: Stacked bar chart of the close calls/not (overtakes less than or eq
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -2567,6 +2581,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -2588,8 +2606,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

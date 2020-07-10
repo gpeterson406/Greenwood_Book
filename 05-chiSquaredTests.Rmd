@@ -1265,7 +1265,7 @@ variables.
 
 ```{r Figure5-14,fig.cap="(ref:fig5-14)", fig.height=5,fig.width=10}
 election2 <- na.omit(election[,c("VOTEF","PARTY","EDUC","GENDER")])
-tableplot(election2, select=c(VOTEF,PARTY,EDUC,GENDER), sort=1,pals=list("BrBG"))
+tableplot(election2, select=c(VOTEF,PARTY,EDUC,GENDER), sort=1, pals=list("BrBG"))
 ```
  
 
@@ -1741,7 +1741,8 @@ library(survey)
 data(api)
 apistrat <- as.tibble(apistrat)
 apipop <- as.tibble(apipop)
-pirateplot(growth~stype, data=apistrat, inf.method="ci", pal="southpark")
+pirateplot(growth~stype, data=apistrat, inf.method="ci", inf.disp="line",
+           pal="southpark")
 ```
 
 In recent decades, there has been a push for quantification of school performance
@@ -1786,7 +1787,7 @@ tally(~stype, data=apistrat) #Sample counts
 ```
 
 ```{r eval=F}
-pirateplot(growth~stype, data=apistrat, inf.method="ci")
+pirateplot(growth~stype, data=apistrat, inf.method="ci", inf.disp="line")
 ```
 
 \indent The One-Way ANOVA $F$-test, provided below, suggests
@@ -1923,7 +1924,7 @@ The observed test statistic is $X^2=38.67$ and, based on a
 $\boldsymbol{\chi^2}(6)$ distribution, the p-value is 0.0000008. This p-value
 suggests that there is very strong evidence against the null hypothesis of no difference in the distribution of API growth of schools among
 *Elementary*, *Middle* and *High School* in the population of schools in 
-California between 1999 and 2000, and can conclude that there is some difference in the population (California
+California between 1999 and 2000, and we can conclude that there is some difference in the population (California
 schools). Because the schools were randomly selected from all the California
 schools we can make valid inferences to all the schools but because the level of schools, obviously, cannot be randomly
 assigned, we cannot say that level of school causes these differences. 

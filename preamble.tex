@@ -10,6 +10,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{cancel}
 \usepackage{geometry}
+
 %\usepackage[svgnames]{xcolor} There is a conflict with xcolor. Defining the needed colors from xcolor
 %\usepackage{framed}
 %\colorlet{shadecolor}{Silver} Probably too dark...
@@ -19,13 +20,19 @@
 \definecolor{Grey}{RGB}{128, 128, 128} % #808080
 \colorlet{shadecolor}{WhiteSmoke}
 \colorlet{framecolor}{Silver}
+
 \usepackage{float}
 \usepackage{caption}
 \usepackage{url}
 \usepackage{makeidx}
 
-\newgeometry{inner=1.25in,outer=0.75in,top=1in,bottom=1in}
 
+\newgeometry{inner=1.25in,outer=0.75in,top=1in,bottom=1in}
+\definecolor{whitesmoke}{RGB}{245,245,245}
+\definecolor{silver}{RGB}{192,192,192}
+\definecolor{Grey}{RGB}{128,128,128}
+\colorlet{shadecolor}{whitesmoke}
+\colorlet{framecolor}{silver}
 \definecolor{purple}{RGB}{76,0,153}
 
 % % make code-output smaller
@@ -52,10 +59,9 @@
 \makeatother
 
 % Adjust verbatim shade environments
-
 \renewenvironment{Shaded}{%
 \setlength{\FrameRule}{1.5pt}
-\def\FrameCommand{\fboxrule=\FrameRule\fboxsep=5pt 
+\def\FrameCommand{\fboxrule=\FrameRule\fboxsep=5pt
                   \fcolorbox{framecolor}{shadecolor}}%
 \MakeFramed {\FrameRestore}}%
 {\endMakeFramed}

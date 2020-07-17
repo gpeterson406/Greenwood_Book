@@ -777,11 +777,11 @@ quantiles
 par(mfrow=c(1,2))
 hist(Tstar, labels=T, ylim=c(0,550))
 abline(v=Tobs, col="red", lwd=3)
-abline(v=quantiles$quantile, col="blue", lty=2, lwd=3)
+abline(v=quantiles, col="blue", lty=2, lwd=3)
 
 plot(density(Tstar), main="Density curve of Tstar")
 abline(v=Tobs, col="red", lwd=3)
-abline(v=quantiles$quantile, col="blue", lty=2, lwd=3)
+abline(v=quantiles, col="blue", lty=2, lwd=3)
 ```
 
 These results tell us that the bootstrap 95% CI is from 0.76 to 0.95 -- we are 95%
@@ -903,7 +903,7 @@ quantiles
 hist(Tstar, labels=T, xlim=c(0.6,0.9), ylim=c(0,275),
      main="Bootstrap distribution of correlation with all data")
 abline(v=Tobs, col="red", lwd=3)
-abline(v=quantiles$quantile, col="blue", lty=2, lwd=3)
+abline(v=quantiles, col="blue", lty=2, lwd=3)
 
 Tobs <- cor(dbh.cm~height.m, data=ufc[-168,]); Tobs
 Tstar <- matrix(NA, nrow=B)
@@ -915,7 +915,7 @@ quantiles
 hist(Tstar, labels=T, xlim=c(0.6,0.9), ylim=c(0,275),
      main= "Bootstrap distribution of correlation without outlier")
 abline(v=Tobs, col="red", lwd=3)
-abline(v=quantiles$quantile, col="blue", lty=2, lwd=3)
+abline(v=quantiles, col="blue", lty=2, lwd=3)
 ```
 
 \newpage
@@ -1689,8 +1689,8 @@ noticeably lower than the other points.
 
 ```{r Figure6-21,fig.cap="(ref:fig6-21)",echo=F,warning=F,message=F,fig.height=10,fig.width=8}
 
-BBfake3 <- BB
-BBfake3[17,]=c(11,0.01)
+BBfake3 <- as.data.frame(BB)
+BBfake3 <- rbind(BBfake3,c(11,0.01))
 m1o <- lm(BAC~Beers,data=BB)
 
 par(mfrow=c(4,2))
@@ -1708,8 +1708,8 @@ abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
 plot(m1,which=5,add.smooth=F,col=id2,pch=id1,main="Added (11,0.1)")
 
 
-BBfake4 <- BB
-BBfake4[17,] <- c(11,0.19)
+BBfake4 <- as.data.frame(BB)
+BBfake4 <- rbind(BBfake4,c(11,0.19))
 m1 <- lm(BAC~Beers,data=BBfake4)
 #summary(m1)
 plot(BAC~Beers,data=BBfake4,col=id2,pch=id1,main="Added (11,0.19), R-sq=0.86")
@@ -1718,8 +1718,8 @@ abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
 plot(m1,which=5,add.smooth=F,col=id2,pch=id1,main="Added (11,0.19)")
 
 
-BBfake5 <- BB
-BBfake5[17,] <- c(5,0.19)
+BBfake5 <- as.data.frame(BB)
+BBfake5 <- rbind(BBfake5,c(5,0.19))
 m1 <- lm(BAC~Beers,data=BBfake5)
 #summary(m1)
 plot(BAC~Beers,data=BBfake5,col=id2,pch=id1,main="Added (5,0.19), R-sq=0.57")
@@ -1727,8 +1727,8 @@ abline(a=m1o$coef[1],b=m1o$coef[2],col="blue",lty=2,lwd=2)
 abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
 plot(m1,which=5,add.smooth=F,col=id2,pch=id1,main="Added (5,0.19)")
 
-BBfake6 <- BB
-BBfake6[17,] <- c(5,0.01)
+BBfake6 <- as.data.frame(BB)
+BBfake6 <- rbind(BBfake6,c(5,0.01))
 m1 <- lm(BAC~Beers,data=BBfake6)
 #summary(m1)
 plot(BAC~Beers,data=BBfake6,col=id2,pch=id1,main="Added (5,0.01), R-sq=0.69")

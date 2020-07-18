@@ -1782,8 +1782,7 @@ more than one model, so we will often avoid the 6+ steps in testing initially
 and try to generate a model we can use in that more specific process. In this 
 case, the first model of interest using the two SAT percentiles,
 
-$$\text{fy_gpa}_i = \beta_0 + \beta_{\text{sat_v}}\text{sat_v}_i 
-+ \beta_{\text{sat_m}}\text{sat_m}_i +\varepsilon_i,$$
+$$\text{fy\_gpa}_i = \beta_0 + \beta_{\text{sat\_v}}\text{sat\_v}_i + \beta_{\text{sat\_m}}\text{sat\_m}_i +\varepsilon_i,$$
 
 looks like it might be worth interrogating further so we can jump straight
 into considering the 6+ steps involved in hypothesis testing for the two slope
@@ -1810,7 +1809,7 @@ they might apply to... But you could see why the company that administers the SA
 \indent The following code fits the model of interest, provides a model summary, 
 and the diagnostic plots, allowing us to consider the tests of interest:
 
-(ref:fig8-19) Diagnostic plots for the $\text{fy_gpa}\sim\text{ sat_v }+\text{ sat_m}$ model.
+(ref:fig8-19) Diagnostic plots for the $\text{fy\_gpa}\sim\text{ sat\_v }+\text{ sat\_m}$ model.
 
 ```{r Figure8-19,fig.cap="(ref:fig8-19)",fig.height=5,fig.width=10}
 gpa1 <- lm(fy_gpa~sat_v+sat_m, data=satGPA)
@@ -1821,11 +1820,11 @@ plot(gpa1, sub.caption="Diagnostics for GPA model with sat_v and sat_m")
 
 1. Hypotheses of interest:
 
-    * $H_0: \beta_\text{sat_v}=0$ given *sat_m* in the model vs 
-    $H_A: \beta_\text{sat_v}\ne 0$ given *sat_m* in the model.
+    * $H_0: \beta_\text{sat\_v}=0$ given *sat_m* in the model vs 
+    $H_A: \beta_\text{sat\_v}\ne 0$ given *sat_m* in the model.
     
-    * $H_0: \beta_\text{sat_m}=0$ given *sat_v* in the model vs 
-    $H_A: \beta_\text{sat_m}\ne 0$ given *sat_v* in the model.
+    * $H_0: \beta_\text{sat\_m}=0$ given *sat_v* in the model vs 
+    $H_A: \beta_\text{sat\_m}\ne 0$ given *sat_v* in the model.
 
 2. Plot the data and assess validity conditions:
 
@@ -1941,7 +1940,7 @@ violated and so the inferences from our model should be relatively trustworthy.
     * The model seems to be valid and have predictors with small p-values, but note how much of the variation is not explained by the model. It only explains 21.22% \index{R-squared} of the variation in the responses. So we found evidence that these variables are useful in predicting the responses, but are they useful enough to use for decisions on admitting students? By quantifying
 the size of the estimated slope coefficients, we can add to the information about how potentially useful this model might be. The estimated MLR model is
 
-    $$\widehat{\text{fy_gpa}}_i=0.00737+0.0254\cdot\text{sat_v}_i+0.0224\cdot\text{sat_m}_i\ .$$
+    $$\widehat{\text{fy\_gpa}}_i=0.00737+0.0254\cdot\text{sat\_v}_i+0.0224\cdot\text{sat\_m}_i\ .$$
 
     * So for a 1 percent increase in the *sat_v* percentile, we estimate, on average, a 0.0254 point change in *GPA*, after controlling for *sat_m* percentile. Similarly, for a 1 percent increase in the *sat_m* percentile, we estimate, on average, a 0.0224 point change in *GPA*, after controlling for *sat_v* percentile. While this is a correct interpretation of the slope coefficients,
 it is often easier to assess "practical" importance of the results by considering
@@ -1969,7 +1968,7 @@ plot(allEffects(gpa1, residuals=T))
 ```
 
 
-(ref:fig8-20) Term-plots for the $\text{fy_gpa}\sim\text{sat_v} + \text{sat_m}$ model with partial residuals.
+(ref:fig8-20) Term-plots for the $\text{fy\_gpa}\sim\text{sat\_v} + \text{sat\_m}$ model with partial residuals.
 
 ```{r Figure8-20,fig.cap="(ref:fig8-20)",warning=F,message=F,echo=F}
 plot(allEffects(gpa1, residuals=T))
@@ -2016,8 +2015,8 @@ at the 30^th^ percentile and *sat_m* at the 60^th^ percentile.
 The predicted mean value is
 
 $$\begin{array}{rl}
-\widehat{\mu}_{\text{GPA}_i} &= 0.00737 + 0.0254\cdot\text{sat_v}_i 
-+ 0.0224\cdot\text{sat_m}_i \\
+\widehat{\mu}_{\text{GPA}_i} &= 0.00737 + 0.0254\cdot\text{sat\_v}_i 
++ 0.0224\cdot\text{sat\_m}_i \\
 &= 0.00737 + 0.0254*30 + 0.0224*60 = 2.113.
 \end{array}$$
 
@@ -2060,7 +2059,7 @@ two types of intervals -- to make them in MLR, you have to fix all but one of
 the predictor variables and we usually do that by fixing the other variables at
 their means. \index{effects plot} \index{prediction interval}
 
-(ref:fig8-21) Term-plots for the $\text{fy_gpa}\sim\text{sat_v} + \text{sat_m}$ model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines). 
+(ref:fig8-21) Term-plots for the $\text{fy\_gpa}\sim\text{sat\_v} + \text{sat\_m}$ model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines). 
 
 ```{r Figure8-21,fig.cap="(ref:fig8-21)",fig.height=5,fig.width=10}
 #Remake effects plots with 95% PIs
@@ -2237,7 +2236,7 @@ was anything different from other quantitative predictors.
 \indent Now we want to think about what this model means. We can write the estimated 
 model as
 
-$$\widehat{\text{fy_gpa}}_i = 0.216 + 0.0386\cdot\text{sat_m}_i +
+$$\widehat{\text{fy\_gpa}}_i = 0.216 + 0.0386\cdot\text{sat\_m}_i +
 0.313I_{\text{Female},i}\ .$$
 
 When we have a *male* observation, the indicator takes on a value of 0 so the 
@@ -2249,22 +2248,22 @@ works this out step-by-step, simplifying the MLR into two SLRs:
 
 * Simplified model for *Males* (plug in a 0 for $I_{\text{Female},i}$):
 
-    * $\widehat{\text{fy_gpa}}_i = 0.216 + 0.0386\cdot\text{sat_m}_i +
-    0.313*0 = 0.216 + 0.0386\cdot\text{sat_m}_i$
+    * $\widehat{\text{fy\_gpa}}_i = 0.216 + 0.0386\cdot\text{sat\_m}_i +
+    0.313*0 = 0.216 + 0.0386\cdot\text{sat\_m}_i$
 
 * Simplified model for *Females* (plug in a 1 for $I_{\text{Female},i}$):
     
-    * $\widehat{\text{fy_gpa}}_i = 0.216 + 0.0386\cdot\text{sat_m}_i + 0.313*1$
+    * $\widehat{\text{fy\_gpa}}_i = 0.216 + 0.0386\cdot\text{sat\_m}_i + 0.313*1$
     
-    * $= 0.216 + 0.0386\cdot\text{sat_m}_i + 0.313$ (combine "like" terms to
+    * $= 0.216 + 0.0386\cdot\text{sat\_m}_i + 0.313$ (combine "like" terms to
     simplify the equation)
     
-    * $= 0.529 + 0.0386\cdot\text{sat_m}_i$ \index{indicator}
+    * $= 0.529 + 0.0386\cdot\text{sat\_m}_i$ \index{indicator}
     
 In this situation, we then end up with two SLR models that relate *sat_m* to 
 *GPA*, one model for *males* 
-$(\widehat{\text{fy_gpa}}_i= 0.216 + 0.0386\cdot\text{sat_m}_i)$ and one for *females*
-$(\widehat{\text{fy_gpa}}_i= 0.529 + 0.0386\cdot\text{sat_m}_i)$. The only difference
+$(\widehat{\text{fy\_gpa}}_i= 0.216 + 0.0386\cdot\text{sat\_m}_i)$ and one for *females*
+$(\widehat{\text{fy\_gpa}}_i= 0.529 + 0.0386\cdot\text{sat\_m}_i)$. The only difference
 between these two models is in the $y$-intercept, with the *female* model's
 $y$-intercept shifted up from the *male* $y$-intercept by 0.313. And that is what
 adding indicator variables into models does in general^[This is true for 
@@ -2342,7 +2341,7 @@ The males have a mean GPA slightly above 2.3 which is the predicted GPA for the
 average sat_m percentile for a male (remember that we have to hold the other variable at 
 its mean to make each term-plot). When making the sat_m term-plot, the intercept is generated based on a weighted average of the intercept for the baseline category (`male`) of $b_0= 0.216$ and the intercept for the deviation category (`female`) of $b_0 + b_2 = 0.529$ with weights of $516/1000=0.516$ for the estimated male intercept and $484/1000=0.484$ for estimated female intercept, $0.516 \cdot 0.216 + 0.484 \cdot 0.529 = 0.368$.
 
-(ref:fig8-25) Term-plots for the estimated model for $\text{fy_gpa}\sim\text{sat_m} + \text{GENDER}$.
+(ref:fig8-25) Term-plots for the estimated model for $\text{fy\_gpa}\sim\text{sat\_m} + \text{GENDER}$.
 
 ```{r Figure8-25,fig.cap="(ref:fig8-25)",warning=F,message=F}
 tally(GENDER~1, data=satGPA)

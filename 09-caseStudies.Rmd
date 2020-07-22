@@ -230,7 +230,7 @@ quite different based on this plot as well.
 (ref:fig9-3) Interaction plot of biomass responses by treatment and species. 
 
 ```{r Figure9-3,fig.cap="(ref:fig9-3)",echo=F, fig.height=6, fig.width=10}
-source("intplotfunctions_v2.R")
+source("intplotfunctions_v3.R")
 library(viridis)
 intplotarray(Massperha~Species*Treatment, data=gdn, col=viridis(4)[1:3], lwd=2,cex.main=1)
 ```
@@ -238,7 +238,7 @@ intplotarray(Massperha~Species*Treatment, data=gdn, col=viridis(4)[1:3], lwd=2,c
 \newpage
 
 ```{r eval=F}
-source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R")
+source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v3.R")
 intplotarray(Massperha~Species*Treatment, data=gdn, col=viridis(4)[1:3],
              lwd=2, cex.main=1)
 ```
@@ -472,14 +472,14 @@ sasakipratt <- read_csv("sasakipratt.csv")
 
 (ref:fig9-9) Stacked bar chart for Ant Colony results.
 
-```{r Figure9-9,fig.cap="(ref:fig9-9)"}
+```{r Figure9-9,fig.cap="(ref:fig9-9)", fig.height=4}
 sasakipratt$group <- factor(sasakipratt$group)
 levels(sasakipratt$group) <- c("Light","Entrance")
 sasakipratt$after <- factor(sasakipratt$after)
 levels(sasakipratt$after) <- c("SmallBright","LargeDark")
 sasakipratt$before <- factor(sasakipratt$before)
 levels(sasakipratt$before) <- c("SmallBright","LargeDark")
-plot(after~group, data=sasakipratt)
+plot(after~group, data=sasakipratt, col=cividis(2))
 ```
 
 ```{r}
@@ -711,7 +711,7 @@ AICs based on the top model from the first full model considered to make it easi
 columnHeaders <- c("**Model**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
                    "**R^2^**", "**adj R^2^**&nbsp;",
                    "**df**","**logLik**&nbsp;","**AIC**",
-                   "$\\BD$**AIC**")
+                   "Delta AIC")
 cell11 <- "$\\log(\\text{count})_i=\\beta_0 + \\beta_1\\cdot\\log(\\text{DBC})_i + \\beta_2I_{\\text{TJK},i} + \\varepsilon_i$"
 cell21 <- "$\\log(\\text{count})_i=\\beta_0 + \\beta_1\\cdot\\log(\\text{DBF})_i + \\beta_2I_{\\text{TJK},i} + \\varepsilon_i$"
 cell31 <- "$\\log(\\text{count})_i=\\beta_0 + \\beta_1\\cdot\\log(\\text{DBC})_i + \\varepsilon_i$"
@@ -929,7 +929,7 @@ levels(epworthdata$Group) <- c("Control" , "Didgeridoo")
 library(ggplot2); library(ggthemes)
 qplot(x = Time, y = Epworth, data = epworthdata, 
       group = Subject, colour = Group, geom = c("line",
-      "point"))+theme_bw()+scale_color_viridis(discrete=TRUE) 
+      "point"))+theme_bw()+scale_color_viridis(discrete=TRUE, end=.8, option="E") 
 ```
 
 \indent This plot seems to contradict the result from the following Two-Way 
@@ -961,7 +961,7 @@ set.seed(111)
 epworthdata$SimEpworth <- simulate(lm_int)[[1]]
 qplot(x = Time, y = SimEpworth, data = epworthdata, 
       group = Subject, colour = Group, geom = c("line",
-      "point"))+theme_bw()+scale_color_viridis(discrete=TRUE) 
+      "point"))+theme_bw()+scale_color_viridis(discrete=TRUE, end=.7, option="C")
 ```
 
 (ref:tab9-2) ANOVA table from Two-Way ANOVA interaction model.

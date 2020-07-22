@@ -294,11 +294,11 @@ called ``intplot`` that you can download^[Copy and include this code in a codech
 \index{\texttt{intplot()}}
 
 ```{r eval=F}
-source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R")
+source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v3.R")
 ```
 
 ```{r echo=F}
-source("intplotfunctions_v2.R")
+source("intplotfunctions_v3.R")
 ```
 
 The function allows a formula interface like ``Y~X1*X2`` and provides the 
@@ -903,7 +903,7 @@ library(effects)
 plot(allEffects(m2, residuals = T))
 ```
 
-For the One-Way and Two-Way interaction models, the partial residuals are just the original observations so present similar information as the pirate-plots but do show the model estimated 95% confidence intervals. With interaction models, you can use the default the settings in ``effects`` when adding in the partial residuals as seen below in Figure \@ref(fig:Figure4-12).
+For the One-Way and Two-Way interaction models, the partial residuals are just the original observations so present similar information as the pirate-plots but do show the model estimated 95% confidence intervals. With interaction models, you can use the default settings in ``effects`` when adding in the partial residuals as seen below in Figure \@ref(fig:Figure4-12).
 
 \newpage
 
@@ -1703,7 +1703,7 @@ plot(allEffects(norep1))
 
 \indent In the extreme unreplicated situation it is possible to estimate all model coefficients in the interaction model but we can't do inferences for those estimates since there is no residual variability. Another issue in really any model with categorical predictors but especially noticeable in the Two-Way ANOVA situation is ***estimability*** issues. \index{estimability} Instead of having issues with running out of degrees of freedom for tests we can run into situations where we do not have information to estimate some of the model coefficients. This happens any time you fail to have observations at either a level of a main effect or at a combination of levels in an interaction model. 
 
-\indent To illustrate estimability issues, we will revisit the overtake data. Each of the seven levels of outfits was made up of a combination of different characteristics of the outfits, such as which helmet and pants were chosen, whether reflective leg clips were worn or not, etc. To see all these additional variables, we will introduce a new plot that will feature more prominently in Chapter \@ref(chapter5) that allows us to explore relationships among a suite of categorical variables -- the tableplot from the ``tabplot`` package [@R-tabplot]. It allows us to sort the variables based on a single variable (think about how you might sort a spreadsheet based on one column and look at the results in other columns).  The ``tableplot`` function displays bars for each response in a row^[In larger data sets, 
+\indent To illustrate estimability issues, we will revisit the overtake data. Each of the seven levels of outfits was made up of a combination of different characteristics of the outfits, such as which helmet and pants were chosen, whether reflective leg clips were worn or not, etc. To see all these additional variables, we will introduce a new plot that will feature more prominently in Chapter \@ref(chapter5) that allows us to explore relationships among a suite of categorical variables -- the `tableplot` from the ``tabplot``^[This is the first package we have encountered that is not on the "CRAN" repository and we will need to install it from its "github" repository. This happens for packages in early development and for other packages where researchers decide to avoid the ongoing challenges involved maintaining the package status on CRAN. In order to install this package, we can use the following code after installing the `remotes` [@R-remotes] package in the regular way: `library(remotes); remotes::install_github("mtennekes/tabplot")`] package [@R-tabplot]. It allows us to sort the variables based on a single variable (think about how you might sort a spreadsheet based on one column and look at the results in other columns).  The ``tableplot`` function displays bars for each response in a row^[In larger data sets, 
 multiple subjects are displayed in each row as proportions of
 the rows in each category.] based on the 
 category of responses or as a bar with the height corresponding
@@ -1738,12 +1738,21 @@ dd$Backpack <- factor(dd$Backpack)
 
 (ref:fig4-23) Tableplot of the full overtake data set sorted by outfit worn (``Condition2``). 
 
+```{r echo=T,eval=F,fig.height=5,fig.width=10}
+library(remotes); 
+remotes::install_github("mtennekes/tabplot") # Only do this once on your computer
+```
+
 ```{r Figure4-23,fig.cap="(ref:fig4-23)",echo=T,fig.height=5,fig.width=10}
+library(remotes); 
+if (!require("tabplot", character.only = TRUE)) {
+        remotes::install_github("mtennekes/tabplot")
+        }
 library(tabplot)
 library(RColorBrewer)
 # Options needed to prevent errors on PC
 options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
-tableplot(dd[,-1],sort=Condition2, pals=list("BrBG"))
+tableplot(dd[,-1],sort=Condition2, pals=list("BrBG"), sample=F, colorNA_num = "pink", numMode = "MB-ML")
 ```
 
 \indent In the tableplot in Figure \@ref(fig:Figure4-23), we can now explore the six variables created related to aspects of each outfit. For example, the *commuter* helmet (darkest shade in ``Helmet`` column) was worn with all outfits except for the *racer* and *casual*. So maybe we would like to explore differences in overtake distances based on the type of helmet worn. Similarly, it might be nice to explore whether wearing reflective pant clips is useful and maybe there is an interaction between helmet type and leg clips on impacts on overtake distance (should we wear both or just one, for example). So instead of using the seven level ``Condition2`` in the model to assess differences based on all combinations of these outfits delineated in the other variables, we can try to fit a model with ``Helmet`` and ``ReflectClips`` and their interaction for overtake distances:
@@ -1866,7 +1875,7 @@ data=`r colFmt("DATASETNAME","red")`)**
 
     * Download and install using: 
     
-        ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R")``
+        ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v3.R")``
     
     * Provides interaction plot. \index{\texttt{intplot()}|textbf}
     
@@ -1875,7 +1884,7 @@ data=`r colFmt("DATASETNAME","red")`)**
 
     * Download and install using: 
     
-        ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R")``
+        ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v3.R")``
     
     * Provides interaction plot array that makes interaction plots switching explanatory variable roles and makes pirate-plots of the main effects.
     \index{\texttt{intplotarray()}|textbf}

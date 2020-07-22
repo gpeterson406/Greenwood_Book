@@ -247,7 +247,7 @@ an average -- it combines information across all observations and, like the
 mean, is sensitive to outliers. Second, it is a dimension-less measure, meaning
 that it has no units attached to it. It is based on z-scores which have units
 of standard deviations of $x$ or $y$ so the original units of measurement are
-cancelled out going into this calculation. This also means that changing the
+canceled out going into this calculation. This also means that changing the
 original units of measurement, say from Fahrenheit to Celsius or from miles to
 km for one or the other variable will have no impact on the correlation. Less
 obviously, the formula guarantees that ***r*** is between -1 and 1. It will
@@ -259,7 +259,7 @@ Figure \@ref(fig:Figure6-2).
 
 (ref:fig6-2) Scatterplot of an amusing (and strong) relationship that has $r=0$.
 
-```{r Figure6-2,fig.cap="(ref:fig6-2)",echo=F,warning=F,message=F}
+```{r Figure6-2,fig.cap="(ref:fig6-2)",echo=F,warning=F,message=F,fig.height=3, fig.width=3}
 x <- seq(from=0,to=20,length.out=20)
 y <- (x-mean(x))^2
 x <- c(x,5,15)
@@ -446,7 +446,7 @@ based on the other variables, but for now the associations are of interest.
 library(alr3)
 data(ais)
 library(tibble)
-ais <- as.tibble(ais)
+ais <- as_tibble(ais)
 aisR <- ais[,c("Ht","Hc","Bfat")]
 summary(aisR)
 pairs.panels(aisR, scale=T, ellipse=F, smooth=F, col=0)

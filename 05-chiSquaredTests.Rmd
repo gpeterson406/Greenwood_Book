@@ -73,7 +73,8 @@ studies these methods can be used to analyze. Graphical techniques provide
 opportunities for assessing specific patterns in variables, relationships
 between variables, and for generally understanding the responses obtained. 
 There are many different types of plots and each can elucidate certain features
-of data. The *tableplot*, briefly introduced in Chapter \@ref(chapter4), is a great and often fun starting point for working with data sets that contain categorical variables. We will start here with using it to help us
+of data. The *tableplot*, briefly introduced^[Install the `tabplot` package from the authors' github repository using `library(remotes); 
+remotes::install_github("mtennekes/tabplot")` if you haven't already done so.] in Chapter \@ref(chapter4), is a great and often fun starting point for working with data sets that contain categorical variables. We will start here with using it to help us
 understand some aspects of the results from a double-blind randomized clinical
 trial investigating a treatment for rheumatoid arthritis.
 \index{tableplot}
@@ -105,7 +106,7 @@ library(tabplot)
 library(RColorBrewer)
 # Options needed to prevent errors on PC
 options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
-tableplot(Arthritis,select=c(Treatment,Improved,Sex,Age),pals=list("BrBG"))
+tableplot(Arthritis,select=c(Treatment,Improved,Sex,Age), pals=list("BrBG"), sample=F,  colorNA_num = "orange", numMode = "MB-ML")
 ```
 
 \indent The first thing we can gather from Figure \@ref(fig:Figure5-1) is that there 
@@ -251,7 +252,7 @@ function with a ``y~x`` formula:
 
 (ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The darkest shading is for "none", medium shading for "some", and the lightest shading for "marked", as labeled on the y-axis.
 
-```{r Figure5-2,fig.cap="(ref:fig5-2)"}
+```{r Figure5-2,fig.cap="(ref:fig5-2)", fig.height=5.5}
 plot(Improved~Treatment, data=Arthritis,
      main="Stacked Bar Chart of Arthritis Data")
 ```
@@ -414,7 +415,7 @@ the null hypothesis for the *Arthritis* example, as displayed in Figure \@ref(fi
 
 (ref:fig5-4) Plot of one way that the Arthritis proportions could have been if the null hypothesis had been true.
 
-```{r Figure5-4,fig.cap="(ref:fig5-4)",echo=F}
+```{r Figure5-4,fig.cap="(ref:fig5-4)",echo=F, fig.height=5.5}
 ArthritisFAKE <- rbind(Arthritis,Arthritis) # Just to make the following plot!
 ArthritisFAKE$Treat <- factor(c(rep("Placebo",84),rep("Treated",84))) #Just to make the following plot
 plot(Improved~Treat,data=ArthritisFAKE,main="Homogeneity Null Hypothesis True")
@@ -577,7 +578,7 @@ function from a table that just contains the counts (**no totals**):
 ```{r Figure5-5,fig.cap="(ref:fig5-5)"}
 # Makes a mosaic plot where areas are related to the proportion of
 # the total in the table
-mosaicplot(electable) 
+mosaicplot(electable, main="Mosaic plot of observed results") 
 ```
 
 \indent In general, the results here are not too surprising as the respondents 
@@ -603,7 +604,7 @@ Figure \@ref(fig:Figure5-5).
 
 ```{r Figure5-6,fig.cap="(ref:fig5-6)",echo=F}
 mosaicplot(chisq.test(electable)$expected,
-           main="Plot of H0: Independence True")
+           main=expression(Plot ~ of ~ H[0]: ~ Independence ~ True))
 ```
 
 
@@ -893,7 +894,7 @@ chisq.test(Arthpermtable)
 
 (ref:fig5-8) Stacked bar charts of four permuted Arthritis data sets that produced $X^2$ between 0.62 and 2.38.
 
-```{r Figure5-8,fig.cap="(ref:fig5-8)",echo=F,fig.width=7,fig.height=4}
+```{r Figure5-8,fig.cap="(ref:fig5-8)",echo=F,fig.width=7,fig.height=7}
 set.seed(98765)
 Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
 par(mfrow=c(2,2))
@@ -1079,16 +1080,15 @@ assess the size and importance of the result.  Unfortunately, many
 researchers are so happy to see small p-values that this is their last step. We encountered a similar situation in the car overtake distance data set where a large sample size provided a data set that had a small p-value and possibly minor differences in the means driving it.   
 
 \indent If we revisit our observed results, re-plotted in Figure \@ref(fig:Figure5-11)
-since Figure \@ref(fig:Figure5-2) is many pages
-earlier, knowing that we have strong evidence against the null hypothesis 
+since it was quite a ways back that we saw the original data in Figure \@ref(fig:Figure5-2), knowing that we have strong evidence against the null hypothesis 
 of no difference between *Placebo* and *Treated* groups, what can we 
 say about the effectiveness of the arthritis medication? It seems that there is a real and important increase in the proportion 
 of patients getting improvement (*Some* or *Marked*). If the differences 
-"looked" smaller, even with a small p-value you^[Doctors are faced with this exact dilemma -- with little more training than you have now in statistics, they read a result like this in a paper and used to be encouraged to focus on the p-value to decide about treatment recommendations. Would you recommend the treatment here just based on the small p-value? Would having Figure \@ref(fig:Figure5-11) to go with the small p-value help you make a more educated decision? Now the recommendations are starting to move past just focusing on the p-values and thinking about the practical importance and size of the differences. The potential benefits of a treatment need to be balanced with risks of complications too, but that takes us back into discussing having multiple analyses in the same study (treatment improvement, complications/not, etc.).] might not recommend someone take the drug...
+"looked" smaller, even with a small p-value you^[Doctors are faced with this exact dilemma -- with little more training than you have now in statistics, they read a result like this in a paper and used to be encouraged to focus on the p-value to decide about treatment recommendations. Would you recommend the treatment here just based on the small p-value? Would having Figure \@ref(fig:Figure5-11) to go with the small p-value help you make a more educated decision? Recommendations for users of statistical results are starting to move past just focusing on the p-values and thinking about the practical importance and size of the differences. The potential benefits of a treatment need to be balanced with risks of complications too, but that takes us back into discussing having multiple analyses in the same study (treatment improvement, complications/not, etc.).] might not recommend someone take the drug...
 
 (ref:fig5-11) Stacked bar chart of the Arthritis data comparing *Treated* and *Placebo*.
 
-```{r Figure5-11,fig.cap="(ref:fig5-11)",echo=F,message=F,warning=F,fig.width=10,fig.height=5.5}
+```{r Figure5-11,fig.cap="(ref:fig5-11)",echo=F,message=F,warning=F,fig.width=10,fig.height=6}
 plot(Improved~Treatment, data=Arthritis,
      main="Stacked Bar Chart of Arthritis Data")
 ```
@@ -1233,7 +1233,7 @@ levels(election$VOTEF) <- c("Gore","Bush","Other")
 # Required options to avoid error when running on a PC, 
 # should have no impact on other platforms
 options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
-tableplot(election, select=c(VOTEF,PARTY,EDUC,GENDER),pals=list("BrBG"))
+tableplot(election, select=c(VOTEF,PARTY,EDUC,GENDER),pals=list("BrBG"), sample=F)
 ```
 
 In Figure \@ref(fig:Figure5-13), we can see many missing ``VOTEF``
@@ -1265,7 +1265,7 @@ variables.
 
 ```{r Figure5-14,fig.cap="(ref:fig5-14)", fig.height=5,fig.width=10}
 election2 <- na.omit(election[,c("VOTEF","PARTY","EDUC","GENDER")])
-tableplot(election2, select=c(VOTEF,PARTY,EDUC,GENDER), sort=1, pals=list("BrBG"))
+tableplot(election2, select=c(VOTEF,PARTY,EDUC,GENDER), sort=1, pals=list("BrBG"), sample=F)
 ```
  
 
@@ -1369,7 +1369,7 @@ Here are our 6+ steps applied to this example:
     to the right which reflects how little area is to the right of 
     that value in the distribution.
     
-    ```{r Figure5-15,fig.cap="Plot of $\\boldsymbol{\\chi^2}$-distribution with 12 degrees of freedom.",echo=F,fig.height=2.75,fig.width=3}
+    ```{r Figure5-15,fig.cap="Plot of $\\boldsymbol{\\chi^2}$-distribution with 12 degrees of freedom.",echo=F,fig.height=2.75,fig.width=3.7}
     Xsq <- seq(from=0,to=100,length.out=100)
     plot(Xsq,dchisq(Xsq,df=12),ylab="Density",
          main="Plot of Chi-sq(12) distribution",type="l",col="blue",lwd=2)
@@ -1739,8 +1739,8 @@ single sample was taken from the population so that is the appropriate procedure
 ```{r Figure5-23,fig.cap="(ref:fig5-23)",echo=F,fig.height=4,fig.width=6}
 library(survey)
 data(api)
-apistrat <- as.tibble(apistrat)
-apipop <- as.tibble(apipop)
+apistrat <- as_tibble(apistrat)
+apipop <- as_tibble(apipop)
 pirateplot(growth~stype, data=apistrat, inf.method="ci", inf.disp="line",
            pal="southpark")
 ```
@@ -1780,8 +1780,8 @@ rates among the different levels. There are also a few schools flagged as being 
 ```{r}
 library(survey)
 data(api)
-apistrat <- as.tibble(apistrat)
-apipop <- as.tibble(apipop)
+apistrat <- as_tibble(apistrat)
+apipop <- as_tibble(apipop)
 tally(~stype, data=apipop) #Population counts
 tally(~stype, data=apistrat) #Sample counts
 ```
@@ -1859,13 +1859,13 @@ created in the new ``growthcut`` variable:
 
 (ref:fig5-25) Stacked bar chart of the growth category responses by level of school.
 
-```{r Figure5-25,fig.cap="(ref:fig5-25)",echo=F}
+```{r Figure5-25,fig.cap="(ref:fig5-25)",echo=F, fig.height=5.5}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))
-plot(growthcut~stype, data=apistrat)
+plot(growthcut~stype, data=apistrat, main="Plot of Growth Categories by School levels")
 ```
 
 ```{r eval=F}
-plot(growthcut~stype, data=apistrat)
+plot(growthcut~stype, data=apistra, main="Plot of Growth Categories by School levels"t)
 ```
 
 
@@ -2215,7 +2215,7 @@ csd$Household.Income <- factor(csd$Household.Income,
 #Sorts plot by careabout responses
 tableplot(csd[,c("isare","careabout","thoughtabout","Gender",
                  "Age","Household.Income","Education")], sortCol=careabout,
-          pals=list("BrBG")) 
+          pals=list("BrBG"), sample=F) 
 ```
 
 5.2.1. If we are interested in the variables ``isare`` and ``careabout``,
@@ -2249,12 +2249,12 @@ dd <- read_csv("Walker2014_mod.csv")
 
 (ref:fig5-28) Stacked bar chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit. 
 
-```{r Figure5-28,fig.cap="(ref:fig5-28)",echo=F}
+```{r Figure5-28,fig.cap="(ref:fig5-28)",echo=F, fig.width=8}
 dd$Condition <- factor(dd$Condition)
 dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
 dd$Close <- factor(ifelse(dd$Distance<=100, "close", "notclose"))
 
-plot(Close ~ Condition2, data=dd)
+plot(Close ~ Condition2, data=dd, main="Plot of proportions of close calls by type of clothing")
 ```
 
 5.3. **Overtake close calls by outfit analysis** We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``dd$Distance<=100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided.

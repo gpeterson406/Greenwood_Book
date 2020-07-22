@@ -1743,10 +1743,10 @@ performance of their test and it was not based on a random sample?
 statistical models underlying the development of the SAT and GRE) and also in
 obtaining a data set for testing out the performance of their tests that is at
 least representative of the students (or some types of students) at this
-university. They provided information on the *SAT Verbal* (``sat_v``)
-and *Math* (``sat_m``) percentiles (these are not the scores but the ranking
+university. They^[The variables were renamed to better interface with R code and our book formatting.] provided information on the *SAT Verbal* (``satv``)
+and *Math* (``satm``) percentiles (these are not the scores but the ranking
 percentile that each score translated to in a particular year),
-*High School GPA* (``HSGPA``), *First Year* of college *GPA* (``fy_gpa``), *Gender* (``Sex`` of the students coded 1 and 2 with possibly 1 for males and 2 for females -- the documentation was also unclear this). Should ``Sex`` even be displayed in a plot with correlations since it is a categorical variable? Our interests here are in whether the two SAT percentiles are (together?)
+*High School GPA* (``hsgpa``), *First Year* of college *GPA* (``fygpa``), *Gender* (``gender`` of the students coded 1 and 2 with possibly 1 for males and 2 for females -- the documentation was also unclear this). Should ``gender`` even be displayed in a plot with correlations since it is a categorical variable? Our interests here are in whether the two SAT percentiles are (together?)
 related to the first year college GPA, describing the size of their impacts
 and assessing the predictive potential of SAT-based measures for first year in
 college GPA. There are certainly other possible research questions that can be
@@ -1758,23 +1758,24 @@ addressed with these data but this will keep us focused.
 ```{r Figure8-18,fig.cap="(ref:fig8-18)",fig.height=5.5,fig.width=10}
 library(openintro)
 data(satgpa)
-satGPA <- as_tibble(satgpa)
-pairs.panels(satGPA[,-4], ellipse=F, col="red", lwd=2)
+satgpa <- as_tibble(satgpa)
+names(satgpa) <- c("gender",  "satv", "satm", "satsum", "hsgpa", "fygpa") #Renaming variables
+pairs.panels(satgpa[,-4], ellipse=F, col="red", lwd=2)
 ```
 
 There are positive relationships in Figure \@ref(fig:Figure8-18) among all the
 pre-college measures and the *college GPA* but none are above the moderate
-strength level. The *HSGPA* has a highest correlation with
+strength level. The *hsgpa* has a highest correlation with
 first year of college results but its correlation is not that strong. Maybe
 together in a model the SAT percentiles can also be useful... 
 
 \newpage 
 
-\indent Also note this plot shows an odd *HSGPA* of 4.5 that probably should be removed^[Either
+\indent Also note this plot shows an odd *hsgpa* of 4.5 that probably should be removed^[Either
 someone had a weighted GPA with bonus points, or more likely here, there
 was a coding error in the data set since only one observation was over 4.0 in
 the GPA data. Either way, we could remove it and note that our inferences for
-HSGPA do not extend above 4.0.] if that variable is going to be used (*HSGPA*
+HSGPA do not extend above 4.0.] if that variable is going to be used (*hsgpa*
 was not used in the following models so the observation remains in the data). 
 
 \indent In MLR, the modeling process is a bit more complex and often involves 
@@ -1782,7 +1783,7 @@ more than one model, so we will often avoid the 6+ steps in testing initially
 and try to generate a model we can use in that more specific process. In this 
 case, the first model of interest using the two SAT percentiles,
 
-$$\text{fy\_gpa}_i = \beta_0 + \beta_{\text{sat\_v}}\text{sat\_v}_i + \beta_{\text{sat\_m}}\text{sat\_m}_i +\varepsilon_i,$$
+$$\text{fygpa}_i = \beta_0 + \beta_{\text{satv}}\text{satv}_i + \beta_{\text{satm}}\text{satm}_i +\varepsilon_i,$$
 
 looks like it might be worth interrogating further so we can jump straight
 into considering the 6+ steps involved in hypothesis testing for the two slope
@@ -1809,22 +1810,22 @@ they might apply to... But you could see why the company that administers the SA
 \indent The following code fits the model of interest, provides a model summary, 
 and the diagnostic plots, allowing us to consider the tests of interest:
 
-(ref:fig8-19) Diagnostic plots for the $\text{fy\_gpa}\sim\text{ sat\_v }+\text{ sat\_m}$ model.
+(ref:fig8-19) Diagnostic plots for the $\text{fygpa}\sim\text{satm} + \text{satm}$ model.
 
 ```{r Figure8-19,fig.cap="(ref:fig8-19)",fig.height=5,fig.width=10}
-gpa1 <- lm(fy_gpa~sat_v+sat_m, data=satGPA)
+gpa1 <- lm(fygpa~satv+satm, data=satgpa)
 summary(gpa1)
 par(mfrow=c(2,2), oma=c(0,0,2,0))
-plot(gpa1, sub.caption="Diagnostics for GPA model with sat_v and sat_m")
+plot(gpa1, sub.caption="Diagnostics for GPA model with satv and satm")
 ```
 
 1. Hypotheses of interest:
 
-    * $H_0: \beta_\text{sat\_v}=0$ given *sat_m* in the model vs 
-    $H_A: \beta_\text{sat\_v}\ne 0$ given *sat_m* in the model.
+    * $H_0: \beta_\text{satv}=0$ given *satm* in the model vs 
+    $H_A: \beta_\text{satv}\ne 0$ given *satm* in the model.
     
-    * $H_0: \beta_\text{sat\_m}=0$ given *sat_v* in the model vs 
-    $H_A: \beta_\text{sat\_m}\ne 0$ given *sat_v* in the model.
+    * $H_0: \beta_\text{satm}=0$ given *satv* in the model vs 
+    $H_A: \beta_\text{satm}\ne 0$ given *satv* in the model.
 
 2. Plot the data and assess validity conditions:
 
@@ -1913,25 +1914,25 @@ violated and so the inferences from our model should be relatively trustworthy.
 
 3. Calculate the test statistics and p-values:
 
-    * For *sat_v*: $t=\dfrac{0.02539}{0.002859}=8.88$ with the $t$ having $df=997$ and p-value $<0.0001$.
+    * For *satv*: $t=\dfrac{0.02539}{0.002859}=8.88$ with the $t$ having $df=997$ and p-value $<0.0001$.
     
-    * For *sat_m*: $t=\dfrac{0.02240}{0.002786}=8.04$ with the $t$ having $df=997$ and p-value $<0.0001$.
+    * For *satm*: $t=\dfrac{0.02240}{0.002786}=8.04$ with the $t$ having $df=997$ and p-value $<0.0001$.
     
 4. Conclusions:
 
-   * For *sat_v*: There is strong evidence against the null hypothesis of 
-    no linear relationship between *sat_v* and *fy_gpa* ($t_{997}=8.88$,
+   * For *satv*: There is strong evidence against the null hypothesis of 
+    no linear relationship between *satv* and *fygpa* ($t_{997}=8.88$,
     p-value < 0.0001) and conclude that, in 
-    fact, there is a linear relationship between *sat_v* percentile and the 
-    first year of college *GPA*, after controlling for the *sat_m* percentile, 
+    fact, there is a linear relationship between *satv* percentile and the 
+    first year of college *GPA*, after controlling for the *satm* percentile, 
     in the population of students that completed their first year at this
     university.
     
-    * For *sat_m*: There is strong evidence against the null hypothesis of
-    no linear relationship between *sat_m* and *fy_gpa* ($t_{997}=8.04$,
+    * For *satm*: There is strong evidence against the null hypothesis of
+    no linear relationship between *satm* and *fygpa* ($t_{997}=8.04$,
     p-value < 0.0001)and conclude that, in
-    fact, there is a linear relationship between *sat_m* percentile and the
-    first year of college *GPA*, after controlling for the *sat_v* percentile,
+    fact, there is a linear relationship between *satm* percentile and the
+    first year of college *GPA*, after controlling for the *satv* percentile,
     in the population of students that completed their first year at this
     university.
 
@@ -1940,19 +1941,19 @@ violated and so the inferences from our model should be relatively trustworthy.
     * The model seems to be valid and have predictors with small p-values, but note how much of the variation is not explained by the model. It only explains 21.22% \index{R-squared} of the variation in the responses. So we found evidence that these variables are useful in predicting the responses, but are they useful enough to use for decisions on admitting students? By quantifying
 the size of the estimated slope coefficients, we can add to the information about how potentially useful this model might be. The estimated MLR model is
 
-    $$\widehat{\text{fy\_gpa}}_i=0.00737+0.0254\cdot\text{sat\_v}_i+0.0224\cdot\text{sat\_m}_i\ .$$
+    $$\widehat{\text{fygpa}}_i=0.00737+0.0254\cdot\text{satv}_i+0.0224\cdot\text{satm}_i\ .$$
 
-    * So for a 1 percent increase in the *sat_v* percentile, we estimate, on average, a 0.0254 point change in *GPA*, after controlling for *sat_m* percentile. Similarly, for a 1 percent increase in the *sat_m* percentile, we estimate, on average, a 0.0224 point change in *GPA*, after controlling for *sat_v* percentile. While this is a correct interpretation of the slope coefficients,
+    * So for a 1 percent increase in the *satv* percentile, we estimate, on average, a 0.0254 point change in *GPA*, after controlling for *satm* percentile. Similarly, for a 1 percent increase in the *satm* percentile, we estimate, on average, a 0.0224 point change in *GPA*, after controlling for *satv* percentile. While this is a correct interpretation of the slope coefficients,
 it is often easier to assess "practical" importance of the results by considering
 how much change this implies over the range of observed predictor values. 
 
-    * The term-plots (Figure \@ref(fig:Figure8-20)) provide a visualization of the "size" of the differences in the response variable explained by each predictor. \index{effects plot} The *sat_v* term-plot shows that for the range of percentiles from around the
+    * The term-plots (Figure \@ref(fig:Figure8-20)) provide a visualization of the "size" of the differences in the response variable explained by each predictor. \index{effects plot} The *satv* term-plot shows that for the range of percentiles from around the
 30^th^ percentile to the 70^th^ percentile, the mean first 
 year *GPA* is predicted to go from approximately 1.9 to 3.0. That is a pretty
 wide range of differences in GPAs across the range of observed percentiles.
 This looks like a pretty interesting and important change in the mean first
-year GPA across that range of different SAT percentiles. Similarly, the *sat_m*
-term-plot shows that the *sat_m* percentiles were observed to range between
+year GPA across that range of different SAT percentiles. Similarly, the *satm*
+term-plot shows that the *satm* percentiles were observed to range between
 around the 30^th^ percentile and 70^th^ percentile and
 predict mean GPAs between 1.95 and 2.8. It seems that the SAT Verbal 
 percentiles produce slightly more impacts
@@ -1968,7 +1969,7 @@ plot(allEffects(gpa1, residuals=T))
 ```
 
 
-(ref:fig8-20) Term-plots for the $\text{fy\_gpa}\sim\text{sat\_v} + \text{sat\_m}$ model with partial residuals.
+(ref:fig8-20) Term-plots for the $\text{fygpa}\sim\text{satv} + \text{satm}$ model with partial residuals.
 
 ```{r Figure8-20,fig.cap="(ref:fig8-20)",warning=F,message=F,echo=F}
 plot(allEffects(gpa1, residuals=T))
@@ -1983,16 +1984,16 @@ intervals is using the ``confint`` function:
 confint(gpa1)
 ```
 
-* So, for a 1 percent increase in the *sat_v* percentile, we are 95% confident
-that the true mean *fy_gpa* changes between 0.0198 and 0.031 points, in the
+* So, for a 1 percent increase in the *satv* percentile, we are 95% confident
+that the true mean *fygpa* changes between 0.0198 and 0.031 points, in the
 population of students who completed this year at this institution, after
-controlling for *sat_m*. The *sat_m* result is similar with an interval from 
+controlling for *satm*. The *satm* result is similar with an interval from 
 0.0169 and 0.0279. Both of these intervals might benefit from re-scaling
 the interpretation to, say, a 10 percentile increase in the predictor variable, with
-the change in the *fy_gpa* for that level of increase of *sat_v* providing an
-interval from 0.198 to 0.31 points and for *sat_m* providing an interval from 
+the change in the *fygpa* for that level of increase of *satv* providing an
+interval from 0.198 to 0.31 points and for *satm* providing an interval from 
 0.169 to 0.279. So a boost of 10% in either exam percentile likely results in a
-noticeable but not huge average *fy_gpa* increase. 
+noticeable but not huge average *fygpa* increase. 
 
 6. Scope of Inference:
 
@@ -2010,34 +2011,34 @@ to who this data set might actually be representative of...
 \indent One final use of these methods is to do prediction and generate prediction
 intervals, which could be quite informative for a student considering going to
 this university who has a particular set of SAT scores. For example, suppose
-that the student is interested in the average *fy_gpa* to expect with *sat_v*
-at the 30^th^ percentile and *sat_m* at the 60^th^ percentile.
+that the student is interested in the average *fygpa* to expect with *satv*
+at the 30^th^ percentile and *satm* at the 60^th^ percentile.
 The predicted mean value is
 
 $$\begin{array}{rl}
-\widehat{\mu}_{\text{GPA}_i} &= 0.00737 + 0.0254\cdot\text{sat\_v}_i 
-+ 0.0224\cdot\text{sat\_m}_i \\
+\widehat{\mu}_{\text{fygpa}_i} &= 0.00737 + 0.0254\cdot\text{satv}_i 
++ 0.0224\cdot\text{satm}_i \\
 &= 0.00737 + 0.0254*30 + 0.0224*60 = 2.113.
 \end{array}$$
 
-This result and the 95% confidence interval for the mean student *GPA* at these
+This result and the 95% confidence interval for the mean student *fygpa* at these
 scores can be found using the ``predict`` function as: \index{\texttt{predict()}}
 
 ```{r}
-predict(gpa1, newdata=tibble(sat_v=30,sat_m=60))
-predict(gpa1, newdata=tibble(sat_v=30,sat_m=60), interval="confidence")
+predict(gpa1, newdata=tibble(satv=30,satm=60))
+predict(gpa1, newdata=tibble(satv=30,satm=60), interval="confidence")
 ```
 
-For students at the 30^th^ percentile of *sat_v* and 60^th^
-percentile of *sat_m*, we are 95% confident that the true mean first year GPA
+For students at the 30^th^ percentile of *satv* and 60^th^
+percentile of *satm*, we are 95% confident that the true mean first year GPA
 is between 1.98 and 2.24 points. For an individual student, we would want the 
 95% prediction interval:
 
 ```{r}
-predict(gpa1,newdata=tibble(sat_v=30,sat_m=60),interval="prediction")
+predict(gpa1,newdata=tibble(satv=30,satm=60),interval="prediction")
 ```
 
-For a student with *sat_v*=30 and *sat_m*=60, we are 95% sure that their first
+For a student with *satv*=30 and *satm*=60, we are 95% sure that their first
 year GPA will be between 0.81 and 3.4 points. You can see that while we are
 very certain about the mean in this situation, there is a lot of uncertainty
 in the predictions for individual students. The PI is so wide as to almost 
@@ -2059,12 +2060,12 @@ two types of intervals -- to make them in MLR, you have to fix all but one of
 the predictor variables and we usually do that by fixing the other variables at
 their means. \index{effects plot} \index{prediction interval}
 
-(ref:fig8-21) Term-plots for the $\text{fy\_gpa}\sim\text{sat\_v} + \text{sat\_m}$ model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines). 
+(ref:fig8-21) Term-plots for the $\text{fygpa}\sim\text{satv} + \text{satm}$ model with 95% confidence intervals (red, dashed lines) and 95% PIs (light grey, dotted lines). 
 
 ```{r Figure8-21,fig.cap="(ref:fig8-21)",fig.height=5,fig.width=10}
 #Remake effects plots with 95% PIs
-dv1 <- tibble(sat_v=seq(from=24,to=76,length.out=50), sat_m=rep(54.4,50))
-dm1 <- tibble(sat_v=rep(48.93,50), sat_m=seq(from=29,to=77,length.out=50))
+dv1 <- tibble(satv=seq(from=24,to=76,length.out=50), satm=rep(54.4,50))
+dm1 <- tibble(satv=rep(48.93,50), satm=seq(from=29,to=77,length.out=50))
 
 mv1 <- as_tibble(predict(gpa1, newdata=dv1, interval="confidence"))
 pv1 <- as_tibble(predict(gpa1, newdata=dv1, interval="prediction"))
@@ -2074,21 +2075,21 @@ pm1 <- as_tibble(predict(gpa1, newdata=dm1, interval="prediction"))
 
 par(mfrow=c(1,2))
 
-plot(dv1$sat_v, mv1$fit, lwd=2, ylim=c(pv1$lwr[1],pv1$upr[50]), type="l",
-     xlab="sat_v Percentile", ylab="GPA", main="sat_v Effect, CI and PI")
-lines(dv1$sat_v, mv1$lwr, col="red", lty=2, lwd=2)
-lines(dv1$sat_v, mv1$upr, col="red", lty=2, lwd=2)
-lines(dv1$sat_v, pv1$lwr, col="grey", lty=3, lwd=3)
-lines(dv1$sat_v, pv1$upr, col="grey", lty=3, lwd=3)
+plot(dv1$satv, mv1$fit, lwd=2, ylim=c(pv1$lwr[1],pv1$upr[50]), type="l",
+     xlab="satv Percentile", ylab="GPA", main="satv Effect, CI and PI")
+lines(dv1$satv, mv1$lwr, col="red", lty=2, lwd=2)
+lines(dv1$satv, mv1$upr, col="red", lty=2, lwd=2)
+lines(dv1$satv, pv1$lwr, col="grey", lty=3, lwd=3)
+lines(dv1$satv, pv1$upr, col="grey", lty=3, lwd=3)
 legend("topleft", c("Estimate", "CI","PI"), lwd=3, lty=c(1,2,3),
        col = c("black", "red","grey"))
 
-plot(dm1$sat_m, mm1$fit, lwd=2, ylim=c(pm1$lwr[1],pm1$upr[50]), type="l",
-     xlab="sat_m Percentile", ylab="GPA", main="sat_m Effect, CI and PI")
-lines(dm1$sat_m, mm1$lwr, col="red", lty=2, lwd=2)
-lines(dm1$sat_m, mm1$upr, col="red", lty=2, lwd=2)
-lines(dm1$sat_m, pm1$lwr, col="grey", lty=3, lwd=3)
-lines(dm1$sat_m, pm1$upr, col="grey", lty=3, lwd=3)
+plot(dm1$satm, mm1$fit, lwd=2, ylim=c(pm1$lwr[1],pm1$upr[50]), type="l",
+     xlab="satm Percentile", ylab="GPA", main="satm Effect, CI and PI")
+lines(dm1$satm, mm1$lwr, col="red", lty=2, lwd=2)
+lines(dm1$satm, mm1$upr, col="red", lty=2, lwd=2)
+lines(dm1$satm, pm1$lwr, col="grey", lty=3, lwd=3)
+lines(dm1$satm, pm1$upr, col="grey", lty=3, lwd=3)
 ```
 
 \sectionmark{Different intercepts for different groups}
@@ -2108,9 +2109,9 @@ on the gender of the students. It is dangerous to fit MLR models across
 subpopulations but we can also use MLR models to address more sophisticated
 research questions by comparing groups. We will be able to compare the
 intercepts (mean levels) and the slopes to see if they differ between the
-groups. For example, does the relationship between the *sat_v* and *fy_gpa*
+groups. For example, does the relationship between the *satv* and *fygpa*
 differ for male and female students? We can add the grouping information to
-the scatterplot of *fy_gpa* vs *sat_v* (Figure \@ref(fig:Figure8-22)) and
+the scatterplot of *fygpa* vs *satv* (Figure \@ref(fig:Figure8-22)) and
 consider whether there is visual evidence of a difference in the slope and/or
 intercept between the two groups, with men coded^[We 
 are actually making an educated guess about what these codes mean. Other
@@ -2129,8 +2130,8 @@ begin to handle these situations and explore creating models that assume the sam
 slope coefficient for all groups but allow for different $y$-intercepts. This material
 ends up resembling what we did for the Two-Way ANOVA additive model. 
 
-\indent The results for *sat_v* contrast with Figure \@ref(fig:Figure8-23) for the relationship
-between first year college *GPA* and *sat_m*
+\indent The results for *satv* contrast with Figure \@ref(fig:Figure8-23) for the relationship
+between first year college *GPA* and *satm*
 percentile by gender of the students. The lines for the two groups appear to be
 mostly parallel and just seem to have different $y$-intercepts. In this section, we will learn how we can use our
 MLR techniques to fit a model to the entire data set that allows for different
@@ -2138,21 +2139,21 @@ $y$-intercepts. The real power of this idea is that we can then also test whethe
 the different groups have different $y$-intercepts -- whether the shift between
 the groups is "real". In this example, it appears to suggest that females
 generally have slightly higher GPAs than males, on average, but that an
-increase in sat_m has about the same impact on GPA for both groups. If this difference in
+increase in *satm* has about the same impact on GPA for both groups. If this difference in
 $y$-intercepts is not "real", then there appears to be no difference between the
-sexes in their relationship between sat_m and GPA and we can safely continue
+sexes in their relationship between *satm* and GPA and we can safely continue
 using a model that does not differentiate the two groups. We could also just
 subset the data set and do two analyses, but that approach will not allow us 
 to assess whether things are "really" different between the two groups. 
 
 ```{r eval=F}
-satGPA$GENDER <- factor(satGPA$sex) #Make 1,2 coded sex into factor GENDER
+satgpa$GENDER <- factor(satgpa$gender) #Make 1,2 coded gender into factor GENDER
 # Make category names clear but names might be wrong
-levels(satGPA$GENDER) <- c("MALE", "FEMALE") 
-scatterplot(fy_gpa~sat_v|GENDER, lwd=3, data=satGPA, smooth=F,
-            main="Scatterplot of GPA vs sat_v by Sex")
-scatterplot(fy_gpa~sat_m|GENDER, lwd=3, data=satGPA, smooth=F,
-            main="Scatterplot of GPA vs sat_m by Sex")
+levels(satgpa$GENDER) <- c("MALE", "FEMALE") 
+scatterplot(fygpa~satv|GENDER, lwd=3, data=satgpa, smooth=F,
+            main="Scatterplot of GPA vs satv by Gender")
+scatterplot(fygpa~satm|GENDER, lwd=3, data=satgpa, smooth=F,
+            main="Scatterplot of GPA vs satm by Gender")
 ```
 
 \indent To fit one model to a data set that contains multiple groups, we need a way of
@@ -2170,33 +2171,33 @@ factor variable is used as an explanatory variable. \index{indicator} \index{fac
 It sets up the indicator
 variables using a baseline category (which gets coded as a 0) and the deviation
 category for the other level of the variable (which gets coded as a 1). We can see how this works by
-exploring what happens when we put ``GENDER`` into our ``lm`` with ``sat_m``, after first making sure it is categorical using
+exploring what happens when we put ``GENDER`` into our ``lm`` with ``satm``, after first making sure it is categorical using
 the ``factor`` function and making the factor ``levels`` explicit instead of 1s
 and 2s. 
 \index{\texttt{factor()}}
 \index{\texttt{levels()}}
 
 ```{r}
-satGPA$GENDER <- factor(satGPA$sex) #Make 1,2 coded sex into factor GENDER
+satgpa$GENDER <- factor(satgpa$gender) #Make 1,2 coded gender into factor GENDER
 # Make category names clear but names might be wrong
-levels(satGPA$GENDER) <- c("MALE", "FEMALE") 
-SATGENDER1 <- lm(fy_gpa~sat_m+GENDER, data=satGPA) #Fit lm with sat_m and SEX
+levels(satgpa$GENDER) <- c("MALE", "FEMALE") 
+SATGENDER1 <- lm(fygpa~satm+GENDER, data=satgpa) #Fit lm with satm and GENDER
 summary(SATGENDER1)
 ```
 
-(ref:fig8-22) Plot of fy_gpa vs sat_v by Sex of students.
+(ref:fig8-22) Plot of fygpa vs satv by gender of students.
 
 ```{r Figure8-22,fig.cap="(ref:fig8-22)",echo=F,fig.height=5,fig.width=10}
 library(viridis)
-scatterplot(fy_gpa~sat_v|GENDER, lwd=3, data=satGPA, smooth=F,
-            main="Scatterplot of GPA vs sat_v by Sex", cex.main=1, col=viridis(8)[c(7,1)])
+scatterplot(fygpa~satv|GENDER, lwd=3, data=satgpa, smooth=F,
+            main="Scatterplot of GPA vs satv by gender", cex.main=1, col=viridis(8)[c(7,1)])
 ```
 
-(ref:fig8-23) Plot of fy_gpa vs sat_m by Sex of students.
+(ref:fig8-23) Plot of fygpa vs satm by gender of students.
 
 ```{r Figure8-23,fig.cap="(ref:fig8-23)",echo=F,fig.height=5,fig.width=10}
-scatterplot(fy_gpa~sat_m|GENDER, lwd=3, data=satGPA, smooth=F,
-            main="Scatterplot of GPA vs sat_m by Sex", cex.main=1, col=viridis(8)[c(7,1)])
+scatterplot(fygpa~satm|GENDER, lwd=3, data=satgpa, smooth=F,
+            main="Scatterplot of GPA vs satm by gender", cex.main=1, col=viridis(8)[c(7,1)])
 ```
 
 The ``GENDER `` row contains information that the linear model chose *MALE* as
@@ -2207,10 +2208,10 @@ is 0 for *males* and 1 for *females* that we called ``GENDERINDICATOR``, display
 for the first 10 observations:
 
 ```{r}
-# Convert logical to 0 for male, 1 for female
-satGPA$GENDERINDICATOR <- as.numeric(satGPA$GENDER=="FEMALE") 
+# Convert logical to 1 for female, 0 for male using ifelse function
+satgpa$GENDERINDICATOR <- ifelse(satgpa$GENDER=="FEMALE",1,0) 
 # Explore first few observations
-head(tibble(GENDER=satGPA$GENDER, GENDERINDICATOR=satGPA$GENDERINDICATOR), 10) 
+head(tibble(GENDER=satgpa$GENDER, GENDERINDICATOR=satgpa$GENDERINDICATOR), 10) 
 ```
 
 We can define the indicator variable more generally by calling it
@@ -2225,22 +2226,22 @@ replace the categorical ``GENDER`` variable with our quantitative ``GENDERINDICA
 and re-fit the model, we get:
 
 ```{r}
-SATGENDER2 <- lm(fy_gpa~sat_m+GENDERINDICATOR, data=satGPA)
+SATGENDER2 <- lm(fygpa~satm+GENDERINDICATOR, data=satgpa)
 summary(SATGENDER2)
 ```
 
 This matches all the previous ``lm`` output except that we didn't get any
-information on the categories used since ``lm`` didn't know that GENDERINDICATOR
+information on the categories used since ``lm`` didn't know that *GENDERINDICATOR*
 was anything different from other quantitative predictors. 
 
 \indent Now we want to think about what this model means. We can write the estimated 
 model as
 
-$$\widehat{\text{fy\_gpa}}_i = 0.216 + 0.0386\cdot\text{sat\_m}_i +
-0.313I_{\text{Female},i}\ .$$
+$$\widehat{\text{fygpa}}_i = 0.216 + 0.0386\cdot\text{satm}_i +
+0.313 \cdot I_{\text{Female},i}\ .$$
 
 When we have a *male* observation, the indicator takes on a value of 0 so the 
-0.313 drops out of the model, leaving an SLR just in terms of *sat_m*. For a
+0.313 drops out of the model, leaving an SLR just in terms of *satm*. For a
 *female* student, the indicator is 1 and we add 0.313 to the previous 
 $y$-intercept. The following
 works this out step-by-step, simplifying the MLR into two SLRs:
@@ -2248,22 +2249,22 @@ works this out step-by-step, simplifying the MLR into two SLRs:
 
 * Simplified model for *Males* (plug in a 0 for $I_{\text{Female},i}$):
 
-    * $\widehat{\text{fy\_gpa}}_i = 0.216 + 0.0386\cdot\text{sat\_m}_i +
-    0.313*0 = 0.216 + 0.0386\cdot\text{sat\_m}_i$
+    * $\widehat{\text{fygpa}}_i = 0.216 + 0.0386\cdot\text{satm}_i +
+    0.313 \cdot 0 = 0.216 + 0.0386\cdot\text{satm}_i$
 
 * Simplified model for *Females* (plug in a 1 for $I_{\text{Female},i}$):
     
-    * $\widehat{\text{fy\_gpa}}_i = 0.216 + 0.0386\cdot\text{sat\_m}_i + 0.313*1$
+    * $\widehat{\text{fygpa}}_i = 0.216 + 0.0386\cdot\text{satm}_i + 0.313 \cdot 1$
     
-    * $= 0.216 + 0.0386\cdot\text{sat\_m}_i + 0.313$ (combine "like" terms to
+    * $= 0.216 + 0.0386\cdot\text{satm}_i + 0.313$ (combine "like" terms to
     simplify the equation)
     
-    * $= 0.529 + 0.0386\cdot\text{sat\_m}_i$ \index{indicator}
+    * $= 0.529 + 0.0386\cdot\text{satm}_i$ \index{indicator}
     
-In this situation, we then end up with two SLR models that relate *sat_m* to 
+In this situation, we then end up with two SLR models that relate *satm* to 
 *GPA*, one model for *males* 
-$(\widehat{\text{fy\_gpa}}_i= 0.216 + 0.0386\cdot\text{sat\_m}_i)$ and one for *females*
-$(\widehat{\text{fy\_gpa}}_i= 0.529 + 0.0386\cdot\text{sat\_m}_i)$. The only difference
+$(\widehat{\text{fygpa}}_i= 0.216 + 0.0386\cdot\text{satm}_i)$ and one for *females*
+$(\widehat{\text{fygpa}}_i= 0.529 + 0.0386\cdot\text{satm}_i)$. The only difference
 between these two models is in the $y$-intercept, with the *female* model's
 $y$-intercept shifted up from the *male* $y$-intercept by 0.313. And that is what
 adding indicator variables into models does in general^[This is true for 
@@ -2277,26 +2278,26 @@ deviation group (here *females*).
 
 \indent To make this visually clearer, Figure \@ref(fig:Figure8-24) contains the
 regression lines that were estimated for each
-group. For any *sat_m*, the difference in the groups is the 0.313 coefficient from
+group. For any *satm*, the difference in the groups is the 0.313 coefficient from
 the ``GENDERFEMALE`` or ``GENDERINDICATOR`` row of the model summaries. For example,
-at *sat_m*=50, the difference in terms of predicted average first year GPAs
+at *satm*=50, the difference in terms of predicted average first year GPAs
 between males and females is displayed as a difference between 2.15 and 2.46.
-This model assumes that the slope on *sat_m* is the same for both groups except
+This model assumes that the slope on *satm* is the same for both groups except
 that they are allowed to have different $y$-intercepts, which is reasonable here
 because we saw approximately parallel relationships for the two groups in
 Figure \@ref(fig:Figure8-23). 
 
-(ref:fig8-24) Plot of estimated model for *fy_gpa* vs *sat_m* by *GENDER* of students (female line is thicker dark line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group.
+(ref:fig8-24) Plot of estimated model for *fygpa* vs *satm* by *GENDER* of students (female line is thicker dark line). Dashed lines aid in seeing the consistent vertical difference of 0.313 in the two estimated lines based on the model containing a different intercept for each group.
 
 ```{r Figure8-24,fig.cap="(ref:fig8-24)",echo=F,warning=F,message=F}
-fitmales <- 0.216+0.0386*dm1$sat_m
-fitfemales <- 0.529+0.0386*dm1$sat_m
+fitmales <- 0.216+0.0386*dm1$satm
+fitfemales <- 0.529+0.0386*dm1$satm
 
 par(mfrow=c(1,1))
-plot(dm1$sat_m,fitmales,ylim=c(min(fitmales),max(fitfemales)),
+plot(dm1$satm,fitmales,ylim=c(min(fitmales),max(fitfemales)),
      main="Plot of estimated regression lines by gender",
-     type="l",lwd=2,xlab="sat_m",ylab="fy_gpa", col=viridis(8)[7])
-lines(dm1$sat_m,fitfemales,lwd=3,col=viridis(8)[1])
+     type="l",lwd=2,xlab="satm",ylab="fygpa", col=viridis(8)[7])
+lines(dm1$satm,fitfemales,lwd=3,col=viridis(8)[1])
 abline(v=50,lty=2,col="grey")
 abline(h=0.216+0.0386*50,lty=2,col=viridis(8)[7])
 abline(h=0.529+0.0386*50,lty=2,col=viridis(8)[1])
@@ -2338,13 +2339,13 @@ the quantitative variable for all observations and a shift to reflect the
 different $y$-intercepts in the two groups. In Figure \@ref(fig:Figure8-25), the
 females are estimated to be that same 0.313 points higher on first year GPA.
 The males have a mean GPA slightly above 2.3 which is the predicted GPA for the
-average sat_m percentile for a male (remember that we have to hold the other variable at 
-its mean to make each term-plot). When making the sat_m term-plot, the intercept is generated based on a weighted average of the intercept for the baseline category (`male`) of $b_0= 0.216$ and the intercept for the deviation category (`female`) of $b_0 + b_2 = 0.529$ with weights of $516/1000=0.516$ for the estimated male intercept and $484/1000=0.484$ for estimated female intercept, $0.516 \cdot 0.216 + 0.484 \cdot 0.529 = 0.368$.
+average satm percentile for a male (remember that we have to hold the other variable at 
+its mean to make each term-plot). When making the satm term-plot, the intercept is generated based on a weighted average of the intercept for the baseline category (`male`) of $b_0= 0.216$ and the intercept for the deviation category (`female`) of $b_0 + b_2 = 0.529$ with weights of $516/1000=0.516$ for the estimated male intercept and $484/1000=0.484$ for estimated female intercept, $0.516 \cdot 0.216 + 0.484 \cdot 0.529 = 0.368$.
 
-(ref:fig8-25) Term-plots for the estimated model for $\text{fy\_gpa}\sim\text{sat\_m} + \text{GENDER}$.
+(ref:fig8-25) Term-plots for the estimated model for $\text{fygpa}\sim\text{satm} + \text{GENDER}$.
 
 ```{r Figure8-25,fig.cap="(ref:fig8-25)",warning=F,message=F}
-tally(GENDER~1, data=satGPA)
+tally(GENDER~1, data=satgpa)
 plot(allEffects(SATGENDER1))
 ```
 
@@ -2353,7 +2354,7 @@ inferences in these models. Again, these are just applications of MLR methods
 we have already seen except that the definition of one of the variables is
 "different" using the indicator coding idea. \index{indicator} For the same model, the ``GENDER``
 coefficient can be used to generate inferences for differences in the mean the
-groups, controlling for their *sat_m* scores. 
+groups, controlling for their *satm* scores. 
 
 ```
 ##                Estimate Std. Error t value Pr(>|t|)
@@ -2365,7 +2366,7 @@ our regular $t$-test provides the opportunity to test for a difference in
 intercepts between the groups. In this situation, the test
 statistic is $t=7.184$ and, based on a $t_{997}$-distribution
 if the null is true, the p-value is $<0.0001$. We have very strong evidence against the null hypothesis that there is no difference in the true
-$y$-intercept in a *sat_m* model for first year college GPA between *males* and *females*, so we would conclude that there is a difference in their true mean GPA levels controlled for *sat_m*. The confidence
+$y$-intercept in a *satm* model for first year college GPA between *males* and *females*, so we would conclude that there is a difference in their true mean GPA levels controlled for *satm*. The confidence
 interval is also informative:
 
 <!-- \newpage -->
@@ -2375,13 +2376,13 @@ confint(SATGENDER1)
 ```
 
 We are 95% confident that the true mean GPA for females is between 0.228 and
-0.399 points higher than for males, after adjusting for the *sat_m* in the
+0.399 points higher than for males, after adjusting for the *satm* in the
 population of students. If we had subset the data set by gender and fit two SLRs, we
 could have obtained the same simplified regression models for each group but we never could
 have performed inferences for the differences between the two groups without
 putting all the observations together in one model and then assessing those
 differences with targeted coefficients. We also would not be able to get an
-estimate of their common slope for *sat_m*, after adjusting for differences
+estimate of their common slope for *satm*, after adjusting for differences
 in the intercept for each group.
 
 ## Additive MLR with more than two groups: Headache example	{#section8-10}
@@ -4100,7 +4101,7 @@ explore whether the relationship between treadmill oxygen and run time might
 differ across the age groups. 
 
 ```r
-treadmill$Ageb <- cut(treadmill$Age, breaks=c(37,44.5,50.5,58))
+treadmill$Ageb <- factor(cut(treadmill$Age, breaks=c(37,44.5,50.5,58)))
 summary(treadmill$Ageb)
 library(car)
 scatterplot(TreadMillOx~RunTime|Ageb, data=treadmill, smooth=F, lwd=2)
@@ -4116,7 +4117,7 @@ include any other variables. Compare the ***R***^2^ and adjusted
 relative to the need for different slope coefficients. 
 
 8.1.12. Write out the overall estimated model. What level was R using as 
-baseline? Write out the simplified model for two of the age levels. 
+baseline? Write out the simplified model for two of the age levels. Make an effects plot and discuss how it matches the simplified models you generated. 
 
 8.1.13. Fit the additive model with ``RunTime`` and predict the mean treadmill
 oxygen values for subjects with run times of 11 minutes in each of the three 

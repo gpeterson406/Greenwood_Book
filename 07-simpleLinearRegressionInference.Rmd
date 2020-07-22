@@ -692,10 +692,10 @@ the diagnostic plots in Figure \@ref(fig:Figure7-6) to aid our assessment:
 
 (ref:fig7-6) Diagnostic plots of the Bozeman yearly temperature simple linear regression model.
 
-```{r Figure7-6,fig.cap="(ref:fig7-6)",fig.height=4,fig.width=10}
+```{r Figure7-6,fig.cap="(ref:fig7-6)",fig.height=5,fig.width=10}
 temp1 <- lm(meanmax~Year, data=bozemantemps)
 par(mfrow=c(2,2))
-plot(temp1, add.smooth=F)
+plot(temp1, add.smooth=F, pch=16)
 ```
 
 * **Linearity of relationship**
@@ -1666,7 +1666,7 @@ where $y$ is thought to be proportional to $x$ raised to an estimated power
 of $\beta_1$ (linear if $\beta_1=1$ and quadratic if $\beta_1=2$). It is 
 one of the models that has been used in Geomorphology to model the shape of
 glaciated valley elevation profiles
-(that classic U-shape that comes with glacier-eroded mountain valleys)^[You can read my dissertation if you want my take on modeling U and V-shaped valley elevation profiles that included some discussion of these models and some related discussions in @Greenwood2002.]. If you
+(that classic U-shape that comes with glacier-eroded mountain valleys)^[You can read my dissertation if you want my take on modeling U and V-shaped valley elevation profiles that included some discussion of these models, some of which was also in @Greenwood2002.]. If you
 ignore the error term, it is possible to estimate the power-law model using our
 SLR approach. Consider the log-transformation of both sides of this equation
 starting with the power-law version:
@@ -1864,10 +1864,12 @@ $$\boldsymbol{\hat{y}_{\nu} \mp t^*_{n-2}}\textbf{SE}_{\boldsymbol{\hat{y}_{\nu}
 and interpreted as:
 
 > We are __% sure that a new observation at $\boldsymbol{x_{\nu}}$ will be between
-> **LL** and **UL** **[*units of y*]**. Since 
-> $\text{SE}_{\hat{y}_{\nu}} > \text{SE}_{\hat{\mu}_{\nu}}$, the **PI will always
+> **LL** and **UL** **[*units of y*]**. 
+
+The formula also helps us to see that
+
+> since $\text{SE}_{\hat{y}_{\nu}} > \text{SE}_{\hat{\mu}_{\nu}}$, the **PI will always
 > be wider than the CI**. 
->
 
 
 \indent As in confidence
@@ -1957,7 +1959,7 @@ The 95% CI for the true mean at $\boldsymbol{x_{\nu}=8}$ is then:
 0.131 + c(-1,1)*2.1448*0.0092
 ```
 
-Which matches the previous output quite well. 
+which matches the previous output quite well. 
 
 The 95% PI requires the calculation of 
 $\sqrt{\text{SE}_{\hat{\mu}_{\nu}}^2 + \boldsymbol{\hat{\sigma}^2}} = \sqrt{(0.0092)^2+(0.02044)^2}=0.0224$. 
@@ -2104,7 +2106,7 @@ yearly average maximum temperature in 2015 will be (I guess "would have been")
 between 59.2$^\circ F$ and 61.1$^\circ F$. Obviously, 2015 has occurred, but
 since the data were not published when the data set was downloaded in July
 2016, we can probably best treat 2015 as a potential "future" observation. The
-results for 2050 are clearly for the future mean and a new observation^[I have really enjoyed writing this book but kind of hope to at least have updated this data set before 2050.] in 2050. 
+results for 2050 are clearly for the future mean and a new observation^[I have really enjoyed writing this book and enjoy updating it yearly, but hope someone else gets to do the work of checking the level of inaccuracy of this model in another 30 years.] in 2050. 
 Note that up to 2014, no values of this response had been observed above 60$^\circ F$ and the predicted mean in 2050 is over 60$^\circ F$ if the trend
 persists. It is easy to criticize the use of this model for 2050 because of its extreme amount
 of extrapolation. 

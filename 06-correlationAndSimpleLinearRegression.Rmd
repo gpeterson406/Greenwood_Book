@@ -279,6 +279,8 @@ correlation coefficient provides:
     numerically and a meaningless correlation can be estimated if you 
     are not careful what you correlate. 
     
+    \newpage
+    
 2. The relationship between the variables is relatively linear.
 
     * If the relationship is nonlinear, the correlation is meaningless since it only measures linear relationships 
@@ -454,6 +456,7 @@ summary(aisR)
 pairs.panels(aisR, scale=T, ellipse=F, smooth=F, col=0)
 ```
 
+\newpage
 
 ```{r}
 cor(aisR)
@@ -878,7 +881,7 @@ cor(dbh.cm~height.m, data=ufc[-168,])
 in the population of trees is between 0.708 and 0.819. When
 the outlier is dropped from the data set, the 95% bootstrap CI is 0.753 to 0.826, 
 which shifts the lower endpoint of the interval up, reducing the width of the
-interval from 0.111 to 0.073. In other words, the uncertainty regarding the
+interval from 0.111 to 0.073 (Figure \@ref(fig:Figure6-12)). In other words, the uncertainty regarding the
 value of the population correlation coefficient is reduced. The reason to
 remove the observation is that it is unusual based on the observed pattern, 
 which implies an error in data collection or sampling from a population other
@@ -920,7 +923,7 @@ abline(v=Tobs, col="red", lwd=3)
 abline(v=quantiles, col="blue", lty=2, lwd=3)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ## Describing relationships with a regression model	{#section6-6}
 
@@ -1067,7 +1070,7 @@ deep and fundamental but not the topic of this section. For the *Beers*
 and *BAC* example, the ***estimated regression coefficients*** can be 
 found from:
 
-\vspace{11pt}
+\newpage
 
 ```{r}
 m1 <- lm(BAC~Beers, data=BB)
@@ -1168,7 +1171,7 @@ aisR2 <- ais[-c(56,166), c("Ht","Hc","Bfat","Sex")]
 m2 <- lm(Hc~Bfat, data=subset(aisR2,Sex==1)) #Results for Females 
 ```
 
-\newpage
+<!-- \newpage -->
 
 (ref:fig6-15) Scatterplot of Hematocrit versus Body Fat for female athletes. 
 
@@ -1252,7 +1255,7 @@ are being measuring in the $y$-direction and appreciate that ``lm`` takes care o
 this for us. 
 \index{residuals}
 
-\newpage
+<!-- \newpage -->
 
 ```r
 > library(tigerstats)
@@ -1271,6 +1274,8 @@ Thanks for playing!
 ```{r Figure6-17,fig.cap="(ref:fig6-17)",echo=F,warning=F,message=F,out.width="100%",fig.align="center"}
 knitr::include_graphics("chapter6_files/image063.png")
 ```
+
+\newpage
 
 \indent It ends up that the least squares
 criterion does not require a search across coefficients or trial and error --
@@ -1348,7 +1353,7 @@ equation, $\widehat{\text{log(Ha)}} = -69.78 + 1.39\bullet \text{Temp}$,
 we get
 
 ```{r echo=F}
-#Equation for log-hectares with degrees cancelled
+#Equation for log-hectares with degrees canceled
 cancelDegrees = function(){
   outputFormat = opts_knit$get("rmarkdown.pandoc.to")
   if(outputFormat == 'latex') 
@@ -1385,6 +1390,8 @@ not observe any summers over 60 degrees F so we are now predicting outside the
 scope of our observations -- performing ***extrapolation***. \index{extrapolation} Having a scatterplot in
 hand helps us to assess the range of values where we can reasonably use the
 equation -- here between 54 and 60 degrees F seems reasonable. 
+
+\newpage
 
 (ref:fig6-18) Scatterplot of log-hectares burned versus temperature with estimated regression line. 
 
@@ -1535,7 +1542,7 @@ response unexplained. Note that we were careful about using the scaling of the
 response variable (log(area burned)) in the interpretation -- this is because we
 would get a much different answer if area burned vs temperature was considered. 
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 fire1 <- lm(loghectares~Temperature, data=mtfires)
@@ -1559,7 +1566,7 @@ m2 <- lm(Hc~Bfat, data=subset(aisR2,Sex==1)) #Results for Females
 summary(m2)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ## Outliers: leverage and influence	{#section6-9}
 
@@ -2090,6 +2097,8 @@ OF1 <- lm(Waiting~Duration, data=G2)
 ```{r}
 summary(OF1)
 ```
+
+\newpage
 
 (ref:fig6-25) Diagnostic plots for Old Faithful waiting time model.
 

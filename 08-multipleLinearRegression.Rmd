@@ -113,6 +113,8 @@ The MLR model carries the same assumptions as an SLR model with a
 couple of slight tweaks specific to MLR (see Section \@ref(section8-2)
 for the details on the changes to the validity conditions). 
 
+\newpage
+
 \indent We are able to use the
 least squares criterion for estimating the regression coefficients in MLR, but
 the mathematics are beyond the scope of this course.
@@ -204,6 +206,8 @@ plot(allEffects(m1,residuals=T),
      main="SLR: Effect of Elevation")
 ```
 
+\newpage
+
 Based on the model summaries provided below, the three estimated SLR models 
 are:
 
@@ -282,13 +286,12 @@ plot(allEffects(m2, residuals=T), main="SLR: Effect of Min Temp")
 plot(allEffects(m3, residuals=T), main="SLR: Effect of Max Temp")
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 summary(m1)
 ```
 
-\vspace{22pt}
 
 ```{r}
 summary(m2)
@@ -368,6 +371,8 @@ research articles, it is becoming common practice to report the slope for a
 variable that is of most interest with it in the model alone (SLR) and in models 
 after adjusting for the other variables that are expected to matter. The "adjusted for other variables" results are built with MLR or related multiple-predictor models like MLR. 
 \index{MLR}
+
+\newpage
 
 ## Validity conditions in MLR	{#section8-2}
 
@@ -672,6 +677,8 @@ the large Cook's D on one observation suggests we should consider the model
 after removing that observation. We can re-run the model without the 
 9^th^ observation using the data set ``snotel2[-9,]``. 
 
+\newpage
+
 ```{r}
 m5 <- lm(Snow.Depth~Elevation+Min.Temp+Max.Temp, data=snotel2[-9,])
 summary(m5)
@@ -773,7 +780,7 @@ par(mfrow=c(2,2), oma=c(0,0,2,0))
 plot(m6, sub.caption="Diagnostics for m6", pch=16)
 ```
 
-\newpage
+<!-- \newpage -->
 
 This worry-some observation is located in the 22^nd^ row of the
 original data set:
@@ -820,21 +827,23 @@ in the next sections.
 plot(allEffects(m6, residuals=T), main="MLR model with n=23")
 ```
 
-\indent As a final assessment of this model, we can consider simulating a set of $n=23$ responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called ``SimulatedSnow`` in the following codechunk. Figure \@ref(fig:Figure8-11) uses the ``plot`` function to just focus on the relationship of the original (``Snow.Depth``) and new (fake) responses (``SimulatedSnow``) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions and the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.
+\indent As a final assessment of this model, we can consider simulating a set of $n=23$ responses from this model and then comparing that data set to the one we just analyzed. This does not change the predictor variables, but creates a new response that is called ``SimulatedSnow`` in the following code chunk. Figure \@ref(fig:Figure8-11) uses the ``plot`` function to just focus on the relationship of the original (``Snow.Depth``) and new (fake) responses (``SimulatedSnow``) versus each of the predictors. In exploring two realizations of simulated responses from the model, the results look fairly similar to the original data set. This model appeared to have reasonable assumptions and the match between simulated responses and the original ones reinforces those previous assessments. When the match is not so close, it can reinforce or create concern about the way that the assumptions have been assessed using other tools.
+
+```{r}
+set.seed(307)
+snotel_final <- snotel2[-c(9,22),]
+snotel_final$SimulatedSnow <- simulate(m6)[[1]] #Creates first set of simulated responses
+```
 
 (ref:fig8-11) Plot of the original responses versus the three predictors ($n$=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows.
 
 ```{r Figure8-11,fig.cap="(ref:fig8-11)",fig.height=10,fig.width=10}
-set.seed(307)
-snotel_final <- snotel2[-c(9,22),]
-snotel_final$SimulatedSnow <- simulate(m6)[[1]] #Creates first set of simulated responses
-
 par(mfrow=c(3,3))
 plot(Snow.Depth~Elevation + Max.Temp + Min.Temp, data=snotel_final, 
      pch=16, main="Real Responses")
 plot(SimulatedSnow~Elevation + Max.Temp + Min.Temp, data=snotel_final, 
      pch=17, main="First Simulated Responses", col="darkgreen")
-# Creates a second set of simulared responses in the same variable name
+# Creates a second set of simulated responses in the same variable name
 snotel_final$SimulatedSnow <- simulate(m6)[[1]] 
 plot(SimulatedSnow~Elevation + Max.Temp + Min.Temp, data=snotel_final, 
      pch=16, main="Second Simulated Responses", col="skyblue")
@@ -1229,6 +1238,8 @@ all three variables on $\boldsymbol{R}^2_{\text{adjusted}}$. Note that the top
 *R*^2^ model is the model with three predictors, but the most complicated model
 will always have that characteristic. 
 
+\newpage
+
 (ref:tab8-1) Model comparisons for Snow Depth data, sorted by model complexity.
 
 ```{r Table8-1,echo=F,results="asis"}
@@ -1561,6 +1572,8 @@ temperature causes changes in the snow depth -- in fact it might even be
 possible for a location to have different temperatures because of different
 snow depths. The inferences do pertain to the population of SNOTEL sites on this day because of the random sample from the population of sites. \index{Scope of inference}
 
+\newpage
+
 \indent Similarly, we can test for *Elevation* after controlling for the *Maximum Temperature*:
 
 $$\boldsymbol{H_0: \beta_{\textbf{Elevation}}=0 \textbf{ vs } H_A: \beta_{\textbf{Elevation}}\ne 0},$$
@@ -1769,7 +1782,7 @@ strength level. The *hsgpa* has a highest correlation with
 first year of college results but its correlation is not that strong. Maybe
 together in a model the SAT percentiles can also be useful... 
 
-\newpage 
+<!-- \newpage --> 
 
 \indent Also note this plot shows an odd *hsgpa* of 4.5 that probably should be removed^[Either
 someone had a weighted GPA with bonus points, or more likely here, there
@@ -2411,13 +2424,18 @@ of the results in Figure \@ref(fig:Figure8-26) shows some variation in the
 slopes and the intercepts for the groups although the variation in intercepts
 seems more prominent than differences in slopes. Note that the ``relevel`` function was applied to the ``treatment`` variable with an option of ``"Control"`` to make the *Control* category the baseline category as the person who created the data set had set ``T1`` as the baseline in the ``treatment`` variable.  
 
-(ref:fig8-26) Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups).  
-
-```{r Figure8-26,fig.cap="(ref:fig8-26)",fig.height=5,fig.width=10}
+```{r}
 library(heplots)
 library(viridis)
 data(Headache)
 Headache <- as_tibble(Headache)
+```
+
+\newpage
+
+(ref:fig8-26) Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups).  
+
+```{r Figure8-26,fig.cap="(ref:fig8-26)",fig.height=5,fig.width=10}
 Headache
 Headache$treatment <- factor(Headache$treatment)
 # Make Control the baseline category
@@ -2638,7 +2656,7 @@ it":
 head1R <- lm(du2~du1, data=Headache)
 ```
 
-<!-- \newpage -->
+\newpage
 
 ```{r}
 summary(head1R)

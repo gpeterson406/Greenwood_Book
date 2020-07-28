@@ -235,7 +235,7 @@ library(viridis)
 intplotarray(Massperha~Species*Treatment, data=gdn, col=viridis(4)[1:3], lwd=2,cex.main=1)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r eval=F}
 source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v3.R")
@@ -323,6 +323,8 @@ nitrogen has more of an impact on the resulting log-biomass for *HS* than for
 conditions for both species making nitrogen appear to inhibit growth of these
 species. 
 
+\newpage
+
 (ref:fig9-6) Diagnostic plots of treatment by species interaction model for log-Biomass. 
 
 ```{r Figure9-6,fig.cap="(ref:fig9-6)",fig.height=5,fig.width=10}
@@ -388,7 +390,7 @@ test above was testing a more refined hypothesis -- does the effect of
 treatment differ between the two species? As in any situation with a small p-value from the overall
 One-Way ANOVA test, the pair-wise comparisons should be of interest. 
 
-\newpage
+<!-- \newpage -->
 
 ```{r warning=F,message=F}
 # Create new variable:
@@ -396,7 +398,11 @@ gdn$SpTrt <- interaction(gdn$Species, gdn$Treatment)
 levels(gdn$SpTrt)
 newm2 <- lm(logMassperha~SpTrt, data=gdn)
 Anova(newm2)
+```
 
+\vspace{22pt}
+
+```{r}
 library(multcomp)
 PWnewm2 <- glht(newm2, linfct=mcp(SpTrt="Tukey"))
 confint(PWnewm2)
@@ -436,6 +442,8 @@ impact on the two species, remembering that in the control treatments, the
 results for the two species were not detectably different. Further explorations
 of the sizes of the differences that can be extracted from selected confidence
 intervals in the Tukey's HSD results printed above. Because these results are for the log-scale responses, we could exponentiate coefficients for groups that are deviations from the baseline category and interpret those as multiplicative changes in the median relative to the baseline group, but at the end of this amount of material, I thought that might stop you from reading on any further...
+
+\newpage
 
 \sectionmark{Ants learn to rely on more informative attributes}
 
@@ -551,6 +559,8 @@ found with our simpler analysis. Logistic regression models are a special case
 of what are called *generalized linear models* and are a topic for the next level
 of statistics if you continue exploring.
 
+\newpage
+
 \sectionmark{understanding vertebrate diversification in deep time}
 
 ## Multi-variate models are essential for understanding vertebrate diversification in deep time	{#section9-4}
@@ -643,7 +653,7 @@ scatterplot(logSpecies~logDBCs|TJK, data=bm, smooth=T,
             legend=list(coords="topleft",columns=1), lwd=2, col=viridis(7)[c(5,1)])
 ```
 
-\newpage
+<!-- \newpage -->
 
 \indent The following results will allow us to explore models similar to theirs. One
 "full" model they considered is:
@@ -830,7 +840,10 @@ AIC-based model selection methods across all the models but then used p-values
 to really make their final conclusions. This presents a philosophical
 inconsistency that bothers some more than others but should bother everyone. 
 One thought is whether they needed to use AICs at all since they wanted to use
-p-values? \newpage The one reason they might have preferred to use AICs is that it allows
+p-values? 
+
+
+The one reason they might have preferred to use AICs is that it allows
 the direct comparison of
 
 $$\log{(\text{count})}_i=\beta_0 + \beta_1\log{(\text{DBC})}_i + \beta_2I_{\text{TJK},i} + \varepsilon_i$$
@@ -1046,6 +1059,7 @@ plot(allEffects(lme_int), multiline=T, lty=c(1,2), ci.style="bars", grid=T)
 plot(allEffects(lme_int),multiline=T, lty=c(1,2), ci.style="bars", grid=T)
 ```
 
+\newpage
 
 ## General summary	{#section9-6}
 

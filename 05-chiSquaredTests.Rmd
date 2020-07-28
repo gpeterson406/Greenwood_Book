@@ -106,7 +106,8 @@ library(tabplot)
 library(RColorBrewer)
 # Options needed to prevent errors on PC
 options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
-tableplot(Arthritis,select=c(Treatment,Improved,Sex,Age), pals=list("BrBG"), sample=F,  colorNA_num = "orange", numMode = "MB-ML")
+tableplot(Arthritis,select=c(Treatment,Improved,Sex,Age), pals=list("BrBG"), sample=F,
+          colorNA_num = "orange", numMode = "MB-ML")
 ```
 
 \indent The first thing we can gather from Figure \@ref(fig:Figure5-1) is that there 
@@ -389,7 +390,7 @@ $$\begin{array}{rl}
 & \textbf{ and } \mathbf{\ldots} \textbf{ and }\mathbf{p_{1C}=p_{2C}=\ldots=p_{RC}}. \\
 \end{array}$$
 
-\newpage
+<!-- \newpage -->
 
 If all the groups are the same, then they all have the same conditional proportions and we can 
 more simply write the null hypothesis as:
@@ -698,6 +699,7 @@ plot(Improved~Treat,data=ArthritisFAKE,main="Homogeneity Null Hypothesis True")
 ```
 
 
+\newpage
 
 (ref:tab5-3) Demonstration of calculation of expected cell counts for Arthritis data. 
 
@@ -747,7 +749,7 @@ the results from running this function (using ``chisq.test(TABLENAME)$expected)`
 These are the expected cell counts which match the previous calculations 
 except for some rounding in the hand-calculations. 
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 Arthtable <- tally(~Treatment+Improved, data=Arthritis)
@@ -1265,7 +1267,8 @@ variables.
 
 ```{r Figure5-14,fig.cap="(ref:fig5-14)", fig.height=5,fig.width=10}
 election2 <- na.omit(election[,c("VOTEF","PARTY","EDUC","GENDER")])
-tableplot(election2, select=c(VOTEF,PARTY,EDUC,GENDER), sort=1, pals=list("BrBG"), sample=F)
+tableplot(election2, select=c(VOTEF,PARTY,EDUC,GENDER), sort=1, pals=list("BrBG"), 
+          sample=F)
 ```
  
 
@@ -1277,6 +1280,7 @@ The total sample size for the complete responses was $N=$ 1,149
 the mosaic plot is the appropriate display of the results, 
 which was provided in Figure \@ref(fig:Figure5-5). 
 
+\newpage
 
 ```{r}
 electable <- tally(~PARTY+VOTEF, data=election2)
@@ -1303,6 +1307,8 @@ affiliation causing different voting patterns^[Independence tests can't
 be causal by their construction. Homogeneity tests could be causal or just
 associational, depending on how the subjects ended up in the groups.].
 
+\newpage
+
 Here are our 6+ steps applied to this example:
 
 0. The desired RQ is about assessing the relationship between part affiliation and vote choice, but this is constrained by the large rate of non-response in this data set. This is an Independence test and so the tableplot and mosaic plot are good visualizations to consider and the $X^2$-statistic will be used.
@@ -1317,7 +1323,7 @@ Here are our 6+ steps applied to this example:
     (7 levels) and voting results (*Bush*, *Gore*, *Other*) in the 
     population. 
     
-    \newpage
+    
 
 2. **Plot the data and assess validity conditions:** 
 \index{validity conditions!Chi-square Test}
@@ -1379,7 +1385,6 @@ Here are our 6+ steps applied to this example:
     tiny value that R reports as 1.5e-155. Again, reporting less than 
     0.0001 is just fine.
     
-    \newpage
     
     ```{r}
     pchisq(762.81, df=12, lower.tail=F)
@@ -1412,7 +1417,7 @@ Here are our 6+ steps applied to this example:
     observed configuration was really far from the null
     hypothesis of no relationship between party status and voting. 
 
-\newpage
+<!-- \newpage -->
 
 4. **Conclusion:**
 
@@ -1443,7 +1448,7 @@ as strong of support from his center-leaning supporters as Bush was able to
 obtain from the same voters on the other side of the middle? Exploring the relative proportion of each vertical bar in the response categories is also interesting to see the proportions of each level of party affiliation and how they voted. A political
 scientist would easily obtain many more (useful) theories based on this combination of results. 
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 chisq.test(electable)$residuals #(Obs - expected)/sqrt(expected)
@@ -1569,7 +1574,7 @@ levels(cheating$copier) <- c("None","PaperCheat","ExamCheat","PaperExamCheat")
 tableplot(cheating, sort=liar, select=c(liar,copier),pals=list("BrBG"))
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 cheatlietable <- tally(~liar+copier, data=cheating)
@@ -1905,7 +1910,7 @@ systematically but this is beyond the scope of the current exploration.
 \indent Checking the expected cell counts gives insight into the assumption for 
 using the $\boldsymbol{\chi^2}$-distribution to find the p-value:
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 growthtable <- tally(~stype+growthcut, data=apistrat)
@@ -2070,7 +2075,7 @@ df=(`r colFmt("R","red")` - 1)``*``(`r colFmt("C","red")` - 1), lower.tail=F)**
 
     * Provides a mosaic plot with shading based on standardized residuals.
 
-\newpage
+<!-- \newpage -->
 
 ## Practice problems	{#section5-14}
 

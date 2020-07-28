@@ -119,7 +119,7 @@ out, just critical thinking about the context of the measurements.
 
 They collected data (distance to the vehicle in cm for each car "overtake") on between 8 and 11 rides in each outfit and between 737 and 868 "overtakings" across these rides. The outfit is a categorical *predictor* or *explanatory* variable) \index{explanatory} that has seven different levels here. The distance is the *response* variable \index{response} and is a quantitative variable here^[Of particular interest to the bicycle rider might be the "close" passes and we will revisit this as a categorical response with "close" and "not close" as its two categories later.]. Note that we do not have the information on which overtake came from which ride in the data provided or the conditions related to individual overtake observations other than the distance to the vehicle (they only included overtakings that had consistent conditions for the road and riding).
 
-\indent The data are posted on my website^[Thanks to Ian Walker for allowing me to use and post these data.]  at http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv if you want to download the file to a local directory and then import the data into R using "Import Dataset". Or you can use the code in the following codechunk to directly read the data set into R using the URL.
+\indent The data are posted on my website^[Thanks to Ian Walker for allowing me to use and post these data.]  at http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv if you want to download the file to a local directory and then import the data into R using "Import Dataset". Or you can use the code in the following code chunk to directly read the data set into R using the URL.
 
 ```{r fig.height=8, fig.width=6,eval=F}
 suppressMessages(library(readr))
@@ -196,7 +196,7 @@ using the ``install.packages`` function with quotes around the package name:
 > install.packages("mosaic")
 ```
 
-If you open a .Rmd file that contains code that incorporates packages and they are not installed, the bar at the top of the markdown document will prompt you to install those missing packages. This is the easiest way to get packages you might need installed. After making sure that any required packages are installed, use the ``library`` 
+If you open a .Rmd file that contains code that incorporates packages and they are not installed, the bar at the top of the R Markdown document will prompt you to install those missing packages. This is the easiest way to get packages you might need installed. After making sure that any required packages are installed, use the ``library`` 
 function around the package name (no quotes now!) to load the package, something that
 you need to do any time you want to use features of a package. 
 
@@ -385,7 +385,7 @@ boxplot(Distance~Condition,data=dd)
 boxplot(Distance ~ Condition, data=dd)
 ```
 
-\indent The "~" (which is read as the *tilde* symbol^[If you want to type this character in Rmarkdown, try `$\sim$` outside of codechunks.], which you can find in the
+\indent The "~" (which is read as the *tilde* symbol^[If you want to type this character in R Markdown, try `$\sim$` outside of code chunks.], which you can find in the
 upper left corner of your keyboard) notation will be used in two ways in this 
 material. \index{tilde} The formula use in R employed previously declares that the 
 response variable here is *Distance* and the explanatory variable is *Condition*. 
@@ -877,7 +877,7 @@ we are at in the loops (call that ``b``, which goes from 1 up to ``B``). The
 simplest loop just involves printing out the index, ``print(b)`` at each step. 
 This is our first use of curly braces, { and }, that are used to group the code 
 we want to repeatedly run as we proceed through the loop. By typing the following 
-code in a codechunk and then highlighting it all and hitting the run button, 
+code in a code chunk and then highlighting it all and hitting the run button, 
 R will go through the loop *B* = 5 times, printing out the counter:
 
 ```
@@ -2103,7 +2103,7 @@ ddsub$SimDistance <- simulate(lm_commonmean)[[1]]
 pirateplot(SimDistance~Condition, data=ddsub, inf.method="ci", inf.disp="line")
 ```
 
-\indent The following codechunk generates one run through generating ten data sets as the loop works through the index `c`, simulates a new set of responses (`ddsub$SimDistance`), fits a model that explores the difference in the means of the two groups (`lm_sim`), and extracts the ten p-values (stored in `pval10`) and estimated difference in the means (stored in `diff10`).  The smallest p-value of the ten p-values (`min(pval10)`) is 0.00576. By finding the value of `diff10` where `pval10` is equal to (`==`) the `min(pval10)`, the estimated difference in the means from the simulated responses that produced the smallest p-value can be extracted. The difference was -4.17 here. As in the previous initial explorations of permutations, this is just one realization of this process and it needs to be repeated many times to study the impacts of using (1) the first realization of the responses to estimate the difference and p-value and (2) the result with the smallest p-value from ten different realizations of the responses to estimate the difference and p-value. In the following code, we added 
+\indent The following code chunk generates one run through generating ten data sets as the loop works through the index `c`, simulates a new set of responses (`ddsub$SimDistance`), fits a model that explores the difference in the means of the two groups (`lm_sim`), and extracts the ten p-values (stored in `pval10`) and estimated difference in the means (stored in `diff10`).  The smallest p-value of the ten p-values (`min(pval10)`) is 0.00576. By finding the value of `diff10` where `pval10` is equal to (`==`) the `min(pval10)`, the estimated difference in the means from the simulated responses that produced the smallest p-value can be extracted. The difference was -4.17 here. As in the previous initial explorations of permutations, this is just one realization of this process and it needs to be repeated many times to study the impacts of using (1) the first realization of the responses to estimate the difference and p-value and (2) the result with the smallest p-value from ten different realizations of the responses to estimate the difference and p-value. In the following code, we added 
 octothorpes (#)^[You can correctly call octothorpes *number* symbols or, in the 
 twitter verse, *hashtags*. For more on this symbol, see
 "http://blog.dictionary.com/octothorpe/". Even after reading this, I call them 

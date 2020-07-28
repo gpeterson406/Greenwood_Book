@@ -19,7 +19,7 @@ library(mosaic)
 library(knitr)
 library(readr)
 library(yarrr)
-knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht',
+knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht!',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
 ```
@@ -27,7 +27,7 @@ options(show.signif.stars = FALSE)
 
 ```{r echo=F}
 knitr::opts_chunk$set(cache=F,fig.width = 5, fig.height = 3.5,
-                      fig.pos = "ht", message=F,warning=F)
+                      fig.pos = "ht!", message=F,warning=F)
 options(show.signif.stars = FALSE)
 #Color Format
 colFmt = function(x, color){
@@ -318,7 +318,8 @@ either display and will rarely make both together.
 
 
 ```{r Figure2-2, fig.cap="(ref:fig2-2)",cache=T}
-hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, main="Histogram of Distances")
+hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, main="Histogram of Distances", 
+     ylim=c(0,0.02))
 lines(density(dd$Distance), lwd=3,col="purple")
 ```
 
@@ -350,7 +351,7 @@ not possible here. When we make density curves below, we will cut off the curves
 
 (ref:fig2-3) Histogram with density curve and rug plot of the jittered distance responses. 
 
-```{r Figure2-3, fig.cap="(ref:fig2-3)",cache=T}
+```{r Figure2-3, fig.cap="(ref:fig2-3)",cache=T, fig.width=6.75, fig.height=4.25}
 hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, 
      main="Histogram of Distances with density curve and rug", ylim=c(0,0.017))
 lines(density(dd$Distance), lwd=3,col="purple")
@@ -368,7 +369,9 @@ notation to see if the response (``Distance``) differs based on the group
 We also need to tell R where to find the variables -- use the last option in the command, ``data=DATASETNAME`` , to inform R of the tibble to look in 
 to find the variables. In this example, ``data=dd``. We will use 
 the formula and ``data=...`` options in almost every function we use
-from here forward. Figure \@ref(fig:Figure2-4) contains the side-by-side 
+from here forward. 
+
+\indent Figure \@ref(fig:Figure2-4) contains the side-by-side 
 boxplots showing similar distributions for all the groups, with a slightly higher median in the "police" group and some outliers identified in all groups. 
 
 (ref:fig2-4) Side-by-side boxplot of distances based on outfits. 
@@ -423,7 +426,7 @@ for the type of confidence interval needs to be specified with `inf.method="ci"`
 
 (ref:fig2-5) Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals.
 
-```{r Figure2-5, fig.cap="(ref:fig2-5)",echo=F}
+```{r Figure2-5, fig.cap="(ref:fig2-5)",echo=F, fig.width=6, fig.height=4}
 library(yarrr)
 set.seed(12345)
 pirateplot(Distance~Condition,data=dd,inf.method="ci", point.o=0.25, inf.disp="line")
@@ -764,7 +767,7 @@ that estimate the parameters for the true means of the two groups and the differ
 permuted data set, the difference in the means is 12.07 cm in the opposite 
 direction (the *commute* group had a higher mean than *casual* in the permuted data). 
 
-<!-- \newpage -->
+\newpage
 
 
 ```{r}
@@ -778,7 +781,7 @@ diffmean(Distance~PermutedCondition, data=Perm1)
 
 (ref:fig2-8) Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals for each of the means are more clearly visible than with the original large data set.
 
-```{r Figure2-8, fig.cap="(ref:fig2-8)",echo=F, fig.width=7}
+```{r Figure2-8, fig.cap="(ref:fig2-8)",echo=F, fig.width=7, fig.pos="t"}
 par(mfrow=c(1,2))
 pirateplot(Distance~Condition, data=Perm1,  point.o=0.5,
          main="Original data", inf.method="ci", inf.disp="line")
@@ -2359,7 +2362,7 @@ set.seed(406)
 dsample_BTS <- resample(dsample)
 ```
 
-\newpage
+
 
 ```{r}
 table(as.numeric(dsample_BTS$orig.id))
@@ -2525,7 +2528,6 @@ of code using:
 quantiles <- qdata(Tstar, c(0.025,0.975))
 ```
 
-\newpage
 
 ```{r}
 quantiles
@@ -2769,7 +2771,7 @@ The margin of error is:
 qt(0.975, df=77)*sp*sqrt(1/37+1/42)
 ```
 
-\newpage
+
 
 All together, the 95% confidence interval is:
 
@@ -2784,6 +2786,11 @@ We get a similar result from ``confint`` on ``lm``, except that ``lm`` switched 
 ```{r}
 lm_GPA <- lm(GPA~Sex, data=s217)
 summary(lm_GPA)
+```
+
+\newpage
+
+```{r}
 confint(lm_GPA)
 ```
 
@@ -2818,7 +2825,11 @@ Figure \@ref(fig:Figure2-27).
 
 ```{r}
 Tobs <- coef(lm_GPA)[2]; Tobs
+```
 
+\newpage
+
+```{r}
 B <- 1000
 set.seed(1234)
 Tstar <- matrix(NA, nrow=B)

@@ -726,7 +726,7 @@ plot(density(Tstar),main="Density curve of Tstar", xlim=c(0,Tobs+100))
 abline(v=Tobs,col="red",lwd=3)
 ```
 
-\newpage
+
 
 ```{r eval=F}
 B <- 1000
@@ -859,7 +859,7 @@ from left to right and up and down to fill in the ANOVA table given just the
 necessary information to determine the other components or from a study description to complete the *DF* part of the table -- there are always questions like these on exams...]:
 \index{ANOVA table}
 
-\newpage
+
 
 (ref:tab3-2) General One-Way ANOVA table.
 
@@ -1160,7 +1160,7 @@ on the pattern in points in the QQ-plot and whether it matches the 1-1 line that
 normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose -- this is not the software identifying outliers or other problematic points -- that is your responsibility to assess using these plots. For example, the point "2709"  is identified in Figures \@ref(fig:Figure3-9) and \@ref(fig:Figure3-11)  (the 2709^th^
 observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is a great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a *novice* vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the ``fitted`` function on the estimated ``lm`` -- which here is just the sample mean of the group of the observations (*novice*) of 116.94 cm. The residual is stored in the 2,709^th^ value of ``eij`` or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the ``Distance`` variable), it is not too surprising that it ends up as the largest positive residual. \index{\texttt{fitted()}} \index{R packages!\textbf{car}}
 
-\newpage
+
 
 ```{r}
 dd[2709,c(1:2)]
@@ -1816,7 +1816,8 @@ reporting 15 confidence intervals for all the pair-wise differences, either in a
 
 ```{r Figure3-19, fig.cap="(ref:fig3-19)",echo=T,fig.width=10,fig.height=6}
 #Options theme=2,inf.f.o = 0,point.o = .5 added to focus on CLD
-pirateplot(len~Treat, data=ToothGrowth, ylab="Growth (microns)", inf.method="ci", inf.disp="line",
+pirateplot(len~Treat, data=ToothGrowth, ylab="Growth (microns)", 
+           inf.method="ci", inf.disp="line",
            theme=2, inf.f.o = 0.3, point.o = .5) 
 text(x=2,y=10,"a",col="blue",cex=1.5) #CLD added
 text(x=c(1,4),y=c(15,18),"b",col="red",cex=1.5)
@@ -1862,7 +1863,7 @@ In our previous work with the overtake data, the overall ANOVA test
 led to a conclusion that there is some difference in the true means across the
 seven groups with a p-value < 0.001 giving very strong evidence against the null hypothesis of them all being equal. The original authors followed up their overall $F$-test with comparing every pair of outfits using one of the other methods for multiple testing adjustments available in the ``p.adjust`` function and detected differences between the *police* outfit and all others except for *hiviz* and no other pairs had p-values less than 0.05 using their approach. We will employ the Tukey's HSD approach to address the same exploration and get basically the same results as they obtained, as well as estimated differences in the means in all the pairs of groups. 
 
-\newpage
+
 
 \indent The code is similar^[There is a warning message produced by the default Tukey's code here related to the algorithms used to generate approximate p-values and then the CLD, but the results seem reasonable and just a few p-values seem to vary in the second or third decimal points.] to the previous example focusing on the ``Condition`` variable for the 21 pairs to compare. To make these results easier to read and generally to make all the results with seven groups easier to understand, we can sort the levels of the explanatory based on the values in the response, using something like the the means or medians of the responses for the groups. This does not change the analyses (the $F$-statistic and all pair-wise comparisons are the same), it just sorts them to be easier to discuss. Note that it might change the baseline group so would impact the reference-coded model even though the fitted values are the same. Specifically, we can use the ``reorder`` function \index{\texttt{reorder}} based on the mean using something like ``reorder(FACTORVARIABLE, RESPONSEVARIABLE, FUN=mean)``. Unfortunately the ``reorder`` function doesn't have a ``data=...`` option, so we will let the function know where to find the two variables with a wrapper around it of ``with(DATASETNAME, reorder(...))``; this approach saves us from having to use ``dd$...`` to reference each variable. I like to put this "reordered" factor into a new variable so I can always go back to the other version if I want it. The code creates ``Condition2`` here and checking the levels for it and the original ``Condition`` variable show the change in the order of the levels of the two factor variables:
 
@@ -1900,7 +1901,7 @@ library(multcomp)
 TmOV <- glht(lm2, linfct = mcp(Condition2 = "Tukey"))
 ```
 
-\newpage
+
 
 ```{r}
 confint(TmOv)

@@ -758,6 +758,8 @@ focused on each main effect, conditional on having the other variable in the
 model. To fit an additive model and not include an interaction, the model
 formula involves a "+" instead of a "``*``" between the explanatory variables. \index{\texttt{anova()}}
 
+\newpage
+
 ```{r}
 m2 <- lm(responses~brand+drops, data=pt)
 anova(m2)
@@ -905,7 +907,7 @@ plot(allEffects(m2, residuals = T))
 
 For the One-Way and Two-Way interaction models, the partial residuals are just the original observations so present similar information as the pirate-plots but do show the model estimated 95% confidence intervals. With interaction models, you can use the default settings in ``effects`` when adding in the partial residuals as seen below in Figure \@ref(fig:Figure4-12).
 
-\newpage
+<!-- \newpage -->
 
 ## Guinea pig tooth growth analysis with Two-Way ANOVA	{#section4-4}
 
@@ -1384,7 +1386,7 @@ here. No causal inferences are possible because this is an observational study.
     plot(debt1r, pch=16)
     ```
 
-    \newpage
+    
     
     * Constant Variance:
     
@@ -1405,7 +1407,8 @@ here. No causal inferences are possible because this is an observational study.
         * The QQ-Plot in Figure \@ref(fig:Figure4-17) does not suggest 
         a problem with this assumption. \index{QQ-plot}
 
-
+    \newpage
+    
 3. **Calculate the test statistics and p-values for the two main effect tests.**
 
     ```{r}
@@ -1447,6 +1450,8 @@ plot(allEffects(debt1r))
 
     * Because the income group and cigarette purchasing were not (and really could not) be randomly assigned, causal inference is not possible here. The data set came from a random sample but from an unspecified population and then there were missing observations. At best we can make inferences to those in that population that would answer these questions and it would be nice to know more about the population to really understand who this actually applies to. There would certainly be concerns about non-response bias in doing inference to the entire population that these data were sampled from.
 
+\newpage
+
 \indent The estimated coefficients can also be
 interesting to interpret for the additive model. Here are the model summary coefficients:
 
@@ -1465,6 +1470,8 @@ between cigarette buyers and non-buyers was estimated as
 $\widehat{\gamma}_2=-0.011$ points for any income group, remember that this 
 variable had a large p-value in this model. The additive model-based estimates for all 
 six combinations can be found in Table \@ref(tab:Table4-3).
+
+\newpage
 
 (ref:tab4-3) Calculations to construct the estimates for all combinations of variables for the ``prodebt`` additive model.
 
@@ -1523,7 +1530,7 @@ intplot(debt1r_fitted_jitter~incomegp*cigbuy,data=debtRc,lwd=2,
         main="(b)",ylab="Mean of ProDebt",xlim=c(0.8,3),cex.leg=0.75)
 ```
 
-<!-- \newpage -->
+\newpage
 
 **In general, we proceed through the following steps in any 2-WAY ANOVA situation:**
 
@@ -1752,12 +1759,13 @@ library(tabplot)
 library(RColorBrewer)
 # Options needed to prevent errors on PC
 options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
-tableplot(dd[,-1],sort=Condition2, pals=list("BrBG"), sample=F, colorNA_num = "pink", numMode = "MB-ML")
+tableplot(dd[,-1],sort=Condition2, pals=list("BrBG"), sample=F, 
+          colorNA_num = "pink", numMode = "MB-ML")
 ```
 
 \indent In the tableplot in Figure \@ref(fig:Figure4-23), we can now explore the six variables created related to aspects of each outfit. For example, the *commuter* helmet (darkest shade in ``Helmet`` column) was worn with all outfits except for the *racer* and *casual*. So maybe we would like to explore differences in overtake distances based on the type of helmet worn. Similarly, it might be nice to explore whether wearing reflective pant clips is useful and maybe there is an interaction between helmet type and leg clips on impacts on overtake distance (should we wear both or just one, for example). So instead of using the seven level ``Condition2`` in the model to assess differences based on all combinations of these outfits delineated in the other variables, we can try to fit a model with ``Helmet`` and ``ReflectClips`` and their interaction for overtake distances:
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 overtake_int <- lm(Distance ~ Helmet*ReflectClips, data = dd)
@@ -1780,6 +1788,7 @@ from the interaction model to additive model, the variability explained by the
 interaction term is pushed into the error term, whether replication is
 available or not. Third, we need to make sure we have observations at all combinations of variables if we want to be able to estimate models using them and their interaction.
 
+\newpage
 
 ## Chapter summary	{#section4-7}
 
@@ -1940,7 +1949,7 @@ data=`r colFmt("DATASETNAME","red")`)**
     
     * Plots the results from the estimated model with partial residuals.
 
-\newpage
+<!-- \newpage -->
 
 ## Practice problems	{#section4-9}
 

@@ -321,8 +321,8 @@ not have a “variable”. You may not know if you have real variability in a
 of the measurement. The “who, what, when, and where” of the collection
 of the observations is critical to the
 sort of conclusions we can make based on the results. The information on the
-study design provides information required to assess the scope of inference of
-the study.  Generally, remember to think about the research questions the
+study design provides information required to assess the <strong><em>scope of inference</em></strong> (SOI) of
+the study (see Table <a href="chapter2.html#tab:Table2-1">2.1</a> for more on SOI).  Generally, remember to think about the research questions the
 researchers were trying to answer and whether their study actually would answer
 those questions. There are no formulas to help us sort some of these things
 out, just critical thinking about the context of the measurements.</p>
@@ -583,13 +583,14 @@ the context of <span class="math inline">\(Y \sim N(0,1)\)</span>, which transla
 random variable <em>Y</em> as following a Normal distribution<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>
 
 with mean 0
-and standard deviation of 1. In the current situation, we could ask whether
+and variance of 1 (which also means that the standard deviation is 1). In the current situation, we could ask whether
 the <code>Distance</code> variable seems like it may follow a normal distribution in each group, in
 other words, is <span class="math inline">\(\text{Distance}\sim N(\mu,\sigma^2)\)</span>? Since the responses are relatively symmetric, it is not clear that we have a violation of the assumption of the normality assumption for the <em>Distance</em> variable for any of the seven groups (more later on how we can assess this and the issues that occur when we have a violation of this assumption). Remember that
 <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> are parameters where
 <span class="math inline">\(\mu\)</span> (“mu”) is our standard symbol for the <strong><em>population mean</em></strong>
 and that <span class="math inline">\(\sigma\)</span> (“sigma”) is the symbol of the
-<strong><em>population standard deviation</em></strong>.  </p>
+<strong><em>population standard deviation</em></strong> and <span class="math inline">\(\sigma^2\)</span> is the symbol of the
+<strong><em>population variance</em></strong>.  </p>
 </div>
 <div id="section2-2" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Pirate-plots</h2>
@@ -617,7 +618,7 @@ Figure 2.5: Pirate-plot of distances by outfit group. Bold horizontal lines corr
 </p>
 </div>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="chapter2.html#cb44-1" aria-hidden="true"></a><span class="kw">library</span>(yarrr)</span>
-<span id="cb44-2"><a href="chapter2.html#cb44-2" aria-hidden="true"></a><span class="kw">pirateplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>dd,<span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">inf.disp=</span><span class="st">&quot;line&quot;</span>)</span></code></pre></div>
+<span id="cb44-2"><a href="chapter2.html#cb44-2" aria-hidden="true"></a><span class="kw">pirateplot</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span>dd, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">inf.disp=</span><span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <p>Figure <a href="chapter2.html#fig:Figure2-5">2.5</a> suggests that the distributions are relatively symmetric which would suggest that the means and medians are similar even though only the means are displayed in these plots. In this display, none of the observations are flagged as outliers (it is not a part of this display). It is up to the consumer of the graphic to decide if observations look to be outside of the overall pattern of the rest of the observations. By plotting the observations by groups, we can also explore the narrowest (and likely most scary) overtakes in the data set. The <em>police</em> and <em>racer</em> conditions seem to have all observations over 25 cm and the most close passes were in the <em>novice</em> and <em>polite</em> outfits, including the two 2 cm passes. By displaying the original observations, we are able to explore and identify features that aggregation and summarization in plots can sometimes obfuscate. But the pirate-plots also allow you to compare the shape of the distributions (relatively symmetric and somewhat bell-shaped), variability (they look to have relatively similar variability), and the means of the groups. Our inferences are going to focus on the means but those inferences are only valid if the distributions are either approximately normal or at least have similar shapes and spreads (more on this soon).</p>
 <p>It appears that the mean for <em>police</em> is higher than the other groups but that the others are not too different. But is this difference real? We will never
 know the answer to that question, but we
@@ -723,7 +724,7 @@ Figure 2.6: Boxplot and pirate-plot of the <em>Distance</em> responses on the re
 </p>
 </div>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="chapter2.html#cb58-1" aria-hidden="true"></a><span class="kw">boxplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>ddsub) </span>
-<span id="cb58-2"><a href="chapter2.html#cb58-2" aria-hidden="true"></a><span class="kw">pirateplot</span>(Distance<span class="op">~</span>Condition,<span class="dt">data=</span>ddsub,<span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">inf.disp=</span><span class="st">&quot;line&quot;</span>)</span></code></pre></div>
+<span id="cb58-2"><a href="chapter2.html#cb58-2" aria-hidden="true"></a><span class="kw">pirateplot</span>(Distance<span class="op">~</span>Condition, <span class="dt">data=</span>ddsub, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">inf.disp=</span><span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <!-- \newpage -->
 <p>The two-sample mean techniques you learned in your previous course all
 start with comparing the means the two groups. We can obtain the two
@@ -2005,7 +2006,7 @@ Figure 2.16: Permutation distribution of the <span class="math inline">\(t\)</sp
 <p>In every chapter, the first example, used to motivate and explain
 the methods, is followed with a “worked” example where we focus just on the
 results. In a
-previous semester, some of the Intermediate Statistics students at Montana State University (<strong><em>n</em></strong>=79) provided
+previous semester, some of the Intermediate Statistics (STAT 217) students at Montana State University (<strong><em>n</em></strong>=79) provided
 information on their <em>Sex</em><a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>, <em>Age</em>, and current cumulative <em>GPA</em>. We might be
 interested in whether Males and Females had different average GPAs. First,
 we can take a look at the difference in the responses by groups based on the
@@ -2253,10 +2254,10 @@ even more clearly distinguished.</p>
 <span id="cb141-30"><a href="chapter2.html#cb141-30" aria-hidden="true"></a>                  <span class="dt">Scenario =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;First&quot;</span>, <span class="st">&quot;Min&quot;</span>), <span class="dt">each=</span>B))</span>
 <span id="cb141-31"><a href="chapter2.html#cb141-31" aria-hidden="true"></a></span>
 <span id="cb141-32"><a href="chapter2.html#cb141-32" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co">#Plot results</span></span>
-<span id="cb141-33"><a href="chapter2.html#cb141-33" aria-hidden="true"></a><span class="kw">pirateplot</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results, <span class="dt">inf.f.o =</span> <span class="dv">0</span>,<span class="dt">inf.b.o =</span> <span class="dv">0</span>,</span>
+<span id="cb141-33"><a href="chapter2.html#cb141-33" aria-hidden="true"></a><span class="kw">pirateplot</span>(pvalue_results<span class="op">~</span>Scenario, <span class="dt">data=</span>results, <span class="dt">inf.f.o =</span> <span class="dv">0</span>, <span class="dt">inf.b.o =</span> <span class="dv">0</span>,</span>
 <span id="cb141-34"><a href="chapter2.html#cb141-34" aria-hidden="true"></a>           <span class="dt">avg.line.o =</span> <span class="dv">0</span>, <span class="dt">main=</span><span class="st">&quot;(a) P-value results&quot;</span>)</span>
 <span id="cb141-35"><a href="chapter2.html#cb141-35" aria-hidden="true"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="fl">0.05</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span>
-<span id="cb141-36"><a href="chapter2.html#cb141-36" aria-hidden="true"></a><span class="kw">pirateplot</span>(Diffmeans_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results, <span class="dt">inf.f.o =</span> <span class="dv">0</span>,<span class="dt">inf.b.o =</span> <span class="dv">0</span>,</span>
+<span id="cb141-36"><a href="chapter2.html#cb141-36" aria-hidden="true"></a><span class="kw">pirateplot</span>(Diffmeans_results<span class="op">~</span>Scenario, <span class="dt">data=</span>results, <span class="dt">inf.f.o =</span> <span class="dv">0</span>, <span class="dt">inf.b.o =</span> <span class="dv">0</span>,</span>
 <span id="cb141-37"><a href="chapter2.html#cb141-37" aria-hidden="true"></a>           <span class="dt">avg.line.o =</span> <span class="dv">0</span>, <span class="dt">main=</span><span class="st">&quot;(b) Estimated difference in mean results&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure2-20"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-20-1.png" alt="Pirate-plot of a simulation study results. Panel (a) contains the B = 1,000 p-values and (b) contains the B=1,000 estimated differences in the means. Note that the estimated means and confidence intervals normally present in pirate-plots are suppressed here with inf.f.o = 0, inf.b.o = 0, avg.line.o = 0 because these plots are being used to summarize simulation results instead of an original data set." width="960" />
@@ -2312,9 +2313,9 @@ initial analysis to try to verify that the first results are also present in tha
 second data set. This also has problems but the only way to develop an understanding of a process is to look across a suite of studies and learn from that accumulation of evidence. This is a good start but needs to be coupled with complete reporting of all results, even those that have p-values larger than 0.05 to avoid the bias identified in the previous simulation study.</p>
 
 <div class="figure"><span id="fig:Figure2-21"></span>
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-21-1.png" alt="Plot of family-wise error rate (Bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on \(m\)=10 tests." width="480" />
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-21-1.png" alt="Plot of family-wise error rate (bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on \(m\)=10 tests." width="480" />
 <p class="caption">
-Figure 2.21: Plot of family-wise error rate (Bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on <span class="math inline">\(m\)</span>=10 tests.
+Figure 2.21: Plot of family-wise error rate (bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on <span class="math inline">\(m\)</span>=10 tests.
 </p>
 </div>
 <p>All hope is not lost when multiple tests are being considered in the same study or by a researcher and exploring more than one result need not lead to clearly biased and flawed results being reported. To account for multiple testing in the same study/analysis, there are many approaches that adjust results to acknowledge that multiple tests are being considered. A simple approach called the “Bonferroni Correction” <span class="citation">(Bland and Altman <a href="#ref-Bland1995" role="doc-biblioref">1995</a>)</span> is a good starting point for learning about these methods. It works to control the family-wise error rate of a suite of tests by either dividing <span class="math inline">\(\alpha\)</span> by the number of tests (<span class="math inline">\(\alpha/m\)</span>) or, equivalently and more usefully, multiplying the p-value by the number of tests being considered (<span class="math inline">\(p-value_{adjusted} = p-value \cdot m\)</span> or <span class="math inline">\(1\)</span> if <span class="math inline">\(p-value \cdot m &gt; 1\)</span>). The “Bonferroni adjusted p-values” are then used as regular p-values to assess evidence against each null hypothesis but now accounting for exploring many of them together. There are some assumptions that this adjustment method makes that make it to generally be a conservative adjustment method. In particular, it assumes that all <span class="math inline">\(m\)</span> tests are independent of each other and that the null hypothesis was true for all <span class="math inline">\(m\)</span> tests conducted. While all p-values should be reported in this situation when considering ten results, the impacts of using a Bonferroni correction are that the resulting p-values are not driving inflated Type I error rates even if the smallest p-value is the main focus of the results. The correction also provides a suggestion of decreasing evidence in the first test result because it is now incorporated in considering ten results instead of one.</p>
@@ -2348,7 +2349,7 @@ Figure 2.21: Plot of family-wise error rate (Bold solid line) as the number of t
 <span id="cb146-26"><a href="chapter2.html#cb146-26" aria-hidden="true"></a>results &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">pvalue_results=</span><span class="kw">c</span>(pvalues,pvalues_Min), </span>
 <span id="cb146-27"><a href="chapter2.html#cb146-27" aria-hidden="true"></a>                  <span class="dt">Scenario =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;First&quot;</span>, <span class="st">&quot;Min&quot;</span>), <span class="dt">each=</span>B))</span>
 <span id="cb146-28"><a href="chapter2.html#cb146-28" aria-hidden="true"></a></span>
-<span id="cb146-29"><a href="chapter2.html#cb146-29" aria-hidden="true"></a><span class="kw">pirateplot</span>(pvalue_results<span class="op">~</span>Scenario,<span class="dt">data=</span>results, <span class="dt">inf.f.o =</span> <span class="dv">0</span>,<span class="dt">inf.b.o =</span> <span class="dv">0</span>,</span>
+<span id="cb146-29"><a href="chapter2.html#cb146-29" aria-hidden="true"></a><span class="kw">pirateplot</span>(pvalue_results<span class="op">~</span>Scenario, <span class="dt">data=</span>results, <span class="dt">inf.f.o =</span> <span class="dv">0</span>, <span class="dt">inf.b.o =</span> <span class="dv">0</span>,</span>
 <span id="cb146-30"><a href="chapter2.html#cb146-30" aria-hidden="true"></a>           <span class="dt">avg.line.o =</span> <span class="dv">0</span>, <span class="dt">main=</span><span class="st">&quot;P-value results&quot;</span>)</span>
 <span id="cb146-31"><a href="chapter2.html#cb146-31" aria-hidden="true"></a><span class="kw">abline</span>(<span class="dt">h=</span><span class="fl">0.05</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure2-22"></span>
@@ -3061,7 +3062,7 @@ For more details, type <code>help(jitter)</code> in the console in RStudio.<a hr
 bell-shaped curve you encountered in introductory statistics? If not, you can
 see some at <a href="https://en.wikipedia.org/wiki/Normal_distribution" class="uri">https://en.wikipedia.org/wiki/Normal_distribution</a>.<a href="chapter2.html#fnref19" class="footnote-back">↩︎</a></p></li>
 <li id="fn20"><p>The package and function are intentionally amusingly titled but are based on ideas in the beanplot in <span class="citation">Kampstra (<a href="#ref-Kampstra2008" role="doc-biblioref">2008</a>)</span> and provide what they call an <strong><em>RDI graphic</em></strong> - <strong><em>R</em></strong>aw data, <strong><em>D</em></strong>escriptive, and <strong><em>I</em></strong>nferential statistic in the same display.<a href="chapter2.html#fnref20" class="footnote-back">↩︎</a></p></li>
-<li id="fn21"><p>The default version seems to get mis-interpreted as the box from a boxplot too easily. This display choice also matches our later plots for confidence intervals in term-plots.<a href="chapter2.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>The default version seems to get mis-interpreted as the box from a boxplot too easily. This display choice also matches the display style for later plots for confidence intervals in term-plots.<a href="chapter2.html#fnref21" class="footnote-back">↩︎</a></p></li>
 <li id="fn22"><p>The
 hypothesis of no difference that is typically generated in the hopes of
 being rejected in favor of the alternative hypothesis, which contains the sort

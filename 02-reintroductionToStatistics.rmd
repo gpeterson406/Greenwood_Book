@@ -430,12 +430,12 @@ for the type of confidence interval needs to be specified with `inf.method="ci"`
 ```{r Figure2-5, fig.cap="(ref:fig2-5)",echo=F, fig.width=6, fig.height=4}
 library(yarrr)
 set.seed(12345)
-pirateplot(Distance~Condition,data=dd,inf.method="ci", point.o=0.25, inf.disp="line")
+pirateplot(Distance~Condition, data=dd, inf.method="ci", point.o=0.25, inf.disp="line")
 ```
 
 ```{r eval=F}
 library(yarrr)
-pirateplot(Distance~Condition,data=dd,inf.method="ci", inf.disp="line")
+pirateplot(Distance~Condition, data=dd, inf.method="ci", inf.disp="line")
 ```
 
 Figure \@ref(fig:Figure2-5) suggests that the distributions are relatively symmetric which would suggest that the means and medians are similar even though only the means are displayed in these plots. In this display, none of the observations are flagged as outliers (it is not a part of this display). It is up to the consumer of the graphic to decide if observations look to be outside of the overall pattern of the rest of the observations. By plotting the observations by groups, we can also explore the narrowest (and likely most scary) overtakes in the data set. The *police* and *racer* conditions seem to have all observations over 25 cm and the most close passes were in the *novice* and *polite* outfits, including the two 2 cm passes. By displaying the original observations, we are able to explore and identify features that aggregation and summarization in plots can sometimes obfuscate. But the pirate-plots also allow you to compare the shape of the distributions (relatively symmetric and somewhat bell-shaped), variability (they look to have relatively similar variability), and the means of the groups. Our inferences are going to focus on the means but those inferences are only valid if the distributions are either approximately normal or at least have similar shapes and spreads (more on this soon). 
@@ -561,12 +561,12 @@ the two groups of interest here as seen in Figure \@ref(fig:Figure2-6). Note tha
 par(mfrow=c(1,2))
 #old.par <- par(mai=c(0.5,0.5,0.5,0.5))
 boxplot(Distance~Condition,data=ddsub) 
-pirateplot(Distance~Condition,data=ddsub,inf.method="ci", point.o=0.25, inf.disp="line")
+pirateplot(Distance~Condition, data=ddsub, inf.method="ci", point.o=0.25, inf.disp="line")
 ```
 
 ```{r eval=F}
 boxplot(Distance~Condition,data=ddsub) 
-pirateplot(Distance~Condition,data=ddsub,inf.method="ci", inf.disp="line")
+pirateplot(Distance~Condition, data=ddsub, inf.method="ci", inf.disp="line")
 ```
 
 <!-- \newpage -->
@@ -2175,10 +2175,10 @@ results <- tibble(pvalue_results=c(pvalues,pvalues_Min),
                   Scenario = rep(c("First", "Min"), each=B))
 
 par(mfrow=c(1,2)) #Plot results
-pirateplot(pvalue_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
+pirateplot(pvalue_results~Scenario, data=results, inf.f.o = 0, inf.b.o = 0,
            avg.line.o = 0, main="(a) P-value results")
 abline(h=0.05, lwd=2, col="red", lty=2)
-pirateplot(Diffmeans_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
+pirateplot(Diffmeans_results~Scenario, data=results, inf.f.o = 0, inf.b.o = 0,
            avg.line.o = 0, main="(b) Estimated difference in mean results")
 
 #Numerical summaries of results
@@ -2273,7 +2273,7 @@ for (b in (1:B)){ #Simulation study loop to repeat process B times
 results <- tibble(pvalue_results=c(pvalues,pvalues_Min), 
                   Scenario = rep(c("First", "Min"), each=B))
 
-pirateplot(pvalue_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
+pirateplot(pvalue_results~Scenario, data=results, inf.f.o = 0, inf.b.o = 0,
            avg.line.o = 0, main="P-value results")
 abline(h=0.05, lwd=2, col="red", lty=2)
 ```

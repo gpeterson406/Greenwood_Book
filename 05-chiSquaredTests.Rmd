@@ -248,12 +248,13 @@ version of the table.
 In this application, it shows how the proportions seem to be different among categories of *Improvement* between the placebo and treatment groups. This matches the previous thoughts on
 these data, but now a difference of marked improvement of 16% vs 51% is more
 clearly a big difference. We can also display this result using a 
-***stacked bar chart*** \index{stacked bar chart} that displays the same information using the ``plot``
+***stacked bar chart***^[Technically this is a `spineplot` as it generalizes the stacked bar chart based on the proportion of the total in each vertical bar.] \index{stacked bar chart} that displays the same information using the ``plot``
 function with a ``y~x`` formula:
 
-(ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The darkest shading is for "none", medium shading for "some", and the lightest shading for "marked", as labeled on the y-axis.
+(ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The lightest shading is for "none", medium shading for "some", and the darkest shading for "marked", as labeled on the y-axis.
 
 ```{r Figure5-2,fig.cap="(ref:fig5-2)", fig.height=5.5}
+par(las=2) #Rotates text labels, optional code
 plot(Improved~Treatment, data=Arthritis,
      main="Stacked Bar Chart of Arthritis Data")
 ```
@@ -419,6 +420,7 @@ the null hypothesis for the *Arthritis* example, as displayed in Figure \@ref(fi
 ```{r Figure5-4,fig.cap="(ref:fig5-4)",echo=F, fig.height=5.5}
 ArthritisFAKE <- rbind(Arthritis,Arthritis) # Just to make the following plot!
 ArthritisFAKE$Treat <- factor(c(rep("Placebo",84),rep("Treated",84))) #Just to make the following plot
+par(las=2)
 plot(Improved~Treat,data=ArthritisFAKE,main="Homogeneity Null Hypothesis True")
 ```
 
@@ -695,6 +697,7 @@ table.
 ```{r Figure5-7,fig.cap="(ref:fig5-7)",echo=F}
 ArthritisFAKE <- rbind(Arthritis,Arthritis) # Just to make the following plot!
 ArthritisFAKE$Treat <- factor(c(rep("Placebo",84),rep("Treated",84))) #Just to make the following plot
+par(las=2)
 plot(Improved~Treat,data=ArthritisFAKE,main="Homogeneity Null Hypothesis True")
 ```
 
@@ -900,7 +903,7 @@ chisq.test(Arthpermtable)
 set.seed(98765)
 Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
 par(mfrow=c(2,2))
-old.par <- par(mai=c(0.5,0.75,0.5,0.5))
+old.par <- par(mai=c(0.5,0.75,0.5,0.5), las=2)
 plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",0.62)),
      cex.main=0.75)
 Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
@@ -1091,6 +1094,7 @@ of patients getting improvement (*Some* or *Marked*). If the differences
 (ref:fig5-11) Stacked bar chart of the Arthritis data comparing *Treated* and *Placebo*.
 
 ```{r Figure5-11,fig.cap="(ref:fig5-11)",echo=F,message=F,warning=F,fig.width=10,fig.height=6}
+par(las=2)
 plot(Improved~Treatment, data=Arthritis,
      main="Stacked Bar Chart of Arthritis Data")
 ```
@@ -1865,7 +1869,7 @@ created in the new ``growthcut`` variable:
 (ref:fig5-25) Stacked bar chart of the growth category responses by level of school.
 
 ```{r Figure5-25,fig.cap="(ref:fig5-25)",echo=F, fig.height=5.5}
-old.par <- par(mai=c(0.5,0.5,0.5,0.5))
+old.par <- par(mai=c(0.5,1.5,0.5,0.5), las=2)
 plot(growthcut~stype, data=apistrat, main="Plot of Growth Categories by School levels")
 ```
 
@@ -2258,7 +2262,7 @@ dd <- read_csv("Walker2014_mod.csv")
 dd$Condition <- factor(dd$Condition)
 dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
 dd$Close <- factor(ifelse(dd$Distance<=100, "close", "notclose"))
-
+par(las=2)
 plot(Close ~ Condition2, data=dd, main="Plot of proportions of close calls by type of clothing")
 ```
 

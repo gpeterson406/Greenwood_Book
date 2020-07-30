@@ -94,8 +94,8 @@ not have a "variable". You may not know if you have real variability in a
 of the measurement. The "who, what, when, and where" of the collection 
 of the observations is critical to the
 sort of conclusions we can make based on the results. The information on the
-study design provides information required to assess the scope of inference of
-the study. \index{scope of inference} Generally, remember to think about the research questions the
+study design provides information required to assess the ***scope of inference*** (SOI) of
+the study (see Table \@ref(tab:Table2-1) for more on SOI). \index{scope of inference} Generally, remember to think about the research questions the
 researchers were trying to answer and whether their study actually would answer
 those questions. There are no formulas to help us sort some of these things
 out, just critical thinking about the context of the measurements. 
@@ -396,13 +396,14 @@ bell-shaped curve you encountered in introductory statistics? If not, you can
 see some at https://en.wikipedia.org/wiki/Normal_distribution.]
 \index{normal distribution}
 with mean 0 
-and standard deviation of 1. In the current situation, we could ask whether
+and variance of 1 (which also means that the standard deviation is 1). In the current situation, we could ask whether
 the ``Distance`` variable seems like it may follow a normal distribution in each group, in 
 other words, is $\text{Distance}\sim N(\mu,\sigma^2)$? Since the responses are relatively symmetric, it is not clear that we have a violation of the assumption of the normality assumption for the *Distance* variable for any of the seven groups (more later on how we can assess this and the issues that occur when we have a violation of this assumption). Remember that 
 $\mu$ and $\sigma$ are parameters where 
 $\mu$ ("mu") is our standard symbol for the ***population mean***
 and that $\sigma$ ("sigma") is the symbol of the 
-***population standard deviation***. \index{mean} \index{standard deviation}
+***population standard deviation*** and $\sigma^2$ is the symbol of the 
+***population variance***. \index{mean} \index{standard deviation}
 
 ## Pirate-plots {#section2-2}
 
@@ -422,7 +423,7 @@ package.
 \index{R packages!\textbf{yarrr}}
 The function works like the boxplot used previously
 except that options 
-for the type of confidence interval needs to be specified with `inf.method="ci"` - otherwise you will get a different kind of interval than you learned in introductory statistics and we don't want to get caught up in trying to understand the kind of interval it makes by default. And it seems useful to add `inf.disp="line"` as an additional option to add bars for the confidence interval^[The default version seems to get mis-interpreted as the box from a boxplot too easily. This display choice also matches our later plots for confidence intervals in term-plots.]. There are many other options in the function that might be useful in certain situations, but these are the only ones that are really needed to get started with pirate-plots.
+for the type of confidence interval needs to be specified with `inf.method="ci"` - otherwise you will get a different kind of interval than you learned in introductory statistics and we don't want to get caught up in trying to understand the kind of interval it makes by default. And it seems useful to add `inf.disp="line"` as an additional option to add bars for the confidence interval^[The default version seems to get mis-interpreted as the box from a boxplot too easily. This display choice also matches the display style for later plots for confidence intervals in term-plots.]. There are many other options in the function that might be useful in certain situations, but these are the only ones that are really needed to get started with pirate-plots.
 
 (ref:fig2-5) Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals.
 
@@ -1891,7 +1892,7 @@ abline(v=c(-1,1)*Tobs, lwd=2, col="red")
 In every chapter, the first example, used to motivate and explain 
 the methods, is followed with a "worked" example where we focus just on the 
 results. In a 
-previous semester, some of the Intermediate Statistics students at Montana State University (***n***=79) provided 
+previous semester, some of the Intermediate Statistics (STAT 217) students at Montana State University (***n***=79) provided 
 information on their *Sex*^[Only male and female were provided as options on the survey. These data were collected as part of a project to study learning of material using online versus paper versions of the book but we focus just on the gender differences in GPA here.], *Age*, and current cumulative *GPA*. We might be
 interested in whether Males and Females had different average GPAs. First, 
 we can take a look at the difference in the responses by groups based on the
@@ -2224,7 +2225,7 @@ results and then using a validation or test data set that they withheld from
 initial analysis to try to verify that the first results are also present in that 
 second data set. This also has problems but the only way to develop an understanding of a process is to look across a suite of studies and learn from that accumulation of evidence. This is a good start but needs to be coupled with complete reporting of all results, even those that have p-values larger than 0.05 to avoid the bias identified in the previous simulation study.
 
-(ref:fig2-21) Plot of family-wise error rate (Bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on $m$=10 tests. 
+(ref:fig2-21) Plot of family-wise error rate (bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on $m$=10 tests. 
 
 ```{r Figure2-21, fig.cap="(ref:fig2-21)",echo=F,warning=F,message=F}
 m <- 1:100

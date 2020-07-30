@@ -1213,8 +1213,10 @@ y2 <- scale(-rf(75,df1=3,df2=8))
 s <- qqPlot(y2,main="(c) QQ-Plot of y2",envelope=F,pch=19,cex=1.3)
 plot(density(y2),xlab="y2",ylab='Density',main="(d) Density plot of y2",col="blue",xlim=c(-6.5,6.5))
 
-#t(2)
-y3 <- scale(rt(75,df=4))
+#t(4)
+y3 <- scale(rt(75,df=3)) #Overwrite with one from a different seed using following read-in, but not impact other random results below
+y3 <- read_csv("simy3.csv")$y3
+#Also available with y3 <- read_csv("http://www.math.montana.edu/courses/s217/documents/simy3.csv")$y3
 s <- qqPlot(y3,main="(e) QQ-Plot of y3",envelope=F,pch=19,cex=1.3)
 plot(density(y3),xlab="y3",ylab='Density',main="(f) Density plot of y3",col="blue",xlim=c(-6.5,6.5))
 

@@ -302,7 +302,7 @@ one of the variables are randomly assigned in an experimental context. We add
 to this terminology the idea of correlation between variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.
 <strong><em>Correlation</em></strong>, in most statistical contexts, is a measure of the specific type
 of relationship between the variables: the <strong>linear relationship between two
-quantitative variables</strong><a href="#fn97" class="footnote-ref" id="fnref97"><sup>97</sup></a>.
+quantitative variables</strong><a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a>.
 So as we start to review these ideas from your previous statistics course,
 remember that associations and relationships are more general than correlations
 and it is possible to have no correlation where there is a strong relationship
@@ -316,7 +316,7 @@ what relationships between quantitative variables “look like”… To motivate
 these methods, we will start with a study of the effects of beer consumption on
 blood alcohol levels (<em>BAC</em>, in grams of alcohol per deciliter of blood). A group
 of <span class="math inline">\(n=16\)</span> student volunteers at The Ohio State University drank a
-randomly assigned number of beers<a href="#fn98" class="footnote-ref" id="fnref98"><sup>98</sup></a>.
+randomly assigned number of beers<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a>.
 Thirty minutes later, a police officer measured their <em>BAC</em>. Your instincts, especially
 as well-educated college students with some chemistry knowledge, should inform
 you about the direction of this relationship – that there is a <strong><em>positive
@@ -361,7 +361,7 @@ quantitative explanatory variable into the linear model (somewhat like in the
 Some of this variability might be hard or impossible to explain
 regardless of the other variables available and is considered unexplained variation
 and goes into the residual errors in our models, just like in the ANOVA models.
-To make scatterplots as in Figure <a href="chapter6.html#fig:Figure6-1">6.1</a>, you can simply<a href="#fn99" class="footnote-ref" id="fnref99"><sup>99</sup></a> use
+To make scatterplots as in Figure <a href="chapter6.html#fig:Figure6-1">6.1</a>, you can simply<a href="#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a> use
 <code>plot(y~x, data=...)</code>.</p>
 <div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="chapter6.html#cb500-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
 <span id="cb500-2"><a href="chapter6.html#cb500-2" aria-hidden="true"></a>BB &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/beersbac.csv&quot;</span>)</span></code></pre></div>
@@ -517,7 +517,7 @@ within fields. Use this scale until you develop your own experience:</p>
 the relationship between the variables.</p>
 <p>When we have linear relationships between two quantitative variables,
 <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, we can obtain estimated correlations from the <code>cor</code>
-function either using <code>y~x</code> or by running the <code>cor</code> function<a href="#fn100" class="footnote-ref" id="fnref100"><sup>100</sup></a> on the entire data set. When you run the <code>cor</code>
+function either using <code>y~x</code> or by running the <code>cor</code> function<a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a> on the entire data set. When you run the <code>cor</code>
 function on a data set it produces a <strong><em>correlation matrix</em></strong> which
 contains a matrix of correlations where you can triangulate the
 variables being correlated by the row and column names, noting
@@ -539,7 +539,7 @@ complications arise in more complicated studies as the next example
 demonstrates.</p>
 <p><span class="citation">Gude et al. (<a href="#ref-Gude2009" role="doc-biblioref">2009</a>)</span> explored the relationship
 between average summer
-temperature (degrees F) and area burned (natural log of hectares<a href="#fn101" class="footnote-ref" id="fnref101"><sup>101</sup></a> = log(hectares)) by wildfires in Montana
+temperature (degrees F) and area burned (natural log of hectares<a href="#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a> = log(hectares)) by wildfires in Montana
 from 1985 to 2007. The <strong><em>log-transformation</em></strong> is often used to reduce
 the impacts of really large observations with
 non-negative (strictly greater than 0) variables
@@ -764,7 +764,7 @@ moderate strength and positive but the subgroup relationships are weak at best.
 The overall relationship is created by inappropriately combining two groups
 that had different means in both the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> directions. Men have higher
 mean heights and hematocrit values than women and putting them together in one
-large group creates the misleading overall relationship<a href="#fn102" class="footnote-ref" id="fnref102"><sup>102</sup></a>.</p>
+large group creates the misleading overall relationship<a href="#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a>.</p>
 <p>To get the correlation coefficients by groups, we can subset the data set using a
 logical inquiry on the <code>Sex</code> variable in the updated <code>aisR2</code> data set, using
 <code>Sex==0</code> in the <code>subset</code> function to get a tibble with male subjects only and <code>Sex==1</code> for the female subjects,
@@ -965,7 +965,7 @@ and <em>BAC</em> in the population.</strong></p></li>
 <em>Beers</em> and <em>BAC</em> in the population.</strong></p></li>
 </ul>
 <p>The 95% confidence level corresponds to a 5% significance level test and if the 95% CI does not contain 0, you know that the p-value would be less than 0.05 and if it does contain 0 that the p-value would be more than 0.05. The 95% CI is
-from 0.76 to 0.95, which does not contain 0, so we find strong evidence<a href="#fn103" class="footnote-ref" id="fnref103"><sup>103</sup></a> against the null
+from 0.76 to 0.95, which does not contain 0, so we find strong evidence<a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a> against the null
 hypothesis and conclude that there is
 a linear relationship between <em>Beers</em> and <em>BAC</em> in OSU students. We’ll revisit this
 example using the upcoming regression tools to explore the potential for more
@@ -1026,7 +1026,7 @@ recording error.</p>
 <p>With the outlier in the data set, the correlation is 0.77 and without it, the
 correlation increases to 0.79. The removal does not create a big change because
 the data set is relatively large and the <em>diameter</em> value is close to the mean of the
-<span class="math inline">\(x\text{&#39;s}\)</span><a href="#fn104" class="footnote-ref" id="fnref104"><sup>104</sup></a> but it has some impact on the
+<span class="math inline">\(x\text{&#39;s}\)</span><a href="#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a> but it has some impact on the
 strength of the correlation.</p>
 <div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="chapter6.html#cb543-1" aria-hidden="true"></a><span class="kw">cor</span>(dbh.cm<span class="op">~</span>height.m, <span class="dt">data=</span>ufc)</span></code></pre></div>
 <pre><code>## [1] 0.7699552</code></pre>
@@ -1108,7 +1108,7 @@ detectable in the story because (1) it was randomly assigned to subjects and
 (2) basic science supports beer consumption amount being an explanatory
 variable for <em>BAC</em>. In some situations, this will not be so clear, but look for
 random assignment or scientific logic to guide your choices of variables as
-explanatory or response<a href="#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a>. Regression lines are actually provided by
+explanatory or response<a href="#fn106" class="footnote-ref" id="fnref106"><sup>106</sup></a>. Regression lines are actually provided by
 default in the <code>scatterplot</code> function with the <code>reg.line=T</code> option or just
 omitting <code>reg.line=F</code> from the previous versions of the code since it is a
 default option to provide the lines.</p>
@@ -1172,7 +1172,7 @@ between <span class="math inline">\(x\)</span> and <span class="math inline">\(y
 leave differences between the line and the observations, which we call
 residuals <span class="math inline">\((e = y-\widehat{y})\)</span>.
 
-We worked with residuals in the ANOVA<a href="#fn106" class="footnote-ref" id="fnref106"><sup>106</sup></a>
+We worked with residuals in the ANOVA<a href="#fn107" class="footnote-ref" id="fnref107"><sup>107</sup></a>
 material. The residuals describe the vertical distance in the scatterplot between
 our model (regression line) and the actual observed data point. The lack of a
 perfect fit of the line to the observations distinguishes statistical equations
@@ -2391,41 +2391,41 @@ model?</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="97">
-<li id="fn97"><p>There are measures
+<ol start="98">
+<li id="fn98"><p>There are measures
 of correlation between categorical variables but when
 statisticians say correlation they mean correlation of quantitative variables.
-If they are discussing correlations of other types, they will make that clear.<a href="chapter6.html#fnref97" class="footnote-back">↩︎</a></p></li>
-<li id="fn98"><p>Some of the details of this study have been lost,
+If they are discussing correlations of other types, they will make that clear.<a href="chapter6.html#fnref98" class="footnote-back">↩︎</a></p></li>
+<li id="fn99"><p>Some of the details of this study have been lost,
 so we will assume that the
 subjects were randomly assigned and that a beer means a regular sized can of beer and that
 the beer was of regular strength. We don’t know if any of that is actually true.
-It would be nice to repeat this study to know more details and possibly have a larger sample size but I doubt if our institutional review board would allow students to drink as much as 9 beers.<a href="chapter6.html#fnref98" class="footnote-back">↩︎</a></p></li>
-<li id="fn99"><p>I added
+It would be nice to repeat this study to know more details and possibly have a larger sample size but I doubt if our institutional review board would allow students to drink as much as 9 beers.<a href="chapter6.html#fnref99" class="footnote-back">↩︎</a></p></li>
+<li id="fn100"><p>I added
 <code>pch=16, col=30</code> to fill in the default circles and make the points in something
-other than black, an entirely unnecessary addition here.<a href="chapter6.html#fnref99" class="footnote-back">↩︎</a></p></li>
-<li id="fn100"><p>This
+other than black, an entirely unnecessary addition here.<a href="chapter6.html#fnref100" class="footnote-back">↩︎</a></p></li>
+<li id="fn101"><p>This
 interface with the <code>cor</code> function only works after you load the
-<code>mosaic</code> package.<a href="chapter6.html#fnref100" class="footnote-back">↩︎</a></p></li>
-<li id="fn101"><p>The
+<code>mosaic</code> package.<a href="chapter6.html#fnref101" class="footnote-back">↩︎</a></p></li>
+<li id="fn102"><p>The
 natural log (<span class="math inline">\(\log_e\)</span> or <span class="math inline">\(\ln\)</span>) is used in statistics so much that the
 function in R <code>log</code> actually takes the natural log and if you want a
 <span class="math inline">\(\log_{10}\)</span> you have to use the function <code>log10</code>. When statisticians
-say log we mean natural log.<a href="chapter6.html#fnref101" class="footnote-back">↩︎</a></p></li>
-<li id="fn102"><p>This is related to what is called Simpson’s paradox, where the overall analysis (ignoring a grouping variable) leads to a conclusion of a relationship in one direction, but when the relationship is broken down into subgroups it is in the opposite direction in each group.  This emphasizes the importance of checking and accounting for differences in groups and the more complex models we are setting the stage to consider in the coming chapters.<a href="chapter6.html#fnref102" class="footnote-back">↩︎</a></p></li>
-<li id="fn103"><p>The interval is “far” from the reference value under the null (0) so this provides at least strong evidence. With using confidence intervals for tests, we really don’t know much about the strength of evidence against the null hypothesis but the hypothesis test here is a bit more complicated to construct and understand and we will have to tolerate just having crude information about the p-value to assess strength of evidence.<a href="chapter6.html#fnref103" class="footnote-back">↩︎</a></p></li>
-<li id="fn104"><p>Observations at the edge of the <span class="math inline">\(x\text{&#39;s}\)</span> will be called high
+say log we mean natural log.<a href="chapter6.html#fnref102" class="footnote-back">↩︎</a></p></li>
+<li id="fn103"><p>This is related to what is called Simpson’s paradox, where the overall analysis (ignoring a grouping variable) leads to a conclusion of a relationship in one direction, but when the relationship is broken down into subgroups it is in the opposite direction in each group.  This emphasizes the importance of checking and accounting for differences in groups and the more complex models we are setting the stage to consider in the coming chapters.<a href="chapter6.html#fnref103" class="footnote-back">↩︎</a></p></li>
+<li id="fn104"><p>The interval is “far” from the reference value under the null (0) so this provides at least strong evidence. With using confidence intervals for tests, we really don’t know much about the strength of evidence against the null hypothesis but the hypothesis test here is a bit more complicated to construct and understand and we will have to tolerate just having crude information about the p-value to assess strength of evidence.<a href="chapter6.html#fnref104" class="footnote-back">↩︎</a></p></li>
+<li id="fn105"><p>Observations at the edge of the <span class="math inline">\(x\text{&#39;s}\)</span> will be called high
 leverage points in Section <a href="chapter6.html#section6-9">6.9</a>; this point is a low leverage point
-because it is close to mean of the <span class="math inline">\(x\text{&#39;s}\)</span>.<a href="chapter6.html#fnref104" class="footnote-back">↩︎</a></p></li>
-<li id="fn105"><p>Even with clear scientific logic, we sometimes make choices
+because it is close to mean of the <span class="math inline">\(x\text{&#39;s}\)</span>.<a href="chapter6.html#fnref105" class="footnote-back">↩︎</a></p></li>
+<li id="fn106"><p>Even with clear scientific logic, we sometimes make choices
 to flip the model directions to facilitate different types of analyses. In
 <span class="citation">Vsevolozhskaya et al. (<a href="#ref-Vsevol2014" role="doc-biblioref">2014</a>)</span> we looked at genomic differences based on obesity groups, even
 though we were really interested in exploring how gene-level differences
-explained differences in obesity.<a href="chapter6.html#fnref105" class="footnote-back">↩︎</a></p></li>
-<li id="fn106"><p>The
+explained differences in obesity.<a href="chapter6.html#fnref106" class="footnote-back">↩︎</a></p></li>
+<li id="fn107"><p>The
 residuals from these methods and ANOVA are the same because they all come
 from linear models but are completely different from the standardized residuals
-used in the Chi-square material in Chapter <a href="chapter5.html#chapter5">5</a>.<a href="chapter6.html#fnref106" class="footnote-back">↩︎</a></p></li>
+used in the Chi-square material in Chapter <a href="chapter5.html#chapter5">5</a>.<a href="chapter6.html#fnref107" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

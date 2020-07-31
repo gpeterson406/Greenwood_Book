@@ -430,7 +430,7 @@ and more variability in the <em>PS</em> responses than for the <em>HS</em> respo
 <span id="cb852-6"><a href="chapter9.html#cb852-6" aria-hidden="true"></a>           <span class="dt">theme=</span><span class="dv">2</span>, <span class="dt">ylab=</span><span class="st">&quot;Biomass&quot;</span>,<span class="dt">point.o=</span><span class="dv">1</span>, <span class="dt">pal=</span><span class="st">&quot;southpark&quot;</span>)</span></code></pre></div>
 <p>The Two-WAY ANOVA model that contains a <em>species</em> by <em>treatment</em> interaction is
 of interest (this has a quantitative response variable of <em>biomass</em> and two
-categorical predictors of <em>species</em> and <em>treatment</em>)<a href="#fn151" class="footnote-ref" id="fnref151"><sup>151</sup></a>. We can make an interaction plot to
+categorical predictors of <em>species</em> and <em>treatment</em>)<a href="#fn152" class="footnote-ref" id="fnref152"><sup>152</sup></a>. We can make an interaction plot to
 focus on the observed patterns of the means across the combinations of levels
 as provided in Figure <a href="chapter9.html#fig:Figure9-3">9.3</a>. The interaction
 plot suggests a relatively additive pattern of differences between <em>PS</em> and
@@ -482,7 +482,7 @@ Figure 9.4: Diagnostic plots of treatment by species interaction model for Bioma
 </p>
 </div>
 <p>There is a clear problem with non-constant variance showing up in a fanning
-shape<a href="#fn152" class="footnote-ref" id="fnref152"><sup>152</sup></a>
+shape<a href="#fn153" class="footnote-ref" id="fnref153"><sup>153</sup></a>
 in the Residuals versus Fitted and Scale-Location plots in Figure
 <a href="chapter9.html#fig:Figure9-4">9.4</a>. Interestingly, the normality assumption is not an issue as the residuals track the 1-1 line in the QQ-plot quite closely
 so hopefully we will not worsen this result by using a transformation to try to
@@ -513,7 +513,7 @@ the response variable (<em>Biomass</em>) and repeat the previous plots:</p>
 <div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="chapter9.html#cb859-1" aria-hidden="true"></a>gdn<span class="op">$</span>logMassperha &lt;-<span class="st"> </span><span class="kw">log</span>(gdn<span class="op">$</span>Massperha)</span>
 <span id="cb859-2"><a href="chapter9.html#cb859-2" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
 <span id="cb859-3"><a href="chapter9.html#cb859-3" aria-hidden="true"></a><span class="kw">pirateplot</span>(logMassperha<span class="op">~</span>Species<span class="op">+</span>Treatment, <span class="dt">data=</span>gdn, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">inf.disp=</span><span class="st">&quot;line&quot;</span>, </span>
-<span id="cb859-4"><a href="chapter9.html#cb859-4" aria-hidden="true"></a>           <span class="dt">theme=</span><span class="dv">2</span>, <span class="dt">ylab=</span><span class="st">&quot;Biomass&quot;</span>,<span class="dt">point.o=</span><span class="dv">1</span>, <span class="dt">pal=</span><span class="st">&quot;southpark&quot;</span>, <span class="dt">main=</span><span class="st">&quot;(a)&quot;</span>)</span>
+<span id="cb859-4"><a href="chapter9.html#cb859-4" aria-hidden="true"></a>           <span class="dt">theme=</span><span class="dv">2</span>, <span class="dt">ylab=</span><span class="st">&quot;log-Biomass&quot;</span>,<span class="dt">point.o=</span><span class="dv">1</span>, <span class="dt">pal=</span><span class="st">&quot;southpark&quot;</span>, <span class="dt">main=</span><span class="st">&quot;(a)&quot;</span>)</span>
 <span id="cb859-5"><a href="chapter9.html#cb859-5" aria-hidden="true"></a><span class="kw">intplot</span>(logMassperha<span class="op">~</span>Species<span class="op">*</span>Treatment, <span class="dt">data=</span>gdn, <span class="dt">col=</span><span class="kw">viridis</span>(<span class="dv">4</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">main=</span><span class="st">&quot;(b)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure9-5"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-5-1.png" alt="Pirate-plot and interaction plot of the log-Biomass responses by treatment and species." width="576" />
@@ -850,14 +850,14 @@ variables and one for the comparisons of periods (an indicator variable
 <em>Cretaceous</em>), which are more explicitly coded below.  They <em>log-e</em> transformed all their quantitative variables
 because the untransformed variables created diagnostic issues including
 influential points.  They explored a model just based on the <em>DBC</em>
-predictor<a href="#fn153" class="footnote-ref" id="fnref153"><sup>153</sup></a> and they analyzed the residuals from that model to see if the
+predictor<a href="#fn154" class="footnote-ref" id="fnref154"><sup>154</sup></a> and they analyzed the residuals from that model to see if the
 biodiversity was different in the <em>Cretaceous</em> or before, finding a
-“p-value <strong>&gt;=</strong> 0.0001” (I think they meant &lt; 0.0001<a href="#fn154" class="footnote-ref" id="fnref154"><sup>154</sup></a>). They were comparing the MLR
+“p-value <strong>&gt;=</strong> 0.0001” (I think they meant &lt; 0.0001<a href="#fn155" class="footnote-ref" id="fnref155"><sup>155</sup></a>). They were comparing the MLR
 models you learned to some extended regression models that incorporated a
 correction for correlation in the responses over time, but we can proceed with
 fitting some of their MLR models and using an AIC comparison similar to what
 they used. There are some obvious flaws in their analysis and results that we
-will avoid<a href="#fn155" class="footnote-ref" id="fnref155"><sup>155</sup></a>.</p>
+will avoid<a href="#fn156" class="footnote-ref" id="fnref156"><sup>156</sup></a>.</p>
 <p>First, we start with a plot of the log-diversity vs the log-dinosaur bearing
 collections by period. We can see fairly strong positive relationships between
 the log amounts of collections and species found with potentially similar
@@ -1024,7 +1024,7 @@ AICs based on the top model from the first full model considered to make it easi
 distinctly benefit from the inclusion of <em>TJK</em>. This suggests that after
 controlling for the sampling effort, either through <em>DBC</em> or <em>DBF</em>, the
 differences in the stages captured by <em>TJK</em> can be more clearly observed.</p>
-<p>So the top model in our (correct) results<a href="#fn156" class="footnote-ref" id="fnref156"><sup>156</sup></a> suggests that
+<p>So the top model in our (correct) results<a href="#fn157" class="footnote-ref" id="fnref157"><sup>157</sup></a> suggests that
 <em>log(DBC)</em> is important as well as different intercepts for the two periods. We can interrogate
 this model further but we should check the diagnostics (Figure
 <a href="chapter9.html#fig:Figure9-11">9.11</a>) and consider our model
@@ -1426,19 +1426,19 @@ statistics courses.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="151">
-<li id="fn151"><p>The researchers did not
+<ol start="152">
+<li id="fn152"><p>The researchers did not
 do this analysis so never directly addressed this research question although
-they did discuss it in general ways.<a href="chapter9.html#fnref151" class="footnote-back">↩︎</a></p></li>
-<li id="fn152"><p>Instructors often get asked what a problem with
-non-constant variance actually looks like – this is a perfect example of it!<a href="chapter9.html#fnref152" class="footnote-back">↩︎</a></p></li>
-<li id="fn153"><p>This was not even close to their top AIC model so they made an odd
-choice.<a href="chapter9.html#fnref153" class="footnote-back">↩︎</a></p></li>
-<li id="fn154"><p>I had students read this
+they did discuss it in general ways.<a href="chapter9.html#fnref152" class="footnote-back">↩︎</a></p></li>
+<li id="fn153"><p>Instructors often get asked what a problem with
+non-constant variance actually looks like – this is a perfect example of it!<a href="chapter9.html#fnref153" class="footnote-back">↩︎</a></p></li>
+<li id="fn154"><p>This was not even close to their top AIC model so they made an odd
+choice.<a href="chapter9.html#fnref154" class="footnote-back">↩︎</a></p></li>
+<li id="fn155"><p>I had students read this
 paper in a class and one decided that this was a reasonable way to report small
 p-values – it is WRONG. We are interested in how small a p-value might be and
-saying it is over a value is never useful, especially if you say it is larger than a tiny number.<a href="chapter9.html#fnref154" class="footnote-back">↩︎</a></p></li>
-<li id="fn155"><p>All too often, I read journal articles that have under-utilized,
+saying it is over a value is never useful, especially if you say it is larger than a tiny number.<a href="chapter9.html#fnref155" class="footnote-back">↩︎</a></p></li>
+<li id="fn156"><p>All too often, I read journal articles that have under-utilized,
 under-reported, mis-applied, or mis-interpreted statistical methods and
 results. One of the reasons that I wanted to write this book was to help more
 people move from basic statistical knowledge to correct use of intermediate
@@ -1449,12 +1449,12 @@ courses are not enough to get you there, but you have to start somewhere. You
 are only maybe two or three hundred hours into your 10,000 hours required for mastery.
 This book is intended get you some solid fundamentals to build on or a
 few intermediate tools to use if this is your last statistics training
-experience.<a href="chapter9.html#fnref155" class="footnote-back">↩︎</a></p></li>
-<li id="fn156"><p>They also had an error in their AIC
+experience.<a href="chapter9.html#fnref156" class="footnote-back">↩︎</a></p></li>
+<li id="fn157"><p>They also had an error in their AIC
 results that is difficult to explain here but was due to an un-careful usage of
 the results from the more advanced models that account for autocorrelation,
 which seems to provide the proper ranking of models (<em>that they ignored</em>) but
-did not provide the correct differences among models.<a href="chapter9.html#fnref156" class="footnote-back">↩︎</a></p></li>
+did not provide the correct differences among models.<a href="chapter9.html#fnref157" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

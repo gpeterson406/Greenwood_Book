@@ -253,7 +253,7 @@ function with a ``y~x`` formula:
 
 (ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The lightest shading is for "none", medium shading for "some", and the darkest shading for "marked", as labeled on the y-axis.
 
-```{r Figure5-2,fig.cap="(ref:fig5-2)", fig.height=5.5}
+```{r Figure5-2,fig.cap="(ref:fig5-2)",fig.width=11,fig.height=6}
 par(las=2) #Rotates text labels, optional code
 plot(Improved~Treatment, data=Arthritis,
      main="Stacked Bar Chart of Arthritis Data")
@@ -417,7 +417,7 @@ the null hypothesis for the *Arthritis* example, as displayed in Figure \@ref(fi
 
 (ref:fig5-4) Plot of one way that the Arthritis proportions could have been if the null hypothesis had been true.
 
-```{r Figure5-4,fig.cap="(ref:fig5-4)",echo=F, fig.height=5.5}
+```{r Figure5-4,fig.cap="(ref:fig5-4)",echo=F,fig.width=11,fig.height=6}
 ArthritisFAKE <- rbind(Arthritis,Arthritis) # Just to make the following plot!
 ArthritisFAKE$Treat <- factor(c(rep("Placebo",84),rep("Treated",84))) #Just to make the following plot
 par(las=2)
@@ -578,7 +578,7 @@ function from a table that just contains the counts (**no totals**):
 
 (ref:fig5-5) Mosaic plot of the 2000 election data comparing party affiliation and voting results. 
 
-```{r Figure5-5,fig.cap="(ref:fig5-5)"}
+```{r Figure5-5,fig.cap="(ref:fig5-5)",fig.width=11,fig.height=6}
 # Makes a mosaic plot where areas are related to the proportion of
 # the total in the table
 mosaicplot(electable, main="Mosaic plot of observed results") 
@@ -605,7 +605,7 @@ Figure \@ref(fig:Figure5-5).
 
 (ref:fig5-6) Mosaic plot of what the 2000 election data would look like if the null hypothesis of no relationship were true. 
 
-```{r Figure5-6,fig.cap="(ref:fig5-6)",echo=F}
+```{r Figure5-6,fig.cap="(ref:fig5-6)",echo=F,fig.width=11,fig.height=6}
 mosaicplot(chisq.test(electable)$expected,
            main=expression(Plot ~ of ~ H[0]: ~ Independence ~ True))
 ```
@@ -694,7 +694,7 @@ table.
 
 (ref:fig5-7) Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study. 
 
-```{r Figure5-7,fig.cap="(ref:fig5-7)",echo=F}
+```{r Figure5-7,fig.cap="(ref:fig5-7)",echo=F,fig.width=11,fig.height=6}
 ArthritisFAKE <- rbind(Arthritis,Arthritis) # Just to make the following plot!
 ArthritisFAKE$Treat <- factor(c(rep("Placebo",84),rep("Treated",84))) #Just to make the following plot
 par(las=2)
@@ -752,7 +752,7 @@ the results from running this function (using ``chisq.test(TABLENAME)$expected)`
 These are the expected cell counts which match the previous calculations 
 except for some rounding in the hand-calculations. 
 
-<!-- \newpage -->
+\newpage
 
 ```{r}
 Arthtable <- tally(~Treatment+Improved, data=Arthritis)
@@ -899,7 +899,7 @@ chisq.test(Arthpermtable)
 
 (ref:fig5-8) Stacked bar charts of four permuted Arthritis data sets that produced $X^2$ between 0.62 and 2.38.
 
-```{r Figure5-8,fig.cap="(ref:fig5-8)",echo=F,fig.width=7,fig.height=7}
+```{r Figure5-8,fig.cap="(ref:fig5-8)",echo=F,fig.width=11,fig.height=11}
 set.seed(98765)
 Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
 par(mfrow=c(2,2))
@@ -1093,7 +1093,7 @@ of patients getting improvement (*Some* or *Marked*). If the differences
 
 (ref:fig5-11) Stacked bar chart of the Arthritis data comparing *Treated* and *Placebo*.
 
-```{r Figure5-11,fig.cap="(ref:fig5-11)",echo=F,message=F,warning=F,fig.width=10,fig.height=6}
+```{r Figure5-11,fig.cap="(ref:fig5-11)",echo=F,message=F,warning=F,fig.width=11,fig.height=6}
 par(las=2)
 plot(Improved~Treatment, data=Arthritis,
      main="Stacked Bar Chart of Arthritis Data")
@@ -1284,7 +1284,7 @@ The total sample size for the complete responses was $N=$ 1,149
 the mosaic plot is the appropriate display of the results, 
 which was provided in Figure \@ref(fig:Figure5-5). 
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 electable <- tally(~PARTY+VOTEF, data=election2)
@@ -1311,7 +1311,7 @@ affiliation causing different voting patterns^[Independence tests can't
 be causal by their construction. Homogeneity tests could be causal or just
 associational, depending on how the subjects ended up in the groups.].
 
-\newpage
+<!-- \newpage -->
 
 Here are our 6+ steps applied to this example:
 
@@ -1359,6 +1359,8 @@ Here are our 6+ steps applied to this example:
         should be used to obtain more trustworthy p-values. The 
         conditions are met for performing a permutation test.
         
+    \newpage
+    
 3. **Calculate the test statistic and p-value:**
 
     * The test statistic is best calculated by the ``chisq.test`` function since there 
@@ -1501,7 +1503,7 @@ variables are treated categorically by applying the ``factor`` function.
 
 (ref:fig5-18) Tableplot of initial cheating and lying data set. Note that a few GPAs were missing in the data set.
 
-```{r Figure5-18,fig.cap="(ref:fig5-18)"}
+```{r Figure5-18,fig.cap="(ref:fig5-18)", fig.height=5,fig.width=10}
 library(poLCA)
 data(cheating) #Survey of students
 cheating <- as_tibble(cheating)
@@ -1596,9 +1598,7 @@ variable. This creates two new variables called ``liar2`` and ``copier2``
 (tableplot in Figure \@ref(fig:Figure5-20)). The code to create these 
 variables and make the plot is below which employs the ``levels`` function to assign the same label to two different levels from the original list. \index{\texttt{levels()}}
 
-(ref:fig5-20) Tableplot of lying and copying variables after combining categories. 
-
-```{r Figure5-20,fig.cap="(ref:fig5-20)",fig.height=5,fig.width=10}
+```{r}
 #Collapse the middle categories of each variable
 cheating$liar2 <- cheating$liar
 levels(cheating$liar2) <- c("None","ExamorPaper","ExamorPaper","LieBoth")
@@ -1606,6 +1606,13 @@ cheating$copier2 <- cheating$copier
 levels(cheating$copier2) <- c("None","ExamorPaper","ExamorPaper","CopyBoth")
 cheatlietable <- tally(~liar2+copier2, data=cheating)
 cheatlietable
+```
+
+\newpage
+
+(ref:fig5-20) Tableplot of lying and copying variables after combining categories. 
+
+```{r Figure5-20,fig.cap="(ref:fig5-20)",fig.height=5,fig.width=10}
 tableplot(cheating, sort=liar2, select=c(liar2,copier2),pals=list("BrBG"))
 ```
 
@@ -1638,7 +1645,9 @@ single sample was taken from the population so that is the appropriate procedure
     
         * We need to generate a table of expected cell counts to 
         check this condition:
-
+        
+        \newpage
+        
         ```{r message=F,warning=F}
         chisq.test(cheatlietable)$expected
         ```
@@ -1868,7 +1877,7 @@ created in the new ``growthcut`` variable:
 
 (ref:fig5-25) Stacked bar chart of the growth category responses by level of school.
 
-```{r Figure5-25,fig.cap="(ref:fig5-25)",echo=F, fig.height=5.5}
+```{r Figure5-25,fig.cap="(ref:fig5-25)",echo=F,fig.width=11,fig.height=6}
 old.par <- par(mai=c(0.5,1.5,0.5,0.5), las=2)
 plot(growthcut~stype, data=apistrat, main="Plot of Growth Categories by School levels")
 ```

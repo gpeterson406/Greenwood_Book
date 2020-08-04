@@ -720,7 +720,7 @@ Level C</strong></th>
 the <span class="math inline">\(R\)</span> populations.
 
 This means that the null hypothesis is:</p>
-<!-- \newpage -->
+<div style="page-break-after: always;"></div>
 <p><span class="math display">\[\begin{array}{rl}
 \mathbf{H_0:}\  &amp; \mathbf{p_{11}=p_{21}=\ldots=p_{R1}} \textbf{ and } \mathbf{p_{12}=p_{22}=\ldots=p_{R2}}  \textbf{ and } \mathbf{p_{13}=p_{23}=\ldots=p_{R3}} \\ 
 &amp; \textbf{ and } \mathbf{\ldots} \textbf{ and }\mathbf{p_{1C}=p_{2C}=\ldots=p_{RC}}. \\
@@ -1023,7 +1023,7 @@ table.</p>
 Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study.
 </p>
 </div>
-<div style="page-break-after: always;"></div>
+<!-- \newpage -->
 
 <table>
 <caption><span id="tab:Table5-3">Table 5.3: </span> Demonstration of calculation of expected cell counts for Arthritis data.</caption>
@@ -1093,7 +1093,7 @@ going to extract the information in the “<code>expected</code>” attribute of
 the results from running this function (using <code>chisq.test(TABLENAME)$expected)</code>.
 These are the expected cell counts which match the previous calculations
 except for some rounding in the hand-calculations.</p>
-<div style="page-break-after: always;"></div>
+<!-- \newpage -->
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="chapter5.html#cb405-1" aria-hidden="true"></a>Arthtable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>Treatment<span class="op">+</span>Improved, <span class="dt">data=</span>Arthritis)</span>
 <span id="cb405-2"><a href="chapter5.html#cb405-2" aria-hidden="true"></a>Arthtable</span></code></pre></div>
 <pre><code>##          Improved
@@ -1208,6 +1208,13 @@ not be used to find evidence against the null. When the observed and expected
 values are “far apart”, then we should find evidence against the null. It is
 helpful to work through some examples to be able to understand how the <span class="math inline">\(X^2\)</span>
 statistic “measures” differences between observed and expected.</p>
+
+<div class="figure"><span id="fig:Figure5-8"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-8-1.png" alt="Stacked bar charts of four permuted Arthritis data sets that produced \(X^2\) between 0.62 and 2.38." width="1056" />
+<p class="caption">
+Figure 5.8: Stacked bar charts of four permuted Arthritis data sets that produced <span class="math inline">\(X^2\)</span> between 0.62 and 2.38.
+</p>
+</div>
 <p>To start, compare the previous observed <span class="math inline">\(X^2\)</span> of 13.055 to the sort of
 results we obtain in a single permutation of the treated/placebo labels
 – Figure <a href="chapter5.html#fig:Figure5-8">5.8</a> (top left panel) shows
@@ -1233,13 +1240,6 @@ to showing the differences in the bars observed in the real data set in Figure <
 ## 
 ## data:  Arthpermtable
 ## X-squared = 0.47646, df = 2, p-value = 0.788</code></pre>
-
-<div class="figure"><span id="fig:Figure5-8"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-8-1.png" alt="Stacked bar charts of four permuted Arthritis data sets that produced \(X^2\) between 0.62 and 2.38." width="1056" />
-<p class="caption">
-Figure 5.8: Stacked bar charts of four permuted Arthritis data sets that produced <span class="math inline">\(X^2\)</span> between 0.62 and 2.38.
-</p>
-</div>
 <p>To build the permutation-based null distribution for the <span class="math inline">\(X^2\)</span> statistic,
 we need to collect up the test statistics (<span class="math inline">\(X^{2*}\)</span>) in many of these permuted
 results. The code is similar to permutation tests in Chapters
@@ -1341,6 +1341,13 @@ the expected cell counts using <code>chisq.test(...)$expected</code>.</p>
 <p>In the Arthritis data set, the sample size was sufficiently large for
 the <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution to provide an accurate p-value
 since the smallest expected cell count is 6.833 (so all expected counts are larger than 5).</p>
+
+<div class="figure"><span id="fig:Figure5-10"></span>
+<img src="05-chiSquaredTests_files/figure-html/Figure5-10-1.png" alt="\(\boldsymbol{\chi^2}\)-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line." width="480" />
+<p class="caption">
+Figure 5.10: <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line.
+</p>
+</div>
 <p>The <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution is a right-skewed distribution
 that starts at 0 as shown in Figure <a href="chapter5.html#fig:Figure5-10">5.10</a>. Its shape
 changes as a function of its degrees of freedom. In the contingency
@@ -1363,13 +1370,6 @@ previously for these data.</p>
 <pre><code>## [1] 0.001462658</code></pre>
 <p>We’ll see more examples of the <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distributions
 in each of the examples that follow.</p>
-
-<div class="figure"><span id="fig:Figure5-10"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-10-1.png" alt="\(\boldsymbol{\chi^2}\)-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line." width="480" />
-<p class="caption">
-Figure 5.10: <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line.
-</p>
-</div>
 <p>A small side note about sample sizes is warranted here. In
 contingency tables, especially those based
 on survey data, it is common to have large overall sample sizes (<span class="math inline">\(N\)</span>).
@@ -1494,7 +1494,8 @@ variables were measured to check for confounding and other interesting multi-var
 <li><p>Use permutations if any expected cell counts are below 5.</p></li>
 <li><p>If all expected cell counts greater than 5, either permutation or parametric
 approaches are acceptable.</p></li>
-</ol></li>
+</ol>
+<p></p></li>
 <li><p>Explore the standardized residuals for the “source” of any evidence
 against the null – this can be the start of your “size” discussion.</p>
 <ol style="list-style-type: lower-alpha">
@@ -1576,7 +1577,7 @@ The total sample size for the complete responses was <span class="math inline">\
 (out of the original 1,785 subjects). Because this is an Independence test,
 the mosaic plot is the appropriate display of the results,
 which was provided in Figure <a href="chapter5.html#fig:Figure5-5">5.5</a>.</p>
-<!-- \newpage -->
+<div style="page-break-after: always;"></div>
 <div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="chapter5.html#cb434-1" aria-hidden="true"></a>electable &lt;-<span class="st"> </span><span class="kw">tally</span>(<span class="op">~</span>PARTY<span class="op">+</span>VOTEF, <span class="dt">data=</span>election2)</span>
 <span id="cb434-2"><a href="chapter5.html#cb434-2" aria-hidden="true"></a>electable</span></code></pre></div>
 <pre><code>##      VOTEF
@@ -1656,7 +1657,7 @@ should be used to obtain more trustworthy p-values. The
 conditions are met for performing a permutation test.</p></li>
 </ul></li>
 </ul>
-<p></p></li>
+<p><!-- \newpage --></p></li>
 <li><p><strong>Calculate the test statistic and p-value:</strong></p>
 <ul>
 <li>The test statistic is best calculated by the <code>chisq.test</code> function since there
@@ -1849,9 +1850,9 @@ hard story to elicit from the previous plot because there are so many variables
 involved.</p>
 
 <div class="figure"><span id="fig:Figure5-19"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-19-1.png" alt="Tableplot of new variables liar` andcopier`` that allow exploration of relationships between different types of lying and cheating behaviors." width="960" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-19-1.png" alt="Tableplot of new variables liar and copier that allow exploration of relationships between different types of lying and cheating behaviors." width="960" />
 <p class="caption">
-Figure 5.19: Tableplot of new variables <code>liar` and</code>copier`` that allow exploration of relationships between different types of lying and cheating behaviors.
+Figure 5.19: Tableplot of new variables <code>liar</code> and <code>copier</code> that allow exploration of relationships between different types of lying and cheating behaviors.
 </p>
 </div>
 <p>To simplify the results, combining the two groups of variables
@@ -1909,7 +1910,7 @@ variables and make the plot is below which employs the <code>levels</code> funct
 ##   None         207          53        5
 ##   ExamorPaper   23           9        4
 ##   LieBoth       11           5        2</code></pre>
-<div style="page-break-after: always;"></div>
+<!-- \newpage -->
 
 <div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="chapter5.html#cb457-1" aria-hidden="true"></a><span class="kw">tableplot</span>(cheating, <span class="dt">sort=</span>liar2, <span class="dt">select=</span><span class="kw">c</span>(liar2,copier2),<span class="dt">pals=</span><span class="kw">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-20"></span>
@@ -1946,7 +1947,6 @@ information on how these subjects were obtained. What happens if we had sampled 
 <li>We need to generate a table of expected cell counts to
 check this condition:</li>
 </ul>
-<p></p>
 <div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="chapter5.html#cb458-1" aria-hidden="true"></a><span class="kw">chisq.test</span>(cheatlietable)<span class="op">$</span>expected</span></code></pre></div>
 <pre><code>##              copier2
 ## liar2              None ExamorPaper  CopyBoth
@@ -2106,6 +2106,7 @@ rates among the different levels. There are also a few schools flagged as being 
 ##   E   H   M 
 ## 100  50  50</code></pre>
 <div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="chapter5.html#cb475-1" aria-hidden="true"></a><span class="kw">pirateplot</span>(growth<span class="op">~</span>stype, <span class="dt">data=</span>apistrat, <span class="dt">inf.method=</span><span class="st">&quot;ci&quot;</span>, <span class="dt">inf.disp=</span><span class="st">&quot;line&quot;</span>)</span></code></pre></div>
+<div style="page-break-after: always;"></div>
 <p>The One-Way ANOVA <span class="math inline">\(F\)</span>-test, provided below, suggests
 strong evidence against the null hypothesis of no difference in the true mean growth scores among the different
 types of schools (<span class="math inline">\(F(2,197)=23.56,\text{ p-value}&lt;0.0001\)</span>). But the

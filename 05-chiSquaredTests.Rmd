@@ -384,7 +384,7 @@ the $R$ populations.
 \index{Chi-Square Test!Homogeneity Test}
 This means that the null hypothesis is:
 
-<!-- \newpage -->
+\newpage
 
 $$\begin{array}{rl}
 \mathbf{H_0:}\  & \mathbf{p_{11}=p_{21}=\ldots=p_{R1}} \textbf{ and } \mathbf{p_{12}=p_{22}=\ldots=p_{R2}}  \textbf{ and } \mathbf{p_{13}=p_{23}=\ldots=p_{R3}} \\ 
@@ -702,7 +702,7 @@ plot(Improved~Treat,data=ArthritisFAKE,main="Homogeneity Null Hypothesis True")
 ```
 
 
-\newpage
+<!-- \newpage -->
 
 (ref:tab5-3) Demonstration of calculation of expected cell counts for Arthritis data. 
 
@@ -752,7 +752,7 @@ the results from running this function (using ``chisq.test(TABLENAME)$expected)`
 These are the expected cell counts which match the previous calculations 
 except for some rounding in the hand-calculations. 
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 Arthtable <- tally(~Treatment+Improved, data=Arthritis)
@@ -867,6 +867,35 @@ values are "far apart", then we should find evidence against the null. It is
 helpful to work through some examples to be able to understand how the $X^2$
 statistic "measures" differences between observed and expected. 
 
+(ref:fig5-8) Stacked bar charts of four permuted Arthritis data sets that produced $X^2$ between 0.62 and 2.38.
+
+```{r Figure5-8,fig.cap="(ref:fig5-8)",echo=F,fig.width=11,fig.height=11}
+set.seed(98765)
+Arthperm <- Arthritis
+Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
+par(mfrow=c(2,2))
+old.par <- par(mai=c(0.5,0.75,0.5,0.5), las=2)
+plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",0.62)),
+     cex.main=0.75)
+Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
+Arthpermtable <- tally(~PermTreatment+Improved,data=Arthperm)
+#chisq.test(Arthpermtable)
+plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",1.62)),
+     cex.main=0.75)
+
+Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
+Arthpermtable <- tally(~PermTreatment+Improved,data=Arthperm)
+#chisq.test(Arthpermtable)
+plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",0.81)),
+     cex.main=0.75)
+
+Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
+Arthpermtable <- tally(~PermTreatment+Improved,data=Arthperm)
+#chisq.test(Arthpermtable)
+plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",2.38)),
+     cex.main=0.75)
+```
+
 \indent To start, compare the previous observed $X^2$ of 13.055 to the sort of 
 results we obtain in a single permutation of the treated/placebo labels 
 -- Figure \@ref(fig:Figure5-8) (top left panel) shows
@@ -895,34 +924,6 @@ plot(Improved~PermTreatment, data=Arthperm,
 Arthpermtable <- tally(~PermTreatment+Improved, data=Arthperm)
 Arthpermtable
 chisq.test(Arthpermtable)
-```
-
-(ref:fig5-8) Stacked bar charts of four permuted Arthritis data sets that produced $X^2$ between 0.62 and 2.38.
-
-```{r Figure5-8,fig.cap="(ref:fig5-8)",echo=F,fig.width=11,fig.height=11}
-set.seed(98765)
-Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
-par(mfrow=c(2,2))
-old.par <- par(mai=c(0.5,0.75,0.5,0.5), las=2)
-plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",0.62)),
-     cex.main=0.75)
-Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
-Arthpermtable <- tally(~PermTreatment+Improved,data=Arthperm)
-#chisq.test(Arthpermtable)
-plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",1.62)),
-     cex.main=0.75)
-
-Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
-Arthpermtable <- tally(~PermTreatment+Improved,data=Arthperm)
-#chisq.test(Arthpermtable)
-plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",0.81)),
-     cex.main=0.75)
-
-Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
-Arthpermtable <- tally(~PermTreatment+Improved,data=Arthperm)
-#chisq.test(Arthpermtable)
-plot(Improved~PermTreatment,data=Arthperm,main=expression(paste("X"^"2","=",2.38)),
-     cex.main=0.75)
 ```
 
 \indent To build the permutation-based null distribution for the $X^2$ statistic, 
@@ -1031,6 +1032,15 @@ In the Arthritis data set, the sample size was sufficiently large for
 the $\boldsymbol{\chi^2}$-distribution to provide an accurate p-value 
 since the smallest expected cell count is 6.833 (so all expected counts are larger than 5). 
 
+(ref:fig5-10) $\boldsymbol{\chi^2}$-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line. 
+
+```{r Figure5-10,fig.cap="(ref:fig5-10)",echo=F,warning=F,message=F}
+par(mfrow=c(1,1))
+Xsq <- seq(from=0,to=15,length.out=30)
+plot(Xsq,dchisq(Xsq,df=2),ylab="Density",main="Plot of Chi-sq(2) distribution",type="l",col="blue",lwd=2)
+abline(v=13.055,col="magenta",lwd=3)
+```
+
 \indent The $\boldsymbol{\chi^2}$-distribution is a right-skewed distribution 
 that starts at 0 as shown in Figure \@ref(fig:Figure5-10). Its shape
 changes as a function of its degrees of freedom. In the contingency 
@@ -1059,14 +1069,7 @@ pchisq(13.055, df=2, lower.tail=F)
 We'll see more examples of the $\boldsymbol{\chi^2}$-distributions
 in each of the examples that follow. 
 
-(ref:fig5-10) $\boldsymbol{\chi^2}$-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line. 
 
-```{r Figure5-10,fig.cap="(ref:fig5-10)",echo=F,warning=F,message=F}
-par(mfrow=c(1,1))
-Xsq <- seq(from=0,to=15,length.out=30)
-plot(Xsq,dchisq(Xsq,df=2),ylab="Density",main="Plot of Chi-sq(2) distribution",type="l",col="blue",lwd=2)
-abline(v=13.055,col="magenta",lwd=3)
-```
 
 \indent A small side note about sample sizes is warranted here. In 
 contingency tables, especially those based
@@ -1205,6 +1208,8 @@ describe the pattern of responses.
     b. If all expected cell counts greater than 5, either permutation or parametric 
     approaches are acceptable.
     
+    \newpage
+    
 5. Explore the standardized residuals for the "source" of any evidence 
 against the null -- this can be the start of your "size" discussion. 
 
@@ -1284,7 +1289,7 @@ The total sample size for the complete responses was $N=$ 1,149
 the mosaic plot is the appropriate display of the results, 
 which was provided in Figure \@ref(fig:Figure5-5). 
 
-<!-- \newpage -->
+\newpage
 
 ```{r}
 electable <- tally(~PARTY+VOTEF, data=election2)
@@ -1359,7 +1364,7 @@ Here are our 6+ steps applied to this example:
         should be used to obtain more trustworthy p-values. The 
         conditions are met for performing a permutation test.
         
-    \newpage
+    <!-- \newpage -->
     
 3. **Calculate the test statistic and p-value:**
 
@@ -1540,7 +1545,7 @@ more likely to do the other? Or are they independent of each other? This is a
 hard story to elicit from the previous plot because there are so many variables
 involved. 
 
-(ref:fig5-19) Tableplot of new variables ``liar` and ``copier`` that allow exploration of relationships between different types of lying and cheating behaviors.
+(ref:fig5-19) Tableplot of new variables ``liar`` and ``copier`` that allow exploration of relationships between different types of lying and cheating behaviors.
 
 ```{r Figure5-19,fig.cap="(ref:fig5-19)",fig.height=5,fig.width=10,echo=F}
 cheating$liar <- interaction(cheating$LIEEXAM, cheating$LIEPAPER)
@@ -1608,7 +1613,7 @@ cheatlietable <- tally(~liar2+copier2, data=cheating)
 cheatlietable
 ```
 
-\newpage
+<!-- \newpage -->
 
 (ref:fig5-20) Tableplot of lying and copying variables after combining categories. 
 
@@ -1646,7 +1651,6 @@ single sample was taken from the population so that is the appropriate procedure
         * We need to generate a table of expected cell counts to 
         check this condition:
         
-        \newpage
         
         ```{r message=F,warning=F}
         chisq.test(cheatlietable)$expected
@@ -1807,6 +1811,8 @@ tally(~stype, data=apistrat) #Sample counts
 ```{r eval=F}
 pirateplot(growth~stype, data=apistrat, inf.method="ci", inf.disp="line")
 ```
+
+\newpage
 
 \indent The One-Way ANOVA $F$-test, provided below, suggests
 strong evidence against the null hypothesis of no difference in the true mean growth scores among the different

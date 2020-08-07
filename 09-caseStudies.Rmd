@@ -155,10 +155,6 @@ from earlier in the book and to see some hints about possible extensions of the 
 
 \sectionmark{The impact of simulated chronic nitrogen deposition}
 
-```{r eval=F}
-gdn <- read_csv("http://www.math.montana.edu/courses/s217/documents/gundalebachnordin_2.csv")
-```
-
 ```{r echo=F}
 gdn <- read_csv("gundalebachnordin_2.csv")
 ```
@@ -230,15 +226,15 @@ quite different based on this plot as well.
 (ref:fig9-3) Interaction plot of biomass responses by treatment and species. 
 
 ```{r Figure9-3,fig.cap="(ref:fig9-3)",echo=F, fig.height=6, fig.width=10}
-source("intplotfunctions_v2.R")
+source("intplotfunctions_v3.R")
 library(viridis)
 intplotarray(Massperha~Species*Treatment, data=gdn, col=viridis(4)[1:3], lwd=2,cex.main=1)
 ```
 
-\newpage
+<!-- \newpage -->
 
 ```{r eval=F}
-source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R")
+source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v3.R")
 intplotarray(Massperha~Species*Treatment, data=gdn, col=viridis(4)[1:3],
              lwd=2, cex.main=1)
 ```
@@ -295,7 +291,7 @@ the response variable (*Biomass*) and repeat the previous plots:
 gdn$logMassperha <- log(gdn$Massperha)
 par(mfrow=c(2,1))
 pirateplot(logMassperha~Species+Treatment, data=gdn, inf.method="ci", inf.disp="line", 
-           theme=2, ylab="Biomass",point.o=1, pal="southpark", main="(a)")
+           theme=2, ylab="log-Biomass",point.o=1, pal="southpark", main="(a)")
 intplot(logMassperha~Species*Treatment, data=gdn, col=viridis(4)[1:3], lwd=2, main="(b)")
 ```
 
@@ -322,6 +318,8 @@ nitrogen has more of an impact on the resulting log-biomass for *HS* than for
 *PS*. The highest mean log-biomass rates were observed under the control 
 conditions for both species making nitrogen appear to inhibit growth of these
 species. 
+
+\newpage
 
 (ref:fig9-6) Diagnostic plots of treatment by species interaction model for log-Biomass. 
 
@@ -388,7 +386,7 @@ test above was testing a more refined hypothesis -- does the effect of
 treatment differ between the two species? As in any situation with a small p-value from the overall
 One-Way ANOVA test, the pair-wise comparisons should be of interest. 
 
-\newpage
+<!-- \newpage -->
 
 ```{r warning=F,message=F}
 # Create new variable:
@@ -396,7 +394,11 @@ gdn$SpTrt <- interaction(gdn$Species, gdn$Treatment)
 levels(gdn$SpTrt)
 newm2 <- lm(logMassperha~SpTrt, data=gdn)
 Anova(newm2)
+```
 
+\vspace{22pt}
+
+```{r}
 library(multcomp)
 PWnewm2 <- glht(newm2, linfct=mcp(SpTrt="Tukey"))
 confint(PWnewm2)
@@ -437,6 +439,8 @@ results for the two species were not detectably different. Further explorations
 of the sizes of the differences that can be extracted from selected confidence
 intervals in the Tukey's HSD results printed above. Because these results are for the log-scale responses, we could exponentiate coefficients for groups that are deviations from the baseline category and interpret those as multiplicative changes in the median relative to the baseline group, but at the end of this amount of material, I thought that might stop you from reading on any further...
 
+\newpage
+
 \sectionmark{Ants learn to rely on more informative attributes}
 
 ## Ants learn to rely on more informative attributes during decision-making	{#section9-3}
@@ -472,14 +476,14 @@ sasakipratt <- read_csv("sasakipratt.csv")
 
 (ref:fig9-9) Stacked bar chart for Ant Colony results.
 
-```{r Figure9-9,fig.cap="(ref:fig9-9)"}
+```{r Figure9-9,fig.cap="(ref:fig9-9)", fig.height=4}
 sasakipratt$group <- factor(sasakipratt$group)
 levels(sasakipratt$group) <- c("Light","Entrance")
 sasakipratt$after <- factor(sasakipratt$after)
 levels(sasakipratt$after) <- c("SmallBright","LargeDark")
 sasakipratt$before <- factor(sasakipratt$before)
 levels(sasakipratt$before) <- c("SmallBright","LargeDark")
-plot(after~group, data=sasakipratt)
+plot(after~group, data=sasakipratt, col=cividis(2))
 ```
 
 ```{r}
@@ -550,6 +554,8 @@ for the colonies previous selection. Their conclusions were similar to those
 found with our simpler analysis. Logistic regression models are a special case
 of what are called *generalized linear models* and are a topic for the next level
 of statistics if you continue exploring.
+
+\newpage
 
 \sectionmark{understanding vertebrate diversification in deep time}
 
@@ -643,7 +649,7 @@ scatterplot(logSpecies~logDBCs|TJK, data=bm, smooth=T,
             legend=list(coords="topleft",columns=1), lwd=2, col=viridis(7)[c(5,1)])
 ```
 
-\newpage
+<!-- \newpage -->
 
 \indent The following results will allow us to explore models similar to theirs. One
 "full" model they considered is:
@@ -711,7 +717,7 @@ AICs based on the top model from the first full model considered to make it easi
 columnHeaders <- c("**Model**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
                    "**R^2^**", "**adj R^2^**&nbsp;",
                    "**df**","**logLik**&nbsp;","**AIC**",
-                   "$\\BD$**AIC**")
+                   "Delta AIC")
 cell11 <- "$\\log(\\text{count})_i=\\beta_0 + \\beta_1\\cdot\\log(\\text{DBC})_i + \\beta_2I_{\\text{TJK},i} + \\varepsilon_i$"
 cell21 <- "$\\log(\\text{count})_i=\\beta_0 + \\beta_1\\cdot\\log(\\text{DBF})_i + \\beta_2I_{\\text{TJK},i} + \\varepsilon_i$"
 cell31 <- "$\\log(\\text{count})_i=\\beta_0 + \\beta_1\\cdot\\log(\\text{DBC})_i + \\varepsilon_i$"
@@ -830,7 +836,10 @@ AIC-based model selection methods across all the models but then used p-values
 to really make their final conclusions. This presents a philosophical
 inconsistency that bothers some more than others but should bother everyone. 
 One thought is whether they needed to use AICs at all since they wanted to use
-p-values? \newpage The one reason they might have preferred to use AICs is that it allows
+p-values? 
+
+
+The one reason they might have preferred to use AICs is that it allows
 the direct comparison of
 
 $$\log{(\text{count})}_i=\beta_0 + \beta_1\log{(\text{DBC})}_i + \beta_2I_{\text{TJK},i} + \varepsilon_i$$
@@ -929,7 +938,7 @@ levels(epworthdata$Group) <- c("Control" , "Didgeridoo")
 library(ggplot2); library(ggthemes)
 qplot(x = Time, y = Epworth, data = epworthdata, 
       group = Subject, colour = Group, geom = c("line",
-      "point"))+theme_bw()+scale_color_viridis(discrete=TRUE) 
+      "point"))+theme_bw()+scale_color_viridis(discrete=TRUE, end=.8, option="E") 
 ```
 
 \indent This plot seems to contradict the result from the following Two-Way 
@@ -961,7 +970,7 @@ set.seed(111)
 epworthdata$SimEpworth <- simulate(lm_int)[[1]]
 qplot(x = Time, y = SimEpworth, data = epworthdata, 
       group = Subject, colour = Group, geom = c("line",
-      "point"))+theme_bw()+scale_color_viridis(discrete=TRUE) 
+      "point"))+theme_bw()+scale_color_viridis(discrete=TRUE, end=.7, option="C")
 ```
 
 (ref:tab9-2) ANOVA table from Two-Way ANOVA interaction model.
@@ -1016,7 +1025,7 @@ knitr::kable(Anova(lm_int_wsub), booktabs=TRUE, caption="(ref:tab9-3)",digits=3)
 model to get a sense of the pattern of the changes over time in the treatment 
 and control groups. That aliasing issue means that the "effects" function also
 has some issues. To see the effects plots, we need to use a linear mixed model 
-from the ``nlme`` package. This model is beyond the scope of this material, but 
+from the ``nlme`` package [@R-nlme]. This model is beyond the scope of this material, but 
 it provides the same $F$-statistic for the interaction ($F(1,23)=5.43$) and the
 term-plots can now be produced (Figure \@ref(fig:Figure9-15)). In that plot, we 
 again see that the didgeridoo group mean for "Post" is noticeably lower than in 
@@ -1046,6 +1055,7 @@ plot(allEffects(lme_int), multiline=T, lty=c(1,2), ci.style="bars", grid=T)
 plot(allEffects(lme_int),multiline=T, lty=c(1,2), ci.style="bars", grid=T)
 ```
 
+\newpage
 
 ## General summary	{#section9-6}
 

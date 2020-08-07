@@ -101,6 +101,8 @@ of the regression output as discussed below so the formula is not heavily used
 here. This provides us with the three parameters that are estimated as part of
 our SLR model: $\beta_0, \beta_1,\text{ and } \sigma$.
 
+\newpage
+
 \indent These definitions also formalize the assumptions implicit in the 
 regression model: \index{assumptions}
 
@@ -359,15 +361,11 @@ calculation in the model summary and from ``qt(0.975, df=n-2)`` which was
 make confidence intervals -- that is the test statistic used below. The related
 calculations are shown at the bottom of the following code:
 
-\vspace{24pt}
-
 ```{r}
 m1 <- lm(BAC~Beers, data=BB)
-
 summary(m1)
 ```
 
-\vspace{11pt}
 
 ```{r}
 qt(0.975, df=14) # t* multiplier for 95% CI
@@ -692,10 +690,10 @@ the diagnostic plots in Figure \@ref(fig:Figure7-6) to aid our assessment:
 
 (ref:fig7-6) Diagnostic plots of the Bozeman yearly temperature simple linear regression model.
 
-```{r Figure7-6,fig.cap="(ref:fig7-6)",fig.height=4,fig.width=10}
+```{r Figure7-6,fig.cap="(ref:fig7-6)",fig.height=5,fig.width=10}
 temp1 <- lm(meanmax~Year, data=bozemantemps)
 par(mfrow=c(2,2))
-plot(temp1, add.smooth=F)
+plot(temp1, add.smooth=F, pch=16)
 ```
 
 * **Linearity of relationship**
@@ -785,7 +783,7 @@ normality assumption a bit.
     there is, in fact, some linear relationship between *Year* and yearly mean 
     maximum *Temperature* in Bozeman. 
 
-\newpage
+<!-- \newpage -->
 
 5. **Size:**
 
@@ -1005,12 +1003,13 @@ $<0.001$ for the two-sided permutation test.
 set.seed(3456)
 ```
 
+\newpage
+
 ```{r}
 Tobs <- lm(meanmax~Year, data=bozemantemps)$coef[2]
 Tobs
 ```
 
-\newpage
 
 
 (ref:fig7-9) Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at $\pm b_1=0.56$ based on the observed estimated slope.
@@ -1054,7 +1053,7 @@ coefficients but are not completely comfortable with the normality assumption,
 it is also possible to generate bootstrap confidence intervals by sampling with
 replacement from the data set. This idea was introduced in 
 Sections \@ref(section2-8) and \@ref(section2-9). This provides a 95% 
-bootstrap confidence interval from 0.433 to 0.61, 
+bootstrap confidence interval from 0.0433 to 0.061, 
 which almost exactly matches the parametric $t$-based confidence interval. The
 bootstrap distributions are very symmetric (Figure \@ref(fig:Figure7-10)).
 The interpretation is
@@ -1065,7 +1064,7 @@ approach is not unreasonable here except possibly for the independence assumptio
 set.seed(12345)
 ```
 
-(ref:fig7-10) Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines delineating the 95% confidence interval and observed slope of 0.52.
+(ref:fig7-10) Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines delineating the 95% confidence interval and observed slope of 0.052.
 
 ```{r Figure7-10,fig.cap="(ref:fig7-10)",fig.height=5,fig.width=10}
 Tobs <- lm(meanmax~Year, data=bozemantemps)$coef[2]
@@ -1080,11 +1079,13 @@ quantiles
 par(mfrow=c(1,2))
 hist(Tstar, labels=T, ylim=c(0,200))
 abline(v=Tobs, col="red", lwd=2)
-abline(v=quantiles$quantile, col="blue", lwd=3)
+abline(v=quantiles, col="blue", lwd=3)
 plot(density(Tstar), main="Density curve of Tstar")
 abline(v=Tobs, col="red", lwd=2)
-abline(v=quantiles$quantile, col="blue", lwd=3)
+abline(v=quantiles, col="blue", lwd=3)
 ```
+
+\newpage
 
 ## Transformations part I: Linearizing relationships	{#section7-5}
 
@@ -1156,10 +1157,14 @@ abline(temp3$coefficients,lwd=2,col="steelblue")
 bozemantemps$meanmaxC <- (bozemantemps$meanmax - 32)*(5/9)
 temp3 <- lm(meanmaxC~Year2, data=bozemantemps)
 summary(temp1)
-summary(temp3)
 ```
 
 \newpage
+
+```{r}
+summary(temp3)
+```
+
 
 \indent `r textItalicBold("Nonlinear transformation functions")`
 are where we apply something more complicated than this
@@ -1177,15 +1182,6 @@ with $\boldsymbol{\lambda}$ being the power of the transformation of the respons
 variable and $\lambda = 0$ implying a log-transformation. Except for $\lambda = 1$, the
 transformations are all nonlinear functions of $y$.
 
-(ref:fig7-12) Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature.
-
-```{r Figure7-12,fig.cap="(ref:fig7-12)",fig.height=5,fig.width=10,echo=F}
-par(mfrow=c(1,2))
-plot(hectares~Temperature, data=mtfires, main="(a)",
-     ylab="Hectares", pch=16)
-plot(loghectares~Temperature, data=mtfires, main="(b)",
-     ylab="log-Hectares", pch=16)
-```
 
 (ref:tab7-1) Ladder of powers of transformations that are often used in statistical modeling.
 
@@ -1233,6 +1229,17 @@ plot(hectares~Temperature, data=mtfires, main="(a)",
 plot(loghectares~Temperature, data=mtfires, main="(b)",
      ylab="log-Hectares", pch=16)
 ```
+
+(ref:fig7-12) Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature.
+
+```{r Figure7-12,fig.cap="(ref:fig7-12)",fig.height=5,fig.width=10,echo=F}
+par(mfrow=c(1,2))
+plot(hectares~Temperature, data=mtfires, main="(a)",
+     ylab="Hectares", pch=16)
+plot(loghectares~Temperature, data=mtfires, main="(b)",
+     ylab="log-Hectares", pch=16)
+```
+
 
 Figure \@ref(fig:Figure7-12)(a) displays a relationship
 that would be hard fit using SLR -- it has a curve and the
@@ -1435,6 +1442,8 @@ back to the original scale of the variables. It ends up that
 depending on whether the *log* was applied to the response variable, the
 explanatory variable, or both.
 
+\newpage
+
 **Scenario 1: log(y) vs x model:**
 
 \indent First consider the $\log(y) \sim x$ situations where the estimated model
@@ -1569,7 +1578,9 @@ work on applying it to real situations. When the explanatory variable is
 logged, the estimated regression model is 
 $\color{red}{\boldsymbol{y=b_0+b_1\log(x)}}$. This models the relationship
 between $y$ and $x$ in terms of multiplicative changes in $x$ having an
-effect on the average $y$. To develop an interpretation on the $x$-scale 
+effect on the average $y$. 
+
+\indent To develop an interpretation on the $x$-scale 
 (not $\log(x)$), consider the impact of doubling $x$. This change will 
 take us from the point ($x,\color{red}{\boldsymbol{y=b_0+b_1\log(x)}}$)
 to the point $(2x,\boldsymbol{y^*=b_0+b_1\log(2x)})$. Now the impact of
@@ -1655,6 +1666,8 @@ revisiting this example with the responses also transformed. Remember that the
 log-transformation of the response can potentially fix non-constant variance, 
 normality, and curvature issues. 
 
+\newpage
+
 **Scenario 3: log(y)~log(x) model**
 
 \indent A final model combines log-transformations of both $x$ and $y$, combining the interpretations used in the previous two situations. This model is called the
@@ -1666,7 +1679,7 @@ where $y$ is thought to be proportional to $x$ raised to an estimated power
 of $\beta_1$ (linear if $\beta_1=1$ and quadratic if $\beta_1=2$). It is 
 one of the models that has been used in Geomorphology to model the shape of
 glaciated valley elevation profiles
-(that classic U-shape that comes with glacier-eroded mountain valleys)^[You can read my dissertation if you want my take on modeling U and V-shaped valley elevation profiles that included some discussion of these models and some related discussions in @Greenwood2002.]. If you
+(that classic U-shape that comes with glacier-eroded mountain valleys)^[You can read my dissertation if you want my take on modeling U and V-shaped valley elevation profiles that included some discussion of these models, some of which was also in @Greenwood2002.]. If you
 ignore the error term, it is possible to estimate the power-law model using our
 SLR approach. Consider the log-transformation of both sides of this equation
 starting with the power-law version:
@@ -1710,7 +1723,7 @@ the previous ideas to interpret the typical log-log regression model, instead
 we combine our two previous interpretation techniques to generate our
 interpretation. 
 
-\newpage
+<!-- \newpage -->
 
 We need to work out the mathematics of doubling $x$ and the
 changes in $y$ starting with the $\mathit{\boldsymbol{\log(y)\sim \log(x)}}$
@@ -1742,17 +1755,17 @@ pretty good on both
 the estimated log-log scale (panel a) and on the original scale (panel b) as it
 captures the severe nonlinearity in the relationship between the two variables.
 
+```{r}
+ID2 <- lm(log(infantMortality)~log(ppgdp), data=UN)
+summary(ID2)
+```
+
 (ref:fig7-22) Diagnostic plots for the log-log infant mortality model.
 
 ```{r Figure7-22,fig.cap="(ref:fig7-22)",echo=F,fig.height=5,fig.width=10}
 ID2 <- lm(log(infantMortality)~log(ppgdp), data=UN)
 par(mfrow=c(2,2))
 plot(ID2)
-```
-
-```{r}
-ID2 <- lm(log(infantMortality)~log(ppgdp), data=UN)
-summary(ID2)
 ```
 
 \indent The estimated regression model is
@@ -1864,10 +1877,12 @@ $$\boldsymbol{\hat{y}_{\nu} \mp t^*_{n-2}}\textbf{SE}_{\boldsymbol{\hat{y}_{\nu}
 and interpreted as:
 
 > We are __% sure that a new observation at $\boldsymbol{x_{\nu}}$ will be between
-> **LL** and **UL** **[*units of y*]**. Since 
-> $\text{SE}_{\hat{y}_{\nu}} > \text{SE}_{\hat{\mu}_{\nu}}$, the **PI will always
+> **LL** and **UL** **[*units of y*]**. 
+
+The formula also helps us to see that
+
+> since $\text{SE}_{\hat{y}_{\nu}} > \text{SE}_{\hat{\mu}_{\nu}}$, the **PI will always
 > be wider than the CI**. 
->
 
 
 \indent As in confidence
@@ -1917,7 +1932,7 @@ By turning on the ``se.fit=T`` option, we also get the SE for the
 confidence interval and degrees of freedom.
 \index{degrees of freedom!SLR}
 Note that elements returned 
-are labelled as ``$fit``, ``$se.fit``, etc. and provide some of the information to calculate CIs or PIs "by hand".
+are labeled as ``$fit``, ``$se.fit``, etc. and provide some of the information to calculate CIs or PIs "by hand".
 
 ```{r}
 predict(m1, newdata=tibble(Beers=8), se.fit=T)
@@ -1957,7 +1972,7 @@ The 95% CI for the true mean at $\boldsymbol{x_{\nu}=8}$ is then:
 0.131 + c(-1,1)*2.1448*0.0092
 ```
 
-Which matches the previous output quite well. 
+which matches the previous output quite well. 
 
 The 95% PI requires the calculation of 
 $\sqrt{\text{SE}_{\hat{\mu}_{\nu}}^2 + \boldsymbol{\hat{\sigma}^2}} = \sqrt{(0.0092)^2+(0.02044)^2}=0.0224$. 
@@ -1998,6 +2013,7 @@ BBCI <- as_tibble(predict(m1, newdata=tibble(Beers=beerf), interval="confidence"
 head(BBCI)
 ```
 
+\newpage
 
 And the PIs:
 
@@ -2078,6 +2094,8 @@ legend("topleft", c("Estimate", "CI","PI"),lwd=3,lty=c(1,2,3),
        col = c("blue", "red","grey"))
 ```
 
+\newpage
+
 \indent We can also use these same methods to do a prediction for the year after the
 data set ended, 2015, and in 2050:
 
@@ -2104,7 +2122,7 @@ yearly average maximum temperature in 2015 will be (I guess "would have been")
 between 59.2$^\circ F$ and 61.1$^\circ F$. Obviously, 2015 has occurred, but
 since the data were not published when the data set was downloaded in July
 2016, we can probably best treat 2015 as a potential "future" observation. The
-results for 2050 are clearly for the future mean and a new observation^[I have really enjoyed writing this book but kind of hope to at least have updated this data set before 2050.] in 2050. 
+results for 2050 are clearly for the future mean and a new observation^[I have really enjoyed writing this book and enjoy updating it yearly, but hope someone else gets to do the work of checking the level of inaccuracy of this model in another 30 years.] in 2050. 
 Note that up to 2014, no values of this response had been observed above 60$^\circ F$ and the predicted mean in 2050 is over 60$^\circ F$ if the trend
 persists. It is easy to criticize the use of this model for 2050 because of its extreme amount
 of extrapolation. 
@@ -2153,7 +2171,7 @@ variables, especially when dealing with transformations, as this can lead to
 big changes in the results depending on which scale (original or transformed)
 the results are being interpreted on. 
 
-<!-- \newpage -->
+\newpage
 
 ## Summary of important R code {#section7-9}
 

@@ -19,7 +19,7 @@ library(mosaic)
 library(knitr)
 library(readr)
 library(yarrr)
-knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht',
+knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht!',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
 ```
@@ -27,7 +27,7 @@ options(show.signif.stars = FALSE)
 
 ```{r echo=F}
 knitr::opts_chunk$set(cache=F,fig.width = 5, fig.height = 3.5,
-                      fig.pos = "ht", message=F,warning=F)
+                      fig.pos = "ht!", message=F,warning=F)
 options(show.signif.stars = FALSE)
 #Color Format
 colFmt = function(x, color){
@@ -94,8 +94,8 @@ not have a "variable". You may not know if you have real variability in a
 of the measurement. The "who, what, when, and where" of the collection 
 of the observations is critical to the
 sort of conclusions we can make based on the results. The information on the
-study design provides information required to assess the scope of inference of
-the study. \index{scope of inference} Generally, remember to think about the research questions the
+study design provides information required to assess the ***scope of inference*** (SOI) of
+the study (see Table \@ref(tab:Table2-1) for more on SOI). \index{scope of inference} Generally, remember to think about the research questions the
 researchers were trying to answer and whether their study actually would answer
 those questions. There are no formulas to help us sort some of these things
 out, just critical thinking about the context of the measurements. 
@@ -119,7 +119,7 @@ out, just critical thinking about the context of the measurements.
 
 They collected data (distance to the vehicle in cm for each car "overtake") on between 8 and 11 rides in each outfit and between 737 and 868 "overtakings" across these rides. The outfit is a categorical *predictor* or *explanatory* variable) \index{explanatory} that has seven different levels here. The distance is the *response* variable \index{response} and is a quantitative variable here^[Of particular interest to the bicycle rider might be the "close" passes and we will revisit this as a categorical response with "close" and "not close" as its two categories later.]. Note that we do not have the information on which overtake came from which ride in the data provided or the conditions related to individual overtake observations other than the distance to the vehicle (they only included overtakings that had consistent conditions for the road and riding).
 
-\indent The data are posted on my website^[Thanks to Ian Walker for allowing me to use and post these data.]  at http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv if you want to download the file to a local directory and then import the data into R using "Import Dataset". Or you can use the code in the following codechunk to directly read the data set into R using the URL.
+\indent The data are posted on my website^[Thanks to Ian Walker for allowing me to use and post these data.]  at http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv if you want to download the file to a local directory and then import the data into R using "Import Dataset". Or you can use the code in the following code chunk to directly read the data set into R using the URL.
 
 ```{r fig.height=8, fig.width=6,eval=F}
 suppressMessages(library(readr))
@@ -196,7 +196,7 @@ using the ``install.packages`` function with quotes around the package name:
 > install.packages("mosaic")
 ```
 
-If you open a .Rmd file that contains code that incorporates packages and they are not installed, the bar at the top of the markdown document will prompt you to install those missing packages. This is the easiest way to get packages you might need installed. After making sure that any required packages are installed, use the ``library`` 
+If you open a .Rmd file that contains code that incorporates packages and they are not installed, the bar at the top of the R Markdown document will prompt you to install those missing packages. This is the easiest way to get packages you might need installed. After making sure that any required packages are installed, use the ``library`` 
 function around the package name (no quotes now!) to load the package, something that
 you need to do any time you want to use features of a package. 
 
@@ -318,7 +318,8 @@ either display and will rarely make both together.
 
 
 ```{r Figure2-2, fig.cap="(ref:fig2-2)",cache=T}
-hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, main="Histogram of Distances")
+hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, main="Histogram of Distances", 
+     ylim=c(0,0.02))
 lines(density(dd$Distance), lwd=3,col="purple")
 ```
 
@@ -350,7 +351,7 @@ not possible here. When we make density curves below, we will cut off the curves
 
 (ref:fig2-3) Histogram with density curve and rug plot of the jittered distance responses. 
 
-```{r Figure2-3, fig.cap="(ref:fig2-3)",cache=T}
+```{r Figure2-3, fig.cap="(ref:fig2-3)",cache=T, fig.width=6.75, fig.height=4.25}
 hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, 
      main="Histogram of Distances with density curve and rug", ylim=c(0,0.017))
 lines(density(dd$Distance), lwd=3,col="purple")
@@ -368,7 +369,9 @@ notation to see if the response (``Distance``) differs based on the group
 We also need to tell R where to find the variables -- use the last option in the command, ``data=DATASETNAME`` , to inform R of the tibble to look in 
 to find the variables. In this example, ``data=dd``. We will use 
 the formula and ``data=...`` options in almost every function we use
-from here forward. Figure \@ref(fig:Figure2-4) contains the side-by-side 
+from here forward. 
+
+\indent Figure \@ref(fig:Figure2-4) contains the side-by-side 
 boxplots showing similar distributions for all the groups, with a slightly higher median in the "police" group and some outliers identified in all groups. 
 
 (ref:fig2-4) Side-by-side boxplot of distances based on outfits. 
@@ -382,7 +385,7 @@ boxplot(Distance~Condition,data=dd)
 boxplot(Distance ~ Condition, data=dd)
 ```
 
-\indent The "~" (which is read as the *tilde* symbol^[If you want to type this character in Rmarkdown, try `$\sim$` outside of codechunks.], which you can find in the
+\indent The "~" (which is read as the *tilde* symbol^[If you want to type this character in R Markdown, try `$\sim$` outside of code chunks.], which you can find in the
 upper left corner of your keyboard) notation will be used in two ways in this 
 material. \index{tilde} The formula use in R employed previously declares that the 
 response variable here is *Distance* and the explanatory variable is *Condition*. 
@@ -393,17 +396,18 @@ bell-shaped curve you encountered in introductory statistics? If not, you can
 see some at https://en.wikipedia.org/wiki/Normal_distribution.]
 \index{normal distribution}
 with mean 0 
-and standard deviation of 1. In the current situation, we could ask whether
+and variance of 1 (which also means that the standard deviation is 1). In the current situation, we could ask whether
 the ``Distance`` variable seems like it may follow a normal distribution in each group, in 
 other words, is $\text{Distance}\sim N(\mu,\sigma^2)$? Since the responses are relatively symmetric, it is not clear that we have a violation of the assumption of the normality assumption for the *Distance* variable for any of the seven groups (more later on how we can assess this and the issues that occur when we have a violation of this assumption). Remember that 
 $\mu$ and $\sigma$ are parameters where 
 $\mu$ ("mu") is our standard symbol for the ***population mean***
 and that $\sigma$ ("sigma") is the symbol of the 
-***population standard deviation***. \index{mean} \index{standard deviation}
+***population standard deviation*** and $\sigma^2$ is the symbol of the 
+***population variance***. \index{mean} \index{standard deviation}
 
 ## Pirate-plots {#section2-2}
 
-An alternative graphical display for comparing multiple groups that we will use is a display called a ***pirate-plot*** [@Phillips2017] from the `yarrr` package^[The package and function are intentionally amusingly titled but are based on ideas in the beanplot in @Kampstra2008 and provide what they call an ***RDI graphic*** - ***R***aw data, ***D***escriptive,  and ***I***nferential statistic in the same display.]. \index{pirate-plot} Figure \@ref(fig:Figure2-5) 
+An alternative graphical display for comparing multiple groups that we will use is a display called a ***pirate-plot*** [@R-yarrr] from the `yarrr` package^[The package and function are intentionally amusingly titled but are based on ideas in the beanplot in @Kampstra2008 and provide what they call an ***RDI graphic*** - ***R***aw data, ***D***escriptive,  and ***I***nferential statistic in the same display.]. \index{pirate-plot} Figure \@ref(fig:Figure2-5) 
 shows an example of a pirate-plot that provides a side-by-side display that 
 contains the density curves, the original observations that generated the 
 density curve as jittered points (jittered both vertically and horizontally a little), the sample mean of each group (wide bar), and vertical lines to horizontal bars that represents the confidence interval for the true mean of that group. For each group, the density curves 
@@ -415,23 +419,23 @@ us to compare those across the groups while gaining information on the shapes
 of the distributions of responses in each group. 
 
 \indent To use the ``pirateplot`` function \index{\texttt{pirateplot()}} we need to install and then load the ``yarrr`` 
-package [@R-yarrr]. 
+package. 
 \index{R packages!\textbf{yarrr}}
 The function works like the boxplot used previously
 except that options 
-for the type of confidence interval needs to be specified with `inf.method="ci"` - otherwise you will get a different kind of interval than you learned in introductory statistics and we don't want to get caught up in trying to understand the kind of interval it makes by default. And it seems useful to add `inf.disp="line"` as an additional option to add bars for the confidence interval^[The default version seems to get mis-interpreted as the box from a boxplot too easily. This display choice also matches our later plots for confidence intervals in term-plots.]. There are many other options in the function that might be useful in certain situations, but these are the only ones that are really needed to get started with pirate-plots.
+for the type of confidence interval needs to be specified with `inf.method="ci"` - otherwise you will get a different kind of interval than you learned in introductory statistics and we don't want to get caught up in trying to understand the kind of interval it makes by default. And it seems useful to add `inf.disp="line"` as an additional option to add bars for the confidence interval^[The default version seems to get mis-interpreted as the box from a boxplot too easily. This display choice also matches the display style for later plots for confidence intervals in term-plots.]. There are many other options in the function that might be useful in certain situations, but these are the only ones that are really needed to get started with pirate-plots.
 
 (ref:fig2-5) Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals.
 
-```{r Figure2-5, fig.cap="(ref:fig2-5)",echo=F}
+```{r Figure2-5, fig.cap="(ref:fig2-5)",echo=F, fig.width=6, fig.height=4}
 library(yarrr)
 set.seed(12345)
-pirateplot(Distance~Condition,data=dd,inf.method="ci", point.o=0.25, inf.disp="line")
+pirateplot(Distance~Condition, data=dd, inf.method="ci", point.o=0.25, inf.disp="line")
 ```
 
 ```{r eval=F}
 library(yarrr)
-pirateplot(Distance~Condition,data=dd,inf.method="ci", inf.disp="line")
+pirateplot(Distance~Condition, data=dd, inf.method="ci", inf.disp="line")
 ```
 
 Figure \@ref(fig:Figure2-5) suggests that the distributions are relatively symmetric which would suggest that the means and medians are similar even though only the means are displayed in these plots. In this display, none of the observations are flagged as outliers (it is not a part of this display). It is up to the consumer of the graphic to decide if observations look to be outside of the overall pattern of the rest of the observations. By plotting the observations by groups, we can also explore the narrowest (and likely most scary) overtakes in the data set. The *police* and *racer* conditions seem to have all observations over 25 cm and the most close passes were in the *novice* and *polite* outfits, including the two 2 cm passes. By displaying the original observations, we are able to explore and identify features that aggregation and summarization in plots can sometimes obfuscate. But the pirate-plots also allow you to compare the shape of the distributions (relatively symmetric and somewhat bell-shaped), variability (they look to have relatively similar variability), and the means of the groups. Our inferences are going to focus on the means but those inferences are only valid if the distributions are either approximately normal or at least have similar shapes and spreads (more on this soon). 
@@ -557,12 +561,12 @@ the two groups of interest here as seen in Figure \@ref(fig:Figure2-6). Note tha
 par(mfrow=c(1,2))
 #old.par <- par(mai=c(0.5,0.5,0.5,0.5))
 boxplot(Distance~Condition,data=ddsub) 
-pirateplot(Distance~Condition,data=ddsub,inf.method="ci", point.o=0.25, inf.disp="line")
+pirateplot(Distance~Condition, data=ddsub, inf.method="ci", point.o=0.25, inf.disp="line")
 ```
 
 ```{r eval=F}
 boxplot(Distance~Condition,data=ddsub) 
-pirateplot(Distance~Condition,data=ddsub,inf.method="ci", inf.disp="line")
+pirateplot(Distance~Condition, data=ddsub, inf.method="ci", inf.disp="line")
 ```
 
 <!-- \newpage -->
@@ -764,7 +768,7 @@ that estimate the parameters for the true means of the two groups and the differ
 permuted data set, the difference in the means is 12.07 cm in the opposite 
 direction (the *commute* group had a higher mean than *casual* in the permuted data). 
 
-<!-- \newpage -->
+\newpage
 
 
 ```{r}
@@ -778,7 +782,7 @@ diffmean(Distance~PermutedCondition, data=Perm1)
 
 (ref:fig2-8) Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals for each of the means are more clearly visible than with the original large data set.
 
-```{r Figure2-8, fig.cap="(ref:fig2-8)",echo=F, fig.width=7}
+```{r Figure2-8, fig.cap="(ref:fig2-8)",echo=F, fig.width=7, fig.pos="t"}
 par(mfrow=c(1,2))
 pirateplot(Distance~Condition, data=Perm1,  point.o=0.5,
          main="Original data", inf.method="ci", inf.disp="line")
@@ -874,7 +878,7 @@ we are at in the loops (call that ``b``, which goes from 1 up to ``B``). The
 simplest loop just involves printing out the index, ``print(b)`` at each step. 
 This is our first use of curly braces, { and }, that are used to group the code 
 we want to repeatedly run as we proceed through the loop. By typing the following 
-code in a codechunk and then highlighting it all and hitting the run button, 
+code in a code chunk and then highlighting it all and hitting the run button, 
 R will go through the loop *B* = 5 times, printing out the counter:
 
 ```
@@ -1230,7 +1234,7 @@ some of these criticisms, we recommend reporting the strength of evidence of the
 result based on the p-value and also reporting and discussing the size of the
 estimated results (with a measure of precision of the estimated difference). We will explore the implications of how p-values are used in scientific research in Section \@ref(section2-8).
 
-(ref:fig2-12) Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values.
+(ref:fig2-12) Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values. P-values range from 0 to 1, with only a p-value of 1.0 providing no evidence against the null hypothesis.
 
 ```{r Figure2-12, fig.cap="(ref:fig2-12)",echo=F,out.width="100%",fig.align="center"}
 knitr:::include_graphics("chapter2_files/pvalueStrengths.png")
@@ -1888,7 +1892,7 @@ abline(v=c(-1,1)*Tobs, lwd=2, col="red")
 In every chapter, the first example, used to motivate and explain 
 the methods, is followed with a "worked" example where we focus just on the 
 results. In a 
-previous semester, some of the Intermediate Statistics students at Montana State University (***n***=79) provided 
+previous semester, some of the Intermediate Statistics (STAT 217) students at Montana State University (***n***=79) provided 
 information on their *Sex*^[Only male and female were provided as options on the survey. These data were collected as part of a project to study learning of material using online versus paper versions of the book but we focus just on the gender differences in GPA here.], *Age*, and current cumulative *GPA*. We might be
 interested in whether Males and Females had different average GPAs. First, 
 we can take a look at the difference in the responses by groups based on the
@@ -2077,7 +2081,7 @@ In the previous examples, some variation in p-values was observed as different m
 
 \indent We will use some of our new abilities in R to begin to study some of the impacts of systematically favoring only results with small p-values using a "simulation study" inspired by the explorations in @Schneck2017. \index{simulation study} Specifically, let's focus on the bicycle passing data. We start with assuming that there really is no difference in the two groups, so the true mean is the same in both groups, the variability is the same around the means in the two groups, and all responses follow normal distributions. This is basically like the permutation idea where we assumed the group labels could be equivalently swapped among responses if the null hypothesis were true except that observations will be generated by a normal distribution instead of shuffling the original observations among groups. This is a little stronger assumption than in the permutation approach but makes it possible to study Type I error rates, power, and to explore a process that is similar to how statistical results are generated and used in academic research settings. 
 
-\indent Now let's suppose that we are interested in what happens when we do ten independent studies of the same research question. You could think of this as ten different researchers conducting their own studies of the same topic (say passing distance) or ten times the same researchers did the the same study or (less obviously) a researcher focusing on ten different response variables in the same study. Now suppose that one of two things happens with these ten unique response variables -- we just report one of them (any could be used, but suppose the first one is selected) OR we only report the one of the ten with the smallest p-value. This would correspond to reporting the results of *a* study or to reporting the "most significant" of ten tries at the same study -- either because nine researchers decided not to publish/ got their papers rejected by journals or because one researcher put the other nine results into their drawer of "failed studies" and never even tried to report the results. 
+\indent Now let's suppose that we are interested in what happens when we do ten independent studies of the same research question. You could think of this as ten different researchers conducting their own studies of the same topic (say passing distance) or ten times the same researchers did the the same study or (less obviously) a researcher focusing on ten different response variables in the same study^[Researchers often measure multiple related response variables on the same subjects while they are conducting a study, so these would not meet the "independent studies" assumption that is used here, but we can start with the assumption of independent results across these responses as the math is easier and the results are conservative. You can consult a statistician for other related approaches that incorporate the dependency of the different responses.]. Now suppose that one of two things happens with these ten unique response variables -- we just report one of them (any could be used, but suppose the first one is selected) OR we only report the one of the ten with the smallest p-value. This would correspond to reporting the results of *a* study or to reporting the "most significant" of ten tries at (or in) the same study -- either because nine researchers decided not to publish/ got their papers rejected by journals or because one researcher put the other nine results into their drawer of "failed studies" and never even tried to report the results. 
 
 \indent The following code generates one realization of this process to explore both the p-values that are created and the estimated differences. To simulate new observations with the null hypothesis true, there are two new ideas to consider. First, we need to fit a model that makes the means the same in both groups. This is called the "mean-only" model \index{model!mean-only} and is implemented with `lm(y~1, data=...)`, with the `~1` indicating that no predictor variable is used and that a common mean is considered for all observations. Note that this notation also works in the `favstats` function to get summary statistics for the response variable without splitting it apart based on a grouping variable. In the $n=30$ passing distance data set, the mean of all the observations is 116.04 cm and this estimate is present in the `(Intercept)` row in the `lm_commonmean` model summary. 
 
@@ -2100,7 +2104,7 @@ ddsub$SimDistance <- simulate(lm_commonmean)[[1]]
 pirateplot(SimDistance~Condition, data=ddsub, inf.method="ci", inf.disp="line")
 ```
 
-\indent The following codechunk generates one run through generating ten data sets as the loop works through the index `c`, simulates a new set of responses (`ddsub$SimDistance`), fits a model that explores the difference in the means of the two groups (`lm_sim`), and extracts the ten p-values (stored in `pval10`) and estimated difference in the means (stored in `diff10`).  The smallest p-value of the ten p-values (`min(pval10)`) is 0.00576. By finding the value of `diff10` where `pval10` is equal to (`==`) the `min(pval10)`, the estimated difference in the means from the simulated responses that produced the smallest p-value can be extracted. The difference was -4.17 here. As in the previous initial explorations of permutations, this is just one realization of this process and it needs to be repeated many times to study the impacts of using (1) the first realization of the responses to estimate the difference and p-value and (2) the result with the smallest p-value from ten different realizations of the responses to estimate the difference and p-value. In the following code, we added 
+\indent The following code chunk generates one run through generating ten data sets as the loop works through the index `c`, simulates a new set of responses (`ddsub$SimDistance`), fits a model that explores the difference in the means of the two groups (`lm_sim`), and extracts the ten p-values (stored in `pval10`) and estimated difference in the means (stored in `diff10`).  The smallest p-value of the ten p-values (`min(pval10)`) is 0.00576. By finding the value of `diff10` where `pval10` is equal to (`==`) the `min(pval10)`, the estimated difference in the means from the simulated responses that produced the smallest p-value can be extracted. The difference was -4.17 here. As in the previous initial explorations of permutations, this is just one realization of this process and it needs to be repeated many times to study the impacts of using (1) the first realization of the responses to estimate the difference and p-value and (2) the result with the smallest p-value from ten different realizations of the responses to estimate the difference and p-value. In the following code, we added 
 octothorpes (#)^[You can correctly call octothorpes *number* symbols or, in the 
 twitter verse, *hashtags*. For more on this symbol, see
 "http://blog.dictionary.com/octothorpe/". Even after reading this, I call them 
@@ -2171,10 +2175,10 @@ results <- tibble(pvalue_results=c(pvalues,pvalues_Min),
                   Scenario = rep(c("First", "Min"), each=B))
 
 par(mfrow=c(1,2)) #Plot results
-pirateplot(pvalue_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
+pirateplot(pvalue_results~Scenario, data=results, inf.f.o = 0, inf.b.o = 0,
            avg.line.o = 0, main="(a) P-value results")
 abline(h=0.05, lwd=2, col="red", lty=2)
-pirateplot(Diffmeans_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
+pirateplot(Diffmeans_results~Scenario, data=results, inf.f.o = 0, inf.b.o = 0,
            avg.line.o = 0, main="(b) Estimated difference in mean results")
 
 #Numerical summaries of results
@@ -2221,7 +2225,7 @@ results and then using a validation or test data set that they withheld from
 initial analysis to try to verify that the first results are also present in that 
 second data set. This also has problems but the only way to develop an understanding of a process is to look across a suite of studies and learn from that accumulation of evidence. This is a good start but needs to be coupled with complete reporting of all results, even those that have p-values larger than 0.05 to avoid the bias identified in the previous simulation study.
 
-(ref:fig2-21) Plot of family-wise error rate (Bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on $m$=10 tests. 
+(ref:fig2-21) Plot of family-wise error rate (bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on $m$=10 tests. 
 
 ```{r Figure2-21, fig.cap="(ref:fig2-21)",echo=F,warning=F,message=F}
 m <- 1:100
@@ -2269,7 +2273,7 @@ for (b in (1:B)){ #Simulation study loop to repeat process B times
 results <- tibble(pvalue_results=c(pvalues,pvalues_Min), 
                   Scenario = rep(c("First", "Min"), each=B))
 
-pirateplot(pvalue_results~Scenario,data=results, inf.f.o = 0,inf.b.o = 0,
+pirateplot(pvalue_results~Scenario, data=results, inf.f.o = 0, inf.b.o = 0,
            avg.line.o = 0, main="P-value results")
 abline(h=0.05, lwd=2, col="red", lty=2)
 ```
@@ -2359,7 +2363,7 @@ set.seed(406)
 dsample_BTS <- resample(dsample)
 ```
 
-\newpage
+
 
 ```{r}
 table(as.numeric(dsample_BTS$orig.id))
@@ -2403,9 +2407,9 @@ cs2_final <- table(c(rep(0,n0s),as.vector(table(as.numeric(dsample_BTS2$orig.id)
 
 par(mfrow=c(1,2))
 plot(cs1_final,ylab="Counts of number of times of re-sampling",
-     main="Bootstrap sample 1",xlab="Times re-sampled")
+     main="Bootstrap sample 1",xlab="Times re-sampled", ylim=c(0,16))
 plot(cs2_final,ylab="Counts of number of times of re-sampling", 
-     main="Bootstrap sample 2",xlab="Times re-sampled")
+     main="Bootstrap sample 2",xlab="Times re-sampled", ylim=c(0,16))
 ```
 
 \indent The main point of this exploration was to see that each run of the
@@ -2525,7 +2529,6 @@ of code using:
 quantiles <- qdata(Tstar, c(0.025,0.975))
 ```
 
-\newpage
 
 ```{r}
 quantiles
@@ -2538,16 +2541,16 @@ Figure \@ref(fig:Figure2-25) displays those same percentiles on the bootstrap di
 ```{r Figure2-25, fig.cap="(ref:fig2-25)",echo=F,fig.width=10,fig.height=5,cache=F}
 par(mfrow=c(1,2))
 hist(Tstar, labels=T,ylim=c(0,330))
-abline(v=quantiles$quantile, col="blue", lwd=3)
+abline(v=quantiles, col="blue", lwd=3)
 plot(density(Tstar), main="Density curve of Tstar")
-abline(v=quantiles$quantile, col="blue", lwd=3)
+abline(v=quantiles, col="blue", lwd=3)
 ```
 
 ```{r eval=F}
 hist(Tstar, labels=T)
-abline(v=quantiles$quantile, col="blue", lwd=3)
+abline(v=quantiles, col="blue", lwd=3)
 plot(density(Tstar), main="Density curve of Tstar")
-abline(v=quantiles$quantile, col="blue", lwd=3)
+abline(v=quantiles, col="blue", lwd=3)
 ```
 
 \indent Although confidence intervals can exist without referencing hypotheses,
@@ -2769,7 +2772,7 @@ The margin of error is:
 qt(0.975, df=77)*sp*sqrt(1/37+1/42)
 ```
 
-\newpage
+
 
 All together, the 95% confidence interval is:
 
@@ -2784,6 +2787,11 @@ We get a similar result from ``confint`` on ``lm``, except that ``lm`` switched 
 ```{r}
 lm_GPA <- lm(GPA~Sex, data=s217)
 summary(lm_GPA)
+```
+
+\newpage
+
+```{r}
 confint(lm_GPA)
 ```
 
@@ -2818,7 +2826,11 @@ Figure \@ref(fig:Figure2-27).
 
 ```{r}
 Tobs <- coef(lm_GPA)[2]; Tobs
+```
 
+\newpage
+
+```{r}
 B <- 1000
 set.seed(1234)
 Tstar <- matrix(NA, nrow=B)
@@ -2842,20 +2854,20 @@ this code:
 par(mfrow=c(1,2))
 hist(Tstar,labels=T,ylim=c(0,250))
 abline(v=Tobs,col="red",lwd=2)
-abline(v=quantiles$quantile,col="blue",lwd=3,lty=2)
+abline(v=quantiles,col="blue",lwd=3,lty=2)
 plot(density(Tstar),main="Density curve of Tstar")
 abline(v=Tobs,col="red",lwd=2)
-abline(v=quantiles$quantile,col="blue",lwd=3,lty=2)
+abline(v=quantiles,col="blue",lwd=3,lty=2)
 ```
 
 ```{r eval=F}
 par(mfrow=c(1,2))
 hist(Tstar,labels=T)
 abline(v=Tobs,col="red",lwd=2)
-abline(v=quantiles$quantile,col="blue",lwd=3,lty=2)
+abline(v=quantiles,col="blue",lwd=3,lty=2)
 plot(density(Tstar),main="Density curve of Tstar")
 abline(v=Tobs,col="red",lwd=2)
-abline(v=quantiles$quantile,col="blue",lwd=3,lty=2)
+abline(v=quantiles,col="blue",lwd=3,lty=2)
 ```
 
 In the previous output, the parametric 90% confidence interval is from 

@@ -1340,15 +1340,15 @@ limited to the sampled subjects.
 (ref:tab2-1) Scope of inference summary.
 
 ```{r Table2-1, echo=F,results="asis"}
-columnHeaders <- c("**Random\\\n Sampling/Random\\\n Assignment**",
-                   "**Random Assignment (RA)\\\n -- Yes (controlled experiment)**",
-                   "**Random Assignment (RA)\\\n -- No (observational study)**")
-cell21 <- '**Random Sampling (RS)\\\n -- Yes (or some method\\\n that results in a\\\n representative sample of\\\n population of\\\n interest)**'
-cell22 <- 'Because we have RS, we can\\\n generalize inferences to the\\\n population the RS was taken\\\n from. Because we have\\\n RA we can assume the groups\\\n were equivalent on all aspects\\\n except for the treatment\\\n and can establish causal inference.\\\n'
-cell23 <- 'Can generalize inference to\\\n population the RS was taken\\\n from but cannot establish\\\n causal inference (no RA\\\n -- cannot isolate treatment\\\n variable as only difference\\\n among groups, could be\\\n confounding variables).'
-cell31 <- '**Random Sampling (RS)\\\n -- No (usually a\\\n convenience sample)**'
-cell32 <- 'Cannot generalize inference to\\\n the population of interest\\\n because the sample was\\\n not random and could be\\\n biased -- may not be\\\n "representative" of the\\\n population of interest.\\\n Can establish causal\\\n inference due to RA $\\rightarrow$\\\n the inference from this type of\\\n study applies only to the sample.'
-cell33 <- 'Cannot generalize inference to\\\n the population of interest\\\n because the sample was\\\n not random and could be\\\n biased -- may not be\\\n "representative" of the\\\n population of interest.\\\n Cannot establish causal\\\n inference due to lack of RA of\\\n the treatment.'
+columnHeaders <- c("**Random Sampling/Random Assignment**",
+                   "**Random Assignment (RA) -- Yes (controlled experiment)**",
+                   "**Random Assignment (RA) -- No (observational study)**")
+cell21 <- '**Random Sampling (RS) -- Yes (or some method that results in a representative sample of population of interest)**'
+cell22 <- 'Because we have RS, we can generalize inferences to the population the RS was taken from. Because we have RA we can assume the groups were equivalent on all aspects except for the treatment and can establish causal inference.'
+cell23 <- 'Can generalize inference to population the RS was taken from but cannot establish causal inference (no RA -- cannot isolate treatment variable as only difference among groups, could be confounding variables).'
+cell31 <- '**Random Sampling (RS) -- No (usually a convenience sample)**'
+cell32 <- 'Cannot generalize inference to the population of interest because the sample was not random and could be biased -- may not be "representative" of the population of interest. Can establish causal inference due to RA $\\rightarrow$ the inference from this type of study applies only to the sample.'
+cell33 <- 'Cannot generalize inference to the population of interest because the sample was not random and could be biased -- may not be "representative" of the population of interest. Cannot establish causal inference due to lack of RA of the treatment.'
 x <- data.frame(c(cell21,cell31),c(cell22,cell32),c(cell23,cell33))
 colnames(x) <- columnHeaders
 pandoc.table(x, keep.line.breaks = TRUE,caption="(\\#tab:Table2-1) (ref:tab2-1)", split.table = Inf,

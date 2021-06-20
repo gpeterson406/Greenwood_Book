@@ -20,6 +20,13 @@ library(mosaic)
 library(knitr)
 library(tigerstats)
 library(manipulate)
+library(alr4)
+library(tibble)
+library(psych)
+library(corrplot)
+library(car)
+library(spuRs)
+library(MASS)
 knitr::opts_chunk$set(cache = F,fig.height=3.5,fig.width=6,fig.pos='ht',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
@@ -435,8 +442,8 @@ pairs.panels(mtfiresR, ellipses=F, scale=T, smooth=F, col=0)
 
 \indent As one more example, the Australian Institute of Sport collected data 
 on 102 male and 100 female athletes that are available in the ``ais``
-data set from the ``alr3`` package (@R-alr3, @Weisberg2005).
-\index{R packages!\textbf{alr3}}
+data set from the ``alr4`` package (@R-alr4, @Weisberg2014).
+\index{R packages!\textbf{alr4}}
 They measured a 
 variety of variables including the athlete's Hematocrit (``Hc``, 
 units of percentage of red blood cells in the blood), Body Fat Percentage 
@@ -447,7 +454,7 @@ based on the other variables, but for now the associations are of interest.
 (ref:fig6-4) Scatterplot matrix of athlete data. 
 
 ```{r Figure6-4,fig.cap="(ref:fig6-4)"}
-library(alr3)
+library(alr4)
 data(ais)
 library(tibble)
 ais <- as_tibble(ais)

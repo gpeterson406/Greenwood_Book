@@ -19,6 +19,7 @@ library(mosaic)
 library(knitr)
 library(readr)
 library(yarrr)
+library(tidyverse)
 knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht!',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
@@ -60,7 +61,7 @@ we will not consider every situation you learned in introductory statistics and
 instead focus exclusively on the situation where we have a quantitative
 response variable measured on two groups, adding a new graphic called a "pirate-plot" \index{pirate-plot} to help us see the differences in the observations in the groups. 
 
-## Histograms, boxplots, and density curves {#section2-1}
+## Data wrangling and density curves {#section2-1}
 
 Part of learning statistics is learning to correctly use the terminology, some of which is used colloquially
 differently than it is used in formal statistical settings. The most commonly
@@ -209,20 +210,33 @@ unavailable, then follow the same process noted above to install that package
 and then repeat trying to load the package you wanted. These are called package "dependencies" and are due to one package developer relying on functions that already exist in another package. 
 
 
-\indent With tibbles, you have to declare categorical variables as "factors" to have R correctly handle the variables using the `factor` function. This can be a bit time repetitive but provides some utility for data wrangling in more complex situations to read in the data and then declare their type. For quantitative variables, this is not required and they are stored as numeric variables. The following code declares the categorical variables in the data set as factors and saves them back into the variables of the same names:
+\indent With tibbles, you have to declare categorical variables as "factors" \index{factor} to have R correctly handle the variables using the `factor` function, either creating a new variable or replacing the "character" version of the variable that is used to read in the data initially. The following code replaces the `Condition` character variable with a `factor` version of the same variable with the same name.
 
 ```{r}
 dd$Condition <- factor(dd$Condition)
-dd$Shirt <- factor(dd$Shirt) 
-dd$Helmet <- factor(dd$Helmet)
-dd$Pants <- factor(dd$Pants)
-dd$Gloves <- factor(dd$Gloves)
-dd$ReflectClips <- factor(dd$ReflectClips)
-dd$Backpack <- factor(dd$Backpack) 
 ```
 
-\indent With many variables in a data set, it is often useful to get some 
-quick information about all of them; the ``summary`` function provides 
+
+We use this sort of explicit declaration for either character coded (non-numeric) variables or for numerically coded variables where the numbers represent categories to force R to correctly work with the information on those variables. For quantitative variables, we do not need to declare their type and they are stored as numeric variables as long as there is no text in that column of the spreadsheet other than the variable name.
+
+\indent The one-at-a-time declaration of the variables as factors when there are many (here there are six more) creates repetitive and cumbersome code. There is another way of managing this and other similar related "data wrangling"^[Some might call this data manipulation or transformation, but those terms can have other meanings and we want a term to capture organizing, preparing, and possibly modifying the data to prepare for analysis and doing it reproducibly in what we like to call "data wrangling".]. To do this, we will combine using the pipe operator (`%>% ` from the `magrittr` package or `|>` in base R) and using the `mutate` function from `dplyr`, both `%>%` and `mutate` are part of the `tidyverse` and start to help us write code that flows from left to right to accomplish multiple tasks. \index{pipe} \index{\texttt{%>%}} \index{\texttt{|>}} \index{data wrangling} \index{\texttt{mutate()} The pipe operator (`%>%` or `|>`) allows us to pass a data set to a function (sometimes more than one if you have multiple data wrangling tasks to complete - see work below) and there is a keyboard short-cut to get the combination of characters for it by using Ctrl+Shift+M on a PC or Cmd+Shift+M on a Mac. The `mutate` function allows us to create new columns or replace existing ones by using information from other columns, separating each additional operation by a comma (and a "return" for proper style). You will gradually see more reasons why we want to learn these functions, but for now this allows us to convert the character variables into `factor` variables within `mutate` and when we are all done to assign our final data set back in the same `dd` tibble that we started with.     
+
+```{r}
+
+dd <- dd %>% mutate(Shirt = factor(Shirt),
+              Helmet = factor(Helmet),
+              Pants = factor(Pants),
+              Gloves = factor(Gloves),
+              ReflectClips = factor(ReflectClips),
+              Backpack = factor(Backpack)
+              )
+```
+
+
+The first part of the codechunk (`dd <-`) is to save our work that follows into the `dd` tibble. The `dd %>% mutate` is translated as "take the tibble `dd` and apply the `mutate` function. Inside the `mutate` function, each line has a `variablename = factor(variablename)` that declares each variable as a factor variable with the same name as in the original tibble. 
+
+\indent With many variables in a data set and with some preliminary data wrangling completed, it is often useful to get some 
+quick information about all of the variables; the ``summary`` function provides 
 useful information whether the variables are categorical or 
 quantitative and notes if any values were missing. \index{\texttt{summary()}}
 
@@ -255,24 +269,34 @@ We can also see that overtake distances (variable
 \indent To accompany the numerical summaries, histograms and boxplots can 
 provide some initial information on the shape of the distribution of 
 the responses for the different *Outfits*. Figure \@ref(fig:Figure2-1)
-contains the histogram 
-and boxplot of *Distance*, ignoring any information on which outfit was being worn. The calls to the two plotting functions are 
-enhanced slightly to add better labels using `xlab`, `ylab`, and `main`. 
+contains the histogram with a boxplot and a rug of *Distance*, all ignoring any information on which outfit was being worn. There are some additional layers and modifications in this version of the `ggplot`. The code uses our new pipe operator to pass our tibble into the `ggplot`, skipping the `data=...` within `ggplot`. There are some additional options modifying the title, x, and y-axis labels inside the `labs()` part of the code, which will be useful for improving the labels in your plots.  
 
-(ref:fig2-1) Histogram and boxplot of passing distances in cm.
+(ref:fig2-1) Histogram (with 20 bins), boxplot, and rug of passing distances (in cm).
 
 ```{r Figure2-1, fig.cap="(ref:fig2-1)",echo=F,fig.height=4,fig.width=6,cache=T}
-par(mfrow=c(1,2))
-hist(dd$Distance, xlab="Distance (cm)", labels=T, main="Histogram of Distances", ylim=c(0,1900))
-boxplot(dd$Distance, ylab="Distance (cm)", main="Boxplot of Distances")
+dd %>% ggplot(mapping = aes(x = Distance)) +
+  geom_histogram(bins=20, fill = "grey") +
+  geom_rug() +
+  geom_boxplot(color = "tomato", width=30) + #width used to scale boxplot to make it more visible
+  theme_bw() +
+  labs(title = "Plot of Passing Distances",
+       x = "Distance (cm)",
+       y = "Count")
+
 ```
 
 ```{r eval=F}
-hist(dd$Distance, xlab="Distance (cm)", labels=T, main="Histogram of Distances")
-boxplot(dd$Distance, ylab="Distance (cm)", main="Boxplot of Distances")
+dd %>% ggplot(mapping = aes(x = Distance)) +
+  geom_histogram(bins=20, fill = "grey") +
+  geom_rug() +
+  geom_boxplot(color = "tomato", width=30) + #width used to scale boxplot to make it more visible
+  theme_bw() +
+  labs(title = "Plot of Passing Distances",
+       x = "Distance (cm)",
+       y = "Count")
 ```
 
-The distribution appears to be relatively symmetric with many observations in both tails flagged as potential
+\indent Based on Figure \@ref(fig:Figure2-1), the distribution appears to be relatively symmetric with many observations in both tails flagged as potential
 outliers. Despite being flagged as potential outliers, they seem to be part of a common distribution. In real data sets, outliers are commonly encountered and the
 first step is to verify that they were not errors in recording (if so, fixing or removing them is easily justified). If they cannot be easily dismissed or fixed, the next step
 is to study their impact on the statistical analyses performed, potentially
@@ -304,72 +328,63 @@ scale which makes the bar heights adjust so that the proportion of the
 total data set in each bar is represented by the area in each bar 
 (remember that area is height times width). So the height depends on the 
 width of the bars and the total area across all the bars has to be 1. In the 
-``hist`` function, the ``freq=F`` option does this required re-scaling to get
-density-scaled histogram bars. The 
-density curve is added to the histogram using the R code of 
-``lines(density())``, producing the result in Figure \@ref(fig:Figure2-2) with 
-added modifications of options for ``lwd`` (line width) and ``col`` (color)
-to make the plot more visually appealing. You can see how the density curve 
+``geom_histogram``, its aesthetic is modified using the (criptic^[I admit that there are parts of the logic of using `ggplot` that are confusing to me and this is one of them - but I learned to plot in R before `ggplot2`, but have been growing fonder and fonder of this way of working. Now instead of searching the internet, I will just get to search my book for this code.]) code of `(y = ..density..)`. The 
+density curve is added to the histogram using the `geom_density`, producing the result in Figure \@ref(fig:Figure2-2) with 
+added modifications for filling the density curve but using `alpha = 0.1` to make the density curve fill transparent (alpha values range between 0 and 1 with lower values providing more transparency). You can see how the density curve 
 somewhat matches the histogram bars but deals with the bumps up and down 
 and edges a little differently. We can pick out the relatively symmetric distribution using 
-either display and will rarely make both together. 
+either display and will rarely make both together. \index{\texttt{geom_density()}}
 
-(ref:fig2-2) Histogram and density curve of Distance responses.
+(ref:fig2-2) Histogram (density scaled), density curve, and rug plot of Distance responses.
 
 
 ```{r Figure2-2, fig.cap="(ref:fig2-2)",cache=T}
-hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, main="Histogram of Distances", 
-     ylim=c(0,0.02))
-lines(density(dd$Distance), lwd=3,col="purple")
+set.seed(555)
+dd %>% ggplot(mapping = aes(x = Distance)) +
+  geom_histogram(bins=20, fill = "grey", aes(y =..density..)) +
+  geom_density(fill = "purple", alpha=0.1) + 
+  geom_rug() + 
+  theme_bw() +
+  labs(title = "Plot of Passing Distances",
+       x = "Distance (cm)",
+       y = "Density")
 ```
+
+```r
+dd %>% ggplot(mapping = aes(x = Distance)) +
+  geom_histogram(bins=15, fill = "grey", aes(y =..density..)) +
+  geom_density(fill = "purple", alpha=0.1) + 
+  geom_rug() + 
+  theme_bw() +
+  labs(title = "Plot of Passing Distances",
+       x = "Distance (cm)",
+       y = "Density")
+```
+
 
 
 \indent Histograms can be sensitive to the choice of the number of bars and 
 even the cut-offs used to define the bins for a given number of bars.
 Small changes in the definition of cut-offs for the bins can have 
 noticeable impacts on the shapes observed but
-this does not impact density curves. We are not going to tinker with the
-default choices for bars in histogram, as they are reasonably selected in R, but we
-can add information on the original observations being included in each bar to
-better understand the choices that ``hist`` is making. In the previous 
-display, we can add what is called a ***rug*** to the plot, where a tick 
-mark is made on the x-axis for each observation. \index{rug} Because the responses appear to be rounded to the nearest cm, there is some discreteness in the responses and we need to use a graphical 
-technique called ***jittering*** to add a little noise^[Jittering typically 
-involves adding random variability to each observation that
-is uniformly distributed in a range determined based on the spacing of the
-observation. The idea is to jitter just enough to see all the points but not too much. This means that if you re-run the ``jitter`` function, the results will change if you do not set the random number seed using `set.seed` that is discussed more below. 
-For more details, type ``help(jitter)`` in the console in RStudio.] to each observation so all the
-observations at each distance value do not 
-plot as a single line. \index{jitter} In Figure \@ref(fig:Figure2-3), the added tick marks 
-on the x-axis show the approximate locations of the original observations. 
-We can (barely) see how there are 2 observations at 2 cm (the noise 
-added generates a wider line than for an individual observation so it is possible to see that it is more than one observation there). A limitation of the 
-histogram arises at the center of the distribution where the bar that goes from 100 to 120 cm suggests that the mode (peak) is in this range (but it is unclear where) but the density curve suggests that the peak is closer to 120 than 100. The
-density curve also shows some small bumps in the tails of the distributions tied to individual observations that are not really displayed in the histogram. Density curves are, however, 
-not perfect and this one shows a tiny bit of area for distances less than 0 cm which is
-not possible here. When we make density curves below, we will cut off the curves at the most extreme values to avoid this issue. 
+this does not impact density curves. We have engaged the arbitrary choice of the number of bins, but we can add information on the original observations being included in each bar to better understand the choices that ``geom_hist`` is making. We can (barely) see how there are 2 observations at 2 cm (the noise 
+added generates a wider line than for an individual observation so it is possible to see that it is more than one observation there but I had to check the data set to confirm this). A limitation of the 
+histogram arises at the center of the distribution where the bar that goes from approximately 110 to 120 cm suggests that the mode (peak) is in this range (but it is unclear where) but the density curve suggests that the peak is closer to 120 than 110. Both density curves and histograms can react to individual points in the tails of distributions, but sometimes in different ways. 
 
-(ref:fig2-3) Histogram with density curve and rug plot of the jittered distance responses. 
 
-```{r Figure2-3, fig.cap="(ref:fig2-3)",cache=T, fig.width=6.75, fig.height=4.25}
-hist(dd$Distance, freq=F, xlab="Distance (cm)", labels=T, 
-     main="Histogram of Distances with density curve and rug", ylim=c(0,0.017))
-lines(density(dd$Distance), lwd=3,col="purple")
-set.seed(900)
-rug(jitter(dd$Distance), col="red", lwd=1)
-```
- 
 \indent The graphical tools we've just discussed are going to help us move to comparing the
 distribution of responses across more than one group. We will have two displays
 that will help us make these comparisons. The simplest is 
 the ***side-by-side boxplot***, where a boxplot is displayed for each group 
-of interest using the same y-axis scaling. \index{boxplot} In R, we can use its ***formula***
+of interest using the same y-axis scaling. \index{boxplot} In the base R `boxplot` function, we can use its ***formula***
 notation to see if the response (``Distance``) differs based on the group 
 (``Condition``) by using something like ``Y~X`` or, here, ``Distance~Condition``. 
 We also need to tell R where to find the variables -- use the last option in the command, ``data=DATASETNAME`` , to inform R of the tibble to look in 
 to find the variables. In this example, ``data=dd``. We will use 
 the formula and ``data=...`` options in almost every function we use
-from here forward. 
+from here forward, except in `ggplot` which has too many options for formulas to be useful. 
+
+[Greta: I cut Figure 2-3]
 
 \indent Figure \@ref(fig:Figure2-4) contains the side-by-side 
 boxplots showing similar distributions for all the groups, with a slightly higher median in the "police" group and some outliers identified in all groups. 
@@ -379,6 +394,7 @@ boxplots showing similar distributions for all the groups, with a slightly highe
 ```{r Figure2-4, fig.cap="(ref:fig2-4)",echo=F}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))
 boxplot(Distance~Condition,data=dd)
+
 ```
 
 ```{r eval=F}
@@ -413,7 +429,7 @@ contains the density curves, the original observations that generated the
 density curve as jittered points (jittered both vertically and horizontally a little), the sample mean of each group (wide bar), and vertical lines to horizontal bars that represents the confidence interval for the true mean of that group. For each group, the density curves 
 are mirrored to aid in visual assessment of the shape of the distribution. This mirroring also
 creates a shape that resembles the outline of a violin with skewed distributions so versions of this
-display have also been called a "violin plot" or a "bean plot". All together this plot shows us information
+display have also been called a "violin plot" or a "bean plot" (I call these "enhanced violin plots" when I use them in journal articles instead of "pirate plots"). All together this plot shows us information
 on the original observations, center (mean) and its confidence interval, spread, and shape of the distributions of the responses. Our inferences typically focus on the means of the groups and this plot allows
 us to compare those across the groups while gaining information on the shapes
 of the distributions of responses in each group. 
@@ -423,7 +439,7 @@ package.
 \index{R packages!\textbf{yarrr}}
 The function works like the boxplot used previously
 except that options 
-for the type of confidence interval needs to be specified with `inf.method="ci"` - otherwise you will get a different kind of interval than you learned in introductory statistics and we don't want to get caught up in trying to understand the kind of interval it makes by default. And it seems useful to add `inf.disp="line"` as an additional option to add bars for the confidence interval^[The default version seems to get mis-interpreted as the box from a boxplot too easily. This display choice also matches the display style for later plots for confidence intervals in term-plots.]. There are many other options in the function that might be useful in certain situations, but these are the only ones that are really needed to get started with pirate-plots.
+for the type of confidence interval needs to be specified with `inf.method="ci"` - otherwise you will get a different kind of interval than you learned in introductory statistics and we don't want to get caught up in trying to understand the kind of interval it makes by default. And it seems useful to add `inf.disp="line"` as an additional option to add bars for the confidence interval^[The default version seems to get mis-interpreted as the box from a boxplot too easily. This display choice also matches the display style for later plots for confidence intervals in term-plots.]. There are many other options in the function that might be useful in certain situations, but these are the only ones that are really needed to get started with pirate-plots. While we could build this plot using `ggplot`, the simplicity of this function keeps it a favorite way to display a quantitative variable across groups. 
 
 (ref:fig2-5) Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals.
 
@@ -509,23 +525,24 @@ approaches.
 
 \indent To be able to work just with the observations from two of the conditions (*casual* and *commute*) we could remove all the other observations in a spreadsheet program and read that new data set 
 back into R, but it is actually pretty easy to use R to do data
-management once the data set is loaded. It is also a better scientific process to do as much of your data management within R as possible so that your steps in managing the data are fully documented and reproducible. Highlighting and clicking in spreadsheet programs is a dangerous way to work and can be impossible to recreate steps that were taken from initial data set to the version that was analyzed. In R, we could identify the rows that contain the observations we want to retain and just extract those rows, but this is hard with over five thousand observations. The `subset` function (also an option in some functions) is the best way to be able to focus on observations that meet a particular condition, we can "subset" the data set to retain those rows. The `subset` function takes the data set as its first argument and then in the "subset" option, we need to define the condition we want to meet to retain those rows. Specifically, we need to define the variable we want to work with, `Condition`, and then request rows that meet a condition (are `%in%`) and the aspects that meet that condition (here by concatenating "casual" and "commute"), leading to code of:
+management once the data set is loaded. It is also a better scientific process to do as much of your data management within R as possible so that your steps in managing the data are fully documented and reproducible. Highlighting and clicking in spreadsheet programs is a dangerous way to work and can be impossible to recreate steps that were taken from initial data set to the version that was analyzed. In R, we could identify the rows that contain the observations we want to retain and just extract those rows, but this is hard with over five thousand observations. The `filter` function (also an option in some functions) is the best way to be able to focus on observations that meet a particular condition, we can "filter" the data set to retain just those rows. The `filter` function takes the data set via the pipe operate and then we need to define the condition we want to meet to retain those rows. Specifically, we need to define the variable we want to work with, `Condition`, and then request rows that meet a condition (are `%in%`) and the aspects that meet that condition (here by concatenating the two levels of "casual" and "commute"), leading to code of:
 
 ```
-subset(dd, Condition %in% c("casual", "commute"))
+dd %>% filter(Condition %in% c("casual","commute"))
 ```
 
-We would actually want to save that new subsetted data set into a new tibble for future work, so we can use the following to save the reduced data set into `ddsub`:
+We would actually want to save that new filtered data set into a new tibble for future work, so we can use the following to save the reduced data set into `ddsub`:
 
 ```{r}
-ddsub <- subset(dd, Condition %in% c("casual", "commute"))
+ddsub <- dd %>% filter(Condition %in% c("casual","commute"))
 ```
 
-There is also a "select" option that we could also use to just focus on certain columns in the data set and we can use that just to focus on the `Condition` and `Distance` variables using:
+There is also the `select` function that we could also use with an additional pipe operator to just focus on certain columns in the data set, here to just retain the `Condition` and `Distance` variables using:
 
 ```{r}
-ddsub <- subset(dd, Condition %in% c("casual", "commute"), 
-                select=c("Distance", "Condition"))
+ddsub <- dd %>% 
+  filter(Condition %in% c("casual","commute")) %>%
+  select(Distance, Condition)
 ```
 
 You will always want to check that the correct observations were dropped 
@@ -544,10 +561,10 @@ just reflect the categories that are present. The ``factor``
 \index{\texttt{factor()}}
 function 
 creates categorical variables based on the levels of the variables that are 
-observed and is useful to run here to clean up ``Condition`` to just reflect the categories that are now present. 
+observed and is useful to run here to clean up `Condition` to just reflect the categories that are now present. 
 
 ```{r}
-ddsub$Condition <- factor(ddsub$Condition)
+ddsub <- ddsub %>% mutate(Condition = factor(Condition))
 summary(ddsub$Condition)
 ```
 
@@ -709,8 +726,8 @@ what this means here.
 
 ```{r echo=T}
 set.seed(9432)
-s1 <- sample(subset(ddsub, Condition %in% "commute"), size=15)
-s2 <- sample(subset(ddsub, Condition %in% "casual"), size=15)
+s1 <- sample(ddsub %>% filter(Condition %in% "commute"), size=15)
+s2 <- sample(ddsub %>% filter(Condition %in% "casual"), size=15)
 dsample <- rbind(s1, s2)
 mean(Distance~Condition, data=dsample)
 ```
@@ -975,13 +992,12 @@ null distribution is the distribution of possible values of a statistic
 under the null hypothesis. We want to visualize this distribution and use it to
 assess how unusual our $T_{obs}$ result of -25.933 cm was relative to all the
 possibilities under permutations (under the null hypothesis). So we repeat the
-loop, now with $B=1000$ and generate a histogram, density curve, and summary
+loop, now with $B=1000$ and generate a histogram (modified to add counts to the bars using `stat_bin`^[This is another place where the code is a bit criptic when you are starting - just copy this entire chunk of code - you only ever need to modify the `lm` line in this code!]), density curve, and summary
 statistics of the results:
 
-(ref:fig2-9) Histogram (left, with counts in bars) and density curve (right) of values of test statistic for *B* = 1,000 permutations. 
+(ref:fig2-9) Histogram (left, with counts in bars) and density curve (right) of values of test statistic for *B* = 1,000 permutations.  
 
-```{r Figure2-9, fig.cap="(ref:fig2-9)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
+```{r Figure2-9, fig.cap="(ref:fig2-9)",echo=F,fig.width=5,fig.height=5,cache=F}
 B <- 1000
 set.seed(1234)
 Tstar <- matrix(NA, nrow=B)
@@ -989,8 +1005,10 @@ for (b in (1:B)){
   lmP <- lm(Distance~shuffle(Condition), data=dsample)
   Tstar[b] <- coef(lmP)[2]
 }
-hist(Tstar, label=T, ylim=c(0, 300))
-plot(density(Tstar), main="Density curve of Tstar")
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density")
 ```
 
 ```{r eval=F}
@@ -1000,8 +1018,10 @@ for (b in (1:B)){
   lmP <- lm(Distance~shuffle(Condition), data=dsample)
   Tstar[b] <- coef(lmP)[2]
 }
-hist(Tstar, label=T,ylim=c(0,300))
-plot(density(Tstar), main="Density curve of Tstar")
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density")
 ```
 
 ```{r}
@@ -1011,33 +1031,34 @@ favstats(Tstar)
 Figure \@ref(fig:Figure2-9) contains visualizations of $T^*$ and the ``favstats``
 summary provides the related numerical summaries. Our observed $T_{obs}$
 of -25.933 seems somewhat unusual relative to these results with only 
-`r pdata(Tstar,-30,lower.tail=T)*1000` $T^*$ values smaller than -30 based on the 
+`r pdata(Tstar,-25,lower.tail=T)*1000` $T^*$ values smaller than -25 based on the 
 histogram. We need to make more specific comparisons of the permuted results 
 versus our observed result to be able to clearly decide whether our observed 
 result is really unusual. 
 
 \indent To make the comparisons more concrete, first we can enhance the previous graphs 
 by adding the value of the test statistic from the real data set, as shown in 
-Figure \@ref(fig:Figure2-10), using the ``abline`` \index{texttt{abline}} function to draw a vertical 
+Figure \@ref(fig:Figure2-10), using the ``geom_vline`` \index{texttt{geom_vline}} function to draw a vertical 
 line at our $T_{obs}$ value specified in the ``v`` (for vertical) option. 
 
 (ref:fig2-10) Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic. 
 
-```{r Figure2-10, fig.cap="(ref:fig2-10)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
+```{r Figure2-10, fig.cap="(ref:fig2-10)",echo=F,fig.width=5,fig.height=5,cache=F}
 Tobs <- -25.933
-hist(Tstar, labels=T,ylim=c(0,300))
-abline(v=Tobs, lwd=2, col="red")
-plot(density(Tstar),main="Density curve of Tstar")
-abline(v=Tobs, lwd=2, col="red")
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
 
 ```{r eval=F}
 Tobs <- -25.933
-hist(Tstar, labels=T)
-abline(v=Tobs, lwd=2, col="red")
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=Tobs, lwd=2, col="red")
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
 
 Second, we can calculate the exact number of permuted results that were as 
@@ -1116,19 +1137,20 @@ Figure \@ref(fig:Figure2-11) shows both cut-offs on the histogram and density cu
 
 (ref:fig2-11) Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test.
 
-```{r Figure2-11, fig.cap="(ref:fig2-11)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-hist(Tstar, labels=T,ylim=c(0,300))
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar),main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
+```{r Figure2-11, fig.cap="(ref:fig2-11)",echo=F,fig.width=5,fig.height=5,cache=F}
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
 
 ```{r eval=F}
-hist(Tstar, labels=T)
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
 
 \indent In general, the ***one-sided test p-value*** 
@@ -1654,20 +1676,21 @@ be surprised if your results vary if you use different random number seeds.
 
 (ref:fig2-13) Permutation distribution of the $t$-statistic.
 
-```{r Figure2-13, fig.cap="(ref:fig2-13)",echo=F,fig.width=10,fig.height=5}
-par(mfrow=c(1,2))
-hist(Tstar, labels=T,ylim=c(0,250))
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
+```{r Figure2-13, fig.cap="(ref:fig2-13)",echo=F,fig.width=5,fig.height=5}
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
 
 
 ```{r eval=F}
-hist(Tstar, labels=T)
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
 
 \indent The parametric version
@@ -1693,16 +1716,16 @@ equivalent to the methods we will consider in Chapters
 \@ref(chapter3) and \@ref(chapter4) so that 
 will be our focus for the two group problem and is what we get when using the ``lm`` model to estimate the differences in the group means. The unequal variance version of the two-sample t-test is available in the ``t.test`` function if needed. 
 
-(ref:fig2-14) Plots of $t$-distributions with 2, 10, and 20 degrees of freedom and a normal distribution (dashed line). Note how the $t$-distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the $t$-distribution *almost* matches a standard normal curve.
+(ref:fig2-14) Plots of $t$-distributions with 2, 8, and 20 degrees of freedom and a normal distribution (dashed line). Note how the $t$-distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the $t$-distribution *almost* matches a standard normal curve.
 
 ```{r Figure2-14, echo=FALSE, fig.cap ="(ref:fig2-14)",fig.width=7,fig.height=4}
 xa <- seq(from=-7,to=7,length.out=300)
 par(mfrow=c(1,1))
 plot(xa,dt(xa,df=2),type="l",xlab="t-values",ylab="Density",lwd=4,ylim=c(0,0.39),main="Plot of three different t-distributions and the normal curve", cex.main=1)
-lines(xa,dt(xa,df=10),lwd=3,col="grey")
+lines(xa,dt(xa,df=8),lwd=3,col="grey")
 lines(xa,dt(xa,df=20),lwd=2)
 lines(xa,dnorm(xa),lty=2,lwd=2,col="blue")
-legend("left",legend=c("t(2)","t(10)","t(20)","Normal"),col=c("black","grey","black","blue"),lty=c(1,1,1,2),lwd=c(4,3,2,2),cex=0.75)
+legend("left",legend=c("t(2)","t(8)","t(20)","Normal"),col=c("black","grey","black","blue"),lty=c(1,1,1,2),lwd=c(4,3,2,2),cex=0.75)
 ```
 
 \indent If the assumptions for the equal variance $t$-test and the null 
@@ -1878,11 +1901,11 @@ pdata(abs(Tstar), abs(Tobs), lower.tail=F)
 (ref:fig2-16) Permutation distribution of the $t$-statistic for $n=1,636$ overtake data set.
 
 ```{r Figure2-16, fig.cap="(ref:fig2-16)",echo=F,fig.width=10,fig.height=5}
-par(mfrow=c(1,2))
-hist(Tstar, labels=T,ylim=c(0,250))
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
 
 \newpage
@@ -1893,7 +1916,7 @@ In every chapter, the first example, used to motivate and explain
 the methods, is followed with a "worked" example where we focus just on the 
 results. In a 
 previous semester, some of the Intermediate Statistics (STAT 217) students at Montana State University (***n***=79) provided 
-information on their *Sex*^[Only male and female were provided as options on the survey. These data were collected as part of a project to study learning of material using online versus paper versions of the book but we focus just on the gender differences in GPA here.], *Age*, and current cumulative *GPA*. We might be
+information on their *Sex*^[Only male and female were provided as options on the survey. These data were collected as part of a project to study learning of material using online versus paper versions of this book but we focus just on the gender differences in GPA here.], *Age*, and current cumulative *GPA*. We might be
 interested in whether Males and Females had different average GPAs. First, 
 we can take a look at the difference in the responses by groups based on the
 output and as displayed in Figure \@ref(fig:Figure2-17). 
@@ -1955,7 +1978,7 @@ for (b in (1:B)){
 perm_pval <- pdata(abs(Tstar),abs(Tobs),lower.tail=F)[[1]]
 ```
 
-\indent So the test statistic was observed to be $t=2.69$ and it hopefully 
+So the test statistic was observed to be $t=2.69$ and it hopefully 
 follows a $t(77)$ distribution under the null hypothesis. This provides a 
 p-value of 0.008713 that we can trust if the conditions to use this 
 procedure are at least not clearly violated.
@@ -1979,18 +2002,19 @@ pdata(abs(Tstar),abs(Tobs),lower.tail=F)[[1]]
 (ref:fig2-18) Histogram and density curve of permutation distribution of test statistic for Intermediate Statistics student GPAs.
 
 ```{r Figure2-18, fig.cap="(ref:fig2-18)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-hist(Tstar,labels=T,ylim=c(0,225))
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
 
 ```{r eval=F}
-hist(Tstar, labels=T)
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=c(-1,1)*Tobs, lwd=2, col="red")
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
 
 Here is a full write-up of the results using all 6+ hypothesis testing 
@@ -2465,19 +2489,20 @@ options(width=oldWidth)
 
 (ref:fig2-24) Histogram and density curve of bootstrap distributions of difference in sample mean ``Distances`` with vertical line for the observed difference in the means of -25.933.
 
-```{r Figure2-24, fig.cap="(ref:fig2-24)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-hist(Tstar, labels=T,ylim=c(0,330))
-abline(v=Tobs, col="red", lwd=2)
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=Tobs, col="red", lwd=2)
+```{r Figure2-24, fig.cap="(ref:fig2-24)",echo=F,fig.width=5,fig.height=5,cache=F}
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
 
 ```{r eval=F}
-hist(Tstar, labels=T)
-abline(v=Tobs, col="red", lwd=2)
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=Tobs, col="red", lwd=2)
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
 
 In this situation, the observed difference in the mean passing distances is -25.933 cm
@@ -2538,19 +2563,21 @@ Figure \@ref(fig:Figure2-25) displays those same percentiles on the bootstrap di
 
 (ref:fig2-25) Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold vertical lines).
 
-```{r Figure2-25, fig.cap="(ref:fig2-25)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-hist(Tstar, labels=T,ylim=c(0,330))
-abline(v=quantiles, col="blue", lwd=3)
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=quantiles, col="blue", lwd=3)
+```{r Figure2-25, fig.cap="(ref:fig2-25)",echo=F,fig.width=5,fig.height=5,cache=F}
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = quantiles, col = "red", lwd = 2)
+
 ```
 
 ```{r eval=F}
-hist(Tstar, labels=T)
-abline(v=quantiles, col="blue", lwd=3)
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=quantiles, col="blue", lwd=3)
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = quantiles, col = "red", lwd = 2)
 ```
 
 \indent Although confidence intervals can exist without referencing hypotheses,
@@ -2851,23 +2878,21 @@ this code:
 (ref:fig2-27) Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines). 
 
 ```{r Figure2-27,fig.cap="(ref:fig2-27)",echo=F,fig.width=10,fig.height=5,cache=F}
-par(mfrow=c(1,2))
-hist(Tstar,labels=T,ylim=c(0,250))
-abline(v=Tobs,col="red",lwd=2)
-abline(v=quantiles,col="blue",lwd=3,lty=2)
-plot(density(Tstar),main="Density curve of Tstar")
-abline(v=Tobs,col="red",lwd=2)
-abline(v=quantiles,col="blue",lwd=3,lty=2)
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "grey", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 2) + 
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
 
 ```{r eval=F}
-par(mfrow=c(1,2))
-hist(Tstar,labels=T)
-abline(v=Tobs,col="red",lwd=2)
-abline(v=quantiles,col="blue",lwd=3,lty=2)
-plot(density(Tstar),main="Density curve of Tstar")
-abline(v=Tobs,col="red",lwd=2)
-abline(v=quantiles,col="blue",lwd=3,lty=2)
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "grey", center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 2) + 
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
 
 In the previous output, the parametric 90% confidence interval is from 

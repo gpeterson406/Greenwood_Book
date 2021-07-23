@@ -64,11 +64,11 @@ library(mosaic)
 library(readr)
 library(yarrr)
 dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
-dd$Condition <- factor(dd$Condition)
+dd <- dd %>% mutate(Condition = factor(Condition))
 
-pirateplot(Distance~Condition,data=dd, inf.method="ci", inf.disp="line")
+pirateplot(Distance ~ Condition, data = dd, inf.method = "ci", inf.disp = "line")
 abline(h=mean(dd$Distance), lwd=2, col="green", lty=2) # Adds overall mean to plot
-favstats(Distance~Condition,data=dd)
+favstats(Distance ~ Condition, data = dd)
 ```
 
 There are slight differences in the sample sizes in the seven groups with between $737$ and $868$ observations, providing a
@@ -248,7 +248,7 @@ baseline group.
 If you look closely in the code for the rest of the book, any model for a 
 quantitative response will use this function, suggesting a common thread in 
 the most commonly used statistical models.]. The ``lm`` function continues to 
-use the same format as previous functions and in Chapter \@ref(chapter2) , ``lm(Y~X, data=datasetname)``.
+use the same format as previous functions and in Chapter \@ref(chapter2) , ``lm(Y ~ X,  data = datasetname)``.
 It ends up that ``lm`` generates the reference-coded version of the 
 model by default (The developers of R thought it was that important!).
 \index{reference coding}
@@ -258,7 +258,7 @@ cell means version of the model,
 \index{model!cell means}
 so we have to override the standard technique 
 and add a "``-1``" to the formula interface to tell R that we want to the 
-cell means coding. Generally, this looks like ``lm(Y~X-1, data=datasetname).``
+cell means coding. Generally, this looks like ``lm(Y ~ X - 1, data = datasetname).``
 \index{\texttt{lm()}}
 Once we fit a model in R, the ``summary`` function run on the model provides a
 useful "summary" of the model coefficients and a suite of other potentially
@@ -274,7 +274,7 @@ column ("Estimate") of the coefficient table and compare these results to what w
 
 
 ```r
-lm1 <- lm(Distance~Condition-1, data=dd)
+lm1 <- lm(Distance ~ Condition - 1, data = dd)
 summary(lm1)$coefficients
 ```
 
@@ -310,7 +310,7 @@ summary:
 
 
 ```r
-lm2 <- lm(Distance~Condition, data=dd)
+lm2 <- lm(Distance ~ Condition, data = dd)
 summary(lm2)$coefficients
 ```
 
@@ -428,7 +428,7 @@ for all groups:
 
 
 ```r
-lm3 <- lm(Distance~1, data=dd)
+lm3 <- lm(Distance ~ 1, data = dd)
 summary(lm3)$coefficients
 ```
 
@@ -554,7 +554,7 @@ The ANOVA table is generated using the
 
 
 ```r
-lm2 <- lm(Distance~Condition, data=dd)
+lm2 <- lm(Distance ~ Condition, data = dd)
 anova(lm2)
 ```
 
@@ -567,7 +567,7 @@ anova(lm2)
 ## Residuals 5683 5086298   895.0
 ```
 
-Note that the ANOVA table has a row labelled ``Condition``, which contains information 
+Note that the ANOVA table has a row labeled ``Condition``, which contains information 
 for the grouping variable (we'll generally refer to this as explanatory variable 
 $A$ but here it is the outfit group that was randomly assigned), and a row 
 labeled ``Residuals``, which is synonymous with "Error". The Sums of Squares 
@@ -639,13 +639,13 @@ we need to be able to calculate and extract the
 $\text{SS}_A$ value. In the ANOVA table, it is the second number in the first row;
 we can use the bracket, ``[,]``, referencing to extract that 
 number from the ANOVA table that ``anova`` produces with 
-``anova(lm(Distance~Condition, data=dd))[1, 2]``. We'll store the observed value
+``anova(lm(Distance ~ Condition, data = dd))[1, 2]``. We'll store the observed value
 of $\text{SS}_A$ in ``Tobs``, reusing some ideas from Chapter \@ref(chapter2). 
 \index{\texttt{anova()}}
 
 
 ```r
-Tobs <- anova(lm(Distance~Condition, data=dd))[1,2]; Tobs
+Tobs <- anova(lm(Distance ~ Condition, data = dd))[1,2]; Tobs
 ```
 
 ```
@@ -659,23 +659,24 @@ a plot of the resulting permutation distribution:
 (ref:fig3-5) Histogram and density curve of permutation distribution of $\text{SS}_A$ with the observed value of $\text{SS}_A$ displayed as a bold, vertical line. The proportion of results that are as large or larger than the observed value of $\text{SS}_A$ provides an estimate of the p-value. 
 
 <div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-5-1.png" alt="(ref:fig3-5)" width="960" />
+<img src="03-oneWayAnova_files/figure-html/Figure3-5-1.png" alt="(ref:fig3-5)" width="480" />
 <p class="caption">(\#fig:Figure3-5)(ref:fig3-5)</p>
 </div>
 
-\newpage
+
 
 
 ```r
 B <- 1000
-Tstar <- matrix(NA, nrow=B)
+Tstar <- matrix(NA, nrow = B)
 for (b in (1:B)){
-  Tstar[b] <- anova(lm(Distance~shuffle(Condition), data=dd))[1,2]
+  Tstar[b] <- anova(lm(Distance ~ shuffle(Condition), data = dd))[1,2]
   }
-hist(Tstar, labels=T, ylim=c(0,300))
-abline(v=Tobs, col="red", lwd=3)
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=Tobs, col="red", lwd=3)
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
 
 The right-skewed distribution (Figure \@ref(fig:Figure3-5)) contains the 
@@ -688,7 +689,7 @@ that ``Tobs`` will always be positive so no absolute values are required here.
 
 
 ```r
-pdata(Tstar, Tobs, lower.tail=F)[[1]]
+pdata(Tstar, Tobs, lower.tail = F)[[1]]
 ```
 
 ```
@@ -784,11 +785,11 @@ different $F$-distributions are displayed for you in Figure \@ref(fig:Figure3-6)
 
 \indent Now we are ready to discuss an ANOVA table since we know about each of its 
 components. Note the general format of the ANOVA table is in Table \@ref(tab:Table3-2)^[Make sure you can work 
-from left to right and up and down to fill in the ANOVA table given just the 
+from left to right and top down to fill in the ANOVA table given just the 
 necessary information to determine the other components or from a study description to complete the *DF* part of the table -- there are always questions like these on exams...]:
 \index{ANOVA table}
 
-\newpage
+
 
 (ref:tab3-2) General One-Way ANOVA table.
 
@@ -836,13 +837,13 @@ F=5824.74/895)
 which follows an $F(6, 5683)$ distribution if the null hypothesis is true and some 
 other assumptions are met. Using the ``pf`` function provides us with areas in the
 specified $F$-distribution with the ``df1`` provided to the function as the 
-numerator *df* and ``df2`` as the denominator *df* and ``lower.tail=F`` reflecting 
+numerator *df* and ``df2`` as the denominator *df* and ``lower.tail = F`` reflecting 
 our desire for a right tailed area. \index{F-distribution}
 \index{\texttt{pf()}}
 
 
 ```r
-pf(6.51, df1=6, df2=5683, lower.tail=F)
+pf(6.51, df1 = 6, df2 = 5683, lower.tail = F)
 ```
 
 ```
@@ -866,7 +867,7 @@ output:
 
 
 ```r
-Tobs <- anova(lm(Distance~Condition, data=dd))[1,4]; Tobs
+Tobs <- anova(lm(Distance ~ Condition, data = dd))[1,4]; Tobs
 ```
 
 ```
@@ -875,12 +876,12 @@ Tobs <- anova(lm(Distance~Condition, data=dd))[1,4]; Tobs
 
 ```r
 B <- 1000
-Tstar <- matrix(NA, nrow=B)
+Tstar <- matrix(NA, nrow = B)
 for (b in (1:B)){
-  Tstar[b] <- anova(lm(Distance~shuffle(Condition), data=dd))[1,4]
+  Tstar[b] <- anova(lm(Distance ~ shuffle(Condition), data = dd))[1,4]
 }
 
-pdata(Tstar, Tobs, lower.tail=F)[[1]]
+pdata(Tstar, Tobs, lower.tail = F)[[1]]
 ```
 
 ```
@@ -889,16 +890,17 @@ pdata(Tstar, Tobs, lower.tail=F)[[1]]
 
 
 ```r
-hist(Tstar, labels=T)
-abline(v=Tobs, col="red", lwd=3)
-plot(density(Tstar), main="Density curve of Tstar")
-abline(v=Tobs, col="red", lwd=3)
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
 
 (ref:fig3-7) Histogram and density curve of the permutation distribution of the F-statistic with bold, vertical line for the observed value of the test statistic of 6.51. 
 
 <div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-7-1.png" alt="(ref:fig3-7)" width="960" />
+<img src="03-oneWayAnova_files/figure-html/Figure3-7-1.png" alt="(ref:fig3-7)" width="480" />
 <p class="caption">(\#fig:Figure3-7)(ref:fig3-7)</p>
 </div>
 
@@ -973,8 +975,7 @@ clearly assess potential violations of the assumptions.
 \indent We can obtain a suite of four diagnostic plots by using the ``plot`` function on 
 any linear model object that we have fit. To get all the plots together in four 
 panels we need to add the ``par(mfrow=c(2,2))`` command to tell R to make a graph
-with 4 panels^[We have been using this function quite a bit to make multi-panel 
-graphs but did not show you that line of code. But you need to use this command 
+with 4 panels^[You need to use this command 
 for linear model diagnostics or you won't get the plots we want from the model. 
 And you really just need ``plot(lm2)`` but the ``pch=16`` option makes it easier 
 to see some of the points in the plots.].
@@ -1054,14 +1055,19 @@ this new display. We can obtain the residuals from the linear model using the
 
 ```r
 par(mfrow=c(1,2))
-eij <- residuals(lm2)
-hist(eij, main="Histogram of residuals")
-plot(density(eij), main="Density plot of residuals", ylab="Density",
-     xlab="Residuals")
+dd <- dd %>% mutate(eij = residuals(lm2)) #Adds residuals to dd
+
+dd %>%  ggplot(aes(x = eij)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "tomato") +
+  geom_density(aes(y = ..scaled..)) +
+  theme_bw() +
+  labs(y = "Density",
+       x = "Residuals",
+       title = "Histogram of residuals")
 ```
 
 <div class="figure">
-<img src="03-oneWayAnova_files/figure-html/Figure3-10-1.png" alt="(ref:fig3-10)" width="960" />
+<img src="03-oneWayAnova_files/figure-html/Figure3-10-1.png" alt="(ref:fig3-10)" width="480" />
 <p class="caption">(\#fig:Figure3-10)(ref:fig3-10)</p>
 </div>
 
@@ -1078,17 +1084,16 @@ consistent about the x and y axis choices throughout this book and how the line 
 these plots do vary in what is presented, so be careful with using QQ-plots.], the QQ-plots display the value of 
 observed percentiles in the residual distribution on the y-axis versus the 
 percentiles of a theoretical normal distribution on the x-axis. If the 
-observed **distribution of the residuals matches the shape of the normal distribution, then the plotted points should follow a 1-1 relationship.**
-If the points follow the displayed straight line then that suggests that the 
+observed **distribution of the residuals matches the shape of the normal distribution, then the plotted points should follow a 1-1 relationship.** The 1-1 line is based on the Q1 (25^th^) and Q3 (75^th^) percentiles in the distributions to avoid impacts of the tails on the line you are using to compare the two distributions, with points added to the plot using `geom_qq` and the reference (1-1) line added with `stat_qq_line`. If the points follow the displayed straight line then that suggests that the 
 residuals have a similar shape to a normal distribution. Some variation is 
 expected around the line and some patterns of deviation are worse
 than others for our models, so you need to go beyond saying "it does not match
-a normal distribution". It is best to be specific about the type of deviation
-you are detecting and how clear or obvious that deviation is. And to do that, we need to practice interpreting some
+a normal distribution". Be specific about the type of deviation
+you are detecting (right or left skew, heavy tails, multi-modal, etc.) and how clear or obvious that deviation is. And to do that, we need to practice interpreting some
 QQ-plots. 
 
 
-(ref:fig3-11) QQ-plot of residuals from overtake data linear model.
+(ref:fig3-11) QQ-plot and density plot of residuals from the overtake data linear model. 
 
 
 <div class="figure">
@@ -1107,11 +1112,11 @@ not change the shape of the distribution but can make outlier identification
 simpler -- having a standardized residual more extreme than 5 or -5 would 
 suggest a deviation from normality since we rarely see values that many 
 standard deviations from the mean in a normal distribution. But mainly focus 
-on the pattern in points in the QQ-plot and whether it matches the 1-1 line that is being plotted.] ***residuals*** are used (Figure \@ref(fig:Figure3-9)) and in others the raw residuals are used (Figure \@ref(fig:Figure3-11)) to compare the residual distribution to a normal one. Both the upper and lower tails (upper tail in the upper right and the lower tail in the lower right of the plot) show some separation from the 1-1 line. The separation in the upper tail is more clear and these positive residuals are higher than the line "predicts" if the distribution had been normal. Being higher than the line in the right tail means being bigger than expected and so more spread out in that direction than a normal distribution should be. The left tail for the negative residuals also shows some separation from the line to have more extreme (here more negative) than expected, suggesting a little extra spread in the lower tail than suggested by a normal distribution. If the two sides had been similarly far from the 1-1 line, then we would have a symmetric and ***heavy-tailed*** distribution. Here, the slight difference in the two sides suggests that the right tail is more spread out than the left and we should be concerned about a minor violation of the normality assumption.  If the distribution had followed the 
-normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose -- this is not the software identifying outliers or other problematic points -- that is your responsibility to assess using these plots. For example, the point "2709"  is identified in Figures \@ref(fig:Figure3-9) and \@ref(fig:Figure3-11)  (the 2709^th^
-observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is a great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a *novice* vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the ``fitted`` function on the estimated ``lm`` -- which here is just the sample mean of the group of the observations (*novice*) of 116.94 cm. The residual is stored in the 2,709^th^ value of ``eij`` or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the ``Distance`` variable), it is not too surprising that it ends up as the largest positive residual. \index{\texttt{fitted()}} \index{R packages!\textbf{car}}
+on the pattern in points in the QQ-plot and whether it matches the 1-1 line that is being plotted.] ***residuals*** are used (Figure \@ref(fig:Figure3-9)) and in others the raw residuals are used (Figure \@ref(fig:Figure3-11)) to compare the residual distribution to a normal (Gaussian) one. Both the upper and lower tails (upper tail in the upper right and the lower tail in the lower right of the plot) show some separation from the 1-1 line. The separation in the upper tail is more clear and these positive residuals are higher than the line "predicts" if the distribution had been normal. Being higher than the line in the right tail means being bigger than expected and so more spread out in that direction than a normal distribution should be. The left tail for the negative residuals also shows some separation from the line to have more extreme (here more negative) than expected, suggesting a little extra spread in the lower tail than suggested by a normal distribution. If the two sides had been similarly far from the 1-1 line, then we would have a symmetric and ***heavy-tailed*** distribution. Here, the slight difference in the two sides suggests that the right tail is more spread out than the left and we should be concerned about a minor violation of the normality assumption.  If the distribution had followed the 
+normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose -- this is not the software identifying outliers or other problematic points -- that is your responsibility to assess using these plots. For example, the point "2709"  is identified in Figure \@ref(fig:Figure3-9)  (the 2709^th^
+observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is a great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a *novice* vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the ``fitted`` function on the estimated ``lm`` -- which here is just the sample mean of the group of the observations (*novice*) of 116.94 cm. The residual is stored in the 2,709^th^ value of ``eij`` or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the ``Distance`` variable), it is not too surprising that it ends up as the largest positive residual. \index{\texttt{fitted()}} 
 
-\newpage
+
 
 
 ```r
@@ -1135,7 +1140,7 @@ fitted(lm2)[2709]
 ```
 
 ```r
-eij[2709]
+dd$eij[2709]
 ```
 
 ```
@@ -1287,7 +1292,7 @@ library(mosaic)
 
 
 ```r
-tally(~supp, data=ToothGrowth) #Supplement Type (VC or OJ)
+tally(~supp, data = ToothGrowth) #Supplement Type (VC or OJ)
 ```
 
 ```
@@ -1297,7 +1302,7 @@ tally(~supp, data=ToothGrowth) #Supplement Type (VC or OJ)
 ```
 
 ```r
-tally(~dose, data=ToothGrowth) #Dosage level
+tally(~dose, data = ToothGrowth) #Dosage level
 ```
 
 ```
@@ -1307,8 +1312,8 @@ tally(~dose, data=ToothGrowth) #Dosage level
 ```
 
 ```r
-#Creates a new variable Treat with 6 levels
-ToothGrowth$Treat <- with(ToothGrowth, interaction(supp, dose)) 
+#Creates a new variable Treat with 6 levels using mutate and interaction:
+ToothGrowth <- ToothGrowth %>% mutate(Treat = interaction(supp, dose))
 
 #New variable that combines supplement type and dosage
 tally(~Treat, data=ToothGrowth) 
@@ -1336,7 +1341,7 @@ each group using ``favstats``.
 
 
 ```r
-favstats(len~Treat, data=ToothGrowth)
+favstats(len ~ Treat, data = ToothGrowth)
 ```
 
 ```
@@ -1353,8 +1358,8 @@ favstats(len~Treat, data=ToothGrowth)
 
 
 ```r
-pirateplot(len~Treat, data=ToothGrowth, inf.method="ci", inf.disp="line",
-           ylab="Odontoblast Growth in microns", point.o=.7)
+pirateplot(len ~ Treat, data = ToothGrowth, inf.method = "ci", inf.disp = "line",
+           ylab = "Odontoblast Growth in microns", point.o = .7)
 ```
 
 <div class="figure">
@@ -1367,7 +1372,7 @@ the dosage level and that *OJ* might lead to higher growth rates than *VC* excep
 at a dosage of 2 mg/day. The variability around the means looks to be small 
 relative to the differences among the means, so we should expect a small 
 p-value from our $F$-test. The design is balanced as noted above ($n_j=10$ 
-for all six groups) so the methods are some what resistant to impacts from
+for all six groups) so the methods are somewhat resistant to impacts from
 potential non-normality and non-constant variance but we should still 
 assess the patterns in the plots, especially with smaller sample sizes in each group. 
 \index{resistant}
@@ -1435,9 +1440,9 @@ with these observations.
 
         
         ```r
-        m2 <- lm(len~Treat, data=ToothGrowth)
+        m2 <- lm(len ~ Treat, data = ToothGrowth)
         par(mfrow=c(2,2))
-        plot(m2,pch=16)
+        plot(m2, pch = 16)
         ```
         
         <div class="figure">
@@ -1468,7 +1473,7 @@ with these observations.
     
     
     ```r
-    m2 <- lm(len~Treat, data=ToothGrowth)
+    m2 <- lm(len ~ Treat, data = ToothGrowth)
     anova(m2)
     ```
     
@@ -1499,53 +1504,51 @@ with these observations.
     distribution (this is the distribution of the test statistic if the null hypothesis
     is true) with an $F$-statistic of 41.56. 
     
-    * The nonparametric approach is not too hard so we can compare the two approaches here  as well:
-    
-    
-    
-    ```r
-    Tobs <- anova(lm(len~Treat, data=ToothGrowth))[1,4]; Tobs
-    ```
-    
-    ```
-    ## [1] 41.55718
-    ```
-    
-    ```r
-    par(mfrow=c(1,2))
-    B <- 1000
-    Tstar <- matrix(NA, nrow=B)
-    for (b in (1:B)){
-      Tstar[b] <- anova(lm(len~shuffle(Treat), data=ToothGrowth))[1,4]
-    }
-    pdata(Tstar, Tobs, lower.tail=F)[[1]]
-    ```
-    
-    ```
-    ## [1] 0
-    ```
-    
-    ```r
-    hist(Tstar, xlim=c(0,Tobs+3))
-    abline(v=Tobs, col="red", lwd=3)
-    plot(density(Tstar), xlim=c(0,Tobs+3), main="Density curve of Tstar")
-    abline(v=Tobs, col="red", lwd=3)
-    ```
-    
-    <div class="figure">
-    <img src="03-oneWayAnova_files/figure-html/Figure3-16-1.png" alt="Histogram and density curve of permutation distribution for $F$-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56." width="480" />
-    <p class="caption">(\#fig:Figure3-16)Histogram and density curve of permutation distribution for $F$-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56.</p>
-    </div>
-    
-    * **The permutation p-value was reported as 0.\index{p-value!zero}
+    * The nonparametric approach is not too hard so we can compare the two approaches here  as well. The permutation p-value is reported as 0.\index{p-value!zero}
     This should be reported as 
-    p-value < 0.001** since we did 1,000 permutations and found that none of the
-    permuted $F$-statistics, $F^*$, were larger than the observed $F$-statistic
+    p-value < 0.001 since we did 1,000 permutations and found that none of the
+    permuted $F$-statistics, $F^\ast$, were larger than the observed $F$-statistic
     of 41.56. The permuted results do not exceed 6 as seen in Figure 
     \@ref(fig:Figure3-16), so the observed result is *really unusual* relative 
     to the null hypothesis. As suggested previously, the parametric and
     nonparametric approaches should be similar here and they were.
+    
+    
 
+```r
+    Tobs <- anova(lm(len ~ Treat, data = ToothGrowth))[1,4]; Tobs
+```
+
+```
+## [1] 41.55718
+```
+
+```r
+    par(mfrow=c(1,2))
+    B <- 1000
+    Tstar <- matrix(NA, nrow = B)
+    for (b in (1:B)){
+      Tstar[b] <- anova(lm(len ~ shuffle(Treat), data = ToothGrowth))[1,4]
+    }
+    pdata(Tstar, Tobs, lower.tail = F)[[1]]
+```
+
+```
+## [1] 0
+```
+
+```r
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue") +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 25, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
+```
+
+<div class="figure">
+<img src="03-oneWayAnova_files/figure-html/Figure3-16-1.png" alt="Histogram and density curve of permutation distribution for $F$-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56." width="480" />
+<p class="caption">(\#fig:Figure3-16)Histogram and density curve of permutation distribution for $F$-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56.</p>
+</div>
 
 4. **Write a conclusion:** 
 
@@ -1658,7 +1661,7 @@ output and Figure \@ref(fig:Figure3-17). Also note that Figure
 
 
 ```r
-m3 <- lm(len~Treat-1, data=ToothGrowth)
+m3 <- lm(len ~ Treat - 1, data = ToothGrowth)
 summary(m3)
 ```
 
@@ -1686,7 +1689,7 @@ summary(m3)
 ```
 
 
-(ref:fig3-17) Effect plot of the One-Way ANOVA model for the odontoblast growth data.
+(ref:fig3-17) Effect plot of the One-Way ANOVA model for the odontoblast growth data, with rotated x-axis text for enhanced readability of the levels of the predictor variable.
 
 <div class="figure">
 <img src="03-oneWayAnova_files/figure-html/Figure3-17-1.png" alt="(ref:fig3-17)" width="384" />
@@ -1695,7 +1698,7 @@ summary(m3)
 
 
 ```r
-plot(allEffects(m2))
+plot(allEffects(m2), rotx = 45)
 ```
 
 \sectionmark{Multiple (pair-wise) comparisons using Tukey's HSD and CLD}
@@ -1822,7 +1825,7 @@ ANOVA model.
 Unfortunately, its code format is a little complicated -- but there are 
 just two places to modify the code: include the model name and after ``mcp`` 
 (stands for *multiple comparison procedure*) in the ``linfct`` option, you need to include the
-explanatory variable name as ``VARIABLENAME="Tukey"``. The last part is to get the 
+explanatory variable name as ``VARIABLENAME = "Tukey"``. The last part is to get the 
 Tukey HSD multiple comparisons run on our explanatory variable^[In more complex models, this code can be used to create pair-wise comparisons on one of many explanatory variables.]. Once we obtain the
 intervals using the ``confint`` function or using ``plot`` applied to the stored results, we can use them to test $H_0: \mu_j = \mu_{j'} \text{ vs } H_A: \mu_j \ne \mu_{j'}$ 
 by assessing whether 0 is in the confidence interval for each pair. If 0 is in the 
@@ -1981,11 +1984,12 @@ reporting 15 confidence intervals for all the pair-wise differences, either in a
 
 ```r
 #Options theme=2,inf.f.o = 0,point.o = .5 added to focus on CLD
-pirateplot(len~Treat, data=ToothGrowth, ylab="Growth (microns)", inf.method="ci", inf.disp="line",
+pirateplot(len ~ Treat, data = ToothGrowth, ylab = "Growth (microns)", 
+           inf.method = "ci", inf.disp = "line",
            theme=2, inf.f.o = 0.3, point.o = .5) 
-text(x=2,y=10,"a",col="blue",cex=1.5) #CLD added
-text(x=c(1,4),y=c(15,18),"b",col="red",cex=1.5)
-text(x=c(3,5,6),y=c(25,28,28),"c",col="green",cex=1.5)
+text(x=2,y=10,"a",col="blue",cex=1.5) #CLD added to second bean (x = 2) at height of y = 10
+text(x=c(1,4),y=c(15,18),"b",col="red",cex=1.5) #Adds "b" to first and fourth bean
+text(x=c(3,5,6),y=c(25,28,28),"c",col="green",cex=1.5) #Add "c" to three beans
 ```
 
 <div class="figure">
@@ -2054,7 +2058,7 @@ but if you apply it to situations with p-values larger than your
 *a priori* significance level,
 you are unlikely to find any pairs that are detected as being different. Some
 statisticians suggest that you shouldn't employ follow-up tests such as Tukey's
-HSD when there is not sufficient evidence to reject the overall null hypothesis.
+HSD when there is not much evidence against the overall null hypothesis. If you needed to use a permutation approach for your overall F-test, there are techniques for generating multiple-comparison adjusted permutation confidence intervals, but they are beyond the scope of this material. Using the tools here there are two options. First, you can subset the data set and do pairwise two-sample t-tests for all combinations of pairs of levels and apply a Bonferroni correction for the p-values that this would generate (this is more conservative than employing Tukey's adjustments). Another alternative to be able to employ Tukey's HSD as discussed here is to try to use a transformation on the response variable (things like logs or square-roots) so that the parametric approach is reasonable to use; transformations are discussed in Sections \@ref(section7-5) and \@ref(section7-6).
 
 ## Pair-wise comparisons for the Overtake data {#section3-7}
 
@@ -2062,13 +2066,14 @@ In our previous work with the overtake data, the overall ANOVA test
 led to a conclusion that there is some difference in the true means across the
 seven groups with a p-value < 0.001 giving very strong evidence against the null hypothesis of them all being equal. The original authors followed up their overall $F$-test with comparing every pair of outfits using one of the other methods for multiple testing adjustments available in the ``p.adjust`` function and detected differences between the *police* outfit and all others except for *hiviz* and no other pairs had p-values less than 0.05 using their approach. We will employ the Tukey's HSD approach to address the same exploration and get basically the same results as they obtained, as well as estimated differences in the means in all the pairs of groups. 
 
-\newpage
 
-\indent The code is similar^[There is a warning message produced by the default Tukey's code here related to the algorithms used to generate approximate p-values and then the CLD, but the results seem reasonable and just a few p-values seem to vary in the second or third decimal points.] to the previous example focusing on the ``Condition`` variable for the 21 pairs to compare. To make these results easier to read and generally to make all the results with seven groups easier to understand, we can sort the levels of the explanatory based on the values in the response, using something like the the means or medians of the responses for the groups. This does not change the analyses (the $F$-statistic and all pair-wise comparisons are the same), it just sorts them to be easier to discuss. Note that it might change the baseline group so would impact the reference-coded model even though the fitted values are the same. Specifically, we can use the ``reorder`` function \index{\texttt{reorder}} based on the mean using something like ``reorder(FACTORVARIABLE, RESPONSEVARIABLE, FUN=mean)``. Unfortunately the ``reorder`` function doesn't have a ``data=...`` option, so we will let the function know where to find the two variables with a wrapper around it of ``with(DATASETNAME, reorder(...))``; this approach saves us from having to use ``dd$...`` to reference each variable. I like to put this "reordered" factor into a new variable so I can always go back to the other version if I want it. The code creates ``Condition2`` here and checking the levels for it and the original ``Condition`` variable show the change in the order of the levels of the two factor variables:
+
+\indent The code is similar^[There is a warning message produced by the default Tukey's code here related to the algorithms used to generate approximate p-values and then the CLD, but the results seem reasonable and just a few p-values seem to vary in the second or third decimal points.] to the previous example focusing on the ``Condition`` variable for the 21 pairs to compare. To make these results easier to read and generally to make all the results with seven groups easier to understand, we can sort the levels of the explanatory based on the values in the response, using something like the the means or medians of the responses for the groups. This does not change the analyses (the $F$-statistic and all pair-wise comparisons are the same), it just sorts them to be easier to discuss. Note that it might change the baseline group so would impact the reference-coded model even though the fitted values are the same. Specifically, we can use the ``reorder`` function \index{\texttt{reorder}} based on the mean using something like ``reorder(FACTORVARIABLE, RESPONSEVARIABLE, FUN = mean)``, with our pipe and `mutate` functions used to modify the ``Condition`` variable. I like to put this "reordered" factor into a new variable so I can always go back to the other version if I want it but you could also re-write the original version with this modification -- this only impacts the underlying order of the factor levels, not the entries for the observations themselves. The code here creates ``Condition2`` and checks the levels for it and the original ``Condition`` variable, which shows the change in the order of the levels of the two factor variables:
 
 
 ```r
-dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
+dd <- dd %>% mutate(Condition2 = reorder(Condition, Distance, FUN = mean))
+
 levels(dd$Condition)
 ```
 
@@ -2088,7 +2093,7 @@ And to verify that this worked, we can compare the means based on ``Condition`` 
 
 
 ```r
-mean(Distance~Condition, data=dd)
+mean(Distance ~ Condition, data = dd)
 ```
 
 ```
@@ -2097,7 +2102,7 @@ mean(Distance~Condition, data=dd)
 ```
 
 ```r
-mean(Distance~Condition2, data=dd)
+mean(Distance ~ Condition2, data = dd)
 ```
 
 ```
@@ -2119,12 +2124,12 @@ mean(Distance~Condition2, data=dd)
 
 
 ```r
-lm2 <- lm(Distance~Condition2, data=dd)
+lm2 <- lm(Distance ~ Condition2, data = dd)
 library(multcomp)
 TmOV <- glht(lm2, linfct = mcp(Condition2 = "Tukey"))
 ```
 
-\newpage
+
 
 
 ```r
@@ -2180,7 +2185,7 @@ cld(TmOv, abseps=0.1)
 
 
 ```r
-old.par <- par(mai=c(1,2.5,1,1)) #Makes room on the plot for the group names
+old.par <- par(mai = c(1,2.5,1,1)) #Makes room on the plot for the group names, the second number of 2.5 is most often adjusted: larger values provide more room on the left of the plot
 plot(TmOv)
 ```
 
@@ -2191,8 +2196,8 @@ The CLD also reinforces the previous discussion of which levels were detected as
 
 
 ```r
-pirateplot(Distance~Condition2, data=dd, ylab="Distance (cm)", inf.method="ci",
-           inf.disp="line", theme=2) 
+pirateplot(Distance ~ Condition2, data = dd, ylab = "Distance (cm)", inf.method = "ci",
+           inf.disp = "line", theme = 2) 
 text(x=1:5,y=200,"a",col="blue",cex=1.5) #CLD added
 text(x=5.9,y=210,"a",col="blue",cex=1.5)
 text(x=6.1,y=210,"b",col="red",cex=1.5)
@@ -2244,8 +2249,8 @@ The main components of R code used in this chapter follow with components to
 modify in lighter and/or ALL CAPS text, remembering that any R packages mentioned 
 need to be installed and loaded for this code to have a chance of working:
 
-* **<font color='red'>MODELNAME</font> <- lm(<font color='red'>Y</font>~<font color='red'>X</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **<font color='red'>MODELNAME</font> <- lm(<font color='red'>Y</font> ~ <font color='red'>X</font>,
+data = <font color='red'>DATASETNAME</font>)**
 
     * Probably the most frequently used command in R. 
     
@@ -2253,8 +2258,8 @@ data=<font color='red'>DATASETNAME</font>)**
     response variable and X as the grouping variable, storing the estimated model 
     object in MODELNAME. Remember that X should be defined as a factor variable. \index{\texttt{lm()}|textbf}
 
-* **<font color='red'>MODELNAME</font> <- lm(<font color='red'>Y</font>~<font color='red'>X</font>-1,
-data=<font color='red'>DATASETNAME</font>)**
+* **<font color='red'>MODELNAME</font> <- lm(<font color='red'>Y</font> ~ <font color='red'>X</font> - 1,
+data = <font color='red'>DATASETNAME</font>)**
 
     * Fits the cell means version of the One-Way ANOVA model. 
 
@@ -2271,11 +2276,21 @@ data=<font color='red'>DATASETNAME</font>)**
     * Results are incorrect if run on the cell means model since the reduced model 
     under the null is that the mean of all the observations is 0!
 
-* **pf(<font color='red'>FSTATISTIC</font>, df1=<font color='red'>NUMDF</font>,
-df2=<font color='red'>DENOMDF</font>, lower.tail=F)**
+* **pf(<font color='red'>FSTATISTIC</font>, df1 = <font color='red'>NUMDF</font>,
+df2 = <font color='red'>DENOMDF</font>, lower.tail = F)**
 
     * Finds the p-value for an observed $F$-statistic with NUMDF and DENOMDF degrees 
     of freedom. \index{\texttt{pf()}|textbf}
+    
+* **Tobs ``<-`` anova(lm(<font color='red'>Y</font> ~ <font color='red'>X</font>, data = <font color='red'>DATASETNAME</font>))[1,4]; Tobs  
+    B ``<-`` 1000  
+    Tstar ``<-`` matrix(NA, nrow = B)  
+    for (b in (1:B)){  
+      Tstar[b] ``<-`` anova(lm(<font color='red'>Y</font> ~ <font color='red'>X</font>, data = <font color='red'>DATASETNAME</font>))[1,4]
+    }
+    pdata(Tstar, Tobs, lower.tail = F)[[1]]**
+
+    * Code to run a ``for`` loop to generate 1000 permuted F-statistics, store and calculate the permutation-based p-value from ``Tstar``. 
 
 * **par(mfrow=c(2,2)); plot(<font color='red'>MODELNAME</font>)**
 
@@ -2288,7 +2303,7 @@ df2=<font color='red'>DENOMDF</font>, lower.tail=F)**
 
     * Plots the estimated model component. \index{\texttt{allEffects()}|textbf}
     
-* **Tm2 <- glht(<font color='red'>MODELNAME</font>, linfct=mcp(<font color='red'>X</font>="Tukey"));
+* **Tm2 <- glht(<font color='red'>MODELNAME</font>, linfct = mcp(<font color='red'>X</font> = "Tukey"));
 confint(Tm2); plot(Tm2); summary(Tm2); cld(Tm2)**
 
     * Requires the ``multcomp`` package to be installed and loaded.
@@ -2317,7 +2332,7 @@ help(cholesterol)
 3.1.1. Graphically explore the differences in the changes in Cholesterol levels for
 the five levels using pirate-plots. 
 
-3.1.2. Is the design balanced? How can assess this? \index{balance}
+3.1.2. Is the design balanced? Generate R output to support this assessment. \index{balance}
 
 3.1.3. Complete all 6+ steps of the hypothesis test using the parametric $F$-test, 
 reporting the ANOVA table and the distribution of the test statistic under the null. When you discuss the scope of inference, make sure you note that the treatment levels
@@ -2336,20 +2351,23 @@ from 3.1.5.
 
 \vspace{11pt}
 
-3.2. **Sting Location Analysis** These data come from [@Smith2014] where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at https://peerj.com/articles/338/. The following code gets the data prepared for analysis by removing the observations he took each day on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. It also sorts of the levels (there are many) based on the mean pain rating in each group using the ``reorder`` function.
+3.2. **Sting Location Analysis** These data come from [@Smith2014] where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at https://peerj.com/articles/338/. The following code gets the data prepared for analysis by removing the observations he took each day on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. This is done with a negation (using "!" of the `%in%`  which identifies rows related to the two daily forearm locations (``Forearm`` and ``Forearm1``) to leave all the rows in the data set for any levels of ``Body_Location`` that were not in these two levels. This is easier than trying to list all 24 other levels, then ``Body_Location`` variable is re-factored to clean out its unused levels, and finally the ``reorder`` function is used to order the levels based on the sample mean pain rating - and the results of these steps are stored in the ``sd_fixedR`` tibble.
 
 ```r
 library(readr)
 sd_fixed <- read_csv("http://www.math.montana.edu/courses/s217/documents/stingdata_fixed.csv")
-sd_fixed$BLs <- sd_fixed$Body_Location 
-sd_fixed$BLs <- with(sd_fixed, reorder(Body_Location, Rating, mean))
-sd_fixedR <- subset(sd_fixed,!xor(BLs=="Forearm",BLs=="Forearm1"))
-sd_fixedR$BLs <- factor(sd_fixedR$BLs)
+
+sd_fixedR <- sd_fixed %>% 
+              filter(!(Body_Location %in% c("Forearm", "Forearm1"))) %>% 
+              mutate(
+                    Body_Location = factor(Body_Location),
+                    Body_Location = reorder(Body_Location, Rating, FUN = mean)
+                    )
 ```
 
-3.2.1. Graphically explore the differences in the pain ratings across the different Body_Location levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? **Hint**: look for discreteness in the responses.
+3.2.1. Graphically explore the differences in the pain ratings (``Rating``) across the different ``Body_Location`` levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? **Hint**: look for discreteness in the responses.
 
-3.2.2. Is the design balanced? 
+3.2.2. Is the design balanced?
 
 3.2.3. How does taking 3 measurements that are of interest each day lead to a violation of the independence assumption here?
 
@@ -2359,4 +2377,8 @@ reporting the ANOVA table and the distribution of the test statistic under the n
 3.2.5. Generate the permutation distribution and find the p-value. Compare the parametric
 p-value to the permutation test results. 
 
-3.2.6. Often we might consider Tukey's pairwise comparisons given the initial result here. How many levels are there in Body_Location? How many pairs would be compared if we tried Tukey's -- calculate using the ``choose`` function?
+3.2.6. Generate an effects plot (use something like ``plot(allEffects(lm_model), rotx = 45)`` to rotate the x-axis text 45 degrees so you can read it!). Which of the locations did he find most painful on average? 
+
+3.2.7. Generated our standard panel of diagnostic plots. In the QQ-Plot, you should see a stair-step pattern that presents a violation of the normality assumption that we have not see before. Look at your answer to 3.2.1 and try to explain why this pattern is present.
+
+3.2.8. Often we might consider Tukey's pairwise comparisons given the initial result here. How many levels are there in ``Body_Location`` in the filtered data set? How many pairs would be compared if we tried Tukey's -- calculate this using the ``choose`` function?

@@ -145,7 +145,7 @@ And we always prefer^[We would not suggest throwing away observations to get bal
 balanced designs because they provide resistance to violation of some 
 assumptions as was discussed in Chapter \@ref(chapter3). A ***balanced design***
 in a Two-Way ANOVA setting involves having the same sample size for every
-combination of the levels of the treatments. 
+combination of the levels of the two factor variables in the model. 
 \index{balance}
 
 \indent With two categorical explanatory variables, there are now five possible 
@@ -182,21 +182,23 @@ statistics across all the "groups". The data set is available via the following 
 ```r
 library(readr)
 pt <- read_csv("http://www.math.montana.edu/courses/s217/documents/pt.csv")
-pt$drops <- factor(pt$drops)
-pt$brand <- factor(pt$brand)
+pt <- pt %>% mutate(
+                drops = factor(drops),
+                brand = factor(brand)
+                )
 ```
 
 
 
 The data set contains five observations per combination of treatment levels as
 provided by the ``tally`` function. To get counts for combinations of the 
-variables, use the general formula of ``tally(x1~x2, data=...)`` -- noting that the  order of ``x1`` and ``x2`` doesn't matter here:
+variables, use the general formula of ``tally(x1 ~ x2, data = ...)`` -- noting that the  order of ``x1`` and ``x2`` doesn't matter here:
 \index{\texttt{tally()}}
 
 
 ```r
 library(mosaic)
-tally(brand~drops, data=pt)
+tally(brand ~ drops, data = pt)
 ```
 
 ```
@@ -227,7 +229,7 @@ rows with the standard deviations of each combination.
 
 
 ```r
-favstats(responses~brand+drops, data=pt)
+favstats(responses ~ brand + drops, data = pt)
 ```
 
 ```
@@ -248,7 +250,7 @@ favstats(responses~brand+drops, data=pt)
 ```
 
 \indent The next step is to visually explore the results across the combinations of the two explanatory variables. The pirate-plot can be extended to handle these 
-sorts of two-way situations using a formula that is something like ``y~A*B``.  
+sorts of two-way situations using a formula that is something like ``y ~ A * B``.  
 \index{pirate-plot} The x-axis in the pirate-plot shows two rows of labels based on the two categories and the unique combinations of those categories are directly related to a displayed distribution of responses and mean and confidence interval. For example, in Figure \@ref(fig:Figure4-1), the ``Brand`` with levels of *B1* and *B2* is the first row of x-axis labels and they are repeated across the three levels of ``Drops``. In reading these plots, look for differences in the means across the levels of the first row variable (``Brand``) for each level of the second row variable (``Drops``) and then focus on  whether those differences change across the levels of the second variable -- that is an *interaction* as the differences in differences change. 
 Specifically, start with comparing the two brands at each amount of water. 
 Do the brands seem different? Certainly for 10 drops of water the two look 
@@ -269,8 +271,8 @@ model assumptions.
 ```r
 library(yarrr)
 set.seed(12)
-pirateplot(responses~brand*drops, data=pt, xlab="Drops", ylab="Time", inf.method="ci",
-           inf.disp="line", theme=2, point.o=1) 
+pirateplot(responses ~ brand * drops, data = pt, xlab = "Drops", ylab = "Time", inf.method = "ci",
+           inf.disp = "line", theme = 2, point.o = 1) 
 ```
 
 <div class="figure">
@@ -286,26 +288,34 @@ in what is called an ***interaction plot***.
 Interaction plots display the mean 
 responses (y-axis) versus levels of one predictor variable on the x-axis, 
 adding points and separate lines for each level of the other predictor variable. Because 
-we don't like any of the available functions in R, we wrote our own function, 
-called ``intplot`` that you can download^[Copy and include this code in a codechunk any time you want to use the ``intplot`` or ``inplotarray`` functions.] using:
+we don't like any of the available functions in R, we wrote our own function. It is available two ways. The easiest, if it works, is to install and load the `catstats` R package [@R-catstats]. If you are working on a local RStudio installation, the first step involves installing the ``remotes`` [@R-remotes] R package and then loading it - this will allow you to install ``catstats`` from our github^[Github.com is a version control system used for software development and collaborative work, which we used to allow us to make changes to it and track the modifications. This book is also written using github to allow the same connection for writing and editing it, and one location where the digital version is hosted: https://greenwood-stat.github.io/GreenwoodBookHTML/.] repository (you can type "3" during the installation to avoid updating other packages when you do this step). 
+
+```r
+#To install the catstats R package (just the first time!):
+library(remotes)
+remotes::install_github("greenwood-stat/catstats")
+```
+After that step, you can load ``catstats`` like any other R package, using ``library(catstats)``. 
+
+Some users have experienced issues with getting this package installed, so you can also  download the needed `intplot` and `intplotarray` functions^[Copy and include this code in the first code chunk in any document where you want to use the ``intplot`` or ``inplotarray`` functions.] using:
 \index{\texttt{intplot()}}
 
 
 ```r
-source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R")
+source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v3.R")
 ```
 
 
 
-The function allows a formula interface like ``Y~X1*X2`` and provides the 
-means $\pm$ 1 SE (vertical bars) and adds a legend to help make
+
+\indent The ``intplot`` function allows a formula interface like ``Y ~ X1 * X2`` and provides the means $\pm$ 1 SE (vertical bars) and adds a legend to help make
 everything clear. 
 
 (ref:fig4-2) Interaction plot of the paper towel data with ``Drops`` on the x-axis and different lines based on ``Brand``. 
 
 
 ```r
-intplot(responses~brand*drops, data=pt)
+intplot(responses ~ brand * drops, data = pt)
 ```
 
 <div class="figure">
@@ -317,14 +327,13 @@ Interaction plots can always be made two different ways by switching the order
 of the variables. Figure \@ref(fig:Figure4-2) contains ``Drops`` on the x-axis 
 and Figure \@ref(fig:Figure4-3) has ``Brand`` on the x-axis. Typically putting 
 the variable with more levels on the x-axis will make interpretation easier, 
-but not always. Try both and decide on the one that you like best. 
-\index{interaction plot}
+but not always. Try both and decide on the one that you like best. \index{interaction plot} \index{\texttt{intplot()}} 
 
 (ref:fig4-3) Interaction plot of paper towel data with ``Brand`` on the x-axis and lines based on ``Drops``. 
 
 
 ```r
-intplot(responses~drops*brand, data=pt)
+intplot(responses ~ drops * brand, data = pt)
 ```
 
 <div class="figure">
@@ -358,7 +367,7 @@ in the response across levels of one variable doesn't change based on the levels
 variable and vice-versa. This means that we can consider the ***main effects***
 of each variable on their own^[We will use "main effects" to refer to the two 
 explanatory variables in the additive model even if they are not randomly 
-assigned to contrast with having those variables interacting in the model. 
+assigned to contrast the terminology with having those variables involved in an interaction term in the model. 
 It is the one place in the book where we use "effects" without worrying about the causal connotation of that word.].
 \index{main effects}
 \index{model!main effects}
@@ -368,7 +377,7 @@ means across levels of a single variable except that there are results for two
 variables to extract from the model. With the presence of an interaction, it is
 complicated to summarize how each variable is affecting the response variable
 because their impacts change depending on the level of the other factor. And
-plots like the interaction plot provide us with useful information. 
+plots like the interaction plot provide us with useful information on the pattern of those changes. 
 
 \indent If the lines are not parallel, then
 focus in on comparing the levels of one variable as the other variable changes. 
@@ -387,17 +396,16 @@ same story appears in Figure \@ref(fig:Figure4-2). As the
 water levels increase (left to right, 10 to 20 to 30 drops), the differences
 between the two brands decrease. Of the two versions, Figure \@ref(fig:Figure4-2)
 is probably easier to read here. Sometimes it is nice to see the interaction plot made both ways simultaneously, so you can also use the `intplotarray` function, which provides Figure \@ref(fig:Figure4-4). This plot also adds pirate-plots to the off-diagonals so you can explore the main effects of each variable, if that is reasonable.
-\index{main effects}
-\index{\texttt{intplotarray()}} The interaction plots can be used to 
+\index{main effects} \index{\texttt{intplotarray()}} The interaction plots can be used to 
 identify the best and worst mean responses for combinations of the treatment 
-levels. For example, 10 ``Drops`` and ``Brand`` *B2* lasts longest, on average, and  30 ``Drops`` with ``Brand`` *B1* fails fastest, on average. In any version of the plot here, the lines do not appear to be parallel suggesting that further exploration of the 
+levels. For example, 10 ``Drops`` and ``Brand`` *B2* lasts longest, on average, and 30 ``Drops`` with ``Brand`` *B1* fails fastest, on average. In any version of the plot here, the lines do not appear to be parallel suggesting that further exploration of the 
 interaction appears to be warranted. 
 
 (ref:fig4-4) Interaction plot array of paper towel data with two different versions of interaction plots and pirate-plots of the responses versus each explanatory variable. 
 
 
 ```r
-intplotarray(responses~drops*brand, data=pt)
+intplotarray(responses ~ drops * brand, data = pt)
 ```
 
 <div class="figure">
@@ -688,7 +696,7 @@ that Scenario 5 was the correct
 story since the lines appeared to be non-parallel, but we need to know whether there is
 sufficient evidence to suggest that the interaction is "real" and we get that through the 
 interaction hypothesis test. To fit the interaction model using ``lm``, 
-the general formulation is ``lm(y~x1*x2, data=...)``. The
+the general formulation is ``lm(y ~ x1 * x2, data = ...)``. The
 order of the variables doesn't matter as the most important part of the model,
 to start with, relates to the interaction of the variables. 
 \index{\texttt{lm()}}
@@ -709,7 +717,7 @@ names.
 
 
 ```r
-m1 <- lm(responses~brand*drops, data=pt)
+m1 <- lm(responses ~ brand * drops, data = pt)
 anova(m1)
 ```
 
@@ -726,10 +734,10 @@ anova(m1)
 
 It is useful to display the estimates from this model and we can utilize
 ``plot(allEffects(MODELNAME))`` to visualize the results for the terms 
-in our models. If we turn on the options for ``grid=T``, ``multiline=T``, 
-and ``ci.style="bars"`` we get a useful version of the basic 
+in our models. If we turn on the options for ``grid = T``, ``multiline = T``, 
+and ``ci.style = "bars"`` we get a useful version of the basic 
 "effect plot" for Two-Way ANOVA
-models with interaction. The results of the estimated interaction model are
+models with interaction. I also added ``lty = c(1:2)`` to change the line type for the two lines (replace 2 with the number of levels in the variable driving the different lines. The results of the estimated interaction model are
 displayed in Figure \@ref(fig:Figure4-7), which looks very similar to our 
 previous interaction plot. The only difference is that this comes from model 
 that assumes equal variance and these plots show 95% confidence intervals 
@@ -741,7 +749,7 @@ for the means instead of the $\pm$ 1 SE used in the ``intplot`` where each SE is
 
 ```r
 library(effects)
-plot(allEffects(m1), grid=T, multiline=T, lty=c(1,2), ci.style="bars")
+plot(allEffects(m1), grid = T, multiline = T, lty = c(1:2), ci.style = "bars")
 ```
 
 <div class="figure">
@@ -755,9 +763,11 @@ focused on each main effect, conditional on having the other variable in the
 model. To fit an additive model and not include an interaction, the model
 formula involves a "+" instead of a "``*``" between the explanatory variables. \index{\texttt{anova()}}
 
+\newpage
+
 
 ```r
-m2 <- lm(responses~brand+drops, data=pt)
+m2 <- lm(responses ~ brand + drops, data=pt)
 anova(m2)
 ```
 
@@ -956,9 +966,9 @@ plot(allEffects(m2, residuals = T))
 <p class="caption">(\#fig:Figure4-9)(ref:fig4-9)</p>
 </div>
 
-For the One-Way and Two-Way interaction models, the partial residuals are just the original observations so present similar information as the pirate-plots but do show the model estimated 95% confidence intervals. With interaction models, you can use the default the settings in ``effects`` when adding in the partial residuals as seen below in Figure \@ref(fig:Figure4-12).
+For the One-Way and Two-Way interaction models, the partial residuals are just the original observations so present similar information as the pirate-plots but do show the model estimated 95% confidence intervals. With interaction models, you can use the default settings in ``effects`` when adding in the partial residuals as seen below in Figure \@ref(fig:Figure4-12).
 
-\newpage
+<!-- \newpage -->
 
 ## Guinea pig tooth growth analysis with Two-Way ANOVA	{#section4-4}
 
@@ -984,11 +994,11 @@ data(ToothGrowth)
 library(tibble)
 ToothGrowth <- as_tibble(ToothGrowth)
 par(mfrow=c(1,2))
-pirateplot(len ~ supp*dose, data=ToothGrowth, ylim=c(0,35),
-         main="Pirate-plot",  xlab="Dosage", ylab="Odontoblast Growth",
-         inf.method="ci", inf.disp="line", theme=2)
-intplot(len~supp*dose, data=ToothGrowth, col=c(1,2), 
-        main="Interaction Plot", ylim=c(0,35))
+pirateplot(len ~ supp * dose, data = ToothGrowth, ylim = c(0,35),
+         main = "Pirate-plot",  xlab = "Dosage", ylab = "Odontoblast Growth",
+         inf.method = "ci", inf.disp = "line", theme = 2)
+intplot(len ~ supp * dose, data = ToothGrowth, col = c(1,2), 
+        main = "Interaction Plot", ylim = c(0,35))
 ```
 
 It appears that the effect of method changes based on the dosage as the
@@ -1007,7 +1017,7 @@ following code fits the interaction model and provides an ANOVA table.
 
 
 ```r
-TG1 <- lm(len~supp*dose, data=ToothGrowth)
+TG1 <- lm(len ~ supp * dose, data = ToothGrowth)
 Anova(TG1)
 ```
 
@@ -1031,9 +1041,8 @@ with categorical variables. If the levels of a categorical variable are entered
 numerically, R will treat them as quantitative variables and not split out the
 different levels of the categorical variable. To make sure that R treats
 categorical variables the correct way, we should use the ``factor``
-function on any variables that are categorical but are coded numerically in the
-data set. The following code creates a new variable called ``dosef``
-using the ``factor`` function that will help us obtain correct results from the linear 
+function on any variables^[This goes beyond our considerations with character variables that have text levels but are not declared as factors in the first chapters. Those often will be modeled correctly in linear models whether they are characters or factors - but numerical variables will be modeled in a way that you did not intend for these predictors that we will discuss in Chapters \@ref(chapter7) and \@ref(chapter8).] that are categorical in meaning but are coded numerically in the data set. The following code creates a new variable called ``dosef``
+using ``mutate`` and the ``factor`` function to help us obtain correct results from the linear 
 model.
 \index{\texttt{factor()}}
 The re-run of the ANOVA table provides the correct analysis and the 
@@ -1041,8 +1050,8 @@ expected $df$ for the two rows of output involving ``dosef``:
 
 
 ```r
-ToothGrowth$dosef <- factor(ToothGrowth$dose)
-TG2 <- lm(len~supp*dosef, data=ToothGrowth)
+ToothGrowth <- ToothGrowth %>% mutate(dosef = factor(dose))
+TG2 <- lm(len ~ supp * dosef, data = ToothGrowth)
 Anova(TG2)
 ```
 
@@ -1101,7 +1110,7 @@ tests and estimates for *Dose* and *Delivery method*. But since we are inclined 
 
 ```r
 par(mfrow=c(2,2))
-plot(TG2, pch=16) 
+plot(TG2, pch = 16) 
 ```
 
 <div class="figure">
@@ -1135,7 +1144,7 @@ plot(TG2, pch=16)
     * Constant variance:
     
         * To assess this assumption, we can use the pirate-plot in Figure \@ref(fig:Figure4-10), the diagnostic plots in 
-        Figure \@ref(fig:Figure4-11), and by adding the partial residuals to the term-plot^[To get ``dosef`` on the x-axis in the plot, the ``x.var="dosef"`` option was employed to force the *Dose* to be the variable on the x-axis.] as shown in \@ref(fig:Figure4-12). 
+        Figure \@ref(fig:Figure4-11), and by adding the partial residuals to the term-plot^[To get ``dosef`` on the x-axis in the plot, the ``x.var = "dosef"`` option was employed to force the *Dose* to be the variable on the x-axis.] as shown in \@ref(fig:Figure4-12). 
         
         * In the Residuals vs Fitted and the Scale-Location plots, the 
         differences in variability among the groups (see the different 
@@ -1147,7 +1156,7 @@ plot(TG2, pch=16)
         
         
         ```r
-        plot(allEffects(TG2, residuals = T, x.var="dosef")) 
+        plot(allEffects(TG2, residuals = T, x.var = "dosef")) 
         ```
         
         <div class="figure">
@@ -1168,7 +1177,7 @@ Note that these diagnostics and conclusions are the same as in Section \@ref(sec
     
     
     ```r
-    TG2 <- lm(len~supp*dosef, data=ToothGrowth)
+    TG2 <- lm(len ~ supp * dosef, data = ToothGrowth)
     Anova(TG2) 
     ```
     
@@ -1190,7 +1199,7 @@ Note that these diagnostics and conclusions are the same as in Section \@ref(sec
     
     
     ```r
-    pf(4.107, df1=2, df2=54, lower.tail=F)
+    pf(4.107, df1 = 2, df2 = 54, lower.tail = F)
     ```
     
     ```
@@ -1210,7 +1219,7 @@ Note that these diagnostics and conclusions are the same as in Section \@ref(sec
 
 6. **Scope of Inference:**
 
-    * Based on the random assignment of treatment levels, causal inference is possible but because the guinea pigs were not randomly selected, the inferences only pertain to these guinea pigs.
+    * Based on the random assignment of treatment levels, causal inference is possible (the changes due to dosage in the differences based on supplement type caused the differences in growth) but because the guinea pigs were not randomly selected, the inferences only pertain to these guinea pigs.
     
 
 In a Two-Way ANOVA, we need to go a little further to get to the final "size" interpretations since the models are more complicated. When there is an
@@ -1284,7 +1293,7 @@ our results even if there are too many to be easily interpreted.
 
 
 ```r
-plot(allEffects(TG2), grid=T, multiline=T, lty=c(1,2), ci.style="bars")
+plot(allEffects(TG2), grid = T, multiline = T, lty = c(1:2), ci.style = "bars")
 ```
 
 \indent Given the presence of an important
@@ -1294,17 +1303,17 @@ supported by the p-value suggesting a different effect of
 supplement type based on the dosage level. To supplement this even more, 
 knowing which combinations of levels differ can enhance our discussion. Tukey's
 HSD results (specifically the CLD) can be added to the original interaction
-plot by turning on the ``cld=T`` option in the ``intplot`` function as seen in 
+plot by turning on the ``cld = T`` option in the ``intplot`` function as seen in 
 Figure \@ref(fig:Figure4-14). Sometimes it is hard to see the letters and so
-there is also a ``cldshift=...`` option to move the letters up or down; here a 
+there is also a ``cldshift = ...`` option to move the letters up or down; here a 
 value of 1 seemed to work. \index{Tukey's HSD} \index{compact letter display}
 \index{interaction plot}
 \index{\texttt{intplot()}}
 
 
 ```r
-intplot(len~supp*dose, data=ToothGrowth, col=c(1,2), cldshift=1,
-        cld=T, main="Interaction Plot with CLD")
+intplot(len ~ supp * dose, data = ToothGrowth, col = c(1,2), cldshift = 1,
+        cld = T, main = "Interaction Plot with CLD")
 ```
 
 \indent The "size" interpretation of the previous hypothesis test result could be something like the following: Generally increasing the dosage increases the mean growth except for
@@ -1345,7 +1354,7 @@ willingness to be in debt.
 \indent These data are typical of survey data where respondents were not required 
 to answer all questions and there are some
 missing responses. We could clean out any individuals that failed to respond to
-all questions (called "complete cases") using the ``na.omit`` function, \index{\texttt{na.omit}} which will return responses only for subjects 
+all questions (called "complete cases") using the ``drop_na`` function, \index{\texttt{drop_na()}} which will return responses only for subjects 
 that responded to every question in
 the data set, ``debt``. The change in sample size is available by running the ``dim`` \index{\texttt{dim}} function on the two data sets -- there were $464$ observations (rows) initially along with $13$ variables (columns) and once observations with any missing values were dropped there are $N=304$ for us to analyze. Losing 35% of the observations is a pretty noticeable loss.  
 
@@ -1354,10 +1363,11 @@ the data set, ``debt``. The change in sample size is available by running the ``
 library(faraway)
 data(debt)
 library(tibble)
-debt <- as_tibble(debt)
-debt$incomegp <- factor(debt$incomegp)
-debt$cigbuy <- factor(debt$cigbuy)
-debtc <- na.omit(debt)
+debt <- as_tibble(debt) %>% mutate(
+                  incomegp = factor(incomegp),
+                  cigbuy = factor(cigbuy))
+debtc <- debt %>% drop_na()
+
 dim(debt)
 ```
 
@@ -1373,18 +1383,17 @@ dim(debtc)
 ## [1] 304  13
 ```
 
-If we just focus on the three variables we are using in this model (``debtR``), the missingness is less dramatic, retaining $N=388$ observations in ``debtRc``.
+Using ``drop_na()`` with a list a variable names, we can focus on the three variables we are using in this model and whether the responses are missing on them, only cleaning out rows that are missing on ``incomegp``, ``cigbuy``, and/or ``prodebt``^[We can also use select to only retain these three variables and then ``drop_na()`` to get the same result for these three variables.]. The missingness is less dramatic, retaining $N=388$ observations in ``debtRc`` for our analysis using these three variables.
 
 
 ```r
-# Select only variables of interest for model with the line below
-debtR <- debt[,c("incomegp", "cigbuy","prodebt")] 
-debtRc <- na.omit(debtR)
+# Remove rows with missing values based on just three variables.
+debtRc <- debt %>% drop_na(incomegp, cigbuy, prodebt)
 dim(debtRc)
 ```
 
 ```
-## [1] 388   3
+## [1] 388  13
 ```
 
 
@@ -1394,7 +1403,7 @@ income groups and that is why they are missing. Then we would be missing respons
 could be biased because of ignoring particular types of subjects. We don't have particular statistical tools to easily handle this problem but every researcher should worry about non-response when selected subjects do not respond at
 all or fail to answer some questions. When the missing values are systematic in some fashion and not just missing randomly (missing randomly might be thought of as caused by "demonic intrusion" [@Hurlbert1984] that can't be easily explained or related to the types of responses), then we worry about ***non-response bias*** that is systematically biasing our results because of the missing responses. \index{demonic intrusion} \index{non-response bias} This also ties back into our discussion of who was sampled. We need to
 think carefully about who was part of the sample but refused to participate and
-how that might impact our inferences. And whether we can even address the research question of interest based on what was measured given those that refused/failed to respond. For example, suppose we are studying river flows and are interested in the height of a river. Missingness in these responses could arise because a battery fails or the data logger "crashes" (not related to the responses and so not definitely problematic) or because of something about the measurements to be taken that causes the missingness (suppose the gage can only can measure up to three feet deep and the river is running at four feet deep during a flood). Those are two very different reasons to fail to observe the river height and the second one clearly leads to bias in estimating mean river height because of what can not be observed. In Chapter \@ref(chapter5), we introduce the ``tableplot`` as another tool to visualize data that can also show missing data patterns to help you think about these sorts of issues further. 
+how that might impact our inferences. And whether we can even address the research question of interest based on what was measured given those that refused/failed to respond. For example, suppose we are studying river flows and are interested in the height of a river. Missingness in these responses could arise because a battery fails or the data logger "crashes" (not related to the responses and so not definitely problematic) or because of something about the measurements to be taken that causes the missingness (suppose the gage can only can measure between one and three feet deep and the river is running at four feet deep during a flood or below 1 foot during a drought). The first machine failures are very different from the height-based missing responses; the height-based missingness clearly leads to bias in estimating mean river height because of what can not be observed. In Chapter \@ref(chapter5), we introduce the ``tableplot`` as another tool to visualize data that can also show missing data patterns to help you think about these sorts of issues further^[Correctly accounting for these missing data is a complex topic and you should not always engage ``drop_na()``, but the first step to handling missing data issues is to find out (1) if you have an issue, (2) how prevalent it is, and (3) whether it is systematic in any way -- in other words (and to date myself), "knowing is half the battle" with missing data. Consult a statistician or take more advanced statistics courses to explore this challenging topic further.]. If you delete observations and the missing data are not random/non-systematic, your scope of inference is restricted to just those subjects that provided responses and were analyzed. If the missingness is random and not related to aspects of the measurements taken, then some missingness can be tolerated and still retain some comfort that inferences can be extended to the population a random sample of subjects was taken from. 
 
 \indent Ignoring this potential for bias in the
 results for the moment, we are first interested in whether buying
@@ -1414,7 +1423,7 @@ interest is present.
 
 
 ```r
-intplotarray(prodebt~cigbuy*incomegp, data=debtRc, col=c(1,3,4,5,6), lwd=2)
+intplotarray(prodebt ~ cigbuy * incomegp, data = debtRc, col=c(1,3,4,5,6), lwd = 2)
 ```
 
 <div class="figure">
@@ -1441,7 +1450,7 @@ with counts between 13 and 60 in the different combinations, so lose some resist
 
 
 ```r
-tally(cigbuy~incomegp, data=debtRc)
+tally(cigbuy ~ incomegp, data = debtRc)
 ```
 
 ```
@@ -1464,7 +1473,7 @@ the assumptions to make sure we can trust this initial test.
 
 ```r
 library(car)
-debt1 <- lm(prodebt~incomegp*cigbuy, data=debtRc)
+debt1 <- lm(prodebt ~ incomegp * cigbuy, data = debtRc)
 Anova(debt1)
 ```
 
@@ -1484,7 +1493,7 @@ Anova(debt1)
 
 ```r
 par(mfrow=c(2,2))
-plot(debt1, pch=16)
+plot(debt1, pch = 16)
 ```
 
 <div class="figure">
@@ -1541,17 +1550,17 @@ here. No causal inferences are possible because this is an observational study.
 
     
     ```r
-    debt1r <- lm(prodebt~incomegp+cigbuy, data=debtRc)
+    debt1r <- lm(prodebt ~ incomegp + cigbuy, data = debtRc)
     par(mfrow=c(2,2))
-    plot(debt1r, pch=16)
+    plot(debt1r, pch = 16)
     ```
     
     <div class="figure">
-    <img src="04-twoWayAnova_files/figure-html/Figure4-17-1.png" alt="Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not" width="960" />
-    <p class="caption">(\#fig:Figure4-17)Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not</p>
+    <img src="04-twoWayAnova_files/figure-html/Figure4-17-1.png" alt="Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not." width="960" />
+    <p class="caption">(\#fig:Figure4-17)Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not.</p>
     </div>
 
-    \newpage
+    
     
     * Constant Variance:
     
@@ -1565,12 +1574,12 @@ here. No causal inferences are possible because this is an observational study.
   
         
         ```r
-        plot(allEffects(debt1r, residuals=T))
+        plot(allEffects(debt1r, residuals = T))
         ```
         
         <div class="figure">
-        <img src="04-twoWayAnova_files/figure-html/Figure4-18-1.png" alt="Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals" width="960" />
-        <p class="caption">(\#fig:Figure4-18)Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals</p>
+        <img src="04-twoWayAnova_files/figure-html/Figure4-18-1.png" alt="Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals." width="960" />
+        <p class="caption">(\#fig:Figure4-18)Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals.</p>
         </div>
 
     * Normality of residuals:
@@ -1578,7 +1587,8 @@ here. No causal inferences are possible because this is an observational study.
         * The QQ-Plot in Figure \@ref(fig:Figure4-17) does not suggest 
         a problem with this assumption. \index{QQ-plot}
 
-
+    \newpage
+    
 3. **Calculate the test statistics and p-values for the two main effect tests.**
 
     
@@ -1637,6 +1647,8 @@ plot(allEffects(debt1r))
 
     * Because the income group and cigarette purchasing were not (and really could not) be randomly assigned, causal inference is not possible here. The data set came from a random sample but from an unspecified population and then there were missing observations. At best we can make inferences to those in that population that would answer these questions and it would be nice to know more about the population to really understand who this actually applies to. There would certainly be concerns about non-response bias in doing inference to the entire population that these data were sampled from.
 
+\newpage
+
 \indent The estimated coefficients can also be
 interesting to interpret for the additive model. Here are the model summary coefficients:
 
@@ -1666,6 +1678,8 @@ between cigarette buyers and non-buyers was estimated as
 $\widehat{\gamma}_2=-0.011$ points for any income group, remember that this 
 variable had a large p-value in this model. The additive model-based estimates for all 
 six combinations can be found in Table \@ref(tab:Table4-3).
+
+\newpage
 
 (ref:tab4-3) Calculations to construct the estimates for all combinations of variables for the ``prodebt`` additive model.
 
@@ -1703,14 +1717,14 @@ difference between ``cigbuy`` levels across all income groups is a drop in
 have the same differences regardless of cigarette buying or not, with income
 group 5 much higher than the other four groups. The minor differences in cigarette purchasing and large p-value for it controlled for income group suggest that we could also refine the model further and drop the ``cigbuy`` additive term and just focus on the income groups as a predictor -- and this takes us right back to a One-Way ANOVA model so is not repeated here.
 
-(ref:fig4-20) Illustration of the results from Table \@ref(tab:Table4-2) showing the combined impacts of the components of the additive model for ``prodebt``. Panel (a) uses income groups on the x-axis and different lines for cigarette buyers (1) or not (0). Panel (b) displays the different income groups as lines with the cigarette buying status on the x-axis. 
+(ref:fig4-20) Illustration of the results from Table \@ref(tab:Table4-3) showing the combined impacts of the components of the additive model for ``prodebt``. Panel (a) uses income groups on the x-axis and different lines for cigarette buyers (1) or not (0). Panel (b) displays the different income groups as lines with the cigarette buying status on the x-axis. 
 
 <div class="figure">
 <img src="04-twoWayAnova_files/figure-html/Figure4-20-1.png" alt="(ref:fig4-20)" width="960" />
 <p class="caption">(\#fig:Figure4-20)(ref:fig4-20)</p>
 </div>
 
-<!-- \newpage -->
+\newpage
 
 **In general, we proceed through the following steps in any 2-WAY ANOVA situation:**
 
@@ -1777,8 +1791,8 @@ the entire data set can be easily printed out:
 
 ```r
 ptR <- read_csv("http://www.math.montana.edu/courses/s217/documents/ptR.csv")
-ptR$dropsf <- factor(ptR$drops)
-ptR$brand <- factor(ptR$brand)
+ptR <- ptR %>%  mutate(dropsf = factor(drops),
+                       brand = factor(brand))
 ptR
 ```
 
@@ -1813,7 +1827,7 @@ plot. \index{replicate}
 
 
 ```r
-intplot(responses~brand*dropsf, data=ptR, lwd=2)
+intplot(responses ~ brand * dropsf, data = ptR, lwd = 2)
 ```
 
 \indent The next step would be to assess evidence related to the null hypothesis of no interaction between ``Brand`` and 
@@ -1825,7 +1839,7 @@ would see this when you run the ``anova``^[We switched back to the ``anova`` fun
 \small
 
 ```
-> anova(lm(responses~dropsf*brand,data=ptR))
+> anova(lm(responses ~ dropsf * brand, data = ptR))
 Analysis of Variance Table
 Response: responses
              Df  Sum Sq Mean Sq F value Pr(>F)
@@ -1872,7 +1886,7 @@ under this dangerous and untestable assumption, tests for the main effects can b
 
 
 ```r
-norep1 <- lm(responses~dropsf+brand, data=ptR)
+norep1 <- lm(responses ~ dropsf + brand, data = ptR)
 Anova(norep1)
 ```
 
@@ -1913,7 +1927,7 @@ plot(allEffects(norep1))
 
 \indent In the extreme unreplicated situation it is possible to estimate all model coefficients in the interaction model but we can't do inferences for those estimates since there is no residual variability. Another issue in really any model with categorical predictors but especially noticeable in the Two-Way ANOVA situation is ***estimability*** issues. \index{estimability} Instead of having issues with running out of degrees of freedom for tests we can run into situations where we do not have information to estimate some of the model coefficients. This happens any time you fail to have observations at either a level of a main effect or at a combination of levels in an interaction model. 
 
-\indent To illustrate estimability issues, we will revisit the overtake data. Each of the seven levels of outfits was made up of a combination of different characteristics of the outfits, such as which helmet and pants were chosen, whether reflective leg clips were worn or not, etc. To see all these additional variables, we will introduce a new plot that will feature more prominently in Chapter \@ref(chapter5) that allows us to explore relationships among a suite of categorical variables -- the tableplot from the ``tabplot`` package [@R-tabplot]. It allows us to sort the variables based on a single variable (think about how you might sort a spreadsheet based on one column and look at the results in other columns).  The ``tableplot`` function displays bars for each response in a row^[In larger data sets, 
+\indent To illustrate estimability issues, we will revisit the overtake data. Each of the seven levels of outfits was made up of a combination of different characteristics of the outfits, such as which helmet and pants were chosen, whether reflective leg clips were worn or not, etc. To see all these additional variables, we will introduce a new plot that will feature more prominently in Chapter \@ref(chapter5) that allows us to explore relationships among a suite of categorical variables -- the `tableplot` from the ``tabplot``^[This is the first package we have encountered that is not on the "CRAN" repository and we will need to install it from its "github" repository. This happens for packages in early development and for other packages where researchers decide to avoid the ongoing challenges involved maintaining the package status on CRAN. In order to install this package, we can use the following code after installing the `remotes` [@R-remotes] package in the regular way: `library(remotes); remotes::install_github("mtennekes/tabplot")`] package [@R-tabplot]. It allows us to sort the variables based on a single variable (think about how you might sort a spreadsheet based on one column and look at the results in other columns).  The ``tableplot`` function displays bars for each response in a row^[In larger data sets, 
 multiple subjects are displayed in each row as proportions of
 the rows in each category.] based on the 
 category of responses or as a bar with the height corresponding
@@ -1924,7 +1938,7 @@ responses for larger data sets.].
 \index{R packages!\textbf{tabplot}}
 It also plots a red cell if the
 observations were missing for a categorical variable and in grey for missing values on quantitative variables. The plot can be obtained
-simply as ``tableplot(DATASETNAME)`` which will sort the data set based on the first variable. To use our previous work with the sorted levels of ``Condition2``, the code ``dd[,-1]`` is used to specify the data set without ``Condition`` and then ``sort=Condition2`` is used to sort based on the ``Condition2`` variable. The ``pals=list("BrBG")`` option specifies a color palette for the plot that is color-blind friendly.
+simply as ``tableplot(DATASETNAME)`` which will sort the data set based on the first variable. To use our previous work with the sorted levels of ``Condition2``, the code ``dd[,-1]`` is used to specify the data set without ``Condition`` and then ``sort=Condition2`` is used to sort based on the ``Condition2`` variable. The ``pals=list("BrBG")`` option specifies a color palette for the plot that is color-blind friendly from the ``RColorBrewer`` package [@R-RColorBrewer].
 \index{R packages!\textbf{RColorBrewer}}
 
 
@@ -1936,25 +1950,37 @@ dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mo
 
 
 ```r
-dd$Condition <- factor(dd$Condition)
-dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
-dd$Shirt <- factor(dd$Shirt) 
-dd$Helmet <- factor(dd$Helmet)
-dd$Pants <- factor(dd$Pants)
-dd$Gloves <- factor(dd$Gloves)
-dd$ReflectClips <- factor(dd$ReflectClips)
-dd$Backpack <- factor(dd$Backpack) 
+dd <- dd %>% mutate(Condition = factor(Condition),
+                    Condition2 = reorder(Condition, Distance, FUN = mean),
+                    Shirt = factor(Shirt),
+                    Helmet = factor(Helmet),
+                    Pants = factor(Pants),
+                    Gloves = factor(Gloves),
+                    ReflectClips = factor(ReflectClips),
+                    Backpack = factor(Backpack)
+              )
 ```
 
 (ref:fig4-23) Tableplot of the full overtake data set sorted by outfit worn (``Condition2``). 
 
 
 ```r
+library(remotes); 
+remotes::install_github("mtennekes/tabplot") # Only do this once on your computer
+```
+
+
+```r
+library(remotes); 
+if (!require("tabplot", character.only = TRUE)) {
+        remotes::install_github("mtennekes/tabplot")
+        }
 library(tabplot)
 library(RColorBrewer)
-# Options needed to prevent errors on PC
-options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
-tableplot(dd[,-1],sort=Condition2, pals=list("BrBG"))
+# Options (sometimes) needed to prevent errors on PC
+#options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
+tableplot(dd[,-1], sort = Condition2, pals = list("BrBG"), sample = F, 
+          colorNA_num = "pink", numMode = "MB-ML")
 ```
 
 <div class="figure">
@@ -1964,11 +1990,11 @@ tableplot(dd[,-1],sort=Condition2, pals=list("BrBG"))
 
 \indent In the tableplot in Figure \@ref(fig:Figure4-23), we can now explore the six variables created related to aspects of each outfit. For example, the *commuter* helmet (darkest shade in ``Helmet`` column) was worn with all outfits except for the *racer* and *casual*. So maybe we would like to explore differences in overtake distances based on the type of helmet worn. Similarly, it might be nice to explore whether wearing reflective pant clips is useful and maybe there is an interaction between helmet type and leg clips on impacts on overtake distance (should we wear both or just one, for example). So instead of using the seven level ``Condition2`` in the model to assess differences based on all combinations of these outfits delineated in the other variables, we can try to fit a model with ``Helmet`` and ``ReflectClips`` and their interaction for overtake distances:
 
-\newpage
+<!-- \newpage -->
 
 
 ```r
-overtake_int <- lm(Distance ~ Helmet*ReflectClips, data = dd)
+overtake_int <- lm(Distance ~ Helmet * ReflectClips, data = dd)
 summary(overtake_int)
 ```
 
@@ -1999,7 +2025,7 @@ The full model summary shows some odd things. First there is a warning after ``C
 
 
 ```r
-tally(Helmet~ReflectClips, data=dd)
+tally(Helmet ~ ReflectClips, data = dd)
 ```
 
 ```
@@ -2020,6 +2046,7 @@ from the interaction model to additive model, the variability explained by the
 interaction term is pushed into the error term, whether replication is
 available or not. Third, we need to make sure we have observations at all combinations of variables if we want to be able to estimate models using them and their interaction.
 
+\newpage
 
 ## Chapter summary	{#section4-7}
 
@@ -2084,8 +2111,7 @@ return to fitting models using the ``lm`` function as used here, but
 incorporating quantitative predictor variables and
 then eventually incorporating both categorical and quantitative predictor
 variables. The methods in Chapter \@ref(chapter8) are actually quite similar 
-to those considered here, so the better you understand these models, the easier that material will be master. 
-
+to those considered here, so the better you understand these models, the easier that material will be to master. 
 
 ## Summary of important R code	{#section4-8}
 
@@ -2094,7 +2120,7 @@ modify in lighter and/or ALL CAPS text, remembering that any R
 packages mentioned need to be installed and loaded for this code to have a
 chance of working:
 
-* **tally(<font color='red'>A</font>~<font color='red'>B</font>,
+* **tally(<font color='red'>A</font> ~ <font color='red'>B</font>,
 data=<font color='red'>DATASETNAME</font>)**
 
     * Requires the ``mosaic`` package be loaded. 
@@ -2103,35 +2129,34 @@ data=<font color='red'>DATASETNAME</font>)**
     predictor variables A and B, used to check for balance and understand sample 
     sizes in each combination. \index{\texttt{tally()}|textbf}
     
-* **<font color='red'>DATASETNAME</font>&#36;<font color='red'>VARIABLENAME</font> ``<-`` 
-factor(<font color='red'>DATASETNAME</font>&#36;<font color='red'>VARIABLENAME</font>)**
+* **<font color='red'>DATASETNAME</font> <- <font color='red'>DATASETNAME</font> %>% mutate(<font color='red'>VARIABLENAME</font> = factor(<font color='red'>VARIABLENAME</font>))**
 
     * Use the ``factor`` function on any numerically coded
     explanatory variable where the numerical codes represent levels of a
     categorical variable. \index{\texttt{factor()}|textbf}
     
-* **intplot(<font color='red'>Y</font>~<font color='red'>A</font>``*``<font color='red'>B</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **intplot(<font color='red'>Y</font> ~ <font color='red'>A</font>``*``<font color='red'>B</font>,
+data = <font color='red'>DATASETNAME</font>)**
 
-    * Download and install using: 
+    * Available in the ``catstats`` package or download and install using: 
     
-        ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R")``
+        ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v3.R")``
     
     * Provides interaction plot. \index{\texttt{intplot()}|textbf}
     
-* **intplotarray(<font color='red'>Y</font>~<font color='red'>A</font>``*``<font color='red'>B</font>,
-data=<font color='red'>DATASETNAME</font>)**
+* **intplotarray(<font color='red'>Y</font> ~ <font color='red'>A</font>``*``<font color='red'>B</font>,
+data = <font color='red'>DATASETNAME</font>)**
 
-    * Download and install using: 
+    * Available in ``catstats`` or download and install using: 
     
-        ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v2.R")``
+        ``source("http://www.math.montana.edu/courses/s217/documents/intplotfunctions_v3.R")``
     
     * Provides interaction plot array that makes interaction plots switching explanatory variable roles and makes pirate-plots of the main effects.
     \index{\texttt{intplotarray()}|textbf}
     
 * **<font color='red'>INTERACTIONMODELNAME</font> ``<-`` 
-lm(<font color='red'>Y</font>~<font color='red'>A</font>``*``<font color='red'>B</font>,
-data=<font color='red'>DATASETNAME</font>)**
+lm(<font color='red'>Y</font> ~ <font color='red'>A</font>`` * ``<font color='red'>B</font>,
+data = <font color='red'>DATASETNAME</font>)**
 
     * Fits the interaction model with main effects for A and B and an 
     interaction between them.
@@ -2140,8 +2165,8 @@ data=<font color='red'>DATASETNAME</font>)**
     modeling situations.
     
 * **<font color='red'>ADDITIVEMODELNAME</font> ``<-``
-lm(<font color='red'>Y</font>~<font color='red'>A</font>+<font color='red'>B</font>,
-data=<font color='red'>DATASETNAME</font>)**
+lm(<font color='red'>Y</font> ~ <font color='red'>A</font> + <font color='red'>B</font>,
+data = <font color='red'>DATASETNAME</font>)**
 
     * Fits the additive model with only main effects for A and B but no 
     interaction between them.
@@ -2180,7 +2205,7 @@ data=<font color='red'>DATASETNAME</font>)**
     
     * Plots the results from the estimated model with partial residuals.
 
-\newpage
+<!-- \newpage -->
 
 ## Practice problems	{#section4-9}
 
@@ -2192,8 +2217,8 @@ work: (a) Algebra I only; (b) two Algebra courses and Geometry; and (c) two
 Algebra courses, Geometry, Trigonometry, Advanced Mathematics, and Beginning
 Calculus. These data were generated from summary statistics for one particular
 form of the test as reported by @Doolittle1989. The source of this version of
-the data set is @Ramsey2012 and the ``Sleuth2`` package 
-[@R-Sleuth2]. \index{R packages!\textbf{Sleuth2}}
+the data set is @Ramsey2012 and the ``Sleuth3`` package 
+[@R-Sleuth3]. \index{R packages!\textbf{Sleuth3}}
 First install and then load that package. 
 
 ```
@@ -2203,7 +2228,7 @@ library(tibble)
 math <- as_tibble(ex1320)
 math
 names(math)
-favstats(Score ~ Sex+Background, data=math)
+favstats(Score ~ Sex + Background, data = math)
 ``` 
 
 4.1.1. Use the ``favstats`` summary to discuss whether the design was balanced or not. 
@@ -2262,9 +2287,9 @@ is available at http://www.math.montana.edu/courses/s217/documents/epworthdata.c
 ```r
 library(readr)
 epworthdata <- read_csv("http://www.math.montana.edu/courses/s217/documents/epworthdata.csv")
-epworthdata$Time <- factor(epworthdata$Time)
+epworthdata <- epworthdata %>% mutate(Time = factor(Time),
+                                      Group = factor(Group))
 levels(epworthdata$Time) <- c("Pre" , "Post")
-epworthdata$Group <- factor(epworthdata$Group)
 levels(epworthdata$Group) <- c("Control" , "Didgeridoo")
 ```
 

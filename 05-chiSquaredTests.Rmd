@@ -18,6 +18,7 @@ library(pander)
 library(mosaic)
 library(knitr)
 library(yarrr)
+library(tidyverse)
 knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
@@ -88,7 +89,7 @@ patients' arthritis symptoms ``Improved`` (with levels of *None*, *Some*,
 and *Marked*). When using ``tableplot``, we may 
 not want to display everything in the tibble and can just select some 
 of the variables. We use ``Treatment``, ``Improved``, ``Gender``, and ``Age``
-in the ``select=...`` option with a ``c()`` and commas between the names of 
+in the ``select = ...`` option with a ``c()`` and commas between the names of 
 the variables we want to display as shown below. The first one in the list is also the one that
 the data are sorted on and is what we want here -- to start with sorting observations based on ``Treatment`` status. 
 
@@ -104,9 +105,9 @@ Arthritis <- as_tibble(Arthritis)
 #Homogeneity example
 library(tabplot)
 library(RColorBrewer)
-# Options needed to prevent errors on PC
-options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
-tableplot(Arthritis,select=c(Treatment,Improved,Sex,Age), pals=list("BrBG"), sample=F,
+# Options needed to (sometimes) prevent errors on PC
+#options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
+tableplot(Arthritis, select = c(Treatment, Improved, Sex, Age), pals = list("BrBG"), sample = F,
           colorNA_num = "orange", numMode = "MB-ML")
 ```
 
@@ -165,12 +166,12 @@ placebo group.
 
 ```{r}
 library(mosaic)
-tally(~Treatment+Improved, data=Arthritis, margins=T)
+tally(~ Treatment + Improved, data = Arthritis, margins = T)
 ```
 
-Using the ``tally`` function with ``~x+y`` provides a contingency table with
+Using the ``tally`` function with ``~ x + y`` provides a contingency table with
 the ``x`` variable on the rows and the ``y`` variable on the columns, with
-``margins=T`` as an option so we can obtain the totals along the rows, 
+``margins = T`` as an option so we can obtain the totals along the rows, 
 columns, and table total of $N=84$.
 \index{\texttt{tally()}}
 \index{contingency table}
@@ -226,18 +227,18 @@ pandoc.table(m, keep.line.breaks = TRUE,caption="(\\#tab:Table5-1) (ref:tab5-1)"
 \indent Comparing counts from the contingency table is useful, but comparing proportions
 in each category is better, especially when the sample sizes in the levels of 
 the explanatory variable differ. Switching the formula used in the ``tally ``
-function formula to ``~ y|x`` and adding the ``format="proportion"``
+function formula to ``~ y | x`` and adding the ``format = "proportion"``
 option provides the proportions in the response categories conditional on the 
 category of the predictor (these are
 called ***conditional proportions*** or the ***conditional distribution*** of, 
-here, *Improved* on *Treatment*)^[The vertical line, "``|``", in ``~ y|x``
+here, *Improved* on *Treatment*)^[The vertical line, "``|``", in ``~ y | x``
 is available on most keyboards on the same key as "``\``". It is the mathematical 
 symbol that means "conditional on" whatever follows.]. 
 \index{\texttt{tally()}}
 Note that they sum to 1.0 in each level of x, *placebo* or *treated*:
 
 ```{r}
-tally(~Improved|Treatment, data=Arthritis, format="proportion", margins=T)
+tally(~ Improved | Treatment, data = Arthritis, format = "proportion", margins = T)
 ```
 
 This version of the ``tally`` result switches the variables between the rows and columns from the 
@@ -248,15 +249,15 @@ version of the table.
 In this application, it shows how the proportions seem to be different among categories of *Improvement* between the placebo and treatment groups. This matches the previous thoughts on
 these data, but now a difference of marked improvement of 16% vs 51% is more
 clearly a big difference. We can also display this result using a 
-***stacked bar chart***^[Technically this is a `spineplot` as it generalizes the stacked bar chart based on the proportion of the total in each vertical bar.] \index{stacked bar chart} that displays the same information using the ``plot``
-function with a ``y~x`` formula:
+***stacked bar chart***^[Technically this is a "spineplot" as it generalizes the stacked bar chart based on the proportion of the total in each vertical bar.] \index{stacked bar chart} that displays the same information using the ``plot``
+function with a ``y ~ x`` formula:
 
 (ref:fig5-2) Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The lightest shading is for "none", medium shading for "some", and the darkest shading for "marked", as labeled on the y-axis.
 
 ```{r Figure5-2,fig.cap="(ref:fig5-2)",fig.width=11,fig.height=6}
 par(las=2) #Rotates text labels, optional code
-plot(Improved~Treatment, data=Arthritis,
-     main="Stacked Bar Chart of Arthritis Data")
+plot(Improved ~ Treatment, data = Arthritis,
+     main = "Stacked Bar Chart of Arthritis Data")
 ```
 
 \indent The stacked bar chart in Figure \@ref(fig:Figure5-2) displays the previous 
@@ -349,7 +350,7 @@ $c=1,\ldots,C$) of group $r$ (row $r=1,\ldots,R$) as $p_{rc}$.
 Table \@ref(tab:Table5-2) shows the proportions, noting that the proportions 
 in each row sum to 1 since they are conditional on the group of
 interest. A ***transposed*** (rows and columns flipped) version of this table is
-produced by the ``tally`` function if you use the formula ``~y|x``.
+produced by the ``tally`` function if you use the formula ``~ y | x``.
 \index{\texttt{tally()}}
 
 (ref:tab5-2) Table of conditional proportions in the Homogeneity testing scenario. 
@@ -496,15 +497,16 @@ level of one variable is not informative about the level of the other variable.
 
 ```{r}
 library(poLCA)
-# 2000 Survey - use package="" because other data sets in R have same name
-data(election, package="poLCA") 
+# 2000 Survey - use package = "" because other data sets in R have same name
+data(election, package = "poLCA") 
 election <- as_tibble(election)
 # Subset variables and remove missing values
-election2 <- na.omit(election[,c("PARTY","VOTE3")])
-election2$VOTEF <- factor(election2$VOTE3)
-levels(election2$VOTEF) <- c("Gore","Bush","Other") #Replace 1,2,3 with meaningful names
+election2 <- election %>% dplyr::select(PARTY, VOTE3) %>%
+                        mutate(VOTEF = factor(VOTE3)) %>% 
+                        drop_na()
+levels(election2$VOTEF) <- c("Gore", "Bush", "Other") #Replace 1,2,3 with meaningful names
 levels(election2$VOTEF) #Check new names of levels in VOTEF
-electable <- tally(~PARTY+VOTEF, data=election2) #Contingency table
+electable <- tally(~ PARTY + VOTEF, data = election2) #Contingency table
 electable
 ```
 
@@ -529,7 +531,7 @@ these hypotheses are ambivalent about the choice of a variable as an "x" or a
 not calculate conditional proportions or make stacked bar charts since they
 imply a directional relationship from x to y (or results for y conditional on
 the levels of x) that might be hard to justify. Our summaries in these
-situations are the contingency table (``tally(~var1+var2, data=DATASETNAME)``)
+situations are the contingency table (``tally(~ var1 + var2, data = DATASETNAME)``)
 and a new graph called a ***mosaic plot*** (using the ``mosaicplot`` 
 function). 
 \index{\texttt{mosaicplot()}}
@@ -581,7 +583,7 @@ function from a table that just contains the counts (**no totals**):
 ```{r Figure5-5,fig.cap="(ref:fig5-5)",fig.width=11,fig.height=6}
 # Makes a mosaic plot where areas are related to the proportion of
 # the total in the table
-mosaicplot(electable, main="Mosaic plot of observed results") 
+mosaicplot(electable, main = "Mosaic plot of observed results") 
 ```
 
 \indent In general, the results here are not too surprising as the respondents 
@@ -607,7 +609,7 @@ Figure \@ref(fig:Figure5-5).
 
 ```{r Figure5-6,fig.cap="(ref:fig5-6)",echo=F,fig.width=11,fig.height=6}
 mosaicplot(chisq.test(electable)$expected,
-           main=expression(Plot ~ of ~ H[0]: ~ Independence ~ True))
+           main = expression(Plot ~ of ~ H[0]: ~ Independence ~ True))
 ```
 
 
@@ -755,7 +757,7 @@ except for some rounding in the hand-calculations.
 <!-- \newpage -->
 
 ```{r}
-Arthtable <- tally(~Treatment+Improved, data=Arthritis)
+Arthtable <- tally(~ Treatment + Improved, data = Arthritis)
 Arthtable
 chisq.test(Arthtable)$expected
 ```
@@ -912,16 +914,16 @@ set.seed(98765)
 
 ```{r}
 Arthperm <- Arthritis
-Arthperm$PermTreatment <- factor(shuffle(Arthperm$Treatment))
+Arthperm <- Arthperm %>%  mutate(PermTreatment = shuffle(Treatment))
 ```
 
 ```{r eval=F}
-plot(Improved~PermTreatment, data=Arthperm,
-     main="Stacked Bar Chart of Permuted Arthritis Data")
+plot(Improved ~ PermTreatment, data = Arthperm,
+     main = "Stacked Bar Chart of Permuted Arthritis Data")
 ```
 
 ```{r}
-Arthpermtable <- tally(~PermTreatment+Improved, data=Arthperm)
+Arthpermtable <- tally(~ PermTreatment + Improved, data = Arthperm)
 Arthpermtable
 chisq.test(Arthpermtable)
 ```
@@ -941,21 +943,22 @@ provided to ``chisq.test `` to analyze. We extract the
 Tobs <- chisq.test(Arthtable)$statistic; Tobs
 par(mfrow=c(1,2))
 B <- 1000
-Tstar <- matrix(NA, nrow=B)
+Tstar <- matrix(NA, nrow = B)
 for (b in (1:B)){
-  Tstar[b] <- chisq.test(tally(~shuffle(Treatment)+Improved,
-                               data=Arthritis))$statistic
+  Tstar[b] <- chisq.test(tally(~shuffle(Treatment) + Improved,
+                               data = Arthritis))$statistic
 }
-pdata(Tstar, Tobs, lower.tail=F)[[1]]
-hist(Tstar, xlim=c(0,Tobs+1))
-abline(v=Tobs, col="red",lwd=3)
-plot(density(Tstar), main="Density curve of Tstar",
-     xlim=c(0,Tobs+1), lwd=2)
-abline(v=Tobs, col="red", lwd=3)
+pdata(Tstar, Tobs, lower.tail = F)[[1]]
+
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "khaki") +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
 
 ```{r echo=F}
-pval <- pdata(Tstar, Tobs, lower.tail=F)[[1]]
+pval <- pdata(Tstar, Tobs, lower.tail = F)[[1]]
 ```
 
 For an observed $X^2$ statistic of 13.055, two out of 1,000 permutation
@@ -1063,7 +1066,7 @@ Note that this is very similar to the permutation result found
 previously for these data. 
 
 ```{r}
-pchisq(13.055, df=2, lower.tail=F)
+pchisq(13.055, df = 2, lower.tail = F)
 ```
 
 We'll see more examples of the $\boldsymbol{\chi^2}$-distributions
@@ -1098,8 +1101,8 @@ of patients getting improvement (*Some* or *Marked*). If the differences
 
 ```{r Figure5-11,fig.cap="(ref:fig5-11)",echo=F,message=F,warning=F,fig.width=11,fig.height=6}
 par(las=2)
-plot(Improved~Treatment, data=Arthritis,
-     main="Stacked Bar Chart of Arthritis Data")
+plot(Improved ~ Treatment, data = Arthritis,
+     main = "Stacked Bar Chart of Arthritis Data")
 ```
 
 
@@ -1137,7 +1140,7 @@ p-value.
 \indent There are two ways to explore standardized residuals. First, we can 
 obtain them via the ``chisq.test`` and manually identify the "big
 ones". Second, we can augment a mosaic plot of the table with the 
-standardized results by turning on the ``shade=T`` option and have 
+standardized results by turning on the ``shade = T`` option and have 
 the plot help us find the big differences. This technique can be 
 applied whether we are performing an Independence or
 Homogeneity test -- both are evaluated with the same $X^2$ statistic so
@@ -1149,12 +1152,12 @@ of results are shown for the Arthritis data table:
 ```{r Figure5-12,fig.cap="(ref:fig5-12)",echo=F,fig.height=5,fig.width=10}
 old.par <- par(mai=c(0.5,0.75,0.75,0.75))
 chisq.test(Arthtable)$residuals
-mosaicplot(Arthtable,shade=T)
+mosaicplot(Arthtable, shade = T)
 ```
 
 ```{r eval=F}
 chisq.test(Arthtable)$residuals
-mosaicplot(Arthtable, shade=T)
+mosaicplot(Arthtable, shade = T)
 ```
 
 \indent In these data, the standardized residuals are all less than 2 in 
@@ -1236,15 +1239,17 @@ as categorical variables.
 (ref:fig5-13) Tableplot of vote, party affiliation, education, and gender from election survey data. Note that missing observations are present in all variables except for ``Gender``. Education is coded from 1 to 7 with higher values related to higher educational attainment. ``Gender`` code 1 is for male and 2 is for female.
 
 ```{r Figure5-13,fig.cap="(ref:fig5-13)", fig.height=5,fig.width=10}
-election$VOTEF <- factor(election$VOTE3)
-election$PARTY <- factor(election$PARTY)
-election$EDUC <- factor(election$EDUC)
-election$GENDER <- factor(election$GENDER)
+election <- election %>% mutate(
+                            VOTEF = factor(VOTE3),
+                            PARTY = factor(PARTY),
+                            EDUC = factor(EDUC),
+                            GENDER = factor(GENDER))
+
 levels(election$VOTEF) <- c("Gore","Bush","Other")
-# Required options to avoid error when running on a PC, 
+# (Possibly) required options to avoid error when running on a PC, 
 # should have no impact on other platforms
-options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
-tableplot(election, select=c(VOTEF,PARTY,EDUC,GENDER),pals=list("BrBG"), sample=F)
+# options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
+tableplot(election, select = c(VOTEF, PARTY, EDUC, GENDER), pals = list("BrBG"), sample = F)
 ```
 
 In Figure \@ref(fig:Figure5-13), we can see many missing ``VOTEF``
@@ -1256,8 +1261,8 @@ have more of the lower education level responses (more dark colors, especially l
  in the party affiliation responses for the missing ``VOTEF`` responses, 
 suggesting that independents were less likely to answer the question in the
 survey for whatever reason. Even though this comes with concerns about who these results actually apply to (likely not the population that was sampled from), we want to focus on those that did respond in 
-``VOTEF``, so will again use ``na.omit`` to clean out any subjects with any
-missing responses on these four variables and remake this plot 
+``VOTEF``, so will again use ``drop_na`` to clean out any subjects with any
+missing responses after using ``select`` to focus just on these four variables. Then we remake the tableplot 
 (Figure \@ref(fig:Figure5-14)). The code also adds the ``sort`` option to the
 ``tableplot`` function call that provides an easy way to sort the data set 
 based on other variables.
@@ -1265,7 +1270,7 @@ based on other variables.
 It is interesting, for example, to sort the
 responses by *Education* level and explore the differences in other variables.
 These explorations are omitted here but easily available by changing the
-sorting column from 1 to ``sort=3`` or ``sort=EDUC``. Figure \@ref(fig:Figure5-14) shows us that there are clear differences
+sorting column from 1 to ``sort = 3`` or ``sort = EDUC``. Figure \@ref(fig:Figure5-14) shows us that there are clear differences
 in party affiliation based on voting for *Bush*, *Gore*, or
 *Other*. It is harder to see if there are differences in education level or gender
 based on the voting status in this plot, but, as noted above, sorting on these
@@ -1275,9 +1280,9 @@ variables.
 (ref:fig5-14) Tableplot of election data with subjects without any missing responses (complete cases).
 
 ```{r Figure5-14,fig.cap="(ref:fig5-14)", fig.height=5,fig.width=10}
-election2 <- na.omit(election[,c("VOTEF","PARTY","EDUC","GENDER")])
-tableplot(election2, select=c(VOTEF,PARTY,EDUC,GENDER), sort=1, pals=list("BrBG"), 
-          sample=F)
+election2 <- election %>% dplyr::select(VOTEF, PARTY, EDUC, GENDER) %>% drop_na()
+tableplot(election2, select = c(VOTEF, PARTY, EDUC, GENDER), sort = 1, pals = list("BrBG"), 
+          sample = F)
 ```
  
 
@@ -1292,7 +1297,7 @@ which was provided in Figure \@ref(fig:Figure5-5).
 \newpage
 
 ```{r}
-electable <- tally(~PARTY+VOTEF, data=election2)
+electable <- tally(~ PARTY + VOTEF, data = election2)
 electable
 ```
 
@@ -1398,7 +1403,7 @@ Here are our 6+ steps applied to this example:
     
     
     ```{r}
-    pchisq(762.81, df=12, lower.tail=F)
+    pchisq(762.81, df = 12, lower.tail = F)
     ```
 
     * But since the expected cell count condition is violated, we should 
@@ -1408,16 +1413,19 @@ Here are our 6+ steps applied to this example:
     Tobs <- chisq.test(electable)$statistic; Tobs
     par(mfrow=c(1,2))
     B <- 1000
-    Tstar <- matrix(NA, nrow=B)
+    Tstar <- matrix(NA, nrow = B)
     for (b in (1:B)){
-      Tstar[b] <- chisq.test(tally(~shuffle(PARTY)+VOTEF, data=election2,
-                                   margins=F))$statistic
+      Tstar[b] <- chisq.test(tally(~shuffle(PARTY) + VOTEF, data = election2,
+                                   margins = F))$statistic
     }
-    pdata(Tstar, Tobs, lower.tail=F)[[1]]
-    hist(Tstar)
-    abline(v=Tobs, col="red", lwd=3)
-    plot(density(Tstar), main="Density curve of Tstar", lwd=2)
-    abline(v=Tobs, col="red", lwd=3)
+    pdata(Tstar, Tobs, lower.tail = F)[[1]]
+    
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+    geom_histogram(aes(y = ..ncount..), bins = 30, col = 1, fill = "khaki") +
+    stat_bin(aes(y = ..ncount.., label = ..count..), bins = 30, geom = "text") + 
+    geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+    geom_vline(xintercept = Tobs, col = "red", lwd = 2)
+    
     ```
 
     * The last results tells us that there were no permuted data sets 
@@ -1439,7 +1447,7 @@ Here are our 6+ steps applied to this example:
 
 
     * We can add insight into the results by exploring the 
-standardized residuals. The numerical results are obtained using ``chisq.test(electable)$residuals`` and visually using ``mosaicplot(electable, shade=T)`` in Figure \@ref(fig:Figure5-17). The standardized residuals show some clear sources of the differences from the results expected if there were no relationship present. The largest
+standardized residuals. The numerical results are obtained using ``chisq.test(electable)$residuals`` and visually using ``mosaicplot(electable, shade = T)`` in Figure \@ref(fig:Figure5-17). The standardized residuals show some clear sources of the differences from the results expected if there were no relationship present. The largest
 contributions are found in the highest democrat category (``PARTY`` = 1)
 where the standardized residual for *Gore* is 10.13 and for *Bush*
 is -10.03, showing much higher than expected (under $H_0$) counts for Gore
@@ -1470,12 +1478,12 @@ chisq.test(electable)$residuals #(Obs - expected)/sqrt(expected)
 
 ```{r Figure5-17,fig.cap="(ref:fig5-17)",echo=F}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))
-mosaicplot(electable, shade=T) 
+mosaicplot(electable, shade = T) 
 ```
 
 ```{r eval=F}
 #Adds information on the size of the residuals
-mosaicplot(electable, shade=T) 
+mosaicplot(electable, shade = T) 
 ```
 
 
@@ -1496,10 +1504,10 @@ four questions about their various
 academic frauds that involved cheating and lying. Specifically, they were 
 asked if they had ever lied to avoid taking an exam (``LIEEXAM`` with 1 
 for no and 2 for yes), if they had lied to avoid handing in a term paper
-on time (``LIEPAPER`` with 2 for yes), if they had purchased a term paper
+on time (``LIEPAPER`` with 1 for no, 2 for yes), if they had purchased a term paper
 to hand in as their own or obtained a copy of an exam prior to taking the
-exam (``FRAUD`` with 2 for yes), and if they had copied answers during an
-exam from someone near them (``COPYEXAM`` with 2 for yes). Additionally, 
+exam (``FRAUD`` with 1 for no, 2 for yes), and if they had copied answers during an
+exam from someone near them (``COPYEXAM`` with 1 for no, 2 for yes). Additionally, 
 their ``GPA``s were obtained and put into categories: (<2.99, 3.0 to 3.25,
 3.26 to 3.50, 3.51 to 3.75, and 3.76 to 4.0). These categories were coded 
 from 1 to 5, respectively. Again, the code starts with making sure the 
@@ -1512,12 +1520,15 @@ variables are treated categorically by applying the ``factor`` function.
 library(poLCA)
 data(cheating) #Survey of students
 cheating <- as_tibble(cheating)
-cheating$LIEEXAM <- factor(cheating$LIEEXAM)
-cheating$LIEPAPER <- factor(cheating$LIEPAPER)
-cheating$FRAUD <- factor(cheating$FRAUD)
-cheating$COPYEXAM <- factor(cheating$COPYEXAM)
-cheating$GPA <- factor(cheating$GPA)
-tableplot(cheating, sort=GPA,pals=list("BrBG"))
+
+cheating <- cheating %>% mutate(
+                          LIEEXAM = factor(LIEEXAM),
+                          LIEPAPER = factor(LIEPAPER),
+                          FRAUD = factor(FRAUD),
+                          COPYEXAM = factor(COPYEXAM),
+                          GPA = factor(GPA))
+
+tableplot(cheating, sort = GPA, pals = list("BrBG"))
 ```
 
 \indent We can explore some interesting questions about the relationships between 
@@ -1548,13 +1559,13 @@ involved.
 (ref:fig5-19) Tableplot of new variables ``liar`` and ``copier`` that allow exploration of relationships between different types of lying and cheating behaviors.
 
 ```{r Figure5-19,fig.cap="(ref:fig5-19)",fig.height=5,fig.width=10,echo=F}
-cheating$liar <- interaction(cheating$LIEEXAM, cheating$LIEPAPER)
-levels(cheating$liar) <- c("None","ExamLie","PaperLie","LieBoth")
+cheating <- cheating %>% mutate(liar = interaction(LIEEXAM, LIEPAPER),
+                                copier = interaction(FRAUD, COPYEXAM))
 
-cheating$copier <- interaction(cheating$FRAUD, cheating$COPYEXAM)
-levels(cheating$copier) <- c("None","PaperCheat","ExamCheat","PaperExamCheat")
+levels(cheating$liar) <- c("None", "ExamLie", "PaperLie", "LieBoth")
+levels(cheating$copier) <- c("None", "PaperCheat", "ExamCheat", "PaperExamCheat")
 
-tableplot(cheating, sort=liar, select=c(liar,copier),pals=list("BrBG"))
+tableplot(cheating, sort = liar, select=c(liar, copier), pals = list("BrBG"))
 ```
 
 \indent To simplify the results, combining the two groups of variables
@@ -1577,18 +1588,19 @@ hypotheses related to the Chi-square test of Independence that is appropriate
 in this situation. \index{Chi-Square Test!Independence Test}
 
 ```{r eval=F}
-cheating$liar <- interaction(cheating$LIEEXAM, cheating$LIEPAPER)
-levels(cheating$liar) <- c("None","ExamLie","PaperLie","LieBoth")
+cheating <- cheating %>% mutate(liar = interaction(LIEEXAM, LIEPAPER),
+                                copier = interaction(FRAUD, COPYEXAM))
 
-cheating$copier <- interaction(cheating$FRAUD, cheating$COPYEXAM)
-levels(cheating$copier) <- c("None","PaperCheat","ExamCheat","PaperExamCheat")
-tableplot(cheating, sort=liar, select=c(liar,copier),pals=list("BrBG"))
+levels(cheating$liar) <- c("None", "ExamLie", "PaperLie", "LieBoth")
+levels(cheating$copier) <- c("None", "PaperCheat", "ExamCheat", "PaperExamCheat")
+
+tableplot(cheating, sort = liar, select = c(liar, copier), pals = list("BrBG"))
 ```
 
 <!-- \newpage -->
 
 ```{r}
-cheatlietable <- tally(~liar+copier, data=cheating)
+cheatlietable <- tally(~ liar + copier, data = cheating)
 cheatlietable
 ```
 
@@ -1604,12 +1616,12 @@ variable. This creates two new variables called ``liar2`` and ``copier2``
 variables and make the plot is below which employs the ``levels`` function to assign the same label to two different levels from the original list. \index{\texttt{levels()}}
 
 ```{r}
-#Collapse the middle categories of each variable
-cheating$liar2 <- cheating$liar
-levels(cheating$liar2) <- c("None","ExamorPaper","ExamorPaper","LieBoth")
-cheating$copier2 <- cheating$copier
-levels(cheating$copier2) <- c("None","ExamorPaper","ExamorPaper","CopyBoth")
-cheatlietable <- tally(~liar2+copier2, data=cheating)
+#Collapse the middle categories of both variables by making both have the same level name:
+cheating <- cheating %>% mutate(liar2 = liar, 
+                                copier2 = copier)
+levels(cheating$liar2) <- c("None", "ExamorPaper", "ExamorPaper", "LieBoth")
+levels(cheating$copier2) <- c("None", "ExamorPaper", "ExamorPaper", "CopyBoth")
+cheatlietable <- tally(~ liar2 + copier2, data = cheating)
 cheatlietable
 ```
 
@@ -1618,7 +1630,7 @@ cheatlietable
 (ref:fig5-20) Tableplot of lying and copying variables after combining categories. 
 
 ```{r Figure5-20,fig.cap="(ref:fig5-20)",fig.height=5,fig.width=10}
-tableplot(cheating, sort=liar2, select=c(liar2,copier2),pals=list("BrBG"))
+tableplot(cheating, sort = liar2, select = c(liar2, copier2), pals = list("BrBG"))
 ```
 
 This $3\times 3$ table is more manageable and has few really small 
@@ -1691,7 +1703,7 @@ single sample was taken from the population so that is the appropriate procedure
     * If you want to repeat the p-value calculation directly:
     
     ```{r}
-    pchisq(13.2384, df=4, lower.tail=F)
+    pchisq(13.2384, df = 4, lower.tail = F)
     ```
     
     * But since the expected cell condition is violated, we 
@@ -1705,20 +1717,22 @@ single sample was taken from the population so that is the appropriate procedure
     Tobs
     par(mfrow=c(1,2))
     B <- 10000 # Now performing 10,000 permutations
-    Tstar <- matrix(NA,nrow=B)
+    Tstar <- matrix(NA,nrow = B)
     for (b in (1:B)){
-      Tstar[b] <- chisq.test(tally(~shuffle(liar2)+copier2,
-                                   data=cheating))$statistic
+      Tstar[b] <- chisq.test(tally(~ shuffle(liar2) + copier2,
+                                   data = cheating))$statistic
     }
-    pdata(Tstar, Tobs, lower.tail=F)[[1]]
-    hist(Tstar)
-    abline(v=Tobs, col="red", lwd=3)
-    plot(density(Tstar), main="Density curve of Tstar", lwd=2)
-    abline(v=Tobs, col="red", lwd=3)
+    pdata(Tstar, Tobs, lower.tail = F)[[1]]
+
+tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "khaki") +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, geom = "text") + 
+  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
     ```
 
     ```{r echo=F}
-    pval <- pdata(Tstar, Tobs, lower.tail=F)[[1]]
+    pval <- pdata(Tstar, Tobs, lower.tail = F)[[1]]
     ```
     
     * There were `r pval*10000` of $B$=10,000 permuted data 
@@ -1763,8 +1777,8 @@ library(survey)
 data(api)
 apistrat <- as_tibble(apistrat)
 apipop <- as_tibble(apipop)
-pirateplot(growth~stype, data=apistrat, inf.method="ci", inf.disp="line",
-           pal="southpark")
+pirateplot(growth ~ stype, data = apistrat, inf.method = "ci", inf.disp = "line",
+           pal = "southpark")
 ```
 
 In recent decades, there has been a push for quantification of school performance
@@ -1804,19 +1818,19 @@ library(survey)
 data(api)
 apistrat <- as_tibble(apistrat)
 apipop <- as_tibble(apipop)
-tally(~stype, data=apipop) #Population counts
-tally(~stype, data=apistrat) #Sample counts
+tally(~ stype, data = apipop) #Population counts
+tally(~ stype, data = apistrat) #Sample counts
 ```
 
 ```{r eval=F}
-pirateplot(growth~stype, data=apistrat, inf.method="ci", inf.disp="line")
+pirateplot(growth ~ stype, data = apistrat, inf.method = "ci", inf.disp = "line")
 ```
 
 \newpage
 
 \indent The One-Way ANOVA $F$-test, provided below, suggests
 strong evidence against the null hypothesis of no difference in the true mean growth scores among the different
-types of schools ($F(2,197)=23.56,\text{ p-value}<0.0001$). But the 
+types of schools ($F(2,197)=23.56$, $\text{ p-value}<0.0001$). But the 
 residuals from this model displayed in the QQ-Plot in 
 Figure \@ref(fig:Figure5-24) contain a slightly long right tail and short left tail, 
 suggesting a right skewed
@@ -1830,10 +1844,10 @@ Chi-square analysis methods.
 (ref:fig5-24) QQ-plot of standardized residuals from the One-Way ANOVA linear model.
 
 ```{r Figure5-24,fig.cap="(ref:fig5-24)",fig.width=5.5}
-m1 <- lm(growth~stype, data=apistrat)
+m1 <- lm(growth ~ stype, data = apistrat)
 library(car)
 Anova(m1)
-plot(m1, which=2, pch=16)
+plot(m1, which = 2, pch = 16)
 ```
 
 \indent One way to get around the normality assumption is to use a method 
@@ -1853,23 +1867,23 @@ quantitative variable into a categorical variable. First, we can use the
 information from ``favstats`` to find the cut-points:
 
 ```{r}
-favstats(~growth, data=apistrat)
+favstats(~ growth, data = apistrat)
 ```
 
 The ``cut`` function can provide the binned variable if it is provided
-with the end-points of the desired intervals to
+with the end-points of the desired intervals (`breaks = ...`) to
 create new categories with those names in a new variable called 
 ``growthcut``. \index{\texttt{cut()}}
 
 ```{r}
-apistrat$growthcut <- cut(apistrat$growth, breaks=c(-47,6.75,25,48,133),
-                          include.lowest=T)
+apistrat <- apistrat %>% mutate(growthcut = cut(growth, breaks = c(-47,6.75,25,48,133),
+                          include.lowest = T))
 ```
 
 <!-- \newpage -->
 
 ```{r}
-tally(~growthcut, data=apistrat)
+tally(~ growthcut, data = apistrat)
 ```
 
 \indent Now that we have a categorical response variable, we need to decide which 
@@ -1885,11 +1899,11 @@ created in the new ``growthcut`` variable:
 
 ```{r Figure5-25,fig.cap="(ref:fig5-25)",echo=F,fig.width=11,fig.height=6}
 old.par <- par(mai=c(0.5,1.5,0.5,0.5), las=2)
-plot(growthcut~stype, data=apistrat, main="Plot of Growth Categories by School levels")
+plot(growthcut ~ stype, data = apistrat, main = "Plot of Growth Categories by School levels")
 ```
 
 ```{r eval=F}
-plot(growthcut~stype, data=apistra, main="Plot of Growth Categories by School levels"t)
+plot(growthcut ~ stype, data = apistra, main = "Plot of Growth Categories by School levels"t)
 ```
 
 
@@ -1932,7 +1946,7 @@ using the $\boldsymbol{\chi^2}$-distribution to find the p-value:
 <!-- \newpage -->
 
 ```{r}
-growthtable <- tally(~stype+growthcut, data=apistrat)
+growthtable <- tally(~ stype + growthcut, data = apistrat)
 growthtable
 chisq.test(growthtable)$expected 
 ```
@@ -1969,11 +1983,11 @@ chisq.test(growthtable)$residuals
 
 ```{r Figure5-26,fig.cap="(ref:fig5-26)",echo=F,fig.width=6,fig.height=4}
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))
-mosaicplot(growthcut~stype,data=apistrat,shade=T)    
+mosaicplot(growthcut ~ stype, data = apistrat, shade = T)    
 ```
 
 ```{r eval=F}
-mosaicplot(growthcut~stype,data=apistrat,shade=T)
+mosaicplot(growthcut ~ stype, data = apistrat, shade = T)
 ```
 
 
@@ -2033,19 +2047,19 @@ The main components of R code used in this chapter follow with components
 to modify in lighter and/or ALL CAPS text where ``y`` is a response variable and ``x`` is a predictor 
 are easily identified:
 
-* **`r colFmt("TABLENAME","red")` ``<-`` tally(~`r colFmt("x","red")` +
-`r colFmt("y","red")`, data=`r colFmt("DATASETNAME","red")`)**
+* **`r colFmt("TABLENAME","red")` ``<-`` tally(~ `r colFmt("x","red")` +
+`r colFmt("y","red")`, data = `r colFmt("DATASETNAME","red")`)**
     
     * This function requires that the ``mosaic `` package has been loaded.
 
     * This provides a table of the counts in the variable called 
     ``TABLENAME``.
     
-    * ``margins=T`` is used if want to display row, column, and 
+    * ``margins = T`` is used if you want to display row, column, and 
     table totals. \index{\texttt{tally()}|textbf}
 
-* **plot(`r colFmt("y","red")`~
-`r colFmt("x","red")`, data=`r colFmt("DATASETNAME","red")`)**
+* **plot(`r colFmt("y","red")` ~ 
+`r colFmt("x","red")`, data = `r colFmt("DATASETNAME","red")`)**
 
     * Makes a stacked bar chart useful for homogeneity test situations.
     \index{\texttt{plot()}|textbf}
@@ -2056,11 +2070,11 @@ are easily identified:
     in independence test situations.
     \index{\texttt{mosaicplot()}|textbf}
     
-* **tableplot(data=`r colFmt("DATASETNAME","red")`, sortCol=`r colFmt("VARIABLENAME","red")`,pals=list("BrBG"))**
+* **tableplot(data = `r colFmt("DATASETNAME","red")`, sortCol = `r colFmt("VARIABLENAME","red")`, pals = list("BrBG"))**
 
     * Makes a tableplot sorted by `r colFmt("VARIABLENAME","red")`, requires that the ``tabplot`` and `RColorBrewer` packages have been loaded.
     
-    * The ``pals=list("BrBG")`` option provides a color-blind friendly color palette, although other options are possible, such as ``pals=list("RdBu")``.
+    * The ``pals = list("BrBG")`` option provides a color-blind friendly color palette, although other options are possible, such as ``pals = list("RdBu")``.
     \index{\texttt{tableplot()}|textbf}
     
 * **chisq.test(`r colFmt("TABLENAME","red")`)**
@@ -2090,7 +2104,7 @@ df=(`r colFmt("R","red")` - 1)``*``(`r colFmt("C","red")` - 1), lower.tail=F)**
 
     * Provides standardized residuals.
     
-* **mosaicplot(`r colFmt("TABLENAME","red")`, shade=T)**
+* **mosaicplot(`r colFmt("TABLENAME","red")`, shade = T)**
 
     * Provides a mosaic plot with shading based on standardized residuals.
 
@@ -2180,21 +2194,18 @@ csd <- read_csv("csd.csv")
 
 ```{r Figure5-27,fig.cap="(ref:fig5-27)",echo=F,fig.width=10,fig.height=5}
 library(tabplot)
-#Need to make it explicit that these are factor variables
-csd$careabout <- factor(csd$careabout) 
-#Reorders factor levels to be in "correct" order
-csd$careabout <- factor(csd$careabout,
-                    levels=levels(csd$careabout)[c(1,4,3,2)]) 
-csd$Education <- factor(csd$Education)
-csd$Education <- factor(csd$Education,
-                    levels=levels(csd$Education)[c(4,3,5,1,2)])
-csd$Household.Income <- factor(csd$Household.Income)
-csd$Household.Income <- factor(csd$Household.Income,
-                    levels=levels(csd$Household.Income)[c(1,4,5,6,2,3)])
+#Need to make it explicit that these are factor variables and reorder factor levels to be in "correct" order using fct_relevel:
+csd <- csd %>% mutate(careabout = factor(careabout), 
+                      careabout = fct_relevel(careabout,"Not at all", "Not much", "Some", "A lot"),
+                      Education = factor(Education),
+                      Education  = fct_relevel(Education, levels(Education)[c(4,3,5,1,2)]),
+                      Household.Income = factor(Household.Income),
+                      Household.Income = fct_relevel(Household.Income, levels(Household.Income)[c(1,4,5,6,2,3)])) 
+
 #Sorts plot by careabout responses
-tableplot(csd[,c("isare","careabout","thoughtabout","Gender",
-                 "Age","Household.Income","Education")], sortCol=careabout,
-          pals=list("BrBG")) 
+tableplot(csd, select = c(isare, careabout, thoughtabout, Gender,
+                 Age, Household.Income, Education), sortCol = careabout,
+          pals = list("BrBG")) 
 ```
 
 > Relevant to the 
@@ -2213,7 +2224,7 @@ correct usage*, (``isare``), *have you thought about this issue*
 (``thoughtabout``) with levels Yes/No, and *do you care about this issue*
 (``careabout``) with four levels from *Not at all* to *A lot*. The following
 code loads their data set after missing responses were removed, does a
-little re-ordering of factor levels to help make the results easier to 
+little re-ordering of factor levels using the `fct_relevel` function \index{\textt{fct_relevel()}} to help make the results easier to 
 understand, and makes a tableplot (Figure \@ref(fig:Figure5-27)) to get a general sense of the results 
 including information on the respondents' gender, age, income, and education. 
 
@@ -2225,21 +2236,18 @@ csd <- read_csv("http://www.math.montana.edu/courses/s217/documents/csd.csv")
 
 ```{r eval=F}
 library(tabplot)
-#Need to make it explicit that these are factor variables
-csd$careabout <- factor(csd$careabout) 
-#Reorders factor levels to be in "correct" order
-csd$careabout <- factor(csd$careabout,
-                    levels=levels(csd$careabout)[c(1,4,3,2)]) 
-csd$Education <- factor(csd$Education)
-csd$Education <- factor(csd$Education,
-                    levels=levels(csd$Education)[c(4,3,5,1,2)])
-csd$Household.Income <- factor(csd$Household.Income)
-csd$Household.Income <- factor(csd$Household.Income,
-                    levels=levels(csd$Household.Income)[c(1,4,5,6,2,3)])
+#Need to make it explicit that these are factor variables and reorder factor levels to be in "correct" order using fct_relevel:
+csd <- csd %>% mutate(careabout = factor(careabout), 
+                      careabout = fct_relevel(careabout,"Not at all", "Not much", "Some", "A lot"),
+                      Education = factor(Education),
+                      Education  = fct_relevel(Education, levels(Education)[c(4,3,5,1,2)]),
+                      Household.Income = factor(Household.Income),
+                      Household.Income = fct_relevel(Household.Income, levels(Household.Income)[c(1,4,5,6,2,3)])) 
+
 #Sorts plot by careabout responses
-tableplot(csd[,c("isare","careabout","thoughtabout","Gender",
-                 "Age","Household.Income","Education")], sortCol=careabout,
-          pals=list("BrBG"), sample=F) 
+tableplot(csd, select = c(isare, careabout, thoughtabout, Gender,
+                 Age, Household.Income, Education), sortCol = careabout,
+          pals = list("BrBG")) 
 ```
 
 5.2.1. If we are interested in the variables ``isare`` and ``careabout``,
@@ -2274,29 +2282,33 @@ dd <- read_csv("Walker2014_mod.csv")
 (ref:fig5-28) Stacked bar chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit. 
 
 ```{r Figure5-28,fig.cap="(ref:fig5-28)",echo=F, fig.width=8}
-dd$Condition <- factor(dd$Condition)
-dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
-dd$Close <- factor(ifelse(dd$Distance<=100, "close", "notclose"))
+dd <- dd %>%  mutate(
+                    Condition = factor(Condition),
+                    Condition2 = reorder(Condition, Distance, FUN = mean), 
+                    Close = factor(ifelse(Distance <= 100, "close", "notclose"))
+                    )
 par(las=2)
-plot(Close ~ Condition2, data=dd, main="Plot of proportions of close calls by type of clothing")
+plot(Close ~ Condition2, data = dd, main = "Plot of proportions of close calls by type of clothing")
 ```
 
-5.3. **Overtake close calls by outfit analysis** We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``dd$Distance<=100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided.
+5.3. **Overtake close calls by outfit analysis** We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``Distance <= 100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided. \index{\texttt{\ifelse()}}
 
 ```{r eval=F}
 dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")
 ```
 
 ```{r eval=F}
-dd$Condition <- factor(dd$Condition)
-dd$Condition2 <- with(dd, reorder(Condition, Distance, mean))
-dd$Close <- factor(ifelse(dd$Distance<=100, "close", "notclose"))
+dd <- dd %>%  mutate(
+                    Condition = factor(Condition),
+                    Condition2 = reorder(Condition, Distance, FUN = mean), 
+                    Close = factor(ifelse(Distance <= 100, "close", "notclose"))
+                    )
 
-plot(Close ~ Condition2, data=dd)
+plot(Close ~ Condition2, data = dd)
 ```
 
 ```{r}
-table1 <- tally(Close ~ Condition2, data=dd)
+table1 <- tally(Close ~ Condition2, data = dd)
 
 chisq.test(table1)
 ```

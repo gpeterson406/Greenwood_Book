@@ -253,14 +253,13 @@ more sophisticated things with R, allowing us to compare quantitative responses
 from two groups, make some graphical displays, do hypothesis testing \index{hypothesis testing} and create
 confidence intervals in a couple of different ways. 
 
-\indent You will have two^[There is a cloud version of R Studio available at https://rstudio.cloud/ if you want to avoid these steps. We still recommend following the steps to be able to work locally but try this option if you have issues with the installation process.] downloading activities to complete before you can do anything
-more than read this book^[I recorded a video that walks through getting R and RStudio installed on a PC available [**in a recorded video**](https://montana.techsmithrelay.com/ojg6). If you want to see them installed on a mac, you can try [**this video on youtube**](https://www.youtube.com/watch?v=GFImMj1lMRI). Or for either version, try searching YouTube for "How to install R and RStudio".
-]. First, you need to download R. It is the engine that will do all the computing
+\indent You will have two^[There is a cloud version of R Studio available at https://rstudio.cloud/ that is free for limited usage and some institutions have locally hosted versions that you can use with a web-browser (check with your instructor for those options). We recommend following the steps to be able to work locally but try this option if you have issues with the installation process and need to complete an assignment or two until you get the installation sorted out.] downloading activities to complete before you can do anything
+more than read this book^[I created this interactive website (https://greenwood-stat.shinyapps.io/InstallDemo/) that contains discussions and activities related to installing and using R and RStudio.]. First, you need to download R. It is the engine that will do all the computing
 for us, but you will only interact with it once. Go to http://cran.rstudio.com
 and click on the "**Download R for...**" button that
 corresponds to your operating system. On the next page, click on "**base**" and then it will take you 
 to a screen to download the most current version of R that is compiled for your
-operating system, something like "**Download R 3.6.2 for Windows**". Click on that link and then open 
+operating system, something like "**Download R 4.1.0 for Windows**". Click on that link and then open 
 the file you downloaded. You will need to select your preferred language (choose English so your  instructor can help you), then hit "**Next**"
 until it starts to unpack and install the program (all the base settings will be fine). After you hit "**Finish**" you will not do anything further with R directly. 
 
@@ -273,8 +272,8 @@ are updated frequently (up to four times a year) and if you downloaded either
 more than a few months previously, you should download the up-to-date versions, 
 especially if something you are trying to do is not working. Sometimes code
 will not work in older versions of R and sometimes old code won't work in new
-versions of R.^[The need to keep the code up-to-date as R continues to evolve is one reason that this book is locally published and that this is the 6^th^ time it has been revised in
-six years...]
+versions of R.^[The need to keep the code up-to-date as R continues to evolve is one reason that this book is locally published and that this is the 8^th^ time it has been revised in
+eight years...]
  
 (ref:fig1-2) Initial RStudio layout.
 
@@ -289,7 +288,7 @@ interface. When you open RStudio, you will see a screen like Figure
 added annotation in this and the following screen-grabs is there to help you
 get initially oriented to the software interface. R is command-line software --
 meaning that in some way or another you have to create code and get it evaluated, either by entering and execute
-it at a command prompt or by using the Rstudio interface to run the code that is stored in a file. RStudio makes the management and
+it at a command prompt or by using the RStudio interface to run the code that is stored in a file. RStudio makes the management and
 execution of that code more efficient than the basic version of R. In RStudio, 
 the lower left panel is called the "console" window and is where you can type R
 code directly into R or where you will see the code you run and (most
@@ -450,20 +449,19 @@ starts and ends with the following information (only results for Subjects 1, 2,
 30, and 31 shown here):
 
 ----------------------------------------------------------------------------
-Sub-   Tread- 	 TreadMill- 	RunTime	 RunPulse	 Rest    BodyWeight	   Age
+Sub-   Tread-    TreadMill-   RunTime  RunPulse  Rest    BodyWeight   Age
 ject   MillOx    MaxPulse                        Pulse
------  --------  -----------  -------  --------  ------  -----------   ----
-1	     60.05	   186	        8.63	   170	     48	     81.87	       38
+-----  --------  -----------  -------  --------  ------  -----------  ----
+1      60.05     186          8.63     170       48      81.87        38
 
-2	     59.57	   172	        8.17	   166	     40	     68.15	       42
+2      59.57     172          8.17     166       40      68.15        42
 
-…      …	       …	          …	       …	       …	     …	           …
+…      …         …            …        …         …       …            …
 
-30	   39.2	     172	        12.88	   168	     44	     91.63	       54
+30     39.2      172          12.88    168       44      91.63        54
 
-31	   37.39	   192	        14.03	   186	     56	     87.66	       45
+31     37.39     192          14.03    186       56      87.66        45
 ----------------------------------------------------------------------------
-
 
 \indent The variables contain information on the subject number (*Subject*), subjects' 
 maximum treadmill oxygen consumption (*TreadMillOx*, in ml per kg per minute, also called maximum VO2) and 
@@ -719,7 +717,7 @@ into each bar. Specifically, we can turn the ``labels`` option "on" by making it
 </div>
 
 
-\indent Based on this histogram, it does not appear that there any outliers in the responses
+\indent Based on this histogram (Figure \@ref(fig:Figure1-8)), it does not appear that there any outliers in the responses
 since there are no bars that are separated from the other observations. However, 
 the distribution does not look symmetric and there might be a skew to the
 distribution. Specifically, it appears to be ***skewed right*** (the right tail is longer than the left). But histograms can sometimes mask features of
@@ -806,7 +804,11 @@ to think about the quality of the information that is being displayed,
 regardless of how pretty the graphic might be. So maybe it is better to say 
 "a picture can be worth a thousand words" if it is well-labeled?
 
-\indent All the previous results were created by running the R code and then copying the
+
+## R Markdown {#section1-4}
+
+
+The previous results were created by running the R code and then copying the
 results from either the console or by copying the figure and then pasting the results 
 into the typesetting program. There is another way
 to use RStudio where you can have it compile the results (both output and
@@ -834,24 +836,81 @@ because they provide what is called "Reproducible
 research" [@Gandrud2015] where all the code and output it produced are
 available in a single place. This allows different researchers to run and verify
 results (so "reproducible results") or the original researchers to revisit their earlier work at a later
-date and recreate all their results exactly. Scientific publications are currently
-encouraging researchers to work in this way and may someday require it. The term ***reproducible*** can also be related to whether repeated studies get the same result (also called ***replication***) -- further discussion of these terms and the implications for scientific research are discussed in Chapter \@ref(chapter2).
+date and recreate all their results exactly^[I recently had to revisit some work from almost a decade ago (before I switched to using R Markdown) as we were working on a journal article submission that re-used some of that work and it was unclear where some results came from, so I had to do some new work that could have been avoided if I had worked in a reproducible fashion.]. Scientific publications are currently
+encouraging researchers to work in this way and may someday require it. The term ***reproducible*** \index{reproducible} can also be related to whether repeated studies (with new, independent data collection stages and analyses) get the same result (also called ***replication***) \index{replication} -- further discussion of these terms and the implications for scientific research are discussed in Chapter \@ref(chapter2).
 
-\indent In order to get some practice using R Markdown, create a sample document in this format using File -> New File -> R Markdown... Choose a title for your file and select the "Word" option. This will create a new file in the upper left window where we stored our .R script. Save that file to your computer. Then you can use the "Knit" button to have RStudio run the code and create a word document with the results. R Markdown documents contain basically two components, "code chunks" that contain your code and the rest of the document where you can write descriptions and interpretations of the results that code generates. The code chunks can be inserted using the "Insert" button by selecting the "R" option. Then write your code in between the `` ```{r} `` and `` ``` `` lines (it should have grey highlights for those lines and white for the rest of the portions of the .Rmd document). Once you write some code inside a code chunk, you can test your code using the triangle on the upper right side of it to run all the code that resides in that chunk. Keep your write up outside of these code chunks to avoid code errors and failures to compile. Once you think your code and writing is done, you can use the "Knit" button to try to compile the file. As you are learning, you may find this challenging, so start with trying to review the sample document and knit each time you get a line of code written so you know when you broke the file. Also look around for posted examples of .Rmd files to learn how others have incorporated code with write-ups. You might even be given a template of homework or projects as .Rmd files from your instructor. After you do this a couple of times, you will find that the challenge of working with markdown files is more than matched by the simplicity of the final product and, at least to researchers, the reproducibility and documentation of work that this method provides.
-
-
+\indent In order to get some practice using R Markdown, create a sample document in this format using File -> New File -> R Markdown... Choose a title for your file and select the "Word" option. This will create a new file in the upper left window where we stored our .R script. Save that file to your computer. Then you can use the "Knit" button to have RStudio run the code and create a word document with the results. R Markdown documents contain basically two components, "code chunks" that contain your code and the rest of the document where you can write descriptions and interpretations of the results that code generates. The code chunks can be inserted using the "Insert" button by selecting the "R" option. Then write your code in between the `` ```{r} `` and `` ``` `` lines (it should have grey highlights for those lines and white for the rest of the portions of the .Rmd document). Once you write some code inside a code chunk, you can test your code using the triangle on the upper right side of it to run all the code that resides in that chunk. Keep your write up outside of these code chunks to avoid code errors and failures to compile. Once you think your code and writing is done, you can use the "Knit" button to try to compile the file. As you are learning, you may find this challenging, so start with trying to review the sample document and knit each time you get a line of code written so you know which line was responsible for preventing the knitting from being successful. Also look around for posted examples of .Rmd files to learn how others have incorporated code with write-ups. You might even be given a template of homework or projects as .Rmd files from your instructor. After you do this a couple of times, you will find that the challenge of working with markdown files is more than matched by the simplicity of the final product and, at least to researchers, the reproducibility and documentation of work that this way of working provides.
 
 
-\indent Finally, when you are done with your work and attempt to exit out of RStudio, 
+## Grammar of Graphics {#section1-5}
+
+The previous plots were made using what is called "base R" graphics. It is possible to make versions of all the graphics we need in this material using single function calls like ``boxplot`` - and there are some places we will utilize these simple versions because they get us exactly what we want to see. But to make more complex displays and have complete control of the way the graphs look, we will utilize the `ggplot2` package [GRETA - CITATION] which was built to implement a type of grammar for making and layering graphical displays of data, adding each layer step by step. While it takes a little bit of work to get started, the power of these displays will ultimately make the investment worthwhile^[This discussion is based on materials developed for a data visualization workshop originally developed by Dr. Allison Theobold and related to the https://datacarpentry.org/ workshops.]. \index{\texttt{ggplot}} \index{R packages!\textbf{ggplot2}}
+
+\index As opposed to base graphics, the ggplots will contain multiple components that are patched together with a `+`, with the general format of `ggplot(data = <DATA>, mapping = aes(<VARIABLE MAPPINGS>)) + <GEOM_FUNCTION>()`. Breaking this down, the `data = ...` tells the `ggplot` function where to look, the information inside the `aes` (or aesthetic) defines which variables in the data set to use and how to use them (often with `x = variable1`, `y = variable2`, etc., with `x = ...` for the variable on the x (horizontal) axis and `y = ...` for the variable on the y (vertical) axis), and the `+ <GEOM_FUNCTION>()` defines which type of graph to make (there are `geom_histogram` and `geom_boxplot` to make the graphs discussed previously and many, many more). Because we often have many "+"'s to include, the common practice is to hit return after the "+" and start the next layer or option on the following line for better readability. Figure \@ref(fig:Figure1-10) shows a histogram of the `RunTime` variable made using the `+ geom_histogram()`. \index{\texttt{geom_histogram}} \index{\texttt{geom_boxplot}}
+
+(ref:fig1-10) Default histogram of Run Times using `ggplot`.
+
+```r
+library(ggplot2)
+ggplot(data = treadmill, mapping = aes(x = RunTime)) + geom_histogram()
+```
+
+<div class="figure">
+<img src="01-preface_files/figure-html/Figure1-10-1.png" alt="(ref:fig1-10)" width="480" />
+<p class="caption">(\#fig:Figure1-10)(ref:fig1-10)</p>
+</div>
+
+The warning message reflects a challenge in making histograms that involves how many bins to use. In `geom_histogram`, it always uses 30 bins and expects you to make your own choice, compared to `hist` that used a different method to try to make a better automatic choice, but there is no single right answer. So maybe we should try out other values to get a "smoother" result here, which we can do by adding the `bins = ...` to the `+ geom_histogram()`, such as `+ geom_histogram(bins = 8)` to get an 8 bin histogram in Figure \@ref(fig:Figure1-11).
+
+
+(ref:fig1-11) Histogram of Run Times using `ggplot` with 8 bins.
+
+<div class="figure">
+<img src="01-preface_files/figure-html/Figure1-11-1.png" alt="(ref:fig1-11)" width="480" />
+<p class="caption">(\#fig:Figure1-11)(ref:fig1-11)</p>
+</div>
+
+
+```r
+ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
+  geom_histogram(bins = 8)
+```
+
+\index The following chapters will explore further modifications for these plots, but there are a couple of additions to highlight. The first is that we can often layer multiple geoms on the same plot and the order of the additions defines which layer is "on top", with the plot built up sequentially. So we can add a boxplot on top of a histogram by putting it after the histogram layer. Also in Figure \@ref(fig:Figure1-12), the `geom_rug` is also added, which puts a tick mark for each observation on the lower part of the x-axis. \index{rug} Rug plots use a graphical 
+technique called ***jittering*** to add a little noise^[Jittering typically 
+involves adding random variability to each observation that
+is uniformly distributed in a range determined based on the spacing of the
+observation. The idea is to jitter just enough to see all the points but not too much. This means that if you re-run the ``jitter`` function, the results will change if you do not set the random number seed using `set.seed` that is discussed more below. 
+For more details, type ``help(jitter)`` in the console in RStudio.] to each observation so that multiple similar or tied observations do not 
+plot as a single line. \index{jitter} There are options to control the color of individual components when we add them (the histogram is filled with grey (``fill = "grey"``), the boxplot is in "tomato" (``color = "tomato"``), and the rug plot is in "skyblue"). Finally, the last change here is to the "theme" for the plot^[This certainly could have waited until later, but I have now seen enough base ggplot graphs that I really like to change their overall look.] which we can include one of a suite of different layouts with themes such as `+ theme_bw()` or `+ theme_light()`. If you add the `ggthemes` package, you can access a long list of alternative looks for your plot (see https://jrnold.github.io/ggthemes/reference/index.html for options there). \index{themes} \index{\texttt{theme_bw()}} \index{\texttt{geom_rug()}}
+
+
+(ref:fig1-12) Histogram with boxplot and rug of Run Times using `ggplot` with modified colors and theme.
+
+<div class="figure">
+<img src="01-preface_files/figure-html/Figure1-12-1.png" alt="(ref:fig1-12)" width="480" />
+<p class="caption">(\#fig:Figure1-12)(ref:fig1-12)</p>
+</div>
+
+```r
+ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
+  geom_histogram(fill = "grey", bins = 8) + 
+  geom_boxplot(color = "tomato") + 
+  geom_rug(color = "skyblue") + 
+  theme_light()
+```
+
+## Exiting RStudio {#section1-6}
+
+Finally, when you are done with your work and attempt to exit out of RStudio, 
 it will
-ask you to save your workspace. ***DO NOT DO THIS!*** It will just create a cluttered 
-workspace and could even cause you to get incorrect results.  In fact, you should go into the Tools -> Global Options and then make sure that "Save workspace to .RData on exit" option on the first screen you will see is set to ***Never***. If you
-save your R code either as a .R or (better) an R-markdown file, you can re-create any results by simply
+ask you to save your workspace. ***DO NOT DO THIS!*** It will just create a cluttered  workspace and could even cause you to get incorrect results.  In fact, you should go into the Tools -> Global Options and then make sure that "Save workspace to .RData on exit" option on the first screen you will see is set to ***Never***. If you
+save your R code either as a .R or (better) an R Markdown (.Rmd) file, you can re-create any results by simply
 re-running that code or re-knitting the file. If you find that you have lots of "stuff" in your
 workspace because you accidentally saved your workspace, just run ``rm(list = ls())``. 
 It will delete all the data sets from your workspace. 
 
-## Chapter summary {#section1-4}
+## Chapter summary {#section1-7}
 
 This chapter covered getting R and RStudio downloaded and some basics of working with
 R via RStudio. You should be able to read a data set into R and run some basic
@@ -869,11 +928,11 @@ shape of distributions using numerical summaries of the mean and SD and/or the
 min, Q1, median, Q3, and max and the histogram and boxplot as graphical
 summaries. We revisited the ideas of symmetry and skew. But the main point was
 really to get a start on using R via RStudio to provide results you should be familiar with
-from your previous statistics experience(s). 
+from your previous statistics experience(s) and to introduce some of the code we will be building on in the next chapters. 
 
 \newpage
 
-## Summary of important R code {#section1-5}
+## Summary of important R code {#section1-8}
 
 To help you learn and use R, there is a section highlighting the most important 
 R code used near the end of each
@@ -935,10 +994,14 @@ revisit the worked examples using each of the functions.
 
     * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
 
+* **ggplot(data = **<font color='red'>DATASETNAME</font>**, mapping = aes(**<font color='red'>VARIABLENAME</font>**)) + geom_histogram(bins = **<font color='red'>10</font>**)**
+
+    * Makes a histogram with 10 bins using `ggplot`, requires the `ggplot2` library is installed and loaded. \index{\texttt{geom_histogram()}|textbf}
+
 
 \newpage
 
-## Practice problems {#section1-6}
+## Practice problems {#section1-9}
 
 In each chapter, the last section contains some questions for you to complete
 to make sure you understood the
@@ -950,7 +1013,9 @@ These questions provide a great venue to check your learning, often to see the
 methods applied to another data set, and for something to discuss in study groups,
 with your instructor, and at the Math Learning Center. 
 
-1.1. Read in the treadmill data set
+1.1. Open RStudio and go to File -> New File -> R Markdown... to create a .Rmd. Click on the "Knit" button and see what happens. Try to complete the following questions in that document, clicking on the Knit button after you add a codechunk with code to complete each question. Part of the assignment on this question is to not get frustrated the first time you are trying this and seek out help to answer questions you have when practicing.
+
+1.2. Read in the treadmill data set
 discussed previously and find the mean and SD of the Ages (``Age`` variable) and Body
 Weights (``BodyWeight`` variable). In studies involving human subjects, it is 
 common to report a
@@ -958,18 +1023,18 @@ summary of characteristics of the subjects. Why does this matter? Think about
 how your interpretation of any study of the fitness of subjects would change if
 the mean age (same spread) had been 20 years older or 35 years younger. 
 
-1.2. How does knowing about the
+1.3. How does knowing about the
 distribution of results for *Age* and *BodyWeight* help you understand the 
 results for the Run Times discussed previously?
 
-1.3. The mean and SD are most useful
+1.4. The mean and SD are most useful
 as summary statistics only if the distribution is relatively symmetric. Make a
 histogram of *Age* responses and 
 discuss the shape of the distribution (is it skewed right, skewed left, 
 approximately symmetric?; are there outliers?). Approximately what range of
 ages does this study pertain to?
 
-1.4. The weight responses are in
+1.5. The weight responses are in
 kilograms and you might prefer to see them in pounds. The conversion is
 ``lbs=2.205*kgs``. Create a new variable in the ``treadmill``
 tibble called *BWlb* using this code:
@@ -980,8 +1045,8 @@ treadmill$BWlb <- 2.205*treadmill$BodyWeight
  
 and find the mean and SD of the new variable (*BWlb*). 
 
-1.5. Make histograms and boxplots of
-the original *BodyWeight* and new *BWlb* variables. Discuss aspects of the
+1.6. Make histograms and boxplots of
+the original *BodyWeight* and new *BWlb* variables, both using base R plots and using `ggplot2`. Discuss aspects of the
 distributions that changed and those that remained the same with the
 transformation from kilograms to pounds. What does this tell you about changing the units of a variable in terms of its distribution?
 

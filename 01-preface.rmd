@@ -855,9 +855,9 @@ encouraging researchers to work in this way and may someday require it. The term
 
 ## Grammar of Graphics {#section1-5}
 
-The previous plots were made using what is called "base R" graphics. It is possible to make versions of all the graphics we need in this material using single function calls like `boxplot` - and there are some places we will utilize these simple versions because they get us exactly what we want to see. But to make more complex displays and have complete control of the way the graphs look, we will utilize the `ggplot2` package [CITATION] which was built to implement a type of grammar for making and layering graphical displays of data, adding each layer step by step. While it takes a little bit of work to get started, the power of these displays will ultimately make the investment worthwhile^[This discussion is based on materials developed for a data visualization workshop originally developed by Dr. Allison Theobold and related to the https://datacarpentry.org/ workshops.]. \index{ggplot2}
+The previous plots were made using what is called "base R" graphics. It is possible to make versions of all the graphics we need in this material using single function calls like ``boxplot`` - and there are some places we will utilize these simple versions because they get us exactly what we want to see. But to make more complex displays and have complete control of the way the graphs look, we will utilize the `ggplot2` package [GRETA - CITATION] which was built to implement a type of grammar for making and layering graphical displays of data, adding each layer step by step. While it takes a little bit of work to get started, the power of these displays will ultimately make the investment worthwhile^[This discussion is based on materials developed for a data visualization workshop originally developed by Dr. Allison Theobold and related to the https://datacarpentry.org/ workshops.]. \index{\texttt{ggplot}} \index{R packages!\textbf{ggplot2}}
 
-\index As opposed to base graphics, the ggplots will contain multiple components that are patched together with a `+`, with the general format of `ggplot(data = <DATA>, mapping = aes(<VARIABLE MAPPINGS>)) + <GEOM_FUNCTION>()`. Breaking this down, the `data=...` tells the `ggplot` function where to look, the information inside the `aes` (or aesthetic) defines which variables in the data set to use and how to use them (often with `x=variable1`, `y=variable2`, etc., with `x=...` for the variable on the x (horizonal) axis and `y=...` for the variable on the y), and the `+ <GEOM_FUNCTION>()` defines which type of graph to make (there are `geom_histogram` and `geom_boxplot` to make the graphs discussed previously and many, many more). Because we often have many "+"'s to include, the common practice is to hit return after the "+" and start the next layer or option on the following line for better readability. Figure \@ref(fig:Figure1-10) shows a histogram of the `RunTime` variable made using the `+ geom_histogram`.
+\index As opposed to base graphics, the ggplots will contain multiple components that are patched together with a `+`, with the general format of `ggplot(data = <DATA>, mapping = aes(<VARIABLE MAPPINGS>)) + <GEOM_FUNCTION>()`. Breaking this down, the `data = ...` tells the `ggplot` function where to look, the information inside the `aes` (or aesthetic) defines which variables in the data set to use and how to use them (often with `x = variable1`, `y = variable2`, etc., with `x = ...` for the variable on the x (horizontal) axis and `y = ...` for the variable on the y (vertical) axis), and the `+ <GEOM_FUNCTION>()` defines which type of graph to make (there are `geom_histogram` and `geom_boxplot` to make the graphs discussed previously and many, many more). Because we often have many "+"'s to include, the common practice is to hit return after the "+" and start the next layer or option on the following line for better readability. Figure \@ref(fig:Figure1-10) shows a histogram of the `RunTime` variable made using the `+ geom_histogram()`. \index{\texttt{geom_histogram}} \index{\texttt{geom_boxplot}}
 
 (ref:fig1-10) Default histogram of Run Times using `ggplot`.
 
@@ -870,10 +870,9 @@ ggplot(data = treadmill, mapping = aes(x = RunTime)) + geom_histogram()
 library(ggplot2)
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
   geom_histogram()
-
 ```
 
-The warning message reflects a challenge in making histograms that involves how many bins to use. In `geom_histogram`, it always uses 30 bins and expects you to make your own choice, compared to `hist` used a different method to try to make a better automatic choice, but there is no single right answer. So maybe we should try out other values to get a "smoother" result here, which we can do by adding the `bins=...` to the `+ geom_histogram()`, such as `+ geom_histogram(bins=8)` to get an 8 bin histogram in Figure \@ref(fig:Figure1-11).
+The warning message reflects a challenge in making histograms that involves how many bins to use. In `geom_histogram`, it always uses 30 bins and expects you to make your own choice, compared to `hist` that used a different method to try to make a better automatic choice, but there is no single right answer. So maybe we should try out other values to get a "smoother" result here, which we can do by adding the `bins = ...` to the `+ geom_histogram()`, such as `+ geom_histogram(bins = 8)` to get an 8 bin histogram in Figure \@ref(fig:Figure1-11).
 
 
 (ref:fig1-11) Histogram of Run Times using `ggplot` with 8 bins.
@@ -881,14 +880,12 @@ The warning message reflects a challenge in making histograms that involves how 
 ```{r Figure1-11, fig.cap="(ref:fig1-11)",echo=F,fig.width = 5, fig.height = 3.5}
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
   geom_histogram(bins = 8)
-
 ```
 
 
 ```r
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
   geom_histogram(bins = 8)
-
 ```
 
 \index The following chapters will explore further modifications for these plots, but there are a couple of additions to highlight. The first is that we can often layer multiple geoms on the same plot and the order of the additions defines which layer is "on top", with the plot built up sequentially. So we can add a boxplot on top of a histogram by putting it after the histogram layer. Also in Figure \@ref(fig:Figure1-12), the `geom_rug` is also added, which puts a tick mark for each observation on the lower part of the x-axis. \index{rug} Rug plots use a graphical 
@@ -897,7 +894,7 @@ involves adding random variability to each observation that
 is uniformly distributed in a range determined based on the spacing of the
 observation. The idea is to jitter just enough to see all the points but not too much. This means that if you re-run the ``jitter`` function, the results will change if you do not set the random number seed using `set.seed` that is discussed more below. 
 For more details, type ``help(jitter)`` in the console in RStudio.] to each observation so that multiple similar or tied observations do not 
-plot as a single line. \index{jitter} There are options to control the color of individual components when we add them (the histogram is filled with grey, the boxplot is in "tomato", and the rug plot is in "skyblue"). Finally, the last change here is to the "theme" for the plot^[This certainly could have waited until later, but I have now seen enough base ggplot graphs that I really like to change their overall look.] which we can include one of a suite of different layouts with themes such as `+ theme_bw()` or `+ theme_light()`. If you add the `ggthemes` package, you can access a long list of alternative looks for your plot (see https://jrnold.github.io/ggthemes/reference/index.html for options there). \index{themes}
+plot as a single line. \index{jitter} There are options to control the color of individual components when we add them (the histogram is filled with grey (``fill = "grey"``), the boxplot is in "tomato" (``color = "tomato"``), and the rug plot is in "skyblue"). Finally, the last change here is to the "theme" for the plot^[This certainly could have waited until later, but I have now seen enough base ggplot graphs that I really like to change their overall look.] which we can include one of a suite of different layouts with themes such as `+ theme_bw()` or `+ theme_light()`. If you add the `ggthemes` package, you can access a long list of alternative looks for your plot (see https://jrnold.github.io/ggthemes/reference/index.html for options there). \index{themes} \index{\texttt{theme_bw()}} \index{\texttt{geom_rug()}}
 
 
 (ref:fig1-12) Histogram with boxplot and rug of Run Times using `ggplot` with modified colors and theme.
@@ -946,7 +943,7 @@ shape of distributions using numerical summaries of the mean and SD and/or the
 min, Q1, median, Q3, and max and the histogram and boxplot as graphical
 summaries. We revisited the ideas of symmetry and skew. But the main point was
 really to get a start on using R via RStudio to provide results you should be familiar with
-from your previous statistics experience(s). 
+from your previous statistics experience(s) and to introduce some of the code we will be building on in the next chapters. 
 
 \newpage
 
@@ -1012,7 +1009,7 @@ revisit the worked examples using each of the functions.
 
     * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
 
-* **ggplot(data = **`r colFmt("DATASETNAME","red")`**, mapping = aes(**`r colFmt("VARIABLENAME","red")`**)) + geom_histogram(bins=**`r colFmt("10","red")`**)**
+* **ggplot(data = **`r colFmt("DATASETNAME","red")`**, mapping = aes(**`r colFmt("VARIABLENAME","red")`**)) + geom_histogram(bins = **`r colFmt("10","red")`**)**
 
     * Makes a histogram with 10 bins using `ggplot`, requires the `ggplot2` library is installed and loaded. \index{\texttt{geom_histogram()}|textbf}
 

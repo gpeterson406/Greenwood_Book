@@ -219,7 +219,7 @@ dd$Condition <- factor(dd$Condition)
 
 We use this sort of explicit declaration for either character coded (non-numeric) variables or for numerically coded variables where the numbers represent categories to force R to correctly work with the information on those variables. For quantitative variables, we do not need to declare their type and they are stored as numeric variables as long as there is no text in that column of the spreadsheet other than the variable name.
 
-\indent The one-at-a-time declaration of the variables as factors when there are many (here there are six more) creates repetitive and cumbersome code. There is another way of managing this and other similar related "data wrangling"^[Some might call this data manipulation or transformation, but those terms can have other meanings and we want a term to capture organizing, preparing, and possibly modifying the data to prepare for analysis and doing it reproducibly in what we like to call "data wrangling".]. To do this, we will combine using the pipe operator (`%>% ` from the `magrittr` package or `|>` in base R) and using the `mutate` function from `dplyr`, both `%>%` and `mutate` are part of the `tidyverse` and start to help us write code that flows from left to right to accomplish multiple tasks. \index{pipe} \index{\texttt{`%>%`}} \index{\texttt{|>}} \index{data wrangling} \index{\texttt{mutate()} The pipe operator (`%>%` or `|>`) allows us to pass a data set to a function (sometimes more than one if you have multiple data wrangling tasks to complete - see work below) and there is a keyboard short-cut to get the combination of characters for it by using Ctrl+Shift+M on a PC or Cmd+Shift+M on a Mac. The `mutate` function allows us to create new columns or replace existing ones by using information from other columns, separating each additional operation by a comma (and a "return" for proper style). You will gradually see more reasons why we want to learn these functions, but for now this allows us to convert the character variables into `factor` variables within `mutate` and when we are all done to assign our final data set back in the same `dd` tibble that we started with.     
+\indent The one-at-a-time declaration of the variables as factors when there are many (here there are six more) creates repetitive and cumbersome code. There is another way of managing this and other similar related "data wrangling"^[Some might call this data manipulation or transformation, but those terms can have other meanings and we want a term to capture organizing, preparing, and possibly modifying the data to prepare for analysis and doing it reproducibly in what we like to call "data wrangling".]. To do this, we will combine using the pipe operator (`%>% ` from the `magrittr` package or `|>` in base R) and using the `mutate` function from `dplyr`, both `%>%` and `mutate` are part of the `tidyverse` and start to help us write code that flows from left to right to accomplish multiple tasks. \index{pipe} \index{\texttt{\%>\%}} \index{\texttt{\symbol{124}\symbol{62}}} \index{data wrangling} \index{\texttt{mutate()} The pipe operator (`%>%` or `|>`) allows us to pass a data set to a function (sometimes more than one if you have multiple data wrangling tasks to complete - see work below) and there is a keyboard short-cut to get the combination of characters for it by using Ctrl+Shift+M on a PC or Cmd+Shift+M on a Mac. The `mutate` function allows us to create new columns or replace existing ones by using information from other columns, separating each additional operation by a comma (and a "return" for proper style). You will gradually see more reasons why we want to learn these functions, but for now this allows us to convert the character variables into `factor` variables within `mutate` and when we are all done to assign our final data set back in the same `dd` tibble that we started with.     
 
 ```{r}
 
@@ -333,7 +333,7 @@ density curve is added to the histogram using the `geom_density`, producing the 
 added modifications for filling the density curve but using `alpha = 0.1` to make the density curve fill transparent (alpha values range between 0 and 1 with lower values providing more transparency) and in purple (``fill = purple``). You can see how the density curve 
 somewhat matches the histogram bars but deals with the bumps up and down 
 and edges a little differently. We can pick out the relatively symmetric distribution using 
-either display and will rarely make both together. \index{\texttt{geom_density()}}
+either display and will rarely make both together. \index{\texttt{geom\_density()}}
 
 (ref:fig2-2) Histogram (density scaled), density curve, and rug plot of Distance responses.
 
@@ -1035,7 +1035,7 @@ result is really unusual.
 
 \indent To make the comparisons more concrete, first we can enhance the previous graphs 
 by adding the value of the test statistic from the real data set, as shown in 
-Figure \@ref(fig:Figure2-10), using the ``geom_vline`` \index{\texttt{geom_vline}} function to draw a vertical 
+Figure \@ref(fig:Figure2-10), using the ``geom_vline`` \index{\texttt{geom\_vline}} function to draw a vertical 
 line at our $T_{obs}$ value specified in the ``xintercept`` option. 
 
 (ref:fig2-10) Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic. 
@@ -1354,27 +1354,34 @@ be made. If we do not have a representative sample, then our inferences are
 limited to the sampled subjects. 
 \index{confounding}
 
-\footnotesize
-
 (ref:tab2-1) Scope of inference summary.
 
-```{r Table2-1, echo=F,results="asis"}
-columnHeaders <- c("**Random Sampling/Random Assignment**",
-                   "**Random Assignment (RA) -- Yes (controlled experiment)**",
-                   "**Random Assignment (RA) -- No (observational study)**")
-cell21 <- '**Random Sampling (RS) -- Yes (or some method that results in a representative sample of population of interest)**'
-cell22 <- 'Because we have RS, we can generalize inferences to the population the RS was taken from. Because we have RA we can assume the groups were equivalent on all aspects except for the treatment and can establish causal inference.'
-cell23 <- 'Can generalize inference to population the RS was taken from but cannot establish causal inference (no RA -- cannot isolate treatment variable as only difference among groups, could be confounding variables).'
-cell31 <- '**Random Sampling (RS) -- No (usually a convenience sample)**'
-cell32 <- 'Cannot generalize inference to the population of interest because the sample was not random and could be biased -- may not be "representative" of the population of interest. Can establish causal inference due to RA $\\rightarrow$ the inference from this type of study applies only to the sample.'
-cell33 <- 'Cannot generalize inference to the population of interest because the sample was not random and could be biased -- may not be "representative" of the population of interest. Cannot establish causal inference due to lack of RA of the treatment.'
-x <- data.frame(c(cell21,cell31),c(cell22,cell32),c(cell23,cell33))
-colnames(x) <- columnHeaders
-pandoc.table(x, keep.line.breaks = TRUE,caption="(\\#tab:Table2-1) (ref:tab2-1)", split.table = Inf,
-             justify="left")
-```
+Table: (\#tab:Table2-1) (ref:tab2-1)
 
-\normalsize
++----------------------------------+-----------------------------------+----------------------------------+
+| **Random Sampling/**             | **Random Assignment (RA) -- Yes** | **Random Assignment (RA) -- No** |
+| **Random Assignment**            | **(controlled experiment)**       | **(observational study)**        |
++==================================+===================================+==================================+
+| **Random Sampling (RS) -- Yes**  | Because we have RS, we can        | Can generalize inference to      |
+| **(or some method that results** | generalize inferences to the      | population the RS was taken from |
+| **in a representative sample**   | population the RS was taken from. | but cannot establish causal      |
+| **of population of interest)**   | Because we have RA we can assume  | inference (no RA -- cannot       |
+|                                  | the groups were equivalent on all | isolate treatment variable as    |
+|                                  | aspects except for the treatment  | only difference among groups,    |
+|                                  | and can establish causal          | could be confounding variables). | 
+|                                  | inference.                        |                                  |
++----------------------------------+-----------------------------------+----------------------------------+
+| **Random Sampling (RS) -- No**   | Cannot generalize inference to    | Cannot generalize inference to   |
+| **(usually a convenience**       | the population of interest        | the population of interest       |
+| **sample)**                      | because the sample was not random | because the sample was not       |
+|                                  | and could be biased -- may not be | random and could be biased --    |
+|                                  | "representative" of the           | may not be "representative" of   |
+|                                  | population of interest.           | the population of interest.      |
+|                                  | Can establish causal inference    | Cannot establish causal          |
+|                                  | due to RA $\rightarrow$ the       | inference due to lack of RA of   |
+|                                  | inference from this type of study | the treatment.                   |
+|                                  | applies only to the sample.       |                                  |
++----------------------------------+-----------------------------------+----------------------------------+
 
 \indent A simple example helps to clarify how the scope of inference can change 
 based on the study design. \index{scope of inference} Suppose
@@ -3064,7 +3071,7 @@ post-detox. We are interested in the difference in mean number of days to first
 use of any substance post-detox between males and females. There are some 
 missing responses and the following code will produce ``favstats`` with the 
 missing values and then provide a data set that by 
-applying the ``drop_na()`` function to the piped data set removes any observations with missing values. \index{\texttt{drop_na()}} \index{R packages!\textbf{mosaicData}}
+applying the ``drop_na()`` function to the piped data set removes any observations with missing values. \index{\texttt{drop\_na()}} \index{R packages!\textbf{mosaicData}}
 
 ```r
 library(mosaicData)

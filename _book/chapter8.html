@@ -32,7 +32,7 @@
   
 <link rel="prev" href="chapter7.html"/>
 <link rel="next" href="chapter9.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -368,7 +368,7 @@ the mathematics are beyond the scope of this course.
 
 The <code>lm</code> function takes
 care of finding the least squares coefficients using a very sophisticated
-algorithm<a href="#fn132" class="footnote-ref" id="fnref132"><sup>132</sup></a>. The estimated
+algorithm<a href="#fn131" class="footnote-ref" id="fnref131"><sup>131</sup></a>. The estimated
 regression equation it returns is:</p>
 <p><span class="math display">\[\widehat{y}_i = b_0 + b_1x_{1i} +b_2x_{2i}+\ldots+b_Kx_{Ki}\]</span></p>
 <p>where each <span class="math inline">\(b_k\)</span> estimates its corresponding parameter <span class="math inline">\(\beta_k\)</span>.</p>
@@ -445,7 +445,7 @@ are:</p>
 <p>The term-plots of the estimated models reinforce
 our expected results, showing a positive change in <em>Snow Depth</em> for higher
 <em>Elevations</em> and negative impacts for increasing temperatures on <em>Snow Depth</em>.
-These plots are made across the observed range<a href="#fn133" class="footnote-ref" id="fnref133"><sup>133</sup></a> of the predictor
+These plots are made across the observed range<a href="#fn132" class="footnote-ref" id="fnref132"><sup>132</sup></a> of the predictor
 variable and help us to get a sense of the total impacts of
 predictors. For example, for elevation in Figure <a href="chapter8.html#fig:Figure8-2">8.2</a>, the
 smallest observed
@@ -556,7 +556,7 @@ Figure 8.4: Plot of the estimated SLR model using Max Temp as predictor.
 snow depth, we want to consider if an MLR model might explain more of the
 variability in <em>Snow Depth</em>. To fit an MLR model, we use the same general format
 as in previous topics but with adding “<code>+</code>” between any additional
-predictors<a href="#fn134" class="footnote-ref" id="fnref134"><sup>134</sup></a> we want to add to the model,
+predictors<a href="#fn133" class="footnote-ref" id="fnref133"><sup>133</sup></a> we want to add to the model,
 <code>y ~ x1 + x2 + ... + xk</code>: </p>
 
 <div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="chapter8.html#cb712-1" aria-hidden="true" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Snow.Depth <span class="sc">~</span> Elevation <span class="sc">+</span> Min.Temp <span class="sc">+</span> Max.Temp, <span class="at">data =</span> snotel_s)</span>
@@ -677,7 +677,7 @@ Revisit the scatterplots to identify the source of the issue.
 </ul></li>
 <li><p>Examine partial residuals and smoothing line in term-plots.</p>
 <ul>
-<li>Turning on the <code>residuals = T</code> option in the effects plot allows direct assessment of residuals vs each predictor after accounting for others. Look for clear patterns in the partial residuals<a href="#fn135" class="footnote-ref" id="fnref135"><sup>135</sup></a> that the smoothing line is also following for potential issues with the linearity assumption.</li>
+<li>Turning on the <code>residuals = T</code> option in the effects plot allows direct assessment of residuals vs each predictor after accounting for others. Look for clear patterns in the partial residuals<a href="#fn134" class="footnote-ref" id="fnref134"><sup>134</sup></a> that the smoothing line is also following for potential issues with the linearity assumption.</li>
 </ul></li>
 </ol></li>
 </ul></li>
@@ -876,7 +876,7 @@ is found using the estimated model with</p>
 <p>but the observed snow depth was actually <span class="math inline">\(y_9=11.2\)</span> inches. The observed <strong><em>residual</em></strong> is then</p>
 <p><span class="math display">\[e_9=y_9-\widehat{y}_9 = 11.2-40.465 = -29.265 \text{ inches.}\]</span></p>
 <p>So the model “misses” the snow depth by over 29 inches with the model suggesting
-over 40 inches of snow but only 11 inches actually being present<a href="#fn136" class="footnote-ref" id="fnref136"><sup>136</sup></a>.</p>
+over 40 inches of snow but only 11 inches actually being present<a href="#fn135" class="footnote-ref" id="fnref135"><sup>135</sup></a>.</p>
 <div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="chapter8.html#cb718-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">10.51</span> <span class="sc">+</span> <span class="fl">0.0123</span><span class="sc">*</span><span class="dv">7350</span> <span class="sc">-</span> <span class="fl">0.505</span><span class="sc">*</span><span class="dv">28</span> <span class="sc">-</span> <span class="fl">0.562</span><span class="sc">*</span><span class="dv">45</span></span></code></pre></div>
 <pre><code>## [1] 40.465</code></pre>
 <div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="chapter8.html#cb720-1" aria-hidden="true" tabindex="-1"></a><span class="fl">11.2</span> <span class="sc">-</span> <span class="fl">40.465</span></span></code></pre></div>
@@ -988,7 +988,7 @@ from it.</p>
 for the model fit to the data set without NE Entrance (now <span class="math inline">\(n=24\)</span>) reveals a new
 point that is somewhat influential (point 22 in the data set has Cook’s D
 <span class="math inline">\(\approx\)</span> 0.5). It is for a location called "Bloody
-<span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span><a href="#fn137" class="footnote-ref" id="fnref137"><sup>137</sup></a> which has a
+<span class="math inline">\(\require{color}\colorbox{black}{Redact.}\)</span><a href="#fn136" class="footnote-ref" id="fnref136"><sup>136</sup></a> which has a
 leverage of nearly 0.2 and a standardized residual of nearly -3.
 This point did not show up as influential in the original version of the data
 set with the same model but it is now. It also shows up as a potential outlier.
@@ -1111,7 +1111,7 @@ we can formally discuss
 interpretations of the slope coefficients and how the term-plots
 (Figure <a href="chapter8.html#fig:Figure8-10">8.10</a>) aid
 our interpretations. Term-plots in MLR are constructed by holding all the other
-quantitative variables<a href="#fn138" class="footnote-ref" id="fnref138"><sup>138</sup></a> at their mean and generating predictions and 95% CIs for the mean
+quantitative variables<a href="#fn137" class="footnote-ref" id="fnref137"><sup>137</sup></a> at their mean and generating predictions and 95% CIs for the mean
 response across the levels of observed values for each predictor variable. This
 idea also helps us to work towards interpretations of each term in an MLR
 model. For example, for <em>Elevation</em>,
@@ -1188,13 +1188,13 @@ Figure 8.12: Term-plot for Elevation “by-hand,” holding temperature variable
 define the line but need a denser grid of elevations if we want to add the 95%
 CIs for the true mean snow depth across the different elevations since they
 vary as a function of the distance from the mean of the explanatory variables.</p>
-<p>The partial residuals in MLR models<a href="#fn139" class="footnote-ref" id="fnref139"><sup>139</sup></a> highlight the relationship between each predictor and the response after the impacts of the other variables are incorporated. To do this, we start with the raw residuals, <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>, which is the left-over part of the responses after accounting for all the predictors. If we add the component of interest to explore (say <span class="math inline">\(b_kx_{kj}\)</span>) to the residuals, <span class="math inline">\(e_i\)</span>, we get <span class="math inline">\(e_i + b_kx_{kj} = y_i - \hat{y}_i + b_kx_{kj} = y_i - (b_0 + b_1x_{1i} +b_2x_{2i}+\ldots + b_kx_{ki} + \ldots + b_Kx_{Ki}) + b_kx_{kj}\)</span> <span class="math inline">\(= y_i - (b_0 + b_1x_{1i} +b_2x_{2i}+\ldots + b_{k-1}x_{k-1,i} + b_{k+1}x_{k+1,i} + \ldots + b_Kx_{Ki})\)</span>. This new residual is a partial residual (also known as “component-plus-residuals” to indicate that we put the residuals together with the component of interest to create them).  It contains all of the regular residual as well as what would be explained by <span class="math inline">\(b_kx_{kj}\)</span> given the other variables in the model. Some choose to plot these partial residuals or to center them at 0 and, either way, plot them versus the component, here <span class="math inline">\(x_{kj}\)</span>. In effects plots, partial residuals are vertically scaled to match the height that the term-plot has created by holding the other predictors at their means so they can match the y-axis of the lines of the estimated terms based on the model. However they are vertically located, partial residuals help to highlight missed patterns left in the residuals that might be related to a particular predictor.</p>
+<p>The partial residuals in MLR models<a href="#fn138" class="footnote-ref" id="fnref138"><sup>138</sup></a> highlight the relationship between each predictor and the response after the impacts of the other variables are incorporated. To do this, we start with the raw residuals, <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>, which is the left-over part of the responses after accounting for all the predictors. If we add the component of interest to explore (say <span class="math inline">\(b_kx_{kj}\)</span>) to the residuals, <span class="math inline">\(e_i\)</span>, we get <span class="math inline">\(e_i + b_kx_{kj} = y_i - \hat{y}_i + b_kx_{kj} = y_i - (b_0 + b_1x_{1i} +b_2x_{2i}+\ldots + b_kx_{ki} + \ldots + b_Kx_{Ki}) + b_kx_{kj}\)</span> <span class="math inline">\(= y_i - (b_0 + b_1x_{1i} +b_2x_{2i}+\ldots + b_{k-1}x_{k-1,i} + b_{k+1}x_{k+1,i} + \ldots + b_Kx_{Ki})\)</span>. This new residual is a partial residual (also known as “component-plus-residuals” to indicate that we put the residuals together with the component of interest to create them).  It contains all of the regular residual as well as what would be explained by <span class="math inline">\(b_kx_{kj}\)</span> given the other variables in the model. Some choose to plot these partial residuals or to center them at 0 and, either way, plot them versus the component, here <span class="math inline">\(x_{kj}\)</span>. In effects plots, partial residuals are vertically scaled to match the height that the term-plot has created by holding the other predictors at their means so they can match the y-axis of the lines of the estimated terms based on the model. However they are vertically located, partial residuals help to highlight missed patterns left in the residuals that might be related to a particular predictor.</p>
 <p>To get the associated 95% CIs for an individual term, we could return to using the <code>predict</code>
 function for the MLR, again holding the temperatures at their
 mean values. The <code>predict</code> function is sensitive and needs the same variable
 names as used in the original model fitting to work. First we create a “new”
 data set using the <code>seq</code> function to generate the desired grid of
-elevations and the <code>rep</code> function<a href="#fn140" class="footnote-ref" id="fnref140"><sup>140</sup></a> to repeat the means of the
+elevations and the <code>rep</code> function<a href="#fn139" class="footnote-ref" id="fnref139"><sup>139</sup></a> to repeat the means of the
 temperatures for each of elevation values we need to make the plot. The code
 creates a specific version of the predictor variables that is stored in <code>newdata1</code> that is provided to the the <code>predict</code>
 function so that it will provide fitted values and CIs across different elevations with
@@ -1351,7 +1351,7 @@ one model over another. </p>
 (<strong><em>R</em></strong><sup>2</sup>).</p></li>
 <li><p><em>a priori</em> reasons to “use” a particular model, for example in a designed
 experiment or it includes variable(s) whose estimated slopes directly address the research question(s), even if the variables are not “important” in the model.</p></li>
-<li><p>Model selection “criteria” suggest one model is better than the others<a href="#fn141" class="footnote-ref" id="fnref141"><sup>141</sup></a>.</p></li>
+<li><p>Model selection “criteria” suggest one model is better than the others<a href="#fn140" class="footnote-ref" id="fnref140"><sup>140</sup></a>.</p></li>
 </ol>
 <p>It is OK to consider multiple reasons to select a model but it is dangerous to
 “shop” for a model across many possible models – a practice which is sometimes
@@ -1556,7 +1556,7 @@ modeling situations; that measure is called the <strong><em>AIC</em></strong>.</
 </div>
 <div id="section8-5" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> General recommendations for MLR interpretations and VIFs</h2>
-<p>There are some important issues to remember<a href="#fn142" class="footnote-ref" id="fnref142"><sup>142</sup></a> when interpreting
+<p>There are some important issues to remember<a href="#fn141" class="footnote-ref" id="fnref141"><sup>141</sup></a> when interpreting
 regression models that can result in common mistakes.</p>
 <ul>
 <li><p><strong>Don’t claim to “hold everything constant” for a single individual</strong>:</p>
@@ -1627,8 +1627,8 @@ in Figure <a href="chapter8.html#fig:Figure8-17">8.17</a>:
 </p>
 <div class="sourceCode" id="cb753"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb753-1"><a href="chapter8.html#cb753-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb753-2"><a href="chapter8.html#cb753-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">oma=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
-<span id="cb753-3"><a href="chapter8.html#cb753-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), <span class="at">upper.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>), <span class="at">lower.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>))</span>
-<span id="cb753-4"><a href="chapter8.html#cb753-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), <span class="dv">2</span>)</span></code></pre></div>
+<span id="cb753-3"><a href="chapter8.html#cb753-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), <span class="at">upper.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>), <span class="at">lower.col =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">&quot;orange&quot;</span>))</span>
+<span id="cb753-4"><a href="chapter8.html#cb753-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">cor</span>(snotel_s <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>)), <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-17"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-17-1.png" alt="Plot of correlation matrix in the snow depth data set with influential points removed" width="624" />
 <p class="caption">
@@ -1689,7 +1689,7 @@ slope for variable <span class="math inline">\(k\)</span> is due to collinearity
 The square-root scale is the most useful scale to understand VIFs and allows you to make your own assessment of whether you think the multicollinearity is “important” based on how inflated the SEs are in a particular situation. An example will show how to easily get these results
 and where the results come from.</p>
 <p>In general, the easy way to obtain VIFs is using the <code>vif</code> function from the
-<code>car</code> package (<span class="citation"><a href="#ref-R-carData" role="doc-biblioref">Fox, Weisberg, and Price</a> (<a href="#ref-R-carData" role="doc-biblioref">2020b</a>)</span>, <span class="citation"><a href="#ref-Fox2003" role="doc-biblioref">Fox</a> (<a href="#ref-Fox2003" role="doc-biblioref">2003</a>)</span>).
+<code>car</code> package (<span class="citation"><a href="#ref-R-carData" role="doc-biblioref">Fox, Weisberg, and Price</a> (<a href="#ref-R-carData" role="doc-biblioref">2020</a>)</span>, <span class="citation"><a href="#ref-Fox2003" role="doc-biblioref">Fox</a> (<a href="#ref-Fox2003" role="doc-biblioref">2003</a>)</span>).
  
 It has the advantage of also providing a reasonable
 result when we include categorical variables in models
@@ -1862,7 +1862,7 @@ educated statistics users even think this result is proof of something interesti
 or are disappointed when the p-value is not small. Unless you want to do some
 prediction and are interested in whether the mean response when all the
 predictors are set to 0 is different from 0, this test should not be reported
-or, if reported, is certainly not very interesting<a href="#fn143" class="footnote-ref" id="fnref143"><sup>143</sup></a>.
+or, if reported, is certainly not very interesting<a href="#fn142" class="footnote-ref" id="fnref142"><sup>142</sup></a>.
 
 But we should at least go through the motions on this
 test once so you don’t make the same mistakes:</p>
@@ -1998,10 +1998,10 @@ performance of their test and it was not based on a random sample?</p>
 statistical models underlying the development of the SAT and GRE) and also in
 obtaining a data set for testing out the performance of their tests that is at
 least representative of the students (or some types of students) at this
-university. They<a href="#fn144" class="footnote-ref" id="fnref144"><sup>144</sup></a> provided information on the <em>SAT Verbal</em> (<code>satv</code>)
+university. They<a href="#fn143" class="footnote-ref" id="fnref143"><sup>143</sup></a> provided information on the <em>SAT Verbal</em> (<code>satv</code>)
 and <em>Math</em> (<code>satm</code>) percentiles (these are not the scores but the ranking
 percentile that each score translated to in a particular year),
-<em>High School GPA</em> (<code>hsgpa</code>), <em>First Year</em> of college <em>GPA</em> (<code>fygpa</code>), <em>Gender</em> (<code>gender</code> of the students coded 1 and 2 with possibly 1 for males and 2 for females – the documentation was also unclear this). Should <code>gender</code> even be displayed in a plot with correlations since it is a categorical variable?<a href="#fn145" class="footnote-ref" id="fnref145"><sup>145</sup></a> Our interests here are in whether the two SAT percentiles are (together?)
+<em>High School GPA</em> (<code>hsgpa</code>), <em>First Year</em> of college <em>GPA</em> (<code>fygpa</code>), <em>Gender</em> (<code>gender</code> of the students coded 1 and 2 with possibly 1 for males and 2 for females – the documentation was also unclear this). Should <code>gender</code> even be displayed in a plot with correlations since it is a categorical variable?<a href="#fn144" class="footnote-ref" id="fnref144"><sup>144</sup></a> Our interests here are in whether the two SAT percentiles are (together?)
 related to the first year college GPA, describing the size of their impacts
 and assessing the predictive potential of SAT-based measures for first year in
 college GPA. There are certainly other possible research questions that can be
@@ -2015,7 +2015,10 @@ addressed with these data but this will keep us focused.
 <span id="cb772-5"><a href="chapter8.html#cb772-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">satv =</span> sat_v, <span class="at">satm =</span> sat_m, <span class="at">satsum =</span> sat_sum, </span>
 <span id="cb772-6"><a href="chapter8.html#cb772-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">hsgpa =</span> hs_gpa, </span>
 <span id="cb772-7"><a href="chapter8.html#cb772-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">fygpa =</span> fy_gpa) </span>
-<span id="cb772-8"><a href="chapter8.html#cb772-8" aria-hidden="true" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<span id="cb772-8"><a href="chapter8.html#cb772-8" aria-hidden="true" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> </span>
+<span id="cb772-9"><a href="chapter8.html#cb772-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb772-10"><a href="chapter8.html#cb772-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>() <span class="sc">+</span> </span>
+<span id="cb772-11"><a href="chapter8.html#cb772-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-18"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-18-1.png" alt="Scatterplot matrix of SAT and GPA data set." width="960" />
 <p class="caption">
@@ -2026,7 +2029,7 @@ Figure 8.18: Scatterplot matrix of SAT and GPA data set.
 pre-college measures and the <em>college GPA</em> but none are above the moderate
 strength level. The <em>hsgpa</em> has a highest correlation with
 first year of college results but its correlation is not that strong. Maybe
-together in a model the SAT percentiles can also be useful? Also note this plot shows an odd <em>hsgpa</em> of 4.5 that probably should be removed<a href="#fn146" class="footnote-ref" id="fnref146"><sup>146</sup></a> if that variable is going to be used (<em>hsgpa</em>
+together in a model the SAT percentiles can also be useful? Also note this plot shows an odd <em>hsgpa</em> of 4.5 that probably should be removed<a href="#fn145" class="footnote-ref" id="fnref145"><sup>145</sup></a> if that variable is going to be used (<em>hsgpa</em>
 was not used in the following models so the observation remains in the data).</p>
 <!-- \newpage -->
 <p>In MLR, the modeling process is a bit more complex and often involves
@@ -2130,7 +2133,7 @@ actually a bit lower than one might expect and suggests that each
 score must be measuring some independent information about different
 characteristics of the students.</p></li>
 <li><p>VIFs also do not suggest a major issue with multicollinearity in the
-model with the VIFs for both variables the same at 1.278<a href="#fn147" class="footnote-ref" id="fnref147"><sup>147</sup></a>. This suggests that both SEs are about 13% larger than they
+model with the VIFs for both variables the same at 1.278<a href="#fn146" class="footnote-ref" id="fnref146"><sup>146</sup></a>. This suggests that both SEs are about 13% larger than they
 otherwise would have been due to shared information between the two
 predictor variables. </p></li>
 </ul>
@@ -2323,7 +2326,7 @@ their means.  </p>
 <span id="cb789-4"><a href="chapter8.html#cb789-4" aria-hidden="true" tabindex="-1"></a>mv1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dv1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
 <span id="cb789-5"><a href="chapter8.html#cb789-5" aria-hidden="true" tabindex="-1"></a>pv1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dv1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
 <span id="cb789-6"><a href="chapter8.html#cb789-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb789-7"><a href="chapter8.html#cb789-7" aria-hidden="true" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dv1, mv1, pv1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>fit))</span>
+<span id="cb789-7"><a href="chapter8.html#cb789-7" aria-hidden="true" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dv1, mv1, pv1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
 <span id="cb789-8"><a href="chapter8.html#cb789-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb789-9"><a href="chapter8.html#cb789-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Rename CI and PI limits to have more explicit column names:</span></span>
 <span id="cb789-10"><a href="chapter8.html#cb789-10" aria-hidden="true" tabindex="-1"></a>mres_GPA_v <span class="ot">&lt;-</span> mres_GPA_v <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">4</span>, <span class="at">upr_CI =</span> upr...<span class="dv">5</span>, <span class="at">lwr_PI =</span> lwr...<span class="dv">6</span>, <span class="at">upr_PI =</span> upr...<span class="dv">7</span>)</span>
@@ -2338,7 +2341,7 @@ their means.  </p>
 <span id="cb789-19"><a href="chapter8.html#cb789-19" aria-hidden="true" tabindex="-1"></a>mm1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dm1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
 <span id="cb789-20"><a href="chapter8.html#cb789-20" aria-hidden="true" tabindex="-1"></a>pm1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(gpa1, <span class="at">newdata =</span> dm1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
 <span id="cb789-21"><a href="chapter8.html#cb789-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb789-22"><a href="chapter8.html#cb789-22" aria-hidden="true" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dm1, mm1, pm1 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>fit))</span>
+<span id="cb789-22"><a href="chapter8.html#cb789-22" aria-hidden="true" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(dm1, mm1, pm1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
 <span id="cb789-23"><a href="chapter8.html#cb789-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb789-24"><a href="chapter8.html#cb789-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Rename CI and PI limits to have more explicit column names:</span></span>
 <span id="cb789-25"><a href="chapter8.html#cb789-25" aria-hidden="true" tabindex="-1"></a>mres_GPA_m <span class="ot">&lt;-</span> mres_GPA_m <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">4</span>, <span class="at">upr_CI =</span> upr...<span class="dv">5</span>, <span class="at">lwr_PI =</span> lwr...<span class="dv">6</span>, <span class="at">upr_PI =</span> upr...<span class="dv">7</span>)</span>
@@ -2373,7 +2376,7 @@ groups. For example, does the relationship between the <em>satv</em> and <em>fyg
 differ for male and female students? We can add the grouping information to
 the scatterplot of <em>fygpa</em> vs <em>satv</em> (Figure <a href="chapter8.html#fig:Figure8-22">8.22</a>) and
 consider whether there is visual evidence of a difference in the slope and/or
-intercept between the two groups, with men coded<a href="#fn148" class="footnote-ref" id="fnref148"><sup>148</sup></a> as 1 and women coded as 2. Code below changes this variable to <code>GENDER</code> with more explicit labels, even though they might not be correct and the students were likely forced to choose one or the other.
+intercept between the two groups, with men coded<a href="#fn147" class="footnote-ref" id="fnref147"><sup>147</sup></a> as 1 and women coded as 2. Code below changes this variable to <code>GENDER</code> with more explicit labels, even though they might not be correct and the students were likely forced to choose one or the other.
 </p>
 <p>It appears that the slope for females might be larger (steeper) in this
 relationship than it is for
@@ -2420,7 +2423,7 @@ require quantitative predictor variables for the <span class="math inline">\(x\t
 directly enter the text coded information on the gender of the students into the regression model since it
 contains “words” and how can multiply a word times a slope coefficient. To be able to
 put in “numbers” as predictors, we create what are called
-<strong><em>indicator variables</em></strong><a href="#fn149" class="footnote-ref" id="fnref149"><sup>149</sup></a>
+<strong><em>indicator variables</em></strong><a href="#fn148" class="footnote-ref" id="fnref148"><sup>148</sup></a>
 that are made up of 0s and 1s, with the 0 reflecting one category and 1 the
 other, changing depending on the category of the individual in that row of the data set. The
 <code>lm</code> function does this whenever a
@@ -2476,7 +2479,7 @@ for the first 10 observations:</p>
 <div class="sourceCode" id="cb793"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb793-1"><a href="chapter8.html#cb793-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert logical to 1 for female, 0 for male using ifelse function</span></span>
 <span id="cb793-2"><a href="chapter8.html#cb793-2" aria-hidden="true" tabindex="-1"></a>satgpa <span class="ot">&lt;-</span> satgpa <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">GENDERINDICATOR =</span> <span class="fu">ifelse</span>(GENDER <span class="sc">==</span> <span class="st">&quot;FEMALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)) </span>
 <span id="cb793-3"><a href="chapter8.html#cb793-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore first 10 observations on the two versions of GENDER using the head() function</span></span>
-<span id="cb793-4"><a href="chapter8.html#cb793-4" aria-hidden="true" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(GENDER, GENDERINDICATOR) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<span id="cb793-4"><a href="chapter8.html#cb793-4" aria-hidden="true" tabindex="-1"></a>satgpa <span class="sc">%&gt;%</span> <span class="fu">select</span>(GENDER, GENDERINDICATOR) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 2
 ##    GENDER GENDERINDICATOR
 ##    &lt;fct&gt;            &lt;dbl&gt;
@@ -2550,7 +2553,7 @@ simplify the equation)</p></li>
 <span class="math inline">\((\widehat{\text{fygpa}}_i= 0.529 + 0.0386\cdot\text{satm}_i)\)</span>. The only difference
 between these two models is in the <span class="math inline">\(y\)</span>-intercept, with the <em>female</em> model’s
 <span class="math inline">\(y\)</span>-intercept shifted up from the <em>male</em> <span class="math inline">\(y\)</span>-intercept by 0.313. And that is what
-adding indicator variables into models does in general<a href="#fn150" class="footnote-ref" id="fnref150"><sup>150</sup></a> – it shifts the intercept up or down from
+adding indicator variables into models does in general<a href="#fn149" class="footnote-ref" id="fnref149"><sup>149</sup></a> – it shifts the intercept up or down from
 the baseline group (here selected as <em>males</em>) to get a new intercept for the
 deviation group (here <em>females</em>).</p>
 <p>To make this visually clearer, Figure <a href="chapter8.html#fig:Figure8-24">8.24</a> contains the
@@ -2669,7 +2672,7 @@ called <code>du2</code>). One would expect that there would be a relationship be
 upper tolerance levels of the subjects before and after treatment. But
 maybe the treatments impact that relationship? We can use our indicator 
 approach to see if the treatments provide a shift to higher tolerances after
-accounting for the relationship between the two measurements<a href="#fn151" class="footnote-ref" id="fnref151"><sup>151</sup></a>. The scatterplot<a href="#fn152" class="footnote-ref" id="fnref152"><sup>152</sup></a> 
+accounting for the relationship between the two measurements<a href="#fn150" class="footnote-ref" id="fnref150"><sup>150</sup></a>. The scatterplot<a href="#fn151" class="footnote-ref" id="fnref151"><sup>151</sup></a> 
 of the results in Figure <a href="chapter8.html#fig:Figure8-26">8.26</a> shows some variation in the
 slopes and the intercepts for the groups although the variation in intercepts
 seems more prominent than differences in slopes. Note that the <code>fct_relevel</code> function was applied to the <code>treatment</code> variable with an option of <code>"Control"</code> to make the <em>Control</em> category the baseline category as the person who created the data set had set <code>T1</code> as the baseline in the <code>treatment</code> variable.</p>
@@ -3041,7 +3044,7 @@ really is a difference in the slopes.
 
 Unless you are <strong>very sure</strong> that there
 is not an interaction between the grouping variable and the quantitative
-predictor, you should<a href="#fn153" class="footnote-ref" id="fnref153"><sup>153</sup></a> start by fitting a model containing an
+predictor, you should<a href="#fn152" class="footnote-ref" id="fnref152"><sup>152</sup></a> start by fitting a model containing an
 interaction and then see if you can drop it.
 
 
@@ -3094,7 +3097,7 @@ Figure <a href="chapter8.html#fig:Figure8-31">8.31</a> seems to indicate some cl
 <em>dys</em>=1 (dyslexic) students (code below makes these levels more explicit in the data set). Note that the IQ is standardized to have mean 0
 and standard deviation of 1 which means that
 a 1 unit change in IQ score is a 1 SD change and that the <em>y</em>-intercept (for
-<span class="math inline">\(x=0\)</span>) is right in the center of the plot and actually interesting<a href="#fn154" class="footnote-ref" id="fnref154"><sup>154</sup></a>.</p>
+<span class="math inline">\(x=0\)</span>) is right in the center of the plot and actually interesting<a href="#fn153" class="footnote-ref" id="fnref153"><sup>153</sup></a>.</p>
 
 <div class="figure"><span id="fig:Figure8-31"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-31-1.png" alt="Scatterplot for reading score versus nonverbal IQ by dyslexia group." width="768" />
@@ -3315,7 +3318,7 @@ testing for differences in intercepts between groups is not very interesting
 when there are different slopes because if you change the slope, you have to
 change the intercept. The plot shows that there are clear differences in the
 means even though we don’t have a test to directly assess that in this
-complicated of a model<a href="#fn155" class="footnote-ref" id="fnref155"><sup>155</sup></a>. Figure Figure <a href="chapter8.html#fig:Figure8-35">8.35</a> splits the plots up and adds partial residuals to the plots. The impact on the estimated model for the perfect scores in the non-dyslexic subjects is very prominent as well as the difference in the relationships between the two variables in the two groups.</p>
+complicated of a model<a href="#fn154" class="footnote-ref" id="fnref154"><sup>154</sup></a>. Figure Figure <a href="chapter8.html#fig:Figure8-35">8.35</a> splits the plots up and adds partial residuals to the plots. The impact on the estimated model for the perfect scores in the non-dyslexic subjects is very prominent as well as the difference in the relationships between the two variables in the two groups.</p>
 
 <div class="sourceCode" id="cb822"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb822-1"><a href="chapter8.html#cb822-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(dys_model), <span class="at">ci.style =</span> <span class="st">&quot;bands&quot;</span>, <span class="at">multiline =</span> T, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">grid =</span> T)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure8-34"></span>
@@ -3409,7 +3412,7 @@ predictor variables.
 Either or both of those variables could also be considered
 for removal, usually starting with the variable with the larger p-value,
 leaving a string of ever-simpler models possible if large p-values are continually
-encountered<a href="#fn156" class="footnote-ref" id="fnref156"><sup>156</sup></a>.</p>
+encountered<a href="#fn155" class="footnote-ref" id="fnref155"><sup>155</sup></a>.</p>
 <p>It is useful to note that the last model has returned us to the first
 model we encountered in Chapter <a href="chapter2.html#chapter2">2</a> where we were just comparing
 the means for two groups.
@@ -3588,7 +3591,7 @@ could involve before it is started if model refinement is being considered.</p>
 <p>To perform the first test (after checking that assumptions are not problematic, of
 course),
 we can apply the <code>Anova</code> function from the <code>car</code> package to an interaction
-model<a href="#fn157" class="footnote-ref" id="fnref157"><sup>157</sup></a>.
+model<a href="#fn156" class="footnote-ref" id="fnref156"><sup>156</sup></a>.
 
 It will provide three tests, one for each variable by themselves, which are not
 too interesting, and then the interaction test. This will result in an
@@ -3738,9 +3741,9 @@ in selecting among models that might appear to be similar on a model comparison
 criterion.
 In this section, a new model selection method is introduced that has stronger
 theoretical underpinnings, a slightly more interpretable scale, and, often,
-better performance in picking an optimal<a href="#fn158" class="footnote-ref" id="fnref158"><sup>158</sup></a>
+better performance in picking an optimal<a href="#fn157" class="footnote-ref" id="fnref157"><sup>157</sup></a>
 model than the <strong><em>adjusted</em></strong> <strong><em>R</em></strong><sup>2</sup>. The measure is called the
-<strong><em>AIC</em></strong> (Akaike’s An Information Criterion<a href="#fn159" class="footnote-ref" id="fnref159"><sup>159</sup></a>,
+<strong><em>AIC</em></strong> (Akaike’s An Information Criterion<a href="#fn158" class="footnote-ref" id="fnref158"><sup>158</sup></a>,
 <span class="citation">(<a href="#ref-Akaike1974" role="doc-biblioref">Akaike 1974</a>)</span>). It is extremely popular, but sometimes misused, in some fields
 such as Ecology and has been applied in almost every other potential
 application area where statistical models can be compared. <span class="citation"><a href="#ref-Burnham2002" role="doc-biblioref">Burnham and Anderson</a> (<a href="#ref-Burnham2002" role="doc-biblioref">2002</a>)</span>
@@ -3773,7 +3776,7 @@ many total parameters are estimated.
 Note that it is a different measure of
 <em>degrees of freedom</em> than used in ANOVA <span class="math inline">\(F\)</span>-tests. The main things to understand
 about the formula for the AIC is that as <span class="math inline">\(m\)</span> increases, the AIC will go up and
-that as the fit improves, the <em>likelihood</em> will increase (so -2<em>log-likelihood</em> will get smaller)<a href="#fn160" class="footnote-ref" id="fnref160"><sup>160</sup></a>.</p>
+that as the fit improves, the <em>likelihood</em> will increase (so -2<em>log-likelihood</em> will get smaller)<a href="#fn159" class="footnote-ref" id="fnref159"><sup>159</sup></a>.</p>
 <p>There are some facets of this discussion to keep in mind when comparing
 models. More complicated models always fit better (we saw this for the
 <strong><em>R</em></strong><sup>2</sup> measure, as the proportion of variation explained always goes
@@ -3821,7 +3824,7 @@ $%#%-mountain, which is not necessarily a good thing.</li>
 </ul></li>
 <li><p>Report a table with the models considered, sorted from smallest to largest
 AICs (<span class="math inline">\(\Delta\text{AICs}\)</span> from smaller to larger) that includes a count of
-number of parameters estimated<a href="#fn161" class="footnote-ref" id="fnref161"><sup>161</sup></a>, the
+number of parameters estimated<a href="#fn160" class="footnote-ref" id="fnref160"><sup>160</sup></a>, the
 AICs, and <span class="math inline">\(\Delta\text{AICs}\)</span>.</p>
 <ul>
 <li>Remember to incorporate the mean-only model in the model selection results. This allows you to compare the top model to one that does not contain any predictors.</li>
@@ -3876,21 +3879,21 @@ quantitative predictors, the estimated slope is reported when that predictor is
 in the model. For categorical variables and interactions with them, it just
 puts a “+” in the table to let you know that the term is in the models. Note
 that you must run the <code>options(na.action = "na.fail")</code> code to get <code>dredge</code>
-to work<a href="#fn162" class="footnote-ref" id="fnref162"><sup>162</sup></a>.</p>
+to work<a href="#fn161" class="footnote-ref" id="fnref161"><sup>161</sup></a>.</p>
 <p>To explore the AICs and compare their results to the adjusted <strong><em>R</em></strong><sup>2</sup>
 that we used before for model selection, we can revisit the <em>Snow Depth</em> data set
 with related results found in Section <a href="chapter8.html#section8-4">8.4</a> and
 Table <a href="chapter8.html#tab:Table8-1">8.1</a>. In that situation we were considering
 a “full” model that included <em>Elevation</em>, <em>Min.Temp</em>, and <em>Max.Temp</em> as potential
 predictor variables after removing two influential points.   And we considered all
-possible reduced models from that “full”<a href="#fn163" class="footnote-ref" id="fnref163"><sup>163</sup></a> model. Note
+possible reduced models from that “full”<a href="#fn162" class="footnote-ref" id="fnref162"><sup>162</sup></a> model. Note
 that the <code>dredge</code> output adds one more model that adjusted <strong><em>R</em></strong><sup>2</sup>
 can’t consider – the mean-only model that contains no predictor variables. In
 the following output it is the last model in the output (worst ranked on AIC).
 Including the mean-only model in these results helps us “prove” that there is
 support for having something in the model, but only if there is better support for
 other models than this simplest possible model.</p>
-<p>In reading <code>dredge</code> output<a href="#fn164" class="footnote-ref" id="fnref164"><sup>164</sup></a> as it is constructed here, the models are sorted by
+<p>In reading <code>dredge</code> output<a href="#fn163" class="footnote-ref" id="fnref163"><sup>163</sup></a> as it is constructed here, the models are sorted by
 top to bottom AIC values (smallest AIC to largest). The column <code>delta</code> is for
 the <span class="math inline">\(\Delta\text{AICs}\)</span> and shows a 0 for the first row, which is the
 top-ranked AIC model. Here it is for the model with <em>Elevation</em> and <em>Max.Temp</em> but
@@ -4498,7 +4501,7 @@ Fox, John. 2003. <span>“Effect Displays in <span>R</span> for Generalised Line
 Fox, John, and Michael Friendly. 2021. <em>Heplots: Visualizing Hypothesis Tests in Multivariate Linear Models</em>. <a href="http://friendly.github.io/heplots/">http://friendly.github.io/heplots/</a>.
 </div>
 <div id="ref-R-carData" class="csl-entry">
-———. 2020b. <em>carData: Companion to Applied Regression Data Sets</em>. <a href="https://CRAN.R-project.org/package=carData">https://CRAN.R-project.org/package=carData</a>.
+Fox, John, Sanford Weisberg, and Brad Price. 2020. <em>carData: Companion to Applied Regression Data Sets</em>. <a href="https://CRAN.R-project.org/package=carData">https://CRAN.R-project.org/package=carData</a>.
 </div>
 <div id="ref-R-viridis" class="csl-entry">
 Garnier, Simon. 2021. <em>Viridis: Colorblind-Friendly Color Maps for r</em>. <a href="https://CRAN.R-project.org/package=viridis">https://CRAN.R-project.org/package=viridis</a>.
@@ -4518,103 +4521,103 @@ Ramsey, Fred, and Daniel Schafer. 2012. <em>The Statistical Sleuth: A Course in 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="132">
-<li id="fn132"><p>If you take advanced applied mathematics courses, you can learn
+<ol start="131">
+<li id="fn131"><p>If you take advanced applied mathematics courses, you can learn
 more about the algorithms being used by <code>lm</code>.
 Everyone else only cares
 about the algorithms when they don’t work – which is usually due to the
-user’s inputs in these models not the algorithm itself.<a href="chapter8.html#fnref132" class="footnote-back">↩︎</a></p></li>
-<li id="fn133"><p>Sometimes the <code>effects</code> plots
+user’s inputs in these models not the algorithm itself.<a href="chapter8.html#fnref131" class="footnote-back">↩︎</a></p></li>
+<li id="fn132"><p>Sometimes the <code>effects</code> plots
 ignores the edge explanatory observations with the
 default display. Always check the original variable summaries when considering
-the range of observed values. By turning on the the “partial residuals” with SLR models, the plots show the original observations along with the fitted values and 95% confidence interval band. In more complex models, these displays with residuals are more complicated but can be used to assess linearity with each predictor in the model after accounting for other variables.<a href="chapter8.html#fnref133" class="footnote-back">↩︎</a></p></li>
-<li id="fn134"><p>We used this same notation in the fitting the additive Two-Way
+the range of observed values. By turning on the the “partial residuals” with SLR models, the plots show the original observations along with the fitted values and 95% confidence interval band. In more complex models, these displays with residuals are more complicated but can be used to assess linearity with each predictor in the model after accounting for other variables.<a href="chapter8.html#fnref132" class="footnote-back">↩︎</a></p></li>
+<li id="fn133"><p>We used this same notation in the fitting the additive Two-Way
 ANOVA and this is also additive in terms of these variables. Interaction
-models are discussed later in the chapter.<a href="chapter8.html#fnref134" class="footnote-back">↩︎</a></p></li>
-<li id="fn135"><p>I have not given you a formula for calculating partial residuals. We will leave that for more advanced material.<a href="chapter8.html#fnref135" class="footnote-back">↩︎</a></p></li>
-<li id="fn136"><p>Imagine
+models are discussed later in the chapter.<a href="chapter8.html#fnref133" class="footnote-back">↩︎</a></p></li>
+<li id="fn134"><p>I have not given you a formula for calculating partial residuals. We will leave that for more advanced material.<a href="chapter8.html#fnref134" class="footnote-back">↩︎</a></p></li>
+<li id="fn135"><p>Imagine
 showing up to a ski area expecting a 40 inch base and there only being
 11 inches. I’m sure ski areas are always more accurate than this model in their
-reporting of amounts of snow on the ground…<a href="chapter8.html#fnref136" class="footnote-back">↩︎</a></p></li>
-<li id="fn137"><p>The site name is redacted to protect
+reporting of amounts of snow on the ground…<a href="chapter8.html#fnref135" class="footnote-back">↩︎</a></p></li>
+<li id="fn136"><p>The site name is redacted to protect
 the innocence of the reader. More information on this site, located in
 Beaverhead County in Montana, is available at
-<a href="http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt" class="uri">http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt</a>.<a href="chapter8.html#fnref137" class="footnote-back">↩︎</a></p></li>
-<li id="fn138"><p>Term-plots with additive factor variables use the weighted (based on percentage of the responses in each category) average of their predicted mean responses across their levels but we don’t have any factor variables in the MLR models, yet.<a href="chapter8.html#fnref138" class="footnote-back">↩︎</a></p></li>
-<li id="fn139"><p>This also applies to the additive two-way ANOVA model.<a href="chapter8.html#fnref139" class="footnote-back">↩︎</a></p></li>
-<li id="fn140"><p>The <code>seq</code> function has syntax of
+<a href="http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt" class="uri">http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt</a>.<a href="chapter8.html#fnref136" class="footnote-back">↩︎</a></p></li>
+<li id="fn137"><p>Term-plots with additive factor variables use the weighted (based on percentage of the responses in each category) average of their predicted mean responses across their levels but we don’t have any factor variables in the MLR models, yet.<a href="chapter8.html#fnref137" class="footnote-back">↩︎</a></p></li>
+<li id="fn138"><p>This also applies to the additive two-way ANOVA model.<a href="chapter8.html#fnref138" class="footnote-back">↩︎</a></p></li>
+<li id="fn139"><p>The <code>seq</code> function has syntax of
 <code>seq(from = startingpoint, to = endingpoint, length.out = #ofvalues_between_start_and_end)</code> and the <code>rep</code> function has
-syntax of <code>rep(numbertorepeat, #oftimes).</code><a href="chapter8.html#fnref140" class="footnote-back">↩︎</a></p></li>
-<li id="fn141"><p>Also
+syntax of <code>rep(numbertorepeat, #oftimes).</code><a href="chapter8.html#fnref139" class="footnote-back">↩︎</a></p></li>
+<li id="fn140"><p>Also
 see Section <a href="chapter8.html#section8-13">8.13</a> for another method of picking among different
-models.<a href="chapter8.html#fnref141" class="footnote-back">↩︎</a></p></li>
-<li id="fn142"><p>This section was inspired by a
-similar section from <span class="citation"><a href="#ref-DeVeaux2011" role="doc-biblioref">De Veaux, Velleman, and Bock</a> (<a href="#ref-DeVeaux2011" role="doc-biblioref">2011</a>)</span>.<a href="chapter8.html#fnref142" class="footnote-back">↩︎</a></p></li>
-<li id="fn143"><p>There are some social
+models.<a href="chapter8.html#fnref140" class="footnote-back">↩︎</a></p></li>
+<li id="fn141"><p>This section was inspired by a
+similar section from <span class="citation"><a href="#ref-DeVeaux2011" role="doc-biblioref">De Veaux, Velleman, and Bock</a> (<a href="#ref-DeVeaux2011" role="doc-biblioref">2011</a>)</span>.<a href="chapter8.html#fnref141" class="footnote-back">↩︎</a></p></li>
+<li id="fn142"><p>There are some social
 science models where the model is fit with the mean subtracted from each
 predictor so all have mean 0 and the precision of the <span class="math inline">\(y\)</span>-intercept is
 interesting. In some cases both the response and predictor variables are “standardized” to have means of 0 and standard deviations of 1. The interpretations of coefficients then relates to changes in standard deviations around the means. These coefficients are called “standardized betas.”  But even in these models where the <span class="math inline">\(x\)</span>-values of 0 are of interest, the test for the <span class="math inline">\(y\)</span>-intercept being 0 is
-rarely of interest.<a href="chapter8.html#fnref143" class="footnote-back">↩︎</a></p></li>
-<li id="fn144"><p>The variables were renamed to better interface with R code and our book formatting using the <code>rename</code> function.<a href="chapter8.html#fnref144" class="footnote-back">↩︎</a></p></li>
-<li id="fn145"><p>The answer is no - it should be converted to a factor variable prior to plotting so it can be displayed correctly by <code>ggpairs</code>, but was intentionally left this way so you could see what happens when numerically coded categorical variables are not carefully handled in R.<a href="chapter8.html#fnref145" class="footnote-back">↩︎</a></p></li>
-<li id="fn146"><p>Either
+rarely of interest.<a href="chapter8.html#fnref142" class="footnote-back">↩︎</a></p></li>
+<li id="fn143"><p>The variables were renamed to better interface with R code and our book formatting using the <code>rename</code> function.<a href="chapter8.html#fnref143" class="footnote-back">↩︎</a></p></li>
+<li id="fn144"><p>The answer is no - it should be converted to a factor variable prior to plotting so it can be displayed correctly by <code>ggpairs</code>, but was intentionally left this way so you could see what happens when numerically coded categorical variables are not carefully handled in R.<a href="chapter8.html#fnref144" class="footnote-back">↩︎</a></p></li>
+<li id="fn145"><p>Either
 someone had a weighted GPA with bonus points, or more likely here, there
 was a coding error in the data set since only one observation was over 4.0 in
 the GPA data. Either way, we could remove it and note that our inferences for
-HSGPA do not extend above 4.0.<a href="chapter8.html#fnref146" class="footnote-back">↩︎</a></p></li>
-<li id="fn147"><p>When there
+HSGPA do not extend above 4.0.<a href="chapter8.html#fnref145" class="footnote-back">↩︎</a></p></li>
+<li id="fn146"><p>When there
 are just two predictors, the VIFs have to be the same since the
 proportion of information shared is the same in both directions. With
 more than two predictors, each variable can have a different VIF
-value.<a href="chapter8.html#fnref147" class="footnote-back">↩︎</a></p></li>
-<li id="fn148"><p>We
+value.<a href="chapter8.html#fnref146" class="footnote-back">↩︎</a></p></li>
+<li id="fn147"><p>We
 are actually making an educated guess about what these codes mean. Other
 similar data sets used 1 for males but the documentation on these data is a bit
 sparse. We proceed with a small potential that the conclusions regarding
-differences in gender are in the wrong direction.<a href="chapter8.html#fnref148" class="footnote-back">↩︎</a></p></li>
-<li id="fn149"><p>Some people also call them <strong><em>dummy variables</em></strong> to reflect that they are stand-ins for dealing with the categorical information. But it seems like a harsh anthropomorphism so I prefer “indicators.”<a href="chapter8.html#fnref149" class="footnote-back">↩︎</a></p></li>
-<li id="fn150"><p>This is true for
+differences in gender are in the wrong direction.<a href="chapter8.html#fnref147" class="footnote-back">↩︎</a></p></li>
+<li id="fn148"><p>Some people also call them <strong><em>dummy variables</em></strong> to reflect that they are stand-ins for dealing with the categorical information. But it seems like a harsh anthropomorphism so I prefer “indicators.”<a href="chapter8.html#fnref148" class="footnote-back">↩︎</a></p></li>
+<li id="fn149"><p>This is true for
 additive uses of indicator variables. In Section <a href="chapter8.html#section8-11">8.11</a>, we
 consider interactions between quantitative and categorical variables which has
 the effect of changing slopes and intercepts. The simplification ideas to
 produce estimated equations for each group are used there but we have to account
-for changing slopes by group too.<a href="chapter8.html#fnref150" class="footnote-back">↩︎</a></p></li>
-<li id="fn151"><p>Models like this with a categorical variable and quantitative variable are often called <em>ANCOVA</em> or <em>analysis of covariance</em> models but really are just versions of our linear models we’ve been using throughout this material.<a href="chapter8.html#fnref151" class="footnote-back">↩︎</a></p></li>
-<li id="fn152"><p>The <code>scale_colour_viridis_d(end = 0.85, option = "inferno")</code> code makes the plot in a suite of four colors from the <code>viridis</code> package <span class="citation">(<a href="#ref-R-viridis" role="doc-biblioref">Garnier 2021</a>)</span> that attempt to be color-blind friendly.<a href="chapter8.html#fnref152" class="footnote-back">↩︎</a></p></li>
-<li id="fn153"><p>The strength of this recommendation drops when you have many predictors as you can’t do this for every variable, but the concern remains about an assumption of no interaction whenever you fit models without them. In more complex situations, think about variables that are most likely to interact in their impacts on the response based on the situation being studied and try to explore those.<a href="chapter8.html#fnref153" class="footnote-back">↩︎</a></p></li>
-<li id="fn154"><p>Standardizing quantitative predictor variables is popular in social sciences, often where the response variable is also standardized. In those situations, they generate what are called “standardized betas” (<a href="https://en.wikipedia.org/wiki/Standardized_coefficient" class="uri">https://en.wikipedia.org/wiki/Standardized_coefficient</a>) that estimate the change in SDs in the response for a 1 SD increase in the explanatory variable.<a href="chapter8.html#fnref154" class="footnote-back">↩︎</a></p></li>
-<li id="fn155"><p>There is a way to test for a difference in the two lines at a particular <span class="math inline">\(x\)</span> value but it is beyond the scope of this material.<a href="chapter8.html#fnref155" class="footnote-back">↩︎</a></p></li>
-<li id="fn156"><p>This is an example of what is called “step down” testing for model
+for changing slopes by group too.<a href="chapter8.html#fnref149" class="footnote-back">↩︎</a></p></li>
+<li id="fn150"><p>Models like this with a categorical variable and quantitative variable are often called <em>ANCOVA</em> or <em>analysis of covariance</em> models but really are just versions of our linear models we’ve been using throughout this material.<a href="chapter8.html#fnref150" class="footnote-back">↩︎</a></p></li>
+<li id="fn151"><p>The <code>scale_colour_viridis_d(end = 0.85, option = "inferno")</code> code makes the plot in a suite of four colors from the <code>viridis</code> package <span class="citation">(<a href="#ref-R-viridis" role="doc-biblioref">Garnier 2021</a>)</span> that attempt to be color-blind friendly.<a href="chapter8.html#fnref151" class="footnote-back">↩︎</a></p></li>
+<li id="fn152"><p>The strength of this recommendation drops when you have many predictors as you can’t do this for every variable, but the concern remains about an assumption of no interaction whenever you fit models without them. In more complex situations, think about variables that are most likely to interact in their impacts on the response based on the situation being studied and try to explore those.<a href="chapter8.html#fnref152" class="footnote-back">↩︎</a></p></li>
+<li id="fn153"><p>Standardizing quantitative predictor variables is popular in social sciences, often where the response variable is also standardized. In those situations, they generate what are called “standardized betas” (<a href="https://en.wikipedia.org/wiki/Standardized_coefficient" class="uri">https://en.wikipedia.org/wiki/Standardized_coefficient</a>) that estimate the change in SDs in the response for a 1 SD increase in the explanatory variable.<a href="chapter8.html#fnref153" class="footnote-back">↩︎</a></p></li>
+<li id="fn154"><p>There is a way to test for a difference in the two lines at a particular <span class="math inline">\(x\)</span> value but it is beyond the scope of this material.<a href="chapter8.html#fnref154" class="footnote-back">↩︎</a></p></li>
+<li id="fn155"><p>This is an example of what is called “step down” testing for model
 refinement which is a commonly used technique for arriving at a final model to
 describe response variables. Note that each step in the process should be
 reported, not just the final model that only has variables with small p-values
-remaining in it.<a href="chapter8.html#fnref156" class="footnote-back">↩︎</a></p></li>
-<li id="fn157"><p>We could also use the <code>anova</code> function to do this but using <code>Anova</code>
+remaining in it.<a href="chapter8.html#fnref155" class="footnote-back">↩︎</a></p></li>
+<li id="fn156"><p>We could also use the <code>anova</code> function to do this but using <code>Anova</code>
 throughout this material provides the answers we want in the additive model and
 it has no impact for the only test of interest in the interaction model since
-the interaction is the last component in the model.<a href="chapter8.html#fnref157" class="footnote-back">↩︎</a></p></li>
-<li id="fn158"><p>In most situations, it would be crazy
+the interaction is the last component in the model.<a href="chapter8.html#fnref156" class="footnote-back">↩︎</a></p></li>
+<li id="fn157"><p>In most situations, it would be crazy
 to assume that the true model for a
 process has been obtained so we can never pick the “correct” model. In fact, we
 won’t even know if we are picking a “good” model, but just the best from a set
 of the candidate models on a criterion. But we can study the general performance of methods
 using simulations where we know the true model and the AIC has some useful
 properties in identifying the correct model when it is in the candidate set of
-models. No such similar theory exists for the adjusted <strong><em>R</em></strong><sup>2</sup>.<a href="chapter8.html#fnref158" class="footnote-back">↩︎</a></p></li>
-<li id="fn159"><p>Most people now call this
+models. No such similar theory exists for the adjusted <strong><em>R</em></strong><sup>2</sup>.<a href="chapter8.html#fnref157" class="footnote-back">↩︎</a></p></li>
+<li id="fn158"><p>Most people now call this
 Akaike’s (pronounced <strong>ah-kah-ee-kay</strong>) Information Criterion, but he used the
 AIC nomenclature to mean An Information Criterion – he was not so vain as to
-name the method after himself in the original paper that proposed it. But it is now common to use “A” for his last name.<a href="chapter8.html#fnref159" class="footnote-back">↩︎</a></p></li>
-<li id="fn160"><p>More details on these components of the methods will be
-left for more advanced material - we will focus on an introduction to using the AIC measure here.<a href="chapter8.html#fnref160" class="footnote-back">↩︎</a></p></li>
-<li id="fn161"><p>Although sometimes excluded, the count of
-parameters should include counting the residual variance as a parameter.<a href="chapter8.html#fnref161" class="footnote-back">↩︎</a></p></li>
-<li id="fn162"><p>It makes it impossible to fit models with any missing values in the data set and this prevents you from making incorrect comparisons of AICs to models with different observations.<a href="chapter8.html#fnref162" class="footnote-back">↩︎</a></p></li>
-<li id="fn163"><p>We put quotes on “full” or sometimes
+name the method after himself in the original paper that proposed it. But it is now common to use “A” for his last name.<a href="chapter8.html#fnref158" class="footnote-back">↩︎</a></p></li>
+<li id="fn159"><p>More details on these components of the methods will be
+left for more advanced material - we will focus on an introduction to using the AIC measure here.<a href="chapter8.html#fnref159" class="footnote-back">↩︎</a></p></li>
+<li id="fn160"><p>Although sometimes excluded, the count of
+parameters should include counting the residual variance as a parameter.<a href="chapter8.html#fnref160" class="footnote-back">↩︎</a></p></li>
+<li id="fn161"><p>It makes it impossible to fit models with any missing values in the data set and this prevents you from making incorrect comparisons of AICs to models with different observations.<a href="chapter8.html#fnref161" class="footnote-back">↩︎</a></p></li>
+<li id="fn162"><p>We put quotes on “full” or sometimes
 call it the “fullish” model because we could always add more to the model, like
 interactions or other explanatory variables. So we rarely have a completely full model but
-we do have our “most complicated that we are considering” model.<a href="chapter8.html#fnref163" class="footnote-back">↩︎</a></p></li>
-<li id="fn164"><p>The options in <code>extra = ...</code> are to get extra information displayed that you do not necessarily need. You can simply run <code>dredge(m6, rank = "AIC")</code> to get just the AIC results.<a href="chapter8.html#fnref164" class="footnote-back">↩︎</a></p></li>
+we do have our “most complicated that we are considering” model.<a href="chapter8.html#fnref162" class="footnote-back">↩︎</a></p></li>
+<li id="fn163"><p>The options in <code>extra = ...</code> are to get extra information displayed that you do not necessarily need. You can simply run <code>dredge(m6, rank = "AIC")</code> to get just the AIC results.<a href="chapter8.html#fnref163" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

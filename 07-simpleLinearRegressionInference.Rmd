@@ -12,6 +12,7 @@ header-includes:
 
 ```{r echo=F,warning=F,message=F}
 set.seed(5678)
+library(MASS, exclude="select")
 library(pander)
 library(readr)
 library(mosaic)
@@ -22,10 +23,10 @@ library(car)
 library(carData)
 library(effects)
 library(spuRs)
-library(tidyverse)
 library(ggplot2)
 library(GGally)
 library(gridExtra)
+library(tidyverse)
 knitr::opts_chunk$set(cache = F,fig.height=3.5,fig.width=6,fig.pos='ht',warning=F,
                       message=F)
 options(show.signif.stars = FALSE)
@@ -2053,13 +2054,13 @@ BBPI <- as_tibble(predict(m1, newdata = tibble(Beers = beerf), interval = "predi
 head(BBPI)
 ```
 
-To visualize these results as shown in Figure \@ref(fig:Figure7-23), we need to work to combine some of the previous results into a common tibble, called ``modelresB``, using the ``bind_cols`` function that allows multiple columns to be put together. Because some of the names are the same in the ``BBCI`` and ``BBPI`` objects and were awkwardly given unique names, there is an additional step to rename the columns using the ``rename`` function. The ``rename`` function changes the name to what is provided before the ``=`` for the column identified after the ``=`` (think of it like ``mutate`` except that it does not create a new variable). The layers in the plot start with adding a line for the fitted values (solid, using ``geom_line``) based on the information in ``modelresB``. We also introduce the ``geom_ribbon`` explicitly for the first time^[The ``geom_ribbon`` has been used inside the ``geom_smooth`` function we have used before, but this is the first time we are drawing these intervals ourselves.] to plot our confidence and prediction intervals. It allows plotting of a region (and its edges) defined by ``ymin`` and ``ymax`` across the values provided to ``x``. I also wanted to include the original observations, but they are stored in a different tibble (``BB``), so the ``geom_point`` needs to be explicitly told to use a different data set for its contribution to the plot with ``data = BB`` along with its own local aesthetic with x and y selections from the original variables. \index{\texttt{bind_cols()}} \index{\texttt{rename()}} \index{\texttt{geom_ribbon()}} 
+To visualize these results as shown in Figure \@ref(fig:Figure7-23), we need to work to combine some of the previous results into a common tibble, called ``modelresB``, using the ``bind_cols`` function that allows multiple columns to be put together. Because some of the names are the same in the ``BBCI`` and ``BBPI`` objects and were awkwardly given unique names, there is an additional step to rename the columns using the ``rename`` function. The ``rename`` function changes the name to what is provided before the ``=`` for the column identified after the ``=`` (think of it like ``mutate`` except that it does not create a new variable). The layers in the plot start with adding a line for the fitted values (solid, using ``geom_line``) based on the information in ``modelresB``. We also introduce the ``geom_ribbon`` explicitly for the first time^[The ``geom_ribbon`` has been used inside the ``geom_smooth`` function we have used before, but this is the first time we are drawing these intervals ourselves.] to plot our confidence and prediction intervals. It allows plotting of a region (and its edges) defined by ``ymin`` and ``ymax`` across the values provided to ``x``. I also wanted to include the original observations, but they are stored in a different tibble (``BB``), so the ``geom_point`` needs to be explicitly told to use a different data set for its contribution to the plot with ``data = BB`` along with its own local aesthetic with x and y selections from the original variables. \index{\texttt{bind\_cols()}} \index{\texttt{rename()}} \index{\texttt{geom\_ribbon()}} 
 
 (ref:fig7-23) Estimated SLR for BAC data with fitted values (solid line), 95% confidence (darker, dashed lines), and 95% prediction (lighter, dotted lines) intervals. 
 
 ```{r Figure7-23,fig.cap="(ref:fig7-23)",fig.height=5,fig.width=10,echo=F}
 #Patch the beerf vector, fits (just one version), and intervals from BBCI and BBPI together with bind_cols:
-modelresB <- bind_cols(beerf = tibble(beerf), BBCI, BBPI %>% dplyr::select(-fit))
+modelresB <- bind_cols(beerf = tibble(beerf), BBCI, BBPI %>% select(-fit))
 
 #Rename CI and PI limits to have more explicit column names:
 modelresB <- modelresB %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, lwr_PI = lwr...5, upr_PI = upr...6)
@@ -2073,7 +2074,7 @@ modelresB %>% ggplot() + geom_line(aes(x = beerf, y=fit), lwd = 1) +
 
 ```{r eval=F}
 #Patch the beerf vector, fits (just one version), and intervals from BBCI and BBPI together with bind_cols:
-modelresB <- bind_cols(beerf = tibble(beerf), BBCI, BBPI %>% dplyr::select(-fit))
+modelresB <- bind_cols(beerf = tibble(beerf), BBCI, BBPI %>% select(-fit))
 
 #Rename CI and PI limits to have more explicit column names:
 modelresB <- modelresB %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, lwr_PI = lwr...5, upr_PI = upr...6)
@@ -2116,7 +2117,7 @@ TCI <- as_tibble(predict(temp1, newdata = tibble(Year = Yearf), interval = "conf
 TPI <- as_tibble(predict(temp1, newdata = tibble(Year = Yearf), interval = "prediction"))
 
 #Patch the Yearf vector, fits (just one version), and intervals from TCI and TPI together with bind_cols:
-modelresT <- bind_cols(Yearf = tibble(Yearf), TCI, TPI %>% dplyr::select(-fit))
+modelresT <- bind_cols(Yearf = tibble(Yearf), TCI, TPI %>% select(-fit))
 
 #Rename CI and PI limits to have more explicit column names:
 modelresT <- modelresT %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, lwr_PI = lwr...5, upr_PI = upr...6)
@@ -2216,11 +2217,11 @@ explanatory variable, and the data are in ``DATASETNAME``.
 * **`r colFmt("DATASETNAME","red")` %>% ggplot(mapping = aes(x = `r colFmt("x","red")`, y = `r colFmt("y","red")`)) + geom_point() + geom_smooth(method = "lm")**
 
     * Provides a scatter plot with a regression line.
-    \index{\texttt{geom_point()}|textbf}
+    \index{\texttt{geom\_point()}|textbf}
     
     * Add **+ geom_smooth()** to add a smoothing line to help detect 
     nonlinear relationships.
-    \index{\texttt{geom_smooth()}|textbf}
+    \index{\texttt{geom\_smooth()}|textbf}
     
 * **`r colFmt("MODELNAME","red")` ``<-`` lm(`r colFmt("y","red")`~
 `r colFmt("x","red")`, data=`r colFmt("DATASETNAME","red")`)**

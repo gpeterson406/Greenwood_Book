@@ -32,7 +32,7 @@
   
 <link rel="prev" href="chapter4.html"/>
 <link rel="next" href="chapter6.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -478,18 +478,12 @@ function is provided in Table <a href="chapter5.html#tab:Table5-1">5.1</a>.
 <thead>
 <tr class="header">
 <th align="center"> </th>
-<th align="center"><strong>Response<br />
-Level 1</strong></th>
-<th align="center"><strong>Response<br />
-Level 2</strong></th>
-<th align="center"><strong>Response<br />
-Level 3</strong></th>
-<th align="center"><br />
-<strong>…</strong></th>
-<th align="center"><strong>Response<br />
-Level C</strong></th>
-<th align="center"><br />
-<strong>Totals</strong></th>
+<th align="center"><strong>Response Level 1</strong></th>
+<th align="center"><strong>Response Level 2</strong></th>
+<th align="center"><strong>Response Level 3</strong></th>
+<th align="center"><strong>…</strong></th>
+<th align="center"><strong>Response Level C</strong></th>
+<th align="center"><strong>Totals</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -683,18 +677,12 @@ produced by the <code>tally</code> function if you use the formula <code>~ y | x
 <thead>
 <tr class="header">
 <th align="center"> </th>
-<th align="center"><strong>Response<br />
-Level 1</strong></th>
-<th align="center"><strong>Response<br />
-Level 2</strong></th>
-<th align="center"><strong>Response<br />
-Level 3</strong></th>
-<th align="center"><br />
-<strong>…</strong></th>
-<th align="center"><strong>Response<br />
-Level C</strong></th>
-<th align="center"><br />
-<strong>Totals</strong></th>
+<th align="center"><strong>Response Level 1</strong></th>
+<th align="center"><strong>Response Level 2</strong></th>
+<th align="center"><strong>Response Level 3</strong></th>
+<th align="center"><strong>…</strong></th>
+<th align="center"><strong>Response Level C</strong></th>
+<th align="center"><strong>Totals</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -856,11 +844,12 @@ level of one variable is not informative about the level of the other variable.<
 <span id="cb405-3"><a href="chapter5.html#cb405-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(election, <span class="at">package =</span> <span class="st">&quot;poLCA&quot;</span>) </span>
 <span id="cb405-4"><a href="chapter5.html#cb405-4" aria-hidden="true" tabindex="-1"></a>election <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(election)</span>
 <span id="cb405-5"><a href="chapter5.html#cb405-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset variables and remove missing values</span></span>
-<span id="cb405-6"><a href="chapter5.html#cb405-6" aria-hidden="true" tabindex="-1"></a>election2 <span class="ot">&lt;-</span> election <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(PARTY, VOTE3) <span class="sc">%&gt;%</span></span>
-<span id="cb405-7"><a href="chapter5.html#cb405-7" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">mutate</span>(<span class="at">VOTEF =</span> <span class="fu">factor</span>(VOTE3)) <span class="sc">%&gt;%</span> </span>
-<span id="cb405-8"><a href="chapter5.html#cb405-8" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">drop_na</span>()</span>
-<span id="cb405-9"><a href="chapter5.html#cb405-9" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(election2<span class="sc">$</span>VOTEF) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Gore&quot;</span>, <span class="st">&quot;Bush&quot;</span>, <span class="st">&quot;Other&quot;</span>) <span class="co">#Replace 1,2,3 with meaningful names</span></span>
-<span id="cb405-10"><a href="chapter5.html#cb405-10" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(election2<span class="sc">$</span>VOTEF) <span class="co">#Check new names of levels in VOTEF</span></span></code></pre></div>
+<span id="cb405-6"><a href="chapter5.html#cb405-6" aria-hidden="true" tabindex="-1"></a>election2 <span class="ot">&lt;-</span> election <span class="sc">%&gt;%</span> </span>
+<span id="cb405-7"><a href="chapter5.html#cb405-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(PARTY, VOTE3) <span class="sc">%&gt;%</span></span>
+<span id="cb405-8"><a href="chapter5.html#cb405-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">VOTEF =</span> <span class="fu">factor</span>(VOTE3)) <span class="sc">%&gt;%</span></span>
+<span id="cb405-9"><a href="chapter5.html#cb405-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb405-10"><a href="chapter5.html#cb405-10" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(election2<span class="sc">$</span>VOTEF) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Gore&quot;</span>, <span class="st">&quot;Bush&quot;</span>, <span class="st">&quot;Other&quot;</span>) <span class="co">#Replace 1,2,3 with meaningful names</span></span>
+<span id="cb405-11"><a href="chapter5.html#cb405-11" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(election2<span class="sc">$</span>VOTEF) <span class="co">#Check new names of levels in VOTEF</span></span></code></pre></div>
 <pre><code>## [1] &quot;Gore&quot;  &quot;Bush&quot;  &quot;Other&quot;</code></pre>
 <div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="chapter5.html#cb407-1" aria-hidden="true" tabindex="-1"></a>electable <span class="ot">&lt;-</span> <span class="fu">tally</span>(<span class="sc">~</span> PARTY <span class="sc">+</span> VOTEF, <span class="at">data =</span> election2) <span class="co">#Contingency table</span></span>
 <span id="cb407-2"><a href="chapter5.html#cb407-2" aria-hidden="true" tabindex="-1"></a>electable</span></code></pre></div>
@@ -1062,7 +1051,7 @@ Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true 
 <col width="25%" />
 <col width="25%" />
 <col width="25%" />
-<col width="14%" />
+<col width="15%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1076,30 +1065,28 @@ Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true 
 <tbody>
 <tr class="odd">
 <td align="left"><strong>Placebo</strong></td>
-<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{None}}}{N}}\)</span><br />
-<span class="math inline">\(\boldsymbol{=\dfrac{43*42}{84}}\)</span><br />
+<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{None}}}{N}}\)</span>
+<span class="math inline">\(\boldsymbol{=\dfrac{43*42}{84}}\)</span>
 <span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{21.5}}}\)</span></td>
-<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{Some}}}{N}}\)</span><br />
-<span class="math inline">\(\boldsymbol{=\dfrac{43*14}{84}}\)</span><br />
+<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{Some}}}{N}}\)</span>
+<span class="math inline">\(\boldsymbol{=\dfrac{43*14}{84}}\)</span>
 <span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{7.167}}}\)</span></td>
-<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{Marked}}}{N}}\)</span><br />
-<span class="math inline">\(\boldsymbol{=\dfrac{43*28}{84}}\)</span><br />
-<span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{14.33}}}\)</span><br />
-</td>
+<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{Marked}}}{N}}\)</span>
+<span class="math inline">\(\boldsymbol{=\dfrac{43*28}{84}}\)</span>
+<span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{14.33}}}\)</span></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Placebo}\bullet}=43}\)</span></td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Treated</strong></td>
-<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{None}}}{N}}\)</span><br />
-<span class="math inline">\(\boldsymbol{=\dfrac{41*42}{84}}\)</span><br />
+<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{None}}}{N}}\)</span>
+<span class="math inline">\(\boldsymbol{=\dfrac{41*42}{84}}\)</span>
 <span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{20.5}}}\)</span></td>
-<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{Some}}}{N}}\)</span><br />
-<span class="math inline">\(\boldsymbol{=\dfrac{41*14}{84}}\)</span><br />
+<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{Some}}}{N}}\)</span>
+<span class="math inline">\(\boldsymbol{=\dfrac{41*14}{84}}\)</span>
 <span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{6.83}}}\)</span></td>
-<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{Marked}}}{N}}\)</span><br />
-<span class="math inline">\(\boldsymbol{=\dfrac{41*28}{84}}\)</span><br />
-<span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{13.67}}}\)</span><br />
-</td>
+<td align="left"><span class="math inline">\(\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{Marked}}}{N}}\)</span>
+<span class="math inline">\(\boldsymbol{=\dfrac{41*28}{84}}\)</span>
+<span class="math inline">\(\boldsymbol{=\color{red}{\mathbf{13.67}}}\)</span></td>
 <td align="left"><span class="math inline">\(\boldsymbol{n_{\text{Treated}\bullet}=41}\)</span></td>
 </tr>
 <tr class="odd">
@@ -1593,9 +1580,11 @@ based on the voting status in this plot, but, as noted above, sorting on these
 other variables can sometimes help to see other relationships between
 variables.</p>
 
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="chapter5.html#cb438-1" aria-hidden="true" tabindex="-1"></a>election2 <span class="ot">&lt;-</span> election <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(VOTEF, PARTY, EDUC, GENDER) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span>
-<span id="cb438-2"><a href="chapter5.html#cb438-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tableplot</span>(election2, <span class="at">select =</span> <span class="fu">c</span>(VOTEF, PARTY, EDUC, GENDER), <span class="at">sort =</span> <span class="dv">1</span>, <span class="at">pals =</span> <span class="fu">list</span>(<span class="st">&quot;BrBG&quot;</span>), </span>
-<span id="cb438-3"><a href="chapter5.html#cb438-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">sample =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="chapter5.html#cb438-1" aria-hidden="true" tabindex="-1"></a>election2 <span class="ot">&lt;-</span> election <span class="sc">%&gt;%</span></span>
+<span id="cb438-2"><a href="chapter5.html#cb438-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(VOTEF, PARTY, EDUC, GENDER) <span class="sc">%&gt;%</span> </span>
+<span id="cb438-3"><a href="chapter5.html#cb438-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb438-4"><a href="chapter5.html#cb438-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tableplot</span>(election2, <span class="at">select =</span> <span class="fu">c</span>(VOTEF, PARTY, EDUC, GENDER), <span class="at">sort =</span> <span class="dv">1</span>, <span class="at">pals =</span> <span class="fu">list</span>(<span class="st">&quot;BrBG&quot;</span>), </span>
+<span id="cb438-5"><a href="chapter5.html#cb438-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">sample =</span> F)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-14"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-14-1.png" alt="Tableplot of election data with subjects without any missing responses (complete cases)." width="960" />
 <p class="caption">
@@ -1707,10 +1696,7 @@ performed by hand.</li>
 <li><p>The parametric p-value is &lt; 2.2e-16 from the R output which
 would be reported as &lt; 0.0001. This was based on a
 <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with <span class="math inline">\((7-1)*(3-1) = 12\)</span>
-degrees of freedom displayed in Figure <a href="chapter5.html#fig:Figure5-15">5.15</a>.
-Note that the observed test statistic of 762.81 was off the plot
-to the right which reflects how little area is to the right of
-that value in the distribution.</p></li>
+degrees of freedom displayed in Figure <a href="chapter5.html#fig:Figure5-15">5.15</a>.</p></li>
 </ul>
 <div class="figure"><span id="fig:Figure5-15"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-15-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 12 degrees of freedom." width="355.2" />
@@ -1747,9 +1733,9 @@ use permutations as implemented in the following code to provide a more trustwor
 <span id="cb452-4"><a href="chapter5.html#cb452-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
 <span id="cb452-5"><a href="chapter5.html#cb452-5" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure5-16"></span>
-<img src="05-chiSquaredTests_files/figure-html/Figure5-16-1.png" alt="Permutation distribution of $X^2$ for the election data. Observed value of 763 not displayed." width="576" />
+<img src="05-chiSquaredTests_files/figure-html/Figure5-16-1.png" alt="Permutation distribution of $X^2$ for the election data." width="576" />
 <p class="caption">
-Figure 5.16: Permutation distribution of <span class="math inline">\(X^2\)</span> for the election data. Observed value of 763 not displayed.
+Figure 5.16: Permutation distribution of <span class="math inline">\(X^2\)</span> for the election data.
 </p>
 </div>
 <ul>
@@ -2122,7 +2108,7 @@ the researcher takes a <strong><em>stratified random sample</em></strong><a href
 <span class="math inline">\(n_{\text{elementary}}=100\)</span> schools from the population of 4421 elementary
 schools, <span class="math inline">\(n_{\text{middle}}=50\)</span> from the population of 1018 middle schools,
 and <span class="math inline">\(n_{\text{high}}=50\)</span> from the population of 755 high
-schools. These data are available in the <code>survey</code> package <span class="citation">(<a href="#ref-R-survey" role="doc-biblioref">Lumley 2020</a>)</span>
+schools. These data are available in the <code>survey</code> package <span class="citation">(<a href="#ref-R-survey" role="doc-biblioref">Lumley 2021</a>)</span>
 and the <code>api</code> data object that loads both <code>apipop</code> (population) and <code>apistrat</code> (stratified random sample) data sets.
 
 The <code>growth</code> (change!) in
@@ -2587,7 +2573,7 @@ Linzer, Drew, and Jeffrey Lewis. 2011. <span>“poLCA: An <span>R</span> Package
 Linzer, Drew, and Jeffrey Lewis. 2014. <em>poLCA: Polytomous Variable Latent Class Analysis</em>. <a href="http://dlinzer.github.com/poLCA">http://dlinzer.github.com/poLCA</a>.
 </div>
 <div id="ref-R-survey" class="csl-entry">
-Lumley, Thomas. 2020. <em>Survey: Analysis of Complex Survey Samples</em>. <a href="http://r-survey.r-forge.r-project.org/survey/">http://r-survey.r-forge.r-project.org/survey/</a>.
+Lumley, Thomas. 2021. <em>Survey: Analysis of Complex Survey Samples</em>. <a href="http://r-survey.r-forge.r-project.org/survey/">http://r-survey.r-forge.r-project.org/survey/</a>.
 </div>
 <div id="ref-R-vcd" class="csl-entry">
 Meyer, David, Achim Zeileis, and Kurt Hornik. 2020. <em>Vcd: Visualizing Categorical Data</em>. <a href="https://CRAN.R-project.org/package=vcd">https://CRAN.R-project.org/package=vcd</a>.

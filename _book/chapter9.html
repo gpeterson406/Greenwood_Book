@@ -32,7 +32,7 @@
   
 <link rel="prev" href="chapter8.html"/>
 <link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -459,7 +459,7 @@ and more variability in the <em>PS</em> responses than for the <em>HS</em> respo
 <span id="cb858-6"><a href="chapter9.html#cb858-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">theme =</span> <span class="dv">2</span>, <span class="at">ylab =</span> <span class="st">&quot;Biomass&quot;</span>, <span class="at">point.o =</span> <span class="dv">1</span>, <span class="at">pal =</span> <span class="st">&quot;southpark&quot;</span>)</span></code></pre></div>
 <p>The Two-WAY ANOVA model that contains a <em>species</em> by <em>treatment</em> interaction is
 of interest (this has a quantitative response variable of <em>biomass</em> and two
-categorical predictors of <em>species</em> and <em>treatment</em>)<a href="#fn165" class="footnote-ref" id="fnref165"><sup>165</sup></a>. We can make an interaction plot to
+categorical predictors of <em>species</em> and <em>treatment</em>)<a href="#fn164" class="footnote-ref" id="fnref164"><sup>164</sup></a>. We can make an interaction plot to
 focus on the observed patterns of the means across the combinations of levels
 as provided in Figure <a href="chapter9.html#fig:Figure9-3">9.3</a>. The interaction
 plot suggests a relatively additive pattern of differences between <em>PS</em> and
@@ -512,7 +512,7 @@ Figure 9.4: Diagnostic plots of treatment by species interaction model for Bioma
 </p>
 </div>
 <p>There is a clear problem with non-constant variance showing up in a fanning
-shape<a href="#fn166" class="footnote-ref" id="fnref166"><sup>166</sup></a>
+shape<a href="#fn165" class="footnote-ref" id="fnref165"><sup>165</sup></a>
 in the Residuals versus Fitted and Scale-Location plots in Figure
 <a href="chapter9.html#fig:Figure9-4">9.4</a>. Interestingly, the normality assumption is not an issue as the residuals track the 1-1 line in the QQ-plot quite closely
 so hopefully we will not worsen this result by using a transformation to try to
@@ -691,27 +691,27 @@ One-Way ANOVA test, the pair-wise comparisons should be of interest.</p>
 ## 
 ## Fit: lm(formula = logMassperha ~ SpTrt, data = gdn)
 ## 
-## Quantile = 3.0415
+## Quantile = 3.0421
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                              Estimate lwr      upr     
-## PS.Control - HS.Control == 0  0.39210 -0.10673  0.89093
-## HS.N12.5 - HS.Control == 0   -0.42277 -0.92160  0.07606
-## PS.N12.5 - HS.Control == 0    0.21064 -0.28819  0.70948
-## HS.N50 - HS.Control == 0     -1.19994 -1.69877 -0.70111
-## PS.N50 - HS.Control == 0     -0.14620 -0.64503  0.35263
-## HS.N12.5 - PS.Control == 0   -0.81487 -1.31370 -0.31604
-## PS.N12.5 - PS.Control == 0   -0.18146 -0.68029  0.31737
-## HS.N50 - PS.Control == 0     -1.59204 -2.09087 -1.09321
-## PS.N50 - PS.Control == 0     -0.53830 -1.03713 -0.03947
-## PS.N12.5 - HS.N12.5 == 0      0.63342  0.13459  1.13225
-## HS.N50 - HS.N12.5 == 0       -0.77717 -1.27600 -0.27833
-## PS.N50 - HS.N12.5 == 0        0.27657 -0.22226  0.77540
-## HS.N50 - PS.N12.5 == 0       -1.41058 -1.90941 -0.91175
-## PS.N50 - PS.N12.5 == 0       -0.35685 -0.85568  0.14199
-## PS.N50 - HS.N50 == 0          1.05374  0.55491  1.55257</code></pre>
+## PS.Control - HS.Control == 0  0.39210 -0.10682  0.89102
+## HS.N12.5 - HS.Control == 0   -0.42277 -0.92169  0.07615
+## PS.N12.5 - HS.Control == 0    0.21064 -0.28827  0.70956
+## HS.N50 - HS.Control == 0     -1.19994 -1.69886 -0.70102
+## PS.N50 - HS.Control == 0     -0.14620 -0.64512  0.35272
+## HS.N12.5 - PS.Control == 0   -0.81487 -1.31379 -0.31596
+## PS.N12.5 - PS.Control == 0   -0.18146 -0.68037  0.31746
+## HS.N50 - PS.Control == 0     -1.59204 -2.09096 -1.09312
+## PS.N50 - PS.Control == 0     -0.53830 -1.03722 -0.03938
+## PS.N12.5 - HS.N12.5 == 0      0.63342  0.13450  1.13234
+## HS.N50 - HS.N12.5 == 0       -0.77717 -1.27608 -0.27825
+## PS.N50 - HS.N12.5 == 0        0.27657 -0.22235  0.77549
+## HS.N50 - PS.N12.5 == 0       -1.41058 -1.90950 -0.91166
+## PS.N50 - PS.N12.5 == 0       -0.35685 -0.85576  0.14207
+## PS.N50 - HS.N50 == 0          1.05374  0.55482  1.55266</code></pre>
 <p>We can also generate the Compact Letter Display (CLD) to help us group up the
 results. </p>
 <div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="chapter9.html#cb878-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(PWnewm2)</span></code></pre></div>
@@ -880,14 +880,14 @@ variables and one for the comparisons of periods (an indicator variable
 <em>Cretaceous</em>), which are more explicitly coded below.  They <em>log-e</em> transformed all their quantitative variables
 because the untransformed variables created diagnostic issues including
 influential points.  They explored a model just based on the <em>DBC</em>
-predictor<a href="#fn167" class="footnote-ref" id="fnref167"><sup>167</sup></a> and they analyzed the residuals from that model to see if the
+predictor<a href="#fn166" class="footnote-ref" id="fnref166"><sup>166</sup></a> and they analyzed the residuals from that model to see if the
 biodiversity was different in the <em>Cretaceous</em> or before, finding a
-“p-value <strong>&gt;=</strong> 0.0001” (I think they meant &lt; 0.0001<a href="#fn168" class="footnote-ref" id="fnref168"><sup>168</sup></a>). They were comparing the MLR
+“p-value <strong>&gt;=</strong> 0.0001” (I think they meant &lt; 0.0001<a href="#fn167" class="footnote-ref" id="fnref167"><sup>167</sup></a>). They were comparing the MLR
 models you learned to some extended regression models that incorporated a
 correction for correlation in the responses over time, but we can proceed with
 fitting some of their MLR models and using an AIC comparison similar to what
 they used. There are some obvious flaws in their analysis and results that we
-will avoid<a href="#fn169" class="footnote-ref" id="fnref169"><sup>169</sup></a>.</p>
+will avoid<a href="#fn168" class="footnote-ref" id="fnref168"><sup>168</sup></a>.</p>
 <p>First, we start with a plot of the log-diversity vs the log-dinosaur bearing
 collections by period. We can see fairly strong positive relationships between
 the log amounts of collections and species found with potentially similar
@@ -1054,7 +1054,7 @@ AICs based on the top model from the first full model considered to make it easi
 distinctly benefit from the inclusion of <em>TJK</em>. This suggests that after
 controlling for the sampling effort, either through <em>DBC</em> or <em>DBF</em>, the
 differences in the stages captured by <em>TJK</em> can be more clearly observed.</p>
-<p>So the top model in our (correct) results<a href="#fn170" class="footnote-ref" id="fnref170"><sup>170</sup></a> suggests that
+<p>So the top model in our (correct) results<a href="#fn169" class="footnote-ref" id="fnref169"><sup>169</sup></a> suggests that
 <em>log(DBC)</em> is important as well as different intercepts for the two periods. We can interrogate
 this model further but we should check the diagnostics (Figure
 <a href="chapter9.html#fig:Figure9-11">9.11</a>) and consider our model
@@ -1443,19 +1443,19 @@ Sasaki, Takao, and Stephen C. Pratt. 2013. <span>“Ants Learn to Rely on More I
 </div>
 <div class="footnotes">
 <hr />
-<ol start="165">
-<li id="fn165"><p>The researchers did not
+<ol start="164">
+<li id="fn164"><p>The researchers did not
 do this analysis so never directly addressed this research question although
-they did discuss it in general ways.<a href="chapter9.html#fnref165" class="footnote-back">↩︎</a></p></li>
-<li id="fn166"><p>Instructors often get asked what a problem with
-non-constant variance actually looks like – this is a perfect example of it!<a href="chapter9.html#fnref166" class="footnote-back">↩︎</a></p></li>
-<li id="fn167"><p>This was not even close to their top AIC model so they made an odd
-choice.<a href="chapter9.html#fnref167" class="footnote-back">↩︎</a></p></li>
-<li id="fn168"><p>I had students read this
+they did discuss it in general ways.<a href="chapter9.html#fnref164" class="footnote-back">↩︎</a></p></li>
+<li id="fn165"><p>Instructors often get asked what a problem with
+non-constant variance actually looks like – this is a perfect example of it!<a href="chapter9.html#fnref165" class="footnote-back">↩︎</a></p></li>
+<li id="fn166"><p>This was not even close to their top AIC model so they made an odd
+choice.<a href="chapter9.html#fnref166" class="footnote-back">↩︎</a></p></li>
+<li id="fn167"><p>I had students read this
 paper in a class and one decided that this was a reasonable way to report small
 p-values – it is WRONG. We are interested in how small a p-value might be and
-saying it is over a value is never useful, especially if you say it is larger than a tiny number.<a href="chapter9.html#fnref168" class="footnote-back">↩︎</a></p></li>
-<li id="fn169"><p>All too often, I read journal articles that have under-utilized,
+saying it is over a value is never useful, especially if you say it is larger than a tiny number.<a href="chapter9.html#fnref167" class="footnote-back">↩︎</a></p></li>
+<li id="fn168"><p>All too often, I read journal articles that have under-utilized,
 under-reported, mis-applied, or mis-interpreted statistical methods and
 results. One of the reasons that I wanted to write this book was to help more
 people move from basic statistical knowledge to correct use of intermediate
@@ -1466,12 +1466,12 @@ courses are not enough to get you there, but you have to start somewhere. You
 are only maybe two or three hundred hours into your 10,000 hours required for mastery.
 This book is intended get you some solid fundamentals to build on or a
 few intermediate tools to use if this is your last statistics training
-experience.<a href="chapter9.html#fnref169" class="footnote-back">↩︎</a></p></li>
-<li id="fn170"><p>They also had an error in their AIC
+experience.<a href="chapter9.html#fnref168" class="footnote-back">↩︎</a></p></li>
+<li id="fn169"><p>They also had an error in their AIC
 results that is difficult to explain here but was due to an un-careful usage of
 the results from the more advanced models that account for autocorrelation,
 which seems to provide the proper ranking of models (<em>that they ignored</em>) but
-did not provide the correct differences among models.<a href="chapter9.html#fnref170" class="footnote-back">↩︎</a></p></li>
+did not provide the correct differences among models.<a href="chapter9.html#fnref169" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -14,11 +14,22 @@ output:
 
 ```{r echo=F,warning=F,message=F}
 set.seed(3234)
+library(MASS, exclude="select")
 library(pander)
 library(mosaic)
 library(knitr)
+library(readr)
 library(yarrr)
+library(vcd)
+library(tibble)
+library(tabplot)
+library(RColorBrewer)
+library(mosaic)
+library(poLCA)
+library(survey)
+library(car)
 library(tidyverse)
+
 knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
@@ -215,12 +226,12 @@ col7 <- c("$\\boldsymbol{n_{1 \\bullet}}$",
           "**...**",
           "$\\boldsymbol{n_{R \\bullet}}$","$\\boldsymbol{N}$")
 m <- data.frame(col1, col2, col3,col4,col5,col6,col7)
-colnames(m) <- columnHeaders <- c("","**Response\\\n Level 1**", 
-                   "**Response\\\n Level 2**",
-                   "**Response\\\n Level 3**",
-                   "\\\n **...**",
-                   "**Response\\\n Level C**",
-                   "\\\n **Totals**")
+colnames(m) <- columnHeaders <- c("","**Response Level 1**", 
+                   "**Response Level 2**",
+                   "**Response Level 3**",
+                   " **...**",
+                   "**Response Level C**",
+                   " **Totals**")
 pandoc.table(m, keep.line.breaks = TRUE,caption="(\\#tab:Table5-1) (ref:tab5-1)", split.table = Inf)
 ```
 
@@ -371,12 +382,12 @@ col7 <- c("$\\boldsymbol{1.0}$",
           "**...**",
           "$\\boldsymbol{1.0}$","$\\boldsymbol{1.0}$")
 m <- data.frame(col1, col2, col3,col4,col5,col6,col7)
-colnames(m) <- c("","**Response\\\n Level 1**", 
-                   "**Response\\\n Level 2**",
-                   "**Response\\\n Level 3**",
-                   "\\\n **...**",
-                   "**Response\\\n Level C**",
-                   "\\\n **Totals**")
+colnames(m) <- c("","**Response Level 1**", 
+                   "**Response Level 2**",
+                   "**Response Level 3**",
+                   " **...**",
+                   "**Response Level C**",
+                   " **Totals**")
 pandoc.table(m, keep.line.breaks = TRUE,caption="(\\#tab:Table5-2) (ref:tab5-2)", split.table = Inf)
 ```
 
@@ -501,9 +512,10 @@ library(poLCA)
 data(election, package = "poLCA") 
 election <- as_tibble(election)
 # Subset variables and remove missing values
-election2 <- election %>% dplyr::select(PARTY, VOTE3) %>%
-                        mutate(VOTEF = factor(VOTE3)) %>% 
-                        drop_na()
+election2 <- election %>% 
+  select(PARTY, VOTE3) %>%
+  mutate(VOTEF = factor(VOTE3)) %>%
+  drop_na()
 levels(election2$VOTEF) <- c("Gore", "Bush", "Other") #Replace 1,2,3 with meaningful names
 levels(election2$VOTEF) #Check new names of levels in VOTEF
 electable <- tally(~ PARTY + VOTEF, data = election2) #Contingency table
@@ -712,15 +724,15 @@ plot(Improved~Treat,data=ArthritisFAKE,main="Homogeneity Null Hypothesis True")
 columnHeaders <- c("&nbsp;&nbsp;&nbsp;&nbsp;","**None**","**Some**",
                    "**Marked**","**Totals**")
 
-cell11 <- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{None}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{43*42}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{21.5}}}$"
-cell12 <- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{Some}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{43*14}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{7.167}}}$"
-cell13 <- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{Marked}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{43*28}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{14.33}}}$\\\n"
+cell11 <- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{None}}}{N}}$ $\\boldsymbol{=\\dfrac{43*42}{84}}$ $\\boldsymbol{=\\color{red}{\\mathbf{21.5}}}$"
+cell12 <- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{Some}}}{N}}$ $\\boldsymbol{=\\dfrac{43*14}{84}}$ $\\boldsymbol{=\\color{red}{\\mathbf{7.167}}}$"
+cell13 <- "$\\boldsymbol{\\dfrac{n_{\\text{Placebo}\\bullet}*n_{\\bullet\\text{Marked}}}{N}}$ $\\boldsymbol{=\\dfrac{43*28}{84}}$ $\\boldsymbol{=\\color{red}{\\mathbf{14.33}}}$"
 cell14 <- "$\\boldsymbol{n_{\\text{Placebo}\\bullet}=43}$"
 row1 <- c("**Placebo**",cell11,cell12,cell13,cell14)
 
-cell21 <- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{None}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{41*42}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{20.5}}}$"
-cell22 <- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{Some}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{41*14}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{6.83}}}$"
-cell23 <- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{Marked}}}{N}}$\\\n $\\boldsymbol{=\\dfrac{41*28}{84}}$\\\n $\\boldsymbol{=\\color{red}{\\mathbf{13.67}}}$\\\n"
+cell21 <- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{None}}}{N}}$ $\\boldsymbol{=\\dfrac{41*42}{84}}$ $\\boldsymbol{=\\color{red}{\\mathbf{20.5}}}$"
+cell22 <- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{Some}}}{N}}$ $\\boldsymbol{=\\dfrac{41*14}{84}}$ $\\boldsymbol{=\\color{red}{\\mathbf{6.83}}}$"
+cell23 <- "$\\boldsymbol{\\dfrac{n_{\\text{Treated}\\bullet}*n_{\\bullet\\text{Marked}}}{N}}$ $\\boldsymbol{=\\dfrac{41*28}{84}}$ $\\boldsymbol{=\\color{red}{\\mathbf{13.67}}}$"
 cell24 <- "$\\boldsymbol{n_{\\text{Treated}\\bullet}=41}$"
 row2 <- c("**Treated**",cell21,cell22,cell23,cell24)
 
@@ -1280,7 +1292,9 @@ variables.
 (ref:fig5-14) Tableplot of election data with subjects without any missing responses (complete cases).
 
 ```{r Figure5-14,fig.cap="(ref:fig5-14)", fig.height=5,fig.width=10}
-election2 <- election %>% dplyr::select(VOTEF, PARTY, EDUC, GENDER) %>% drop_na()
+election2 <- election %>%
+  select(VOTEF, PARTY, EDUC, GENDER) %>% 
+  drop_na()
 tableplot(election2, select = c(VOTEF, PARTY, EDUC, GENDER), sort = 1, pals = list("BrBG"), 
           sample = F)
 ```
@@ -2221,7 +2235,7 @@ correct usage*, (``isare``), *have you thought about this issue*
 (``thoughtabout``) with levels Yes/No, and *do you care about this issue*
 (``careabout``) with four levels from *Not at all* to *A lot*. The following
 code loads their data set after missing responses were removed, does a
-little re-ordering of factor levels using the `fct_relevel` function \index{\textt{fct_relevel()}} to help make the results easier to 
+little re-ordering of factor levels using the `fct_relevel` function \index{\texttt{fct\_relevel()}} to help make the results easier to 
 understand, and makes a tableplot (Figure \@ref(fig:Figure5-27)) to get a general sense of the results 
 including information on the respondents' gender, age, income, and education. 
 
@@ -2288,7 +2302,7 @@ par(las=2)
 plot(Close ~ Condition2, data = dd, main = "Plot of proportions of close calls by type of clothing")
 ```
 
-5.3. **Overtake close calls by outfit analysis** We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``Distance <= 100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided. \index{\texttt{\ifelse()}}
+5.3. **Overtake close calls by outfit analysis** We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``Distance <= 100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided. \index{\texttt{ifelse()}}
 
 ```{r eval=F}
 dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv")

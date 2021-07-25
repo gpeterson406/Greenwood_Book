@@ -13,6 +13,7 @@ header-includes:
 
 ```{r echo=F,warning=F,message=F}
 set.seed(5678)
+library(MASS, exclude="select")
 library(pander)
 library(readr)
 library(curl)
@@ -26,11 +27,10 @@ library(psych)
 library(corrplot)
 library(car)
 library(spuRs)
-library(MASS)
-library(tidyverse)
 library(gridExtra)
 library(GGally)
 library(viridis)
+library(tidyverse)
 knitr::opts_chunk$set(cache = F,fig.height=3.5,fig.width=6,fig.pos='ht',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
@@ -135,7 +135,7 @@ quantitative explanatory variable into the linear model (somewhat like in the
 Some of this variability might be hard or impossible to explain
 regardless of the other variables available and is considered unexplained variation
 and goes into the residual errors in our models, just like in the ANOVA models. 
-To make scatterplots as in Figure \@ref(fig:Figure6-1), you could use the base R function ``plot``, but we will want to again access the power of `ggplot2` so will use ``geom_point`` to add the points to the plot at the "x" and "y" coordinates that you provide in ``aes(x = ..., y = ...)``. \index{\texttt{geom_point}}
+To make scatterplots as in Figure \@ref(fig:Figure6-1), you could use the base R function ``plot``, but we will want to again access the power of `ggplot2` so will use ``geom_point`` to add the points to the plot at the "x" and "y" coordinates that you provide in ``aes(x = ..., y = ...)``. \index{\texttt{geom\_point}}
 
 ```{r echo=F}
 set.seed(5678)
@@ -408,7 +408,8 @@ mtfires <- read_csv("climateR2.csv")
 mtfires <- mtfires %>% mutate(loghectares = log(hectares)) 
 
 #Cuts the original hectares data so only log-scale version in tibble
-mtfiresR <- mtfires %>% dplyr::select(-hectares) 
+mtfiresR <- mtfires %>% 
+  select(-hectares) 
 cor(mtfiresR)
 ```
 
@@ -459,7 +460,8 @@ library(alr4)
 data(ais)
 library(tibble)
 ais <- as_tibble(ais)
-aisR <- ais %>%  dplyr::select(Ht, Hc, Bfat)
+aisR <- ais %>%  
+  select(Ht, Hc, Bfat)
 summary(aisR)
 aisR %>% ggpairs() + theme_bw()
 ```
@@ -546,14 +548,14 @@ some physiological differences to consider.
 
 \indent This set of material is where the ``ggplot2`` methods will really pay off for us, providing you with an extensive set of tools for visualizing relationships between two quantitative variables and incorporating information from other variables. There are three ways to add a categorical variable to a scatterplot that we will use. The first is to modify the colors, the second is modify the plotting symbol, and the third is to split the graph into panels or facets based on the groups of the variable. We usually combine the first two options to give the reader the best chance of detecting the group differences using both colors and symbols by groups; we will save faceting for a little later in the material. In these modifications, we can modify the colors and symbols based on the levels of categorical variable (say ``groupfactor``) by adding ``color = groupfactor, shape = groupfactor`` to the `aes()` definition in the initial ``ggplot`` part of the function or within an aesthetic inside ``geom_point``. Defining the colors and shape within the ``geom_point`` only is useful if you want to change colors or symbols for the points in a way that might differ from the colors and groupings you use for other layers in the plot. The addition of grouping information in the initial ``ggplot`` aesthetic is called a "global" aesthetic and will apply to all the following geom's. Defining the colors or symbols within ``geom_point`` is called a "local" aesthetic and only applies to that layer of the plot. To enhance visibility of the points in the scatterplot, we often engage different color palettes, using a version^[The ``end = 0.9`` is used to avoid the lightest yellow color in the gradient that is often hard to see.] of the ``viridis`` colors with  ``scale_color_viridis_d(end = 0.9)``. Using these ggplot additions, Figure \@ref(fig:Figure6-7) displays the 
 *Height* and *Hematocrit* relationship with information on the sex of the 
-athletes where *sex* was coded 0 for males and 1 for females, changing both the symbol and color for the groups - with a legend to help to understand the plot. \index{\texttt{geom_point()}}
+athletes where *sex* was coded 0 for males and 1 for females, changing both the symbol and color for the groups - with a legend to help to understand the plot. \index{\texttt{geom\_point()}}
 
 (ref:fig6-7) Scatterplot of athlete's height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
 
 ```{r Figure6-7,fig.cap="(ref:fig6-7)",echo=F}
 aisR2 <- ais %>%
   slice(-c(56, 166)) %>%
-  dplyr::select(Ht, Hc, Bfat, Sex) %>%
+  select(Ht, Hc, Bfat, Sex) %>%
   mutate(Sex = factor(Sex))
 
 
@@ -566,7 +568,7 @@ aisR2 %>% ggplot(mapping = aes(x = Ht, y = Hc)) +
 ```{r eval=F}
 aisR2 <- ais %>%
   slice(-c(56, 166)) %>%
-  dplyr::select(Ht, Hc, Bfat, Sex) %>%
+  select(Ht, Hc, Bfat, Sex) %>%
   mutate(Sex = factor(Sex))
 
 
@@ -851,7 +853,7 @@ Figure \@ref(fig:Figure6-11) is positive,
 moderately strong with some curvature and increasing variability as the
 diameter increases. There do not appear to be groups in the data set but since
 this contains four different types of trees, we would want to revisit this plot
-by type of tree. To assist in the linearity assessment, we also add the ``geom_smooth`` to the plot with an option of ``method = "lm"``, which provides a straight line to best describe the relationship (more on that line in the coming sections and chapters). The bands around the line are based on the 95% confidence intervals we can generate for any x-value and relate to pinning down the true mean value of the y-variable at that value of the x-variable - but only apply if the linear relationship is a good description of the relationship between the variables (which it is not here!). \index{\textt{geom_smooth()}} 
+by type of tree. To assist in the linearity assessment, we also add the ``geom_smooth`` to the plot with an option of ``method = "lm"``, which provides a straight line to best describe the relationship (more on that line in the coming sections and chapters). The bands around the line are based on the 95% confidence intervals we can generate for any x-value and relate to pinning down the true mean value of the y-variable at that value of the x-variable - but only apply if the linear relationship is a good description of the relationship between the variables (which it is not here!). \index{\texttt{geom\_smooth()}} 
 
 (ref:fig6-11) Scatterplot of tree heights (m) vs tree diameters (cm) with estimated straight line relationship (blue line) and 95% confidence interval (grey band).
 
@@ -971,7 +973,7 @@ to flip the model directions to facilitate different types of analyses. In
 though we were really interested in exploring how gene-level differences 
 explained differences in obesity.]. 
 
-(ref:fig6-13) Scatterplot with estimated regression line (solid line) for the *Beers* and *BAC* data. The solid arrows^[The ``geom_segment`` function was used to add lines to the plot but I suspect you won't use this too much unless you want to make figures to explain regression to your friends using your favorite data sets. Sometimes I just like to leave the code in here to show the work it took to make the illustrations...] indicate the predictor variable values of 4 and 5 beers and the dashed lines illustrate the predicted mean BAC for 4 and 5 beers consumed based on the SLR model. 
+(ref:fig6-13) Scatterplot with estimated regression line (solid line) for the *Beers* and *BAC* data. The solid arrows indicate the predictor variable values of 4 and 5 beers and the dashed lines illustrate the predicted mean BAC for 4 and 5 beers consumed based on the SLR model. 
 
 ```{r Figure6-13,fig.cap="(ref:fig6-13)"}
 BB %>% ggplot(mapping = aes(x = Beers, y = BAC)) + geom_smooth(method = "lm", col = "cyan4") + geom_point() + theme_bw() + 
@@ -2058,7 +2060,7 @@ time to next eruption so they can quickly see it erupt and then get back in thei
 cars, not wasting too much time in the outdoors. Or, less cynically, the opportunity to study the behavior of the eruption of a geyser. Both variables are measured in minutes and the scatterplot in 
 Figure \@ref(fig:Figure6-24)
 shows a moderate to strong positive and relatively linear relationship. We
-added a ***smoothing line*** (dashed line) using `geom_smooth` to this plot -- this is actually the default choice in `geom_smooth` \index{\texttt{geom_smooth()}} \index{\texttt{geom_smooth(method = "lm")}} and we have to use `geom_smooth(method = "lm")` to get the regression (straight) line. Smoothing lines provide
+added a ***smoothing line*** (dashed line) using `geom_smooth` to this plot -- this is actually the default choice in `geom_smooth` \index{\texttt{geom\_smooth()}} \index{\texttt{geom\_smooth(method = "lm")}} and we have to use `geom_smooth(method = "lm")` to get the regression (straight) line. Smoothing lines provide
 regression-like fits but are performed on local areas of the relationship 
 between the two variables and so can highlight where the relationships
 change, especially highlighting curvilinear relationships. They can also return
@@ -2227,7 +2229,7 @@ data = `r colFmt("DATASETNAME","red")`)**
 * **`r colFmt("DATASETNAME","red")` %>% ggplot(mapping = aes(x = `r colFmt("x","red")`, y = `r colFmt("y","red")`) + geom_point() + geom_smooth(method = "lm")**
 
     * Provides a scatter plot with a regression line.
-    \index{\texttt{geom_point()}|textbf}
+    \index{\texttt{geom\_point()}|textbf}
     
     * Add **color = `r colFmt("groupfactor","red")`** to the **aes()** to color points and get regression lines based on a grouping (categorical) variable.
     

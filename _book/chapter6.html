@@ -32,7 +32,7 @@
   
 <link rel="prev" href="chapter5.html"/>
 <link rel="next" href="chapter7.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -609,8 +609,9 @@ clear (at least the linear trends).</p>
 <span id="cb512-2"><a href="chapter6.html#cb512-2" aria-hidden="true" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares)) </span>
 <span id="cb512-3"><a href="chapter6.html#cb512-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb512-4"><a href="chapter6.html#cb512-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Cuts the original hectares data so only log-scale version in tibble</span></span>
-<span id="cb512-5"><a href="chapter6.html#cb512-5" aria-hidden="true" tabindex="-1"></a>mtfiresR <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>hectares) </span>
-<span id="cb512-6"><a href="chapter6.html#cb512-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(mtfiresR)</span></code></pre></div>
+<span id="cb512-5"><a href="chapter6.html#cb512-5" aria-hidden="true" tabindex="-1"></a>mtfiresR <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> </span>
+<span id="cb512-6"><a href="chapter6.html#cb512-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>hectares) </span>
+<span id="cb512-7"><a href="chapter6.html#cb512-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(mtfiresR)</span></code></pre></div>
 <pre><code>##                   Year Temperature loghectares
 ## Year         1.0000000  -0.0037991   0.3617789
 ## Temperature -0.0037991   1.0000000   0.8135947
@@ -659,8 +660,9 @@ based on the other variables, but for now the associations are of interest.</p>
 <span id="cb515-2"><a href="chapter6.html#cb515-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ais)</span>
 <span id="cb515-3"><a href="chapter6.html#cb515-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb515-4"><a href="chapter6.html#cb515-4" aria-hidden="true" tabindex="-1"></a>ais <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ais)</span>
-<span id="cb515-5"><a href="chapter6.html#cb515-5" aria-hidden="true" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span>  dplyr<span class="sc">::</span><span class="fu">select</span>(Ht, Hc, Bfat)</span>
-<span id="cb515-6"><a href="chapter6.html#cb515-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aisR)</span></code></pre></div>
+<span id="cb515-5"><a href="chapter6.html#cb515-5" aria-hidden="true" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span>  </span>
+<span id="cb515-6"><a href="chapter6.html#cb515-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Ht, Hc, Bfat)</span>
+<span id="cb515-7"><a href="chapter6.html#cb515-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aisR)</span></code></pre></div>
 <pre><code>##        Ht              Hc             Bfat       
 ##  Min.   :148.9   Min.   :35.90   Min.   : 5.630  
 ##  1st Qu.:174.0   1st Qu.:40.60   1st Qu.: 8.545  
@@ -768,7 +770,7 @@ Figure 6.7: Scatterplot of athlete’s height and hematocrit by sex of athletes.
 </div>
 <div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="chapter6.html#cb524-1" aria-hidden="true" tabindex="-1"></a>aisR2 <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span></span>
 <span id="cb524-2"><a href="chapter6.html#cb524-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">56</span>, <span class="dv">166</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb524-3"><a href="chapter6.html#cb524-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Ht, Hc, Bfat, Sex) <span class="sc">%&gt;%</span></span>
+<span id="cb524-3"><a href="chapter6.html#cb524-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Ht, Hc, Bfat, Sex) <span class="sc">%&gt;%</span></span>
 <span id="cb524-4"><a href="chapter6.html#cb524-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sex =</span> <span class="fu">factor</span>(Sex))</span>
 <span id="cb524-5"><a href="chapter6.html#cb524-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb524-6"><a href="chapter6.html#cb524-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -1144,9 +1146,9 @@ explanatory or response<a href="#fn116" class="footnote-ref" id="fnref116"><sup>
 <span id="cb561-4"><a href="chapter6.html#cb561-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fl">0.0771</span>, <span class="at">yend =</span> <span class="fl">0.0771</span>, <span class="at">x=</span> <span class="dv">5</span>, <span class="at">xend =</span> <span class="dv">0</span>), <span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(.<span class="dv">3</span>, <span class="st">&quot;cm&quot;</span>))) <span class="sc">+</span> </span>
 <span id="cb561-5"><a href="chapter6.html#cb561-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">5</span>, <span class="at">xend =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="fl">0.0771</span>), <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(.<span class="dv">3</span>, <span class="st">&quot;cm&quot;</span>)), <span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:Figure6-13"></span>
-<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-13-1.png" alt="Scatterplot with estimated regression line (solid line) for the Beers and BAC data. The solid arrows117 indicate the predictor variable values of 4 and 5 beers and the dashed lines illustrate the predicted mean BAC for 4 and 5 beers consumed based on the SLR model." width="576" />
+<img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-13-1.png" alt="Scatterplot with estimated regression line (solid line) for the Beers and BAC data. The solid arrows indicate the predictor variable values of 4 and 5 beers and the dashed lines illustrate the predicted mean BAC for 4 and 5 beers consumed based on the SLR model." width="576" />
 <p class="caption">
-Figure 6.13: Scatterplot with estimated regression line (solid line) for the <em>Beers</em> and <em>BAC</em> data. The solid arrows<a href="#fn117" class="footnote-ref" id="fnref117"><sup>117</sup></a> indicate the predictor variable values of 4 and 5 beers and the dashed lines illustrate the predicted mean BAC for 4 and 5 beers consumed based on the SLR model.
+Figure 6.13: Scatterplot with estimated regression line (solid line) for the <em>Beers</em> and <em>BAC</em> data. The solid arrows indicate the predictor variable values of 4 and 5 beers and the dashed lines illustrate the predicted mean BAC for 4 and 5 beers consumed based on the SLR model.
 </p>
 </div>
 <p>The equation for a line is <span class="math inline">\(y=a+bx\)</span>, or maybe <span class="math inline">\(y=mx+b\)</span>. In the version
@@ -1197,7 +1199,7 @@ between <span class="math inline">\(x\)</span> and <span class="math inline">\(y
 leave differences between the line and the observations, which we call
 residuals <span class="math inline">\((e = y-\widehat{y})\)</span>.
 
-We worked with residuals in the ANOVA<a href="#fn118" class="footnote-ref" id="fnref118"><sup>118</sup></a>
+We worked with residuals in the ANOVA<a href="#fn117" class="footnote-ref" id="fnref117"><sup>117</sup></a>
 material. The residuals describe the vertical distance in the scatterplot between
 our model (regression line) and the actual observed data point. The lack of a
 perfect fit of the line to the observations distinguishes statistical equations
@@ -2439,11 +2441,10 @@ to flip the model directions to facilitate different types of analyses. In
 <span class="citation"><a href="#ref-Vsevol2014" role="doc-biblioref">Vsevolozhskaya et al.</a> (<a href="#ref-Vsevol2014" role="doc-biblioref">2014</a>)</span> we looked at genomic differences based on obesity groups, even
 though we were really interested in exploring how gene-level differences
 explained differences in obesity.<a href="chapter6.html#fnref116" class="footnote-back">↩︎</a></p></li>
-<li id="fn117"><p>The <code>geom_segment</code> function was used to add lines to the plot but I suspect you won’t use this too much unless you want to make figures to explain regression to your friends using your favorite data sets. Sometimes I just like to leave the code in here to show the work it took to make the illustrations…<a href="chapter6.html#fnref117" class="footnote-back">↩︎</a></p></li>
-<li id="fn118"><p>The
+<li id="fn117"><p>The
 residuals from these methods and ANOVA are the same because they all come
 from linear models but are completely different from the standardized residuals
-used in the Chi-square material in Chapter <a href="chapter5.html#chapter5">5</a>.<a href="chapter6.html#fnref118" class="footnote-back">↩︎</a></p></li>
+used in the Chi-square material in Chapter <a href="chapter5.html#chapter5">5</a>.<a href="chapter6.html#fnref117" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

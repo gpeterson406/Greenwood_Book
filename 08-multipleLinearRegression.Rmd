@@ -12,6 +12,7 @@ header-includes:
 
 ```{r echo=F,warning=F,message=F}
 set.seed(3234)
+library(MASS, exclude="select")
 library(pander)
 library(mosaic)
 library(knitr)
@@ -27,10 +28,11 @@ library(heplots)
 library(smdata)
 library(MuMIn)
 library(coneproj)
-library(tidyverse)
 library(ggplot2)
 library(gridExtra)
 library(GGally)
+library(tidyverse)
+
 knitr::opts_chunk$set(cache = F,fig.height=3.5,fig.width=6,fig.pos='ht',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
@@ -1376,15 +1378,15 @@ regression models that can result in common mistakes.
     ```{r eval=F}
     library(corrplot)
     par(mfrow=c(1,1), oma=c(0,0,1,0))
-    corrplot.mixed(cor(snotel_s %>% slice(-c(9,22)) %>% dplyr::select(3:6)), upper.col = c(1, "orange"), lower.col = c(1, "orange"))
-    round(cor(snotel_s %>% slice(-c(9,22)) %>% dplyr::select(3:6)), 2)
+    corrplot.mixed(cor(snotel_s %>% slice(-c(9,22)) %>% select(3:6)), upper.col = c(1, "orange"), lower.col = c(1, "orange"))
+    round(cor(snotel_s %>% slice(-c(9,22)) %>% select(3:6)), 2)
     ```
     
     ```{r Figure8-17,fig.cap="Plot of correlation matrix in the snow depth data set with influential points removed",fig.width=6.5,echo=F}
     library(corrplot)
     par(mfrow=c(1,1), oma=c(0,0,1,0))
-    corrplot.mixed(cor(snotel_s %>% slice(-c(9,22)) %>% dplyr::select(3:6)), upper.col = c(1, "orange"), lower.col = c(1, "orange"))
-    round(cor(snotel_s %>% slice(-c(9,22)) %>% dplyr::select(3:6)), 2)
+    corrplot.mixed(cor(snotel_s %>% slice(-c(9,22)) %>% select(3:6)), upper.col = c(1, "orange"), lower.col = c(1, "orange"))
+    round(cor(snotel_s %>% slice(-c(9,22)) %>% select(3:6)), 2)
     ```
     
     The predictors all share at least moderately strong linear relationships. For
@@ -1793,7 +1795,10 @@ satgpa <- satgpa %>% rename(gender = sex ,  #Renaming variables
                             satv = sat_v, satm = sat_m, satsum = sat_sum, 
                             hsgpa = hs_gpa, 
                             fygpa = fy_gpa) 
-satgpa %>% dplyr::select(-4) %>% ggpairs() + theme_bw()
+satgpa %>% 
+  select(-4) %>%
+  ggpairs() + 
+  theme_bw()
 ```
 
 There are positive relationships in Figure \@ref(fig:Figure8-18) among all the
@@ -2102,7 +2107,7 @@ dv1 <- tibble(satv = seq(from = 24, to = 76, length.out = 50), satm = rep(54.4, 
 mv1 <- as_tibble(predict(gpa1, newdata = dv1, interval = "confidence"))
 pv1 <- as_tibble(predict(gpa1, newdata = dv1, interval = "prediction"))
 
-mres_GPA_v <- bind_cols(dv1, mv1, pv1 %>% dplyr::select(-fit))
+mres_GPA_v <- bind_cols(dv1, mv1, pv1 %>% select(-fit))
 
 #Rename CI and PI limits to have more explicit column names:
 mres_GPA_v <- mres_GPA_v %>% rename(lwr_CI = lwr...4, upr_CI = upr...5, lwr_PI = lwr...6, upr_PI = upr...7)
@@ -2117,7 +2122,7 @@ dm1 <- tibble(satv = rep(48.93, 50), satm = seq(from = 29, to = 77, length.out =
 mm1 <- as_tibble(predict(gpa1, newdata = dm1, interval = "confidence"))
 pm1 <- as_tibble(predict(gpa1, newdata = dm1, interval = "prediction"))
 
-mres_GPA_m <- bind_cols(dm1, mm1, pm1 %>% dplyr::select(-fit))
+mres_GPA_m <- bind_cols(dm1, mm1, pm1 %>% select(-fit))
 
 #Rename CI and PI limits to have more explicit column names:
 mres_GPA_m <- mres_GPA_m %>% rename(lwr_CI = lwr...4, upr_CI = upr...5, lwr_PI = lwr...6, upr_PI = upr...7)
@@ -2267,7 +2272,7 @@ for the first 10 observations:
 # Convert logical to 1 for female, 0 for male using ifelse function
 satgpa <- satgpa %>% mutate(GENDERINDICATOR = ifelse(GENDER == "FEMALE", 1, 0)) 
 # Explore first 10 observations on the two versions of GENDER using the head() function
-satgpa %>% dplyr::select(GENDER, GENDERINDICATOR) %>% head(10)
+satgpa %>% select(GENDER, GENDERINDICATOR) %>% head(10)
 
 ```
 
@@ -2661,7 +2666,7 @@ plot(head1,pch=16,
 
 \indent Additionally, sometimes we
 need to add group information to diagnostics to see if any patterns in residuals look
-different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups. We can use the the same scatterplot tools to make our own plot the residuals (extracted using the ``residuals`` function) versus the fitted values (extracted using the ``fitted`` function) by groups as in Figure \@ref(fig:Figure8-30). This provides an opportunity to introduce faceting, where we can split our plots into panels by a grouping variable, here by the ``treatment`` applied to each subject. \index{faceting} \index{\texttt{facet_grid}} This can be helpful with multiple groups to be able to see each one more clearly as we avoid overplotting. The addition of ``+ facet_grid(cols = vars(treatment))`` facets the plot based on the ``treatment`` variable and puts the facets in different columns because of the ``cols = `` part of the code (``rows = `` specifies the number of rows for the facets), labeling each panel at the top with the level being displayed of the faceting variable (``vars()`` is needed to help ggplot find the variable). In this example, there are no additional patterns identified by making this plot although we do see some minor deviations in the fitted lines for each group, but it is a good additional check in these multi-group situations.
+different in different groups, like linearity or non-constant variance, when we are fitting models that might contain multiple groups. We can use the the same scatterplot tools to make our own plot the residuals (extracted using the ``residuals`` function) versus the fitted values (extracted using the ``fitted`` function) by groups as in Figure \@ref(fig:Figure8-30). This provides an opportunity to introduce faceting, where we can split our plots into panels by a grouping variable, here by the ``treatment`` applied to each subject. \index{faceting} \index{\texttt{facet\_grid}} This can be helpful with multiple groups to be able to see each one more clearly as we avoid overplotting. The addition of ``+ facet_grid(cols = vars(treatment))`` facets the plot based on the ``treatment`` variable and puts the facets in different columns because of the ``cols = `` part of the code (``rows = `` specifies the number of rows for the facets), labeling each panel at the top with the level being displayed of the faceting variable (``vars()`` is needed to help ggplot find the variable). In this example, there are no additional patterns identified by making this plot although we do see some minor deviations in the fitted lines for each group, but it is a good additional check in these multi-group situations.
 
 
 (ref:fig8-30) Faceted scatterplot of residuals versus fitted values by treatment group from the additive decibel tolerance model.
@@ -4063,15 +4068,15 @@ in ``DATASETNAME``.
 * **`r colFmt("DATASETNAME","red")` %>% ggplot(mapping = aes(x = `r colFmt("x","red")`, y = `r colFmt("y","red")`)) + geom_point() + geom_smooth(method = "lm")**
 
     * Provides a scatter plot with a regression line.
-    \index{\texttt{geom_point()}|textbf}
+    \index{\texttt{geom\_point()}|textbf}
     
     * Add **+ geom_smooth()** to add a smoothing line to help detect 
     nonlinear relationships.
-    \index{\texttt{geom_smooth()}|textbf}
+    \index{\texttt{geom\_smooth()}|textbf}
     
     * Add **color = `r colFmt("groupfactor","red")`** to aesthetic to color points and lines based on a grouping variable. 
     
-    * Add **+ facet_grid(cols = vars(`r colFmt("groupfactor","red")`))** to facet by groups. \index{\texttt{facet_grid()}|textbf}
+    * Add **+ facet_grid(cols = vars(`r colFmt("groupfactor","red")`))** to facet by groups. \index{\texttt{facet\_grid()}|textbf}
 
 * **`r colFmt("MODELNAME","red")` `` <- `` lm(`r colFmt("y","red")` ~ 
 `r colFmt("x1 + x2 +...+ xK","red")`, data = `r colFmt("DATASETNAME","red")`)**

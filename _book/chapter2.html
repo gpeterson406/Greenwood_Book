@@ -32,7 +32,7 @@
   
 <link rel="prev" href="chapter1.html"/>
 <link rel="next" href="chapter3.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -465,7 +465,7 @@ and then repeat trying to load the package you wanted. These are called package 
 <p>With tibbles, you have to declare categorical variables as “factors”  to have R correctly handle the variables using the <code>factor</code> function, either creating a new variable or replacing the “character” version of the variable that is used to read in the data initially. The following code replaces the <code>Condition</code> character variable with a <code>factor</code> version of the same variable with the same name.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="chapter2.html#cb40-1" aria-hidden="true" tabindex="-1"></a>dd<span class="sc">$</span>Condition <span class="ot">&lt;-</span> <span class="fu">factor</span>(dd<span class="sc">$</span>Condition)</span></code></pre></div>
 <p>We use this sort of explicit declaration for either character coded (non-numeric) variables or for numerically coded variables where the numbers represent categories to force R to correctly work with the information on those variables. For quantitative variables, we do not need to declare their type and they are stored as numeric variables as long as there is no text in that column of the spreadsheet other than the variable name.</p>
-<p>The one-at-a-time declaration of the variables as factors when there are many (here there are six more) creates repetitive and cumbersome code. There is another way of managing this and other similar related “data wrangling”<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. To do this, we will combine using the pipe operator (<code>%&gt;%</code> from the <code>magrittr</code> package or <code>|&gt;</code> in base R) and using the <code>mutate</code> function from <code>dplyr</code>, both <code>%&gt;%</code> and <code>mutate</code> are part of the <code>tidyverse</code> and start to help us write code that flows from left to right to accomplish multiple tasks.  \index{\texttt{<code>%&gt;%</code>}}   \index{ The pipe operator (<code>%&gt;%</code> or <code>|&gt;</code>) allows us to pass a data set to a function (sometimes more than one if you have multiple data wrangling tasks to complete - see work below) and there is a keyboard short-cut to get the combination of characters for it by using Ctrl+Shift+M on a PC or Cmd+Shift+M on a Mac. The <code>mutate</code> function allows us to create new columns or replace existing ones by using information from other columns, separating each additional operation by a comma (and a “return” for proper style). You will gradually see more reasons why we want to learn these functions, but for now this allows us to convert the character variables into <code>factor</code> variables within <code>mutate</code> and when we are all done to assign our final data set back in the same <code>dd</code> tibble that we started with.</p>
+<p>The one-at-a-time declaration of the variables as factors when there are many (here there are six more) creates repetitive and cumbersome code. There is another way of managing this and other similar related “data wrangling”<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. To do this, we will combine using the pipe operator (<code>%&gt;%</code> from the <code>magrittr</code> package or <code>|&gt;</code> in base R) and using the <code>mutate</code> function from <code>dplyr</code>, both <code>%&gt;%</code> and <code>mutate</code> are part of the <code>tidyverse</code> and start to help us write code that flows from left to right to accomplish multiple tasks.     \index{ The pipe operator (<code>%&gt;%</code> or <code>|&gt;</code>) allows us to pass a data set to a function (sometimes more than one if you have multiple data wrangling tasks to complete - see work below) and there is a keyboard short-cut to get the combination of characters for it by using Ctrl+Shift+M on a PC or Cmd+Shift+M on a Mac. The <code>mutate</code> function allows us to create new columns or replace existing ones by using information from other columns, separating each additional operation by a comma (and a “return” for proper style). You will gradually see more reasons why we want to learn these functions, but for now this allows us to convert the character variables into <code>factor</code> variables within <code>mutate</code> and when we are all done to assign our final data set back in the same <code>dd</code> tibble that we started with.</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chapter2.html#cb41-1" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Shirt =</span> <span class="fu">factor</span>(Shirt),</span>
 <span id="cb41-2"><a href="chapter2.html#cb41-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">Helmet =</span> <span class="fu">factor</span>(Helmet),</span>
 <span id="cb41-3"><a href="chapter2.html#cb41-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">Pants =</span> <span class="fu">factor</span>(Pants),</span>
@@ -1450,54 +1450,51 @@ limited to the sampled subjects.
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"><strong>Random Sampling/Random
-Assignment</strong></th>
-<th align="left"><strong>Random Assignment (RA) –
-Yes (controlled experiment)</strong></th>
-<th align="left"><strong>Random Assignment (RA) – No
-(observational study)</strong></th>
+<th><strong>Random Sampling/</strong>
+<strong>Random Assignment</strong></th>
+<th><strong>Random Assignment (RA) – Yes</strong>
+<strong>(controlled experiment)</strong></th>
+<th><strong>Random Assignment (RA) – No</strong>
+<strong>(observational study)</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><strong>Random Sampling (RS) – Yes
-(or some method that results
-in a representative sample of
-population of interest)</strong></td>
-<td align="left">Because we have RS, we can
+<td><strong>Random Sampling (RS) – Yes</strong>
+<strong>(or some method that results</strong>
+<strong>in a representative sample</strong>
+<strong>of population of interest)</strong></td>
+<td>Because we have RS, we can
 generalize inferences to the
-population the RS was taken
-from. Because we have RA we
-can assume the groups were
-equivalent on all aspects
-except for the treatment and
-can establish causal
+population the RS was taken from.
+Because we have RA we can assume
+the groups were equivalent on all
+aspects except for the treatment
+and can establish causal
 inference.</td>
-<td align="left">Can generalize inference to
-population the RS was taken
-from but cannot establish
-causal inference (no RA –
-cannot isolate treatment
-variable as only difference
-among groups, could be
-confounding variables).</td>
+<td>Can generalize inference to
+population the RS was taken from
+but cannot establish causal
+inference (no RA – cannot
+isolate treatment variable as
+only difference among groups,
+could be confounding variables).</td>
 </tr>
 <tr class="even">
-<td align="left"><strong>Random Sampling (RS) – No
-(usually a convenience
-sample)</strong></td>
-<td align="left">Cannot generalize inference to
+<td><strong>Random Sampling (RS) – No</strong>
+<strong>(usually a convenience</strong>
+<strong>sample)</strong></td>
+<td>Cannot generalize inference to
 the population of interest
-because the sample was not
-random and could be biased –
-may not be “representative” of
-the population of interest.
+because the sample was not random
+and could be biased – may not be
+“representative” of the
+population of interest.
 Can establish causal inference
 due to RA <span class="math inline">\(\rightarrow\)</span> the
-inference from this type of
-study applies only to the
-sample.</td>
-<td align="left">Cannot generalize inference to
+inference from this type of study
+applies only to the sample.</td>
+<td>Cannot generalize inference to
 the population of interest
 because the sample was not
 random and could be biased –

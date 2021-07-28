@@ -20,16 +20,15 @@ library(knitr)
 library(readr)
 library(yarrr)
 library(tidyverse)
-knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht!',
+knitr::opts_chunk$set(cache = F,fig.width = 10, fig.height = 6,
+                      out.width="75%",fig.retina = 2, fig.align = 'center',
+                      fig.pos='ht!',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
 ```
 
 
 ```{r echo=F}
-knitr::opts_chunk$set(cache=F,fig.width = 5, fig.height = 3.5,
-                      fig.pos = "ht!", message=F,warning=F)
-options(show.signif.stars = FALSE)
 #Color Format
 colFmt = function(x, color){
   outputFormat = opts_knit$get("rmarkdown.pandoc.to")
@@ -273,7 +272,7 @@ contains the histogram with a boxplot and a rug of *Distance*, all ignoring any 
 
 (ref:fig2-1) Histogram (with 20 bins), boxplot, and rug of passing distances (in cm).
 
-```{r Figure2-1, fig.cap="(ref:fig2-1)",echo=F,fig.height=4,fig.width=6,cache=T}
+```{r Figure2-1, fig.cap="(ref:fig2-1)",echo=F,cache=T}
 dd %>% ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins=20, fill = "grey") +
   geom_rug() +
@@ -289,7 +288,8 @@ dd %>% ggplot(mapping = aes(x = Distance)) +
 dd %>% ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins=20, fill = "grey") +
   geom_rug() +
-  geom_boxplot(color = "tomato", width=30) + #width used to scale boxplot to make it more visible
+  geom_boxplot(color = "tomato", width=30) + 
+      #width used to scale boxplot to make it more visible
   theme_bw() +
   labs(title = "Plot of Passing Distances",
        x = "Distance (cm)",
@@ -441,7 +441,7 @@ for the type of confidence interval needs to be specified with `inf.method = "ci
 
 (ref:fig2-5) Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals.
 
-```{r Figure2-5, fig.cap="(ref:fig2-5)",echo=F, fig.width=6, fig.height=4}
+```{r Figure2-5, fig.cap="(ref:fig2-5)",echo=F}
 library(yarrr)
 set.seed(12345)
 pirateplot(Distance ~ Condition, data = dd, inf.method = "ci", point.o = 0.25, inf.disp = "line")
@@ -572,7 +572,7 @@ the two groups of interest here as seen in Figure \@ref(fig:Figure2-6). Note tha
 
 (ref:fig2-6) Boxplot and pirate-plot of the *Distance* responses on the reduced ``ddsub`` data set. 
 
-```{r Figure2-6, fig.cap="(ref:fig2-6)",echo=F,fig.width=5.75,fig.height=3.75}
+```{r Figure2-6, fig.cap="(ref:fig2-6)",echo=F}
 par(mfrow=c(1,2))
 #old.par <- par(mai=c(0.5,0.5,0.5,0.5))
 boxplot(Distance~Condition,data=ddsub) 
@@ -796,7 +796,7 @@ diffmean(Distance ~ PermutedCondition, data = Perm1)
 
 (ref:fig2-8) Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals for each of the means are more clearly visible than with the original large data set.
 
-```{r Figure2-8, fig.cap="(ref:fig2-8)",echo=F, fig.width=7, fig.pos="t"}
+```{r Figure2-8, fig.cap="(ref:fig2-8)",echo=F, fig.pos="t"}
 par(mfrow=c(1,2))
 pirateplot(Distance~Condition, data=Perm1,  point.o=0.5,
          main="Original data", inf.method="ci", inf.disp="line")
@@ -994,7 +994,7 @@ statistics of the results:
 
 (ref:fig2-9) Histogram (left, with counts in bars) and density curve (right) of values of test statistic for *B* = 1,000 permutations.  
 
-```{r Figure2-9, fig.cap="(ref:fig2-9)",echo=F,fig.width=5,fig.height=5,cache=F}
+```{r Figure2-9, fig.cap="(ref:fig2-9)",echo=F,cache=F}
 B <- 1000
 set.seed(1234)
 Tstar <- matrix(NA, nrow=B)
@@ -1003,8 +1003,10 @@ for (b in (1:B)){
   Tstar[b] <- coef(lmP)[2]
 }
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density")
 ```
 
@@ -1016,8 +1018,10 @@ for (b in (1:B)){
   Tstar[b] <- coef(lmP)[2]
 }
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density")
 ```
 
@@ -1040,11 +1044,13 @@ line at our $T_{obs}$ value specified in the ``xintercept`` option.
 
 (ref:fig2-10) Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic. 
 
-```{r Figure2-10, fig.cap="(ref:fig2-10)",echo=F,fig.width=5,fig.height=5,cache=F}
+```{r Figure2-10, fig.cap="(ref:fig2-10)",echo=F,cache=F}
 Tobs <- -25.933
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
@@ -1052,8 +1058,10 @@ tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
 ```{r eval=F}
 Tobs <- -25.933
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
@@ -1134,18 +1142,22 @@ Figure \@ref(fig:Figure2-11) shows both cut-offs on the histogram and density cu
 
 (ref:fig2-11) Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test.
 
-```{r Figure2-11, fig.cap="(ref:fig2-11)",echo=F,fig.width=5,fig.height=5,cache=F}
+```{r Figure2-11, fig.cap="(ref:fig2-11)",echo=F,cache=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
 
 ```{r eval=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
@@ -1680,10 +1692,12 @@ be surprised if your results vary if you use different random number seeds.
 
 (ref:fig2-13) Permutation distribution of the $t$-statistic.
 
-```{r Figure2-13, fig.cap="(ref:fig2-13)",echo=F,fig.width=5,fig.height=5}
+```{r Figure2-13, fig.cap="(ref:fig2-13)",echo=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
@@ -1691,8 +1705,10 @@ tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
 
 ```{r eval=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
@@ -1722,7 +1738,7 @@ will be our focus for the two group problem and is what we get when using the ``
 
 (ref:fig2-14) Plots of $t$-distributions with 2, 8, and 20 degrees of freedom and a normal distribution (dashed line). Note how the $t$-distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the $t$-distribution *almost* matches a standard normal curve.
 
-```{r Figure2-14, echo=FALSE, fig.cap ="(ref:fig2-14)",fig.width=7,fig.height=4}
+```{r Figure2-14, echo=FALSE, fig.cap ="(ref:fig2-14)"}
 xa <- seq(from=-7,to=7,length.out=300)
 par(mfrow=c(1,1))
 plot(xa,dt(xa,df=2),type="l",xlab="t-values",ylab="Density",lwd=4,ylim=c(0,0.39),main="Plot of three different t-distributions and the normal curve", cex.main=1)
@@ -1766,7 +1782,7 @@ happened to be here, where the only difference in shape is near the peak of the 
 
 (ref:fig2-15) Plot of permutation and $t$-distribution with $df=28$. Note the close match in the two distributions, especially in the tails of the distributions where we are obtaining the p-values.
 
-```{r Figure2-15, fig.cap ="(ref:fig2-15)", echo=F,fig.height=4,fig.width=6}
+```{r Figure2-15, fig.cap ="(ref:fig2-15)", echo=F}
 plot(density(Tstar), main="Permutation and t(28) distributions",
      xlab="T=t-statistic", lwd=2,ylim=c(0,0.45))
 x <- seq(from=-4,to=4,length.out=100)
@@ -1904,10 +1920,12 @@ pdata(abs(Tstar), abs(Tobs), lower.tail = F)
 
 (ref:fig2-16) Permutation distribution of the $t$-statistic for $n=1,636$ overtake data set.
 
-```{r Figure2-16, fig.cap="(ref:fig2-16)",echo=F,fig.width=5,fig.height=5}
+```{r Figure2-16, fig.cap="(ref:fig2-16)",echo=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
@@ -2005,18 +2023,22 @@ pdata(abs(Tstar), abs(Tobs), lower.tail = F)[[1]]
 
 (ref:fig2-18) Histogram and density curve of permutation distribution of test statistic for Intermediate Statistics student GPAs.
 
-```{r Figure2-18, fig.cap="(ref:fig2-18)",echo=F,fig.width=5,fig.height=5,cache=F}
+```{r Figure2-18, fig.cap="(ref:fig2-18)",echo=F,cache=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
 
 ```{r eval=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = c(-1,1)*Tobs, col = "red", lwd = 2)
 ```
@@ -2125,7 +2147,7 @@ The second new R code needed is the `simulate` \index{\texttt{simulate()}} funct
 
 (ref:fig2-19) Pirate-plot of a simulated data set that assumes the same mean for both groups. The means in the two groups are very similar.
 
-```{r Figure2-19, fig.cap="(ref:fig2-19)",echo=F,fig.width=10,fig.height=5,cache=F}
+```{r Figure2-19, fig.cap="(ref:fig2-19)",echo=F,cache=F}
 set.seed(123456)
 ddsub <- ddsub %>% mutate(SimDistance = simulate(lm_commonmean)[[1]])
 
@@ -2169,7 +2191,7 @@ diff10[pval10 == min(pval10)] #Estimated difference for data set with smallest p
 
 (ref:fig2-20) Pirate-plot of a simulation study results. Panel (a) contains the *B* = 1,000 p-values and (b) contains the *B*=1,000 estimated differences in the means. Note that the estimated means and confidence intervals normally present in pirate-plots are suppressed here with `inf.f.o = 0, inf.b.o = 0, avg.line.o = 0` because these plots are being used to summarize simulation results instead of an original data set. 
 
-```{r Figure2-20, fig.cap="(ref:fig2-20)",echo=T,fig.width=10,fig.height=5,cache=T}
+```{r Figure2-20, fig.cap="(ref:fig2-20)",echo=T,cache=T}
 # Simulation study of generating 10 data sets and either using the first
 # or "best p-value" result:
 set.seed(1234)
@@ -2270,7 +2292,7 @@ lines(x = c(10,10), y = c(0.05, 1-.95^10), col = "grey", lwd = 2)
 
 (ref:fig2-22) Pirate-plot of a simulation study results of p-values with Bonferroni correction. 
 
-```{r Figure2-22, fig.cap="(ref:fig2-22)",echo=T,fig.width=10,fig.height=5.5,cache=T}
+```{r Figure2-22, fig.cap="(ref:fig2-22)",echo=T,cache=T}
 # Simulation study of generating 10 data sets and either using the first 
 # or "best p-value" result:
 set.seed(1234)
@@ -2490,18 +2512,22 @@ options(width=oldWidth)
 
 (ref:fig2-24) Histogram and density curve of bootstrap distributions of difference in sample mean ``Distances`` with vertical line for the observed difference in the means of -25.933.
 
-```{r Figure2-24, fig.cap="(ref:fig2-24)",echo=F,fig.width=5,fig.height=5,cache=F}
+```{r Figure2-24, fig.cap="(ref:fig2-24)",echo=F,cache=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
 
 ```{r eval=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = Tobs, col = "red", lwd = 2)
 ```
@@ -2564,10 +2590,12 @@ Figure \@ref(fig:Figure2-25) displays those same percentiles on the bootstrap di
 
 (ref:fig2-25) Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold, dashed vertical lines).
 
-```{r Figure2-25, fig.cap="(ref:fig2-25)",echo=F,fig.width=5,fig.height=5,cache=F}
+```{r Figure2-25, fig.cap="(ref:fig2-25)",echo=F,cache=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 2)
 
@@ -2575,8 +2603,10 @@ tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
 
 ```{r eval=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "skyblue", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 2)
 ```
@@ -2878,10 +2908,12 @@ this code:
 
 (ref:fig2-27) Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines). 
 
-```{r Figure2-27,fig.cap="(ref:fig2-27)",echo=F,fig.width=5,fig.height=5,cache=F}
+```{r Figure2-27,fig.cap="(ref:fig2-27)",echo=F,cache=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "grey", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "grey", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 2) + 
   geom_vline(xintercept = Tobs, col = "red", lwd = 2)
@@ -2889,8 +2921,10 @@ tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
 
 ```{r eval=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "grey", center = 0) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text") + 
+  geom_histogram(aes(y = ..ncount..), bins = 15, col = 1, fill = "grey", 
+                 center = 0) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
+           geom = "text", vjust=-0.75) + 
   geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
   geom_vline(xintercept = quantiles, col = "blue", lwd = 2, lty = 2) + 
   geom_vline(xintercept = Tobs, col = "red", lwd = 2)

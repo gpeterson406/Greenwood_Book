@@ -31,7 +31,9 @@ library(gridExtra)
 library(GGally)
 library(viridis)
 library(tidyverse)
-knitr::opts_chunk$set(cache = F,fig.height=3.5,fig.width=6,fig.pos='ht',
+knitr::opts_chunk$set(cache = F,fig.width = 10, fig.height = 6,
+                      out.width="75%",fig.retina = 2, fig.align = 'center',
+                      fig.pos='ht!',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
 ```
@@ -407,7 +409,7 @@ mtfires <- read_csv("climateR2.csv")
 # natural log transformation of area burned
 mtfires <- mtfires %>% mutate(loghectares = log(hectares)) 
 
-#Cuts the original hectares data so only log-scale version in tibble
+# Cuts the original hectares data so only log-scale version in tibble
 mtfiresR <- mtfires %>% 
   select(-hectares) 
 cor(mtfiresR)
@@ -548,7 +550,7 @@ some physiological differences to consider.
 
 \indent This set of material is where the ``ggplot2`` methods will really pay off for us, providing you with an extensive set of tools for visualizing relationships between two quantitative variables and incorporating information from other variables. There are three ways to add a categorical variable to a scatterplot that we will use. The first is to modify the colors, the second is modify the plotting symbol, and the third is to split the graph into panels or facets based on the groups of the variable. We usually combine the first two options to give the reader the best chance of detecting the group differences using both colors and symbols by groups; we will save faceting for a little later in the material. In these modifications, we can modify the colors and symbols based on the levels of categorical variable (say ``groupfactor``) by adding ``color = groupfactor, shape = groupfactor`` to the `aes()` definition in the initial ``ggplot`` part of the function or within an aesthetic inside ``geom_point``. Defining the colors and shape within the ``geom_point`` only is useful if you want to change colors or symbols for the points in a way that might differ from the colors and groupings you use for other layers in the plot. The addition of grouping information in the initial ``ggplot`` aesthetic is called a "global" aesthetic and will apply to all the following geom's. Defining the colors or symbols within ``geom_point`` is called a "local" aesthetic and only applies to that layer of the plot. To enhance visibility of the points in the scatterplot, we often engage different color palettes, using a version^[The ``end = 0.9`` is used to avoid the lightest yellow color in the gradient that is often hard to see.] of the ``viridis`` colors with  ``scale_color_viridis_d(end = 0.9)``. Using these ggplot additions, Figure \@ref(fig:Figure6-7) displays the 
 *Height* and *Hematocrit* relationship with information on the sex of the 
-athletes where *sex* was coded 0 for males and 1 for females, changing both the symbol and color for the groups - with a legend to help to understand the plot. \index{\texttt{geom\_point()}}
+athletes where *sex* was coded 0 for males and 1 for females, changing both the symbol and color for the groups -- with a legend to help to understand the plot. \index{\texttt{geom\_point()}}
 
 (ref:fig6-7) Scatterplot of athlete's height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
 
@@ -853,7 +855,7 @@ Figure \@ref(fig:Figure6-11) is positive,
 moderately strong with some curvature and increasing variability as the
 diameter increases. There do not appear to be groups in the data set but since
 this contains four different types of trees, we would want to revisit this plot
-by type of tree. To assist in the linearity assessment, we also add the ``geom_smooth`` to the plot with an option of ``method = "lm"``, which provides a straight line to best describe the relationship (more on that line in the coming sections and chapters). The bands around the line are based on the 95% confidence intervals we can generate for any x-value and relate to pinning down the true mean value of the y-variable at that value of the x-variable - but only apply if the linear relationship is a good description of the relationship between the variables (which it is not here!). \index{\texttt{geom\_smooth()}} 
+by type of tree. To assist in the linearity assessment, we also add the ``geom_smooth`` to the plot with an option of ``method = "lm"``, which provides a straight line to best describe the relationship (more on that line in the coming sections and chapters). The bands around the line are based on the 95% confidence intervals we can generate for any x-value and relate to pinning down the true mean value of the y-variable at that value of the x-variable -- but only apply if the linear relationship is a good description of the relationship between the variables (which it is not here!). \index{\texttt{geom\_smooth()}} 
 
 (ref:fig6-11) Scatterplot of tree heights (m) vs tree diameters (cm) with estimated straight line relationship (blue line) and 95% confidence interval (grey band).
 
@@ -1373,7 +1375,7 @@ equation, $\widehat{\text{log(Ha)}} = -69.78 + 1.39\bullet \text{Temp}$,
 we get
 
 ```{r echo=F}
-#Equation for log-hectares with degrees canceled
+# Equation for log-hectares with degrees canceled
 cancelDegrees = function(){
   outputFormat = opts_knit$get("rmarkdown.pandoc.to")
   if(outputFormat == 'latex') 
@@ -1732,7 +1734,7 @@ id2[17] <- 1;
 
 
 m1 <- lm(BAC~Beers,data=BBfake3)
-#summary(m1)
+# summary(m1)
 plot(BAC~Beers,data=BBfake3,col=id2,pch=id1,main="Added (11,0.01), R-sq=0.24")
 abline(a=m1o$coef[1],b=m1o$coef[2],col="blue",lty=2,lwd=2)
 abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
@@ -1742,7 +1744,7 @@ plot(m1,which=5,add.smooth=F,col=id2,pch=id1,main="Added (11,0.1)")
 BBfake4 <- as.data.frame(BB)
 BBfake4 <- rbind(BBfake4,c(11,0.19))
 m1 <- lm(BAC~Beers,data=BBfake4)
-#summary(m1)
+# summary(m1)
 plot(BAC~Beers,data=BBfake4,col=id2,pch=id1,main="Added (11,0.19), R-sq=0.86")
 abline(a=m1o$coef[1],b=m1o$coef[2],col="blue",lty=2,lwd=2)
 abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
@@ -1752,7 +1754,7 @@ plot(m1,which=5,add.smooth=F,col=id2,pch=id1,main="Added (11,0.19)")
 BBfake5 <- as.data.frame(BB)
 BBfake5 <- rbind(BBfake5,c(5,0.19))
 m1 <- lm(BAC~Beers,data=BBfake5)
-#summary(m1)
+# summary(m1)
 plot(BAC~Beers,data=BBfake5,col=id2,pch=id1,main="Added (5,0.19), R-sq=0.57")
 abline(a=m1o$coef[1],b=m1o$coef[2],col="blue",lty=2,lwd=2)
 abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
@@ -1761,7 +1763,7 @@ plot(m1,which=5,add.smooth=F,col=id2,pch=id1,main="Added (5,0.19)")
 BBfake6 <- as.data.frame(BB)
 BBfake6 <- rbind(BBfake6,c(5,0.01))
 m1 <- lm(BAC~Beers,data=BBfake6)
-#summary(m1)
+# summary(m1)
 plot(BAC~Beers,data=BBfake6,col=id2,pch=id1,main="Added (5,0.01), R-sq=0.69")
 abline(a=m1o$coef[1],b=m1o$coef[2],col="blue",lty=2,lwd=2)
 abline(a=m1$coef[1],b=m1$coef[2],col="green",lwd=2)
@@ -2088,7 +2090,7 @@ waiting time based on duration of prior eruption.
 ```{r Figure6-24,fig.cap="(ref:fig6-24)",fig.height=4,fig.width=7}
 data(geyser, package = "MASS")
 geyser <- as_tibble(geyser)
-#Aligns the duration with time to next eruption
+# Aligns the duration with time to next eruption
 G2 <- tibble(Waiting=geyser$waiting[-1], Duration=geyser$duration[-299])
 
 G2 %>% ggplot(mapping = aes(x = Duration, y = Waiting)) +

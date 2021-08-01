@@ -33,7 +33,9 @@ library(gridExtra)
 library(GGally)
 library(tidyverse)
 
-knitr::opts_chunk$set(cache = F,fig.height=3.5,fig.width=6,fig.pos='ht',
+knitr::opts_chunk$set(cache = F,fig.width = 10, fig.height = 6,
+                      out.width="75%",fig.retina = 2, fig.align = 'center',
+                      fig.pos='ht!',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
 ```
@@ -176,7 +178,8 @@ snotel_s <- read_csv("snotel_s.csv")
 
 ```{r Figure8-1,fig.cap="(ref:fig8-1)",fig.height=5,fig.width=7}
 library(GGally)
-snotel_s %>% ggpairs(columns = c(4:6,3)) + #Reorder columns slightly and only plot quantitative variables using "columns = ..."
+# Reorder columns slightly and only plot quantitative variables using "columns = ..."
+snotel_s %>% ggpairs(columns = c(4:6,3)) + 
    theme_bw()
 ```
 
@@ -845,24 +848,53 @@ plot(allEffects(m6, residuals = T), main = "MLR model with n=23")
 ```{r}
 set.seed(307)
 snotel_final <- snotel_s %>% slice(-c(9,22))
-snotel_final <- snotel_final %>% mutate(SimulatedSnow = simulate(m6)[[1]],
-                                        SimulatedSnow2 = simulate(m6)[[1]]) #Creates first and second set of simulated responses
+snotel_final <- snotel_final %>% 
+  #Creates first and second set of simulated responses
+  mutate(SimulatedSnow = simulate(m6)[[1]],
+         SimulatedSnow2 = simulate(m6)[[1]]) 
 ```
 
 (ref:fig8-11) Plot of the original responses versus the three predictors ($n$=23 data set) in the top row and two sets of simulated responses versus the predictors in the bottom two rows.
 
 ```{r Figure8-11,fig.cap="(ref:fig8-11)",fig.height=10,fig.width=10}
-r1 <- snotel_final %>% ggplot(aes(x = Elevation, y = Snow.Depth)) + geom_point() + theme_bw() + labs(title = "Real Responses")
-r2 <- snotel_final %>% ggplot(aes(x = Max.Temp, y = Snow.Depth)) + geom_point() + theme_bw() + labs(title = "Real Responses")
-r3 <- snotel_final %>% ggplot(aes(x = Min.Temp, y = Snow.Depth)) + geom_point() + theme_bw() + labs(title = "Real Responses")
+r1 <- snotel_final %>% ggplot(aes(x = Elevation, y = Snow.Depth)) + 
+  geom_point() + 
+  theme_bw() + 
+  labs(title = "Real Responses")
+r2 <- snotel_final %>% ggplot(aes(x = Max.Temp, y = Snow.Depth)) + 
+  geom_point() + 
+  theme_bw() + 
+  labs(title = "Real Responses")
+r3 <- snotel_final %>% ggplot(aes(x = Min.Temp, y = Snow.Depth)) + 
+  geom_point() + 
+  theme_bw() + 
+  labs(title = "Real Responses")
 
-s1 <- snotel_final %>% ggplot(aes(x = Elevation, y = SimulatedSnow)) + geom_point(col= "forestgreen") + theme_bw() + labs(title = "First Simulated Responses")
-s2 <- snotel_final %>% ggplot(aes(x = Max.Temp, y = SimulatedSnow)) + geom_point(col= "forestgreen") + theme_bw() + labs(title = "First Simulated Responses")
-s3 <- snotel_final %>% ggplot(aes(x = Min.Temp, y = SimulatedSnow)) + geom_point(col= "forestgreen") + theme_bw() + labs(title = "First Simulated Responses")
+s1 <- snotel_final %>% ggplot(aes(x = Elevation, y = SimulatedSnow)) + 
+  geom_point(col= "forestgreen") + 
+  theme_bw() + 
+  labs(title = "First Simulated Responses")
+s2 <- snotel_final %>% ggplot(aes(x = Max.Temp, y = SimulatedSnow)) + 
+  geom_point(col= "forestgreen") + 
+  theme_bw() + 
+  labs(title = "First Simulated Responses")
+s3 <- snotel_final %>% ggplot(aes(x = Min.Temp, y = SimulatedSnow)) + 
+  geom_point(col= "forestgreen") + 
+  theme_bw() + 
+  labs(title = "First Simulated Responses")
 
-s12 <- snotel_final %>% ggplot(aes(x = Elevation, y = SimulatedSnow2)) + geom_point(col = "skyblue") + theme_bw() + labs(title = "Second Simulated Responses")
-s22 <- snotel_final %>% ggplot(aes(x = Max.Temp, y = SimulatedSnow2)) + geom_point(col = "skyblue") + theme_bw() + labs(title = "Second Simulated Responses")
-s32 <- snotel_final %>% ggplot(aes(x = Min.Temp, y = SimulatedSnow2)) + geom_point(col = "skyblue") + theme_bw() + labs(title = "Second Simulated Responses")
+s12 <- snotel_final %>% ggplot(aes(x = Elevation, y = SimulatedSnow2)) + 
+  geom_point(col = "skyblue") + 
+  theme_bw() + 
+  labs(title = "Second Simulated Responses")
+s22 <- snotel_final %>% ggplot(aes(x = Max.Temp, y = SimulatedSnow2)) + 
+  geom_point(col = "skyblue") + 
+  theme_bw() + 
+  labs(title = "Second Simulated Responses")
+s32 <- snotel_final %>% ggplot(aes(x = Min.Temp, y = SimulatedSnow2)) + 
+  geom_point(col = "skyblue") + 
+  theme_bw() + 
+  labs(title = "Second Simulated Responses")
 
 grid.arrange(r1, r2, r3, s1, s2, s3, s12, s22, s32, ncol = 3)
 ```
@@ -948,7 +980,7 @@ a line that connects the dots. In the ``geom_point``, the ``size`` option is use
 (ref:fig8-12) Term-plot for Elevation "by-hand", holding temperature variables constant at their means. 
 
 ```{r Figure8-12,fig.cap="(ref:fig8-12)",echo=F}
-#Making own effect plot:
+# Making own effect plot:
 modelres2 <- tibble(elevs = c(5000, 6000, 8000), snowdepths = c(-6.19, 20.71, 74.51))
 modelres2 %>% ggplot(mapping = aes(x = elevs, y = snowdepths)) +
                   geom_point(size = 3) +
@@ -957,7 +989,7 @@ modelres2 %>% ggplot(mapping = aes(x = elevs, y = snowdepths)) +
 ```
 
 ```{r eval=F}
-#Making own effect plot:
+# Making own effect plot:
 modelres2 <- tibble(elevs = c(5000, 6000, 8000), snowdepths = c(-6.19, 20.71, 74.51))
 modelres2 %>% ggplot(mapping = aes(x = elevs, y = snowdepths)) +
                   geom_point(lwd = 2) +
@@ -1051,7 +1083,8 @@ question(s) and, to trust its results, we hope it matches the data fairly well.
 
 ```{r echo=F}
 n<-100; set.seed(9754)
-x1<-runif(n=100,0,100); x2<-runif(n=100,0,100); x3 <- (runif(n=100,0,100) + x1); x3 <- 100*(x3-min(x3))/(max(x3) - min(x3))
+x1<-runif(n=100,0,100); x2<-runif(n=100,0,100); 
+x3 <- (runif(n=100,0,100) + x1); x3 <- 100*(x3-min(x3))/(max(x3) - min(x3))
 
 y1<-3+0.5*x1+0.005*(x2-50)^2-.4*x3+rnorm(n=100,0,2)
 
@@ -1778,7 +1811,7 @@ least representative of the students (or some types of students) at this
 university. They^[The variables were renamed to better interface with R code and our book formatting using the ``rename`` function.] provided information on the *SAT Verbal* (``satv``)
 and *Math* (``satm``) percentiles (these are not the scores but the ranking
 percentile that each score translated to in a particular year),
-*High School GPA* (``hsgpa``), *First Year* of college *GPA* (``fygpa``), *Gender* (``gender`` of the students coded 1 and 2 with possibly 1 for males and 2 for females -- the documentation was also unclear this). Should ``gender`` even be displayed in a plot with correlations since it is a categorical variable?^[The answer is no - it should be converted to a factor variable prior to plotting so it can be displayed correctly by ``ggpairs``, but was intentionally left this way so you could see what happens when numerically coded categorical variables are not carefully handled in R.] Our interests here are in whether the two SAT percentiles are (together?)
+*High School GPA* (``hsgpa``), *First Year* of college *GPA* (``fygpa``), *Gender* (``gender`` of the students coded 1 and 2 with possibly 1 for males and 2 for females -- the documentation was also unclear this). Should ``gender`` even be displayed in a plot with correlations since it is a categorical variable?^[The answer is no -- it should be converted to a factor variable prior to plotting so it can be displayed correctly by ``ggpairs``, but was intentionally left this way so you could see what happens when numerically coded categorical variables are not carefully handled in R.] Our interests here are in whether the two SAT percentiles are (together?)
 related to the first year college GPA, describing the size of their impacts
 and assessing the predictive potential of SAT-based measures for first year in
 college GPA. There are certainly other possible research questions that can be
@@ -2101,7 +2134,7 @@ their means. \index{effects plot} \index{prediction interval}
 (ref:fig8-21) Term-plots for the $\text{fygpa}\sim\text{satv} + \text{satm}$ model with 95% confidence intervals (dark, dashed lines) and 95% PIs (light grey, dotted lines). 
 
 ```{r Figure8-21,fig.cap="(ref:fig8-21)",fig.height=5,fig.width=10}
-#Remake effects plots with added 95% PIs
+# Remake effects plots with added 95% PIs
 dv1 <- tibble(satv = seq(from = 24, to = 76, length.out = 50), satm = rep(54.4, 50))
 
 mv1 <- as_tibble(predict(gpa1, newdata = dv1, interval = "confidence"))
@@ -2109,13 +2142,19 @@ pv1 <- as_tibble(predict(gpa1, newdata = dv1, interval = "prediction"))
 
 mres_GPA_v <- bind_cols(dv1, mv1, pv1 %>% select(-fit))
 
-#Rename CI and PI limits to have more explicit column names:
-mres_GPA_v <- mres_GPA_v %>% rename(lwr_CI = lwr...4, upr_CI = upr...5, lwr_PI = lwr...6, upr_PI = upr...7)
+# Rename CI and PI limits to have more explicit column names:
+mres_GPA_v <- mres_GPA_v %>% rename(lwr_CI = lwr...4, upr_CI = upr...5, 
+                                    lwr_PI = lwr...6, upr_PI = upr...7)
 
-v1 <- mres_GPA_v %>% ggplot() + geom_line(aes(x = satv, y=fit), lwd = 1) +
-              geom_ribbon(aes(x = satv, ymin = lwr_CI, ymax = upr_CI), alpha = .4, fill = "beige", color = "darkred", lty = 2, lwd = 1) +
-              geom_ribbon(aes(x = satv, ymin = lwr_PI, ymax = upr_PI), alpha = .1, fill = "gray80", color = "grey", lty = 3, lwd = 1.5) + 
-          labs(y = "GPA", x = "satv Percentile", title = "satv Effect plot with 95% CI and PI") + theme_bw()
+v1 <- mres_GPA_v %>% ggplot() + 
+  geom_line(aes(x = satv, y=fit), lwd = 1) +
+  geom_ribbon(aes(x = satv, ymin = lwr_CI, ymax = upr_CI), alpha = .4, 
+              fill = "beige", color = "darkred", lty = 2, lwd = 1) +
+  geom_ribbon(aes(x = satv, ymin = lwr_PI, ymax = upr_PI), alpha = .1, 
+              fill = "gray80", color = "grey", lty = 3, lwd = 1.5) + 
+  labs(y = "GPA", x = "satv Percentile", 
+       title = "satv Effect plot with 95% CI and PI") +
+  theme_bw()
 
 dm1 <- tibble(satv = rep(48.93, 50), satm = seq(from = 29, to = 77, length.out = 50))
 
@@ -2125,12 +2164,18 @@ pm1 <- as_tibble(predict(gpa1, newdata = dm1, interval = "prediction"))
 mres_GPA_m <- bind_cols(dm1, mm1, pm1 %>% select(-fit))
 
 #Rename CI and PI limits to have more explicit column names:
-mres_GPA_m <- mres_GPA_m %>% rename(lwr_CI = lwr...4, upr_CI = upr...5, lwr_PI = lwr...6, upr_PI = upr...7)
+mres_GPA_m <- mres_GPA_m %>% rename(lwr_CI = lwr...4, upr_CI = upr...5, 
+                                    lwr_PI = lwr...6, upr_PI = upr...7)
 
-m1 <- mres_GPA_m %>% ggplot() + geom_line(aes(x = satm, y=fit), lwd = 1) +
-              geom_ribbon(aes(x = satm, ymin = lwr_CI, ymax = upr_CI), alpha = .4, fill = "beige", color = "darkred", lty = 2, lwd = 1) +
-              geom_ribbon(aes(x = satm, ymin = lwr_PI, ymax = upr_PI), alpha = .1, fill = "gray80", color = "grey", lty = 3, lwd = 1.5) + 
-          labs(y = "GPA", x = "satm Percentile", title = "satm Effect plot with 95% CI and PI") + theme_bw()
+m1 <- mres_GPA_m %>% ggplot() + 
+  geom_line(aes(x = satm, y=fit), lwd = 1) +
+  geom_ribbon(aes(x = satm, ymin = lwr_CI, ymax = upr_CI), alpha = .4, 
+              fill = "beige", color = "darkred", lty = 2, lwd = 1) +
+  geom_ribbon(aes(x = satm, ymin = lwr_PI, ymax = upr_PI), alpha = .1, 
+              fill = "gray80", color = "grey", lty = 3, lwd = 1.5) + 
+  labs(y = "GPA", x = "satm Percentile", 
+       title = "satm Effect plot with 95% CI and PI") + 
+  theme_bw()
 
 grid.arrange(v1, m1, ncol=2)
 ```
@@ -2190,7 +2235,8 @@ subset the data set and do two analyses, but that approach will not allow us
 to assess whether things are "really" different between the two groups. 
 
 ```{r eval=F}
-satgpa <- satgpa %>% mutate(GENDER = factor(gender)) #Make 1,2 coded gender into factor GENDER
+# Make 1,2 coded gender into factor GENDER
+satgpa <- satgpa %>% mutate(GENDER = factor(gender)) 
 # Make category names clear but note that level names might be wrong
 levels(satgpa$GENDER) <- c("MALE", "FEMALE") 
 
@@ -2229,7 +2275,8 @@ and 2s.
 \index{\texttt{levels()}}
 
 ```{r echo = F}
-satgpa <- satgpa %>% mutate(GENDER = factor(gender)) #Make 1,2 coded gender into factor GENDER
+# Make 1,2 coded gender into factor GENDER
+satgpa <- satgpa %>% mutate(GENDER = factor(gender)) 
 # Make category names clear but note that level names might be wrong
 levels(satgpa$GENDER) <- c("MALE", "FEMALE") 
 ```
@@ -2489,10 +2536,10 @@ Headache <- Headache %>% mutate(treatment = factor(treatment),
                                 treatment = fct_relevel(treatment, "Control"))
 # Make treatment a factor and Control the baseline category
 Headache %>% ggplot(mapping = aes(x = du1, y = du2, color = treatment, shape = treatment)) +
-                            geom_smooth(method = "lm", se = F) + 
-                            geom_point(size = 2.5) + theme_bw() +
-                            scale_colour_viridis_d(end = 0.85, option = "inferno") + 
-                            labs(title = "Scatterplot of Maximum DB tolerance before & after treatment (by treatment)")
+  geom_smooth(method = "lm", se = F) + 
+  geom_point(size = 2.5) + theme_bw() +
+  scale_colour_viridis_d(end = 0.85, option = "inferno") + 
+  labs(title = "Scatterplot of Maximum DB tolerance before & after treatment (by treatment)")
 ```
 
 
@@ -3190,12 +3237,14 @@ can't see all the groups. In these situations, it can be useful to make the term
 (ref:fig8-39) Term-plot for decibel tolerance interaction model (version 2). This plot is not printed in color because it is impossible to distinguish the four groups whether in color or black and white, although the ``lty = c(1:4)`` that provides four different line types does help a bit.
 
 ```{r Figure8-39,fig.cap="(ref:fig8-39)",echo=F}
-plot(allEffects(head2), multiline = T, ci.style = "bands", grid = T, lty = c(1:4), lwd = 2)
+plot(allEffects(head2), multiline = T, ci.style = "bands", grid = T, 
+     lty = c(1:4), lwd = 2)
 ```
 
 ```{r eval=F}
 plot(allEffects(head2, residuals = T), grid = T) #version 1
-plot(allEffects(head2), multiline = T, ci.style = "bands", grid = T, lty = c(1:4), lwd = 2) #v 2
+plot(allEffects(head2), multiline = T, ci.style = "bands", grid = T, 
+     lty = c(1:4), lwd = 2) #v 2
 ```
 
 \indent In situations with more than 2 levels, the $t$-tests for the interaction or
@@ -3252,7 +3301,7 @@ the assumption that we would proceed through the model, dropping terms if the
 p-values are large ("not significant" in the diagram) to arrive at a final
 model. \index{model!nested}
 
-(ref:fig8-40) Diagram of models to consider in an interaction model. "Sig." means a small p-value for that term and "not sig." means a large one - with apologies for using the "s"-word here.
+(ref:fig8-40) Diagram of models to consider in an interaction model. "Sig." means a small p-value for that term and "not sig." means a large one -- with apologies for using the "s"-word here.
 
 ```{r Figure8-40,fig.cap="(ref:fig8-40)",echo=F,warning=F,message=F,out.width="90%",fig.align="center"}
 knitr::include_graphics("chapter8_files/nestedModelTree_medium.png")
@@ -3488,7 +3537,7 @@ Note that it is a different measure of
 *degrees of freedom* than used in ANOVA $F$-tests. The main things to understand
 about the formula for the AIC is that as $m$ increases, the AIC will go up and
 that as the fit improves, the *likelihood* will increase (so -2*log-likelihood* will get smaller)^[More details on these components of the methods will be
-left for more advanced material - we will focus on an introduction to using the AIC measure here.]. 
+left for more advanced material -- we will focus on an introduction to using the AIC measure here.]. 
 
 \indent There are some facets of this discussion to keep in mind when comparing
 models. More complicated models always fit better (we saw this for the 
@@ -4126,7 +4175,7 @@ in ``DATASETNAME``.
     
     * Requires the ``car`` package. 
     
-    * Provides VIFs for an MLR model. Only use in additive models - not meaningful for models with interactions present.
+    * Provides VIFs for an MLR model. Only use in additive models -- not meaningful for models with interactions present.
     \index{\texttt{vif()}|textbf}    
     
 * **predict(`r colFmt("MODELNAME","red")`, se.fit = T)**

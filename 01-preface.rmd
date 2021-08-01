@@ -704,7 +704,7 @@ Figure \@ref(fig:Figure1-5).
 
 ```{r Figure1-5, fig.cap='(ref:fig1-5)',echo=F, }
 old.par <- par(mai=c(0.5,0.5,0.5,0.5))
-hist(treadmill$RunTime,ylim=c(0,12))
+hist(treadmill$RunTime, ylim = c(0,12))
 ```
 
 (ref:fig1-6) RStudio while in the process of copying the histogram.
@@ -736,7 +736,7 @@ into each bar. Specifically, we can turn the ``labels`` option "on" by making it
 (ref:fig1-7) Histogram of Run Times with counts in bars labeled.
 
 ```{r Figure1-7, fig.cap="(ref:fig1-7)",echo=F}
-hist(treadmill$RunTime, labels=T,ylim=c(0,12))
+hist(treadmill$RunTime, labels = T, ylim = c(0,12))
 ```
 
 
@@ -789,7 +789,7 @@ but worth noting.
 (ref:fig1-8) Boxplot of 1.5 mile Run Times.
 
 ```{r Figure1-8, fig.cap="(ref:fig1-8)",echo=F}
-old.par <- par(mai=c(0.5,0.5,0.5,0.5))
+old.par <- par(mai = c(0.5,0.5,0.5,0.5))
 boxplot(treadmill$RunTime)
 ```
 
@@ -808,8 +808,9 @@ be assigned into the options ``ylab`` (for y-axis) or ``main``
 (ref:fig1-9) Boxplot of Run Times with improved labels.
 
 ```{r Figure1-9, fig.cap="(ref:fig1-9)",echo=F}
-old.par <- par(mai=c(0.5,1,0.75,0.5))
-boxplot(treadmill$RunTime, ylab="1.5 Mile Run Time (minutes)",cex.main=0.75,
+old.par <- par(mai = c(0.5,1,0.75,0.5))
+boxplot(treadmill$RunTime, ylab = "1.5 Mile Run Time (minutes)",
+        cex.main = 0.75,
         main="Boxplot of the Run Times of n=31 participants")
 ```
 
@@ -827,8 +828,6 @@ true if the reader can understand what is being displayed. It is also important
 to think about the quality of the information that is being displayed, 
 regardless of how pretty the graphic might be. So maybe it is better to say 
 "a picture can be worth a thousand words" if it is well-labeled?
-
-\newpage
 
 ## R Markdown {#section1-4}
 
@@ -900,7 +899,7 @@ reproducibility and documentation of work that this way of working provides.
 
 The previous plots were made using what is called "base R" graphics. It is 
 possible to make versions of all the graphics we need in this material using 
-single function calls like ``boxplot`` - and there are some places we will 
+single function calls like ``boxplot`` -- and there are some places we will 
 utilize these simple versions because they get us exactly what we want to see. 
 But to make more complex displays and have complete control of the way the 
 graphs look, we will utilize the `ggplot2` package [@R-ggplot2] which was 
@@ -941,6 +940,8 @@ ggplot(data = treadmill, mapping = aes(x = RunTime)) +
   geom_histogram()
 ```
 
+\newpage
+
 The warning message reflects a challenge in making histograms that involves how 
 many bins to use. In `geom_histogram`, it always uses 30 bins and expects you to 
 make your own choice, compared to `hist` that used a different method to try to 
@@ -963,6 +964,8 @@ ggplot(data = treadmill, mapping = aes(x = RunTime)) +
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
   geom_histogram(bins = 8)
 ```
+
+\newpage
 
 \index The following chapters will explore further modifications for these 
 plots, but there are a couple of additions to highlight. The first is that we 
@@ -1010,6 +1013,8 @@ ggplot(data = treadmill, mapping = aes(x = RunTime)) +
   geom_rug(color = "skyblue") + 
   theme_light()
 ```
+
+\newpage
 
 ## Exiting RStudio {#section1-6}
 

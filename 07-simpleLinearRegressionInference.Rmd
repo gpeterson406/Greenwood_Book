@@ -27,8 +27,10 @@ library(ggplot2)
 library(GGally)
 library(gridExtra)
 library(tidyverse)
-knitr::opts_chunk$set(cache = F,fig.height=3.5,fig.width=6,fig.pos='ht',warning=F,
-                      message=F)
+knitr::opts_chunk$set(cache = F,fig.width = 10, fig.height = 6,
+                      out.width="75%",fig.retina = 2, fig.align = 'center',
+                      fig.pos='ht!',
+                      message=F,warning=F)
 options(show.signif.stars = FALSE)
 ```
 
@@ -378,7 +380,7 @@ summary(m1)
 
 
 ```{r}
-qt(0.975, df = 14) # t* multiplier for 95% CI
+qt(0.975, df = 14) #t* multiplier for 95% CI
 0.017964 + c(-1,1)*qt(0.975, df = 14)*0.002402
 qt(0.975, df = 14)*0.002402
 ```
@@ -483,7 +485,7 @@ data(ais)
 library(tibble)
 ais <- as_tibble(ais)
 aisR <- ais %>% slice(-56, -166) #Removes observations in rows 56 and 166
-m2 <- lm(Hc ~ Bfat, data = aisR %>% filter(Sex == 1)) # Results for Females 
+m2 <- lm(Hc ~ Bfat, data = aisR %>% filter(Sex == 1)) #Results for Females 
 
 summary(m2)
 confint(m2)
@@ -1401,15 +1403,21 @@ the transformations.
 ```{r Figure7-17,fig.cap="(ref:fig7-17)",echo=F,fig.height=5,fig.width=10}
 library(carData)
 data(UN)
-UN <- as_tibble(carData::UN) %>% drop_na(infantMortality, ppgdp) #Needed to find the correct UN data set from car and remove any rows missing on variables of interest
+# Needed to find the correct UN data set from car and remove any rows 
+# missing on variables of interest
+UN <- as_tibble(carData::UN) %>% drop_na(infantMortality, ppgdp) 
 par(mfrow=c(2,2))
-plot(infantMortality~ppgdp,data=UN,pch=16,col="coral",xlab="GDP",ylab="Infant deaths/1000 births",main="(a) Infant Mortality vs GDP")
+plot(infantMortality~ppgdp,data=UN,pch=16,col="coral",xlab="GDP",
+     ylab="Infant deaths/1000 births",main="(a) Infant Mortality vs GDP")
 
-plot(log(infantMortality)~ppgdp,data=UN,pch=16,col="coral",xlab="GDP",ylab="log-Infant deaths/1000 births",main="(b) log-Infant Mortality vs GDP")
+plot(log(infantMortality)~ppgdp,data=UN,pch=16,col="coral",xlab="GDP",
+     ylab="log-Infant deaths/1000 births",main="(b) log-Infant Mortality vs GDP")
 
-plot(infantMortality~log(ppgdp),data=UN,pch=16,col="coral",xlab="log-GDP",ylab="Infant deaths/1000 births",main="(c) Infant Mortality vs log-GDP")
+plot(infantMortality~log(ppgdp),data=UN,pch=16,col="coral",xlab="log-GDP",
+     ylab="Infant deaths/1000 births",main="(c) Infant Mortality vs log-GDP")
 
-plot(log(infantMortality)~log(ppgdp),data=UN,pch=16,col="coral",xlab="log-GDP",ylab="log-Infant deaths/1000 births",main="(d) log-Infant Mortality vs log-GDP")
+plot(log(infantMortality)~log(ppgdp),data=UN,pch=16,col="coral",xlab="log-GDP",
+     ylab="log-Infant deaths/1000 births",main="(d) log-Infant Mortality vs log-GDP")
 ```
 
 \indent Almost all nonlinear transformations assume that the variables are strictly
@@ -1995,7 +2003,7 @@ $\hat{\sigma}=0.02044$. So we just need the $t^*$ multiplier for 95%
 confidence and 14 *df*:
 
 ```{r}
-qt(0.975, df = 14) # t* multiplier for 95% CI or 95% PI
+qt(0.975, df = 14) #t* multiplier for 95% CI or 95% PI
 ```
 
 The 95% CI for the true mean at $\boldsymbol{x_{\nu}=8}$ is then:
@@ -2032,7 +2040,8 @@ to create. Here, ``length.out = 30`` provides 30 points evenly spaced between 0 
 the confidence and prediction intervals from 0 to 10 *Beers*. \index{\texttt{seq()}}
 
 ```{r}
-beerf <- seq(from = 0, to = 10, length.out = 30) #Creates vector of predictor values from 0 to 10
+# Creates vector of predictor values from 0 to 10
+beerf <- seq(from = 0, to = 10, length.out = 30) 
 head(beerf, 6)
 tail(beerf, 6)
 ```
@@ -2059,10 +2068,11 @@ To visualize these results as shown in Figure \@ref(fig:Figure7-23), we need to 
 (ref:fig7-23) Estimated SLR for BAC data with fitted values (solid line), 95% confidence (darker, dashed lines), and 95% prediction (lighter, dotted lines) intervals. 
 
 ```{r Figure7-23,fig.cap="(ref:fig7-23)",fig.height=5,fig.width=10,echo=F}
-#Patch the beerf vector, fits (just one version), and intervals from BBCI and BBPI together with bind_cols:
+# Patch the beerf vector, fits (just one version), and intervals from BBCI and 
+# BBPI together with bind_cols:
 modelresB <- bind_cols(beerf = tibble(beerf), BBCI, BBPI %>% select(-fit))
 
-#Rename CI and PI limits to have more explicit column names:
+# Rename CI and PI limits to have more explicit column names:
 modelresB <- modelresB %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, lwr_PI = lwr...5, upr_PI = upr...6)
 
 modelresB %>% ggplot() + geom_line(aes(x = beerf, y=fit), lwd = 1) +
@@ -2073,17 +2083,24 @@ modelresB %>% ggplot() + geom_line(aes(x = beerf, y=fit), lwd = 1) +
 ```
 
 ```{r eval=F}
-#Patch the beerf vector, fits (just one version), and intervals from BBCI and BBPI together with bind_cols:
+# Patch the beerf vector, fits (just one version), and intervals from BBCI and 
+# BBPI together with bind_cols:
 modelresB <- bind_cols(beerf = tibble(beerf), BBCI, BBPI %>% select(-fit))
 
-#Rename CI and PI limits to have more explicit column names:
-modelresB <- modelresB %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, lwr_PI = lwr...5, upr_PI = upr...6)
+# Rename CI and PI limits to have more explicit column names:
+modelresB <- modelresB %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, 
+                                  lwr_PI = lwr...5, upr_PI = upr...6)
 
-modelresB %>% ggplot() + geom_line(aes(x = beerf, y=fit), lwd = 1) +
-              geom_ribbon(aes(x = beerf, ymin = lwr_CI, ymax = upr_CI), alpha = .4, fill = "beige", color = "darkred", lty = 2, lwd = 1) +
-              geom_ribbon(aes(x = beerf, ymin = lwr_PI, ymax = upr_PI), alpha = .1, fill = "gray80", color = "grey", lty = 3, lwd = 1.5) +
-          geom_point(data = BB, mapping = aes(x = Beers, y = BAC)) + 
-          labs(y = "BAC", x = "Beers", title = "Scatterplot with estimated regression line and 95% CI and PI") + theme_bw()
+modelresB %>% ggplot() + 
+  geom_line(aes(x = beerf, y=fit), lwd = 1) +
+  geom_ribbon(aes(x = beerf, ymin = lwr_CI, ymax = upr_CI), alpha = .4, 
+              fill = "beige", color = "darkred", lty = 2, lwd = 1) +
+  geom_ribbon(aes(x = beerf, ymin = lwr_PI, ymax = upr_PI), alpha = .1, 
+              fill = "gray80", color = "grey", lty = 3, lwd = 1.5) +
+  geom_point(data = BB, mapping = aes(x = Beers, y = BAC)) + 
+  labs(y = "BAC", x = "Beers", 
+       title = "Scatterplot with estimated regression line and 95% CI and PI") + 
+  theme_bw()
 ```
 
 More importantly, note that the CI in Figure \@ref(fig:Figure7-23) clearly 
@@ -2116,17 +2133,24 @@ TCI <- as_tibble(predict(temp1, newdata = tibble(Year = Yearf), interval = "conf
 
 TPI <- as_tibble(predict(temp1, newdata = tibble(Year = Yearf), interval = "prediction"))
 
-#Patch the Yearf vector, fits (just one version), and intervals from TCI and TPI together with bind_cols:
+# Patch the Yearf vector, fits (just one version), and intervals from TCI and 
+# TPI together with bind_cols:
 modelresT <- bind_cols(Yearf = tibble(Yearf), TCI, TPI %>% select(-fit))
 
-#Rename CI and PI limits to have more explicit column names:
-modelresT <- modelresT %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, lwr_PI = lwr...5, upr_PI = upr...6)
+# Rename CI and PI limits to have more explicit column names:
+modelresT <- modelresT %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, 
+                                  lwr_PI = lwr...5, upr_PI = upr...6)
 
-modelresT %>% ggplot() + geom_line(aes(x = Yearf, y=fit), lwd = 1) +
-              geom_ribbon(aes(x = Yearf, ymin = lwr_CI, ymax = upr_CI), alpha = .4, fill = "beige", color = "darkred", lty = 2, lwd = 1) +
-              geom_ribbon(aes(x = Yearf, ymin = lwr_PI, ymax = upr_PI), alpha = .1, fill = "gray80", color = "grey", lty = 3, lwd = 1.5) +
-          geom_point(data = bozemantemps, mapping = aes(x = Year, y = meanmax)) + 
-          labs(y = "degrees F", x = "Year", title = "Scatterplot with estimated regression line and 95% CI and PI") + theme_bw()
+modelresT %>% ggplot() + 
+  geom_line(aes(x = Yearf, y=fit), lwd = 1) +
+  geom_ribbon(aes(x = Yearf, ymin = lwr_CI, ymax = upr_CI), alpha = .4, 
+              fill = "beige", color = "darkred", lty = 2, lwd = 1) +
+  geom_ribbon(aes(x = Yearf, ymin = lwr_PI, ymax = upr_PI), alpha = .1, 
+              fill = "gray80", color = "grey", lty = 3, lwd = 1.5) +
+  geom_point(data = bozemantemps, mapping = aes(x = Year, y = meanmax)) + 
+  labs(y = "degrees F", x = "Year", 
+       title = "Scatterplot with estimated regression line and 95% CI and PI") + 
+  theme_bw()
 ```
 
 \newpage

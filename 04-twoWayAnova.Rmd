@@ -20,7 +20,9 @@ library(readr)
 library(curl) #Eliminates a warning message but not completely required
 library(yarrr)
 library(tidyverse)
-knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht',
+knitr::opts_chunk$set(cache = F,fig.width = 10, fig.height = 6,
+                      out.width="75%",fig.retina = 2, fig.align = 'center',
+                      fig.pos='ht!',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
 ```
@@ -294,10 +296,10 @@ in what is called an ***interaction plot***.
 Interaction plots display the mean 
 responses (y-axis) versus levels of one predictor variable on the x-axis, 
 adding points and separate lines for each level of the other predictor variable. Because 
-we don't like any of the available functions in R, we wrote our own function. It is available two ways. The easiest, if it works, is to install and load the `catstats` R package [@R-catstats]. If you are working on a local RStudio installation, the first step involves installing the ``remotes`` [@R-remotes] R package and then loading it - this will allow you to install ``catstats`` from our github^[Github.com is a version control system used for software development and collaborative work, which we used to allow us to make changes to it and track the modifications. This book is also written using github to allow the same connection for writing and editing it, and one location where the digital version is hosted: https://greenwood-stat.github.io/GreenwoodBookHTML/.] repository (you can type "3" during the installation to avoid updating other packages when you do this step). 
+we don't like any of the available functions in R, we wrote our own function. It is available two ways. The easiest, if it works, is to install and load the `catstats` R package [@R-catstats]. If you are working on a local RStudio installation, the first step involves installing the ``remotes`` [@R-remotes] R package and then loading it -- this will allow you to install ``catstats`` from our github^[Github.com is a version control system used for software development and collaborative work, which we used to allow us to make changes to it and track the modifications. This book is also written using github to allow the same connection for writing and editing it, and one location where the digital version is hosted: https://greenwood-stat.github.io/GreenwoodBookHTML/.] repository (you can type "3" during the installation to avoid updating other packages when you do this step). 
 
 ```r
-#To install the catstats R package (just the first time!):
+# To install the catstats R package (just the first time!):
 library(remotes)
 remotes::install_github("greenwood-stat/catstats")
 ```
@@ -420,23 +422,23 @@ res1 <- residuals(lm1)
 
 par(mfrow=c(2,2))
 old.par <- par(mai=c(0.75,0.75,0.25,0.25))
-#Scenario 1: No effects
+# Scenario 1: No effects
 m1 <- lm(responses~1,data=pt)
 pt$r1 <- fitted(m1)+res1
 intplot(r1~brand*drops,ylim=c(0,3.2),data=pt,
         main="(a) Scenario 1: No effects",col=c(1,2),lwd=2,cex.main=1,cex.leg=0.75,xlim=c(0.8,3.8),
         x.leg=3.2,cex.lab=0.75)
-#Scenario 2: A effect only
+# Scenario 2: A effect only
 m2 <- lm(responses~brand,data=pt)
 pt$r2 <- fitted(m2)+res1
 intplot(r2~brand*drops,ylim=c(0,3.2),data=pt,main="(b) Scenario 2: A only",col=c(1,2),lwd=2,cex.main=1,cex.leg=0.75,xlim=c(0.8,3.8),
         x.leg=3.2,cex.lab=0.75)
-#Scenario 3: B effect only
+# Scenario 3: B effect only
 m3 <- lm(responses~drops,data=pt)
 pt$r3 <- fitted(m3)+res1
 intplot(r3~brand*drops,ylim=c(0,3.2),data=pt,main="(c) Scenario 3: B only",col=c(1,2),lwd=2,cex.main=1,cex.leg=0.75,xlim=c(0.8,3.8),
         x.leg=3.2,cex.lab=0.75)
-#Scenario 4: A and B additive
+# Scenario 4: A and B additive
 m4 <- lm(responses~brand+drops,data=pt)
 pt$r4 <- fitted(m4)+res1
 intplot(r4~brand*drops,ylim=c(0,3.2),data=pt,main="(d) Scenario 4: A and B additive",col=c(1,2),lwd=2,cex.main=1,cex.leg=0.75,xlim=c(0.8,3.8),
@@ -986,7 +988,7 @@ with categorical variables. If the levels of a categorical variable are entered
 numerically, R will treat them as quantitative variables and not split out the
 different levels of the categorical variable. To make sure that R treats
 categorical variables the correct way, we should use the ``factor``
-function on any variables^[This goes beyond our considerations with character variables that have text levels but are not declared as factors in the first chapters. Those often will be modeled correctly in linear models whether they are characters or factors - but numerical variables will be modeled in a way that you did not intend for these predictors that we will discuss in Chapters \@ref(chapter7) and \@ref(chapter8).] that are categorical in meaning but are coded numerically in the data set. The following code creates a new variable called ``dosef``
+function on any variables^[This goes beyond our considerations with character variables that have text levels but are not declared as factors in the first chapters. Those often will be modeled correctly in linear models whether they are characters or factors -- but numerical variables will be modeled in a way that you did not intend for these predictors that we will discuss in Chapters \@ref(chapter7) and \@ref(chapter8).] that are categorical in meaning but are coded numerically in the data set. The following code creates a new variable called ``dosef``
 using ``mutate`` and the ``factor`` function to help us obtain correct results from the linear 
 model.
 \index{\texttt{factor()}}
@@ -1769,7 +1771,7 @@ if (!require("tabplot", character.only = TRUE)) {
 library(tabplot)
 library(RColorBrewer)
 # Options (sometimes) needed to prevent errors on PC
-#options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
+# options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
 tableplot(dd[,-1], sort = Condition2, pals = list("BrBG"), sample = F, 
           colorNA_num = "pink", numMode = "MB-ML")
 ```

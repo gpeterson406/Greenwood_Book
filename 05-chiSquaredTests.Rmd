@@ -30,7 +30,9 @@ library(survey)
 library(car)
 library(tidyverse)
 
-knitr::opts_chunk$set(cache = F,fig.width = 5, fig.height = 3.5,fig.pos='ht',
+knitr::opts_chunk$set(cache = F,fig.width = 10, fig.height = 6,
+                      out.width="75%",fig.retina = 2, fig.align = 'center',
+                      fig.pos='ht!',
                       message=F,warning=F)
 options(show.signif.stars = FALSE)
 ```
@@ -113,11 +115,11 @@ library(vcd)
 data(Arthritis) #Double-blind clinical trial with treatment and control groups
 library(tibble)
 Arthritis <- as_tibble(Arthritis)
-#Homogeneity example
+# Homogeneity example
 library(tabplot)
 library(RColorBrewer)
 # Options needed to (sometimes) prevent errors on PC
-#options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
+# options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
 tableplot(Arthritis, select = c(Treatment, Improved, Sex, Age), pals = list("BrBG"), sample = F,
           colorNA_num = "orange", numMode = "MB-ML")
 ```
@@ -430,7 +432,7 @@ the null hypothesis for the *Arthritis* example, as displayed in Figure \@ref(fi
 (ref:fig5-4) Plot of one way that the Arthritis proportions could have been if the null hypothesis had been true.
 
 ```{r Figure5-4,fig.cap="(ref:fig5-4)",echo=F,fig.width=11,fig.height=6}
-ArthritisFAKE <- rbind(Arthritis,Arthritis) # Just to make the following plot!
+ArthritisFAKE <- rbind(Arthritis,Arthritis) #Just to make the following plot!
 ArthritisFAKE$Treat <- factor(c(rep("Placebo",84),rep("Treated",84))) #Just to make the following plot
 par(las=2)
 plot(Improved~Treat,data=ArthritisFAKE,main="Homogeneity Null Hypothesis True")
@@ -709,7 +711,7 @@ table.
 (ref:fig5-7) Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study. 
 
 ```{r Figure5-7,fig.cap="(ref:fig5-7)",echo=F,fig.width=11,fig.height=6}
-ArthritisFAKE <- rbind(Arthritis,Arthritis) # Just to make the following plot!
+ArthritisFAKE <- rbind(Arthritis,Arthritis) #Just to make the following plot!
 ArthritisFAKE$Treat <- factor(c(rep("Placebo",84),rep("Treated",84))) #Just to make the following plot
 par(las=2)
 plot(Improved~Treat,data=ArthritisFAKE,main="Homogeneity Null Hypothesis True")
@@ -1627,7 +1629,7 @@ variable. This creates two new variables called ``liar2`` and ``copier2``
 variables and make the plot is below which employs the ``levels`` function to assign the same label to two different levels from the original list. \index{\texttt{levels()}}
 
 ```{r}
-#Collapse the middle categories of both variables by making both have the same level name:
+# Collapse the middle categories of both variables by making both have the same level name:
 cheating <- cheating %>% mutate(liar2 = liar, 
                                 copier2 = copier)
 levels(cheating$liar2) <- c("None", "ExamorPaper", "ExamorPaper", "LieBoth")
@@ -2205,7 +2207,8 @@ csd <- read_csv("csd.csv")
 
 ```{r Figure5-27,fig.cap="(ref:fig5-27)",echo=F,fig.width=10,fig.height=5}
 library(tabplot)
-#Need to make it explicit that these are factor variables and reorder factor levels to be in "correct" order using fct_relevel:
+# Need to make it explicit that these are factor variables and reorder 
+# factor levels to be in "correct" order using fct_relevel:
 csd <- csd %>% mutate(careabout = factor(careabout), 
                       careabout = fct_relevel(careabout,"Not at all", "Not much", "Some", "A lot"),
                       Education = factor(Education),
@@ -2213,7 +2216,7 @@ csd <- csd %>% mutate(careabout = factor(careabout),
                       Household.Income = factor(Household.Income),
                       Household.Income = fct_relevel(Household.Income, levels(Household.Income)[c(1,4,5,6,2,3)])) 
 
-#Sorts plot by careabout responses
+# Sorts plot by careabout responses
 tableplot(csd, select = c(isare, careabout, thoughtabout, Gender,
                  Age, Household.Income, Education), sortCol = careabout,
           pals = list("BrBG")) 
@@ -2247,7 +2250,8 @@ csd <- read_csv("http://www.math.montana.edu/courses/s217/documents/csd.csv")
 
 ```{r eval=F}
 library(tabplot)
-#Need to make it explicit that these are factor variables and reorder factor levels to be in "correct" order using fct_relevel:
+# Need to make it explicit that these are factor variables and reorder 
+# factor levels to be in "correct" order using fct_relevel:
 csd <- csd %>% mutate(careabout = factor(careabout), 
                       careabout = fct_relevel(careabout,"Not at all", "Not much", "Some", "A lot"),
                       Education = factor(Education),
@@ -2255,7 +2259,7 @@ csd <- csd %>% mutate(careabout = factor(careabout),
                       Household.Income = factor(Household.Income),
                       Household.Income = fct_relevel(Household.Income, levels(Household.Income)[c(1,4,5,6,2,3)])) 
 
-#Sorts plot by careabout responses
+# Sorts plot by careabout responses
 tableplot(csd, select = c(isare, careabout, thoughtabout, Gender,
                  Age, Household.Income, Education), sortCol = careabout,
           pals = list("BrBG")) 

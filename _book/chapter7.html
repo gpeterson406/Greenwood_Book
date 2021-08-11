@@ -397,15 +397,15 @@ BAC model has a residual SE of 0.02 but had many fewer observations at each
 <em>Beer</em> value.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure7-1"></span>
-<img src="chapter7_files/image029small.png" alt="Sketch of assumed normal distributions for the responses centered at the regression line." width="100%" />
+<img src="chapter7_files/image029small.png" alt="Sketch of assumed normal distributions for the responses centered at the regression line." width="75%" />
 <p class="caption">
 Figure 7.1: Sketch of assumed normal distributions for the responses centered at the regression line.
 </p>
 </div>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="chapter7.html#cb594-1" aria-hidden="true" tabindex="-1"></a>BB <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/beersbac.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="chapter7.html#cb599-1" aria-hidden="true" tabindex="-1"></a>BB <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/beersbac.csv&quot;</span>)</span></code></pre></div>
 
-<div class="figure"><span id="fig:Figure7-2"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-2-1.png" alt="Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06)." width="576" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-2"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-2-1.png" alt="Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06)." width="75%" />
 <p class="caption">
 Figure 7.2: Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06).
 </p>
@@ -436,7 +436,7 @@ estimates.
 The next sections develop those inferential tools.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure7-3"></span>
-<img src="chapter7_files/image034.png" alt="Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the simulate function as was used in Chapter 2 were used to create this plot. " width="100%" />
+<img src="chapter7_files/image034.png" alt="Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the simulate function as was used in Chapter 2 were used to create this plot. " width="75%" />
 <p class="caption">
 Figure 7.3: Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the <code>simulate</code> function as was used in Chapter <a href="chapter2.html#chapter2">2</a> were used to create this plot. 
 </p>
@@ -457,7 +457,7 @@ to look up <span class="math inline">\(t^*\)</span> multiplier.
 
 We will find the <span class="math inline">\(\text{SE}_{b_0}\)</span> and <span class="math inline">\(\text{SE}_{b_1}\)</span>
 in the model summary. The degrees of freedom for the <span class="math inline">\(t\)</span>-distribution
-in simple linear regression are <span class="math inline">\(\mathbf{df=n-2}\)</span>.
+in simple linear regression are <span class="math inline">\(\mathbf{df = n-2}\)</span>.
 
 Putting this
 together, the confidence interval for the true y-intercept, <span class="math inline">\(\beta_0\)</span>, is
@@ -476,7 +476,7 @@ true slope. This sketch also informs an <strong><em>interpretation of the slope 
 confidence interval</em></strong>:</p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure7-4"></span>
-<img src="chapter7_files/image045_resized.png" alt="Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in \(x\)." width="50%" />
+<img src="chapter7_files/image045_resized.png" alt="Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in \(x\)." width="75%" />
 <p class="caption">
 Figure 7.4: Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in <span class="math inline">\(x\)</span>.
 </p>
@@ -498,7 +498,7 @@ of the response variable for a difference of 1 unit in the <span class="math inl
 the true mean of <strong><em>Y</em></strong> will be between <strong>LL</strong> and <strong>UL</strong>
 <strong>[<em>units of Y</em>]</strong>.</p>
 </blockquote>
-<p>This is really only interesting if the value of <span class="math inline">\(x=0\)</span> is interesting –
+<p>This is really only interesting if the value of <span class="math inline">\(x = 0\)</span> is interesting –
 we’ll see a method for generating CIs
 for the true mean at potentially more interesting values of <span class="math inline">\(x\)</span> in
 Section <a href="chapter7.html#section7-7">7.7</a>. To trust the results from these
@@ -507,7 +507,7 @@ confidence intervals, it is critical that any issues with the regression validit
 coefficient.
 
 To develop the hypotheses of interest in SLR, note the effect
-of having <span class="math inline">\(\beta_1=0\)</span> in the mean of the regression equation,
+of having <span class="math inline">\(\beta_1 = 0\)</span> in the mean of the regression equation,
 <span class="math inline">\(\mu_{y_i} = \beta_0 + \beta_1x_i = \beta_0 + 0x_i = \beta_0\)</span>.
 This is the “intercept-only” or “mean-only” model that suggests that
 the mean of <span class="math inline">\(y\)</span> does not vary with different values of <span class="math inline">\(x\)</span> as it is always
@@ -516,7 +516,7 @@ null hypothesis of no difference in the true means across the groups was true.
 Here, this is the same as saying that there is no linear relationship between <span class="math inline">\(x\)</span>
 and <span class="math inline">\(y\)</span>, or that <span class="math inline">\(x\)</span> is of no use in predicting <span class="math inline">\(y\)</span>, or that we make the same
 prediction for <span class="math inline">\(y\)</span> for every value of <span class="math inline">\(x\)</span>. Thus</p>
-<p><span class="math display">\[\boldsymbol{H_0: \beta_1=0}\]</span></p>
+<p><span class="math display">\[\boldsymbol{H_0: \beta_1 = 0}\]</span></p>
 <p>is a test for <strong>no linear relationship between</strong> <span class="math inline">\(\mathbf{x}\)</span> <strong>and</strong> <span class="math inline">\(\mathbf{y}\)</span>
 <strong>in the population</strong>. The alternative of <span class="math inline">\(\boldsymbol{H_A: \beta_1\ne 0}\)</span>,
 that there is <strong>some</strong> linear relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in the population,
@@ -525,7 +525,7 @@ greater than or less than alternatives in certain situations.</p>
 <p>Test statistics for regression coefficients are developed, if we can trust our assumptions, using the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-2\)</span> degrees of freedom.
 
 The <span class="math inline">\(t\)</span>-test statistic is generally</p>
-<p><span class="math display">\[t=\frac{b_i}{\text{SE}_{b_i}}\]</span></p>
+<p><span class="math display">\[t = \frac{b_i}{\text{SE}_{b_i}}\]</span></p>
 <p>with the main interest in the test for <span class="math inline">\(\beta_1\)</span> based on <span class="math inline">\(b_1\)</span> initially.
 The p-value would be calculated using the two-tailed area from the
 <span class="math inline">\(t_{n-2}\)</span> distribution calculated using the <code>pt</code> function.
@@ -567,13 +567,13 @@ coefficient, <span class="math inline">\(\beta_1\)</span>, is</p>
 &amp; \boldsymbol{\rightarrow (0.0128, 0.0231).}
 \end{array}\]</span></p>
 <p>You can find the components of this
-calculation in the model summary and from <code>qt(0.975, df=n-2)</code> which was
+calculation in the model summary and from <code>qt(0.975, df = n-2)</code> which was
 2.145 for the <span class="math inline">\(t^*\)</span>-multiplier. Be careful not to use the <span class="math inline">\(t\)</span>-value of
 7.48 in the model summary to
 make confidence intervals – that is the test statistic used below. The related
 calculations are shown at the bottom of the following code:</p>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="chapter7.html#cb595-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(BAC <span class="sc">~</span> Beers, <span class="at">data =</span> BB)</span>
-<span id="cb595-2"><a href="chapter7.html#cb595-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="chapter7.html#cb600-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(BAC <span class="sc">~</span> Beers, <span class="at">data =</span> BB)</span>
+<span id="cb600-2"><a href="chapter7.html#cb600-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = BAC ~ Beers, data = BB)
@@ -590,17 +590,17 @@ calculations are shown at the bottom of the following code:</p>
 ## Residual standard error: 0.02044 on 14 degrees of freedom
 ## Multiple R-squared:  0.7998, Adjusted R-squared:  0.7855 
 ## F-statistic: 55.94 on 1 and 14 DF,  p-value: 2.969e-06</code></pre>
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="chapter7.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>) <span class="co"># t* multiplier for 95% CI</span></span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="chapter7.html#cb602-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>) <span class="co">#t* multiplier for 95% CI</span></span></code></pre></div>
 <pre><code>## [1] 2.144787</code></pre>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="chapter7.html#cb599-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.017964</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>)<span class="sc">*</span><span class="fl">0.002402</span></span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="chapter7.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.017964</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>)<span class="sc">*</span><span class="fl">0.002402</span></span></code></pre></div>
 <pre><code>## [1] 0.01281222 0.02311578</code></pre>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="chapter7.html#cb601-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>)<span class="sc">*</span><span class="fl">0.002402</span></span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="chapter7.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>)<span class="sc">*</span><span class="fl">0.002402</span></span></code></pre></div>
 <pre><code>## [1] 0.005151778</code></pre>
 <p>We can also get the confidence interval
 directly from the <code>confint</code> function run on our regression model,
 saving some calculation
 effort and providing both the CI for the y-intercept and the slope coefficient. </p>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="chapter7.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="chapter7.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m1)</span></code></pre></div>
 <pre><code>##                   2.5 %     97.5 %
 ## (Intercept) -0.03980535 0.01440414
 ## Beers        0.01281262 0.02311490</code></pre>
@@ -635,7 +635,7 @@ example, the null hypothesis for the slope coefficient is that there is no
 linear relationship between <em>Beers</em> and <em>BAC</em> in the population. The
 alternative hypothesis is that there is
 some linear relationship between <em>Beers</em> and <em>BAC</em> in the population. The
-test statistic is <span class="math inline">\(t=0.01796/0.002402 =7.48\)</span> which, if model assumptions hold,
+test statistic is <span class="math inline">\(t = 0.01796/0.002402 = 7.48\)</span> which, if model assumptions hold,
 follows a <span class="math inline">\(t(14)\)</span> distribution under the null hypothesis. The model summary provides the calculation
 of the test statistic
 and the two-sided test p-value of <span class="math inline">\(2.97\text{e-6} = 0.00000297\)</span>. So we
@@ -658,7 +658,7 @@ far beyond the scope of observations. The y-intercept’s main function in
 regression models is to be at the right level for the slope to “work” to make a
 line that describes the responses and thus is usually of lesser interest even though it plays an important role in the model.</p>
 <p>As a second example, we can revisit modeling the <em>Hematocrit</em> of female
-Australian athletes as a function of <em>body fat %</em>. The sample size is <span class="math inline">\(n=99\)</span>
+Australian athletes as a function of <em>body fat %</em>. The sample size is <span class="math inline">\(n = 99\)</span>
 so the <em>df</em> are 97 in any <span class="math inline">\(t\)</span>-distributions. In Chapter <a href="chapter6.html#chapter6">6</a>, the
 relationship between <em>Hematocrit</em> and <em>body fat %</em> for females appeared to
 be a weak negative linear
@@ -673,14 +673,14 @@ interpret this sort of marginal result as having some or marginal evidence again
 but certainly would never say that this presents strong evidence.
 
 </p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="chapter7.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(alr4)</span>
-<span id="cb605-2"><a href="chapter7.html#cb605-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ais)</span>
-<span id="cb605-3"><a href="chapter7.html#cb605-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb605-4"><a href="chapter7.html#cb605-4" aria-hidden="true" tabindex="-1"></a>ais <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ais)</span>
-<span id="cb605-5"><a href="chapter7.html#cb605-5" aria-hidden="true" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
-<span id="cb605-6"><a href="chapter7.html#cb605-6" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co"># Results for Females </span></span>
-<span id="cb605-7"><a href="chapter7.html#cb605-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb605-8"><a href="chapter7.html#cb605-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="chapter7.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(alr4)</span>
+<span id="cb610-2"><a href="chapter7.html#cb610-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ais)</span>
+<span id="cb610-3"><a href="chapter7.html#cb610-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb610-4"><a href="chapter7.html#cb610-4" aria-hidden="true" tabindex="-1"></a>ais <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ais)</span>
+<span id="cb610-5"><a href="chapter7.html#cb610-5" aria-hidden="true" tabindex="-1"></a>aisR <span class="ot">&lt;-</span> ais <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
+<span id="cb610-6"><a href="chapter7.html#cb610-6" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Results for Females </span></span>
+<span id="cb610-7"><a href="chapter7.html#cb610-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb610-8"><a href="chapter7.html#cb610-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Hc ~ Bfat, data = aisR %&gt;% filter(Sex == 1))
@@ -697,7 +697,7 @@ but certainly would never say that this presents strong evidence.
 ## Residual standard error: 2.598 on 97 degrees of freedom
 ## Multiple R-squared:  0.02822,    Adjusted R-squared:  0.0182 
 ## F-statistic: 2.816 on 1 and 97 DF,  p-value: 0.09653</code></pre>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="chapter7.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="chapter7.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m2)</span></code></pre></div>
 <pre><code>##                  2.5 %      97.5 %
 ## (Intercept) 40.1626516 43.86490713
 ## Bfat        -0.1856071  0.01553165</code></pre>
@@ -706,10 +706,10 @@ example pay particular attention
 to how we are handling the units of the response variable, log-hectares, and to
 the changes to doing inferences with a 99% confidence
 level CI, and where you can find the needed results in the following output:</p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="chapter7.html#cb609-1" aria-hidden="true" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/climateR2.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="chapter7.html#cb610-1" aria-hidden="true" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares))</span>
-<span id="cb610-2"><a href="chapter7.html#cb610-2" aria-hidden="true" tabindex="-1"></a>fire1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(loghectares <span class="sc">~</span> Temperature, <span class="at">data =</span> mtfires)</span>
-<span id="cb610-3"><a href="chapter7.html#cb610-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fire1)</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="chapter7.html#cb614-1" aria-hidden="true" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/climateR2.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="chapter7.html#cb615-1" aria-hidden="true" tabindex="-1"></a>mtfires <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">loghectares =</span> <span class="fu">log</span>(hectares))</span>
+<span id="cb615-2"><a href="chapter7.html#cb615-2" aria-hidden="true" tabindex="-1"></a>fire1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(loghectares <span class="sc">~</span> Temperature, <span class="at">data =</span> mtfires)</span>
+<span id="cb615-3"><a href="chapter7.html#cb615-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fire1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = loghectares ~ Temperature, data = mtfires)
@@ -726,22 +726,22 @@ level CI, and where you can find the needed results in the following output:</p>
 ## Residual standard error: 1.476 on 21 degrees of freedom
 ## Multiple R-squared:  0.6619, Adjusted R-squared:  0.6458 
 ## F-statistic: 41.12 on 1 and 21 DF,  p-value: 2.347e-06</code></pre>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="chapter7.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fire1, <span class="at">level =</span> <span class="fl">0.99</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="chapter7.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(fire1, <span class="at">level =</span> <span class="fl">0.99</span>)</span></code></pre></div>
 <pre><code>##                    0.5 %     99.5 %
 ## (Intercept) -104.6477287 -34.921286
 ## Temperature    0.7753784   2.001499</code></pre>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="chapter7.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">21</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="chapter7.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">21</span>)</span></code></pre></div>
 <pre><code>## [1] 2.83136</code></pre>
 <ul>
 <li><p>Based on the estimated regression model, we can say that if the
 average temperature is 0, we expect that, on average, the log-area
 burned would be -69.8 log-hectares.</p></li>
-<li><p>From the regression model summary, <span class="math inline">\(b_1=1.39\)</span> with
-<span class="math inline">\(\text{SE}_{b_1}=0.2165\)</span> and <span class="math inline">\(\mathbf{t=6.41}\)</span>.</p></li>
-<li><p>There were <span class="math inline">\(n=23\)</span> measurements taken, so <span class="math inline">\(\mathbf{df=n-2=23-3=21}\)</span>.</p></li>
+<li><p>From the regression model summary, <span class="math inline">\(b_1 = 1.39\)</span> with
+<span class="math inline">\(\text{SE}_{b_1} = 0.2165\)</span> and <span class="math inline">\(\mathbf{t = 6.41}\)</span>.</p></li>
+<li><p>There were <span class="math inline">\(n = 23\)</span> measurements taken, so <span class="math inline">\(\mathbf{df = n-2 = 23-3 = 21}\)</span>.</p></li>
 <li><p>Suppose that we want to test for a linear relationship between
 temperature and log-hectares burned:</p>
-<p><span class="math display">\[H_0: \beta_1=0\]</span></p>
+<p><span class="math display">\[H_0: \beta_1 = 0\]</span></p>
 <ul>
 <li>In words, the true slope coefficient between <em>Temperature</em> and
 <em>log-area burned</em> is 0 OR there is no linear relationship between
@@ -758,7 +758,7 @@ the population.</li>
 <p>Test statistic: <span class="math inline">\(t = 1.39/0.217 = 6.41\)</span></p>
 <ul>
 <li>Assuming the null hypothesis to be true (no linear relationship), the
-<span class="math inline">\(t\)</span>-statistic follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-2 = 23-2=21\)</span> degrees of
+<span class="math inline">\(t\)</span>-statistic follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-2 = 23-2 = 21\)</span> degrees of
 freedom (or simply <span class="math inline">\(t_{21}\)</span>).</li>
 </ul>
 <p>p-value:</p>
@@ -823,9 +823,9 @@ average of the monthly averages of the daily maximum temperature in Bozeman in d
 F from 1901 to 2014. We can call
 them yearly average maximum temperatures but note that it was a little more
 complicated than that to arrive at the response variable we are analyzing.</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="chapter7.html#cb616-1" aria-hidden="true" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/BozemanMeanMax.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="chapter7.html#cb621-1" aria-hidden="true" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/BozemanMeanMax.csv&quot;</span>)</span></code></pre></div>
 
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="chapter7.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bozemantemps)</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="chapter7.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bozemantemps)</span></code></pre></div>
 <pre><code>##     meanmax           Year     
 ##  Min.   :49.75   Min.   :1901  
 ##  1st Qu.:53.97   1st Qu.:1930  
@@ -833,22 +833,23 @@ complicated than that to arrive at the response variable we are analyzing.</p>
 ##  Mean   :55.34   Mean   :1958  
 ##  3rd Qu.:57.02   3rd Qu.:1986  
 ##  Max.   :60.05   Max.   :2014</code></pre>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="chapter7.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(bozemantemps<span class="sc">$</span>Year) <span class="co">#Some years are missing (1905, 1906, 1948, 1950, 1995)</span></span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="chapter7.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(bozemantemps<span class="sc">$</span>Year) <span class="co">#Some years are missing (1905, 1906, 1948, 1950, 1995)</span></span></code></pre></div>
 <pre><code>## [1] 109</code></pre>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="chapter7.html#cb621-1" aria-hidden="true" tabindex="-1"></a>bozemantemps <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> meanmax)) <span class="sc">+</span></span>
-<span id="cb621-2"><a href="chapter7.html#cb621-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb621-3"><a href="chapter7.html#cb621-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_smooth</span>(<span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">se =</span> F) <span class="sc">+</span> <span class="co">#Add smoothing line</span></span>
-<span id="cb621-4"><a href="chapter7.html#cb621-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb621-5"><a href="chapter7.html#cb621-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Bozeman Yearly Average Max Temperatures&quot;</span>,</span>
-<span id="cb621-6"><a href="chapter7.html#cb621-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y=</span><span class="st">&quot;Mean Maximum Temperature (degrees F)&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:Figure7-5"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-5-1.png" alt="Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines." width="960" />
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="chapter7.html#cb626-1" aria-hidden="true" tabindex="-1"></a>bozemantemps <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> meanmax)) <span class="sc">+</span></span>
+<span id="cb626-2"><a href="chapter7.html#cb626-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb626-3"><a href="chapter7.html#cb626-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb626-4"><a href="chapter7.html#cb626-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">se =</span> F) <span class="sc">+</span> <span class="co">#Add smoothing line</span></span>
+<span id="cb626-5"><a href="chapter7.html#cb626-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb626-6"><a href="chapter7.html#cb626-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Bozeman Yearly Average Max Temperatures&quot;</span>,</span>
+<span id="cb626-7"><a href="chapter7.html#cb626-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mean Maximum Temperature (degrees F)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:Figure7-5"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-5-1.png" alt="Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines." width="75%" />
 <p class="caption">
 Figure 7.5: Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines.
 </p>
 </div>
 <p>The scatterplot in Figure <a href="chapter7.html#fig:Figure7-5">7.5</a> shows the results between
-1901 and 2014 based on a sample of <span class="math inline">\(n=109\)</span> years because four years had too
+1901 and 2014 based on a sample of <span class="math inline">\(n = 109\)</span> years because four years had too
 many missing months to fairly include in the responses. Missing values occur
 for many reasons and in
 this case were likely just machine or human error<a href="#fn121" class="footnote-ref" id="fnref121"><sup>121</sup></a>.
@@ -874,11 +875,11 @@ interval interpretation to discuss the size of the change.
 
 First, we need to select our hypotheses (the 2-sided test
 would be a <strong><em>conservative</em></strong> choice and no one that does climate change
-research wants to be accused of taking a <strong><em>liberal</em></strong> approach in their analyses<a href="#fn122" class="footnote-ref" id="fnref122"><sup>122</sup></a>) and our test statistic, <span class="math inline">\(t=\frac{b_1}{\text{SE}_{b_1}}\)</span>. The scatterplot is the perfect tool to illustrate the situation.</p>
+research wants to be accused of taking a <strong><em>liberal</em></strong> approach in their analyses<a href="#fn122" class="footnote-ref" id="fnref122"><sup>122</sup></a>) and our test statistic, <span class="math inline">\(t = \frac{b_1}{\text{SE}_{b_1}}\)</span>. The scatterplot is the perfect tool to illustrate the situation.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Hypotheses for the slope coefficient test:</strong></li>
 </ol>
-<p><span class="math display">\[H_0: \beta_1=0 \text{ vs } H_A: \beta_1 \ne 0\]</span></p>
+<p><span class="math display">\[H_0: \beta_1 = 0 \text{ vs } H_A: \beta_1 \ne 0\]</span></p>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Validity conditions:</strong></li>
 </ol>
@@ -905,11 +906,11 @@ reasonably correct even in the presence of some autocorrelation. </li>
 <p>To assess the remaining conditions, we need to fit the regression model and use
 the diagnostic plots in Figure <a href="chapter7.html#fig:Figure7-6">7.6</a> to aid our assessment:</p>
 
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="chapter7.html#cb622-1" aria-hidden="true" tabindex="-1"></a>temp1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)</span>
-<span id="cb622-2"><a href="chapter7.html#cb622-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb622-3"><a href="chapter7.html#cb622-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(temp1, <span class="at">add.smooth =</span> F, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:Figure7-6"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-6-1.png" alt="Diagnostic plots of the Bozeman yearly temperature simple linear regression model." width="960" />
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="chapter7.html#cb627-1" aria-hidden="true" tabindex="-1"></a>temp1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)</span>
+<span id="cb627-2"><a href="chapter7.html#cb627-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb627-3"><a href="chapter7.html#cb627-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(temp1, <span class="at">add.smooth =</span> F, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:Figure7-6"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-6-1.png" alt="Diagnostic plots of the Bozeman yearly temperature simple linear regression model." width="75%" />
 <p class="caption">
 Figure 7.6: Diagnostic plots of the Bozeman yearly temperature simple linear regression model.
 </p>
@@ -926,16 +927,15 @@ about missed nonlinearity.</li>
 </ul></li>
 <li><p>Compare the smoothing line to the regression line in Figure <a href="chapter7.html#fig:Figure7-5">7.5</a>:</p>
 <ul>
-<li>There does not appear to be a big difference between the straight line and the smoothing line.</li>
+<li>There does not appear to be a big difference between the straight line
+and the smoothing line.</li>
 </ul></li>
 </ul></li>
 <li><p><strong>Equal (constant) variance</strong></p>
 <ul>
 <li>Examining the Residuals vs Fitted and the “Scale-Location” plots
-provide little to no evidence of changing
-variance.
-
-
+provide little to no evidence of changing variance.
+ 
 The variability does decrease slightly in the middle fitted
 values but those changes are really minor and present no real evidence of
 changing variability.</li>
@@ -958,8 +958,8 @@ and not the slopes.</li>
 <li><p><strong>No influential points:</strong></p>
 <ul>
 <li><p>There are no influential points displayed in the Residuals vs
-Leverage plot since the Cook’s D contours are not displayed.  
-</p>
+Leverage plot since the Cook’s D contours are not displayed.
+  </p>
 <ul>
 <li>Note: by default this plot contains a smoothing line that is
 relatively meaningless, so ignore it
@@ -985,9 +985,9 @@ normality assumption a bit.</p>
 <ol start="3" style="list-style-type: decimal">
 <li><p><strong>Calculate the test statistic and p-value:</strong></p>
 <ul>
-<li><span class="math inline">\(t=0.05244/0.00476 = 11.02\)</span></li>
+<li><span class="math inline">\(t = 0.05244/0.00476 = 11.02\)</span></li>
 </ul>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="chapter7.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temp1)</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="chapter7.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temp1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = meanmax ~ Year, data = bozemantemps)
@@ -1006,16 +1006,20 @@ normality assumption a bit.</p>
 ## F-statistic: 121.4 on 1 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
 <li><p>From the model summary: p-value &lt; 2e-16 or just &lt; 0.0001</p></li>
-<li><p>The test statistic is assumed to follow a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-2=109-2=107\)</span> degrees of freedom. The p-value can also be calculated as:</p></li>
+<li><p>The test statistic is assumed to follow a <span class="math inline">\(t\)</span>-distribution with
+<span class="math inline">\(n-2 = 109-2 = 107\)</span> degrees of freedom. The p-value can also be calculated as:</p></li>
 </ul>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="chapter7.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fl">11.02</span>, <span class="at">df =</span> <span class="dv">107</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="chapter7.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="fl">11.02</span>, <span class="at">df =</span> <span class="dv">107</span>, <span class="at">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 2.498481e-19</code></pre>
 <ul>
-<li>Which is then reported as &lt; 0.0001, which means that the chances of observing a slope coefficient as extreme or more extreme than 0.052 if the null hypothesis of no linear relationship is true is less than 0.01%.</li>
+<li>Which is then reported as &lt; 0.0001, which means that the chances of
+observing a slope coefficient as extreme or more extreme than 0.052 if the
+null hypothesis of no linear relationship is true is less than 0.01%.</li>
 </ul></li>
 <li><p><strong>Write a conclusion:</strong></p>
 <ul>
-<li>There is very strong evidence (<span class="math inline">\(t_{107}=11.02\)</span>, p-value &lt; 0.0001) against the null hypothesis of no linear relationship
+<li>There is very strong evidence (<span class="math inline">\(t_{107} = 11.02\)</span>, p-value &lt; 0.0001) against
+the null hypothesis of no linear relationship
 between <em>Year</em> and yearly mean <em>Temperature</em> so we can conclude that
 there is, in fact, some linear relationship between <em>Year</em> and yearly mean
 maximum <em>Temperature</em> in Bozeman.</li>
@@ -1025,36 +1029,45 @@ maximum <em>Temperature</em> in Bozeman.</li>
 <ol start="5" style="list-style-type: decimal">
 <li><p><strong>Size:</strong></p>
 <ul>
-<li>For a one year increase in Year, we estimate that, on average, the yearly average maximum temperature will change by 0.0524 <span class="math inline">\(^\circ F\)</span> (95% CI: 0.043 to 0.062). This suggests a modest but noticeable change in the mean temperature in Bozeman and the confidence suggests minimal variation around this estimate, going from 0.04 to 0.06 <span class="math inline">\(^\circ F\)</span>. The “size” of this change is discussed more in Section <a href="chapter7.html#section7-5">7.5</a>.</li>
+<li>For a one year increase in Year, we estimate that, on average, the yearly
+average maximum temperature will change by 0.0524 <span class="math inline">\(^\circ F\)</span> (95% CI: 0.043
+to 0.062). This suggests a modest but noticeable change in the mean
+temperature in Bozeman and the confidence suggests minimal variation around
+this estimate, going from 0.04 to 0.06 <span class="math inline">\(^\circ F\)</span>. The “size” of this change
+is discussed more in Section <a href="chapter7.html#section7-5">7.5</a>.</li>
 </ul>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="chapter7.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(temp1)</span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="chapter7.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(temp1)</span></code></pre></div>
 <pre><code>##                    2.5 %       97.5 %
 ## (Intercept) -65.83068375 -28.87177785
 ## Year          0.04300681   0.06187746</code></pre></li>
 <li><p><strong>Scope of inference:</strong></p>
 <ul>
 <li>We can conclude that this detected trend pertains to the Bozeman
-area in the years 1901 to 2014 but not outside of either this area or time frame. We
-cannot say that time caused the observed changes since it was not randomly
-assigned and we cannot attribute the changes to any other factors because we
-did not consider them. But knowing that there was a trend toward increasing
-temperatures is an intriguing first step in a more complete analysis of changing climate in
-the area.</li>
+area in the years 1901 to 2014 but not outside of either this area or time
+frame. We cannot say that time caused the observed changes since it was not
+randomly assigned and we cannot attribute the changes to any other factors
+because we did not consider them. But knowing that there was a trend toward
+increasing temperatures is an intriguing first step in a more complete
+analysis of changing climate in the area.</li>
 </ul></li>
 </ol>
-<p>It is also good to report the percentage of variation that the model explains:
-<em>Year</em> explains 54.91% of the variation in yearly average maximum <em>Temperature</em>.
-If the coefficient of determination value had been very
-small, we might discount the previous result. Since it is moderately large with over 50% of the variation in the response explained,
-that suggests that just by using a linear trend over time we can account for
-quite a bit of the variation in yearly average maximum temperatures in Bozeman.
-Note that the percentage of variation explained would get much worse if we
-tried to analyze the monthly or original daily maximum temperature data even though we might find about the same estimated mean change over time.</p>
+<p>It is also good to report the percentage of variation that the model
+explains: <em>Year</em> explains 54.91% of the variation in yearly average maximum
+<em>Temperature</em>. If the coefficient of determination value had been very
+small, we might discount the previous result. Since it is moderately large with
+over 50% of the variation in the response explained, that suggests that just by
+using a linear trend over time we can account for quite a bit of the variation
+in yearly average maximum temperatures in Bozeman. Note that the percentage of
+variation explained would get much worse if we tried to analyze the monthly or
+original daily maximum temperature data even though we might find about the same
+estimated mean change over time.</p>
 <p>Interpreting a confidence interval provides more useful information than the
 hypothesis test here –
 instead of just assessing evidence against the null hypothesis, we can actually
 provide our best guess at the true change in the mean of <span class="math inline">\(y\)</span> for a change in <span class="math inline">\(x\)</span>.
-Here, the 95% CI is (0.043, 0.062). This tells us that for a 1 year increase in <em>Year</em>, we are 95% confident that the change in the true mean of the yearly average maximum <em>Temperatures</em> in Bozeman is between 0.043 and 0.062 <span class="math inline">\(^\circ F\)</span>.</p>
+Here, the 95% CI is (0.043, 0.062). This tells us that for a 1 year increase in
+<em>Year</em>, we are 95% confident that the change in the true mean of the yearly
+average maximum <em>Temperatures</em> in Bozeman is between 0.043 and 0.062 <span class="math inline">\(^\circ F\)</span>.</p>
 <p>Sometimes the scale of the <span class="math inline">\(x\)</span>-variable makes interpretation a little difficult,
 so we can re-scale it
 to make the resulting slope coefficient more interpretable without changing how the model fits the responses. One option is to re-scale the variable and
@@ -1087,7 +1100,7 @@ modeling is repeated in many similar data sets, say different sites or
 different response variables or both, in one study. In <span class="citation"><a href="#ref-Moore2007" role="doc-biblioref">Moore, Harper, and Greenwood</a> (<a href="#ref-Moore2007" role="doc-biblioref">2007</a>)</span>, we considered the impacts on the assessment of evidence of trends
 of earlier spring onset timing in the Mountain West when the number of tests
 across many sites is accounted for. We found that the evidence for time trends
-decreases substantially but does not disappear. In a related study, <span class="citation"><a href="#ref-Greenwood2011" role="doc-biblioref">Greenwood, Harper, and Moore</a> (<a href="#ref-Greenwood2011" role="doc-biblioref">2011</a>)</span>
+decreases substantially but does not disappear. In a related study, <span class="citation"><a href="#ref-Greenwood2011" role="doc-biblioref">M. C. Greenwood, Harper, and Moore</a> (<a href="#ref-Greenwood2011" role="doc-biblioref">2011</a>)</span>
 found evidence for regional trends to earlier spring
 onset using more sophisticated statistical models. The main point here is to
 <strong>be careful when using simple statistical methods repeatedly if you are
@@ -1108,11 +1121,11 @@ useful to understanding how much information is available for different aspects
 of the line. Here it provides gaps for missing years of observations as sort of
 broken teeth in a comb. Also not used here, we can also turn on the <code>residuals = T</code> option, which in SLR just plots the original points and adds a smoothing line to this plot to reinforce the previous assessment of assumptions.</p>
 
-<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="chapter7.html#cb629-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
-<span id="cb629-2"><a href="chapter7.html#cb629-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(temp1, <span class="at">xlevels=</span><span class="fu">list</span>(<span class="at">Year =</span> bozemantemps<span class="sc">$</span>Year)),</span>
-<span id="cb629-3"><a href="chapter7.html#cb629-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">grid =</span> T)</span></code></pre></div>
-<div class="figure"><span id="fig:Figure7-7"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-7-1.png" alt="Term-plot for the Bozeman mean yearly maximum temperature linear regression model with 95% confidence interval bands for the mean in each year." width="576" />
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="chapter7.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
+<span id="cb634-2"><a href="chapter7.html#cb634-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(temp1, <span class="at">xlevels =</span> <span class="fu">list</span>(<span class="at">Year =</span> bozemantemps<span class="sc">$</span>Year)),</span>
+<span id="cb634-3"><a href="chapter7.html#cb634-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">grid =</span> T)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:Figure7-7"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-7-1.png" alt="Term-plot for the Bozeman mean yearly maximum temperature linear regression model with 95% confidence interval bands for the mean in each year." width="75%" />
 <p class="caption">
 Figure 7.7: Term-plot for the Bozeman mean yearly maximum temperature linear regression model with 95% confidence interval bands for the mean in each year.
 </p>
@@ -1122,27 +1135,30 @@ reason that the y-intercept in this model is -47.4<span class="math inline">\(^\
 obviously a large extrapolation for these data and provides a silly result.
 However, in paleoclimate data that goes back
 thousands of years using tree rings, ice cores, or sea sediments, the estimated
-mean in year 0 might be interesting and within the scope of observed values or it might not. For example, in <span class="citation"><a href="#ref-Santibanez2018" role="doc-biblioref">Santibáñez et al.</a> (<a href="#ref-Santibanez2018" role="doc-biblioref">2018</a>)</span>, the data were a time series from 27,000 to about 9,000 years before present extracted from Antarctic ice cores. It all depends on the application.</p>
+mean in year 0 might be interesting and within the scope of observed values or
+it might not. For example, in <span class="citation"><a href="#ref-Santibanez2018" role="doc-biblioref">Santibáñez et al.</a> (<a href="#ref-Santibanez2018" role="doc-biblioref">2018</a>)</span>, the data were a time series from
+27,000 to about 9,000 years before present extracted from Antarctic ice cores.
+It all depends on the application.</p>
 <p>To make the y-intercept more interesting for our data set, we can re-scale the <span class="math inline">\(x\text{&#39;s}\)</span> using <code>mutate</code> before we fit the
 model to have the first year in the data set (1901) be “0.” This is
 accomplished by calculating <span class="math inline">\(\text{Year2} = \text{Year}-1901\)</span>.</p>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="chapter7.html#cb630-1" aria-hidden="true" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> bozemantemps <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Year2 =</span> Year <span class="sc">-</span> <span class="dv">1901</span>)</span>
-<span id="cb630-2"><a href="chapter7.html#cb630-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bozemantemps<span class="sc">$</span>Year2)</span></code></pre></div>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="chapter7.html#cb635-1" aria-hidden="true" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> bozemantemps <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Year2 =</span> Year <span class="sc">-</span> <span class="dv">1901</span>)</span>
+<span id="cb635-2"><a href="chapter7.html#cb635-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bozemantemps<span class="sc">$</span>Year2)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.00   29.00   58.00   57.27   85.00  113.00</code></pre>
 <p>The new estimated regression equation is
 <span class="math inline">\(\widehat{\text{Temp}}_i = 52.34 + 0.052\cdot\text{Year2}_i\)</span>. The slope and
 its test statistic are the same as in the previous model. The y-intercept
 has changed dramatically with a 95% CI from 51.72<span class="math inline">\(^\circ F\)</span> to 52.96<span class="math inline">\(^\circ F\)</span>
-for <code>Year2</code>=0. But we know that <code>Year2</code> has a 0 value for 1901 because
+for <code>Year2</code> = 0. But we know that <code>Year2</code> has a 0 value for 1901 because
 of our subtraction. That means that this CI is
 for the true mean in 1901 and is now at least somewhat interesting. If you
 revisit Figure <a href="chapter7.html#fig:Figure7-7">7.7</a> you will actually see that the displayed
 confidence intervals
 provide upper and lower bounds that match this result for 1901 – the
 y-intercept CI matches the 95% CI for the true mean in the first year of the data set.</p>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="chapter7.html#cb632-1" aria-hidden="true" tabindex="-1"></a>temp2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year2, <span class="at">data =</span> bozemantemps)</span>
-<span id="cb632-2"><a href="chapter7.html#cb632-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temp2)</span></code></pre></div>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="chapter7.html#cb637-1" aria-hidden="true" tabindex="-1"></a>temp2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year2, <span class="at">data =</span> bozemantemps)</span>
+<span id="cb637-2"><a href="chapter7.html#cb637-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temp2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = meanmax ~ Year2, data = bozemantemps)
@@ -1159,7 +1175,7 @@ y-intercept CI matches the 95% CI for the true mean in the first year of the dat
 ## Residual standard error: 1.624 on 107 degrees of freedom
 ## Multiple R-squared:  0.5315, Adjusted R-squared:  0.5271 
 ## F-statistic: 121.4 on 1 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="chapter7.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(temp2)</span></code></pre></div>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="chapter7.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(temp2)</span></code></pre></div>
 <pre><code>##                   2.5 %      97.5 %
 ## (Intercept) 51.71913822 52.96339150
 ## Year2        0.04300681  0.06187746</code></pre>
@@ -1177,7 +1193,7 @@ Sections <a href="chapter7.html#section7-5">7.5</a> and <a href="chapter7.html#s
 <p>Exploring permutation testing in SLR provides an opportunity to gauge the observed
 relationship against the sorts of relationships we would expect to see if there
 was no linear relationship between the variables. If the relationship is linear
-(not curvilinear) and the null hypothesis of <span class="math inline">\(\beta_1=0\)</span> is true, then any
+(not curvilinear) and the null hypothesis of <span class="math inline">\(\beta_1 = 0\)</span> is true, then any
 configuration of the responses relative to the
 predictor variable’s values is as good as any other.
 
@@ -1187,8 +1203,8 @@ in Figure <a href="chapter7.html#fig:Figure7-8">7.8</a>. First, think about whic
 think present the most
 evidence of a linear relationship between <code>Year</code> and <code>Temperature</code>?</p>
 
-<div class="figure"><span id="fig:Figure7-8"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-8-1.png" alt="Plot of the Temperature responses versus four versions of Year, three of which are permutations of the Year variable relative to the Temperatures." width="768" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-8"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-8-1.png" alt="Plot of the Temperature responses versus four versions of Year, three of which are permutations of the Year variable relative to the Temperatures." width="75%" />
 <p class="caption">
 Figure 7.8: Plot of the <code>Temperature</code> responses versus four versions of <code>Year</code>, three of which are permutations of the Year variable relative to the Temperatures.
 </p>
@@ -1213,28 +1229,31 @@ different <span class="math inline">\(x\)</span>-axis scaling. In this situation
 really far from any possible values that can be obtained using permutations as
 shown in Figure <a href="chapter7.html#fig:Figure7-9">7.9</a>. The p-value would be reported as
 <span class="math inline">\(&lt;0.001\)</span> for the two-sided permutation test.</p>
-<div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="chapter7.html#cb636-1" aria-hidden="true" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb636-2"><a href="chapter7.html#cb636-2" aria-hidden="true" tabindex="-1"></a>Tobs</span></code></pre></div>
+<!-- \newpage -->
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="chapter7.html#cb641-1" aria-hidden="true" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb641-2"><a href="chapter7.html#cb641-2" aria-hidden="true" tabindex="-1"></a>Tobs</span></code></pre></div>
 <pre><code>##       Year 
 ## 0.05244213</code></pre>
 
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="chapter7.html#cb638-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb638-2"><a href="chapter7.html#cb638-2" aria-hidden="true" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
-<span id="cb638-3"><a href="chapter7.html#cb638-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
-<span id="cb638-4"><a href="chapter7.html#cb638-4" aria-hidden="true" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> <span class="fu">shuffle</span>(Year), <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb638-5"><a href="chapter7.html#cb638-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb638-6"><a href="chapter7.html#cb638-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pdata</span>(<span class="fu">abs</span>(Tstar), <span class="fu">abs</span>(Tobs), <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="chapter7.html#cb643-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb643-2"><a href="chapter7.html#cb643-2" aria-hidden="true" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
+<span id="cb643-3"><a href="chapter7.html#cb643-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
+<span id="cb643-4"><a href="chapter7.html#cb643-4" aria-hidden="true" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> <span class="fu">shuffle</span>(Year), <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb643-5"><a href="chapter7.html#cb643-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb643-6"><a href="chapter7.html#cb643-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pdata</span>(<span class="fu">abs</span>(Tstar), <span class="fu">abs</span>(Tobs), <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="chapter7.html#cb640-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
-<span id="cb640-2"><a href="chapter7.html#cb640-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb640-3"><a href="chapter7.html#cb640-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb640-4"><a href="chapter7.html#cb640-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
-<span id="cb640-5"><a href="chapter7.html#cb640-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:Figure7-9"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-9-1.png" alt="Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at \(\pm b_1=0.56\) based on the observed estimated slope." width="480" />
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="chapter7.html#cb645-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<span id="cb645-2"><a href="chapter7.html#cb645-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb645-3"><a href="chapter7.html#cb645-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
+<span id="cb645-4"><a href="chapter7.html#cb645-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb645-5"><a href="chapter7.html#cb645-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb645-6"><a href="chapter7.html#cb645-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb645-7"><a href="chapter7.html#cb645-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>,</span>
+<span id="cb645-8"><a href="chapter7.html#cb645-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:Figure7-9"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-9-1.png" alt="Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at \(\pm b_1 = 0.56\) based on the observed estimated slope." width="75%" />
 <p class="caption">
-Figure 7.9: Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at <span class="math inline">\(\pm b_1=0.56\)</span> based on the observed estimated slope.
+Figure 7.9: Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at <span class="math inline">\(\pm b_1 = 0.56\)</span> based on the observed estimated slope.
 </p>
 </div>
 <p>One other interesting aspect of exploring the permuted data sets as in
@@ -1267,32 +1286,35 @@ The interpretation is
 the same and this result reinforces the other assessments that the parametric
 approach is not unreasonable here except possibly for the independence assumption. These randomization approaches provide no robustness against violations of the independence assumption. </p>
 
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="chapter7.html#cb641-1" aria-hidden="true" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb641-2"><a href="chapter7.html#cb641-2" aria-hidden="true" tabindex="-1"></a>Tobs</span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="chapter7.html#cb646-1" aria-hidden="true" tabindex="-1"></a>Tobs <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb646-2"><a href="chapter7.html#cb646-2" aria-hidden="true" tabindex="-1"></a>Tobs</span></code></pre></div>
 <pre><code>##       Year 
 ## 0.05244213</code></pre>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="chapter7.html#cb643-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb643-2"><a href="chapter7.html#cb643-2" aria-hidden="true" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
-<span id="cb643-3"><a href="chapter7.html#cb643-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
-<span id="cb643-4"><a href="chapter7.html#cb643-4" aria-hidden="true" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> <span class="fu">resample</span>(bozemantemps))<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
-<span id="cb643-5"><a href="chapter7.html#cb643-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb643-6"><a href="chapter7.html#cb643-6" aria-hidden="true" tabindex="-1"></a>quantiles <span class="ot">&lt;-</span> <span class="fu">qdata</span>(Tstar, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
-<span id="cb643-7"><a href="chapter7.html#cb643-7" aria-hidden="true" tabindex="-1"></a>quantiles</span></code></pre></div>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="chapter7.html#cb648-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb648-2"><a href="chapter7.html#cb648-2" aria-hidden="true" tabindex="-1"></a>Tstar <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B)</span>
+<span id="cb648-3"><a href="chapter7.html#cb648-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> (<span class="dv">1</span><span class="sc">:</span>B)){</span>
+<span id="cb648-4"><a href="chapter7.html#cb648-4" aria-hidden="true" tabindex="-1"></a>  Tstar[b] <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> <span class="fu">resample</span>(bozemantemps))<span class="sc">$</span>coef[<span class="dv">2</span>]</span>
+<span id="cb648-5"><a href="chapter7.html#cb648-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb648-6"><a href="chapter7.html#cb648-6" aria-hidden="true" tabindex="-1"></a>quantiles <span class="ot">&lt;-</span> <span class="fu">qdata</span>(Tstar, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb648-7"><a href="chapter7.html#cb648-7" aria-hidden="true" tabindex="-1"></a>quantiles</span></code></pre></div>
 <pre><code>##       2.5%      97.5% 
 ## 0.04326952 0.06131044</code></pre>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="chapter7.html#cb645-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
-<span id="cb645-2"><a href="chapter7.html#cb645-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb645-3"><a href="chapter7.html#cb645-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb645-4"><a href="chapter7.html#cb645-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
-<span id="cb645-5"><a href="chapter7.html#cb645-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> quantiles, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">3</span>) <span class="sc">+</span>    </span>
-<span id="cb645-6"><a href="chapter7.html#cb645-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:Figure7-10"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-10-1.png" alt="Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold dashed vertical lines delineating the 95% confidence interval and the bold solid line the observed slope of 0.052." width="960" />
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="chapter7.html#cb650-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(Tstar) <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tstar)) <span class="sc">+</span> </span>
+<span id="cb650-2"><a href="chapter7.html#cb650-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount..), <span class="at">bins =</span> <span class="dv">15</span>, <span class="at">col =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">center =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb650-3"><a href="chapter7.html#cb650-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..scaled..)) <span class="sc">+</span></span>
+<span id="cb650-4"><a href="chapter7.html#cb650-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb650-5"><a href="chapter7.html#cb650-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
+<span id="cb650-6"><a href="chapter7.html#cb650-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> quantiles, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">3</span>) <span class="sc">+</span>    </span>
+<span id="cb650-7"><a href="chapter7.html#cb650-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb650-8"><a href="chapter7.html#cb650-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">15</span>,</span>
+<span id="cb650-9"><a href="chapter7.html#cb650-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:Figure7-10"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-10-1.png" alt="Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold dashed vertical lines delineating the 95% confidence interval and the bold solid line the observed slope of 0.052." width="75%" />
 <p class="caption">
 Figure 7.10: Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold dashed vertical lines delineating the 95% confidence interval and the bold solid line the observed slope of 0.052.
 </p>
 </div>
-<div style="page-break-after: always;"></div>
+<!-- \newpage -->
 </div>
 <div id="section7-5" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Transformations part I: Linearizing relationships</h2>
@@ -1318,13 +1340,13 @@ one or both variables.
 
 After applying this transformation, one hopes to have
 alleviated whatever issues encouraged its consideration. <strong><em>Linear transformation
-functions</em></strong>, of the form <span class="math inline">\(z_{\text{new}}=a*x+b\)</span>, will never help us to fix
+functions</em></strong>, of the form <span class="math inline">\(z_{\text{new}} = a*x+b\)</span>, will never help us to fix
 assumptions in regression situations; linear transformations change the scaling
 of the variables but not their shape or the relationship between two variables.
 For example, in the Bozeman Temperature data example, we subtracted 1901 from
 the <code>Year</code> variable to have <code>Year2</code> start at 0 and go up to 113. We could
 also apply a linear transformation to change Temperature from being measured in
-<span class="math inline">\(^\circ F\)</span> to <span class="math inline">\(^\circ C\)</span> using <span class="math inline">\(^\circ C=[^\circ F - 32] *(5/9)\)</span>. The
+<span class="math inline">\(^\circ F\)</span> to <span class="math inline">\(^\circ C\)</span> using <span class="math inline">\(^\circ C = [^\circ F - 32] *(5/9)\)</span>. The
 scatterplots on both the original and transformed scales are provided in
 Figure <a href="chapter7.html#fig:Figure7-11">7.11</a>. All the
 coefficients in the regression model and the labels on the axes change, but the
@@ -1337,15 +1359,16 @@ Here if you like temperature changes in <span class="math inline">\(^\circ C\)</
 slope coefficient is 0.029 and if you like the original change in <span class="math inline">\(^\circ F\)</span> for
 a 1 year increase, the slope coefficient is 0.052. More useful than this is the switch into units of 100 years (so each year increase would just be 0.1 instead of 1), so that the slope is the temperature change over 100 years.</p>
 
-<div class="figure"><span id="fig:Figure7-11"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-11-1.png" alt="Scatterplots of Temperature (\(^\circ F\)) versus Year (left) and Temperature (\(^\circ C\)) vs Years since 1901 (right)." width="960" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-11"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-11-1.png" alt="Scatterplots of Temperature (\(^\circ F\)) versus Year (left) and Temperature (\(^\circ C\)) vs Years since 1901 (right)." width="75%" />
 <p class="caption">
 Figure 7.11: Scatterplots of <em>Temperature</em> (<span class="math inline">\(^\circ F\)</span>) versus <em>Year</em> (left) and <em>Temperature</em> (<span class="math inline">\(^\circ C\)</span>) vs <em>Years</em> since 1901 (right).
 </p>
 </div>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="chapter7.html#cb646-1" aria-hidden="true" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> bozemantemps <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">meanmaxC =</span> (meanmax <span class="sc">-</span> <span class="dv">32</span>)<span class="sc">*</span>(<span class="dv">5</span><span class="sc">/</span><span class="dv">9</span>))</span>
-<span id="cb646-2"><a href="chapter7.html#cb646-2" aria-hidden="true" tabindex="-1"></a>temp3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmaxC <span class="sc">~</span> Year2, <span class="at">data =</span> bozemantemps)</span>
-<span id="cb646-3"><a href="chapter7.html#cb646-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temp1)</span></code></pre></div>
+<!-- \vspace{11pt} -->
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="chapter7.html#cb651-1" aria-hidden="true" tabindex="-1"></a>bozemantemps <span class="ot">&lt;-</span> bozemantemps <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">meanmaxC =</span> (meanmax <span class="sc">-</span> <span class="dv">32</span>)<span class="sc">*</span>(<span class="dv">5</span><span class="sc">/</span><span class="dv">9</span>))</span>
+<span id="cb651-2"><a href="chapter7.html#cb651-2" aria-hidden="true" tabindex="-1"></a>temp3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmaxC <span class="sc">~</span> Year2, <span class="at">data =</span> bozemantemps)</span>
+<span id="cb651-3"><a href="chapter7.html#cb651-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temp1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = meanmax ~ Year, data = bozemantemps)
@@ -1362,8 +1385,8 @@ Figure 7.11: Scatterplots of <em>Temperature</em> (<span class="math inline">\(^
 ## Residual standard error: 1.624 on 107 degrees of freedom
 ## Multiple R-squared:  0.5315, Adjusted R-squared:  0.5271 
 ## F-statistic: 121.4 on 1 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="chapter7.html#cb648-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temp3)</span></code></pre></div>
+<!-- \newpage -->
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="chapter7.html#cb653-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(temp3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = meanmaxC ~ Year2, data = bozemantemps)
@@ -1382,7 +1405,7 @@ Figure 7.11: Scatterplots of <em>Temperature</em> (<span class="math inline">\(^
 ## F-statistic: 121.4 on 1 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><strong><em>Nonlinear transformation functions</em></strong>
 are where we apply something more complicated than this
-shift and scaling, something like <span class="math inline">\(y_{\text{new}}=f(y)\)</span>, where <span class="math inline">\(f(\cdot)\)</span> could be
+shift and scaling, something like <span class="math inline">\(y_{\text{new}} = f(y)\)</span>, where <span class="math inline">\(f(\cdot)\)</span> could be
 a log or power of the original variable <span class="math inline">\(y\)</span>. When we apply these sorts of
 transformations,
 interesting things can happen to our linear models and their problems.
@@ -1467,17 +1490,19 @@ scales.</p>
 data for Montana. Figure <a href="chapter7.html#fig:Figure7-12">7.12</a> compares the
 relationship between these variables on the original hectares scale and the
 log-hectares scale.</p>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="chapter7.html#cb650-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> hectares)) <span class="sc">+</span> </span>
-<span id="cb650-2"><a href="chapter7.html#cb650-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb650-3"><a href="chapter7.html#cb650-3" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;(a)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Hectares&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
-<span id="cb650-4"><a href="chapter7.html#cb650-4" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb650-5"><a href="chapter7.html#cb650-5" aria-hidden="true" tabindex="-1"></a>plog <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>Temperature, <span class="at">y =</span> loghectares)) <span class="sc">+</span> </span>
-<span id="cb650-6"><a href="chapter7.html#cb650-6" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb650-7"><a href="chapter7.html#cb650-7" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;(b)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;log-Hectares&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
-<span id="cb650-8"><a href="chapter7.html#cb650-8" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p, plog, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="chapter7.html#cb655-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> hectares)) <span class="sc">+</span></span>
+<span id="cb655-2"><a href="chapter7.html#cb655-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb655-3"><a href="chapter7.html#cb655-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;(a)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Hectares&quot;</span>) <span class="sc">+</span></span>
+<span id="cb655-4"><a href="chapter7.html#cb655-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb655-5"><a href="chapter7.html#cb655-5" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb655-6"><a href="chapter7.html#cb655-6" aria-hidden="true" tabindex="-1"></a>plog <span class="ot">&lt;-</span> mtfires <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Temperature, <span class="at">y =</span> loghectares)) <span class="sc">+</span></span>
+<span id="cb655-7"><a href="chapter7.html#cb655-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb655-8"><a href="chapter7.html#cb655-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;(b)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;log-Hectares&quot;</span>) <span class="sc">+</span></span>
+<span id="cb655-9"><a href="chapter7.html#cb655-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb655-10"><a href="chapter7.html#cb655-10" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p, plog, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 
-<div class="figure"><span id="fig:Figure7-12"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-12-1.png" alt="Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature." width="960" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-12"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-12-1.png" alt="Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature." width="75%" />
 <p class="caption">
 Figure 7.12: Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature.
 </p>
@@ -1501,21 +1526,25 @@ shows the same
 information with the response variable (height) log-transformed.
 
 </p>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="chapter7.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spuRs)</span>
-<span id="cb651-2"><a href="chapter7.html#cb651-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ufc)</span>
-<span id="cb651-3"><a href="chapter7.html#cb651-3" aria-hidden="true" tabindex="-1"></a>ufc <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ufc)</span>
-<span id="cb651-4"><a href="chapter7.html#cb651-4" aria-hidden="true" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dbh.cm, <span class="at">y =</span> height.m)) <span class="sc">+</span></span>
-<span id="cb651-5"><a href="chapter7.html#cb651-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb651-6"><a href="chapter7.html#cb651-6" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb651-7"><a href="chapter7.html#cb651-7" aria-hidden="true" tabindex="-1"></a>              <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Tree height vs tree diameter&quot;</span>)</span>
-<span id="cb651-8"><a href="chapter7.html#cb651-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb651-9"><a href="chapter7.html#cb651-9" aria-hidden="true" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dbh.cm, <span class="at">y =</span> <span class="fu">log</span>(height.m))) <span class="sc">+</span></span>
-<span id="cb651-10"><a href="chapter7.html#cb651-10" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb651-11"><a href="chapter7.html#cb651-11" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb651-12"><a href="chapter7.html#cb651-12" aria-hidden="true" tabindex="-1"></a>              <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log-tree height vs tree diameter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="chapter7.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spuRs)</span>
+<span id="cb656-2"><a href="chapter7.html#cb656-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ufc)</span>
+<span id="cb656-3"><a href="chapter7.html#cb656-3" aria-hidden="true" tabindex="-1"></a>ufc <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(ufc)</span>
+<span id="cb656-4"><a href="chapter7.html#cb656-4" aria-hidden="true" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dbh.cm, <span class="at">y =</span> height.m)) <span class="sc">+</span></span>
+<span id="cb656-5"><a href="chapter7.html#cb656-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb656-6"><a href="chapter7.html#cb656-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb656-7"><a href="chapter7.html#cb656-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb656-8"><a href="chapter7.html#cb656-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb656-9"><a href="chapter7.html#cb656-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Tree height vs tree diameter&quot;</span>)</span>
+<span id="cb656-10"><a href="chapter7.html#cb656-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb656-11"><a href="chapter7.html#cb656-11" aria-hidden="true" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> dbh.cm, <span class="at">y =</span> <span class="fu">log</span>(height.m))) <span class="sc">+</span></span>
+<span id="cb656-12"><a href="chapter7.html#cb656-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb656-13"><a href="chapter7.html#cb656-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb656-14"><a href="chapter7.html#cb656-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb656-15"><a href="chapter7.html#cb656-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb656-16"><a href="chapter7.html#cb656-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log-tree height vs tree diameter&quot;</span>)</span></code></pre></div>
 
-<div class="figure"><span id="fig:Figure7-13"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-13-1.png" alt="Scatterplot of tree height versus tree diameter." width="576" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-13"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-13-1.png" alt="Scatterplot of tree height versus tree diameter." width="75%" />
 <p class="caption">
 Figure 7.13: Scatterplot of tree height versus tree diameter.
 </p>
@@ -1528,8 +1557,8 @@ researchers assume it can. It is OK to try a transformation but remember to
 always plot the results to make sure it actually helped and did not make the
 situation worse.</p>
 
-<div class="figure"><span id="fig:Figure7-14"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-14-1.png" alt="Scatterplot of log(tree height) versus tree diameter." width="576" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-14"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-14-1.png" alt="Scatterplot of log(tree height) versus tree diameter." width="75%" />
 <p class="caption">
 Figure 7.14: Scatterplot of log(tree height) versus tree diameter.
 </p>
@@ -1547,8 +1576,8 @@ linearizing the relationship, leaving some minor
 non-constant variance, but providing a big improvement from the relationship on
 the original scale.</p>
 
-<div class="figure"><span id="fig:Figure7-15"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-15-1.png" alt="Scatterplot of tree height versus log(tree diameter)." width="576" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-15"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-15-1.png" alt="Scatterplot of tree height versus log(tree diameter)." width="75%" />
 <p class="caption">
 Figure 7.15: Scatterplot of tree height versus log(tree diameter).
 </p>
@@ -1559,16 +1588,20 @@ both the explanatory and response variables (<code>log(y) ~ log(x)</code>), as
 displayed in Figure <a href="chapter7.html#fig:Figure7-16">7.16</a>. For this example, the
 transformation seems to be better than the first two options
 (none and only <span class="math inline">\(\log(y)\)</span>), but demonstrates some decreasing variability with
-larger <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values. It has also created a new and different curve in the relationship (see the smoothing (dashed) line start below the SLR line, then go above it, and the finish below it). In the end, we might prefer to fit an SLR model to the
-tree <em>height</em> vs <em>log(diameter)</em> versions of the variables
+larger <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values. It has also created a new and different curve in the
+relationship (see the smoothing (dashed) line start below the SLR line, then go
+above it, and the finish below it). In the end, we might prefer to fit an SLR
+model to the tree <em>height</em> vs <em>log(diameter)</em> versions of the variables
 (Figure <a href="chapter7.html#fig:Figure7-15">7.15</a>).</p>
 
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="chapter7.html#cb652-1" aria-hidden="true" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(dbh.cm), <span class="at">y =</span> <span class="fu">log</span>(height.m))) <span class="sc">+</span></span>
-<span id="cb652-2"><a href="chapter7.html#cb652-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb652-3"><a href="chapter7.html#cb652-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb652-4"><a href="chapter7.html#cb652-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log-tree height vs log-tree diameter&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:Figure7-16"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-16-1.png" alt="Scatterplot of log(tree height) versus log(tree diameter)." width="576" />
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="chapter7.html#cb657-1" aria-hidden="true" tabindex="-1"></a>ufc <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">168</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(dbh.cm), <span class="at">y =</span> <span class="fu">log</span>(height.m))) <span class="sc">+</span></span>
+<span id="cb657-2"><a href="chapter7.html#cb657-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb657-3"><a href="chapter7.html#cb657-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb657-4"><a href="chapter7.html#cb657-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb657-5"><a href="chapter7.html#cb657-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb657-6"><a href="chapter7.html#cb657-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log-tree height vs log-tree diameter&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:Figure7-16"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-16-1.png" alt="Scatterplot of log(tree height) versus log(tree diameter)." width="75%" />
 <p class="caption">
 Figure 7.16: Scatterplot of log(tree height) versus log(tree diameter).
 </p>
@@ -1586,7 +1619,7 @@ looks like an initially hopeless situation for our linear modeling approach.</p>
 <p>Data were collected in 1988 on the rates of infant mortality
 (infant deaths per 1,000
 live births) and gross domestic product (GDP) per capita (in 1998 US dollars)
-from <span class="math inline">\(n=207\)</span> countries. These data are available from the <code>carData</code> package
+from <span class="math inline">\(n = 207\)</span> countries. These data are available from the <code>carData</code> package
 (<span class="citation"><a href="#ref-R-carData" role="doc-biblioref">Fox, Weisberg, and Price</a> (<a href="#ref-R-carData" role="doc-biblioref">2020</a>)</span>, <span class="citation"><a href="#ref-Fox2003" role="doc-biblioref">Fox</a> (<a href="#ref-Fox2003" role="doc-biblioref">2003</a>)</span>) in a data set called <code>UN</code>.
 
 The four panels in
@@ -1598,8 +1631,8 @@ and <em>log(GDP)</em>. In the next section, we will fit models to some of these
 relationships and use our diagnostic plots to help us assess “success” of
 the transformations.</p>
 
-<div class="figure"><span id="fig:Figure7-17"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-17-1.png" alt="Scatterplots of Infant Mortality vs GDP under four different combinations of log-transformations." width="960" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-17"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-17-1.png" alt="Scatterplots of Infant Mortality vs GDP under four different combinations of log-transformations." width="75%" />
 <p class="caption">
 Figure 7.17: Scatterplots of Infant Mortality vs GDP under four different combinations of log-transformations.
 </p>
@@ -1607,9 +1640,9 @@ Figure 7.17: Scatterplots of Infant Mortality vs GDP under four different combin
 <p>Almost all nonlinear transformations assume that the variables are strictly
 greater than 0. For example, consider what happens when we apply the
 <code>log</code> function to 0 or a negative value in R:</p>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="chapter7.html#cb653-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="chapter7.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] NaN</code></pre>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="chapter7.html#cb655-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="chapter7.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## [1] -Inf</code></pre>
 <p>So be careful to think about the domain of the transformation function
 before using transformations.
@@ -1678,22 +1711,22 @@ long as it provides
 a situation where the SLR assumptions are reasonably well-satisfied.  To
 understand the properties and eventually the interpretation of
 transformed-variables models, we need to try to “reverse” our transformation.
-If we exponentiate<a href="#fn125" class="footnote-ref" id="fnref125"><sup>125</sup></a> both sides of <span class="math inline">\(\log(y)=b_0 + b_1x\)</span>, we get:</p>
-<div class="figure"><span id="fig:Figure7-18"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-18-1.png" alt="Plot of the estimated SLR (a) and implied model for the median on the original Hectares scale (b) for the area burned vs temperature data." width="960" />
+If we exponentiate<a href="#fn125" class="footnote-ref" id="fnref125"><sup>125</sup></a> both sides of <span class="math inline">\(\log(y) = b_0 + b_1x\)</span>, we get:</p>
+<div class="figure" style="text-align: center"><span id="fig:Figure7-18"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-18-1.png" alt="Plot of the estimated SLR (a) and implied model for the median on the original Hectares scale (b) for the area burned vs temperature data." width="75%" />
 <p class="caption">
 Figure 7.18: Plot of the estimated SLR (a) and implied model for the median on the original Hectares scale (b) for the area burned vs temperature data.
 </p>
 </div>
 <ul>
-<li><p><span class="math inline">\(\exp(\log(y))=\exp(b_0 + b_1x)\)</span>, <em>which is</em></p></li>
-<li><p><span class="math inline">\(y=\exp(b_0 + b_1x)\)</span>, <em>which can be re-written as</em></p></li>
-<li><p><span class="math inline">\(y=\exp(b_0)\exp(b_1x)\)</span>. <em>This is based on the rules for</em> <code>exp()</code> <em>where</em>
-<span class="math inline">\(\exp(a+b)=\exp(a)\exp(b)\)</span>.</p></li>
+<li><p><span class="math inline">\(\exp(\log(y)) = \exp(b_0 + b_1x)\)</span>, <em>which is</em></p></li>
+<li><p><span class="math inline">\(y = \exp(b_0 + b_1x)\)</span>, <em>which can be re-written as</em></p></li>
+<li><p><span class="math inline">\(y = \exp(b_0)\exp(b_1x)\)</span>. <em>This is based on the rules for</em> <code>exp()</code> <em>where</em>
+<span class="math inline">\(\exp(a+b) = \exp(a)\exp(b)\)</span>.</p></li>
 <li><p>Now consider what happens if we increase <span class="math inline">\(x\)</span> by 1 unit, going from <span class="math inline">\(x\)</span>
 to <span class="math inline">\(x+1\)</span>, providing a new predicted <span class="math inline">\(y\)</span> that we can call <span class="math inline">\(y^*\)</span>:
-<span class="math inline">\(y^*=\exp(b_0)\exp[b_1(x+1)]\)</span>:</p></li>
-<li><p><span class="math inline">\(y^*={\color{red}{\underline{\boldsymbol{\exp(b_0)\exp(b_1x)}}}}\exp(b_1)\)</span>.
+<span class="math inline">\(y^* = \exp(b_0)\exp[b_1(x+1)]\)</span>:</p></li>
+<li><p><span class="math inline">\(y^* = {\color{red}{\underline{\boldsymbol{\exp(b_0)\exp(b_1x)}}}}\exp(b_1)\)</span>.
 <em>Now note that the underlined, bold component was the y-value for</em> <span class="math inline">\(x\)</span>.</p></li>
 <li><p><span class="math inline">\(y^* = {\color{red}{\boldsymbol{y}}}\exp(b_1)\)</span>. <em>Found by replacing</em>
 <span class="math inline">\(\color{red}{\mathbf{\exp(b_0)\exp(b_1x)}}\)</span> <em>with</em> <span class="math inline">\(\color{red}{\mathbf{y}}\)</span>,
@@ -1717,28 +1750,28 @@ if successful.</p>
 <p>When we are working with regression equations, slopes can either be positive or
 negative and our interpretations change based on this result to either result
 in growth (<span class="math inline">\(b_1&gt;0\)</span>) or decay (<span class="math inline">\(b_1&lt;0\)</span>) in the responses as the explanatory
-variable is increased. As an example, consider <span class="math inline">\(b_1=0.4\)</span> and
-<span class="math inline">\(\exp(b_1)=\exp(0.4)=1.492\)</span>. There are a couple of ways to interpret
+variable is increased. As an example, consider <span class="math inline">\(b_1 = 0.4\)</span> and
+<span class="math inline">\(\exp(b_1) = \exp(0.4) = 1.492\)</span>. There are a couple of ways to interpret
 this on the original scale of the response variable <span class="math inline">\(y\)</span>:</p>
 <p>For <span class="math inline">\(\mathbf{b_1&gt;0}\)</span>:</p>
 <ol style="list-style-type: decimal">
 <li><p>For a 1 unit increase in <span class="math inline">\(x\)</span>, the median of <span class="math inline">\(y\)</span> is estimated to change by 1.492 times.</p></li>
 <li><p>We can convert this into a <strong>percentage increase</strong> by subtracting 1
-from <span class="math inline">\(\exp(0.4)\)</span>, <span class="math inline">\(1.492-1.0=0.492\)</span> and multiplying the result by 100,
-<span class="math inline">\(0.492*100=49.2\%\)</span>. This is interpreted as: For a 1 unit increase in <span class="math inline">\(x\)</span>,
+from <span class="math inline">\(\exp(0.4)\)</span>, <span class="math inline">\(1.492-1.0 = 0.492\)</span> and multiplying the result by 100,
+<span class="math inline">\(0.492*100 = 49.2\%\)</span>. This is interpreted as: For a 1 unit increase in <span class="math inline">\(x\)</span>,
 the median of <span class="math inline">\(y\)</span> is estimated to increase by 49.2%.</p></li>
 </ol>
-<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="chapter7.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">0.4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="chapter7.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">0.4</span>)</span></code></pre></div>
 <pre><code>## [1] 1.491825</code></pre>
 <p>For <span class="math inline">\(\mathbf{b_1&lt;0}\)</span>, the change on the <em>log</em>-scale is negative and that
 implies on the original scale that the curve decays to 0. For example,
-consider <span class="math inline">\(b_1=-0.3\)</span> and <span class="math inline">\(\exp(-0.3)=0.741\)</span>. Again,
+consider <span class="math inline">\(b_1 = -0.3\)</span> and <span class="math inline">\(\exp(-0.3) = 0.741\)</span>. Again,
 there are two versions of the interpretation possible:</p>
 <ol style="list-style-type: decimal">
 <li><p>For a 1 unit increase in <span class="math inline">\(x\)</span>, the median of <span class="math inline">\(y\)</span> is estimated to change by 0.741 times.</p></li>
 <li><p>For negative slope coefficients, the percentage decrease is calculated
-as <span class="math inline">\((1-\exp(b_1))*100\%\)</span>. For <span class="math inline">\(\exp(-0.3)=0.741\)</span>, this is
-<span class="math inline">\((1-0.741)*100=25.9\%\)</span>. This is interpreted as: For a 1 unit increase
+as <span class="math inline">\((1-\exp(b_1))*100\%\)</span>. For <span class="math inline">\(\exp(-0.3) = 0.741\)</span>, this is
+<span class="math inline">\((1-0.741)*100 = 25.9\%\)</span>. This is interpreted as: For a 1 unit increase
 in <span class="math inline">\(x\)</span>, the median of <span class="math inline">\(y\)</span> is estimated to decrease by 25.9%.</p></li>
 </ol>
 <p>We suspect that you will typically prefer interpretation #1 for both
@@ -1747,9 +1780,9 @@ think about the results in terms of <strong><em>% change of the medians</em></st
 the scale of change more understandable. Some examples will help us see how
 these ideas can be used in applications.</p>
 <p>For the area burned data set, the estimated regression model is
-<span class="math inline">\(\log(\widehat{\text{hectares}})=-69.8+1.39\cdot\text{ Temp}\)</span>. On the
+<span class="math inline">\(\log(\widehat{\text{hectares}}) = -69.8+1.39\cdot\text{ Temp}\)</span>. On the
 original scale, this implies that the model is
-<span class="math inline">\(\widehat{\text{hectares}}=\exp(-69.8)\exp(1.39\text{ Temp})\)</span>.
+<span class="math inline">\(\widehat{\text{hectares}} = \exp(-69.8)\exp(1.39\text{ Temp})\)</span>.
 Figure <a href="chapter7.html#fig:Figure7-18">7.18</a> provides the <span class="math inline">\(\log(y)\)</span> scale version of
 the model and the model transformed to the
 original scale of measurement. On the log-hectares scale, the interpretation of
@@ -1757,7 +1790,7 @@ the slope is: For a 1<span class="math inline">\(^\circ F\)</span> increase in s
 estimate a 1.39 log-hectares/1<span class="math inline">\(^\circ F\)</span> change, on average, in the log-area
 burned. On the original scale: A 1<span class="math inline">\(^\circ F\)</span> increase in temperature is
 related to an estimated multiplicative change in the median number of hectares burned of
-<span class="math inline">\(\exp(1.39)=4.01\)</span> times higher areas. That seems like a big rate of growth but the curve does
+<span class="math inline">\(\exp(1.39) = 4.01\)</span> times higher areas. That seems like a big rate of growth but the curve does
 grow rapidly as shown in panel (b), especially for values over
 58<span class="math inline">\(^\circ F\)</span> where the area burned is starting to be really large. You can think
 of the multiplicative change here in the following way: the median
@@ -1778,18 +1811,18 @@ interpretation when we consider the results on the original scale for <span clas
 we will consider the mathematics underlying the changes in the model and then
 work on applying it to real situations. When the explanatory variable is
 logged, the estimated regression model is
-<span class="math inline">\(\color{red}{\boldsymbol{y=b_0+b_1\log(x)}}\)</span>. This models the relationship
+<span class="math inline">\(\color{red}{\boldsymbol{y = b_0+b_1\log(x)}}\)</span>. This models the relationship
 between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> in terms of multiplicative changes in <span class="math inline">\(x\)</span> having an
 effect on the average <span class="math inline">\(y\)</span>.</p>
 <p>To develop an interpretation on the <span class="math inline">\(x\)</span>-scale
 (not <span class="math inline">\(\log(x)\)</span>), consider the impact of doubling <span class="math inline">\(x\)</span>. This change will
-take us from the point (<span class="math inline">\(x,\color{red}{\boldsymbol{y=b_0+b_1\log(x)}}\)</span>)
-to the point <span class="math inline">\((2x,\boldsymbol{y^*=b_0+b_1\log(2x)})\)</span>. Now the impact of
+take us from the point (<span class="math inline">\(x,\color{red}{\boldsymbol{y = b_0+b_1\log(x)}}\)</span>)
+to the point <span class="math inline">\((2x,\boldsymbol{y^* = b_0+b_1\log(2x)})\)</span>. Now the impact of
 doubling <span class="math inline">\(x\)</span> can
 be simplified using the rules for logs to be:</p>
 <ul>
-<li><p><span class="math inline">\(\boldsymbol{y^*=b_0+b_1\log(2x)}\)</span>,</p></li>
-<li><p><span class="math inline">\(\boldsymbol{y^*}={\color{red}{\underline{\boldsymbol{b_0+b_1\log(x)}}}} + b_1\log(2)\)</span>.   <em>Based on the rules for logs:</em> <span class="math inline">\(log(2x)=log(x)+log(2)\)</span>.</p></li>
+<li><p><span class="math inline">\(\boldsymbol{y^* = b_0+b_1\log(2x)}\)</span>,</p></li>
+<li><p><span class="math inline">\(\boldsymbol{y^*} = {\color{red}{\underline{\boldsymbol{b_0+b_1\log(x)}}}} + b_1\log(2)\)</span>.   <em>Based on the rules for logs:</em> <span class="math inline">\(log(2x) = log(x)+log(2)\)</span>.</p></li>
 <li><p><span class="math inline">\(y^* = {\color{red}{\boldsymbol{y}}}+b_1\log(2)\)</span></p></li>
 <li><p>So if we double <span class="math inline">\(x\)</span>, we change the <strong>mean</strong> of <span class="math inline">\(y\)</span> by <span class="math inline">\(b_1\log(2)\)</span>.</p></li>
 </ul>
@@ -1804,16 +1837,16 @@ Note that both interpretations are for the mean of the <span class="math inline"
 since we haven’t changed the <span class="math inline">\(y\sim\)</span> part of the model.</p></li>
 </ol>
 
-<div class="figure"><span id="fig:Figure7-19"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-19-1.png" alt="Plot of the observations and estimated SLR model (mortality~ log(GDP)) (top) and implied model (bottom) for the infant mortality data." width="960" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-19"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-19-1.png" alt="Plot of the observations and estimated SLR model (mortality ~ log(GDP)) (top) and implied model (bottom) for the infant mortality data." width="75%" />
 <p class="caption">
-Figure 7.19: Plot of the observations and estimated SLR model (mortality~ log(GDP)) (top) and implied model (bottom) for the infant mortality data.
+Figure 7.19: Plot of the observations and estimated SLR model (mortality ~ log(GDP)) (top) and implied model (bottom) for the infant mortality data.
 </p>
 </div>
 <p>While it is not a perfect model (no model is), let’s consider the model
 for <em>infant mortality</em> <span class="math inline">\(\sim\)</span> <em>log(GDP)</em> in order to practice the
 interpretation using this type of model. This model was estimated to be
-<span class="math inline">\(\widehat{\text{infantmortality}}=155.77-14.86\cdot\log(\text{GDP})\)</span>. The first
+<span class="math inline">\(\widehat{\text{infantmortality}} = 155.77-14.86\cdot\log(\text{GDP})\)</span>. The first
 (simplest) interpretation of the slope coefficient is: For a 1 log-dollar
 increase in GDP per capita, we estimate infant
 mortality to change, on average, by -14.86 deaths/1000 live births. The
@@ -1825,8 +1858,8 @@ GDP. Both versions of the model are displayed in Figure <a href="chapter7.html#f
 – one on the scale
 the SLR model was fit (panel a) and the other on the original <span class="math inline">\(x\)</span>-scale (panel b)
 that matches these last interpretations.</p>
-<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="chapter7.html#cb659-1" aria-hidden="true" tabindex="-1"></a>ID1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(infantMortality <span class="sc">~</span> <span class="fu">log</span>(ppgdp), <span class="at">data =</span> UN)</span>
-<span id="cb659-2"><a href="chapter7.html#cb659-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ID1)</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="chapter7.html#cb664-1" aria-hidden="true" tabindex="-1"></a>ID1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(infantMortality <span class="sc">~</span> <span class="fu">log</span>(ppgdp), <span class="at">data =</span> UN)</span>
+<span id="cb664-2"><a href="chapter7.html#cb664-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ID1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = infantMortality ~ log(ppgdp), data = UN)
@@ -1843,7 +1876,7 @@ that matches these last interpretations.</p>
 ## Residual standard error: 18.14 on 191 degrees of freedom
 ## Multiple R-squared:  0.6172, Adjusted R-squared:  0.6152 
 ## F-statistic:   308 on 1 and 191 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="chapter7.html#cb661-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">14.86</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="chapter7.html#cb666-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fl">14.86</span><span class="sc">*</span><span class="fu">log</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] -10.30017</code></pre>
 <p>It appears that our model does not fit too well and that there might be
 some non-constant variance so we
@@ -1851,10 +1884,10 @@ should check the diagnostic plots (available in Figure <a href="chapter7.html#fi
 before we trust
 any of those previous interpretations.</p>
 
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="chapter7.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb663-2"><a href="chapter7.html#cb663-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ID1)</span></code></pre></div>
-<div class="figure"><span id="fig:Figure7-20"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-20-1.png" alt="Diagnostics plots of the infant mortality model with log(GDP)." width="960" />
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="chapter7.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb668-2"><a href="chapter7.html#cb668-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ID1)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:Figure7-20"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-20-1.png" alt="Diagnostics plots of the infant mortality model with log(GDP)." width="75%" />
 <p class="caption">
 Figure 7.20: Diagnostics plots of the infant mortality model with log(GDP).
 </p>
@@ -1866,15 +1899,15 @@ influential points, but we are far from happy with this model and will be
 revisiting this example with the responses also transformed. Remember that the
 log-transformation of the response can potentially fix non-constant variance,
 normality, and curvature issues.</p>
-<div style="page-break-after: always;"></div>
-<p><strong>Scenario 3: log(y)~log(x) model</strong></p>
+<!-- \newpage -->
+<p><strong>Scenario 3: log(y) ~ log(x) model</strong></p>
 <p>A final model combines log-transformations of both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, combining the interpretations used in the previous two situations. This model is called the
 <strong><em>log-log model</em></strong> and in some fields is also called the <strong><em>power law model</em></strong>.
 
 
 The power-law model is usually written as <span class="math inline">\(y = \beta_0x^{\beta_1}+\varepsilon\)</span>,
 where <span class="math inline">\(y\)</span> is thought to be proportional to <span class="math inline">\(x\)</span> raised to an estimated power
-of <span class="math inline">\(\beta_1\)</span> (linear if <span class="math inline">\(\beta_1=1\)</span> and quadratic if <span class="math inline">\(\beta_1=2\)</span>). It is
+of <span class="math inline">\(\beta_1\)</span> (linear if <span class="math inline">\(\beta_1 = 1\)</span> and quadratic if <span class="math inline">\(\beta_1 = 2\)</span>). It is
 one of the models that has been used in Geomorphology to model the shape of
 glaciated valley elevation profiles
 (that classic U-shape that comes with glacier-eroded mountain valleys)<a href="#fn126" class="footnote-ref" id="fnref126"><sup>126</sup></a>. If you
@@ -1889,8 +1922,8 @@ for logs:</em> <span class="math inline">\(\log(ab) = \log(a) + \log(b)\)</span>
 for logs:</em> <span class="math inline">\(\log(x^b) = b\log(x)\)</span>.</p></li>
 </ul>
 
-<div class="figure"><span id="fig:Figure7-21"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-21-1.png" alt="Plot of the observations and estimated SLR model log(mortality) \(\sim\) log(GDP) (left) and implied model (right) for the infant mortality data." width="576" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-21"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-21-1.png" alt="Plot of the observations and estimated SLR model log(mortality) \(\sim\) log(GDP) (left) and implied model (right) for the infant mortality data." width="75%" />
 <p class="caption">
 Figure 7.21: Plot of the observations and estimated SLR model log(mortality) <span class="math inline">\(\sim\)</span> log(GDP) (left) and implied model (right) for the infant mortality data.
 </p>
@@ -1899,13 +1932,13 @@ Figure 7.21: Plot of the observations and estimated SLR model log(mortality) <sp
 regular SLR model with <span class="math inline">\(x\)</span>
 and <span class="math inline">\(y\)</span> both log-transformed. The slope coefficient for <span class="math inline">\(\log(x)\)</span> is the
 power coefficient in the original power law model and determines whether
-the relationship between the original <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in <span class="math inline">\(y=\beta_0x^{\beta_1}\)</span>
-is linear <span class="math inline">\((y=\beta_0x^1)\)</span> or quadratic <span class="math inline">\((y=\beta_0x^2)\)</span> or even quartic
-<span class="math inline">\((y=\beta_0x^4)\)</span> in some really heavily glacier carved
+the relationship between the original <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in <span class="math inline">\(y = \beta_0x^{\beta_1}\)</span>
+is linear <span class="math inline">\((y = \beta_0x^1)\)</span> or quadratic <span class="math inline">\((y = \beta_0x^2)\)</span> or even quartic
+<span class="math inline">\((y = \beta_0x^4)\)</span> in some really heavily glacier carved
 U-shaped valleys. There are some issues with “ignoring the errors” in using SLR
-to estimate these models <span class="citation">(<a href="#ref-Greenwood2002" role="doc-biblioref">Greenwood and Humphrey 2002</a>)</span> but it is still a
+to estimate these models <span class="citation">(<a href="#ref-Greenwood2002" role="doc-biblioref">M. C. Greenwood and Humphrey 2002</a>)</span> but it is still a
 pretty powerful result to be able to estimate the coefficients in
-<span class="math inline">\((y=\beta_0x^{\beta_1})\)</span> using SLR.</p>
+<span class="math inline">\((y = \beta_0x^{\beta_1})\)</span> using SLR.</p>
 <p>We don’t typically use
 the previous ideas to interpret the typical log-log regression model, instead
 we combine our two previous interpretation techniques to generate our
@@ -1919,14 +1952,14 @@ log-transformed:</p>
 <li><p><span class="math inline">\(\log(y) = b_0 + b_1\log(x)\)</span>,</p></li>
 <li><p><span class="math inline">\(y = \exp(b_0 + b_1\log(x))\)</span>.   <em>Exponentiate
 both sides</em>.</p></li>
-<li><p><span class="math inline">\(y = \exp(b_0)\exp(b_1\log(x))=\exp(b_0)x^{b_1}\)</span>.   <em>Rules for
+<li><p><span class="math inline">\(y = \exp(b_0)\exp(b_1\log(x)) = \exp(b_0)x^{b_1}\)</span>.   <em>Rules for
 exponents and logs, simplifying.</em></p></li>
 </ul>
 <p>Now we can consider the impacts of doubling <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>, going from
-<span class="math inline">\((x,{\color{red}{\boldsymbol{y=\exp(b_0)x^{b_1}}}})\)</span> to <span class="math inline">\((2x,y^*)\)</span> with</p>
+<span class="math inline">\((x,{\color{red}{\boldsymbol{y = \exp(b_0)x^{b_1}}}})\)</span> to <span class="math inline">\((2x,y^*)\)</span> with</p>
 <ul>
 <li><p><span class="math inline">\(y^* = \exp(b_0)(2x)^{b_1}\)</span>,</p></li>
-<li><p><span class="math inline">\(y^* = \exp(b_0)2^{b_1}x^{b_1} = 2^{b_1}{\color{red}{\boldsymbol{\exp(b_0)x^{b_1}}}}=2^{b_1}{\color{red}{\boldsymbol{y}}}\)</span></p></li>
+<li><p><span class="math inline">\(y^* = \exp(b_0)2^{b_1}x^{b_1} = 2^{b_1}{\color{red}{\boldsymbol{\exp(b_0)x^{b_1}}}} = 2^{b_1}{\color{red}{\boldsymbol{y}}}\)</span></p></li>
 </ul>
 <p>So doubling <span class="math inline">\(x\)</span> leads to a multiplicative change in the median of <span class="math inline">\(y\)</span>
 of <span class="math inline">\(2^{b_1}\)</span>.</p>
@@ -1936,8 +1969,8 @@ actually made the resulting relationship look like it might be close to being re
 pretty good on both
 the estimated log-log scale (panel a) and on the original scale (panel b) as it
 captures the severe nonlinearity in the relationship between the two variables.</p>
-<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="chapter7.html#cb664-1" aria-hidden="true" tabindex="-1"></a>ID2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(infantMortality) <span class="sc">~</span> <span class="fu">log</span>(ppgdp), <span class="at">data =</span> UN)</span>
-<span id="cb664-2"><a href="chapter7.html#cb664-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ID2)</span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="chapter7.html#cb669-1" aria-hidden="true" tabindex="-1"></a>ID2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(infantMortality) <span class="sc">~</span> <span class="fu">log</span>(ppgdp), <span class="at">data =</span> UN)</span>
+<span id="cb669-2"><a href="chapter7.html#cb669-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ID2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log(infantMortality) ~ log(ppgdp), data = UN)
@@ -1955,14 +1988,14 @@ captures the severe nonlinearity in the relationship between the two variables.<
 ## Multiple R-squared:  0.7662, Adjusted R-squared:  0.765 
 ## F-statistic: 625.9 on 1 and 191 DF,  p-value: &lt; 2.2e-16</code></pre>
 
-<div class="figure"><span id="fig:Figure7-22"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-22-1.png" alt="Diagnostic plots for the log-log infant mortality model." width="960" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-22"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-22-1.png" alt="Diagnostic plots for the log-log infant mortality model." width="75%" />
 <p class="caption">
 Figure 7.22: Diagnostic plots for the log-log infant mortality model.
 </p>
 </div>
 <p>The estimated regression model is
-<span class="math inline">\(\log(\widehat{\text{infantmortality}})=8.104-0.617\cdot\log(\text{GDP})\)</span>.
+<span class="math inline">\(\log(\widehat{\text{infantmortality}}) = 8.104-0.617\cdot\log(\text{GDP})\)</span>.
 The slope coefficient can be interpreted two ways.
 </p>
 <ol style="list-style-type: decimal">
@@ -1998,8 +2031,8 @@ the dots on 95% confidence intervals constructed for the true mean <span class="
 across all the <span class="math inline">\(x\)</span>-values. To formalize this idea, consider a specific value
 of <span class="math inline">\(x\)</span>, and call it <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> (pronounced <strong>x-new</strong><a href="#fn128" class="footnote-ref" id="fnref128"><sup>128</sup></a>).
 Then the true mean response for this <strong><em>subpopulation</em></strong> (a subpopulation
-is all observations we could obtain at <span class="math inline">\(\boldsymbol{x=x_{\nu}}\)</span>) is given by
-<span class="math inline">\(\boldsymbol{E(Y)=\mu_\nu=\beta_0+\beta_1x_{\nu}}\)</span>. To estimate the mean
+is all observations we could obtain at <span class="math inline">\(\boldsymbol{x = x_{\nu}}\)</span>) is given by
+<span class="math inline">\(\boldsymbol{E(Y) = \mu_\nu = \beta_0+\beta_1x_{\nu}}\)</span>. To estimate the mean
 response at <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span>, we plug <span class="math inline">\(\boldsymbol{x_{\nu}}\)</span> into the
 estimated regression equation:   </p>
 <p><span class="math display">\[\hat{\mu}_{\nu} = b_0 + b_1x_{\nu}.\]</span></p>
@@ -2087,8 +2120,8 @@ consume 8 beers. Four different applications of the predict function follow.
 Note that <code>lwr</code> and <code>upr</code> in the output depend on what we
 requested. The first use of <code>predict</code> just returns the estimated mean
 for 8 beers:</p>
-<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="chapter7.html#cb666-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(BAC <span class="sc">~</span> Beers, <span class="at">data =</span> BB)</span>
-<span id="cb666-2"><a href="chapter7.html#cb666-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="chapter7.html#cb671-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(BAC <span class="sc">~</span> Beers, <span class="at">data =</span> BB)</span>
+<span id="cb671-2"><a href="chapter7.html#cb671-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>))</span></code></pre></div>
 <pre><code>##         1 
 ## 0.1310095</code></pre>
 <p>By turning on the <code>se.fit = T</code> option, we also get the SE for the
@@ -2096,7 +2129,7 @@ confidence interval and degrees of freedom.
 
 Note that elements returned
 are labeled as <code>$fit</code>, <code>$se.fit</code>, etc. and provide some of the information to calculate CIs or PIs “by hand.”</p>
-<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="chapter7.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">se.fit =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="chapter7.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">se.fit =</span> T)</span></code></pre></div>
 <pre><code>## $fit
 ##         1 
 ## 0.1310095 
@@ -2112,10 +2145,10 @@ are labeled as <code>$fit</code>, <code>$se.fit</code>, etc. and provide some of
 <p>Instead of using the components of the intervals to
 make them, we can also directly request the CI or PI using the
 <code>interval = ...</code> option, as in the following two lines of code.</p>
-<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="chapter7.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="chapter7.html#cb675-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##         fit       lwr       upr
 ## 1 0.1310095 0.1112681 0.1507509</code></pre>
-<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="chapter7.html#cb672-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="chapter7.html#cb677-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> <span class="dv">8</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##         fit        lwr       upr
 ## 1 0.1310095 0.08292834 0.1790906</code></pre>
 <p>Based on these results, we are 95% confident that the true mean <em>BAC</em>
@@ -2125,45 +2158,46 @@ BAC will be between 0.083 and 0.179 g/dL. You can see from these results that
 the PI is much wider than the CI – it has to capture a new individual’s results
 95% of the time which is much harder than trying to capture the true mean at 8 beers consumed. For
 completeness, we should do these same calculations “by hand.” The
-<code>predict(..., se.fit=T)</code> output provides almost all the pieces we need
+<code>predict(..., se.fit = T)</code> output provides almost all the pieces we need
 to calculate the CI and PI. The <code>$fit</code> is the
-<span class="math inline">\(\text{estimate} = \hat{\mu}_{\nu}=0.131\)</span>, the <code>$se.fit</code> is the SE
-for the estimate of the <span class="math inline">\(\text{mean} = \text{SE}_{\hat{\mu}_{\nu}}=0.0092\)</span>
-, <code>$df</code> is <span class="math inline">\(n-2 = 16-2=14\)</span>, and <code>$residual.scale</code> is
-<span class="math inline">\(\hat{\sigma}=0.02044\)</span>. So we just need the <span class="math inline">\(t^*\)</span> multiplier for 95%
+<span class="math inline">\(\text{estimate} = \hat{\mu}_{\nu} = 0.131\)</span>, the <code>$se.fit</code> is the SE
+for the estimate of the <span class="math inline">\(\text{mean} = \text{SE}_{\hat{\mu}_{\nu}} = 0.0092\)</span>
+, <code>$df</code> is <span class="math inline">\(n-2 = 16-2 = 14\)</span>, and <code>$residual.scale</code> is
+<span class="math inline">\(\hat{\sigma} = 0.02044\)</span>. So we just need the <span class="math inline">\(t^*\)</span> multiplier for 95%
 confidence and 14 <em>df</em>:</p>
-<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="chapter7.html#cb674-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>) <span class="co"># t* multiplier for 95% CI or 95% PI</span></span></code></pre></div>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="chapter7.html#cb679-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">14</span>) <span class="co">#t* multiplier for 95% CI or 95% PI</span></span></code></pre></div>
 <pre><code>## [1] 2.144787</code></pre>
-<p>The 95% CI for the true mean at <span class="math inline">\(\boldsymbol{x_{\nu}=8}\)</span> is then:</p>
-<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="chapter7.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.131</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fl">2.1448</span><span class="sc">*</span><span class="fl">0.0092</span></span></code></pre></div>
+<p>The 95% CI for the true mean at <span class="math inline">\(\boldsymbol{x_{\nu} = 8}\)</span> is then:</p>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="chapter7.html#cb681-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.131</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fl">2.1448</span><span class="sc">*</span><span class="fl">0.0092</span></span></code></pre></div>
 <pre><code>## [1] 0.1112678 0.1507322</code></pre>
 <p>which matches the previous output quite well.</p>
 <p>The 95% PI requires the calculation of
-<span class="math inline">\(\sqrt{\text{SE}_{\hat{\mu}_{\nu}}^2 + \boldsymbol{\hat{\sigma}^2}} = \sqrt{(0.0092)^2+(0.02044)^2}=0.0224\)</span>.</p>
-<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="chapter7.html#cb678-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">0.0092</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.02044</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<span class="math inline">\(\sqrt{\text{SE}_{\hat{\mu}_{\nu}}^2 + \boldsymbol{\hat{\sigma}^2}} = \sqrt{(0.0092)^2+(0.02044)^2} = 0.0224\)</span>.</p>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="chapter7.html#cb683-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">0.0092</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.02044</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.02241503</code></pre>
-<p>The 95% PI at <span class="math inline">\(\boldsymbol{x_{\nu}=8}\)</span> is</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="chapter7.html#cb680-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.131</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fl">2.1448</span><span class="sc">*</span><span class="fl">0.0224</span></span></code></pre></div>
+<p>The 95% PI at <span class="math inline">\(\boldsymbol{x_{\nu} = 8}\)</span> is</p>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="chapter7.html#cb685-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.131</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fl">2.1448</span><span class="sc">*</span><span class="fl">0.0224</span></span></code></pre></div>
 <pre><code>## [1] 0.08295648 0.17904352</code></pre>
 <p>These calculations are “fun” and informative but displaying these results
 for all <span class="math inline">\(x\)</span>-values is a bit more
 informative about the performance of the two types of intervals and for results
 we might expect in this application. The calculations we just performed provide
-endpoints of both intervals at <code>Beers</code>= 8. To make this plot, we need to
+endpoints of both intervals at <code>Beers</code> = 8. To make this plot, we need to
 create a sequence of <em>Beers</em> values to get other results for, say from 0 to 10 beers,
 using the <code>seq</code> function. The <code>seq</code> function requires three arguments, that the endpoints (<code>from</code> and <code>to</code>) are defined and
 the <code>length.out</code>, which defines the resolution of the grid of equally spaced points
 to create. Here, <code>length.out = 30</code> provides 30 points evenly spaced between 0 and 10 and is more than enough to make
 the confidence and prediction intervals from 0 to 10 <em>Beers</em>. </p>
-<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="chapter7.html#cb682-1" aria-hidden="true" tabindex="-1"></a>beerf <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">30</span>) <span class="co">#Creates vector of predictor values from 0 to 10</span></span>
-<span id="cb682-2"><a href="chapter7.html#cb682-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beerf, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="chapter7.html#cb687-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates vector of predictor values from 0 to 10</span></span>
+<span id="cb687-2"><a href="chapter7.html#cb687-2" aria-hidden="true" tabindex="-1"></a>beerf <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">30</span>) </span>
+<span id="cb687-3"><a href="chapter7.html#cb687-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(beerf, <span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## [1] 0.0000000 0.3448276 0.6896552 1.0344828 1.3793103 1.7241379</code></pre>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="chapter7.html#cb684-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(beerf, <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="chapter7.html#cb689-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(beerf, <span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## [1]  8.275862  8.620690  8.965517  9.310345  9.655172 10.000000</code></pre>
 <p>Now we can call the <code>predict</code> function at the values stored in
 <code>beerf</code> to get the CIs across that range of <em>Beers</em> values:</p>
-<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="chapter7.html#cb686-1" aria-hidden="true" tabindex="-1"></a>BBCI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> beerf), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
-<span id="cb686-2"><a href="chapter7.html#cb686-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(BBCI)</span></code></pre></div>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="chapter7.html#cb691-1" aria-hidden="true" tabindex="-1"></a>BBCI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> beerf), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
+<span id="cb691-2"><a href="chapter7.html#cb691-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(BBCI)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##         fit      lwr    upr
 ##       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
@@ -2173,10 +2207,10 @@ the confidence and prediction intervals from 0 to 10 <em>Beers</em>. </p>
 ## 4  0.00588  -0.0165  0.0282
 ## 5  0.0121   -0.00873 0.0329
 ## 6  0.0183   -0.00105 0.0376</code></pre>
-<div style="page-break-after: always;"></div>
+<!-- \newpage -->
 <p>And the PIs:</p>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="chapter7.html#cb688-1" aria-hidden="true" tabindex="-1"></a>BBPI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> beerf), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
-<span id="cb688-2"><a href="chapter7.html#cb688-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(BBPI)</span></code></pre></div>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="chapter7.html#cb693-1" aria-hidden="true" tabindex="-1"></a>BBPI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(m1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Beers =</span> beerf), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
+<span id="cb693-2"><a href="chapter7.html#cb693-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(BBPI)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##         fit     lwr    upr
 ##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -2188,23 +2222,30 @@ the confidence and prediction intervals from 0 to 10 <em>Beers</em>. </p>
 ## 6  0.0183   -0.0296 0.0662</code></pre>
 <p>To visualize these results as shown in Figure <a href="chapter7.html#fig:Figure7-23">7.23</a>, we need to work to combine some of the previous results into a common tibble, called <code>modelresB</code>, using the <code>bind_cols</code> function that allows multiple columns to be put together. Because some of the names are the same in the <code>BBCI</code> and <code>BBPI</code> objects and were awkwardly given unique names, there is an additional step to rename the columns using the <code>rename</code> function. The <code>rename</code> function changes the name to what is provided before the <code>=</code> for the column identified after the <code>=</code> (think of it like <code>mutate</code> except that it does not create a new variable). The layers in the plot start with adding a line for the fitted values (solid, using <code>geom_line</code>) based on the information in <code>modelresB</code>. We also introduce the <code>geom_ribbon</code> explicitly for the first time<a href="#fn129" class="footnote-ref" id="fnref129"><sup>129</sup></a> to plot our confidence and prediction intervals. It allows plotting of a region (and its edges) defined by <code>ymin</code> and <code>ymax</code> across the values provided to <code>x</code>. I also wanted to include the original observations, but they are stored in a different tibble (<code>BB</code>), so the <code>geom_point</code> needs to be explicitly told to use a different data set for its contribution to the plot with <code>data = BB</code> along with its own local aesthetic with x and y selections from the original variables.   </p>
 
-<div class="figure"><span id="fig:Figure7-23"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-23-1.png" alt="Estimated SLR for BAC data with fitted values (solid line), 95% confidence (darker, dashed lines), and 95% prediction (lighter, dotted lines) intervals." width="960" />
+<div class="figure" style="text-align: center"><span id="fig:Figure7-23"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-23-1.png" alt="Estimated SLR for BAC data with fitted values (solid line), 95% confidence (darker, dashed lines), and 95% prediction (lighter, dotted lines) intervals." width="75%" />
 <p class="caption">
 Figure 7.23: Estimated SLR for BAC data with fitted values (solid line), 95% confidence (darker, dashed lines), and 95% prediction (lighter, dotted lines) intervals.
 </p>
 </div>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="chapter7.html#cb690-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Patch the beerf vector, fits (just one version), and intervals from BBCI and BBPI together with bind_cols:</span></span>
-<span id="cb690-2"><a href="chapter7.html#cb690-2" aria-hidden="true" tabindex="-1"></a>modelresB <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">beerf =</span> <span class="fu">tibble</span>(beerf), BBCI, BBPI <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
-<span id="cb690-3"><a href="chapter7.html#cb690-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb690-4"><a href="chapter7.html#cb690-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Rename CI and PI limits to have more explicit column names:</span></span>
-<span id="cb690-5"><a href="chapter7.html#cb690-5" aria-hidden="true" tabindex="-1"></a>modelresB <span class="ot">&lt;-</span> modelresB <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">3</span>, <span class="at">upr_CI =</span> upr...<span class="dv">4</span>, <span class="at">lwr_PI =</span> lwr...<span class="dv">5</span>, <span class="at">upr_PI =</span> upr...<span class="dv">6</span>)</span>
-<span id="cb690-6"><a href="chapter7.html#cb690-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb690-7"><a href="chapter7.html#cb690-7" aria-hidden="true" tabindex="-1"></a>modelresB <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">y=</span>fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb690-8"><a href="chapter7.html#cb690-8" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb690-9"><a href="chapter7.html#cb690-9" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb690-10"><a href="chapter7.html#cb690-10" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>(<span class="at">data =</span> BB, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Beers, <span class="at">y =</span> BAC)) <span class="sc">+</span> </span>
-<span id="cb690-11"><a href="chapter7.html#cb690-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;BAC&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Beers&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Scatterplot with estimated regression line and 95% CI and PI&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="chapter7.html#cb695-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Patch the beerf vector, fits (just one version), and intervals from BBCI and </span></span>
+<span id="cb695-2"><a href="chapter7.html#cb695-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BBPI together with bind_cols:</span></span>
+<span id="cb695-3"><a href="chapter7.html#cb695-3" aria-hidden="true" tabindex="-1"></a>modelresB <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">beerf =</span> <span class="fu">tibble</span>(beerf), BBCI, BBPI <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
+<span id="cb695-4"><a href="chapter7.html#cb695-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb695-5"><a href="chapter7.html#cb695-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename CI and PI limits to have more explicit column names:</span></span>
+<span id="cb695-6"><a href="chapter7.html#cb695-6" aria-hidden="true" tabindex="-1"></a>modelresB <span class="ot">&lt;-</span> modelresB <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">3</span>, <span class="at">upr_CI =</span> upr...<span class="dv">4</span>, </span>
+<span id="cb695-7"><a href="chapter7.html#cb695-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">lwr_PI =</span> lwr...<span class="dv">5</span>, <span class="at">upr_PI =</span> upr...<span class="dv">6</span>)</span>
+<span id="cb695-8"><a href="chapter7.html#cb695-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb695-9"><a href="chapter7.html#cb695-9" aria-hidden="true" tabindex="-1"></a>modelresB <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb695-10"><a href="chapter7.html#cb695-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb695-11"><a href="chapter7.html#cb695-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
+<span id="cb695-12"><a href="chapter7.html#cb695-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb695-13"><a href="chapter7.html#cb695-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> beerf, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, </span>
+<span id="cb695-14"><a href="chapter7.html#cb695-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb695-15"><a href="chapter7.html#cb695-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> BB, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Beers, <span class="at">y =</span> BAC)) <span class="sc">+</span> </span>
+<span id="cb695-16"><a href="chapter7.html#cb695-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;BAC&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Beers&quot;</span>, </span>
+<span id="cb695-17"><a href="chapter7.html#cb695-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Scatterplot with estimated regression line and 95% CI and PI&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb695-18"><a href="chapter7.html#cb695-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p>More importantly, note that the CI in Figure <a href="chapter7.html#fig:Figure7-23">7.23</a> clearly
 shows widening as we move further away from the mean of the
 <span class="math inline">\(x\text{&#39;s}\)</span> to the edges of the observed <span class="math inline">\(x\)</span>-values. This reflects a decrease
@@ -2224,43 +2265,50 @@ the 109 observations (1.8%) fall outside the 95% PIs. Since the PI needs to be
 concerned with unobserved new observations it makes sense that it might contain
 more than 95% of the observations used to make it.</p>
 
-<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="chapter7.html#cb691-1" aria-hidden="true" tabindex="-1"></a>temp1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)</span>
-<span id="cb691-2"><a href="chapter7.html#cb691-2" aria-hidden="true" tabindex="-1"></a>Yearf <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1901</span>, <span class="at">to =</span> <span class="dv">2014</span>, <span class="at">length.out =</span> <span class="dv">75</span>)</span>
-<span id="cb691-3"><a href="chapter7.html#cb691-3" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb691-4"><a href="chapter7.html#cb691-4" aria-hidden="true" tabindex="-1"></a>TCI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> Yearf), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
-<span id="cb691-5"><a href="chapter7.html#cb691-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb691-6"><a href="chapter7.html#cb691-6" aria-hidden="true" tabindex="-1"></a>TPI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> Yearf), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
-<span id="cb691-7"><a href="chapter7.html#cb691-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb691-8"><a href="chapter7.html#cb691-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Patch the Yearf vector, fits (just one version), and intervals from TCI and TPI together with bind_cols:</span></span>
-<span id="cb691-9"><a href="chapter7.html#cb691-9" aria-hidden="true" tabindex="-1"></a>modelresT <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">Yearf =</span> <span class="fu">tibble</span>(Yearf), TCI, TPI <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
-<span id="cb691-10"><a href="chapter7.html#cb691-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb691-11"><a href="chapter7.html#cb691-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Rename CI and PI limits to have more explicit column names:</span></span>
-<span id="cb691-12"><a href="chapter7.html#cb691-12" aria-hidden="true" tabindex="-1"></a>modelresT <span class="ot">&lt;-</span> modelresT <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">3</span>, <span class="at">upr_CI =</span> upr...<span class="dv">4</span>, <span class="at">lwr_PI =</span> lwr...<span class="dv">5</span>, <span class="at">upr_PI =</span> upr...<span class="dv">6</span>)</span>
-<span id="cb691-13"><a href="chapter7.html#cb691-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb691-14"><a href="chapter7.html#cb691-14" aria-hidden="true" tabindex="-1"></a>modelresT <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">y=</span>fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb691-15"><a href="chapter7.html#cb691-15" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb691-16"><a href="chapter7.html#cb691-16" aria-hidden="true" tabindex="-1"></a>              <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb691-17"><a href="chapter7.html#cb691-17" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_point</span>(<span class="at">data =</span> bozemantemps, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> meanmax)) <span class="sc">+</span> </span>
-<span id="cb691-18"><a href="chapter7.html#cb691-18" aria-hidden="true" tabindex="-1"></a>          <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;degrees F&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Scatterplot with estimated regression line and 95% CI and PI&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure"><span id="fig:Figure7-24"></span>
-<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-24-1.png" alt="Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals." width="960" />
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="chapter7.html#cb696-1" aria-hidden="true" tabindex="-1"></a>temp1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)</span>
+<span id="cb696-2"><a href="chapter7.html#cb696-2" aria-hidden="true" tabindex="-1"></a>Yearf <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1901</span>, <span class="at">to =</span> <span class="dv">2014</span>, <span class="at">length.out =</span> <span class="dv">75</span>)</span>
+<span id="cb696-3"><a href="chapter7.html#cb696-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb696-4"><a href="chapter7.html#cb696-4" aria-hidden="true" tabindex="-1"></a>TCI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> Yearf), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>))</span>
+<span id="cb696-5"><a href="chapter7.html#cb696-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb696-6"><a href="chapter7.html#cb696-6" aria-hidden="true" tabindex="-1"></a>TPI <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> Yearf), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
+<span id="cb696-7"><a href="chapter7.html#cb696-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb696-8"><a href="chapter7.html#cb696-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Patch the Yearf vector, fits (just one version), and intervals from TCI and </span></span>
+<span id="cb696-9"><a href="chapter7.html#cb696-9" aria-hidden="true" tabindex="-1"></a><span class="co"># TPI together with bind_cols:</span></span>
+<span id="cb696-10"><a href="chapter7.html#cb696-10" aria-hidden="true" tabindex="-1"></a>modelresT <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(<span class="at">Yearf =</span> <span class="fu">tibble</span>(Yearf), TCI, TPI <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>fit))</span>
+<span id="cb696-11"><a href="chapter7.html#cb696-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb696-12"><a href="chapter7.html#cb696-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename CI and PI limits to have more explicit column names:</span></span>
+<span id="cb696-13"><a href="chapter7.html#cb696-13" aria-hidden="true" tabindex="-1"></a>modelresT <span class="ot">&lt;-</span> modelresT <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">lwr_CI =</span> lwr...<span class="dv">3</span>, <span class="at">upr_CI =</span> upr...<span class="dv">4</span>, </span>
+<span id="cb696-14"><a href="chapter7.html#cb696-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">lwr_PI =</span> lwr...<span class="dv">5</span>, <span class="at">upr_PI =</span> upr...<span class="dv">6</span>)</span>
+<span id="cb696-15"><a href="chapter7.html#cb696-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb696-16"><a href="chapter7.html#cb696-16" aria-hidden="true" tabindex="-1"></a>modelresT <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb696-17"><a href="chapter7.html#cb696-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">y =</span> fit), <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb696-18"><a href="chapter7.html#cb696-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">ymin =</span> lwr_CI, <span class="at">ymax =</span> upr_CI), <span class="at">alpha =</span> .<span class="dv">4</span>, </span>
+<span id="cb696-19"><a href="chapter7.html#cb696-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;beige&quot;</span>, <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb696-20"><a href="chapter7.html#cb696-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> Yearf, <span class="at">ymin =</span> lwr_PI, <span class="at">ymax =</span> upr_PI), <span class="at">alpha =</span> .<span class="dv">1</span>, </span>
+<span id="cb696-21"><a href="chapter7.html#cb696-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">&quot;gray80&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb696-22"><a href="chapter7.html#cb696-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> bozemantemps, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> meanmax)) <span class="sc">+</span> </span>
+<span id="cb696-23"><a href="chapter7.html#cb696-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;degrees F&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, </span>
+<span id="cb696-24"><a href="chapter7.html#cb696-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Scatterplot with estimated regression line and 95% CI and PI&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb696-25"><a href="chapter7.html#cb696-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:Figure7-24"></span>
+<img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-24-1.png" alt="Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals." width="75%" />
 <p class="caption">
 Figure 7.24: Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals.
 </p>
 </div>
-<div style="page-break-after: always;"></div>
+<!-- \newpage -->
 <p>We can also use these same methods to do a prediction for the year after the
 data set ended, 2015, and in 2050:</p>
-<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="chapter7.html#cb692-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2015</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="chapter7.html#cb697-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2015</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit     lwr      upr
 ## 1 58.31967 57.7019 58.93744</code></pre>
-<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="chapter7.html#cb694-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2015</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="chapter7.html#cb699-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2015</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 58.31967 55.04146 61.59787</code></pre>
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="chapter7.html#cb696-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2050</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="chapter7.html#cb701-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2050</span>), <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 60.15514 59.23631 61.07397</code></pre>
-<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="chapter7.html#cb698-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2050</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="chapter7.html#cb703-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(temp1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Year =</span> <span class="dv">2050</span>), <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 60.15514 56.80712 63.50316</code></pre>
 <p>These results tell us that we are 95% confident that the true mean yearly
@@ -2274,7 +2322,7 @@ results for 2050 are clearly for the future mean and a new observation<a href="#
 Note that up to 2014, no values of this response had been observed above 60<span class="math inline">\(^\circ F\)</span> and the predicted mean in 2050 is over 60<span class="math inline">\(^\circ F\)</span> if the trend
 persists. It is easy to criticize the use of this model for 2050 because of its extreme amount
 of extrapolation.</p>
-<!-- \newpage -->
+<div style="page-break-after: always;"></div>
 </div>
 <div id="section7-8" class="section level2" number="7.8">
 <h2><span class="header-section-number">7.8</span> Chapter summary</h2>
@@ -2331,8 +2379,8 @@ explanatory variable, and the data are in <code>DATASETNAME</code>.</p>
 nonlinear relationships.
 </p></li>
 </ul></li>
-<li><p><strong><font color='red'>MODELNAME</font> <code>&lt;-</code> lm(<font color='red'>y</font>~
-<font color='red'>x</font>, data=<font color='red'>DATASETNAME</font>)</strong></p>
+<li><p><strong><font color='red'>MODELNAME</font> <code>&lt;-</code> lm(<font color='red'>y</font> ~
+<font color='red'>x</font>, data = <font color='red'>DATASETNAME</font>)</strong></p>
 <ul>
 <li>Estimates a regression model using least squares.
 </li>
@@ -2343,11 +2391,11 @@ nonlinear relationships.
 Chapter <a href="chapter8.html#chapter8">8</a> as well).
 </li>
 </ul></li>
-<li><p><strong>par(mfrow=c(2, 2)); plot(<font color='red'>MODELNAME</font>)</strong></p>
+<li><p><strong>par(mfrow = c(2, 2)); plot(<font color='red'>MODELNAME</font>)</strong></p>
 <ul>
 <li>Provides four regression diagnostic plots in one plot.</li>
 </ul></li>
-<li><p><strong>confint(<font color='red'>MODELNAME</font>, level=0.95)</strong></p>
+<li><p><strong>confint(<font color='red'>MODELNAME</font>, level = 0.95)</strong></p>
 <ul>
 <li><p>Provides 95% confidence intervals for the regression model coefficients.</p></li>
 <li><p>Change <code>level</code> if you want other confidence levels.
@@ -2365,29 +2413,30 @@ interval for the mean. </p></li>
 specific to your “<span class="math inline">\(y\)</span>” or “<span class="math inline">\(x\)</span>.”
 </li>
 </ul></li>
-<li><p><strong>predict(<font color='red'>MODELNAME</font>, se.fit=T)</strong></p>
+<li><p><strong>predict(<font color='red'>MODELNAME</font>, se.fit = T)</strong></p>
 <ul>
 <li>Provides fitted values for all observed <span class="math inline">\(x\text{&#39;s}\)</span> with SEs for the
 mean.
 </li>
 </ul></li>
 <li><p><strong>predict(<font color='red'>MODELNAME</font>,
-newdata=tibble(<font color='red'>x</font> = <font color='red'>XNEW</font>),
-interval=“confidence”)</strong></p>
+newdata = tibble(<font color='red'>x</font> = <font color='red'>XNEW</font>),
+interval = “confidence”)</strong></p>
 <ul>
 <li>Provides fitted value for a specific <span class="math inline">\(x\)</span> (XNEW) with CI for the mean.
 Replace <code>x</code> with name of explanatory variable.</li>
 </ul></li>
 <li><p><strong>predict(<font color='red'>MODELNAME</font>,
-newdata=tibble(<font color='red'>x</font> = <font color='red'>XNEW</font>),
-interval=“prediction”)</strong></p>
+newdata = tibble(<font color='red'>x</font> = <font color='red'>XNEW</font>),
+interval = “prediction”)</strong></p>
 <ul>
 <li>Provides fitted value for a specific <span class="math inline">\(x\)</span> (XNEW) with PI for a new
 observation. Replace <code>x</code> with name of explanatory variable.</li>
 </ul></li>
-<li><p><strong>qt(0.975, df=<font color='red'>n</font> - 2)</strong></p>
+<li><p><strong>qt(0.975, df = <font color='red'>n</font> - 2)</strong></p>
 <ul>
-<li>Gets the <span class="math inline">\(t^*\)</span> multiplier for making a 95% confidence or prediction interval with <span class="math inline">\(n-2\)</span> replaced
+<li>Gets the <span class="math inline">\(t^*\)</span> multiplier for making a 95% confidence or prediction
+interval with <span class="math inline">\(n-2\)</span> replaced
 by the sample size – 2.
 </li>
 </ul></li>
@@ -2396,17 +2445,18 @@ by the sample size – 2.
 </div>
 <div id="section7-10" class="section level2" number="7.10">
 <h2><span class="header-section-number">7.10</span> Practice problems</h2>
-<p>7.1. <strong>Treadmill data analysis</strong> We will continue with the treadmill data set introduced in Chapter
-<a href="chapter1.html#chapter1">1</a> and the SLR fit in the practice problems in
+<p>7.1. <strong>Treadmill data analysis</strong> We will continue with the treadmill data set
+introduced in Chapter <a href="chapter1.html#chapter1">1</a> and the SLR fit in the practice problems in
 Chapter <a href="chapter6.html#chapter6">6</a>. The following code will get you back to where we
 stopped at the end of Chapter <a href="chapter6.html#chapter6">6</a>:</p>
-<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="chapter7.html#cb700-1" aria-hidden="true" tabindex="-1"></a>treadmill <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/treadmill.csv&quot;</span>)</span>
-<span id="cb700-2"><a href="chapter7.html#cb700-2" aria-hidden="true" tabindex="-1"></a>treadmill <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime, <span class="at">y =</span> TreadMillOx)) <span class="sc">+</span></span>
-<span id="cb700-3"><a href="chapter7.html#cb700-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Age)) <span class="sc">+</span> </span>
-<span id="cb700-4"><a href="chapter7.html#cb700-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb700-5"><a href="chapter7.html#cb700-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span>
-<span id="cb700-6"><a href="chapter7.html#cb700-6" aria-hidden="true" tabindex="-1"></a>tm <span class="ot">&lt;-</span> <span class="fu">lm</span>(TreadMillOx <span class="sc">~</span> RunTime, <span class="at">data =</span> treadmill)</span>
-<span id="cb700-7"><a href="chapter7.html#cb700-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tm1)</span></code></pre></div>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="chapter7.html#cb705-1" aria-hidden="true" tabindex="-1"></a>treadmill <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/treadmill.csv&quot;</span>)</span>
+<span id="cb705-2"><a href="chapter7.html#cb705-2" aria-hidden="true" tabindex="-1"></a>treadmill <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime, <span class="at">y =</span> TreadMillOx)) <span class="sc">+</span></span>
+<span id="cb705-3"><a href="chapter7.html#cb705-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Age)) <span class="sc">+</span></span>
+<span id="cb705-4"><a href="chapter7.html#cb705-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb705-5"><a href="chapter7.html#cb705-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb705-6"><a href="chapter7.html#cb705-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb705-7"><a href="chapter7.html#cb705-7" aria-hidden="true" tabindex="-1"></a>tm <span class="ot">&lt;-</span> <span class="fu">lm</span>(TreadMillOx <span class="sc">~</span> RunTime, <span class="at">data =</span> treadmill)</span>
+<span id="cb705-8"><a href="chapter7.html#cb705-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tm1)</span></code></pre></div>
 <p>7.1.1. Use the output to test for a
 linear relationship between treadmill oxygen and run time, writing out all 6+
 steps of the hypothesis test. Make sure to address scope of inference and
@@ -2414,7 +2464,7 @@ interpret the p-value.</p>
 <p>7.1.2. Form and interpret a 95%
 confidence interval for the slope coefficient “by hand” using the provided
 multiplier:</p>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="chapter7.html#cb701-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">29</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb706-1"><a href="chapter7.html#cb706-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">29</span>)</span></code></pre></div>
 <pre><code>## [1] 2.04523</code></pre>
 <p>7.1.3. Use the <code>confint</code> function to find a similar confidence interval,
 checking your previous calculation.</p>
@@ -2502,7 +2552,7 @@ were actually analyzed in the scope of inference discussion. Our results only ev
 had available so this is a relatively minor change.<a href="chapter7.html#fnref124" class="footnote-back">↩︎</a></p></li>
 <li id="fn125"><p>Note <code>exp(x)</code> is the same as <span class="math inline">\(e^{(x)}\)</span> but easier
 to read in-line and <code>exp()</code> is the R function name to execute this calculation.<a href="chapter7.html#fnref125" class="footnote-back">↩︎</a></p></li>
-<li id="fn126"><p>You can read my dissertation if you want my take on modeling U and V-shaped valley elevation profiles that included some discussion of these models, some of which was also in <span class="citation"><a href="#ref-Greenwood2002" role="doc-biblioref">Greenwood and Humphrey</a> (<a href="#ref-Greenwood2002" role="doc-biblioref">2002</a>)</span>.<a href="chapter7.html#fnref126" class="footnote-back">↩︎</a></p></li>
+<li id="fn126"><p>You can read my dissertation if you want my take on modeling U and V-shaped valley elevation profiles that included some discussion of these models, some of which was also in <span class="citation"><a href="#ref-Greenwood2002" role="doc-biblioref">M. C. Greenwood and Humphrey</a> (<a href="#ref-Greenwood2002" role="doc-biblioref">2002</a>)</span>.<a href="chapter7.html#fnref126" class="footnote-back">↩︎</a></p></li>
 <li id="fn127"><p>This transformation could not be applied directly to the education growth score data in Chapter <a href="chapter5.html#chapter5">5</a> because there were negative “growth” scores.<a href="chapter7.html#fnref127" class="footnote-back">↩︎</a></p></li>
 <li id="fn128"><p>This silly
 nomenclature was inspired by <span class="citation"><a href="#ref-DeVeaux2011" role="doc-biblioref">De Veaux, Velleman, and Bock</a> (<a href="#ref-DeVeaux2011" role="doc-biblioref">2011</a>)</span> <em>Stats: Data and

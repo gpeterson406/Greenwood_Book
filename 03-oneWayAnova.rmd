@@ -86,13 +86,13 @@ library(readr)
 library(yarrr)
 dd <- read_csv("Walker2014_mod.csv")
 dd <- dd %>% mutate(Condition = factor(Condition),
-              Shirt = factor(Shirt),
-              Helmet = factor(Helmet),
-              Pants = factor(Pants),
-              Gloves = factor(Gloves),
-              ReflectClips = factor(ReflectClips),
-              Backpack = factor(Backpack)
-              )
+                    Shirt = factor(Shirt),
+                    Helmet = factor(Helmet),
+                    Pants = factor(Pants),
+                    Gloves = factor(Gloves),
+                    ReflectClips = factor(ReflectClips),
+                    Backpack = factor(Backpack)
+                    )
 
 pirateplot(Distance ~ Condition, data = dd, inf.method = "ci", inf.disp = "line")
 abline(h = mean(dd$Distance), lwd = 2, col = "green", lty = 2)
@@ -100,14 +100,14 @@ abline(h = mean(dd$Distance), lwd = 2, col = "green", lty = 2)
 
 \newpage
 
-```{r echo=F}
-favstats(Distance ~ Condition, data = dd)
-```
-
 ```{r eval=F}
 pirateplot(Distance ~ Condition, data = dd, inf.method = "ci", inf.disp = "line")
 abline(h = mean(dd$Distance), lwd = 2, col = "green", lty = 2) # Adds overall mean to plot
 
+favstats(Distance ~ Condition, data = dd)
+```
+
+```{r echo=F}
 favstats(Distance ~ Condition, data = dd)
 ```
 
@@ -130,7 +130,7 @@ distribution with the model defining the mean of the normal distributions and al
 same variance. ***Linear models*** assume that the parameters for the mean in the model enter linearly. This 
 last condition is hard to explain at this level of material -- it is sufficient 
 to know that there are models where the parameters enter the model nonlinearly and 
-that they are beyond the scope of this function and this material and you won't run into them in most statistical models. By employing this general "linear" modeling methodology,  we will be able to use the same general modeling framework for the methods
+that they are beyond the scope of this function and this material and you won't run into them in most statistical models. By employing this general "linear" modeling methodology, we will be able to use the same general modeling framework for the methods
 in Chapters \@ref(chapter3), \@ref(chapter4), \@ref(chapter6),
 \@ref(chapter7), and \@ref(chapter8). 
 
@@ -283,7 +283,7 @@ baseline group.
 If you look closely in the code for the rest of the book, any model for a 
 quantitative response will use this function, suggesting a common thread in 
 the most commonly used statistical models.]. The ``lm`` function continues to 
-use the same format as previous functions and in Chapter \@ref(chapter2) , ``lm(Y ~ X,  data = datasetname)``.
+use the same format as previous functions and in Chapter \@ref(chapter2) , ``lm(Y ~ X, data = datasetname)``.
 It ends up that ``lm`` generates the reference-coded version of the 
 model by default (The developers of R thought it was that important!).
 \index{reference coding}
@@ -337,7 +337,7 @@ summary(lm2)$coefficients
 ```
 
 The estimated model coefficients are $\widehat{\alpha} = 117.61$ cm, 
-$\widehat{\tau}_2 = -3.00$ cm, $\widehat{\tau}_3 = 0.83$ cm, and so on up to $\widehat{\tau}_7 = -0.86$ cm,  where R selected group 1
+$\widehat{\tau}_2 = -3.00$ cm, $\widehat{\tau}_3 = 0.83$ cm, and so on up to $\widehat{\tau}_7 = -0.86$ cm, where R selected group 1
 for *casual*, 2 for *commute*, 3 for *hiviz*, all the way up to group 7 for *racer*. The way you can figure 
 out the baseline group (group 1 is *casual* here) is to see which category label 
 is *not present* in the reference-coded output. **The baseline level is typically the first group 
@@ -497,15 +497,15 @@ y4 <- 2*e1+mean2
 d1 <- tibble(y1,y2,y3,y4,x1)
 
 par(mfrow = c(2,2))
-old.par <-  par(mai = c(0.5,0.3,0.3,0.3))
+old.par <- par(mai = c(0.5,0.3,0.3,0.3))
 set.seed(98876)
-pirateplot(y2~x1,data = d1,ylab = "",main = "Scenario 1",ylim = c(-2,17),inf.method = "ci", point.o = 1,inf.f.o = 0,inf.b.o = 0,avg.line.lwd = 2)
+pirateplot(y2 ~ x1,data = d1,ylab = "",main = "Scenario 1",ylim = c(-2,17),inf.method = "ci", point.o = 1,inf.f.o = 0,inf.b.o = 0,avg.line.lwd = 2)
 set.seed(98876)
-pirateplot(y1~x1,data = d1,ylab = "",main = "Scenario 2",ylim = c(-2,17),inf.method = "ci", point.o = 1,inf.f.o = 0,inf.b.o = 0,avg.line.lwd = 2)
+pirateplot(y1 ~ x1,data = d1,ylab = "",main = "Scenario 2",ylim = c(-2,17),inf.method = "ci", point.o = 1,inf.f.o = 0,inf.b.o = 0,avg.line.lwd = 2)
 set.seed(98876)
-pirateplot(y4~x1,data = d1,ylab = "",main = "Scenario 3",ylim = c(-2,17),inf.method = "ci", point.o = 1,inf.f.o = 0,inf.b.o = 0,avg.line.lwd = 2)
+pirateplot(y4 ~ x1,data = d1,ylab = "",main = "Scenario 3",ylim = c(-2,17),inf.method = "ci", point.o = 1,inf.f.o = 0,inf.b.o = 0,avg.line.lwd = 2)
 set.seed(98876)
-pirateplot(y3~x1,data = d1,ylab = "",main = "Scenario 4",ylim = c(-2,17),inf.method = "ci", point.o = 1,inf.f.o = 0,inf.b.o = 0,avg.line.lwd = 2)
+pirateplot(y3 ~ x1,data = d1,ylab = "",main = "Scenario 4",ylim = c(-2,17),inf.method = "ci", point.o = 1,inf.f.o = 0,inf.b.o = 0,avg.line.lwd = 2)
 ```
 
 \indent The statistic that allows the comparison of relative amounts of variation is called
@@ -596,26 +596,26 @@ the $\textbf{SS}_{\textbf{Total}} \mathbf{=} \textbf{SS}_\textbf{A} \mathbf{+} \
 options(scipen = 999)
 # Permutation approaches to an F-test:
 set.seed(654321)
-orig_anova <- anova(lm(Distance~Condition, data = dd))
+orig_anova <- anova(lm(Distance ~ Condition, data = dd))
 orig_SSA <- round(orig_anova[1,2], 0)
 orig_SSE <- round(orig_anova[2,2], 0)
 orig_SST <- orig_SSA + orig_SSE
 orig_pval <- round(orig_anova[1,5], 3)
 dd1 <- dd
 dd1$Condition <- shuffle(dd1$Condition)
-MJP1_anova <- anova(lm(Distance~Condition, data = dd1))
+MJP1_anova <- anova(lm(Distance ~ Condition, data = dd1))
 MJP1_SSA <- round(MJP1_anova[1,2], 0)
 MJP1_SSE <- round(MJP1_anova[2,2], 0)
 MJP1_SST <- MJP1_SSA + MJP1_SSE
 dd2 <- dd
 dd2$Condition <- shuffle(dd2$Condition)
-MJP2_anova <- anova(lm(Distance~Condition, data = dd2))
+MJP2_anova <- anova(lm(Distance ~ Condition, data = dd2))
 MJP2_SSA <- round(MJP2_anova[1,2], 0)
 MJP2_SSE <- round(MJP2_anova[2,2], 0)
 MJP2_SST <- MJP2_SSA + MJP2_SSE
 dd3 <- dd
 dd3$Condition <- shuffle(dd2$Condition)
-MJP3_anova <- anova(lm(Distance~Condition, data = dd3))
+MJP3_anova <- anova(lm(Distance ~ Condition, data = dd3))
 MJP3_SSA <- round(MJP3_anova[1,2], 0)
 MJP3_SSE <- round(MJP3_anova[2,2], 0)
 MJP3_SST <- MJP3_SSA + MJP3_SSE
@@ -624,14 +624,14 @@ maxSSA <- max(MJP1_SSA, MJP2_SSA, MJP3_SSA)
 ```
 
 ```{r Figure3-4, fig.cap="(ref:fig3-4)",echo=F, fig.height=9}
-Tobs <- anova(lm(Distance~Condition, data = dd))[1,2]
+Tobs <- anova(lm(Distance ~ Condition, data = dd))[1,2]
 par(mfrow = c(2,2))
 old.par <- par(mai = c(.75,0.5,0.3,0.3))
 library(gplots)
 label_list = c(paste("SSA=",as.character(orig_SSA),sep = ""),
                paste("SSE=",as.character(orig_SSE),sep = ""),
                paste("SSTotal=",as.character(orig_SST),sep = ""))
-plotmeans(Distance~Condition, data = dd,ylab = "Distance",mean.labels = T,
+plotmeans(Distance ~ Condition, data = dd,ylab = "Distance",mean.labels = T,
           digits = 2,
           barcol = "red",col = "black",ylim = c(111,125), main = "(a) Real Data", las = 2)
 text(c(1.25,1.25,1.25),c(124,123,122), labels = label_list, col = "blue",cex = 0.75)
@@ -639,7 +639,7 @@ text(c(1.25,1.25,1.25),c(124,123,122), labels = label_list, col = "blue",cex = 0
 label_list = c(paste("SSA=",as.character(MJP1_SSA),sep = ""),
                paste("SSE=",as.character(MJP1_SSE),sep = ""),
                paste("SSTotal=",as.character(MJP1_SST),sep = ""))
-plotmeans(Distance~Condition, data = dd1,main = "(b) Permuted Data",
+plotmeans(Distance ~ Condition, data = dd1,main = "(b) Permuted Data",
           ylab = "Distance",mean.labels = T,digits = 2,
           barcol = "red",col = "black",ylim = c(111,125), las = 2)
 text(c(1.25,1.25,1.25),c(124,123,122),labels = label_list, col = "blue",cex = 0.75)
@@ -647,7 +647,7 @@ text(c(1.25,1.25,1.25),c(124,123,122),labels = label_list, col = "blue",cex = 0.
 label_list = c(paste("SSA=",as.character(MJP2_SSA),sep = ""),
                paste("SSE=",as.character(MJP2_SSE),sep = ""),
                paste("SSTotal=",as.character(MJP2_SST),sep = ""))
-plotmeans(Distance~Condition, data = dd2,main = "(c) Permuted Data",
+plotmeans(Distance ~ Condition, data = dd2,main = "(c) Permuted Data",
           ylab = "Distance",mean.labels = T,digits = 2,
           barcol = "red",col = "black",ylim = c(111,125), las = 2)
 text(c(1.25,1.25,1.25),c(124,123,122),labels = label_list, col = "blue",cex = 0.75)
@@ -655,7 +655,7 @@ text(c(1.25,1.25,1.25),c(124,123,122),labels = label_list, col = "blue",cex = 0.
 label_list = c(paste("SSA=",as.character(MJP3_SSA),sep = ""),
                paste("SSE=",as.character(MJP3_SSE),sep = ""),
                paste("SSTotal=",as.character(MJP3_SST),sep = ""))
-plotmeans(Distance~Condition, data = dd3,main = "(d) Permuted Data",
+plotmeans(Distance ~ Condition, data = dd3,main = "(d) Permuted Data",
           ylab = "Distance",mean.labels = T,digits = 2, barcol = "red",col = "black",ylim = c(111,125), las = 2)
 text(c(1.25,1.25,1.25),c(124,123,122),labels = label_list, col = "blue",cex = 0.75)
 ```
@@ -730,11 +730,13 @@ for (b in (1:B)){
   }
 
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") +
+  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") +  
+  geom_density(aes(y = ..scaled..)) +
+  theme_bw() +
+  labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, 
-           geom = "text", vjust = -0.75) +  
-  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
-  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
+           geom = "text", vjust = -0.75)
 ```
 
 
@@ -746,11 +748,13 @@ for (b in (1:B)){
   Tstar[b] <- anova(lm(Distance ~ shuffle(Condition), data = dd))[1,2]
   }
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") +
+  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") + 
+  geom_density(aes(y = ..scaled..)) +
+  theme_bw() +
+  labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, 
-           geom = "text", vjust = -0.75) + 
-  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
-  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
+           geom = "text", vjust = -0.75)
 ```
 
 The right-skewed distribution (Figure \@ref(fig:Figure3-5)) contains the 
@@ -944,22 +948,26 @@ pdata(Tstar, Tobs, lower.tail = F)[[1]]
 
 ```{r eval=F}
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") +
+  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") + 
+  geom_density(aes(y = ..scaled..)) +
+  theme_bw() +
+  labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, 
-           geom = "text", vjust = -0.75) + 
-  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
-  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
+           geom = "text", vjust = -0.75)
 ```
 
 (ref:fig3-7) Histogram and density curve of the permutation distribution of the F-statistic with bold, vertical line for the observed value of the test statistic of `r round(orig_anova[1,4],2)`. 
 
 ```{r Figure3-7,fig.cap="(ref:fig3-7)",echo=F}
-tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") +
+tibble(Tstar) %>% ggplot(aes(x = Tstar)) + 
+  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "skyblue") + 
+  geom_density(aes(y = ..scaled..)) +
+  theme_bw() +
+  labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, 
-           geom = "text", vjust = -0.75) + 
-  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
-  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
+           geom = "text", vjust = -0.75)
 ```
 
 ```{r echo=F}
@@ -993,7 +1001,7 @@ lines(x, df(x,df1 = 6,df2 = 5683), col = "red", lwd = 2, lty = 2)
 legend("right", legend = c("Permutation distribution","F(6,5683)"), col = c("black","red"), lty = c(1,2), lwd = 2, cex = 0.5)
 ```
 
-\newpage
+<!-- \newpage -->
 
 \indent So how can we rectify this result (p-value < 0.0001) and the 
 Chapter \@ref(chapter2) result that reported moderate evidence against the null hypothesis of no difference between *commute* 
@@ -1029,7 +1037,7 @@ Specifically, the linear model assumes:
 
 3. **Normal distributions**. 
 
-\indent For assessing equal variances across the groups, it is best to use plots to  assess this. We can use pirate-plots to compare the spreads of the 
+\indent For assessing equal variances across the groups, it is best to use plots to assess this. We can use pirate-plots to compare the spreads of the 
 groups, which were provided in Figure \@ref(fig:Figure3-1). The spreads (both in terms of extrema and rest of the distributions) should look relatively similar across the groups for you to suggest that there is not evidence of a 
 problem with this assumption. You should start with noting how clear or big the
 violation of the conditions might be but remember that there will always be some
@@ -1053,7 +1061,7 @@ plot(lm2, pch = 16)
 ```
 
 There are two plots in Figure \@ref(fig:Figure3-9) with useful information for assessing the
-equal variance assumption. The "Residuals vs Fitted" panel in the top left panel displays  the residuals $(e_{ij} = y_{ij}-\widehat{y}_{ij})$ on the y-axis and the fitted values
+equal variance assumption. The "Residuals vs Fitted" panel in the top left panel displays the residuals $(e_{ij} = y_{ij}-\widehat{y}_{ij})$ on the y-axis and the fitted values
 $(\widehat{y}_{ij})$ on the x-axis. 
 \index{Residuals vs Fitted plot}
 This allows you to see if the variability of the
@@ -1122,7 +1130,7 @@ this new display. We can obtain the residuals from the linear model using the
 par(mfrow = c(1,2))
 dd <- dd %>% mutate(eij = residuals(lm2)) #Adds residuals to dd
 
-dd %>%  ggplot(aes(x = eij)) + 
+dd %>% ggplot(aes(x = eij)) + 
   geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "tomato") +
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
@@ -1157,13 +1165,17 @@ QQ-plots.
 
 
 ```{r Figure3-11,fig.cap="(ref:fig3-11)",echo=F}
-qq1 <- dd %>% ggplot(aes(sample = eij)) + geom_qq() + stat_qq_line() + theme_bw() +
+qq1 <- dd %>% ggplot(aes(sample = eij)) +
+  geom_qq() +
+  stat_qq_line() +
+  theme_bw() +
   labs(title = "QQ-Plot of residuals")
 den1 <- dd %>% ggplot(mapping = aes(x = eij)) + 
   geom_density(color = "darkcyan") + 
   labs(title = "Density plot of residuals", 
        y = "Density", 
-       x = "Residuals") + theme_bw()
+       x = "Residuals") +
+  theme_bw()
 grid.arrange(qq1, den1, ncol = 2)
 ```
 
@@ -1172,23 +1184,23 @@ grid.arrange(qq1, den1, ncol = 2)
 can just focus on it.
 \index{QQ-plot!interpretation of}
 We know from looking at the histogram that this is a 
-(very) slightly right skewed distribution. Either version of the QQ-plots we will work with place the observed residuals on the y-axis and the expected results for a normal distribution on the x-axis. In some plots, the  ***standardized***^[Here this means re-scaled so that they should have similar 
+(very) slightly right skewed distribution. Either version of the QQ-plots we will work with place the observed residuals on the y-axis and the expected results for a normal distribution on the x-axis. In some plots, the ***standardized***^[Here this means re-scaled so that they should have similar 
 scaling to a standard normal with mean 0 and standard deviation 1. This does 
 not change the shape of the distribution but can make outlier identification 
 simpler -- having a standardized residual more extreme than 5 or -5 would 
 suggest a deviation from normality since we rarely see values that many 
 standard deviations from the mean in a normal distribution. But mainly focus 
-on the pattern in points in the QQ-plot and whether it matches the 1-1 line that is being plotted.] ***residuals*** are used (Figure \@ref(fig:Figure3-9)) and in others the raw residuals are used (Figure \@ref(fig:Figure3-11)) to compare the residual distribution to a normal (Gaussian) one. Both the upper and lower tails (upper tail in the upper right and the lower tail in the lower right of the plot) show some separation from the 1-1 line. The separation in the upper tail is more clear and these positive residuals are higher than the line "predicts" if the distribution had been normal. Being higher than the line in the right tail means being bigger than expected and so more spread out in that direction than a normal distribution should be. The left tail for the negative residuals also shows some separation from the line to have more extreme (here more negative) than expected, suggesting a little extra spread in the lower tail than suggested by a normal distribution. If the two sides had been similarly far from the 1-1 line, then we would have a symmetric and ***heavy-tailed*** distribution. Here, the slight difference in the two sides suggests that the right tail is more spread out than the left and we should be concerned about a minor violation of the normality assumption.  If the distribution had followed the 
-normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose -- this is not the software identifying outliers or other problematic points -- that is your responsibility to assess using these plots. For example, the point "2709"  is identified in Figure \@ref(fig:Figure3-9)  (the 2709^th^
+on the pattern in points in the QQ-plot and whether it matches the 1-1 line that is being plotted.] ***residuals*** are used (Figure \@ref(fig:Figure3-9)) and in others the raw residuals are used (Figure \@ref(fig:Figure3-11)) to compare the residual distribution to a normal (Gaussian) one. Both the upper and lower tails (upper tail in the upper right and the lower tail in the lower right of the plot) show some separation from the 1-1 line. The separation in the upper tail is more clear and these positive residuals are higher than the line "predicts" if the distribution had been normal. Being higher than the line in the right tail means being bigger than expected and so more spread out in that direction than a normal distribution should be. The left tail for the negative residuals also shows some separation from the line to have more extreme (here more negative) than expected, suggesting a little extra spread in the lower tail than suggested by a normal distribution. If the two sides had been similarly far from the 1-1 line, then we would have a symmetric and ***heavy-tailed*** distribution. Here, the slight difference in the two sides suggests that the right tail is more spread out than the left and we should be concerned about a minor violation of the normality assumption. If the distribution had followed the 
+normal distribution here, there would be no clear pattern of deviation from the 1-1 line (not all points need to be on the line!) and the standardized residuals would not have quite so many extreme results (over 5 in both tails). Note that the diagnostic plots will label a few points (3 by default) that might be of interest for further exploration. These identifications are not to be used for any other purpose -- this is not the software identifying outliers or other problematic points -- that is your responsibility to assess using these plots. For example, the point "2709" is identified in Figure \@ref(fig:Figure3-9) (the 2709^th^
 observation in the data set) as a potentially interesting point that falls in the far right-tail of positive residuals with a raw residual of almost 160 cm. This is a great opportunity to review what residuals are and how they are calculated for this observation. First, we can extract the row for this observation and find that it was a *novice* vest observation with a distance of 274 cm (that is almost 9 feet). The fitted value for this observation can be obtained using the ``fitted`` function on the estimated ``lm`` -- which here is just the sample mean of the group of the observations (*novice*) of 116.94 cm. The residual is stored in the 2,709^th^ value of ``eij`` or can be calculated by taking 274 minus the fitted value of 116.94. Given the large magnitude of this passing distance (it was the maximum distance observed in the ``Distance`` variable), it is not too surprising that it ends up as the largest positive residual. \index{\texttt{fitted()}} 
 
 
 
 ```{r}
-dd[2709,c(1:2)]
+dd[2709, c(1:2)]
 fitted(lm2)[2709]
 dd$eij[2709]
-274-116.9405
+274 - 116.9405
 ```
 
 \indent Generally, when both tails deviate on the same side of the line (forming a 
@@ -1238,38 +1250,54 @@ y4 <- scale(runif(75,0,1))
 
 tp <- tibble(y1, y2, y3, y4)
 
-qy1p <- tp %>% ggplot(aes(sample = y1)) + geom_qq() + stat_qq_line() + theme_bw() +
+qy1p <- tp %>% ggplot(aes(sample = y1)) +
+  geom_qq() +
+  stat_qq_line() +
+  theme_bw() +
   labs(title = "(a) QQ-Plot of y1")
 d1p <- tp %>% ggplot(mapping = aes(y1)) + 
   geom_density(col = "darkred") + 
   labs(title = "(b) Density plot of y1", 
        y = "Density", 
-       x = "") + theme_bw()
+       x = "") +
+  theme_bw()
 
-qy2p <- tp %>% ggplot(aes(sample = y2)) + geom_qq() + stat_qq_line() + theme_bw() +
+qy2p <- tp %>% ggplot(aes(sample = y2)) +
+  geom_qq() +
+  stat_qq_line() +
+  theme_bw() +
   labs(title = "(c) QQ-Plot of y2")
 d2p <- tp %>% ggplot(mapping = aes(y2)) + 
   geom_density(col = "darkred") + 
   labs(title = "(d) Density plot of y2", 
        y = "Density", 
-       x = "") + theme_bw()
+       x = "") +
+  theme_bw()
 
 
-qy3p <- tp %>% ggplot(aes(sample = y3)) + geom_qq() + stat_qq_line() + theme_bw() +
+qy3p <- tp %>% ggplot(aes(sample = y3)) +
+  geom_qq() +
+  stat_qq_line() +
+  theme_bw() +
   labs(title = "(e) QQ-Plot of y3")
 d3p <- tp %>% ggplot(mapping = aes(y3)) + 
   geom_density(col = "darkred") + 
   labs(title = "(f) Density plot of y3", 
        y = "Density", 
-       x = "") + theme_bw()
+       x = "") +
+  theme_bw()
 
-qy4p <- tp %>% ggplot(aes(sample = y4)) + geom_qq() + stat_qq_line() + theme_bw() +
+qy4p <- tp %>% ggplot(aes(sample = y4)) +
+  geom_qq() +
+  stat_qq_line() +
+  theme_bw() +
   labs(title = "(g) QQ-Plot of y4")
 d4p <- tp %>% ggplot(mapping = aes(y4)) + 
   geom_density(col = "darkred") + 
   labs(title = "(h) Density plot of y4", 
        y = "Density", 
-       x = "") + theme_bw()
+       x = "") +
+  theme_bw()
 
 grid.arrange(qy1p, d1p, qy2p, d2p, qy3p, d3p, qy4p, d4p, ncol = 2)
 ```
@@ -1302,21 +1330,29 @@ y6 <- scale(rnorm(75))
 
 tp2 <- tibble(y5, y6)
 
-qy5p <- tp2 %>% ggplot(aes(sample = y5)) + geom_qq() + stat_qq_line() + theme_bw() +
+qy5p <- tp2 %>% ggplot(aes(sample = y5)) +
+  geom_qq() +
+  stat_qq_line() +
+  theme_bw() +
   labs(title = "(i) QQ-Plot of y5")
 d5p <- tp2 %>% ggplot(mapping = aes(y5)) + 
   geom_density(col = "purple4") + 
   labs(title = "(j) Density plot of y5", 
        y = "Density", 
-       x = "") + theme_bw()
+       x = "") +
+  theme_bw()
 
-qy6p <- tp2 %>% ggplot(aes(sample = y6)) + geom_qq() + stat_qq_line() + theme_bw() +
+qy6p <- tp2 %>% ggplot(aes(sample = y6)) +
+  geom_qq() +
+  stat_qq_line() +
+  theme_bw() +
   labs(title = "(k) QQ-Plot of y6")
 d6p <- tp2 %>% ggplot(mapping = aes(y6)) + 
   geom_density(col = "purple4") + 
   labs(title = "(j) Density plot of y6", 
        y = "Density", 
-       x = "") + theme_bw()
+       x = "") +
+  theme_bw()
 
 grid.arrange(qy5p, d5p, qy6p, d6p, ncol = 2)
 ```
@@ -1346,18 +1382,18 @@ observations in each group to see if they are equal or similar using the
 ``tally`` function from the ``mosaic`` package. This function is useful for
 being able to get counts of observations, especially for cross-classifying
 observations on two variables that is used in Chapter \@ref(chapter5). For just 
-a single variable, we use ``tally(~x, data = ...)``:
+a single variable, we use ``tally(~ x, data = ...)``:
 \index{\texttt{tally()}}
 
 ```{r,warning=F,message=F}
 library(mosaic)
-tally(~Condition, data = dd)
+tally(~ Condition, data = dd)
 ```
 
 So the sample sizes do vary among the groups and the design is not
 balanced, but all the sample sizes are between 737 and 868 so it is (in percentage terms at least) not too far from balanced. It is better then having, say, 50 in one group and 1,200 in another. This 
 tells us that the $F$-test should have some resistance to violations of 
-assumptions. We also get more resistance to violation of assumptions as our sample sizes increase. With such as large data set here and only minor concerns with the normality assumption, the inferences generated for the means should be trustworthy and we will get similar results from parametric and nonparametric procedures. If we had only 15 observations per group and a slightly skewed residual distribution, then we might want to appeal to the permutation approach to have more trustworthy results, even if the design were balanced.  
+assumptions. We also get more resistance to violation of assumptions as our sample sizes increase. With such as large data set here and only minor concerns with the normality assumption, the inferences generated for the means should be trustworthy and we will get similar results from parametric and nonparametric procedures. If we had only 15 observations per group and a slightly skewed residual distribution, then we might want to appeal to the permutation approach to have more trustworthy results, even if the design were balanced. 
 
 ```{r echo=F}
 options(scipen = 0)
@@ -1399,14 +1435,14 @@ library(mosaic)
 <!-- \newpage -->
 
 ```{r}
-tally(~supp, data = ToothGrowth) #Supplement Type (VC or OJ)
-tally(~dose, data = ToothGrowth) #Dosage level
+tally(~ supp, data = ToothGrowth) #Supplement Type (VC or OJ)
+tally(~ dose, data = ToothGrowth) #Dosage level
 
 # Creates a new variable Treat with 6 levels using mutate and interaction:
 ToothGrowth <- ToothGrowth %>% mutate(Treat = interaction(supp, dose))
 
 # New variable that combines supplement type and dosage
-tally(~Treat, data = ToothGrowth) 
+tally(~ Treat, data = ToothGrowth) 
 ```
 
 The ``tally`` function helps us to check for balance;
@@ -1465,11 +1501,11 @@ with these observations.
 
 1. **Hypotheses**: 
 
-      $\boldsymbol{H_0: \mu_{\text{OJ}0.5} = \mu_{\text{VC}0.5} = \mu_{\text{OJ}1} = \mu_{\text{VC}1} = \mu_{\text{OJ}2} = \mu_{\text{VC}2}}$
-      
-      **vs**
-      
-      $\boldsymbol{H_A:}\textbf{ Not all } \boldsymbol{\mu_j} \textbf{ equal}$
+    $\boldsymbol{H_0: \mu_{\text{OJ}0.5} = \mu_{\text{VC}0.5} = \mu_{\text{OJ}1} = \mu_{\text{VC}1} = \mu_{\text{OJ}2} = \mu_{\text{VC}2}}$
+    
+    **vs**
+    
+    $\boldsymbol{H_A:}\textbf{ Not all } \boldsymbol{\mu_j} \textbf{ equal}$
 
     * The null hypothesis could also be written in reference-coding as below
     since OJ.0.5 is chosen as the baseline group (discussed below).
@@ -1559,7 +1595,7 @@ with these observations.
     distribution (this is the distribution of the test statistic if the null hypothesis
     is true) with an $F$-statistic of 41.56. 
     
-    * The nonparametric approach is not too hard so we can compare the two approaches here  as well. The permutation p-value is reported as 0.\index{p-value!zero}
+    * The nonparametric approach is not too hard so we can compare the two approaches here as well. The permutation p-value is reported as 0.\index{p-value!zero}
     This should be reported as 
     p-value < 0.001 since we did 1,000 permutations and found that none of the
     permuted $F$-statistics, $F^\ast$, were larger than the observed $F$-statistic
@@ -1580,11 +1616,13 @@ with these observations.
     pdata(Tstar, Tobs, lower.tail = F)[[1]]
    
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue") +
+  geom_histogram(aes(y = ..ncount..), bins = 25, col = 1, fill = "skyblue") + 
+  geom_density(aes(y = ..scaled..)) +
+  theme_bw() +
+  labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 25, 
-           geom = "text", vjust = -0.75) + 
-  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
-  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
+           geom = "text", vjust = -0.75)
 ```
 
 \newpage
@@ -1592,7 +1630,7 @@ tibble(Tstar) %>%  ggplot(aes(x = Tstar)) +
 4. **Write a conclusion:** 
 
     * There is strong evidence ($F = 41.56$, permutation p-value < 0.001) against the null hypothesis that the different treatments 
-    (combinations of OJ/VC and dosage levels) have the same  **true**
+    (combinations of OJ/VC and dosage levels) have the same **true**
     mean odontoblast growth for **these** guinea pigs, so we would conclude that the treatments **cause** at least one of the combinations to have a different true mean. 
     
         * We can make the causal statement of the treatment causing differences 
@@ -1670,7 +1708,7 @@ in a reference-coded model. To get estimates for any other group, then you can u
 $\widehat{\alpha} + \widehat{\tau}_2 = \widehat{\alpha} + \widehat{\tau}_{\text{VC}0.5} = 13.23 + (-5.25) = 7.98$
 microns. It is also potentially interesting to directly interpret the estimated difference 
 (or deviation) between ``OJ.0.5`` (the baseline) and ``VC.0.5`` (group 2) that 
-is $\widehat{\tau}_{\text{VC}0.5} =  -5.25$: we estimate that the mean tooth growth in
+is $\widehat{\tau}_{\text{VC}0.5} = -5.25$: we estimate that the mean tooth growth in
 ``VC.0.5`` is 5.25 microns shorter than it is in ``OJ.0.5``. This and many other 
 direct comparisons of groups are likely of interest to researchers involved in 
 studying the impacts of these supplements on tooth growth and the next section 
@@ -1731,7 +1769,7 @@ dishonest answer and that it will give you an honest result. It is more that if 
 do some sort of correction for all the tests you are performing, you might find some ***spurious***^[We often use "spurious" to describe falsely rejected null hypotheses, but 
 they are also called false detections.] results. There are other methods that could be used 
 to do a similar correction and also provide "honest" inferences; we are just going to learn 
-one of them. Tukey's method employs a different correction from the Bonferroni method discussed in Chapter \@ref(chapter2) but also controls the  ***family-wise error rate*** \index{family-wise error rate}
+one of them. Tukey's method employs a different correction from the Bonferroni method discussed in Chapter \@ref(chapter2) but also controls the ***family-wise error rate*** \index{family-wise error rate}
 across all the pairs being compared. 
 
 \indent In pair-wise comparisons between all the pairs of means in a One-Way ANOVA, the number of 
@@ -1743,11 +1781,11 @@ answers:
 
 
 ```{r}
-choose(3,2)
-choose(4,2)
-choose(5,2)
-choose(6,2)
-choose(7,2)
+choose(3, 2)
+choose(4, 2)
+choose(5, 2)
+choose(6, 2)
+choose(7, 2)
 ```
 
 So if you have three groups (the smallest number where we have to worry about more than one pair), there are three unique pairs to 
@@ -1802,7 +1840,7 @@ interval, then we have strong evidence against $H_0$ for that pair, detect a dif
 level*. You will see a switch to using the
 word "detection" to describe null hypotheses that we find strong evidence against as it
 can help to compactly write up these complicated results. The following code provides the numerical
-and graphical^[The plot of results usually contains all the labels of groups but if the labels are long or there many groups, sometimes the row labels are hard to see  even with re-sizing the plot to make it taller in RStudio. The numerical output is
+and graphical^[The plot of results usually contains all the labels of groups but if the labels are long or there many groups, sometimes the row labels are hard to see even with re-sizing the plot to make it taller in RStudio. The numerical output is
 useful as a guide to help you read the plot in those situations.] results of applying Tukey's HSD
 to the linear model for the Guinea Pig data:
 
@@ -1831,7 +1869,7 @@ in the true mean tooth growth between VC.0.5 and OJ.0.5 (VC.0.5-OJ.0.5) is betwe
 confint(m2)
 ```
 
-
+\newpage
 
 \indent If you put all these pair-wise tests together, you can generate an overall 
 interpretation of Tukey's HSD results that discusses sets of groups that 
@@ -1841,7 +1879,7 @@ out the groups that are not detectably different (CIs contain 0), which,
 here, only occurs for four of the pairs. The CIs that contain 0 are for the 
 pairs VC.1 and OJ.0.5, OJ.2 and OJ.1, VC.2 and OJ.1, and, finally, VC.2 and 
 OJ.2. So VC.2, OJ.1, and OJ.2 are all not detectably different from each 
-other and VC.1 and OJ.0.5 are also not detectably different. If you look carefully,  VC.0.5 is detected as different from every other group. So there are basically 
+other and VC.1 and OJ.0.5 are also not detectably different. If you look carefully, VC.0.5 is detected as different from every other group. So there are basically 
 three sets of groups that can be grouped together as "similar": VC.2, OJ.1, 
 and OJ.2; VC.1 and OJ.0.5; and VC.0.5. Sometimes groups overlap with some 
 levels not being detectably different from other levels that belong to 
@@ -1891,13 +1929,13 @@ reporting 15 confidence intervals for all the pair-wise differences, either in a
 
 ```{r Figure3-19, fig.cap="(ref:fig3-19)",echo=T}
 # Options theme = 2,inf.f.o = 0,point.o = .5 added to focus on CLD
-pirateplot(len ~ Treat, data = ToothGrowth, ylab = "Growth (microns)", 
-           inf.method = "ci", inf.disp = "line",
-           theme = 2, inf.f.o = 0.3, point.o = .5) 
+pirateplot(len ~ Treat, data = ToothGrowth, ylab = "Growth (microns)", inf.method = "ci",
+           inf.disp = "line", theme = 2, inf.f.o = 0.3, point.o = .5) 
 # CLD added to second bean (x = 2) at height of y = 10
-text(x = 2,y = 10,"a",col = "blue",cex = 1.5)
-text(x = c(1,4),y = c(15,18),"b",col = "red",cex = 1.5) #Adds "b" to first and fourth bean
-text(x = c(3,5,6),y = c(25,28,28),"c",col = "green",cex = 1.5) #Add "c" to three beans
+text(x = 2, y = 10,"a", col = "blue", cex = 1.5)
+# Adds "b" to first and fourth bean
+text(x = c(1,4), y = c(15,18), "b", col = "red", cex = 1.5)
+text(x = c(3,5,6), y = c(25,28,28), "c", col = "green", cex = 1.5) #Add "c" to three beans
 ```
 
 
@@ -1941,7 +1979,7 @@ seven groups with a p-value < 0.001 giving very strong evidence against the null
 
 
 
-\indent The code is similar^[There is a warning message produced by the default Tukey's code here related to the algorithms used to generate approximate p-values and then the CLD, but the results seem reasonable and just a few p-values seem to vary in the second or third decimal points.] to the previous example focusing on the ``Condition`` variable for the 21 pairs to compare. To make these results easier to read and generally to make all the results with seven groups easier to understand, we can sort the levels of the explanatory based on the values in the response, using something like the the means or medians of the responses for the groups. This does not change the analyses (the $F$-statistic and all pair-wise comparisons are the same), it just sorts them to be easier to discuss. Note that it might change the baseline group so would impact the reference-coded model even though the fitted values are the same. Specifically, we can use the ``reorder`` function \index{\texttt{reorder}} based on the mean using something like ``reorder(FACTORVARIABLE, RESPONSEVARIABLE, FUN = mean)``, with our pipe and `mutate` functions used to modify the ``Condition`` variable. I like to put this "reordered" factor into a new variable so I can always go back to the other version if I want it but you could also re-write the original version with this modification -- this only impacts the underlying order of the factor levels, not the entries for the observations themselves. The code here creates ``Condition2`` and checks the levels for it and the original ``Condition`` variable, which shows the change in the order of the levels of the two factor variables:
+\indent The code is similar^[There is a warning message produced by the default Tukey's code here related to the algorithms used to generate approximate p-values and then the CLD, but the results seem reasonable and just a few p-values seem to vary in the second or third decimal points.] to the previous example focusing on the ``Condition`` variable for the 21 pairs to compare. To make these results easier to read and generally to make all the results with seven groups easier to understand, we can sort the levels of the explanatory based on the values in the response, using something like the means or medians of the responses for the groups. This does not change the analyses (the $F$-statistic and all pair-wise comparisons are the same), it just sorts them to be easier to discuss. Note that it might change the baseline group so would impact the reference-coded model even though the fitted values are the same. Specifically, we can use the ``reorder`` function \index{\texttt{reorder}} based on the mean using something like ``reorder(FACTORVARIABLE, RESPONSEVARIABLE, FUN = mean)``, with our pipe and `mutate` functions used to modify the ``Condition`` variable. I like to put this "reordered" factor into a new variable so I can always go back to the other version if I want it but you could also re-write the original version with this modification -- this only impacts the underlying order of the factor levels, not the entries for the observations themselves. The code here creates ``Condition2`` and checks the levels for it and the original ``Condition`` variable, which shows the change in the order of the levels of the two factor variables:
 
 ```{r}
 dd <- dd %>% mutate(Condition2 = reorder(Condition, Distance, FUN = mean))
@@ -1995,7 +2033,7 @@ old.par <- par(mai = c(1,2.5,1,1))
 plot(TmOv)
 ```
 
-The CLD also reinforces the previous discussion of which levels were detected as different and elucidates the other aspects of the results. Specifically, *police* is in a group with *hiviz* only (group "b", not detectably different). But *hiviz* is also in a group with all the other levels so also is in group "a". Figure \@ref(fig:Figure3-21) adds the CLD to the pirate-plot with the sorted means to help visually present these results with the original data, reiterating the benefits of sorting factor levels to make these plots easier to read. To wrap up this example (finally), we can see that we found that there was clear evidence against the null hypothesis of no difference in the true means, so concluded that there was some difference. The follow-up explorations show that we can really only suggest that the *police* outfit has detectably different mean distances and that is only for five of the six other levels. So if you are bike commuter (in the UK near London?), you are left to consider the size of this difference. The biggest estimated mean difference was 8.07 cm (3.2 inches) between *police* and *polite*. Do you think it is worth this potential extra average distance, especially given the wide variability in the distances, to make and then wear this vest? It is interesting that this result is found but it also is a fairly minimal size of a difference. It required an extremely large data set to detect these differences because the differences in the means are not very large relative to the variability in the responses. It seems like there might be many other reasons for why overtake distances vary that were not included our suite of predictors (they explored traffic volume in the paper as one other factor but we don't have that in our data set) or maybe it is just unexplainably variable. But it makes me wonder whether it matters what I wear when I bike and whether it has an impact that matters for average overtake distances -- even in the face of these "statistically significant" results. But maybe there is an impact on the "close calls" as you can see some differences in the lower tails of the distributions across the groups. The authors looked at the rates of "closer" overtakes by classifying the distances as either less than 100 cm (39.4 inches) as *closer* or not and also found some interesting results. Chapter \@ref(chapter5) discusses a method called a Chi-square test of Homogeneity that would be appropriate here and allow for an analysis of the rates of closer passes and this study is revisited in the Practice Problems (Section \@ref(section5-14)) there. It ends up showing that rates of "closer passes" are smallest in the *police* group.  
+The CLD also reinforces the previous discussion of which levels were detected as different and elucidates the other aspects of the results. Specifically, *police* is in a group with *hiviz* only (group "b", not detectably different). But *hiviz* is also in a group with all the other levels so also is in group "a". Figure \@ref(fig:Figure3-21) adds the CLD to the pirate-plot with the sorted means to help visually present these results with the original data, reiterating the benefits of sorting factor levels to make these plots easier to read. To wrap up this example (finally), we can see that we found that there was clear evidence against the null hypothesis of no difference in the true means, so concluded that there was some difference. The follow-up explorations show that we can really only suggest that the *police* outfit has detectably different mean distances and that is only for five of the six other levels. So if you are bike commuter (in the UK near London?), you are left to consider the size of this difference. The biggest estimated mean difference was 8.07 cm (3.2 inches) between *police* and *polite*. Do you think it is worth this potential extra average distance, especially given the wide variability in the distances, to make and then wear this vest? It is interesting that this result is found but it also is a fairly minimal size of a difference. It required an extremely large data set to detect these differences because the differences in the means are not very large relative to the variability in the responses. It seems like there might be many other reasons for why overtake distances vary that were not included our suite of predictors (they explored traffic volume in the paper as one other factor but we don't have that in our data set) or maybe it is just unexplainably variable. But it makes me wonder whether it matters what I wear when I bike and whether it has an impact that matters for average overtake distances -- even in the face of these "statistically significant" results. But maybe there is an impact on the "close calls" as you can see some differences in the lower tails of the distributions across the groups. The authors looked at the rates of "closer" overtakes by classifying the distances as either less than 100 cm (39.4 inches) as *closer* or not and also found some interesting results. Chapter \@ref(chapter5) discusses a method called a Chi-square test of Homogeneity that would be appropriate here and allow for an analysis of the rates of closer passes and this study is revisited in the Practice Problems (Section \@ref(section5-14)) there. It ends up showing that rates of "closer passes" are smallest in the *police* group. 
 
 
 (ref:fig3-21) Pirate-plot of overtake distances by group, sorted by sample means with Tukey's HSD CLD displayed. 
@@ -2009,7 +2047,7 @@ text(x = 6.1,y = 210,"b",col = "red",cex = 1.5)
 text(x = 7,y = 215,"b",col = "red",cex = 1.5)
 ```
 
-
+<!-- \newpage -->
 
 ## Chapter summary {#section3-8}
 
@@ -2086,9 +2124,9 @@ df2 = `r colFmt("DENOMDF","red")`, lower.tail = F)**
     B ``<-`` 1000  
     Tstar ``<-`` matrix(NA, nrow = B)  
     for (b in (1:B)){  
-      Tstar[b] ``<-`` anova(lm(`r colFmt("Y","red")` ~ `r shuffle(colFmt("X","red"))`, data = `r colFmt("DATASETNAME","red")`))[1,4]
-    }
-    pdata(Tstar, Tobs, lower.tail = F)[[1]]**
+      Tstar[b] ``<-`` anova(lm(`r colFmt("Y","red")` ~ `r shuffle(colFmt("X","red"))`, data = `r colFmt("DATASETNAME","red")`))[1,4]  
+    }  
+    pdata(Tstar, Tobs, lower.tail = F)[[1]]**  
 
     * Code to run a ``for`` loop to generate 1000 permuted F-statistics, store and calculate the permutation-based p-value from ``Tstar``. 
 
@@ -2151,7 +2189,9 @@ from 3.1.5.
 
 \vspace{11pt}
 
-3.2. **Sting Location Analysis** These data come from [@Smith2014] where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at https://peerj.com/articles/338/. The following code gets the data prepared for analysis by removing the observations he took each day on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. This is done with a negation (using "!" of the `%in%`  which identifies rows related to the two daily forearm locations (``Forearm`` and ``Forearm1``) to leave all the rows in the data set for any levels of ``Body_Location`` that were not in these two levels. This is easier than trying to list all 24 other levels, then ``Body_Location`` variable is re-factored to clean out its unused levels, and finally the ``reorder`` function is used to order the levels based on the sample mean pain rating -- and the results of these steps are stored in the ``sd_fixedR`` tibble.
+3.2. **Sting Location Analysis** These data come from [@Smith2014] where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at https://peerj.com/articles/338/. The following code gets the data prepared for analysis by removing the observations he took each day on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. This is done with a negation (using "!" of the `%in%` which identifies rows related to the two daily forearm locations (``Forearm`` and ``Forearm1``) to leave all the rows in the data set for any levels of ``Body_Location`` that were not in these two levels. This is easier than trying to list all 24 other levels, then ``Body_Location`` variable is re-factored to clean out its unused levels, and finally the ``reorder`` function is used to order the levels based on the sample mean pain rating -- and the results of these steps are stored in the ``sd_fixedR`` tibble.
+
+\small
 
 ```r
 library(readr)
@@ -2159,11 +2199,12 @@ sd_fixed <- read_csv("http://www.math.montana.edu/courses/s217/documents/stingda
 
 sd_fixedR <- sd_fixed %>% 
               filter(!(Body_Location %in% c("Forearm", "Forearm1"))) %>% 
-              mutate(
-                    Body_Location = factor(Body_Location),
-                    Body_Location = reorder(Body_Location, Rating, FUN = mean)
+              mutate(Body_Location = factor(Body_Location),
+                     Body_Location = reorder(Body_Location, Rating, FUN = mean)
                     )
 ```
+
+\normalsize
 
 3.2.1. Graphically explore the differences in the pain ratings (``Rating``) across the different ``Body_Location`` levels using boxplots and pirate-plots. How are boxplots misleading for representing these data? **Hint**: look for discreteness in the responses.
 

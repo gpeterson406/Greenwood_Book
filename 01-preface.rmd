@@ -278,11 +278,11 @@ and click on the "**Download R for...**" button that
 corresponds to your operating system. On the next page, click on "**base**" and then it will take you 
 to a screen to download the most current version of R that is compiled for your
 operating system, something like "**Download R 4.1.0 for Windows**". Click on that link and then open 
-the file you downloaded. You will need to select your preferred language (choose English so your  instructor can help you), then hit "**Next**"
+the file you downloaded. You will need to select your preferred language (choose English so your instructor can help you), then hit "**Next**"
 until it starts to unpack and install the program (all the base settings will be fine). After you hit "**Finish**" you will not do anything further with R directly. 
 
 \indent Second, you need to download RStudio. It is an enhanced interface that will make interacting with
-R less frustrating and allow you to directly create reports that include the code and output. To download RStudio, go near the bottom of  https://www.rstudio.com/products/rstudio/download/ and select the correct version under
+R less frustrating and allow you to directly create reports that include the code and output. To download RStudio, go near the bottom of https://www.rstudio.com/products/rstudio/download/ and select the correct version under
 "Installers for Supported Platforms" for your operating system. Download and
 then install RStudio using the installer. From this point forward, you should only
 open RStudio; it provides your interface with R. Note that both R and RStudio
@@ -334,7 +334,7 @@ plots that you make and requests for "Help" on specific functions.
 should look like this:
 
 ```r
-> 3+4
+> 3 + 4
 [1] 7
 ```
 
@@ -342,7 +342,7 @@ You can do more interesting calculations, like finding the mean of the
 numbers -3, 5, 7, and 8 by adding them up and dividing by 4:
 
 ```r
-> (-3+5+7+8)/4
+> (-3 + 5 + 7 + 8)/4
 [1] 4.25
 ```
 
@@ -350,7 +350,7 @@ Note that the parentheses help R to figure out your desired order of operations.
 a very different (and wrong!) result:
 
 ```r
-> -3+5+7+8/4
+> -3 + 5 + 7 + 8/4
 [1] 11
 ```
 
@@ -661,7 +661,7 @@ interest, generically as ``tibblename$variablename``. You can think of this as *
 And now we know that the average running time for 1.5 miles for the subjects in the study was 10.6 minutes with a standard deviation (SD) of 1.39 minutes. But you should remember that the
 mean and SD are only appropriate summaries if the distribution is roughly
 ***symmetric*** (both sides of the distribution are approximately the same shape and length). The 
-``mosaic``  package provides a useful function called ``favstats`` that provides 
+``mosaic`` package provides a useful function called ``favstats`` that provides 
 the mean and SD as well as the ***5 number summary***: \index{5 number summary}
 the minimum (``min``), the first quartile (``Q1``, the 25^th^ percentile), 
 the median (50^th^ percentile), the third quartile (``Q3``, the 75^th^
@@ -700,10 +700,10 @@ Figure \@ref(fig:Figure1-5).
 > hist(treadmill$RunTime)
 ```
 
-(ref:fig1-5) Histogram of Run Times (minutes) of $n$=31 subjects in Treadmill study, bar heights are counts.
+(ref:fig1-5) Histogram of Run Times (minutes) of $n$ = 31 subjects in Treadmill study, bar heights are counts.
 
 ```{r Figure1-5, fig.cap='(ref:fig1-5)',echo=F, }
-old.par <- par(mai=c(0.5,0.5,0.5,0.5))
+old.par <- par(mai = c(0.5,0.5,0.5,0.5))
 hist(treadmill$RunTime, ylim = c(0,12))
 ```
 
@@ -727,10 +727,10 @@ processing documents.
 occur if we don't make any specific choices but we
 can override the default options if we desire. One option we can modify here is
 to add labels to the bars to be able to see exactly how many observations fell
-into each bar. Specifically, we can turn the ``labels`` option "on" by making it true ("T") by adding ``labels=T`` to the previous call to the ``hist`` function, separated by a comma. Note that we will use the ``=`` sign only for changing options within functions.  
+into each bar. Specifically, we can turn the ``labels`` option "on" by making it true ("T") by adding ``labels = T`` to the previous call to the ``hist`` function, separated by a comma. Note that we will use the ``=`` sign only for changing options within functions. 
 
 ```r
-> hist(treadmill$RunTime, labels=T)
+> hist(treadmill$RunTime, labels = T)
 ```
 
 (ref:fig1-7) Histogram of Run Times with counts in bars labeled.
@@ -764,7 +764,7 @@ part of the boxplot is a box that goes from Q1 to Q3 and the median is displayed
 somewhere inside the box.^[The median, quartiles and whiskers sometimes occur at the same 
 values when there are many tied observations. If you can't see all the 
 components of the boxplot, produce the numerical summary to help you understand 
-what happened.] Looking back at the summary statistics above, Q1=9.78 and Q3=11.27, providing an IQR of:
+what happened.] Looking back at the summary statistics above, Q1 = 9.78 and Q3 = 11.27, providing an IQR of:
 
 ```r
 > IQR <- 11.27 - 9.78
@@ -811,12 +811,12 @@ be assigned into the options ``ylab`` (for y-axis) or ``main``
 old.par <- par(mai = c(0.5,1,0.75,0.5))
 boxplot(treadmill$RunTime, ylab = "1.5 Mile Run Time (minutes)",
         cex.main = 0.75,
-        main="Boxplot of the Run Times of n=31 participants")
+        main = "Boxplot of the Run Times of n = 31 participants")
 ```
 
 ```r
-> boxplot(treadmill$RunTime, ylab="1.5 Mile Run Time (minutes)", 
-          main="Boxplot of the Run Times of n=31 participants")
+> boxplot(treadmill$RunTime, ylab = "1.5 Mile Run Time (minutes)", 
+          main = "Boxplot of the Run Times of n = 31 participants")
 ```
 
 \indent Throughout the book, we will often use extra options to make figures that
@@ -911,7 +911,7 @@ worthwhile^[This discussion is based on materials developed for a data
 visualization workshop originally developed by Dr. Allison Theobold and related 
 to the https://datacarpentry.org/ workshops.]. 
 
-\index As opposed to base graphics, the ggplots will contain multiple components 
+\indent As opposed to base graphics, the ggplots will contain multiple components 
 that are patched together with a `+`, with the general format of 
 `ggplot(data = <DATA>, mapping = aes(<VARIABLE MAPPINGS>)) + <GEOM_FUNCTION>()`. 
 Breaking this down, the `data = ...` tells the `ggplot` function where to look, 
@@ -934,7 +934,7 @@ library(ggplot2)
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + geom_histogram()
 ```
 
-```{r Figure1-10, fig.cap="(ref:fig1-10)",echo=F}
+```{r Figure1-10, fig.cap="(ref:fig1-10)",echo=F, warning=T}
 library(ggplot2)
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
   geom_histogram()
@@ -967,7 +967,7 @@ ggplot(data = treadmill, mapping = aes(x = RunTime)) +
 
 \newpage
 
-\index The following chapters will explore further modifications for these 
+\indent The following chapters will explore further modifications for these 
 plots, but there are a couple of additions to highlight. The first is that we 
 can often layer multiple geoms on the same plot and the order of the additions 
 defines which layer is "on top", with the plot built up sequentially. So we can 
@@ -1020,8 +1020,9 @@ ggplot(data = treadmill, mapping = aes(x = RunTime)) +
 
 Finally, when you are done with your work and attempt to exit out of RStudio, 
 it will ask you to save your workspace. ***DO NOT DO THIS!*** It will just 
-create a cluttered  workspace and could even cause you to get incorrect results.  
-In fact, you should go into the Tools -> Global Options and then make sure that 
+create a cluttered workspace and could even cause you to get incorrect results. 
+
+\indent In fact, you should go into the Tools -> Global Options and then make sure that 
 "Save workspace to .RData on exit" option on the first screen you will see is 
 set to ***Never***. If you save your R code either as a .R or (better) an R 
 Markdown (.Rmd) file, you can re-create any results by simply
@@ -1057,7 +1058,7 @@ will be building on in the next chapters.
 To help you learn and use R, there is a section highlighting the most important 
 R code used near the end of each
 chapter. The bold text will never change but the 
-lighter and/or ALL CAPS  text (red in the online or digital version) will need
+lighter and/or ALL CAPS text (red in the online or digital version) will need
 to be customized to your particular application. The sub-bullet for each
 function will discuss the use of the function and pertinent options or packages
 required. You can use this as a guide to finding the function names and some
@@ -1114,7 +1115,8 @@ revisit the worked examples using each of the functions.
 
     * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
 
-* **ggplot(data = **`r colFmt("DATASETNAME","red")`**, mapping = aes(**`r colFmt("VARIABLENAME","red")`**)) + geom_histogram(bins = **`r colFmt("10","red")`**)**
+* **ggplot(data = **`r colFmt("DATASETNAME","red")`**, mapping = aes(**`r colFmt("VARIABLENAME","red")`**)) +  
+geom_histogram(bins = **`r colFmt("10","red")`**)**
 
     * Makes a histogram with 10 bins using `ggplot`, requires the `ggplot2` 
     library is installed and loaded. \index{\texttt{geom\_histogram()}|textbf}
@@ -1162,7 +1164,7 @@ ages does this study pertain to?
 
 1.5. The weight responses are in
 kilograms and you might prefer to see them in pounds. The conversion is
-``lbs=2.205*kgs``. Create a new variable in the ``treadmill``
+``lbs = 2.205*kgs``. Create a new variable in the ``treadmill``
 tibble called *BWlb* using this code:
 
 ```r

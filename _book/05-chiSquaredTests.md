@@ -61,7 +61,7 @@ trial investigating a treatment for rheumatoid arthritis.
 These data are available
 in the ``Arthritis`` data set available in the ``vcd`` package [@R-vcd].
 \index{R packages!\textbf{vcd}}
-There were $n=84$ subjects, with some demographic 
+There were $n = 84$ subjects, with some demographic 
 information recorded
 along with the ``Treatment`` status (*Treated*, *Placebo*) and whether the 
 patients' arthritis symptoms ``Improved`` (with levels of *None*, *Some*, 
@@ -82,17 +82,17 @@ library(vcd)
 data(Arthritis) #Double-blind clinical trial with treatment and control groups
 library(tibble)
 Arthritis <- as_tibble(Arthritis)
-#Homogeneity example
+# Homogeneity example
 library(tabplot)
 library(RColorBrewer)
 # Options needed to (sometimes) prevent errors on PC
-#options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
-tableplot(Arthritis, select = c(Treatment, Improved, Sex, Age), pals = list("BrBG"), sample = F,
-          colorNA_num = "orange", numMode = "MB-ML")
+# options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
+tableplot(Arthritis, select = c(Treatment, Improved, Sex, Age), pals = list("BrBG"), 
+          sample = F, colorNA_num = "orange", numMode = "MB-ML")
 ```
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-1-1.png" alt="(ref:fig5-1)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-1-1.png" alt="(ref:fig5-1)" width="75%" />
 <p class="caption">(\#fig:Figure5-1)(ref:fig5-1)</p>
 </div>
 
@@ -142,7 +142,7 @@ function to generate contingency tables.
 the counts of observations in each combination of the explanatory and 
 response variables.
 \index{contingency table}
-In these data, there are $R=2$ rows and $C=3$ columns 
+In these data, there are $R = 2$ rows and $C = 3$ columns 
 making a $2\times 3$ table -- note that you do not count the row
 and column for the "Totals" in defining the size of the table. In the table, 
 there seems to be many more *Marked* improvement responses (21 vs 7) and 
@@ -166,24 +166,24 @@ tally(~ Treatment + Improved, data = Arthritis, margins = T)
 Using the ``tally`` function with ``~ x + y`` provides a contingency table with
 the ``x`` variable on the rows and the ``y`` variable on the columns, with
 ``margins = T`` as an option so we can obtain the totals along the rows, 
-columns, and table total of $N=84$.
+columns, and table total of $N = 84$.
 \index{\texttt{tally()}}
 \index{contingency table}
 In general, contingency tables contain 
 the counts $n_{rc}$ in the $r^{th}$ row and $c^{th}$ column where
-$r=1,\ldots,R$ and $c=1,\ldots,C$. We can also define the ***row totals***
+$r = 1,\ldots,R$ and $c = 1,\ldots,C$. We can also define the ***row totals***
 as the sum across the columns of the counts in row $r$ as
 
-$$\mathbf{n_{r\bullet}}=\Sigma^C_{c=1}n_{rc},$$
+$$\mathbf{n_{r\bullet}} = \Sigma^C_{c = 1}n_{rc},$$
 
 the ***column totals*** as the sum across the rows for the counts in column $c$ as
 
-$$\mathbf{n_{\bullet c}}=\Sigma^R_{r=1}n_{rc},$$
+$$\mathbf{n_{\bullet c}} = \Sigma^R_{r = 1}n_{rc},$$
 
 and the ***table total*** as
 
-$$\mathbf{N}=\Sigma^R_{r=1}\mathbf{n_{r\bullet}} = \Sigma^C_{c=1}\mathbf{n_{\bullet c}}
-= \Sigma^R_{r=1}\Sigma^C_{c=1}\mathbf{n_{rc}}.$$
+$$\mathbf{N} = \Sigma^R_{r = 1}\mathbf{n_{r\bullet}} = \Sigma^C_{c = 1}\mathbf{n_{\bullet c}}
+ = \Sigma^R_{r = 1}\Sigma^C_{c = 1}\mathbf{n_{rc}}.$$
 
 We'll need these quantities to do some calculations in a bit. A generic 
 contingency table with added row, column, 
@@ -191,12 +191,13 @@ and table totals just like the previous result from the ``tally``
 function is provided in Table \@ref(tab:Table5-1).
 \index{contingency table}
 
+\newpage
+
 (ref:tab5-1) General notation for counts in an *R* by *C* contingency table.
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   &nbsp;              **Response\                    **Response\                    **Response\               \              **Response\                         \               
-                        Level 1**                      Level 2**                      Level 3**             **...**            Level C**                      **Totals**          
+   &nbsp;          **Response Level 1**           **Response Level 2**           **Response Level 3**       **...**       **Response Level C**                **Totals**          
 ------------- ------------------------------ ------------------------------ ------------------------------ --------- ------------------------------ ------------------------------
  **Group 1**             $n_{11}$                       $n_{12}$                       $n_{13}$               ...               $n_{1C}$             $\boldsymbol{n_{1 \bullet}}$ 
 
@@ -253,13 +254,15 @@ function with a ``y ~ x`` formula:
 
 
 ```r
-par(las=2) #Rotates text labels, optional code
+par(mai = c(1.5,1.5,0.82,0.42), #Adds extra space to bottom and left margin,
+    las = 2, #Rotates text labels, optional code
+    mgp = c(6,1,0)) #Adds space to labels, order is axis label, tick label, tick mark
 plot(Improved ~ Treatment, data = Arthritis,
      main = "Stacked Bar Chart of Arthritis Data")
 ```
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-2-1.png" alt="(ref:fig5-2)" width="1056" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-2-1.png" alt="(ref:fig5-2)" width="75%" />
 <p class="caption">(\#fig:Figure5-2)(ref:fig5-2)</p>
 </div>
 
@@ -320,7 +323,7 @@ situation.
 (ref:fig5-3) Diagram of the scenarios involved in Homogeneity and Independence tests. Homogeneity testing involves R random samples or subjects assigned to R groups. Independence testing involves a single random sample and measurements on two categorical variables. 
 
 <div class="figure" style="text-align: center">
-<img src="chapter5_files/image027.png" alt="(ref:fig5-3)" width="100%" />
+<img src="chapter5_files/image027.png" alt="(ref:fig5-3)" width="75%" />
 <p class="caption">(\#fig:Figure5-3)(ref:fig5-3)</p>
 </div>
 
@@ -350,7 +353,7 @@ This situation is similar to what we did in the One-Way ANOVA (Chapter \@ref(cha
 situation with quantitative responses but the parameters now
 relate to proportions in the response variable categories across the groups. 
 First we can define the conditional population proportions in level $c$ (column 
-$c=1,\ldots,C$) of group $r$ (row $r=1,\ldots,R$) as $p_{rc}$. 
+$c = 1,\ldots,C$) of group $r$ (row $r = 1,\ldots,R$) as $p_{rc}$. 
 Table \@ref(tab:Table5-2) shows the proportions, noting that the proportions 
 in each row sum to 1 since they are conditional on the group of
 interest. A ***transposed*** (rows and columns flipped) version of this table is
@@ -361,8 +364,7 @@ produced by the ``tally`` function if you use the formula ``~ y | x``.
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   &nbsp;              **Response\                    **Response\                    **Response\               \              **Response\                    \          
-                        Level 1**                      Level 2**                      Level 3**             **...**            Level C**                 **Totals**     
+   &nbsp;          **Response Level 1**           **Response Level 2**           **Response Level 3**       **...**       **Response Level C**           **Totals**     
 ------------- ------------------------------ ------------------------------ ------------------------------ --------- ------------------------------ --------------------
  **Group 1**             $p_{11}$                       $p_{12}$                       $p_{13}$               ...               $p_{1C}$             $\boldsymbol{1.0}$ 
 
@@ -382,11 +384,11 @@ the $R$ populations.
 \index{Chi-Square Test!Homogeneity Test}
 This means that the null hypothesis is:
 
-\newpage
+<!-- \newpage -->
 
 $$\begin{array}{rl}
-\mathbf{H_0:}\  & \mathbf{p_{11}=p_{21}=\ldots=p_{R1}} \textbf{ and } \mathbf{p_{12}=p_{22}=\ldots=p_{R2}}  \textbf{ and } \mathbf{p_{13}=p_{23}=\ldots=p_{R3}} \\ 
-& \textbf{ and } \mathbf{\ldots} \textbf{ and }\mathbf{p_{1C}=p_{2C}=\ldots=p_{RC}}. \\
+\mathbf{H_0:}\ & \mathbf{p_{11} = p_{21} = \ldots = p_{R1}} \textbf{ and } \mathbf{p_{12} = p_{22} = \ldots = p_{R2}} \textbf{ and } \mathbf{p_{13} = p_{23} = \ldots = p_{R3}} \\ 
+& \textbf{ and } \mathbf{\ldots} \textbf{ and }\mathbf{p_{1C} = p_{2C} = \ldots = p_{RC}}. \\
 \end{array}$$
 
 <!-- \newpage -->
@@ -394,7 +396,7 @@ $$\begin{array}{rl}
 If all the groups are the same, then they all have the same conditional proportions and we can 
 more simply write the null hypothesis as:
 
-$$\mathbf{H_0:(p_{r1},p_{r2},\ldots,p_{rC})=(p_1,p_2,\ldots,p_C)} \textbf{ for all } \mathbf{r}.$$
+$$\mathbf{H_0:(p_{r1},p_{r2},\ldots,p_{rC}) = (p_1,p_2,\ldots,p_C)} \textbf{ for all } \mathbf{r}.$$
 
 In other words, the pattern of proportions across the columns are **the same for all the**
 $\mathbf{R}$ **groups**. The alternative is that there is some difference in the proportions 
@@ -415,8 +417,8 @@ the null hypothesis for the *Arthritis* example, as displayed in Figure \@ref(fi
 
 (ref:fig5-4) Plot of one way that the Arthritis proportions could have been if the null hypothesis had been true.
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-4-1.png" alt="(ref:fig5-4)" width="1056" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-4-1.png" alt="(ref:fig5-4)" width="75%" />
 <p class="caption">(\#fig:Figure5-4)(ref:fig5-4)</p>
 </div>
 
@@ -497,9 +499,10 @@ library(poLCA)
 data(election, package = "poLCA") 
 election <- as_tibble(election)
 # Subset variables and remove missing values
-election2 <- election %>% dplyr::select(PARTY, VOTE3) %>%
-                        mutate(VOTEF = factor(VOTE3)) %>% 
-                        drop_na()
+election2 <- election %>% 
+  select(PARTY, VOTE3) %>%
+  mutate(VOTEF = factor(VOTE3)) %>%
+  drop_na()
 levels(election2$VOTEF) <- c("Gore", "Bush", "Other") #Replace 1,2,3 with meaningful names
 levels(election2$VOTEF) #Check new names of levels in VOTEF
 ```
@@ -602,8 +605,8 @@ function from a table that just contains the counts (**no totals**):
 mosaicplot(electable, main = "Mosaic plot of observed results") 
 ```
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-5-1.png" alt="(ref:fig5-5)" width="1056" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-5-1.png" alt="(ref:fig5-5)" width="75%" />
 <p class="caption">(\#fig:Figure5-5)(ref:fig5-5)</p>
 </div>
 
@@ -628,8 +631,8 @@ Figure \@ref(fig:Figure5-5).
 
 (ref:fig5-6) Mosaic plot of what the 2000 election data would look like if the null hypothesis of no relationship were true. 
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-6-1.png" alt="(ref:fig5-6)" width="1056" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-6-1.png" alt="(ref:fig5-6)" width="75%" />
 <p class="caption">(\#fig:Figure5-6)(ref:fig5-6)</p>
 </div>
 
@@ -654,7 +657,7 @@ relationship between the variables, we need to define a test
 statistic and find
 its distribution under the null hypothesis. The test statistic 
 used with both
-types of tests is called the  $\mathbf{X^2}$ ***statistic***
+types of tests is called the $\mathbf{X^2}$ ***statistic***
 (we want to call the statistic X-square not Chi-square). The statistic 
 compares the
 observed counts in the contingency table to the ***expected counts*** 
@@ -662,17 +665,17 @@ under the null hypothesis, with large differences between what
 we observed and what we
 expect under the null leading to evidence against the null hypothesis. To help
 this statistic to follow a named parametric distribution and provide some
-insights into sources of interesting differences from the null hypothesis, we  ***standardize***^[Standardizing involves dividing by the standard deviation 
+insights into sources of interesting differences from the null hypothesis, we ***standardize***^[Standardizing involves dividing by the standard deviation 
 of a quantity so it has a standard deviation 1 regardless of its original
 variability and that is what is happening here even though it doesn't 
 look like the standardization you are used to with continuous variables.]
 the difference between the observed and expected counts by the square-root of
 the expected count.
 \index{parametric} \index{Chi-square test} 
-The  $\mathbf{X^2}$ ***statistic*** is based on
+The $\mathbf{X^2}$ ***statistic*** is based on
 the sum of squared standardized differences, 
 
-$$\boldsymbol{X^2 = \Sigma^{RC}_{i=1}\left(\frac{Observed_i-Expected_i}
+$$\boldsymbol{X^2 = \Sigma^{RC}_{i = 1}\left(\frac{Observed_i-Expected_i}
 {\sqrt{Expected_i}}\right)^2},$$
 
 which is the sum over all ($R$ times $C$) cells in the contingency 
@@ -690,15 +693,15 @@ Under the null hypothesis across all $R$ groups
 the conditional probabilities in each response category must be the
 same. Consider Figure \@ref(fig:Figure5-7) where, under the null 
 hypothesis, the probability of *None*, *Some*, and *Marked* are the same
-in both treatment groups. Specifically we have $\text{Pr}(None)=0.5$, 
-$\text{Pr}(Some)=0.167$, and $\text{Pr}(Marked)=0.333$. With 
-$\mathbf{n_{Placebo\bullet}}=43$ and $\text{Pr}(None)=0.50$, we would
-expect $43*0.50=21.5$ subjects to be found in the *Placebo, None*
+in both treatment groups. Specifically we have $\text{Pr}(None) = 0.5$, 
+$\text{Pr}(Some) = 0.167$, and $\text{Pr}(Marked) = 0.333$. With 
+$\mathbf{n_{Placebo\bullet}} = 43$ and $\text{Pr}(None) = 0.50$, we would
+expect $43*0.50 = 21.5$ subjects to be found in the *Placebo, None*
 combination if the null hypothesis were true. Similarly, with
-$\text{Pr}(Some)=0.167$, we would expect $43*0.167=7.18$ in the 
+$\text{Pr}(Some) = 0.167$, we would expect $43*0.167 = 7.18$ in the 
 *Placebo, Some* cell. And for the *Treated* group with 
-$\mathbf{n_{Treated\bullet}}=41$, the expected count in the *Marked* 
-improvement group would be $41*0.333=13.65$. Those conditional
+$\mathbf{n_{Treated\bullet}} = 41$, the expected count in the *Marked* 
+improvement group would be $41*0.333 = 13.65$. Those conditional
 probabilities came from aggregating across the rows because, under the null, 
 the row (*Treatment*) should not matter. So, the conditional 
 probability was actually calculated as $\mathbf{n_{\bullet c}/N}$ = 
@@ -717,8 +720,8 @@ table.
 
 (ref:fig5-7) Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study. 
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-7-1.png" alt="(ref:fig5-7)" width="1056" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-7-1.png" alt="(ref:fig5-7)" width="75%" />
 <p class="caption">(\#fig:Figure5-7)(ref:fig5-7)</p>
 </div>
 
@@ -728,19 +731,27 @@ table.
 (ref:tab5-3) Demonstration of calculation of expected cell counts for Arthritis data. 
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-&nbsp;&nbsp;&nbsp;&nbsp;   **None**                                                                      **Some**                                                                      **Marked**                                                                      **Totals**                                   
--------------------------- ----------------------------------------------------------------------------- ----------------------------------------------------------------------------- ------------------------------------------------------------------------------- ---------------------------------------------
-**Placebo**                $\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{None}}}{N}}$\   $\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{Some}}}{N}}$\   $\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{Marked}}}{N}}$\   $\boldsymbol{n_{\text{Placebo}\bullet}=43}$  
-                           $\boldsymbol{=\dfrac{43*42}{84}}$\                                            $\boldsymbol{=\dfrac{43*14}{84}}$\                                            $\boldsymbol{=\dfrac{43*28}{84}}$\                                                                                           
-                           $\boldsymbol{=\color{red}{\mathbf{21.5}}}$                                    $\boldsymbol{=\color{red}{\mathbf{7.167}}}$                                   $\boldsymbol{=\color{red}{\mathbf{14.33}}}$\                                                                                 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+&nbsp;&nbsp;&nbsp;&nbsp;   **None**                                                                     **Some**                                                                     **Marked**                                                                     **Totals**                              
+-------------------------- ---------------------------------------------------------------------------- ---------------------------------------------------------------------------- ------------------------------------------------------------------------------ ----------------------------------------
+**Placebo**                $\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{None}}}{N}}$   $\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{Some}}}{N}}$   $\boldsymbol{\dfrac{n_{\text{Placebo}\bullet}*n_{\bullet\text{Marked}}}{N}}$   $\boldsymbol{n_{\text{Placebo}\bullet}  
+                           $\boldsymbol{                                                                $\boldsymbol{                                                                $\boldsymbol{                                                                  =                                       
+                           =                                                                            =                                                                            =                                                                              43}$                                    
+                           \dfrac{43*42}{84}}$                                                          \dfrac{43*14}{84}}$                                                          \dfrac{43*28}{84}}$                                                                                                    
+                           $\boldsymbol{ =                                                              $\boldsymbol{ =                                                              $\boldsymbol{ =                                                                                                        
+                           \color{red}{\mathbf{21.5}}}$                                                 \color{red}{\mathbf{7.167}}}$                                                \color{red}{\mathbf{14.33}}}$                                                                                          
 
-**Treated**                $\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{None}}}{N}}$\   $\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{Some}}}{N}}$\   $\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{Marked}}}{N}}$\   $\boldsymbol{n_{\text{Treated}\bullet}=41}$  
-                           $\boldsymbol{=\dfrac{41*42}{84}}$\                                            $\boldsymbol{=\dfrac{41*14}{84}}$\                                            $\boldsymbol{=\dfrac{41*28}{84}}$\                                                                                           
-                           $\boldsymbol{=\color{red}{\mathbf{20.5}}}$                                    $\boldsymbol{=\color{red}{\mathbf{6.83}}}$                                    $\boldsymbol{=\color{red}{\mathbf{13.67}}}$\                                                                                 
+**Treated**                $\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{None}}}{N}}$   $\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{Some}}}{N}}$   $\boldsymbol{\dfrac{n_{\text{Treated}\bullet}*n_{\bullet\text{Marked}}}{N}}$   $\boldsymbol{n_{\text{Treated}\bullet}  
+                           $\boldsymbol{                                                                $\boldsymbol{                                                                $\boldsymbol{                                                                  =                                       
+                           =                                                                            =                                                                            =                                                                              41}$                                    
+                           \dfrac{41*42}{84}}$                                                          \dfrac{41*14}{84}}$                                                          \dfrac{41*28}{84}}$                                                                                                    
+                           $\boldsymbol{ =                                                              $\boldsymbol{ =                                                              $\boldsymbol{ =                                                                                                        
+                           \color{red}{\mathbf{20.5}}}$                                                 \color{red}{\mathbf{6.83}}}$                                                 \color{red}{\mathbf{13.67}}}$                                                                                          
 
-**Totals**                 $\boldsymbol{n_{\bullet\text{None}}=42}$                                      $\boldsymbol{n_{\bullet\text{Some}}=14}$                                      $\boldsymbol{n_{\bullet\text{Marked}}=28}$                                      $\boldsymbol{N=84}$                          
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Totals**                 $\boldsymbol{n_{\bullet\text{None}}                                          $\boldsymbol{n_{\bullet\text{Some}}                                          $\boldsymbol{n_{\bullet\text{Marked}}                                          $\boldsymbol{N = 84}$                   
+                           =                                                                            =                                                                            =                                                                                                                      
+                           42}$                                                                         14}$                                                                         28}$                                                                                                                   
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table: (\#tab:Table5-3) (ref:tab5-3)
 
@@ -754,7 +765,7 @@ counts that has been produced **without row or column totals**.
 <!-- \newpage -->
 
 \indent For example, ``Arthtable`` below contains just the observed cell 
-counts. Applying the ``chisq.test`` function^[Note that in smaller data sets to get results as discussed here, use the ``correct=F`` option. If you get output that contains "``...with Yate's continuity correction``", a slightly modified version of this test is being used.] to ``Arthtable``
+counts. Applying the ``chisq.test`` function^[Note that in smaller data sets to get results as discussed here, use the ``correct = F`` option. If you get output that contains "``...with Yate's continuity correction``", a slightly modified version of this test is being used.] to ``Arthtable``
 provides a variety of useful output. For the moment, we are just 
 going to extract the information in the "``expected``" attribute of 
 the results from running this function (using ``chisq.test(TABLENAME)$expected)``.
@@ -791,37 +802,41 @@ chisq.test(Arthtable)$expected
 attention to calculating the test
 statistic. It is possible to lay out the "contributions" to the 
 $X^2$ statistic in a table format, allowing a simple way to finally 
-calculate the statistic without losing any information. For  **each cell**
+calculate the statistic without losing any information. For **each cell**
 we need to find 
 
 $$(\text{observed}-\text{expected})/\sqrt{\text{expected}}),$$
 
 **square them**, and then we need to add them **all** up. In the 
-current example, there are 6 cells to add up ($R=2$ times $C=3$), shown 
+current example, there are 6 cells to add up ($R = 2$ times $C = 3$), shown 
 in Table \@ref(tab:Table5-4). 
 
 (ref:tab5-4) $X^2$ contributions for the Arthritis data.
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-&nbsp;&nbsp;&nbsp;&nbsp;   **None**                                                                   **Some**                                                                    **Marked**                                                                  
--------------------------- -------------------------------------------------------------------------- --------------------------------------------------------------------------- ----------------------------------------------------------------------------
-**Placebo**                $\left(\frac{29-21.5}{\sqrt{21.5}}\right)^2=\color{red}{\mathbf{2.616}}$   $\left(\frac{7-7.167}{\sqrt{7.167}}\right)^2=\color{red}{\mathbf{0.004}}$   $\left(\frac{7-14.33}{\sqrt{14.33}}\right)^2=\color{red}{\mathbf{3.752}}$   
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+&nbsp;&nbsp;&nbsp;&nbsp;   **None**                                      **Some**                                       **Marked**                                     
+-------------------------- --------------------------------------------- ---------------------------------------------- -----------------------------------------------
+**Placebo**                $\left(\frac{29-21.5}{\sqrt{21.5}}\right)^2   $\left(\frac{7-7.167}{\sqrt{7.167}}\right)^2   $\left(\frac{7-14.33}{\sqrt{14.33}}\right)^2   
+                           =                                             =                                              =                                              
+                           \color{red}{\mathbf{2.616}}$                  \color{red}{\mathbf{0.004}}$                   \color{red}{\mathbf{3.752}}$                   
 
-**Treated**                $\left(\frac{13-20.5}{\sqrt{20.5}}\right)^2=\color{red}{\mathbf{2.744}}$   $\left(\frac{7-6.833}{\sqrt{6.833}}\right)^2=\color{red}{\mathbf{0.004}}$   $\left(\frac{21-13.67}{\sqrt{13.67}}\right)^2=\color{red}{\mathbf{3.935}}$  
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Treated**                $\left(\frac{13-20.5}{\sqrt{20.5}}\right)^2   $\left(\frac{7-6.833}{\sqrt{6.833}}\right)^2   $\left(\frac{21-13.67}{\sqrt{13.67}}\right)^2  
+                           =                                             =                                              =                                              
+                           \color{red}{\mathbf{2.744}}$                  \color{red}{\mathbf{0.004}}$                   \color{red}{\mathbf{3.935}}$                   
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table: (\#tab:Table5-4) (ref:tab5-4)
 
 
 Finally, the $X^2$ statistic here is the sum of these six results 
-$={\color{red}{2.616+0.004+3.752+2.744+0.004+3.935}}=13.055$ 
+$= {\color{red}{2.616+0.004+3.752+2.744+0.004+3.935}} = 13.055$ 
 
 \indent Our favorite function in this chapter, ``chisq.test``, does not provide 
 the contributions to the $X^2$ statistic directly. It provides a related 
 quantity called the \index{Chi-square test!standardized residual}
 
-$$\textbf{standardized residual}=\left(\frac{\text{Observed}_i -
+$$\textbf{standardized residual} = \left(\frac{\text{Observed}_i -
 \text{Expected}_i}{\sqrt{\text{Expected}_i}}\right),$$
 
 which, when squared (in R, squaring is accomplished using ``^2``),
@@ -845,7 +860,7 @@ statistic that is displayed in Table \@ref(tab:Table5-4).
 The most common error made in calculating the $X^2$ statistic by hand 
 involves having observed less than expected
 and then failing to make the $X^2$ contribution positive for all cells
-(remember you are  **squaring the entire quantity** in the parentheses
+(remember you are **squaring the entire quantity** in the parentheses
 and so the sign has to go positive!). In R, we can add up the cells using 
 the ``sum`` function over the entire table of numbers:
 
@@ -909,8 +924,8 @@ statistic "measures" differences between observed and expected.
 
 (ref:fig5-8) Stacked bar charts of four permuted Arthritis data sets that produced $X^2$ between 0.62 and 2.38.
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-8-1.png" alt="(ref:fig5-8)" width="1056" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-8-1.png" alt="(ref:fig5-8)" width="75%" />
 <p class="caption">(\#fig:Figure5-8)(ref:fig5-8)</p>
 </div>
 
@@ -929,7 +944,7 @@ to showing the differences in the bars observed in the real data set in Figure \
 
 ```r
 Arthperm <- Arthritis
-Arthperm <- Arthperm %>%  mutate(PermTreatment = shuffle(Treatment))
+Arthperm <- Arthperm %>% mutate(PermTreatment = shuffle(Treatment))
 ```
 
 
@@ -972,8 +987,6 @@ provided to ``chisq.test `` to analyze. We extract the
 ``$statistic`` attribute of the results from running ``chisq.test``. 
 \index{permutation!distribution}
 
-(ref:fig5-9) Permutation distribution for the $X^2$ statistic for the Arthritis data with an observed $X^2$ of 13.1 (bold, vertical line). 
-
 
 ```r
 Tobs <- chisq.test(Arthtable)$statistic; Tobs
@@ -985,11 +998,11 @@ Tobs <- chisq.test(Arthtable)$statistic; Tobs
 ```
 
 ```r
-par(mfrow=c(1,2))
+par(mfrow = c(1,2))
 B <- 1000
 Tstar <- matrix(NA, nrow = B)
 for (b in (1:B)){
-  Tstar[b] <- chisq.test(tally(~shuffle(Treatment) + Improved,
+  Tstar[b] <- chisq.test(tally(~ shuffle(Treatment) + Improved,
                                data = Arthritis))$statistic
 }
 pdata(Tstar, Tobs, lower.tail = F)[[1]]
@@ -999,16 +1012,24 @@ pdata(Tstar, Tobs, lower.tail = F)[[1]]
 ## [1] 0.002
 ```
 
+\newpage
+
+(ref:fig5-9) Permutation distribution for the $X^2$ statistic for the Arthritis data with an observed $X^2$ of 13.1 (bold, vertical line). 
+
+
 ```r
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "khaki") +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, geom = "text") + 
-  geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
-  geom_vline(xintercept = Tobs, col = "red", lwd = 2)
+  geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "khaki") + 
+  geom_density(aes(y = ..scaled..)) +
+  theme_bw() +
+  labs(y = "Density") +
+  geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20,
+           geom = "text", vjust = -0.75)
 ```
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-9-1.png" alt="(ref:fig5-9)" width="480" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-9-1.png" alt="(ref:fig5-9)" width="75%" />
 <p class="caption">(\#fig:Figure5-9)(ref:fig5-9)</p>
 </div>
 
@@ -1098,8 +1119,8 @@ since the smallest expected cell count is 6.833 (so all expected counts are larg
 
 (ref:fig5-10) $\boldsymbol{\chi^2}$-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line. 
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-10-1.png" alt="(ref:fig5-10)" width="480" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-10-1.png" alt="(ref:fig5-10)" width="75%" />
 <p class="caption">(\#fig:Figure5-10)(ref:fig5-10)</p>
 </div>
 
@@ -1110,10 +1131,10 @@ table analyses, the ***degrees of freedom*** for the Chi-square test
 are calculated as \index{Chi-Square Test} 
 \index{degrees of freedom!Chi-Square test}
 
-$$\textbf{DF} \mathbf{=(R-1)*(C-1)} = (\text{number of rows }-1)*
+$$\textbf{DF} \mathbf{ = (R-1)*(C-1)} = (\text{number of rows }-1)*
 (\text{number of columns }-1).$$
 
-In the $2 \times 3$ table above, the $\text{DF}=(2-1)*(3-1)=2$ leading 
+In the $2 \times 3$ table above, the $\text{DF} = (2-1)*(3-1) = 2$ leading 
 to a Chi-square
 distribution with 2 *df* for the distribution of $X^2$ under the null 
 hypothesis. The p-value is based on the area to the right of the observed 
@@ -1151,8 +1172,8 @@ of strong evidence against the null hypothesis. Whether a result is large enough
 be of practical
 importance can only be judged by knowing something about the situation we are
 studying and by providing a good summary of our results to allow experts to
-assess the size and importance of the result.  Unfortunately, many
-researchers are so happy to see small p-values that this is their last step. We encountered a similar situation in the car overtake distance data set where a large sample size provided a data set that had a small p-value and possibly minor differences in the means driving it.   
+assess the size and importance of the result. Unfortunately, many
+researchers are so happy to see small p-values that this is their last step. We encountered a similar situation in the car overtake distance data set where a large sample size provided a data set that had a small p-value and possibly minor differences in the means driving it.
 
 \indent If we revisit our observed results, re-plotted in Figure \@ref(fig:Figure5-11)
 since it was quite a ways back that we saw the original data in Figure \@ref(fig:Figure5-2), knowing that we have strong evidence against the null hypothesis 
@@ -1163,8 +1184,8 @@ of patients getting improvement (*Some* or *Marked*). If the differences
 
 (ref:fig5-11) Stacked bar chart of the Arthritis data comparing *Treated* and *Placebo*.
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-11-1.png" alt="(ref:fig5-11)" width="1056" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-11-1.png" alt="(ref:fig5-11)" width="75%" />
 <p class="caption">(\#fig:Figure5-11)(ref:fig5-11)</p>
 </div>
 
@@ -1181,7 +1202,7 @@ null hypothesis (expected cell counts) and what was observed (observed cell
 counts). It is possible to explore the "size" and direction of the differences
 between observed and expected counts to learn something about the behavior of
 the relationship between the variables, especially as it relates to evidence
-against the null hypothesis of no difference or no relationship. The  ***standardized residual***, 
+against the null hypothesis of no difference or no relationship. The***standardized residual***, 
 
 $$\boldsymbol{\left(\frac{\textbf{Observed}_i - 
 \textbf{Expected}_i}{\sqrt{\textbf{Expected}_i}}\right)},$$
@@ -1220,8 +1241,8 @@ of results are shown for the Arthritis data table:
 ##   Treated -1.65647289  0.06375767  1.98367320
 ```
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-12-1.png" alt="(ref:fig5-12)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-12-1.png" alt="(ref:fig5-12)" width="75%" />
 <p class="caption">(\#fig:Figure5-12)(ref:fig5-12)</p>
 </div>
 
@@ -1237,7 +1258,7 @@ too helpful but this type of plot is in other examples. The largest
 contributions to the $X^2$ statistic come from the *Placebo* and *Treated*
 groups in the *Marked* improvement cells. Those standardized residuals 
 are -1.94 and 1.98 (both really close to 2), showing that the *placebo* 
-group had  **noticeably fewer** *Marked* improvement 
+group had**noticeably fewer** *Marked* improvement 
 **results than expected** and the *Treated* group **had noticeably more**
 *Marked* improvement responses **than expected if the null hypothesis was true**. Similarly but with smaller magnitudes, there were more *None*
 results than expected in the *Placebo* group and fewer *None* results 
@@ -1282,7 +1303,7 @@ describe the pattern of responses.
     b. If all expected cell counts greater than 5, either permutation or parametric 
     approaches are acceptable.
     
-    \newpage
+    <!-- \newpage -->
     
 5. Explore the standardized residuals for the "source" of any evidence 
 against the null -- this can be the start of your "size" discussion. 
@@ -1311,21 +1332,22 @@ as categorical variables.
 
 
 ```r
-election <- election %>% mutate(
-                            VOTEF = factor(VOTE3),
-                            PARTY = factor(PARTY),
-                            EDUC = factor(EDUC),
-                            GENDER = factor(GENDER))
+election <- election %>% mutate(VOTEF = factor(VOTE3),
+                                PARTY = factor(PARTY),
+                                EDUC = factor(EDUC),
+                                GENDER = factor(GENDER)
+                                )
 
 levels(election$VOTEF) <- c("Gore","Bush","Other")
 # (Possibly) required options to avoid error when running on a PC, 
 # should have no impact on other platforms
 # options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
-tableplot(election, select = c(VOTEF, PARTY, EDUC, GENDER), pals = list("BrBG"), sample = F)
+tableplot(election, select = c(VOTEF, PARTY, EDUC, GENDER), pals = list("BrBG"), 
+          sample = F)
 ```
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-13-1.png" alt="(ref:fig5-13)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-13-1.png" alt="(ref:fig5-13)" width="75%" />
 <p class="caption">(\#fig:Figure5-13)(ref:fig5-13)</p>
 </div>
 
@@ -1358,13 +1380,15 @@ variables.
 
 
 ```r
-election2 <- election %>% dplyr::select(VOTEF, PARTY, EDUC, GENDER) %>% drop_na()
-tableplot(election2, select = c(VOTEF, PARTY, EDUC, GENDER), sort = 1, pals = list("BrBG"), 
-          sample = F)
+election2 <- election %>%
+  select(VOTEF, PARTY, EDUC, GENDER) %>% 
+  drop_na()
+tableplot(election2, select = c(VOTEF, PARTY, EDUC, GENDER), sort = 1, 
+          pals = list("BrBG"), sample = F)
 ```
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-14-1.png" alt="(ref:fig5-14)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-14-1.png" alt="(ref:fig5-14)" width="75%" />
 <p class="caption">(\#fig:Figure5-14)(ref:fig5-14)</p>
 </div>
  
@@ -1372,12 +1396,12 @@ tableplot(election2, select = c(VOTEF, PARTY, EDUC, GENDER), sort = 1, pals = li
 \indent Focusing on the party affiliation and voting results, the appropriate 
 analysis is with
 an Independence test because a single random sample was obtained from the population. 
-The total sample size for the complete responses was $N=$ 1,149 
+The total sample size for the complete responses was $N = $ 1,149 
 (out of the original 1,785 subjects). Because this is an Independence test,
 the mosaic plot is the appropriate display of the results, 
 which was provided in Figure \@ref(fig:Figure5-5). 
 
-\newpage
+<!-- \newpage -->
 
 
 ```r
@@ -1509,12 +1533,9 @@ Here are our 6+ steps applied to this example:
     would be reported as < 0.0001. This was based on a
     $\boldsymbol{\chi^2}$-distribution with $(7-1)*(3-1) = 12$
     degrees of freedom displayed in Figure \@ref(fig:Figure5-15).
-    Note that the observed test statistic of 762.81 was off the plot 
-    to the right which reflects how little area is to the right of 
-    that value in the distribution.
     
-    <div class="figure">
-    <img src="05-chiSquaredTests_files/figure-html/Figure5-15-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 12 degrees of freedom." width="355.2" />
+    <div class="figure" style="text-align: center">
+    <img src="05-chiSquaredTests_files/figure-html/Figure5-15-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 12 degrees of freedom." width="75%" />
     <p class="caption">(\#fig:Figure5-15)Plot of $\boldsymbol{\chi^2}$-distribution with 12 degrees of freedom.</p>
     </div>
 
@@ -1546,11 +1567,11 @@ Here are our 6+ steps applied to this example:
     ```
     
     ```r
-    par(mfrow=c(1,2))
+    par(mfrow = c(1,2))
     B <- 1000
     Tstar <- matrix(NA, nrow = B)
     for (b in (1:B)){
-      Tstar[b] <- chisq.test(tally(~shuffle(PARTY) + VOTEF, data = election2,
+      Tstar[b] <- chisq.test(tally(~ shuffle(PARTY) + VOTEF, data = election2,
                                    margins = F))$statistic
     }
     pdata(Tstar, Tobs, lower.tail = F)[[1]]
@@ -1562,15 +1583,18 @@ Here are our 6+ steps applied to this example:
     
     ```r
     tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-    geom_histogram(aes(y = ..ncount..), bins = 30, col = 1, fill = "khaki") +
-    stat_bin(aes(y = ..ncount.., label = ..count..), bins = 30, geom = "text") + 
-    geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
-    geom_vline(xintercept = Tobs, col = "red", lwd = 2)
+      geom_histogram(aes(y = ..ncount..), bins = 30, col = 1, fill = "khaki") + 
+      geom_density(aes(y = ..scaled..)) +
+      theme_bw() +
+      labs(y = "Density") +
+      geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
+      stat_bin(aes(y = ..ncount.., label = ..count..), bins = 30,
+               geom = "text", vjust = -0.75)
     ```
     
-    <div class="figure">
-    <img src="05-chiSquaredTests_files/figure-html/Figure5-16-1.png" alt="Permutation distribution of $X^2$ for the election data. Observed value of 763 not displayed." width="576" />
-    <p class="caption">(\#fig:Figure5-16)Permutation distribution of $X^2$ for the election data. Observed value of 763 not displayed.</p>
+    <div class="figure" style="text-align: center">
+    <img src="05-chiSquaredTests_files/figure-html/Figure5-16-1.png" alt="Permutation distribution of $X^2$ for the election data." width="75%" />
+    <p class="caption">(\#fig:Figure5-16)Permutation distribution of $X^2$ for the election data.</p>
     </div>
 
     * The last results tells us that there were no permuted data sets 
@@ -1585,32 +1609,42 @@ Here are our 6+ steps applied to this example:
 
 4. **Conclusion:**
 
-    * There is strong evidence against the null hypothesis of no relationship between party affiliation and voting 
-    results in the population ($X^2$=762.81, p-value<0.001), so we would conclude that there is a relationship between party affiliation and voting results.
+    * There is strong evidence against the null hypothesis of no relationship
+    between party affiliation and voting results in the population ($X^2$ = 762.81,
+    p-value<0.001), so we would conclude that there is a relationship between
+    party affiliation and voting results.
+
+\newpage
 
 5. **Size:**
 
-
     * We can add insight into the results by exploring the 
-standardized residuals. The numerical results are obtained using ``chisq.test(electable)$residuals`` and visually using ``mosaicplot(electable, shade = T)`` in Figure \@ref(fig:Figure5-17). The standardized residuals show some clear sources of the differences from the results expected if there were no relationship present. The largest
-contributions are found in the highest democrat category (``PARTY`` = 1)
-where the standardized residual for *Gore* is 10.13 and for *Bush*
-is -10.03, showing much higher than expected (under $H_0$) counts for Gore
-voters and much lower than expected (under $H_0$) for Bush. 
-Similar results in the opposite direction are found in the strong 
-republicans (``PARTY`` = 7). Note how the brightest shade of blue in 
-Figure \@ref(fig:Figure5-17) shows up for much higher than expected 
-results and the brighter red for results in the other direction, 
-where observed counts were
-much lower than expected. When there are many large standardized residuals, it
-is OK to focus on the largest results but remember that some of the
-intermediate deviations, or lack thereof, could also be interesting. For
-example, the Gore voters from ``PARTY`` = 3 had a standardized residual 
-of 3.75 but the ``PARTY`` = 5 voters for Bush had a standardized residual
-of 6.17. So maybe Gore didn't have
-as strong of support from his center-leaning supporters as Bush was able to
-obtain from the same voters on the other side of the middle? Exploring the relative proportion of each vertical bar in the response categories is also interesting to see the proportions of each level of party affiliation and how they voted. A political
-scientist would easily obtain many more (useful) theories based on this combination of results. 
+    standardized residuals. The numerical results are obtained using
+    ``chisq.test(electable)$residuals`` and visually using
+    ``mosaicplot(electable, shade = T)`` in Figure \@ref(fig:Figure5-17). The
+    standardized residuals show some clear sources of the differences from the
+    results expected if there were no relationship present. The largest
+    contributions are found in the highest democrat category (``PARTY`` = 1)
+    where the standardized residual for *Gore* is 10.13 and for *Bush*
+    is -10.03, showing much higher than expected (under $H_0$) counts for Gore
+    voters and much lower than expected (under $H_0$) for Bush.  
+    
+    Similar results in the opposite direction are found in the strong 
+    republicans (``PARTY`` = 7). Note how the brightest shade of blue in 
+    Figure \@ref(fig:Figure5-17) shows up for much higher than expected 
+    results and the brighter red for results in the other direction, 
+    where observed counts were
+    much lower than expected. When there are many large standardized residuals, it
+    is OK to focus on the largest results but remember that some of the
+    intermediate deviations, or lack thereof, could also be interesting. For
+    example, the Gore voters from ``PARTY`` = 3 had a standardized residual 
+    of 3.75 but the ``PARTY`` = 5 voters for Bush had a standardized residual
+    of 6.17. So maybe Gore didn't have as strong of support from his center-leaning
+    supporters as Bush was able to obtain from the same voters on the other side 
+    of the middle? Exploring the relative proportion of each vertical bar in the
+    response categories is also interesting to see the proportions of each level
+    of party affiliation and how they voted. A political scientist would easily
+    obtain many more (useful) theories based on this combination of results. 
 
 <!-- \newpage -->
 
@@ -1634,8 +1668,8 @@ chisq.test(electable)$residuals #(Obs - expected)/sqrt(expected)
 
 (ref:fig5-17) Mosaic plot with shading based on standardized residuals for the election data.
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-17-1.png" alt="(ref:fig5-17)" width="480" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-17-1.png" alt="(ref:fig5-17)" width="75%" />
 <p class="caption">(\#fig:Figure5-17)(ref:fig5-17)</p>
 </div>
 
@@ -1655,7 +1689,7 @@ mosaicplot(electable, shade = T)
 ## Is cheating and lying related in students?	{#section5-10}
 
 A study of student behavior was performed at a university with a survey of 
-$N=319$ undergraduate students (``cheating`` data set from the ``poLCA``
+$N = 319$ undergraduate students (``cheating`` data set from the ``poLCA``
 package originally published by @Dayton1998).
 \index{R packages!\textbf{poLCA}}
 They were asked to answer
@@ -1681,18 +1715,18 @@ library(poLCA)
 data(cheating) #Survey of students
 cheating <- as_tibble(cheating)
 
-cheating <- cheating %>% mutate(
-                          LIEEXAM = factor(LIEEXAM),
-                          LIEPAPER = factor(LIEPAPER),
-                          FRAUD = factor(FRAUD),
-                          COPYEXAM = factor(COPYEXAM),
-                          GPA = factor(GPA))
+cheating <- cheating %>% mutate(LIEEXAM = factor(LIEEXAM),
+                                LIEPAPER = factor(LIEPAPER),
+                                FRAUD = factor(FRAUD),
+                                COPYEXAM = factor(COPYEXAM),
+                                GPA = factor(GPA)
+                                )
 
 tableplot(cheating, sort = GPA, pals = list("BrBG"))
 ```
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-18-1.png" alt="(ref:fig5-18)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-18-1.png" alt="(ref:fig5-18)" width="75%" />
 <p class="caption">(\#fig:Figure5-18)(ref:fig5-18)</p>
 </div>
 
@@ -1706,7 +1740,7 @@ higher GPA students (but do not completely disappear!). This data set also has
 a few missing GPAs that we would want to carefully consider -- which sorts of
 students might not be willing to reveal their GPAs? It ends up that these
 students did not *admit* to any of the unethical behaviors... Note that we 
-used the ``sort=GPA`` option in the ``tableplot`` function to sort the 
+used the ``sort = GPA`` option in the ``tableplot`` function to sort the 
 responses based on ``GPA`` to see how ``GPA`` might relate to patterns of 
 unethical behavior. 
 
@@ -1723,10 +1757,12 @@ involved.
 
 (ref:fig5-19) Tableplot of new variables ``liar`` and ``copier`` that allow exploration of relationships between different types of lying and cheating behaviors.
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-19-1.png" alt="(ref:fig5-19)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-19-1.png" alt="(ref:fig5-19)" width="75%" />
 <p class="caption">(\#fig:Figure5-19)(ref:fig5-19)</p>
 </div>
+
+\newpage
 
 \indent To simplify the results, combining the two groups of variables
 into the four possible combinations on
@@ -1750,8 +1786,8 @@ in this situation. \index{Chi-Square Test!Independence Test}
 
 ```r
 cheating <- cheating %>% mutate(liar = interaction(LIEEXAM, LIEPAPER),
-                                copier = interaction(FRAUD, COPYEXAM))
-
+                                copier = interaction(FRAUD, COPYEXAM)
+                                )
 levels(cheating$liar) <- c("None", "ExamLie", "PaperLie", "LieBoth")
 levels(cheating$copier) <- c("None", "PaperCheat", "ExamCheat", "PaperExamCheat")
 
@@ -1776,7 +1812,7 @@ cheatlietable
 ```
 
 \indent Unfortunately for our statistic, there were very few responses in some combinations of 
-categories even with $N=319$. For example, there was only one response
+categories even with $N = 319$. For example, there was only one response
 each in the combinations for students that copied on papers and lied
 to get out of exams, papers, and both. Some other categories were pretty small
 as well in the groups that only had one behavior present. To get a higher
@@ -1788,9 +1824,10 @@ variables and make the plot is below which employs the ``levels`` function to as
 
 
 ```r
-#Collapse the middle categories of both variables by making both have the same level name:
+# Collapse the middle categories of both variables by making both have the same level name:
 cheating <- cheating %>% mutate(liar2 = liar, 
-                                copier2 = copier)
+                                copier2 = copier
+                                )
 levels(cheating$liar2) <- c("None", "ExamorPaper", "ExamorPaper", "LieBoth")
 levels(cheating$copier2) <- c("None", "ExamorPaper", "ExamorPaper", "CopyBoth")
 cheatlietable <- tally(~ liar2 + copier2, data = cheating)
@@ -1814,8 +1851,8 @@ cheatlietable
 tableplot(cheating, sort = liar2, select = c(liar2, copier2), pals = list("BrBG"))
 ```
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-20-1.png" alt="(ref:fig5-20)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-20-1.png" alt="(ref:fig5-20)" width="75%" />
 <p class="caption">(\#fig:Figure5-20)(ref:fig5-20)</p>
 </div>
 
@@ -1834,14 +1871,18 @@ single sample was taken from the population so that is the appropriate procedure
     * $H_A$: Lying and copying behavior are dependent in the population
     of students at this university. 
 
+    <!-- \newpage -->
+    
 2. **Validity conditions:**
 
     * Independence:
     
         * There is no indication of a violation of this assumption since each subject
-        is measured only once in the table. No other information 
-        suggests a potential issue but we don't have much 
-        information on how these subjects were obtained. What happens if we had sampled from students in different sections of a multi-section course and one of the sections had recently had a cheating scandal that impacted many students in that section?
+        is measured only once in the table. No other information suggests a
+        potential issue but we don't have much information on how these subjects
+        were obtained. What happens if we had sampled from students in different
+        sections of a multi-section course and one of the sections had recently
+        had a cheating scandal that impacted many students in that section?
         
     * All expected cell counts larger than 5 (required to use
     $\chi^2$-distribution to find p-values):
@@ -1897,8 +1938,8 @@ single sample was taken from the population so that is the appropriate procedure
     isn't quite the right distribution for the test statistic since our 
     expected cell count condition was violated.
 
-    <div class="figure">
-    <img src="05-chiSquaredTests_files/figure-html/Figure5-21-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 4 degrees of freedom." width="336" />
+    <div class="figure" style="text-align: center">
+    <img src="05-chiSquaredTests_files/figure-html/Figure5-21-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 4 degrees of freedom." width="75%" />
     <p class="caption">(\#fig:Figure5-21)Plot of $\boldsymbol{\chi^2}$-distribution with 4 degrees of freedom.</p>
     </div>
 
@@ -1921,7 +1962,7 @@ single sample was taken from the population so that is the appropriate procedure
 
     
     ```r
-    Tobs <- chisq.test(tally(~liar2+copier2, data=cheating))$statistic
+    Tobs <- chisq.test(tally(~ liar2 + copier2, data = cheating))$statistic
     Tobs
     ```
     
@@ -1931,7 +1972,7 @@ single sample was taken from the population so that is the appropriate procedure
     ```
     
     ```r
-    par(mfrow=c(1,2))
+    par(mfrow = c(1,2))
     B <- 10000 # Now performing 10,000 permutations
     Tstar <- matrix(NA,nrow = B)
     for (b in (1:B)){
@@ -1947,20 +1988,23 @@ single sample was taken from the population so that is the appropriate procedure
     
     ```r
     tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
-      geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "khaki") +
-      stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20, geom = "text") + 
-      geom_density(aes(y = ..scaled..)) + theme_bw() + labs(y = "Density") +
-      geom_vline(xintercept = Tobs, col = "red", lwd = 2)
+      geom_histogram(aes(y = ..ncount..), bins = 20, col = 1, fill = "khaki") + 
+      geom_density(aes(y = ..scaled..)) +
+      theme_bw() +
+      labs(y = "Density") +
+      geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
+      stat_bin(aes(y = ..ncount.., label = ..count..), bins = 20,
+               geom = "text", vjust = -0.75)
     ```
     
-    <div class="figure">
-    <img src="05-chiSquaredTests_files/figure-html/Figure5-22-1.png" alt="Plot of permutation distributions for cheat/lie results with observed value of 13.24 (bold, vertical line)." width="480" />
+    <div class="figure" style="text-align: center">
+    <img src="05-chiSquaredTests_files/figure-html/Figure5-22-1.png" alt="Plot of permutation distributions for cheat/lie results with observed value of 13.24 (bold, vertical line)." width="75%" />
     <p class="caption">(\#fig:Figure5-22)Plot of permutation distributions for cheat/lie results with observed value of 13.24 (bold, vertical line).</p>
     </div>
 
     
     
-    * There were 174 of $B$=10,000 permuted data 
+    * There were 174 of $B$ = 10,000 permuted data 
     sets that produced as large or larger
     $X^{2*}\text{'s}$ than the observed as displayed in 
     Figure \@ref(fig:Figure5-22), so we report that the p-value was 
@@ -1969,12 +2013,16 @@ single sample was taken from the population so that is the appropriate procedure
 
 4. **Conclusion:**
 
-    * There is strong evidence against the null hypothesis of no relationship between lying and copying behavior in the population 
-    of students ($X^2$-statistic=13.24, permutation p-value of 0.0174), so conclude that there is a relationship between lying and copying behavior at the university in the population of students studied. 
+    * There is strong evidence against the null hypothesis of no relationship
+    between lying and copying behavior in the population of students
+    ($X^2$-statistic = 13.24, permutation p-value of 0.0174), so conclude that
+    there is a relationship between lying and copying behavior at the university
+    in the population of students studied. 
     
 5. **Size:**
     
-    * The standardized residuals can help us more fully understand this result -- the mosaic plot only had one cell shaded and so wasn't needed here. 
+    * The standardized residuals can help us more fully understand this result
+    -- the mosaic plot only had one cell shaded and so wasn't needed here. 
     
     
     ```r
@@ -1989,7 +2037,13 @@ single sample was taken from the population so that is the appropriate procedure
     ##   LieBoth     -0.7047165   0.6271633  1.7507524
     ```
 
-    * There is really only one large standardized residual for the *ExamorPaper* liars and the *CopyBoth* copiers, with a much larger observed value than expected of 2.48. The only other medium-sized standardized residuals came from the *CopyBoth* copiers column with fewer than expected students in the *None* category and more than expected in the *LieBoth* type of lying category. So we are seeing more than expected that lied somehow and copied -- we can say this suggests that the students who lie tend to copy too!
+    * There is really only one large standardized residual for the *ExamorPaper*
+    liars and the *CopyBoth* copiers, with a much larger observed value than
+    expected of 2.48. The only other medium-sized standardized residuals came
+    from the *CopyBoth* copiers column with fewer than expected students in the
+    *None* category and more than expected in the *LieBoth* type of lying
+    category. So we are seeing more than expected that lied somehow and copied
+    -- we can say this suggests that the students who lie tend to copy too!
     
 
 6. **Scope of inference:**
@@ -2006,42 +2060,41 @@ single sample was taken from the population so that is the appropriate procedure
 
 (ref:fig5-23) Pirate-plot of the API growth scores by level of school in the ``stype`` variable (coded E for elementary, M for Middle, and H for High school).
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-23-1.png" alt="(ref:fig5-23)" width="576" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-23-1.png" alt="(ref:fig5-23)" width="75%" />
 <p class="caption">(\#fig:Figure5-23)(ref:fig5-23)</p>
 </div>
 
 In recent decades, there has been a push for quantification of school performance
-and tying financial punishment and rewards to growth in these metrics both for schools and for teachers. One
-example is the API (Academic Performance Index) in California that is based
-mainly on student scores on standardized tests. It ranges between 200 and 1000
-and year to year changes are of interest to assess "performance" of schools --
-calculated as one year minus the previous year (negative "growth" is also
-possible!). Suppose that a researcher is interested in whether the growth
-metric might differ between different levels of schools. Maybe it is easier or
-harder for elementary, middle, or high schools to attain growth? The researcher
-has a list of most of the schools in the state of each level that are using a
-database that the researcher has access to. In order to assess this question, 
-the researcher takes a ***stratified random sample***^[A stratified random sample
-involves taking a simple random sample from each group or strata of the
-population.
-\index{random sampling}
+and tying financial punishment and rewards to growth in these metrics both for
+schools and for teachers. One example is the API (Academic Performance Index) in
+California that is based mainly on student scores on standardized tests. It ranges
+between 200 and 1000 and year to year changes are of interest to assess
+"performance" of schools -- calculated as one year minus the previous year 
+(negative "growth" is also possible!). Suppose that a researcher is interested 
+in whether the growth metric might differ between different levels of schools.
+Maybe it is easier or harder for elementary, middle, or high schools to attain
+growth? The researcher has a list of most of the schools in the state of each
+level that are using a database that the researcher has access to. In order to
+assess this question, the researcher takes a ***stratified random sample***^[A
+stratified random sample involves taking a simple random sample from each group
+or strata of the population. \index{random sampling}
 It is useful to make sure that each group is represented at a 
 chosen level (for example the sample proportion of the total
 size). If a simple random sample of all schools had been taken, it is possible
 that a level could have no schools selected.], selecting 
-$n_{\text{elementary}}=100$ schools from the population of 4421 elementary 
-schools, $n_{\text{middle}}=50$ from the population of 1018 middle schools,
-and $n_{\text{high}}=50$ from the population of 755 high
+$n_{\text{elementary}} = 100$ schools from the population of 4421 elementary 
+schools, $n_{\text{middle}} = 50$ from the population of 1018 middle schools,
+and $n_{\text{high}} = 50$ from the population of 755 high
 schools. These data are available in the ``survey`` package [@R-survey]
-and the ``api`` data object that loads both ``apipop`` (population) and ``apistrat`` (stratified random sample) data sets.
-\index{R packages!\textbf{survey}}
-The ``growth`` (change!) in 
-API scores for the schools between 1999 and
+and the ``api`` data object that loads both ``apipop`` (population) and
+``apistrat`` (stratified random sample) data sets. \index{R packages!\textbf{survey}}
+The ``growth`` (change!) in API scores for the schools between 1999 and
 2000 (taken as the year 2000 score minus 1999 score) is used as the response
 variable. The pirate-plot of the growth scores are displayed in Figure
 \@ref(fig:Figure5-23). They suggest some differences in the growth 
-rates among the different levels. There are also a few schools flagged as being possible outliers. 
+rates among the different levels. There are also a few schools flagged as being
+possible outliers. 
 
 
 ```r
@@ -2073,11 +2126,11 @@ tally(~ stype, data = apistrat) #Sample counts
 pirateplot(growth ~ stype, data = apistrat, inf.method = "ci", inf.disp = "line")
 ```
 
-\newpage
+<!-- \newpage -->
 
 \indent The One-Way ANOVA $F$-test, provided below, suggests
 strong evidence against the null hypothesis of no difference in the true mean growth scores among the different
-types of schools ($F(2,197)=23.56$, $\text{ p-value}<0.0001$). But the 
+types of schools ($F(2,197) = 23.56$, $\text{ p-value}<0.0001$). But the 
 residuals from this model displayed in the QQ-Plot in 
 Figure \@ref(fig:Figure5-24) contain a slightly long right tail and short left tail, 
 suggesting a right skewed
@@ -2086,7 +2139,6 @@ reporting results with violations of the assumptions probably would not be
 desirable, so another approach is needed. The permutation methods would be
 justified here but there is another "simpler" option available using our new 
 Chi-square analysis methods. 
-
 
 (ref:fig5-24) QQ-plot of standardized residuals from the One-Way ANOVA linear model.
 
@@ -2110,8 +2162,8 @@ Anova(m1)
 plot(m1, which = 2, pch = 16)
 ```
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-24-1.png" alt="(ref:fig5-24)" width="528" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-24-1.png" alt="(ref:fig5-24)" width="75%" />
 <p class="caption">(\#fig:Figure5-24)(ref:fig5-24)</p>
 </div>
 
@@ -2131,6 +2183,8 @@ responses into groups for the lowest 25%, second 25%, third 25%, and highest
 quantitative variable into a categorical variable. First, we can use the
 information from ``favstats`` to find the cut-points:
 
+<!-- \newpage -->
+
 
 ```r
 favstats(~ growth, data = apistrat)
@@ -2149,7 +2203,8 @@ create new categories with those names in a new variable called
 
 ```r
 apistrat <- apistrat %>% mutate(growthcut = cut(growth, breaks = c(-47,6.75,25,48,133),
-                          include.lowest = T))
+                                                include.lowest = T)
+                                )
 ```
 
 <!-- \newpage -->
@@ -2176,14 +2231,16 @@ created in the new ``growthcut`` variable:
 
 (ref:fig5-25) Stacked bar chart of the growth category responses by level of school.
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-25-1.png" alt="(ref:fig5-25)" width="1056" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-25-1.png" alt="(ref:fig5-25)" width="75%" />
 <p class="caption">(\#fig:Figure5-25)(ref:fig5-25)</p>
 </div>
 
 
+
 ```r
-plot(growthcut ~ stype, data = apistra, main = "Plot of Growth Categories by School levels"t)
+plot(growthcut ~ stype, data = apistra, 
+     main = "Plot of Growth Categories by School levels")
 ```
 
 
@@ -2228,6 +2285,7 @@ using the $\boldsymbol{\chi^2}$-distribution to find the p-value:
 
 ```r
 growthtable <- tally(~ stype + growthcut, data = apistrat)
+
 growthtable
 ```
 
@@ -2238,6 +2296,9 @@ growthtable
 ##     H         24        18       5        3
 ##     M         12        12      17        9
 ```
+
+<!-- \newpage -->
+
 
 ```r
 chisq.test(growthtable)$expected 
@@ -2267,7 +2328,7 @@ chisq.test(growthtable)
 ## X-squared = 38.668, df = 6, p-value = 8.315e-07
 ```
 
-The observed test statistic is $X^2=38.67$ and, based on a 
+The observed test statistic is $X^2 = 38.67$ and, based on a 
 $\boldsymbol{\chi^2}(6)$ distribution, the p-value is 0.0000008. This p-value
 suggests that there is very strong evidence against the null hypothesis of no difference in the distribution of API growth of schools among
 *Elementary*, *Middle* and *High School* in the population of schools in 
@@ -2299,8 +2360,8 @@ chisq.test(growthtable)$residuals
 
 (ref:fig5-26) Mosaic plot of the API Growth rate categories versus level of the school with shading for size of standardized residuals. 
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-26-1.png" alt="(ref:fig5-26)" width="576" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-26-1.png" alt="(ref:fig5-26)" width="75%" />
 <p class="caption">(\#fig:Figure5-26)(ref:fig5-26)</p>
 </div>
 
@@ -2366,8 +2427,8 @@ The main components of R code used in this chapter follow with components
 to modify in lighter and/or ALL CAPS text where ``y`` is a response variable and ``x`` is a predictor 
 are easily identified:
 
-* **<font color='red'>TABLENAME</font> ``<-`` tally(~ <font color='red'>x</font> +
-<font color='red'>y</font>, data = <font color='red'>DATASETNAME</font>)**
+* **<font color = 'red'>TABLENAME</font> ``<-`` tally(~ <font color = 'red'>x</font> +
+<font color = 'red'>y</font>, data = <font color = 'red'>DATASETNAME</font>)**
     
     * This function requires that the ``mosaic `` package has been loaded.
 
@@ -2377,37 +2438,39 @@ are easily identified:
     * ``margins = T`` is used if you want to display row, column, and 
     table totals. \index{\texttt{tally()}|textbf}
 
-* **plot(<font color='red'>y</font> ~ 
-<font color='red'>x</font>, data = <font color='red'>DATASETNAME</font>)**
+* **plot(<font color = 'red'>y</font> ~ 
+<font color = 'red'>x</font>, data = <font color = 'red'>DATASETNAME</font>)**
 
     * Makes a stacked bar chart useful for homogeneity test situations.
     \index{\texttt{plot()}|textbf}
     
-* **mosaicplot(<font color='red'>TABLENAME</font>)**
+* **mosaicplot(<font color = 'red'>TABLENAME</font>)**
 
     * Makes a mosaic plot useful for finding patterns in the table 
     in independence test situations.
     \index{\texttt{mosaicplot()}|textbf}
     
-* **tableplot(data = <font color='red'>DATASETNAME</font>, sortCol = <font color='red'>VARIABLENAME</font>, pals = list("BrBG"))**
+* **tableplot(data = <font color = 'red'>DATASETNAME</font>, sortCol = <font color = 'red'>VARIABLENAME</font>, pals = list("BrBG"))**
 
-    * Makes a tableplot sorted by <font color='red'>VARIABLENAME</font>, requires that the ``tabplot`` and `RColorBrewer` packages have been loaded.
+    * Makes a tableplot sorted by <font color = 'red'>VARIABLENAME</font>, requires
+    that the ``tabplot`` and `RColorBrewer` packages have been loaded.
     
-    * The ``pals = list("BrBG")`` option provides a color-blind friendly color palette, although other options are possible, such as ``pals = list("RdBu")``.
+    * The ``pals = list("BrBG")`` option provides a color-blind friendly color
+    palette, although other options are possible, such as ``pals = list("RdBu")``.
     \index{\texttt{tableplot()}|textbf}
     
-* **chisq.test(<font color='red'>TABLENAME</font>)**
+* **chisq.test(<font color = 'red'>TABLENAME</font>)**
 
     * Provides $X^2$ and p-values based on the 
     $\boldsymbol{\chi^2}$-distribution with $(R-1)(C-1)$ degrees of 
     freedom. \index{\texttt{chisq.test()}|textbf}
     
-* **chisq.test(<font color='red'>TABLENAME</font>)$expected**
+* **chisq.test(<font color = 'red'>TABLENAME</font>)$expected**
 
     * Provides expected cell counts. 
 
-* **pchisq(<font color='red'>X-SQUARED</font>, 
-df=(<font color='red'>R</font> - 1)``*``(<font color='red'>C</font> - 1), lower.tail=F)**
+* **pchisq(<font color = 'red'>X-SQUARED</font>, 
+df = (<font color = 'red'>R</font> - 1)``*``(<font color = 'red'>C</font> - 1), lower.tail = F)**
 
     * Provides p-value from $\boldsymbol{\chi^2}$-distribution with 
     $(R-1)(C-1)$ degrees of freedom for observed test statistic.
@@ -2415,25 +2478,25 @@ df=(<font color='red'>R</font> - 1)``*``(<font color='red'>C</font> - 1), lower.
     * See Section \@ref(section5-5) for code related to finding a 
     permutation-based p-value. \index{\texttt{pchisq()}|textbf}
     
-* **chisq.test(<font color='red'>TABLENAME</font>)$residuals^2**
+* **chisq.test(<font color = 'red'>TABLENAME</font>)$residuals^2**
 
     * Provides $X^2$ contributions from each cell in table.
     
-* **chisq.test(<font color='red'>TABLENAME</font>)$residuals**
+* **chisq.test(<font color = 'red'>TABLENAME</font>)$residuals**
 
     * Provides standardized residuals.
     
-* **mosaicplot(<font color='red'>TABLENAME</font>, shade = T)**
+* **mosaicplot(<font color = 'red'>TABLENAME</font>, shade = T)**
 
     * Provides a mosaic plot with shading based on standardized residuals.
 
-<!-- \newpage -->
+\newpage
 
 ## Practice problems	{#section5-14}
 
 
-5.1. **Determine type of Chi-Square test** Determine which type of test is appropriate in each situation --
-***Independence***  or  ***Homogeneity***?
+5.1. **Determine type of Chi-Square test** Determine which type of test is
+appropriate in each situation -- ***Independence*** or ***Homogeneity***?
 
 5.1.1. Concerns over diseases being transmitted between birds and humans 
 have led to many areas developing
@@ -2508,8 +2571,8 @@ concluded that
 
 (ref:fig5-27) Tableplot of data from "data-is-vs-data-are" survey, sorted by "CareAbout" responses. 
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-27-1.png" alt="(ref:fig5-27)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-27-1.png" alt="(ref:fig5-27)" width="75%" />
 <p class="caption">(\#fig:Figure5-27)(ref:fig5-27)</p>
 </div>
 
@@ -2529,7 +2592,7 @@ correct usage*, (``isare``), *have you thought about this issue*
 (``thoughtabout``) with levels Yes/No, and *do you care about this issue*
 (``careabout``) with four levels from *Not at all* to *A lot*. The following
 code loads their data set after missing responses were removed, does a
-little re-ordering of factor levels using the `fct_relevel` function \index{\textt{fct_relevel()}} to help make the results easier to 
+little re-ordering of factor levels using the `fct_relevel` function \index{\texttt{fct\_relevel()}} to help make the results easier to 
 understand, and makes a tableplot (Figure \@ref(fig:Figure5-27)) to get a general sense of the results 
 including information on the respondents' gender, age, income, and education. 
 
@@ -2543,15 +2606,20 @@ csd <- read_csv("http://www.math.montana.edu/courses/s217/documents/csd.csv")
 
 ```r
 library(tabplot)
-#Need to make it explicit that these are factor variables and reorder factor levels to be in "correct" order using fct_relevel:
+# Need to make it explicit that these are factor variables and reorder 
+# factor levels to be in "correct" order using fct_relevel:
 csd <- csd %>% mutate(careabout = factor(careabout), 
-                      careabout = fct_relevel(careabout,"Not at all", "Not much", "Some", "A lot"),
+                      careabout = fct_relevel(careabout,"Not at all", "Not much", 
+                                              "Some", "A lot"),
                       Education = factor(Education),
-                      Education  = fct_relevel(Education, levels(Education)[c(4,3,5,1,2)]),
+                      Education = fct_relevel(Education, 
+                                            levels(Education)[c(4,3,5,1,2)]),
                       Household.Income = factor(Household.Income),
-                      Household.Income = fct_relevel(Household.Income, levels(Household.Income)[c(1,4,5,6,2,3)])) 
+                      Household.Income = fct_relevel(Household.Income, 
+                                            levels(Household.Income)[c(1,4,5,6,2,3)])
+                      ) 
 
-#Sorts plot by careabout responses
+# Sorts plot by careabout responses
 tableplot(csd, select = c(isare, careabout, thoughtabout, Gender,
                  Age, Household.Income, Education), sortCol = careabout,
           pals = list("BrBG")) 
@@ -2586,12 +2654,12 @@ keep trying...
 
 (ref:fig5-28) Stacked bar chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit. 
 
-<div class="figure">
-<img src="05-chiSquaredTests_files/figure-html/Figure5-28-1.png" alt="(ref:fig5-28)" width="768" />
+<div class="figure" style="text-align: center">
+<img src="05-chiSquaredTests_files/figure-html/Figure5-28-1.png" alt="(ref:fig5-28)" width="75%" />
 <p class="caption">(\#fig:Figure5-28)(ref:fig5-28)</p>
 </div>
 
-5.3. **Overtake close calls by outfit analysis** We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``Distance <= 100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided. \index{\texttt{\ifelse()}}
+5.3. **Overtake close calls by outfit analysis** We can revisit the car overtake passing distance data from Chapter \@ref(chapter3) and to focus in on the "close calls". The following code uses the ``ifelse`` function to create the close call/not response variable. It works to create a two-category variable where the first category (*close*) is encountered when the condition is true (``Distance <= 100``, so the passing distance was less than or equal to 100 cm) from the "if" part of the function (*if Distance is less than or equal to 100 cm, then "close"*) and the "else" is the second category (when the ``Distance`` was over 100 cm) and gets the category of *notclose*. The ``factor`` function is applied to the results from ``ifelse`` to make this a categorical variable for later use. Some useful code and a stacked bar chart in Figure \@ref(fig:Figure5-28) is provided. \index{\texttt{ifelse()}}
 
 
 ```r
@@ -2600,8 +2668,7 @@ dd <- read_csv("http://www.math.montana.edu/courses/s217/documents/Walker2014_mo
 
 
 ```r
-dd <- dd %>%  mutate(
-                    Condition = factor(Condition),
+dd <- dd %>% mutate(Condition = factor(Condition),
                     Condition2 = reorder(Condition, Distance, FUN = mean), 
                     Close = factor(ifelse(Distance <= 100, "close", "notclose"))
                     )

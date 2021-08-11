@@ -115,7 +115,7 @@ scope of inference gets complicated -- differences seen on randomized variables
 can be causally interpreted but you have to be careful to not say that the 
 demographics caused differences. Suppose that a randomly assigned drug dosage 
 is found to show positive differences in older adults and negative changes in younger adults. We 
-could say that the dosage causes the increases in older adults and decreases in younger ones, but we can't say that age caused the the differences in the responses -- it just modified how the drug works and what the drug caused to happen in the responses. 
+could say that the dosage causes the increases in older adults and decreases in younger ones, but we can't say that age caused the differences in the responses -- it just modified how the drug works and what the drug caused to happen in the responses. 
 \index{scope of inference}
 
 \indent Even when we do have random assignment of treatments it is important to think 
@@ -182,17 +182,16 @@ statistics across all the "groups". The data set is available via the following 
 ```r
 library(readr)
 pt <- read_csv("http://www.math.montana.edu/courses/s217/documents/pt.csv")
-pt <- pt %>% mutate(
-                drops = factor(drops),
-                brand = factor(brand)
-                )
+pt <- pt %>% mutate(drops = factor(drops),
+                    brand = factor(brand)
+                    )
 ```
 
 
 
 The data set contains five observations per combination of treatment levels as
 provided by the ``tally`` function. To get counts for combinations of the 
-variables, use the general formula of ``tally(x1 ~ x2, data = ...)`` -- noting that the  order of ``x1`` and ``x2`` doesn't matter here:
+variables, use the general formula of ``tally(x1 ~ x2, data = ...)`` -- noting that the order of ``x1`` and ``x2`` doesn't matter here:
 \index{\texttt{tally()}}
 
 
@@ -210,8 +209,8 @@ tally(brand ~ drops, data = pt)
 
 The sample sizes in each of the six treatment level combinations of ``Brand`` 
 and ``Drops`` [(*B1*, 10), (*B1*, 20), (*B1*, 30), (*B2*, 10), (*B2*, 20), 
-(*B2*, 30)] are $n_{jk} = 5$ for $j^{th}$ level of ``Brand`` ($j=1, 2$) and 
-$k^{th}$ level of ``Drops`` ($k=1, 2, 3$). The ``tally`` function gives us an $R$ by $C$ 
+(*B2*, 30)] are $n_{jk} = 5$ for $j^{th}$ level of ``Brand`` ($j = 1, 2$) and 
+$k^{th}$ level of ``Drops`` ($k = 1, 2, 3$). The ``tally`` function gives us an $R$ by $C$ 
 ***contingency table*** with $R = 2$ rows (*B1*, *B2*) and $C = 3$ columns 
 (10, 20, and 30).
 \index{contingency table}
@@ -225,7 +224,10 @@ In the output, the first row contains summary information for the
 sample size in the ``n`` column, although here it rolled into a new set of 
 rows with the standard deviations of each combination. 
 
-<!-- \newpage -->
+
+
+
+\small
 
 
 ```r
@@ -233,25 +235,23 @@ favstats(responses ~ brand + drops, data = pt)
 ```
 
 ```
-##   brand.drops       min        Q1   median       Q3      max     mean        sd
-## 1       B1.10 0.3892621 1.3158737 1.906436 2.050363 2.333138 1.599015 0.7714970
-## 2       B2.10 2.3078095 2.8556961 3.001147 3.043846 3.050417 2.851783 0.3140764
-## 3       B1.20 0.3838299 0.7737965 1.516424 1.808725 2.105380 1.317631 0.7191978
-## 4       B2.20 1.1415868 1.9382142 2.066681 2.838412 3.001200 2.197219 0.7509989
-## 5       B1.30 0.2387500 0.9804284 1.226804 1.555707 1.829617 1.166261 0.6103657
-## 6       B2.30 0.5470565 1.1205102 1.284117 1.511692 2.106356 1.313946 0.5686485
-##   n missing
-## 1 5       0
-## 2 5       0
-## 3 5       0
-## 4 5       0
-## 5 5       0
-## 6 5       0
+##   brand.drops       min        Q1   median       Q3      max     mean        sd n missing
+## 1       B1.10 0.3892621 1.3158737 1.906436 2.050363 2.333138 1.599015 0.7714970 5       0
+## 2       B2.10 2.3078095 2.8556961 3.001147 3.043846 3.050417 2.851783 0.3140764 5       0
+## 3       B1.20 0.3838299 0.7737965 1.516424 1.808725 2.105380 1.317631 0.7191978 5       0
+## 4       B2.20 1.1415868 1.9382142 2.066681 2.838412 3.001200 2.197219 0.7509989 5       0
+## 5       B1.30 0.2387500 0.9804284 1.226804 1.555707 1.829617 1.166261 0.6103657 5       0
+## 6       B2.30 0.5470565 1.1205102 1.284117 1.511692 2.106356 1.313946 0.5686485 5       0
 ```
 
-\indent The next step is to visually explore the results across the combinations of the two explanatory variables. The pirate-plot can be extended to handle these 
-sorts of two-way situations using a formula that is something like ``y ~ A * B``.  
-\index{pirate-plot} The x-axis in the pirate-plot shows two rows of labels based on the two categories and the unique combinations of those categories are directly related to a displayed distribution of responses and mean and confidence interval. For example, in Figure \@ref(fig:Figure4-1), the ``Brand`` with levels of *B1* and *B2* is the first row of x-axis labels and they are repeated across the three levels of ``Drops``. In reading these plots, look for differences in the means across the levels of the first row variable (``Brand``) for each level of the second row variable (``Drops``) and then focus on  whether those differences change across the levels of the second variable -- that is an *interaction* as the differences in differences change. 
+\normalsize
+
+
+
+\indent The next step is to visually explore the results across the combinations
+of the two explanatory variables. The pirate-plot can be extended to handle these 
+sorts of two-way situations using a formula that is something like ``y ~ A * B``. 
+\index{pirate-plot} The x-axis in the pirate-plot shows two rows of labels based on the two categories and the unique combinations of those categories are directly related to a displayed distribution of responses and mean and confidence interval. For example, in Figure \@ref(fig:Figure4-1), the ``Brand`` with levels of *B1* and *B2* is the first row of x-axis labels and they are repeated across the three levels of ``Drops``. In reading these plots, look for differences in the means across the levels of the first row variable (``Brand``) for each level of the second row variable (``Drops``) and then focus on whether those differences change across the levels of the second variable -- that is an *interaction* as the differences in differences change. 
 Specifically, start with comparing the two brands at each amount of water. 
 Do the brands seem different? Certainly for 10 drops of water the two look 
 different but not for 30 drops, suggesting a different impact of brands based on the amount of water present. We can also look for combinations of factors 
@@ -271,33 +271,33 @@ model assumptions.
 ```r
 library(yarrr)
 set.seed(12)
-pirateplot(responses ~ brand * drops, data = pt, xlab = "Drops", ylab = "Time", inf.method = "ci",
-           inf.disp = "line", theme = 2, point.o = 1) 
+pirateplot(responses ~ brand * drops, data = pt, xlab = "Drops", ylab = "Time",
+           inf.method = "ci", inf.disp = "line", theme = 2, point.o = 1) 
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-1-1.png" alt="(ref:fig4-1)" width="480" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-1-1.png" alt="(ref:fig4-1)" width="75%" />
 <p class="caption">(\#fig:Figure4-1)(ref:fig4-1)</p>
 </div>
 
 \indent The pirate-plots can handle situations where both variables have more than two 
-levels but it can sometimes get a bit cluttered to actually display the data when our analysis is going to focus on means of the responses.  The means for each combination 
+levels but it can sometimes get a bit cluttered to actually display the data when our analysis is going to focus on means of the responses. The means for each combination 
 of levels that you can find in the ``favstats`` output are more usefully used 
 in what is called an ***interaction plot***.
 \index{interaction plot}
 Interaction plots display the mean 
 responses (y-axis) versus levels of one predictor variable on the x-axis, 
 adding points and separate lines for each level of the other predictor variable. Because 
-we don't like any of the available functions in R, we wrote our own function. It is available two ways. The easiest, if it works, is to install and load the `catstats` R package [@R-catstats]. If you are working on a local RStudio installation, the first step involves installing the ``remotes`` [@R-remotes] R package and then loading it - this will allow you to install ``catstats`` from our github^[Github.com is a version control system used for software development and collaborative work, which we used to allow us to make changes to it and track the modifications. This book is also written using github to allow the same connection for writing and editing it, and one location where the digital version is hosted: https://greenwood-stat.github.io/GreenwoodBookHTML/.] repository (you can type "3" during the installation to avoid updating other packages when you do this step). 
+we don't like any of the available functions in R, we wrote our own function. It is available two ways. The easiest, if it works, is to install and load the `catstats` R package [@R-catstats]. If you are working on a local RStudio installation, the first step involves installing the ``remotes`` [@R-remotes] R package and then loading it -- this will allow you to install ``catstats`` from our github^[Github.com is a version control system used for software development and collaborative work, which we used to allow us to make changes to it and track the modifications. This book is also written using github to allow the same connection for writing and editing it, and one location where the digital version is hosted: https://greenwood-stat.github.io/GreenwoodBookHTML/.] repository (you can type "3" during the installation to avoid updating other packages when you do this step). 
 
 ```r
-#To install the catstats R package (just the first time!):
+# To install the catstats R package (just the first time!):
 library(remotes)
 remotes::install_github("greenwood-stat/catstats")
 ```
 After that step, you can load ``catstats`` like any other R package, using ``library(catstats)``. 
 
-Some users have experienced issues with getting this package installed, so you can also  download the needed `intplot` and `intplotarray` functions^[Copy and include this code in the first code chunk in any document where you want to use the ``intplot`` or ``inplotarray`` functions.] using:
+Some users have experienced issues with getting this package installed, so you can also download the needed `intplot` and `intplotarray` functions^[Copy and include this code in the first code chunk in any document where you want to use the ``intplot`` or ``inplotarray`` functions.] using:
 \index{\texttt{intplot()}}
 
 
@@ -318,8 +318,8 @@ everything clear.
 intplot(responses ~ brand * drops, data = pt)
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-2-1.png" alt="(ref:fig4-2)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-2-1.png" alt="(ref:fig4-2)" width="75%" />
 <p class="caption">(\#fig:Figure4-2)(ref:fig4-2)</p>
 </div>
 
@@ -336,8 +336,8 @@ but not always. Try both and decide on the one that you like best. \index{intera
 intplot(responses ~ drops * brand, data = pt)
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-3-1.png" alt="(ref:fig4-3)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-3-1.png" alt="(ref:fig4-3)" width="75%" />
 <p class="caption">(\#fig:Figure4-3)(ref:fig4-3)</p>
 </div>
 
@@ -408,10 +408,12 @@ interaction appears to be warranted.
 intplotarray(responses ~ drops * brand, data = pt)
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-4-1.png" alt="(ref:fig4-4)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-4-1.png" alt="(ref:fig4-4)" width="75%" />
 <p class="caption">(\#fig:Figure4-4)(ref:fig4-4)</p>
 </div>
+
+\newpage
 
 \indent Before we get to the hypothesis tests
 to formally make this assessment (you knew some sort of p-value was coming, right?), 
@@ -425,14 +427,14 @@ levels, or any interaction between them in this data set.
 
 (ref:fig4-5) Interaction plots of four possible scenarios in the paper towel study.
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-5-1.png" alt="(ref:fig4-5)" width="624" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-5-1.png" alt="(ref:fig4-5)" width="75%" />
 <p class="caption">(\#fig:Figure4-5)(ref:fig4-5)</p>
 </div>
 
 \indent Scenario 2 (Figure \@ref(fig:Figure4-5) panel (b))
 incorporates differences based on factor A (here that is ``Brand``) but no real 
-difference based on the ``Drops`` or any interaction. This results in a clear shift  between the lines for the means of the ``Brands`` but little to no changes in the level of those lines across water levels. 
+difference based on the ``Drops`` or any interaction. This results in a clear shift between the lines for the means of the ``Brands`` but little to no changes in the level of those lines across water levels. 
 These lines are relatively parallel. We can see that ``Brand`` *B2* is better than 
 ``Brand`` *B1* but that is all we can show with these sorts of results. 
 
@@ -468,8 +470,8 @@ of the results in Figure \@ref(fig:Figure4-2).
 
 (ref:fig4-6) Interaction plot of Scenario 5 where it appears that an interaction is present. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-6-1.png" alt="(ref:fig4-6)" width="432" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-6-1.png" alt="(ref:fig4-6)" width="75%" />
 <p class="caption">(\#fig:Figure4-6)(ref:fig4-6)</p>
 </div>
 
@@ -496,14 +498,14 @@ these models:
 * $y_{ijk}$ is the $i^{th}$ response from the group for level $j$ of factor A
 and level $k$ of factor B
 
-    * $j=1,\ldots,J$ &nbsp;&nbsp;&nbsp; $J$ is the number of levels of A
+    * $j = 1,\ldots,J$ &nbsp;&nbsp;&nbsp; $J$ is the number of levels of A
     
-    * $k=1,\ldots,K$ &nbsp;&nbsp;&nbsp; $K$ is the number of levels of B
+    * $k = 1,\ldots,K$ &nbsp;&nbsp;&nbsp; $K$ is the number of levels of B
     
-    * $i=1,\ldots,n_{jk}$ &nbsp;&nbsp;&nbsp; $n_{jk}$ is the sample size for level
+    * $i = 1,\ldots,n_{jk}$ &nbsp;&nbsp;&nbsp; $n_{jk}$ is the sample size for level
     $j$ of factor A and level $k$ of factor B
     
-    * $N=\Sigma_j\Sigma_k n_{jk}$ is the total sample size (sum of the number of 
+    * $N = \Sigma_j\Sigma_k n_{jk}$ is the total sample size (sum of the number of 
     observations across all $JK$ groups)
 
 We need to extend our previous discussion of reference-coded models to develop a
@@ -517,7 +519,7 @@ $\tau_j$ is the deviation for the ***main effect*** of A from the baseline
 for levels $2,\ldots,J$, $\gamma_k$ (gamma $k$) is the deviation for the main 
 effect of B from the baseline for levels $2,\ldots,K$, and $\omega_{jk}$ 
 (omega $jk$) is the adjustment for the ***interaction effect*** for level 
-$j$ of factor A and level $k$ of factor B for $j=1,\ldots,J$ and $k=1,\ldots,K$. In this model, $\tau_1$, $\gamma_1$, and $\omega_{11}$ are all fixed at 0 because $\alpha$ is the mean for the combination of the baseline levels of both variables and so no adjustments are needed. 
+$j$ of factor A and level $k$ of factor B for $j = 1,\ldots,J$ and $k = 1,\ldots,K$. In this model, $\tau_1$, $\gamma_1$, and $\omega_{11}$ are all fixed at 0 because $\alpha$ is the mean for the combination of the baseline levels of both variables and so no adjustments are needed. 
 Additionally, any $\omega_{jk}$'s that contain the baseline category of either factor A or B are also set to 0 and the model for these levels just involves $\tau_j$ or $\gamma_k$ added to the intercept. Exploring the R output will help clarify which coefficients are present or set to 0 (so not displayed) in these models. As in Chapter \@ref(chapter3), R will typically choose the baseline categories
 alphabetically but now it is choosing a baseline for both variables and so our
 detective work will be doubled to sort this out. 
@@ -535,12 +537,12 @@ where each component is defined as in the interaction model. The difference betw
 the interaction and additive models is setting all the $\omega_{jk}\text{'s}$
 to 0 that are present in the interaction model. When we set parameters to 0 in
 models it removes them from the model. Setting parameters to 0 is also how we will develop
-our hypotheses to test for an interaction, by assessing evidence against a null hypothesis that all $\omega_{jk}\text{'s}=0$.
+our hypotheses to test for an interaction, by assessing evidence against a null hypothesis that all $\omega_{jk}\text{'s} = 0$.
 
 \indent The interaction test hypotheses are 
 
 * $H_0$: No interaction between A and B on response in population $\Leftrightarrow$ All
-$\omega_{jk}\text{'s}=0$.
+$\omega_{jk}\text{'s} = 0$.
 
 * $H_A$: Interaction between A and B on response in population $\Leftrightarrow$ At least
 one $\omega_{jk}\ne 0$.
@@ -633,38 +635,45 @@ error need to equal $N-1$, just like in the One-Way ANOVA table.
 (ref:tab4-1) Interaction Model ANOVA Table. 
 
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Source**&nbsp;&nbsp;&nbsp;&nbsp;   **DF**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   **SS**                                        **MS**                                           **F-statistics**              
------------------------------------- -------------------------------------- --------------------------------------------- ------------------------------------------------ ------------------------------
-A                                    $J-1$                                  $\text{SS}_A$                                 $\text{MS}_A=\text{SS}_A/\text{df}_A$            $\text{MS}_A/\text{MS}_E$     
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Source**&nbsp;&nbsp;&nbsp;&nbsp;   **DF**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   **SS**                                        **MS**                           **F-statistics**              
+------------------------------------ -------------------------------------- --------------------------------------------- -------------------------------- ------------------------------
+A                                    $J-1$                                  $\text{SS}_A$                                 $\text{MS}_A =                   $\text{MS}_A/\text{MS}_E$     
+                                                                                                                          \text{SS}_A/\text{df}_A$                                       
 
-B                                    $K-1$                                  $\text{SS}_B$                                 $\text{MS}_B=\text{SS}_B/\text{df}_B$            $\text{MS}_B/\text{MS}_E$     
+B                                    $K-1$                                  $\text{SS}_B$                                 $\text{MS}_B =                   $\text{MS}_B/\text{MS}_E$     
+                                                                                                                          \text{SS}_B/\text{df}_B$                                       
 
-A:B (interaction)                    $(J-1)(K-1)$                           $\text{SS}_{AB}$                              $\text{MS}_{AB}=\text{SS}_{AB}/\text{df}_{AB}$   $\text{MS}_{AB}/\text{MS}_E$  
+A:B (interaction)                    $(J-1)(K-1)$                           $\text{SS}_{AB}$                              $\text{MS}_{AB} =                $\text{MS}_{AB}/\text{MS}_E$  
+                                                                                                                          \text{SS}_{AB}/\text{df}_{AB}$                                 
 
-Error                                $N-JK$                                 $\text{SS}_E$                                 $\text{MS}_E=\text{SS}_E/\text{df}_E$                                          
+Error                                $N-JK$                                 $\text{SS}_E$                                 $\text{MS}_E =                                                 
+                                                                                                                          \text{SS}_E/\text{df}_E$                                       
 
-<b><font                             $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                                  
-color='red'>Total</font></b>                                                                                                                                                                             
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<b><font                             $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                  
+color='red'>Total</font></b>                                                                                                                                                             
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table: (\#tab:Table4-1) (ref:tab4-1)
 
 (ref:tab4-2) Additive Model ANOVA Table. 
 
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Source**&nbsp;&nbsp;&nbsp;&nbsp;   **DF**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   **SS**                                        **MS**                                  **F-statistics**           
------------------------------------- -------------------------------------- --------------------------------------------- --------------------------------------- ---------------------------
-A                                    $J-1$                                  $\text{SS}_A$                                 $\text{MS}_A=\text{SS}_A/\text{df}_A$   $\text{MS}_A/\text{MS}_E$  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Source**&nbsp;&nbsp;&nbsp;&nbsp;   **DF**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   **SS**                                        **MS**                     **F-statistics**           
+------------------------------------ -------------------------------------- --------------------------------------------- -------------------------- ---------------------------
+A                                    $J-1$                                  $\text{SS}_A$                                 $\text{MS}_A =             $\text{MS}_A/\text{MS}_E$  
+                                                                                                                          \text{SS}_A/\text{df}_A$                              
 
-B                                    $K-1$                                  $\text{SS}_B$                                 $\text{MS}_B=\text{SS}_B/\text{df}_B$   $\text{MS}_B/\text{MS}_E$  
+B                                    $K-1$                                  $\text{SS}_B$                                 $\text{MS}_B =             $\text{MS}_B/\text{MS}_E$  
+                                                                                                                          \text{SS}_B/\text{df}_B$                              
 
-Error                                $N-J-K+1$                              $\text{SS}_E$                                 $\text{MS}_E=\text{SS}_E/\text{df}_E$                              
+Error                                $N-J-K+1$                              $\text{SS}_E$                                 $\text{MS}_E =                                        
+                                                                                                                          \text{SS}_E/\text{df}_E$                              
 
-<b><font                             $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                                      
-color='red'>Total</font></b>                                                                                                                                                                 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<b><font                             $\color{red}{\mathbf{N-1}}$            $\color{red}{\textbf{SS}_{\textbf{Total}}}$                                                         
+color='red'>Total</font></b>                                                                                                                                                    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table: (\#tab:Table4-2) (ref:tab4-2)
 
@@ -707,7 +716,7 @@ function on the model called ``m1``.
 \index{ANOVA table}
 Specifically, the test that 
 $H_0: \text{ All } \omega_{jk}\text{'s} = 0$ has a
-test statistic of $F(2,24)=1.92$ (in the output from the row with 
+test statistic of $F(2,24) = 1.92$ (in the output from the row with 
 brands:drops) and a p-value of 0.17. So there is weak evidence against the null hypothesis of no interaction, with a 17% chance we would 
 observe a difference in the $\omega_{jk}\text{'s}$ like we did or more
 extreme if the $\omega_{jk}\text{'s}$ really were all 0. So we would conclude that the interaction is probably not needed^[This does not mean that there is truly no interaction in the population but does mean that we are going to proceed assuming it is not present since we couldn't prove the null was wrong.]. Note that for the interaction 
@@ -741,7 +750,7 @@ models with interaction. I also added ``lty = c(1:2)`` to change the line type f
 displayed in Figure \@ref(fig:Figure4-7), which looks very similar to our 
 previous interaction plot. The only difference is that this comes from model 
 that assumes equal variance and these plots show 95% confidence intervals 
-for the means instead of the $\pm$ 1 SE used in the ``intplot`` where each SE is calculated using the variance of the observations at each combination of levels. Note that other than the lines connecting the means, this plot also is similar to the pirate-plot in Figure  \@ref(fig:Figure4-1) that also displayed the original responses for each of the six combinations of the two explanatory variables. That plot then provides a place to assess assumptions of the equal variance and distributions for each group as well as explore differences in the group means.
+for the means instead of the $\pm$ 1 SE used in the ``intplot`` where each SE is calculated using the variance of the observations at each combination of levels. Note that other than the lines connecting the means, this plot also is similar to the pirate-plot in Figure \@ref(fig:Figure4-1) that also displayed the original responses for each of the six combinations of the two explanatory variables. That plot then provides a place to assess assumptions of the equal variance and distributions for each group as well as explore differences in the group means.
 \index{\texttt{allEffects()}}
 
 (ref:fig4-7) Plot of estimated results of interaction model for the paper towel performance data. 
@@ -752,8 +761,8 @@ library(effects)
 plot(allEffects(m1), grid = T, multiline = T, lty = c(1:2), ci.style = "bars")
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-7-1.png" alt="(ref:fig4-7)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-7-1.png" alt="(ref:fig4-7)" width="75%" />
 <p class="caption">(\#fig:Figure4-7)(ref:fig4-7)</p>
 </div>
 
@@ -763,11 +772,11 @@ focused on each main effect, conditional on having the other variable in the
 model. To fit an additive model and not include an interaction, the model
 formula involves a "+" instead of a "``*``" between the explanatory variables. \index{\texttt{anova()}}
 
-\newpage
+<!-- \newpage -->
 
 
 ```r
-m2 <- lm(responses ~ brand + drops, data=pt)
+m2 <- lm(responses ~ brand + drops, data = pt)
 anova(m2)
 ```
 
@@ -944,12 +953,12 @@ library(effects)
 plot(allEffects(m2))
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-8-1.png" alt="(ref:fig4-8)" width="480" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-8-1.png" alt="(ref:fig4-8)" width="75%" />
 <p class="caption">(\#fig:Figure4-8)(ref:fig4-8)</p>
 </div>
 
-\indent With the first additive model we have considered, it is now the first time where we are working with a model where we can't display the observations together with the means that the model is producing because the results for each predictor are averaged across the levels of the other predictor. To visualize some aspects of the original observations with the estimates from each group, we can turn on an option in the term-plots (``residuals=T``) to obtain the ***partial residuals*** \index{partial residuals} that show the residuals as a function of one variable after adjusting for the effects/impacts of other variables. We will avoid the specifics of the calculations for now, but you can use these to explore the residuals at different levels of each predictor. They will be most useful in the Chapters \@ref(chapter7) and \@ref(chapter8) but give us some insights in unexplained variation in each level of the predictors once we remove the impacts of other predictors in the model. Use plots like Figure \@ref(fig:Figure4-9) to look for different variability at different levels of the predictors and locations of possible outliers in these models. Note that the points (open circles) are jittered to aid in seeing all of them, the means of each group of residuals are indicated by a filled large circle, and the smaller circles in the center of the bars for the 95% confidence intervals are the means from the model. Term-plots with partial residuals accompany our regular diagnostic plots for assessing equal variance assumptions in these models -- in some cases adding the residuals will clutter the term-plots so much that reporting them is not useful since one of the main purposes of the term-plots is to visualize the model estimates. So use the ``residuals=T`` option judiciously. 
+\indent With the first additive model we have considered, it is now the first time where we are working with a model where we can't display the observations together with the means that the model is producing because the results for each predictor are averaged across the levels of the other predictor. To visualize some aspects of the original observations with the estimates from each group, we can turn on an option in the term-plots (``residuals = T``) to obtain the ***partial residuals*** \index{partial residuals} that show the residuals as a function of one variable after adjusting for the effects/impacts of other variables. We will avoid the specifics of the calculations for now, but you can use these to explore the residuals at different levels of each predictor. They will be most useful in the Chapters \@ref(chapter7) and \@ref(chapter8) but give us some insights in unexplained variation in each level of the predictors once we remove the impacts of other predictors in the model. Use plots like Figure \@ref(fig:Figure4-9) to look for different variability at different levels of the predictors and locations of possible outliers in these models. Note that the points (open circles) are jittered to aid in seeing all of them, the means of each group of residuals are indicated by a filled large circle, and the smaller circles in the center of the bars for the 95% confidence intervals are the means from the model. Term-plots with partial residuals accompany our regular diagnostic plots for assessing equal variance assumptions in these models -- in some cases adding the residuals will clutter the term-plots so much that reporting them is not useful since one of the main purposes of the term-plots is to visualize the model estimates. So use the ``residuals = T`` option judiciously. 
 
 
 
@@ -961,8 +970,8 @@ library(effects)
 plot(allEffects(m2, residuals = T))
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-9-1.png" alt="(ref:fig4-9)" width="480" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-9-1.png" alt="(ref:fig4-9)" width="75%" />
 <p class="caption">(\#fig:Figure4-9)(ref:fig4-9)</p>
 </div>
 
@@ -983,8 +992,8 @@ Figure \@ref(fig:Figure4-10).
 
 (ref:fig4-10) Pirate-plot and interaction plot of the odontoblast growth data set.
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-10-1.png" alt="(ref:fig4-10)" width="576" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-10-1.png" alt="(ref:fig4-10)" width="75%" />
 <p class="caption">(\#fig:Figure4-10)(ref:fig4-10)</p>
 </div>
 
@@ -993,7 +1002,13 @@ Figure \@ref(fig:Figure4-10).
 data(ToothGrowth)
 library(tibble)
 ToothGrowth <- as_tibble(ToothGrowth)
-par(mfrow=c(1,2))
+```
+
+\newpage
+
+
+```r
+par(mfrow = c(1,2))
 pirateplot(len ~ supp * dose, data = ToothGrowth, ylim = c(0,35),
          main = "Pirate-plot",  xlab = "Dosage", ylab = "Odontoblast Growth",
          inf.method = "ci", inf.disp = "line", theme = 2)
@@ -1032,16 +1047,16 @@ Anova(TG1)
 ## Residuals  933.63 56
 ```
 
-The R output is reporting an interaction test result of $F(1,56)=5.3$ with
+The R output is reporting an interaction test result of $F(1,56) = 5.3$ with
 a p-value of 0.025. But this should raise a red flag since the numerator 
-degrees of freedom are not what we should expect based on Table \@ref(tab:Table4-1) of $(K-1)*(J-1) = (2-1)*(3-1)=2$.
+degrees of freedom are not what we should expect based on Table \@ref(tab:Table4-1) of $(K-1)*(J-1) = (2-1)*(3-1) = 2$.
 \index{degrees of freedom}
 This brings up an issue in R when working
 with categorical variables. If the levels of a categorical variable are entered
 numerically, R will treat them as quantitative variables and not split out the
 different levels of the categorical variable. To make sure that R treats
 categorical variables the correct way, we should use the ``factor``
-function on any variables^[This goes beyond our considerations with character variables that have text levels but are not declared as factors in the first chapters. Those often will be modeled correctly in linear models whether they are characters or factors - but numerical variables will be modeled in a way that you did not intend for these predictors that we will discuss in Chapters \@ref(chapter7) and \@ref(chapter8).] that are categorical in meaning but are coded numerically in the data set. The following code creates a new variable called ``dosef``
+function on any variables^[This goes beyond our considerations with character variables that have text levels but are not declared as factors in the first chapters. Those often will be modeled correctly in linear models whether they are characters or factors -- but numerical variables will be modeled in a way that you did not intend for these predictors that we will discuss in Chapters \@ref(chapter7) and \@ref(chapter8).] that are categorical in meaning but are coded numerically in the data set. The following code creates a new variable called ``dosef``
 using ``mutate`` and the ``factor`` function to help us obtain correct results from the linear 
 model.
 \index{\texttt{factor()}}
@@ -1067,7 +1082,7 @@ Anova(TG2)
 ```
 
 The ANOVA $F$-test for an interaction between supplement type and dosage level is 
-$F(2,54)= 4.107$ with a p-value of 0.022. So there is moderate to strong evidence against the null hypothesis of no interaction between *Dosage* and *Delivery method*, so we would likely conclude that there is an interaction present that we should discuss and this supports a changing effect on odontoblast growth of dosage based on the delivery
+$F(2,54) =  4.107$ with a p-value of 0.022. So there is moderate to strong evidence against the null hypothesis of no interaction between *Dosage* and *Delivery method*, so we would likely conclude that there is an interaction present that we should discuss and this supports a changing effect on odontoblast growth of dosage based on the delivery
 method in these guinea pigs. 
 
 \indent Any similarities between this correct
@@ -1109,12 +1124,12 @@ tests and estimates for *Dose* and *Delivery method*. But since we are inclined 
 
 
 ```r
-par(mfrow=c(2,2))
+par(mfrow = c(2,2))
 plot(TG2, pch = 16) 
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-11-1.png" alt="Diagnostic plots for the interaction model for odontoblast growth interaction model." width="960" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-11-1.png" alt="Diagnostic plots for the interaction model for odontoblast growth interaction model." width="75%" />
 <p class="caption">(\#fig:Figure4-11)Diagnostic plots for the interaction model for odontoblast growth interaction model.</p>
 </div>
 
@@ -1123,12 +1138,12 @@ plot(TG2, pch = 16)
 1. **Hypotheses:**
 
     * $H_0$: No interaction between *Delivery method* and *Dose* on odontoblast
-    growth in population of guinea pigs 
+    growth in population of guinea pigs
     
-        $\Leftrightarrow$ All $\omega_{jk}\text{'s}=0$.
+        $\Leftrightarrow$ All $\omega_{jk}\text{'s} = 0$.
     
     * $H_A$: Interaction between *Delivery method* and *Dose* on odontoblast
-    growth in population of guinea pigs 
+    growth in population of guinea pigs
     
         $\Leftrightarrow$ At least one $\omega_{jk}\ne 0$.
     
@@ -1137,20 +1152,27 @@ plot(TG2, pch = 16)
 
     * Independence: \index{independence assumption!Two-Way ANOVA}
 
-        * There is no indication of an issue with this assumption because we don't know of a 
-        reason why the independence of the measurements of odontoblast growth of 
-        across the guinea pigs as studied might be violated. 
+        * There is no indication of an issue with this assumption because we 
+        don't know of a reason why the independence of the measurements of odontoblast growth of
+        across the guinea pigs as studied might be violated.
         
     * Constant variance:
     
-        * To assess this assumption, we can use the pirate-plot in Figure \@ref(fig:Figure4-10), the diagnostic plots in 
-        Figure \@ref(fig:Figure4-11), and by adding the partial residuals to the term-plot^[To get ``dosef`` on the x-axis in the plot, the ``x.var = "dosef"`` option was employed to force the *Dose* to be the variable on the x-axis.] as shown in \@ref(fig:Figure4-12). 
+        * To assess this assumption, we can use the pirate-plot in 
+        Figure \@ref(fig:Figure4-10), the diagnostic plots in
+        Figure \@ref(fig:Figure4-11), and by adding the partial residuals to 
+        the term-plot^[To get ``dosef`` on the x-axis in the plot, the 
+        ``x.var = "dosef"`` option was employed to force the *Dose* to be the
+        variable on the x-axis.] as shown in \@ref(fig:Figure4-12).
         
-        * In the Residuals vs Fitted and the Scale-Location plots, the 
-        differences in variability among the groups (see the different 
-        x-axis positions for each group's fitted values) is minor, so 
-        there is not strong evidence of a problem with the equal variance 
-        assumption. Similarly, the original pirate-plots and adding the partial residuals to the term-plot do not highlight big differences in variability at any of the combinations of the predictors, so do not suggest clear issues with this assumption.
+        * In the Residuals vs Fitted and the Scale-Location plots, the
+        differences in variability among the groups (see the different
+        x-axis positions for each group's fitted values) is minor, so
+        there is not strong evidence of a problem with the equal variance
+        assumption. Similarly, the original pirate-plots and adding the partial
+        residuals to the term-plot do not highlight big differences in
+        variability at any of the combinations of the predictors, so do not
+        suggest clear issues with this assumption.
         \index{Residuals vs Fitted plot} \index{Scale-Location plot}
         
         
@@ -1159,8 +1181,8 @@ plot(TG2, pch = 16)
         plot(allEffects(TG2, residuals = T, x.var = "dosef")) 
         ```
         
-        <div class="figure">
-        <img src="04-twoWayAnova_files/figure-html/Figure4-12-1.png" alt="Term-plot for odontoblast growth interaction model with partial residuals added." width="960" />
+        <div class="figure" style="text-align: center">
+        <img src="04-twoWayAnova_files/figure-html/Figure4-12-1.png" alt="Term-plot for odontoblast growth interaction model with partial residuals added." width="75%" />
         <p class="caption">(\#fig:Figure4-12)Term-plot for odontoblast growth interaction model with partial residuals added.</p>
         </div>
 
@@ -1169,7 +1191,10 @@ plot(TG2, pch = 16)
         * The QQ-Plot in Figure \@ref(fig:Figure4-11) does not suggest a 
         problem with this assumption. \index{QQ-plot}
       
-Note that these diagnostics and conclusions are the same as in Section \@ref(section3-5) because the interaction model and the One-Way ANOVA model with all six combinations of the levels of the two variables fit exactly the same. But the RQ that we can address differs due to the different model parameterizations.
+Note that these diagnostics and conclusions are the same as in Section \@ref(section3-5)
+because the interaction model and the One-Way ANOVA model with all six combinations
+of the levels of the two variables fit exactly the same. But the RQ that we can
+address differs due to the different model parameterizations.
 
 3. **Calculate the test statistic and p-value for the interaction test.**
 
@@ -1192,9 +1217,10 @@ Note that these diagnostics and conclusions are the same as in Section \@ref(sec
     ## Residuals   712.11 54
     ```
 
-    * The test statistic is $F(2,54)=4.107$ with a p-value of 0.0219
+    * The test statistic is $F(2,54) = 4.107$ with a p-value of 0.0219
     
-    * To find this p-value directly in R from the test statistic value and $F$-distribution, we can use the ``pf`` function.
+    * To find this p-value directly in R from the test statistic value and
+    $F$-distribution, we can use the ``pf`` function.
     \index{\texttt{pf()}}
     
     
@@ -1206,12 +1232,17 @@ Note that these diagnostics and conclusions are the same as in Section \@ref(sec
     ## [1] 0.0218601
     ```
     
+
+\newpage
+
 4. **Conclusion based on p-value:**
 
-    * With a p-value of 0.0219 (from $F(2,54)=4.107$), there is about a 2.19% chance we would observe an interaction like
+    * With a p-value of 0.0219 (from $F(2,54) = 4.107$), there is about a 2.19%
+    chance we would observe an interaction like
     we did (or more extreme) if none were truly present. This provides moderate to strong
     evidence against the null hypothesis of no interaction between delivery
-    method and dosage on odontoblast growth in the population so we would conclude that there is likely an interaction and would retain the interaction in the model.
+    method and dosage on odontoblast growth in the population so we would
+    conclude that there is likely an interaction and would retain the interaction in the model.
     
 5. **Size of differences:**
 
@@ -1219,7 +1250,10 @@ Note that these diagnostics and conclusions are the same as in Section \@ref(sec
 
 6. **Scope of Inference:**
 
-    * Based on the random assignment of treatment levels, causal inference is possible (the changes due to dosage in the differences based on supplement type caused the differences in growth) but because the guinea pigs were not randomly selected, the inferences only pertain to these guinea pigs.
+    * Based on the random assignment of treatment levels, causal inference
+    is possible (the changes due to dosage in the differences based on
+    supplement type caused the differences in growth) but because the guinea
+    pigs were not randomly selected, the inferences only pertain to these guinea pigs.
     
 
 In a Two-Way ANOVA, we need to go a little further to get to the final "size" interpretations since the models are more complicated. When there is an
@@ -1260,34 +1294,34 @@ example, for the OJ group (solid line), the
 dosage of 0.5 mg/day
 has an estimate of an average growth of approximately 13 mm. This is the
 baseline group, so the model estimate for an observation in the OJ and 0.5 mg/day
-dosage is simply $\widehat{y}_{i,\text{OJ},0.5mg}=\widehat{\alpha}=13.23$ microns. 
+dosage is simply $\widehat{y}_{i,\text{OJ},0.5mg} = \widehat{\alpha} = 13.23$ microns. 
 For the OJ and 2 mg/day dosage estimate that has a value over 25 microns in the
 plot, the model incorporates the deviation for the 2 mg/day dosage:
-$\widehat{y}_{i,\text{OJ},2mg}=\widehat{\alpha} + \widehat{\tau}_{2mg}=13.23 + 12.83 = 26.06$
+$\widehat{y}_{i,\text{OJ},2mg} = \widehat{\alpha} + \widehat{\tau}_{2mg} = 13.23 + 12.83 = 26.06$
 microns. For the Vitamin C group, another coefficient becomes involved from its "main
 effect". For the VC and 0.5 mg dosage level, the estimate is approximately 8 microns.
 The pertinent model components are 
-$\widehat{y}_{i,\text{VC},0.5mg}=\widehat{\alpha} + \widehat{\gamma}_{\text{VC}}=13.23 + (-5.25) = 7.98$
+$\widehat{y}_{i,\text{VC},0.5mg} = \widehat{\alpha} + \widehat{\gamma}_{\text{VC}} = 13.23 + (-5.25) = 7.98$
 microns. Finally, when we consider non-baseline results for both groups, three
 coefficients are required to reconstruct the results in the plot. For example, 
 the estimate for the VC, 1 mg dosage is
-$\widehat{y}_{i,\text{VC},1mg}=\widehat{\alpha} + \widehat{\tau}_{1mg} + \widehat{\gamma}_{\text{VC}} + \widehat{\omega}_{\text{VC},1mg} = 13.23 + 9.47 + (-5.25) +(-0.68)= 16.77$ microns. We usually will by-pass all this
+$\widehat{y}_{i,\text{VC},1mg} = \widehat{\alpha} + \widehat{\tau}_{1mg} + \widehat{\gamma}_{\text{VC}} + \widehat{\omega}_{\text{VC},1mg} = 13.23 + 9.47 + (-5.25) +(-0.68) =  16.77$ microns. We usually will by-pass all this
 fun(!) with the coefficients in an interaction model and go from the ANOVA
 interaction test to focusing on the pattern of the responses in the interaction
 plot or going to the simpler additive model, but it is good to know that there are still model coefficients driving
 our results even if there are too many to be easily interpreted.
 
-(ref:fig4-13) Term-plot for the estimated interaction for the Odontoblast Growth data using the ``multiline=T`` and ``ci.style="bars"`` options. 
+(ref:fig4-13) Term-plot for the estimated interaction for the Odontoblast Growth data using the ``multiline = T`` and ``ci.style = "bars"`` options. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-13-1.png" alt="(ref:fig4-13)" width="480" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-13-1.png" alt="(ref:fig4-13)" width="75%" />
 <p class="caption">(\#fig:Figure4-13)(ref:fig4-13)</p>
 </div>
 
 (ref:fig4-14) Interaction plot for Odontoblast data with added CLD from Tukey's HSD. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-14-1.png" alt="(ref:fig4-14)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-14-1.png" alt="(ref:fig4-14)" width="75%" />
 <p class="caption">(\#fig:Figure4-14)(ref:fig4-14)</p>
 </div>
 
@@ -1324,7 +1358,7 @@ dosages, OJ is clearly better than VC by about 10 microns of growth on average.
 
 ## Observational study example: The Psychology of Debt	{#section4-5}
 
-In this section, the analysis of a survey of $N=464$ randomly sampled
+In this section, the analysis of a survey of $N = 464$ randomly sampled
 adults will be analyzed from a survey conducted by @Lea1995
 and available in the ``debt`` data set from the ``faraway`` package 
 [@R-faraway].
@@ -1332,7 +1366,7 @@ and available in the ``debt`` data set from the ``faraway`` package
 The subjects responded to a variety of questions
 including whether they buy cigarettes (``cigbuy``: 0 if
 no, 1 if yes), their housing situation (``house``: 1 = rent, 2 = mortgage,
-and 3 = owned outright), their income group (``incomegp``: 1 =
+and 3 = owned outright), their income group (``incomegp``: 1 = 
 lowest, 5 = highest), and their score on a continuous scale of attitudes about
 debt (``prodebt``: 1 = least favorable, 6 = most favorable). The variable ``prodebt``
 was derived as the average of a series of questions about debt with each
@@ -1354,18 +1388,18 @@ willingness to be in debt.
 \indent These data are typical of survey data where respondents were not required 
 to answer all questions and there are some
 missing responses. We could clean out any individuals that failed to respond to
-all questions (called "complete cases") using the ``drop_na`` function, \index{\texttt{drop_na()}} which will return responses only for subjects 
+all questions (called "complete cases") using the ``drop_na`` function, \index{\texttt{drop\_na()}} which will return responses only for subjects 
 that responded to every question in
-the data set, ``debt``. The change in sample size is available by running the ``dim`` \index{\texttt{dim}} function on the two data sets -- there were $464$ observations (rows) initially along with $13$ variables (columns) and once observations with any missing values were dropped there are $N=304$ for us to analyze. Losing 35% of the observations is a pretty noticeable loss.  
+the data set, ``debt``. The change in sample size is available by running the ``dim`` \index{\texttt{dim}} function on the two data sets -- there were $464$ observations (rows) initially along with $13$ variables (columns) and once observations with any missing values were dropped there are $N = 304$ for us to analyze. Losing 35% of the observations is a pretty noticeable loss. 
 
 
 ```r
 library(faraway)
 data(debt)
 library(tibble)
-debt <- as_tibble(debt) %>% mutate(
-                  incomegp = factor(incomegp),
-                  cigbuy = factor(cigbuy))
+debt <- as_tibble(debt) %>% mutate(incomegp = factor(incomegp),
+                                   cigbuy = factor(cigbuy)
+                                   )
 debtc <- debt %>% drop_na()
 
 dim(debt)
@@ -1383,7 +1417,7 @@ dim(debtc)
 ## [1] 304  13
 ```
 
-Using ``drop_na()`` with a list a variable names, we can focus on the three variables we are using in this model and whether the responses are missing on them, only cleaning out rows that are missing on ``incomegp``, ``cigbuy``, and/or ``prodebt``^[We can also use select to only retain these three variables and then ``drop_na()`` to get the same result for these three variables.]. The missingness is less dramatic, retaining $N=388$ observations in ``debtRc`` for our analysis using these three variables.
+Using ``drop_na()`` with a list a variable names, we can focus on the three variables we are using in this model and whether the responses are missing on them, only cleaning out rows that are missing on ``incomegp``, ``cigbuy``, and/or ``prodebt``^[We can also use select to only retain these three variables and then ``drop_na()`` to get the same result for these three variables.]. The missingness is less dramatic, retaining $N = 388$ observations in ``debtRc`` for our analysis using these three variables.
 
 
 ```r
@@ -1410,7 +1444,7 @@ results for the moment, we are first interested in whether buying
 cigarettes/not and income groups interact in their explanation of the
 respondent's mean opinions on being in debt. The interaction plot 
 (Figure \@ref(fig:Figure4-15)) may suggest an interaction between ``cigbuy``
-and ``incomegp`` where the lines cross, switching which of the ``cigbuy``  levels is higher (income levels 2, 3, and 5) or even almost not different (income levels 1 and 4). But it is 
+and ``incomegp`` where the lines cross, switching which of the ``cigbuy`` levels is higher (income levels 2, 3, and 5) or even almost not different (income levels 1 and 4). But it is 
 not as clear as the previous examples, especially with how large the SEs are relative the variation in the means. The interaction $F$-test helps us
 objectively assess evidence against the null hypothesis of no interaction. Based on the plot, there do 
 not appear to be differences based on cigarette purchasing but there might be some
@@ -1419,15 +1453,15 @@ this suggests that we might be in Scenario 2 or 3 where a single main effect of
 interest is present. 
 
 
-(ref:fig4-15) Interaction plot array of ``prodebt`` by income group (1 to 5) and whether they buy cigarettes (0=no, 1=yes).
+(ref:fig4-15) Interaction plot array of ``prodebt`` by income group (1 to 5) and whether they buy cigarettes (0 = no, 1 = yes).
 
 
 ```r
-intplotarray(prodebt ~ cigbuy * incomegp, data = debtRc, col=c(1,3,4,5,6), lwd = 2)
+intplotarray(prodebt ~ cigbuy * incomegp, data = debtRc, col = c(1,3,4,5,6), lwd = 2)
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-15-1.png" alt="(ref:fig4-15)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-15-1.png" alt="(ref:fig4-15)" width="75%" />
 <p class="caption">(\#fig:Figure4-15)(ref:fig4-15)</p>
 </div>
 
@@ -1464,7 +1498,7 @@ tally(cigbuy ~ incomegp, data = debtRc)
 how we start our modeling in Two-Way ANOVA situations. The ANOVA table suggests
 that there is little evidence against the null hypothesis of no interaction between the income level and
 buying cigarettes on the opinions of the respondents towards debt 
-($F(4,378)=0.686$, p-value=0.6022), so we would conclude that there is likely not an interaction present here and we can drop the interaction from the model. This suggests that the initial assessment 
+($F(4,378) = 0.686$, p-value = 0.6022), so we would conclude that there is likely not an interaction present here and we can drop the interaction from the model. This suggests that the initial assessment 
 that the interaction wasn't too prominent
 was correct. We should move to the additive model here but first need to check
 the assumptions to make sure we can trust this initial test. 
@@ -1492,12 +1526,12 @@ Anova(debt1)
 
 
 ```r
-par(mfrow=c(2,2))
+par(mfrow = c(2,2))
 plot(debt1, pch = 16)
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-16-1.png" alt="(ref:fig4-16)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-16-1.png" alt="(ref:fig4-16)" width="75%" />
 <p class="caption">(\#fig:Figure4-16)(ref:fig4-16)</p>
 </div>
 
@@ -1551,12 +1585,12 @@ here. No causal inferences are possible because this is an observational study.
     
     ```r
     debt1r <- lm(prodebt ~ incomegp + cigbuy, data = debtRc)
-    par(mfrow=c(2,2))
+    par(mfrow = c(2,2))
     plot(debt1r, pch = 16)
     ```
     
-    <div class="figure">
-    <img src="04-twoWayAnova_files/figure-html/Figure4-17-1.png" alt="Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not." width="960" />
+    <div class="figure" style="text-align: center">
+    <img src="04-twoWayAnova_files/figure-html/Figure4-17-1.png" alt="Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not." width="75%" />
     <p class="caption">(\#fig:Figure4-17)Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not.</p>
     </div>
 
@@ -1568,17 +1602,26 @@ here. No causal inferences are possible because this is an observational study.
         Figure \@ref(fig:Figure4-17), the differences in variability among 
         groups is minor and nothing suggests a violation. **If you change
         models, you should always revisit the diagnostic plots to make sure you 
-        didn't create problems that were not present in more complicated models.**       \index{Residuals vs Fitted plot} \index{Scale-Location plot}
+        didn't create problems that were not present in more complicated models.**
+        \index{Residuals vs Fitted plot} \index{Scale-Location plot}
         
-        * We can also explore the partial residuals here as provided in Figure \@ref(fig:Figure4-18). The variability in the partial residuals appears to be similar across the different levels of each predictor, controlled for the other variable, and so does suggest any issues that were missed by just looking at the overall residuals versus fitted values in our regular diagnostic plots. Note how hard it is to see differences in the mean for levels of ``cigbuy`` in this plot relative to the variability in the partial residuals but that the differences in the means in ``incomegp`` are at least somewhat obvious.
+        * We can also explore the partial residuals here as provided in
+        Figure \@ref(fig:Figure4-18). The variability in the partial residuals
+        appears to be similar across the different levels of each predictor,
+        controlled for the other variable, and so does suggest any issues that
+        were missed by just looking at the overall residuals versus fitted
+        values in our regular diagnostic plots. Note how hard it is to see
+        differences in the mean for levels of ``cigbuy`` in this plot relative
+        to the variability in the partial residuals but that the differences in
+        the means in ``incomegp`` are at least somewhat obvious.
   
         
         ```r
         plot(allEffects(debt1r, residuals = T))
         ```
         
-        <div class="figure">
-        <img src="04-twoWayAnova_files/figure-html/Figure4-18-1.png" alt="Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals." width="960" />
+        <div class="figure" style="text-align: center">
+        <img src="04-twoWayAnova_files/figure-html/Figure4-18-1.png" alt="Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals." width="75%" />
         <p class="caption">(\#fig:Figure4-18)Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals.</p>
         </div>
 
@@ -1587,7 +1630,7 @@ here. No causal inferences are possible because this is an observational study.
         * The QQ-Plot in Figure \@ref(fig:Figure4-17) does not suggest 
         a problem with this assumption. \index{QQ-plot}
 
-    \newpage
+    <!-- \newpage -->
     
 3. **Calculate the test statistics and p-values for the two main effect tests.**
 
@@ -1606,17 +1649,23 @@ here. No causal inferences are possible because this is an observational study.
     ## Residuals 185.079 382
     ```
 
-    * The test statistics are $F(4,382)=5.54$ and $F(1,382)=0.0201$ with p-values of 0.00024 and 0.887. 
+    * The test statistics are $F(4,382) = 5.54$ and $F(1,382) = 0.0201$ with p-values of 0.00024 and 0.887. 
     
 4. **Conclusions (including for the initial work with the interaction test):**
 
     * There was initially little to no evidence against the null hypothesis of no interaction 
     between income group and cigarette buying on pro-debt feelings 
-    ($F(4,378)=0.686$, p-value=$0.6022$) so we would conclude that there is likely not an interaction in the population and the interaction was dropped 
-    from the model. There is strong evidence against the null hypothesis of no difference in the mean
-    pro-debt feelings in the population across the income groups, after
-    adjusting for cigarette buying ($F(4,382)=5.54$, p-value=$0.00024$), so we would conclude that there is some difference in them. There is little evidence against the null hypothesis of no difference in the mean pro-debt feelings in the population based on
-    cigarette buying/not, after adjusting for income group ($F(1,382)=0.0201$, p-value=$0.887$), so we would conclude that there is probably not a difference across cigarette buying/not and could consider dropping this term from the model. 
+    ($F(4,378) = 0.686$, p-value = $0.6022$) so we would conclude that there is likely
+    not an interaction in the population and the interaction was dropped 
+    from the model. There is strong evidence against the null hypothesis of no
+    difference in the mean pro-debt feelings in the population across the income groups, after
+    adjusting for cigarette buying ($F(4,382) = 5.54$, p-value = $0.00024$), so we
+    would conclude that there is some difference in them. There is little evidence
+    against the null hypothesis of no difference in the mean pro-debt feelings in
+    the population based on cigarette buying/not, after adjusting for income
+    group ($F(1,382) = 0.0201$, p-value = $0.887$), so we would conclude that there
+    is probably not a difference across cigarette buying/not and could consider
+    dropping this term from the model. 
     
 \indent So we learned that the additive model
 was more appropriate for these responses and that the results resemble Scenario
@@ -1624,39 +1673,58 @@ was more appropriate for these responses and that the results resemble Scenario
 coefficients can be interpreted as shifts from the baseline after controlling
 for the other variable in the model.
 
+<!-- \newpage -->
+
 5. **Size:**
 
-Figure \@ref(fig:Figure4-19) shows the 
-increasing average
-comfort with being in debt as the income groups go up except between groups 1 and 2 where 1 is a little higher than two. Being a cigarette buyer
-was related to a lower comfort level with debt but is really no different from those that did not report buying cigarettes. It would be possible to consider follow-up tests akin to the Tukey's HSD comparisons for the levels of ``incomegp`` here but that is a bit beyond the scope of this course -- focus on the estimated mean for the 5^th^ income group being over 3.5 and none of the others over 3.2. That seems like an interesting although modest difference in mean responses across income groups after controlling for cigarette purchasing or not. 
+    * Figure \@ref(fig:Figure4-19) shows the increasing average comfort with being in
+    debt as the income groups go up except between groups 1 and 2 where 1 is a little
+    higher than two. Being a cigarette buyer was related to a lower comfort level
+    with debt but is really no different from those that did not report buying
+    cigarettes. It would be possible to consider follow-up tests akin to the Tukey's
+    HSD comparisons for the levels of ``incomegp`` here but that is a bit beyond the
+    scope of this course -- focus on the estimated mean for the 5^th^ income group
+    being over 3.5 and none of the others over 3.2. That seems like an interesting
+    although modest difference in mean responses across income groups after
+    controlling for cigarette purchasing or not. 
 
-(ref:fig4-19) Term-plots for the ``prodebt`` response additive model with left panel for income group and the right panel for buying cigarettes or not (0 for no, 1 for yes).
-
-
-```r
-plot(allEffects(debt1r))
-```
-
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-19-1.png" alt="(ref:fig4-19)" width="960" />
-<p class="caption">(\#fig:Figure4-19)(ref:fig4-19)</p>
-</div>
+    (ref:fig4-19) Term-plots for the ``prodebt`` response additive model with left panel for income group and the right panel for buying cigarettes or not (0 for no, 1 for yes).
+    
+    
+    ```r
+    plot(allEffects(debt1r))
+    ```
+    
+    <div class="figure" style="text-align: center">
+    <img src="04-twoWayAnova_files/figure-html/Figure4-19-1.png" alt="(ref:fig4-19)" width="75%" />
+    <p class="caption">(\#fig:Figure4-19)(ref:fig4-19)</p>
+    </div>
 
 6. **Scope of inference:**
 
-    * Because the income group and cigarette purchasing were not (and really could not) be randomly assigned, causal inference is not possible here. The data set came from a random sample but from an unspecified population and then there were missing observations. At best we can make inferences to those in that population that would answer these questions and it would be nice to know more about the population to really understand who this actually applies to. There would certainly be concerns about non-response bias in doing inference to the entire population that these data were sampled from.
+    * Because the income group and cigarette purchasing were not (and really
+    could not) be randomly assigned, causal inference is not possible here. The
+    data set came from a random sample but from an unspecified population and
+    then there were missing observations. At best we can make inferences to
+    those in that population that would answer these questions and it would be
+    nice to know more about the population to really understand who this
+    actually applies to. There would certainly be concerns about non-response
+    bias in doing inference to the entire population that these data were
+    sampled from.
 
-\newpage
+<!-- \newpage -->
 
-\indent The estimated coefficients can also be
-interesting to interpret for the additive model. Here are the model summary coefficients:
+\indent The estimated coefficients can also be interesting to interpret for the
+additive model. Here are the model summary coefficients:
 
 
 
 ```r
 summary(debt1r)$coefficients
 ```
+
+<!-- \newpage -->
+
 
 ```
 ##                Estimate Std. Error    t value      Pr(>|t|)
@@ -1668,18 +1736,18 @@ summary(debt1r)$coefficients
 ## cigbuy1     -0.01088742 0.07672982 -0.1418929  8.872394e-01
 ```
 
-In the model, the baseline group is for non-cigarette buyers (``cigbuy=0``)
-and income group 1 with $\widehat{\alpha}= 3.131$ points. Regardless of the 
+In the model, the baseline group is for non-cigarette buyers (``cigbuy = 0``)
+and income group 1 with $\widehat{\alpha} = 3.131$ points. Regardless of the 
 ``cigbuy`` level, the difference between income groups 2 and 1 is estimated
-to be $\widehat{\tau}_2=-0.054$, an decrease in the mean score of 0.054 points. 
-The difference between income groups 3 and 1 is $\widehat{\tau}_3=0.027$
+to be $\widehat{\tau}_2 = -0.054$, an decrease in the mean score of 0.054 points. 
+The difference between income groups 3 and 1 is $\widehat{\tau}_3 = 0.027$
 points, regardless of cigarette smoking status. The estimated difference
 between cigarette buyers and non-buyers was estimated as 
-$\widehat{\gamma}_2=-0.011$ points for any income group, remember that this 
+$\widehat{\gamma}_2 = -0.011$ points for any income group, remember that this 
 variable had a large p-value in this model. The additive model-based estimates for all 
 six combinations can be found in Table \@ref(tab:Table4-3).
 
-\newpage
+<!-- \newpage -->
 
 (ref:tab4-3) Calculations to construct the estimates for all combinations of variables for the ``prodebt`` additive model.
 
@@ -1698,8 +1766,8 @@ $\color{red}{\text{0:No}}$           $\widehat{\alpha} ={3.131}$              $\
 
 $\color{red}{\text{1:}\text{Yes}}$   $\widehat{\alpha}+\widehat{\gamma}_2$\   $\widehat{\alpha}+\widehat{\tau}_2+\widehat{\gamma}_2$\   $\widehat{\alpha}+\widehat{\tau}_3+\widehat{\gamma}_2$\   $\widehat{\alpha}+\widehat{\tau}_4+\widehat{\gamma}_2$\   $\widehat{\alpha}+\widehat{\tau}_5+\widehat{\gamma}_2$\  
                                      $=3.131$\                                $=3.131 - 0.016$\                                         $=3.131 + 0.027$\                                         $=3.131 + 0.091$\                                         $=3.131 + 0.408$\                                        
-                                     $-0.011$\                                $-0.011$\                                                 $-0.011$\                                                 $-0.011$\                                                 $-0.011$\                                                
-                                     $=3.12$                                  $=3.104$                                                  $=3.147$                                                  $=3.211$                                                  $=3.528$                                                 
+                                     $-0.011$\                                $- 0.011$\                                                $- 0.011$\                                                $- 0.011$\                                                $- 0.011$\                                               
+                                     $=3.142$                                 $=3.104$                                                  $=3.147$                                                  $=3.211$                                                  $=3.528$                                                 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Table: (\#tab:Table4-3) (ref:tab4-3)
@@ -1719,12 +1787,12 @@ group 5 much higher than the other four groups. The minor differences in cigaret
 
 (ref:fig4-20) Illustration of the results from Table \@ref(tab:Table4-3) showing the combined impacts of the components of the additive model for ``prodebt``. Panel (a) uses income groups on the x-axis and different lines for cigarette buyers (1) or not (0). Panel (b) displays the different income groups as lines with the cigarette buying status on the x-axis. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-20-1.png" alt="(ref:fig4-20)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-20-1.png" alt="(ref:fig4-20)" width="75%" />
 <p class="caption">(\#fig:Figure4-20)(ref:fig4-20)</p>
 </div>
 
-\newpage
+<!-- \newpage -->
 
 **In general, we proceed through the following steps in any 2-WAY ANOVA situation:**
 
@@ -1738,7 +1806,8 @@ normality and equal variance).
     * If there is a problem with normality or
     equal variance, consider a "transformation" of the response as discussed in
     Chapter \@ref(chapter7). This can help make the responses have similar 
-    variances or responses (and the model residuals) to be more normal, but sometimes not both. \index{transformation}
+    variances or responses (and the model residuals) to be more normal, but
+    sometimes not both. \index{transformation}
 
 4. If the interaction test has a small p-value, that is your main result. Focus on
 the term-plot and the interaction plot from (1) to fully understand the results, adding Tukey's
@@ -1750,7 +1819,10 @@ the interaction (additive model) and re-check the diagnostic plots. If the
 diagnostics are reasonable to proceed:
 
     * Focus on the results for each explanatory
-    variable, using Type II tests especially if the design is not balanced. Possibly consider further model refinement to only retain one of the two variables (the one with the smaller p-value) if a p-value is large. Follow One-Way ANOVA recommendations from this point on.
+    variable, using Type II tests especially if the design is not balanced.
+    Possibly consider further model refinement to only retain one of the two
+    variables (the one with the smaller p-value) if a p-value is large. Follow
+    One-Way ANOVA recommendations from this point on.
     
     * Report the initial interaction test
     results and the results for the test for each variable from the model 
@@ -1781,6 +1853,8 @@ interaction variability "error".
 \index{degrees of freedom}
 \index{replicate}
 
+\newpage
+
 \indent Without replication we can still perform an analysis of the
 responses and estimate all the coefficients in the interaction model but an issue occurs with trying to calculate the interaction 
 $F$-test statistic -- we run out of degrees of freedom for the error. To 
@@ -1791,8 +1865,8 @@ the entire data set can be easily printed out:
 
 ```r
 ptR <- read_csv("http://www.math.montana.edu/courses/s217/documents/ptR.csv")
-ptR <- ptR %>%  mutate(dropsf = factor(drops),
-                       brand = factor(brand))
+ptR <- ptR %>% mutate(dropsf = factor(drops),
+                      brand = factor(brand))
 ptR
 ```
 
@@ -1820,8 +1894,8 @@ plot. \index{replicate}
 
 (ref:fig4-21) Interaction plot in paper towel data set with no replication. 
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-21-1.png" alt="(ref:fig4-21)" width="480" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-21-1.png" alt="(ref:fig4-21)" width="75%" />
 <p class="caption">(\#fig:Figure4-21)(ref:fig4-21)</p>
 </div>
 
@@ -1830,29 +1904,37 @@ plot. \index{replicate}
 intplot(responses ~ brand * dropsf, data = ptR, lwd = 2)
 ```
 
-\indent The next step would be to assess evidence related to the null hypothesis of no interaction between ``Brand`` and 
-``Drops``. A problem will arise in trying to form the ANOVA table as you 
-would see this when you run the ``anova``^[We switched back to the ``anova`` function here as the ``Anova`` function only reports ``Error in Anova.lm(lm(responses ~ dropsf * brand, data = ptR)) : 
-  residual df = 0``, which is fine but not as useful for understanding this issue as what ``anova`` provides.] function on the interaction model:
-\index{\texttt{anova()}}
+\indent The next step would be to assess evidence related to the null hypothesis
+of no interaction between ``Brand`` and ``Drops``. A problem will arise in
+trying to form the ANOVA table as you would see this when you run the 
+``anova``^[We switched back to the ``anova`` function here as the ``Anova``
+function only reports ``Error in Anova.lm(lm(responses ~ dropsf * brand,
+data = ptR)) : residual df = 0``, which is fine but not as useful for
+understanding this issue as what ``anova`` provides.] function on the
+interaction model: \index{\texttt{anova()}}
 
-\small
+\newpage
 
-```
-> anova(lm(responses ~ dropsf * brand, data = ptR))
-Analysis of Variance Table
-Response: responses
-             Df  Sum Sq Mean Sq F value Pr(>F)
-dropsf        2 2.03872 1.01936               
-brand         1 0.80663 0.80663               
-dropsf:brand  2 2.48773 1.24386               
-Residuals     0 0.00000                       
-Warning message:
-In anova.lm(lm(responses ~ dropsf * brand, data = ptR)) :
-  ANOVA F-tests on an essentially perfect fit are unreliable
+<!-- \small -->
+
+```r
+anova(lm(responses ~ dropsf * brand, data = ptR))
 ```
 
-\normalsize
+```
+## Analysis of Variance Table
+## Response: responses
+##              Df  Sum Sq Mean Sq F value Pr(>F)
+## dropsf        2 2.03872 1.01936               
+## brand         1 0.80663 0.80663               
+## dropsf:brand  2 2.48773 1.24386               
+## Residuals     0 0.00000                       
+## Warning message:
+## In anova.lm(lm(responses ~ dropsf * brand, data = ptR)) :
+##   ANOVA F-tests on an essentially perfect fit are unreliable
+```
+
+<!-- \normalsize -->
 
 Warning messages in R output show up after you run functions that contain
 problems and are generally not a good thing, but can sometimes be ignored. In
@@ -1903,8 +1985,8 @@ Anova(norep1)
 In the additive model, the last row of the ANOVA table that is called the 
 ``Residuals`` row is really the interaction row from the interaction model 
 ANOVA table. Neither main effect had a small p-value 
-(*Drops*: $F(2,2)=0.82, \text{ p-value}=0.55$ and 
-*Brand*: $F(1,2)=0.65, \text{ p-value}=0.51$) in the additive model. To 
+(*Drops*: $F(2,2) = 0.82, \text{ p-value} = 0.55$ and 
+*Brand*: $F(1,2) = 0.65, \text{ p-value} = 0.51$) in the additive model. To 
 get small p-values with the small sample sizes that unreplicated designs would generate, the differences would need to be
 **very** large because the residual degrees of freedom have become very small.
 \index{degrees of freedom} \index{replicate}
@@ -1919,15 +2001,15 @@ seen in the error bars around each point estimate.
 plot(allEffects(norep1))
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-22-1.png" alt="(ref:fig4-22)" width="480" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-22-1.png" alt="(ref:fig4-22)" width="75%" />
 <p class="caption">(\#fig:Figure4-22)(ref:fig4-22)</p>
 </div>
 
 
 \indent In the extreme unreplicated situation it is possible to estimate all model coefficients in the interaction model but we can't do inferences for those estimates since there is no residual variability. Another issue in really any model with categorical predictors but especially noticeable in the Two-Way ANOVA situation is ***estimability*** issues. \index{estimability} Instead of having issues with running out of degrees of freedom for tests we can run into situations where we do not have information to estimate some of the model coefficients. This happens any time you fail to have observations at either a level of a main effect or at a combination of levels in an interaction model. 
 
-\indent To illustrate estimability issues, we will revisit the overtake data. Each of the seven levels of outfits was made up of a combination of different characteristics of the outfits, such as which helmet and pants were chosen, whether reflective leg clips were worn or not, etc. To see all these additional variables, we will introduce a new plot that will feature more prominently in Chapter \@ref(chapter5) that allows us to explore relationships among a suite of categorical variables -- the `tableplot` from the ``tabplot``^[This is the first package we have encountered that is not on the "CRAN" repository and we will need to install it from its "github" repository. This happens for packages in early development and for other packages where researchers decide to avoid the ongoing challenges involved maintaining the package status on CRAN. In order to install this package, we can use the following code after installing the `remotes` [@R-remotes] package in the regular way: `library(remotes); remotes::install_github("mtennekes/tabplot")`] package [@R-tabplot]. It allows us to sort the variables based on a single variable (think about how you might sort a spreadsheet based on one column and look at the results in other columns).  The ``tableplot`` function displays bars for each response in a row^[In larger data sets, 
+\indent To illustrate estimability issues, we will revisit the overtake data. Each of the seven levels of outfits was made up of a combination of different characteristics of the outfits, such as which helmet and pants were chosen, whether reflective leg clips were worn or not, etc. To see all these additional variables, we will introduce a new plot that will feature more prominently in Chapter \@ref(chapter5) that allows us to explore relationships among a suite of categorical variables -- the `tableplot` from the ``tabplot``^[This is the first package we have encountered that is not on the "CRAN" repository and we will need to install it from its "github" repository. This happens for packages in early development and for other packages where researchers decide to avoid the ongoing challenges involved maintaining the package status on CRAN. In order to install this package, we can use the following code after installing the `remotes` [@R-remotes] package in the regular way: `library(remotes); remotes::install_github("mtennekes/tabplot")`] package [@R-tabplot]. It allows us to sort the variables based on a single variable (think about how you might sort a spreadsheet based on one column and look at the results in other columns). The ``tableplot`` function displays bars for each response in a row^[In larger data sets, 
 multiple subjects are displayed in each row as proportions of
 the rows in each category.] based on the 
 category of responses or as a bar with the height corresponding
@@ -1938,7 +2020,7 @@ responses for larger data sets.].
 \index{R packages!\textbf{tabplot}}
 It also plots a red cell if the
 observations were missing for a categorical variable and in grey for missing values on quantitative variables. The plot can be obtained
-simply as ``tableplot(DATASETNAME)`` which will sort the data set based on the first variable. To use our previous work with the sorted levels of ``Condition2``, the code ``dd[,-1]`` is used to specify the data set without ``Condition`` and then ``sort=Condition2`` is used to sort based on the ``Condition2`` variable. The ``pals=list("BrBG")`` option specifies a color palette for the plot that is color-blind friendly from the ``RColorBrewer`` package [@R-RColorBrewer].
+simply as ``tableplot(DATASETNAME)`` which will sort the data set based on the first variable. To use our previous work with the sorted levels of ``Condition2``, the code ``dd[,-1]`` is used to specify the data set without ``Condition`` and then ``sort = Condition2`` is used to sort based on the ``Condition2`` variable. The ``pals = list("BrBG")`` option specifies a color palette for the plot that is color-blind friendly from the ``RColorBrewer`` package [@R-RColorBrewer].
 \index{R packages!\textbf{RColorBrewer}}
 
 
@@ -1958,7 +2040,7 @@ dd <- dd %>% mutate(Condition = factor(Condition),
                     Gloves = factor(Gloves),
                     ReflectClips = factor(ReflectClips),
                     Backpack = factor(Backpack)
-              )
+                    )
 ```
 
 (ref:fig4-23) Tableplot of the full overtake data set sorted by outfit worn (``Condition2``). 
@@ -1978,13 +2060,13 @@ if (!require("tabplot", character.only = TRUE)) {
 library(tabplot)
 library(RColorBrewer)
 # Options (sometimes) needed to prevent errors on PC
-#options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
+# options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) 
 tableplot(dd[,-1], sort = Condition2, pals = list("BrBG"), sample = F, 
           colorNA_num = "pink", numMode = "MB-ML")
 ```
 
-<div class="figure">
-<img src="04-twoWayAnova_files/figure-html/Figure4-23-1.png" alt="(ref:fig4-23)" width="960" />
+<div class="figure" style="text-align: center">
+<img src="04-twoWayAnova_files/figure-html/Figure4-23-1.png" alt="(ref:fig4-23)" width="75%" />
 <p class="caption">(\#fig:Figure4-23)(ref:fig4-23)</p>
 </div>
 
@@ -2021,7 +2103,7 @@ summary(overtake_int)
 ## F-statistic: 0.1671 on 2 and 5687 DF,  p-value: 0.8461
 ```
 
-The full model summary shows some odd things. First there is a warning after ``Coefficients`` of ``(3 not defined because of singularities)``. And then in the coefficient table, there are ``NA``s for everything in the rows for ``ReflectClipsyes`` and the two interaction components. When ``lm`` encounters models where the data measured are not sufficient to estimate the model, it essentially drops parts of the model that you were hoping to estimate and only estimates what it can. In this case, it just estimates coefficients for the intercept and two deviation coefficients for ``Helmet`` types; the other three coefficients  ($\gamma_2$ and the two $\omega$s) are *not estimable*. This reinforces the need to check coefficients in any model you are fitting. A tally of the counts of observations across the two explanatory variables helps to understand the situation and problem:
+The full model summary shows some odd things. First there is a warning after ``Coefficients`` of ``(3 not defined because of singularities)``. And then in the coefficient table, there are ``NA``s for everything in the rows for ``ReflectClipsyes`` and the two interaction components. When ``lm`` encounters models where the data measured are not sufficient to estimate the model, it essentially drops parts of the model that you were hoping to estimate and only estimates what it can. In this case, it just estimates coefficients for the intercept and two deviation coefficients for ``Helmet`` types; the other three coefficients ($\gamma_2$ and the two $\omega$s) are *not estimable*. This reinforces the need to check coefficients in any model you are fitting. A tally of the counts of observations across the two explanatory variables helps to understand the situation and problem:
 
 
 ```r
@@ -2036,7 +2118,7 @@ tally(Helmet ~ ReflectClips, data = dd)
 ##   race        0  852
 ```
 
-There are three combinations that have $n_{jk}=0$ observations (for example for the *commuter* helmet, clips were always worn so no observations were made with this helmet without clips). So we have no hope of estimating a mean for the combinations with 0 observations and these are needed to consider interactions. If we revisit the tableplot, we can see how some of these needed combinations do not occur together. So this is an unbalanced design but also lacks necessary information to explore the potential research question of interest. In order to study just these two variables and their interaction, the researchers would have had to do rides with all six combinations of these variables. This could be quite informative because it could help someone tailor their outfit choice for optimal safety but also would have created many more than seven different outfit combinations to wear.
+There are three combinations that have $n_{jk} = 0$ observations (for example for the *commuter* helmet, clips were always worn so no observations were made with this helmet without clips). So we have no hope of estimating a mean for the combinations with 0 observations and these are needed to consider interactions. If we revisit the tableplot, we can see how some of these needed combinations do not occur together. So this is an unbalanced design but also lacks necessary information to explore the potential research question of interest. In order to study just these two variables and their interaction, the researchers would have had to do rides with all six combinations of these variables. This could be quite informative because it could help someone tailor their outfit choice for optimal safety but also would have created many more than seven different outfit combinations to wear.
 
 \indent Hopefully by pushing the limits there
 are three conclusions available from this section. First, replication is
@@ -2046,7 +2128,7 @@ from the interaction model to additive model, the variability explained by the
 interaction term is pushed into the error term, whether replication is
 available or not. Third, we need to make sure we have observations at all combinations of variables if we want to be able to estimate models using them and their interaction.
 
-\newpage
+<!-- \newpage -->
 
 ## Chapter summary	{#section4-7}
 
@@ -2121,7 +2203,7 @@ packages mentioned need to be installed and loaded for this code to have a
 chance of working:
 
 * **tally(<font color='red'>A</font> ~ <font color='red'>B</font>,
-data=<font color='red'>DATASETNAME</font>)**
+data = <font color='red'>DATASETNAME</font>)**
 
     * Requires the ``mosaic`` package be loaded. 
     
@@ -2189,7 +2271,7 @@ data = <font color='red'>DATASETNAME</font>)**
     each term conditional on the other one. \index{\texttt{Anova()}|textbf}
 
 
-* **par(mfrow=c(2,2)); plot(<font color='red'>MODELNAME</font>)**
+* **par(mfrow = c(2,2)); plot(<font color='red'>MODELNAME</font>)**
 
     * Generates four diagnostic plots including the Residuals vs Fitted and 
     Normal Q-Q plot. 
@@ -2209,7 +2291,7 @@ data = <font color='red'>DATASETNAME</font>)**
 
 ## Practice problems	{#section4-9}
 
-4.1. **Mathematics Usage Test Scores Analysis** To practice the Two-Way ANOVA, consider a data set on $N=861$ ACT
+4.1. **Mathematics Usage Test Scores Analysis** To practice the Two-Way ANOVA, consider a data set on $N = 861$ ACT
 Mathematics Usage Test scores from 1987. The test was given to a 
 sample of high school seniors who met one of three profiles of high school 
 mathematics course
@@ -2284,18 +2366,24 @@ in the group that got didgeridoo lessons than it did in the control group (that
 got no lessons). Each subject was measured twice in the data set provided that 
 is available at http://www.math.montana.edu/courses/s217/documents/epworthdata.csv.
 
+\small
+
 ```r
 library(readr)
 epworthdata <- read_csv("http://www.math.montana.edu/courses/s217/documents/epworthdata.csv")
 epworthdata <- epworthdata %>% mutate(Time = factor(Time),
-                                      Group = factor(Group))
+                                      Group = factor(Group)
+                                      )
 levels(epworthdata$Time) <- c("Pre" , "Post")
 levels(epworthdata$Group) <- c("Control" , "Didgeridoo")
 ```
 
-4.2.1. Make a pirate-plot and an interaction plot array to graphically explore the potential interaction of Time and Group on the Epworth responses.
+\normalsize
 
-4.2.2.  Fit the interaction model and find
+4.2.1. Make a pirate-plot and an interaction plot array to graphically explore
+the potential interaction of Time and Group on the Epworth responses.
+
+4.2.2. Fit the interaction model and find
 the ANOVA table. For the test you should consider first (the interaction), 
 write out the hypotheses, report the test statistic, p-value, distribution of
 the test statistic under the null, and write a conclusion related to the

@@ -29,7 +29,7 @@ response variables.
 (ref:fig9-1) Schematic of methods covered. 
 
 <div class="figure" style="text-align: center">
-<img src="chapter9_files/image002.png" alt="(ref:fig9-1)" width="75%" />
+<img src="chapter9_files/decisiontree.jpg" alt="(ref:fig9-1)" width="75%" />
 <p class="caption">(\#fig:Figure9-1)(ref:fig9-1)</p>
 </div>
 
@@ -346,7 +346,7 @@ variability in the right tail and so maybe a little bit of a left skew. This
 is only a minor issue and fixes the other big issue (clear non-constant 
 variance), so this model is at least closer to giving us trustworthy 
 inferences than the original model. The model presents moderate evidence against the null hypothesis of no 
-*Species* by *Treatment* interaction on the log-biomass ($F(2,30) = 4.2$, p-value$ = 0.026$). This
+*Species* by *Treatment* interaction on the log-biomass ($F(2,30) = 4.2$, p-value $= 0.026$). This
 suggests that the effects on the log-biomass of the treatments differ between
 the two species. The mean log-biomass is lower for *HS* than *PS* with the impacts of increased nitrogen causing *HS* mean log-biomass to decrease more rapidly than for *PS*. In other words, increasing
 nitrogen has more of an impact on the resulting log-biomass for *HS* than for 
@@ -1216,7 +1216,7 @@ epworthdata %>%
 ANOVA (that is a repeat of what you would have seen had you done the practice 
 problem earlier in the book and the related interaction plot) -- there is 
 little to no evidence against the null hypothesis of no interaction between 
-Time and Treatment group on Epworth scale ratings ($F(1,46) = 1.37$, p-value$ = 0.2484$
+Time and Treatment group on Epworth scale ratings ($F(1,46) = 1.37$, p-value $= 0.2484$
 as seen in Table \@ref(tab:Table9-2)). But this model assumes all the 
 observations are independent and so does not account for the repeated measures 
 on the same subjects. It ends up that if we account for systematic differences

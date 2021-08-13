@@ -366,7 +366,7 @@ plot(allEffects(m4, residuals = T), main = "MLR model with Elev, Min, & Max Temp
 Based on the output, the estimated MLR model is
 
 $$\widehat{\text{SnowDepth}}_i = -10.51 + 0.0123\cdot\text{Elevation}_i
--0.505\cdot\text{MinTemp}_i - 0.562\cdot\text{MaxTemp}_i\ .$$
+-0.505\cdot\text{MinTemp}_i - 0.562\cdot\text{MaxTemp}_i$$
 
 The direction of the estimated slope coefficients were similar but they 
 all changed in magnitude as compared to the respective SLRs, as seen in the
@@ -836,7 +836,7 @@ plot(allEffects(m5, residuals = T), main = "MLR model with NE Ent. Removed")
 "NE Entrance" observation is
 
 $$\widehat{\text{SnowDepth}}_i = -142.4 + 0.0214\cdot\text{Elevation}_i
-+0.672\cdot\text{MinTemp}_i +0.508\cdot\text{MaxTemp}_i\ .$$
++0.672\cdot\text{MinTemp}_i +0.508\cdot\text{MaxTemp}_i$$
 
 Something unusual has happened here: there is a positive slope for both
 temperature terms in Figure \@ref(fig:Figure8-7) that both
@@ -880,7 +880,7 @@ from it.
 for the model fit to the data set without NE Entrance (now $n = 24$) reveals a new 
 point that is somewhat influential (point 22 in the data set has Cook's D 
 $\approx$ 0.5). It is for a location called "Bloody
-$\require{color}\colorbox{black}{Redact.}$^[The site name is redacted to protect
+$\require{color}\colorbox{black}{Redact.}$"^[The site name is redacted to protect
 the innocence of the reader. More information on this site, located in
 Beaverhead County in Montana, is available at
 http://www.wcc.nrcs.usda.gov/nwcc/site?sitenum=355&amp;state=mt.] which has a
@@ -1191,7 +1191,7 @@ used to make the points a little easier to see.
 # Making own effect plot:
 modelres2 <- tibble(elevs = c(5000, 6000, 8000), snowdepths = c(-6.19, 20.71, 74.51))
 modelres2 %>% ggplot(mapping = aes(x = elevs, y = snowdepths)) +
-  geom_point(lwd = 2) +
+  geom_point(size = 2) +
   geom_line(lwd = 1, alpha = .75, col = "tomato") +
   theme_bw() +
   labs(title = "Effect plot of elevation by hand")
@@ -1504,7 +1504,7 @@ can be seen by considering
 $$R^2 = \frac{\text{SS}_{\text{regression}}}{\text{SS}_{\text{total}}}\ 
 \text{ where }\ \text{SS}_{\text{regression}} = \text{SS}_{\text{total}}
 - \text{SS}_{\text{error}}\ 
-\text{ and }\ \text{SS}_{\text{error}} = \Sigma(y-\widehat{y})^2\ .$$
+\text{ and }\ \text{SS}_{\text{error}} = \Sigma(y-\widehat{y})^2$$
 
 Because adding extra variables to a linear model will only make the fitted
 values better, not worse, the $\text{SS}_{\text{error}}$ will always go down
@@ -2094,7 +2094,7 @@ we work with $t$-distributions with $n-K-1$ degrees of freedom.
 Specifically
 the 95% confidence interval for slope coefficient $k$ is
 
-$$\boldsymbol{b_k \mp t^*_{n-K-1}\textbf{SE}_{b_k}}\ .$$
+$$\boldsymbol{b_k \mp t^*_{n-K-1}\textbf{SE}_{b_k}}$$
 
 The interpretation is the same as in SLR with the additional tag of "after
 controlling for the other variables in the model" for the reasons
@@ -2489,7 +2489,7 @@ violated and so the inferences from our model should be relatively trustworthy.
     information about how potentially useful this model might be. The estimated
     MLR model is
 
-    $$\widehat{\text{fygpa}}_i = 0.00737+0.0254\cdot\text{satv}_i+0.0224\cdot\text{satm}_i\ .$$
+    $$\widehat{\text{fygpa}}_i = 0.00737+0.0254\cdot\text{satv}_i+0.0224\cdot\text{satm}_i$$
 
     * So for a 1 percent increase in the *satv* percentile, we estimate, on
     average, a 0.0254 point change in *GPA*, after controlling for *satm*
@@ -2920,7 +2920,7 @@ was anything different from other quantitative predictors.
 model as
 
 $$\widehat{\text{fygpa}}_i = 0.216 + 0.0386\cdot\text{satm}_i +
-0.313 \cdot I_{\text{Female},i}\ .$$
+0.313 \cdot I_{\text{Female},i}$$
 
 When we have a *male* observation, the indicator takes on a value of 0 so the 
 0.313 drops out of the model, leaving an SLR just in terms of *satm*. For a
@@ -2988,9 +2988,9 @@ categorical variable. \index{indicator} \index{baseline}
 
 \indent We can also work out the impacts of adding an indicator variable to the model
 in general in the theoretical model with a single quantitative predictor $x_i$
-and indicator $I_i$. The model starts as
+and indicator $I_i$. The model starts as in the equation below.
 
-$$y_i = \beta_0+\beta_1x_i + \beta_2I_i + \varepsilon_i\ .$$
+$$y_i = \beta_0+\beta_1x_i + \beta_2I_i + \varepsilon_i$$
 
 Again, there are two versions:
 
@@ -3280,7 +3280,7 @@ summary(head1)
 
 The complete estimated regression model is
 
-$$\widehat{\text{du2}}_i = 0.252+0.837\cdot\text{du1}_i +0.558I_{\text{T1},i}+0.634I_{\text{T2},i}+1.367I_{\text{T3},i}\ .$$
+$$\widehat{\text{du2}}_i = 0.252+0.837\cdot\text{du1}_i +0.558I_{\text{T1},i}+0.634I_{\text{T2},i}+1.367I_{\text{T3},i}$$
 
 For each group, the model simplifies to an SLR as follows:
 
@@ -3305,11 +3305,11 @@ $$\begin{array}{rl}
 
 * Similarly for *T2*:
 
-$$\widehat{\text{du2}}_i = 0.886 + 0.837\cdot\text{du1}_i\ .$$
+$$\widehat{\text{du2}}_i = 0.886 + 0.837\cdot\text{du1}_i$$
 
 * Finally for *T3*:
 
-$$\widehat{\text{du2}}_i = 1.62 + 0.837\cdot\text{du1}_i\ .$$
+$$\widehat{\text{du2}}_i = 1.62 + 0.837\cdot\text{du1}_i$$
 
 To reinforce what this additive model is doing, Figure \@ref(fig:Figure8-27)
 displays the estimated regression lines for all four
@@ -3614,7 +3614,7 @@ and simplify the equations. \index{indicator}
 
     simplifies quickly to:
 
-    $$y_i = \beta_0+\beta_1x_i+\varepsilon_i\ .$$
+    $$y_i = \beta_0+\beta_1x_i+\varepsilon_i$$
     
     * So the baseline group's model involves the initial intercept and
     quantitative slope coefficient.
@@ -3681,7 +3681,7 @@ and simplified for the two groups as:
 
 * For the baseline (non-dyslexic, $I_{\text{yes},i} = 0$) students:
 
-    $$\widehat{\text{Score}}_i = 0.876+0.058\cdot\text{ZIQ}_i\ .$$
+    $$\widehat{\text{Score}}_i = 0.876+0.058\cdot\text{ZIQ}_i$$
     
 * For the deviation (dyslexic, $I_{\text{yes},i} = 1$) students:
 
@@ -3693,7 +3693,7 @@ and simplified for the two groups as:
 
     which simplifies finally to:
     
-    $$\widehat{\text{Score}}_i = 0.596-0.015\cdot\text{ZIQ}_i.$$
+    $$\widehat{\text{Score}}_i = 0.596-0.015\cdot\text{ZIQ}_i$$
 
 * So the slope switched from 0.058 in the non-dyslexic students to -0.015 in
 the dyslexic students. The interpretations of these coefficients are outlined
@@ -4468,7 +4468,7 @@ using AICs.** \index{p-value!caution}
     * Hypothesis testing and AIC model selection are not compatible philosophies
     and testing in models selected by AICs invalidates the tests as they have
     inflated Type I error rates.
-    \index{type I error}
+    \index{Type I error}
     \index{hypothesis testing}
     The AIC results are your "evidence" -- you don't need anything else. If you
     wanted to report p-values, use them to select your model.

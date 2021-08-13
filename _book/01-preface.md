@@ -83,7 +83,7 @@ types of conclusions that are appropriate based on the design of the study.
 (ref:fig1-1) Flow chart of methods.
 
 <div class="figure" style="text-align: center">
-<img src="chapter1_files/image002.png" alt="(ref:fig1-1)" width="75%" />
+<img src="chapter1_files/decisiontree.jpg" alt="(ref:fig1-1)" width="75%" />
 <p class="caption">(\#fig:Figure1-1)(ref:fig1-1)</p>
 </div>
 
@@ -259,7 +259,7 @@ for us, but you will only interact with it once. Go to http://cran.rstudio.com
 and click on the "**Download R for...**" button that
 corresponds to your operating system. On the next page, click on "**base**" and then it will take you 
 to a screen to download the most current version of R that is compiled for your
-operating system, something like "**Download R 4.1.0 for Windows**". Click on that link and then open 
+operating system, something like "**Download R 4.1.1 for Windows**". Click on that link and then open 
 the file you downloaded. You will need to select your preferred language (choose English so your instructor can help you), then hit "**Next**"
 until it starts to unpack and install the program (all the base settings will be fine). After you hit "**Finish**" you will not do anything further with R directly. 
 
@@ -922,6 +922,11 @@ histogram of the `RunTime` variable made using the `+ geom_histogram()`.
 ```r
 library(ggplot2)
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + geom_histogram()
+```
+
+```
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
 ```
 
 <div class="figure" style="text-align: center">

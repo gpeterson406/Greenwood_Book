@@ -611,9 +611,9 @@ called a "global" aesthetic and will apply to all the following geom's. Defining
 the colors or symbols within ``geom_point`` is called a "local" aesthetic and
 only applies to that layer of the plot. To enhance visibility of the points in
 the scatterplot, we often engage different color palettes, using a version^[The
-``end = 0.9`` is used to avoid the lightest yellow color in the gradient that is
+``end = 0.7`` is used to avoid the lightest yellow color in the gradient that is
 often hard to see.] of the ``viridis`` colors with
-``scale_color_viridis_d(end = 0.9)``. Using these ggplot additions,
+``scale_color_viridis_d(end = 0.7)``. Using these ggplot additions,
 Figure \@ref(fig:Figure6-7) displays the *Height* and *Hematocrit* relationship
 with information on the sex of the athletes where *sex* was coded 0 for males
 and 1 for females, changing both the symbol and color for the groups -- with a
@@ -635,9 +635,9 @@ aisR2 <- ais %>%
 
 
 aisR2 %>% ggplot(mapping = aes(x = Ht, y = Hc)) +
-  geom_point(aes(shape = Sex, color = Sex)) +
+  geom_point(aes(shape = Sex, color = Sex, size = 2.5)) +
   theme_bw() +
-  scale_color_viridis_d(end = 0.9) +
+  scale_color_viridis_d(end = 0.7) +
   labs(title = "Scatterplot of Height vs Hematocrit by Sex")
 ```
 
@@ -725,9 +725,9 @@ cor(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Females only
 
 ```r
 aisR2 %>% ggplot(mapping = aes(x = Bfat, y = Hc)) +
-  geom_point(aes(shape = Sex, color = Sex)) +
+  geom_point(aes(shape = Sex, color = Sex, size = 2.5)) +
   theme_bw() +
-  scale_color_viridis_d(end = 0.9) +
+  scale_color_viridis_d(end = 0.7) +
   labs(title = "Scatterplot of Body Fat vs Hematocrit by Sex")
 ```
 
@@ -775,9 +775,9 @@ cor(Bfat ~ Ht, data = aisR2 %>% filter(Sex == 1)) #Females only
 
 ```r
 aisR2 %>% ggplot(mapping = aes(x = Ht, y = Bfat)) +
-  geom_point(aes(shape = Sex, color = Sex)) +
+  geom_point(aes(shape = Sex, color = Sex, size = 2.5)) +
   theme_bw() +
-  scale_color_viridis_d(end = 0.9) +
+  scale_color_viridis_d(end = 0.7) +
   labs(title = "Scatterplot of Height vs Body Fat by Sex")
 ```
 
@@ -1696,7 +1696,7 @@ equation -- here between 54 and 60 degrees F seems reasonable.
 
 ```r
 mtfires %>% ggplot(mapping = aes(x = Temperature, y = loghectares)) +
-  geom_point(aes(color = Year)) +
+  geom_point(aes(color = Year, size = 2.5)) +
   geom_smooth(method = "lm") +
   theme_bw() +
   scale_color_viridis() +

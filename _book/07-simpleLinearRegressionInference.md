@@ -1004,7 +1004,7 @@ decreases substantially but does not disappear. In a related study, @Greenwood20
 found evidence for regional trends to earlier spring
 onset using more sophisticated statistical models. The main point here is to
 **be careful when using simple statistical methods repeatedly if you are 
-not accounting for the number of tests performed**.\index{type I error} \index{multiple testing} 
+not accounting for the number of tests performed**.\index{Type I error} \index{multiple testing} 
 
 \indent Along with the confidence interval, we can also plot the estimated model 
 (Figure \@ref(fig:Figure7-7)) using a term-plot from the ``effects`` package
@@ -1182,14 +1182,10 @@ Tobs
 ## 0.05244213
 ```
 
-
-
-(ref:fig7-9) Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at $\pm b_1 = 0.56$ based on the observed estimated slope.
-
-
 ```r
 B <- 1000
 Tstar <- matrix(NA, nrow = B)
+
 for (b in (1:B)){
   Tstar[b] <- lm(meanmax ~ shuffle(Year), data = bozemantemps)$coef[2]
 }
@@ -1199,6 +1195,11 @@ pdata(abs(Tstar), abs(Tobs), lower.tail = F)[[1]]
 ```
 ## [1] 0
 ```
+
+
+
+(ref:fig7-9) Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at $\pm b_1 = 0.56$ based on the observed estimated slope.
+
 
 ```r
 tibble(Tstar) %>%  ggplot(aes(x = Tstar)) + 
@@ -1480,6 +1481,7 @@ plog <- mtfires %>% ggplot(mapping = aes(x = Temperature, y = loghectares)) +
   geom_point() +
   labs(title = "(b)", y = "log-Hectares") +
   theme_bw()
+
 grid.arrange(p, plog, ncol = 2)
 ```
 
@@ -1593,7 +1595,7 @@ model to the tree *height* vs *log(diameter)* versions of the variables
 ufc %>% slice(-168) %>% ggplot(mapping = aes(x = log(dbh.cm), y = log(height.m))) +
   geom_point() +
   geom_smooth(method = "lm") +
-  geom_smooth(col = "red", lwd = 1, se = F) +
+  geom_smooth(col = "red", lwd = 1, se = F, lty = 2) +
   theme_bw() +
   labs(title = "log-tree height vs log-tree diameter")
 ```
@@ -1691,11 +1693,10 @@ this serves as a reminder at how important communication is in group projects
 -- we both said we were working with log-transformations and didn't know that we
 defaulted to different bases. 
 
-------------------------------------------------------------
-Generally, in statistics, it's safe to assume
-that everything is log base *e* unless otherwise specified. 
-------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------------------------
+ Generally, in statistics, it's safe to assume that everything is log base *e* unless otherwise specified.
+-----------------------------------------------------------------------------------------------------------
+ 
 \sectionmark{Transformations part II: Impacts on SLR interpretations}
 
 ## Transformations part II: Impacts on SLR interpretations: log(y), log(x), & both log(y) & log(x)	{#section7-6}
@@ -1714,7 +1715,7 @@ back to the original scale of the variables. It ends up that
 depending on whether the *log* was applied to the response variable, the
 explanatory variable, or both.
 
-\newpage
+<!-- \newpage -->
 
 **Scenario 1: log(y) vs x model:**
 
@@ -2245,6 +2246,8 @@ confidence interval and degrees of freedom.
 Note that elements returned 
 are labeled as ``$fit``, ``$se.fit``, etc. and provide some of the information to calculate CIs or PIs "by hand".
 
+\newpage
+
 
 ```r
 predict(m1, newdata = tibble(Beers = 8), se.fit = T)
@@ -2440,7 +2443,12 @@ modelresB <- bind_cols(beerf = tibble(beerf), BBCI, BBPI %>% select(-fit))
 # Rename CI and PI limits to have more explicit column names:
 modelresB <- modelresB %>% rename(lwr_CI = lwr...3, upr_CI = upr...4, 
                                   lwr_PI = lwr...5, upr_PI = upr...6)
+```
 
+\newpage
+
+
+```r
 modelresB %>% ggplot() + 
   geom_line(aes(x = beerf, y = fit), lwd = 1) +
   geom_ribbon(aes(x = beerf, ymin = lwr_CI, ymax = upr_CI), alpha = .4, 
@@ -2566,7 +2574,7 @@ Note that up to 2014, no values of this response had been observed above 60$^\ci
 persists. It is easy to criticize the use of this model for 2050 because of its extreme amount
 of extrapolation. 
 
-\newpage
+<!-- \newpage -->
 
 ## Chapter summary {#section7-8}
 
@@ -2610,7 +2618,7 @@ variables, especially when dealing with transformations, as this can lead to
 big changes in the results depending on which scale (original or transformed)
 the results are being interpreted on. 
 
-\newpage
+<!-- \newpage -->
 
 ## Summary of important R code {#section7-9}
 
@@ -2690,7 +2698,7 @@ interval = "prediction")**
     by the sample size -- 2.
     \index{\texttt{qt()}|textbf}
    
-\newpage
+<!-- \newpage -->
 
 ## Practice problems	{#section7-10}
 

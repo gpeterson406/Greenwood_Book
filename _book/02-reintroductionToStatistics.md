@@ -375,19 +375,6 @@ either display and will rarely make both together. \index{\texttt{geom\_density(
 (ref:fig2-2) Histogram (density scaled), density curve, and rug plot of Distance responses.
 
 
-
-```r
-set.seed(555)
-dd %>% ggplot(mapping = aes(x = Distance)) +
-  geom_histogram(bins = 20, fill = "grey", aes(y = ..density..)) +
-  geom_density(fill = "purple", alpha = 0.1) + 
-  geom_rug() + 
-  theme_bw() +
-  labs(title = "Plot of Passing Distances",
-       x = "Distance (cm)",
-       y = "Density")
-```
-
 <div class="figure" style="text-align: center">
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-2-1.png" alt="(ref:fig2-2)" width="75%" />
 <p class="caption">(\#fig:Figure2-2)(ref:fig2-2)</p>
@@ -489,7 +476,7 @@ for the type of confidence interval needs to be specified with `inf.method = "ci
 <p class="caption">(\#fig:Figure2-4)(ref:fig2-4)</p>
 </div>
 
-\newpage
+<!-- \newpage -->
 
 
 ```r
@@ -533,7 +520,7 @@ sd(Distance ~ Condition, data = dd)
 ## 29.86954 29.63166 29.03384 29.03812 29.73662 31.23684 30.60059
 ```
 
-\newpage
+<!-- \newpage -->
 
 We can also use the ``favstats`` function to get those summaries and others by groups.
 
@@ -670,7 +657,7 @@ boxplot(Distance ~ Condition, data = ddsub)
 pirateplot(Distance ~ Condition, data = ddsub, inf.method = "ci", inf.disp = "line")
 ```
 
-\newpage
+<!-- \newpage -->
 
 \indent The two-sample mean techniques you learned in your previous course all 
 start with comparing the means the two groups. We can obtain the two 
@@ -1113,6 +1100,8 @@ responses and the ``coef(lmP)[2]`` extracts the estimated difference in the two 
 data set. For a single permutation, the combination of shuffling ``Condition`` and 
 finding the difference in the means, storing it in a variable called ``Ts`` is:
 
+\newpage
+
 
 ```r
 lmP <- lm(Distance ~ shuffle(Condition), data = dsample)
@@ -1183,7 +1172,7 @@ for (b in (1:B)){
 # Print out the results stored in Tstar with the next line of code
 ```
 
-<!-- \newpage -->
+\newpage
 
 
 ```r
@@ -1233,6 +1222,8 @@ for (b in (1:B)){
 }
 ```
 
+\newpage
+
 \small
 
 
@@ -1242,14 +1233,11 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
   geom_density(aes(y = ..scaled..)) +
   theme_bw() +
   labs(y = "Density") +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
-           geom = "text", vjust = -0.75)
-```
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text", vjust = -0.75)
 
-
-```r
 favstats(Tstar)
 ```
+
 
 ```
 ##        min        Q1     median  Q3      max       mean       sd    n missing
@@ -1294,12 +1282,13 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
   theme_bw() +
   labs(y = "Density") +
   geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
-  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, 
-           geom = "text", vjust = -0.75)
+  stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15, geom = "text", vjust = -0.75)
 ```
 
 
 \normalsize
+
+\newpage
 
 Second, we can calculate the exact number of permuted results that were as 
 small or smaller 
@@ -1514,6 +1503,8 @@ estimated results (with a measure of precision of the estimated difference). We 
 <img src="chapter2_files/pvalueStrengths.png" alt="(ref:fig2-11)" width="100%" />
 <p class="caption">(\#fig:Figure2-11)(ref:fig2-11)</p>
 </div>
+
+\newpage
 
 ## Hypothesis testing (general) {#section2-5}
 
@@ -1747,15 +1738,15 @@ is a difference in the true means between the groups when none really exists
 in the population. In the courtroom setting, this is like falsely finding 
 someone guilty. We don't want to do this very often, so we use small values 
 of the significance level, allowing us to control the rate of Type I errors 
-at $\alpha$. \index{type I error} We also have to worry about **Type II errors**, \index{Type II error} which are failing
+at $\alpha$. \index{Type I error} We also have to worry about **Type II errors**, \index{Type II error} which are failing
 to reject the null hypothesis when it's false. In a courtroom, this is the same
 as failing to convict a truly guilty person. This most often occurs due to a 
 lack of evidence that could be due to a small sample size or merely just an 
 unusual sample from the population. You can use the Table \@ref(tab:Table2-2) 
 to help you remember all the possibilities. 
 
-\index{type I error} 
-\index{type II error} 
+\index{Type I error} 
+\index{Type II error} 
 
 (ref:tab2-2) Table of decisions and truth scenarios in a hypothesis testing situation. But we never know the truth in a real situation. 
 
@@ -1774,14 +1765,14 @@ Table: (\#tab:Table2-2) (ref:tab2-2)
 interest in studying the rate or
 probability of Type I and II errors. The probability of a Type I error was 
 defined previously as $\alpha$, the significance level. The ***power*** of a
-procedure is the probability of rejecting the null hypothesis when it is false. \index{power} \index{type I error} \index{type II error}
+procedure is the probability of rejecting the null hypothesis when it is false. \index{power} \index{Type I error} \index{Type II error}
 Power is defined as
 
 $$\text{Power} = 1 - \text{Probability(Type II error) } = 
 \text{Probability(Reject } H_0 | H_0 \text{ is false),}$$
 
-\index{type I error}
-\index{type II error}
+\index{Type I error}
+\index{Type II error}
 
 or, in words, the probability of detecting a difference when it actually
 exists. We want to use a statistical procedure that controls the Type I error 
@@ -1956,6 +1947,7 @@ be surprised if your results vary if you use different random number seeds.
 <p class="caption">(\#fig:Figure2-12)(ref:fig2-12)</p>
 </div>
 
+\newpage
 
 
 ```r
@@ -2237,7 +2229,7 @@ pdata(abs(Tstar), abs(Tobs), lower.tail = F)
 <p class="caption">(\#fig:Figure2-15)(ref:fig2-15)</p>
 </div>
 
-<!-- \newpage -->
+\newpage
 
 ## Second example of permutation tests {#section2-7}
 
@@ -2438,7 +2430,7 @@ using the permutation \index{permutation} results for the grade data:
     section discusses confidence intervals that we could add to this result to
     quantify the uncertainty in this estimate since an estimate without any idea of its precision is only a partial result. This difference of 0.25 on a GPA scale does not seem like a very large difference in the means even though we were able to detect a difference in the groups.
 
-\newpage
+<!-- \newpage -->
 
 6. Scope of inference: \index{scope of inference}
 
@@ -2446,6 +2438,8 @@ using the permutation \index{permutation} results for the grade data:
     difference in gender causes the difference in mean GPA.  Because it was 
     not a random sample from a larger population (they were asked to participate but not required to and not all the students did participate), our inferences only pertain 
     the Intermediate Statistics students that responded to the survey in that semester. \index{random sampling}
+
+\newpage
 
 \sectionmark{Reproducibility Crisis}
 
@@ -2579,6 +2573,13 @@ diff10[pval10 == min(pval10)] #Estimated difference for data set with smallest p
 
 (ref:fig2-19) Pirate-plot of a simulation study results. Panel (a) contains the *B* = 1,000 p-values and (b) contains the *B* = 1,000 estimated differences in the means. Note that the estimated means and confidence intervals normally present in pirate-plots are suppressed here with `inf.f.o = 0, inf.b.o = 0, avg.line.o = 0` because these plots are being used to summarize simulation results instead of an original data set. 
 
+<!-- \newpage -->
+
+<div class="figure" style="text-align: center">
+<img src="02-reintroductionToStatistics_files/figure-html/Figure2-19-1.png" alt="(ref:fig2-19)" width="75%" />
+<p class="caption">(\#fig:Figure2-19)(ref:fig2-19)</p>
+</div>
+
 \newpage
 
 
@@ -2621,12 +2622,6 @@ abline(h = 0.05, lwd = 2, col = "red", lty = 2)
 pirateplot(Diffmeans_results ~ Scenario, data = results, inf.f.o = 0, inf.b.o = 0,
            avg.line.o = 0, main = "(b) Estimated difference in mean results")
 ```
-
-<div class="figure" style="text-align: center">
-<img src="02-reintroductionToStatistics_files/figure-html/Figure2-19-1.png" alt="(ref:fig2-19)" width="75%" />
-<p class="caption">(\#fig:Figure2-19)(ref:fig2-19)</p>
-</div>
-
 
 
 
@@ -2708,7 +2703,7 @@ second data set. This also has problems but the only way to develop an understan
 
 \indent The following code repeats the simulation study but with the p-values adjusted for multiple testing within each simulation but does not repeat tracking the estimated differences in the means as this is not impacted by the p-value adjustment process. The `p.adjust` function provides Bonferroni corrections to a vector of p-values (here ten are collected together) using the `bonferroni` method option (`p.adjust(pval10, method = "bonferroni")`) and then stores those results. Figure \@ref(fig:Figure2-21) shows the results for the first result and minimum result again, but now with these corrections incorporated. The plots may look a bit odd, but in the first data set, so many of the first data sets had p-values that were "large" that they were adjusted to have p-values of 1 (so no evidence against the null once we account for multiple testing). The distribution for the minimum p-value results with adjustment more closely resembles the distribution of the first result p-values from Figure \@ref(fig:Figure2-19), except for some minor clumping up at adjusted p-values of 1. 
 
-\newpage
+<!-- \newpage -->
 
 (ref:fig2-21) Pirate-plot of a simulation study results of p-values with Bonferroni correction. 
 
@@ -2793,7 +2788,7 @@ pdata(pvalue_results ~ Scenario, data = results, .05, lower.tail = T)
 
 Up to this point the focus has been on hypotheses, p-values, and estimates of the size of differences. But so far this has not explored inference techniques for the size of the difference. ***Confidence intervals*** provide an interval where we are __% ***confident*** that the true parameter lies. \index{confidence interval} The idea of "confidence" is that if we repeated randomly sampling from the same population and made a similar confidence interval, the collection of all these confidence intervals would contain the true parameter at the specified confidence level (usually 95%). We only get to make one interval and so it either has the true parameter in it or not, and we don't know the truth in real situations. 
 
-\newpage
+<!-- \newpage -->
 
 \indent Confidence intervals can be constructed with parametric \index{parametric} and a 
 nonparametric approaches. The nonparametric \index{nonparametric}
@@ -2843,6 +2838,7 @@ times, and the 4^th^, 5^th^, 6^th^, and many others
 were not sampled at all. Bootstrap sampling thus picks some observations 
 multiple times and to do that it has to ignore some^[In any bootstrap sample, about 1/3 of the observations are not used at all.] observations. 
 
+\newpage
 
 
 ```r
@@ -2873,7 +2869,7 @@ in the new data set is $1/30$ and the expected or mean number of appearances we
 expect to see for an observation is the number of random draws times the probably 
 of selection on each so $30*1/30 = 1$. So we expect to see each observation in the bootstrap sample on average once but random variability in the samples then creates the possibility of seeing it more than once or not all. 
 
-\newpage
+<!-- \newpage -->
 
 
 ```r
@@ -3033,10 +3029,10 @@ qdata(Tstar, 0.975)
 ```
 
 These results tell us that the 2.5^th^ percentile of the bootstrap
-distribution is at -50.01 cm and the 97.5^th^ percentile is at -2.249 cm. We can combine these results to provide a 95% confidence for 
-$\mu_\text{commute}-\mu_\text{casaual}$ that is between -50 and -2.25 cm. This interval is interpreted as with any confidence interval, that we are 95% confident that the difference 
+distribution is at -50.006 cm and the 97.5^th^ percentile is at -2.249 cm. We can combine these results to provide a 95% confidence for 
+$\mu_\text{commute}-\mu_\text{casaual}$ that is between -50.01 and -2.25 cm. This interval is interpreted as with any confidence interval, that we are 95% confident that the difference 
 in the true mean distances (*commute* minus *casual* groups) is 
-between -50 and -2.25 cm. Or we can switch the direction of the comparison and say that we are 95% confident that the difference in the true means is between 2.25 and 50 cm (*casual* minus *commute*). This result would be incorporated into step 5 of the hypothesis testing protocol to accompany discussing the size of the estimated difference in the groups or used as a result of interest in itself. Both percentiles can be obtained in one line 
+between -50.01 and -2.25 cm. Or we can switch the direction of the comparison and say that we are 95% confident that the difference in the true means is between 2.25 and 50.01 cm (*casual* minus *commute*). This result would be incorporated into step 5 of the hypothesis testing protocol to accompany discussing the size of the estimated difference in the groups or used as a result of interest in itself. Both percentiles can be obtained in one line 
 of code using:
 
 
@@ -3112,7 +3108,7 @@ in later chapters. The parametric confidence interval is called the
 assumes that the populations 
 being sampled from are normally distributed instead of just that they have similar shapes in the bootstrap approach. The parametric method leads to using a $t$-distribution
 \index{@$t$-distribution}
-to form the interval with the degrees of freedom for the $t$-distribution of $n-2$ although we can obtain it without direct reference to this distribution using the ``confint`` function applied to the ``lm`` model. This function generates two confidence intervals and the one in the second row is the one we are interested as it pertains to the difference in the true means of the two groups. The parametric 95% confidence interval here is from -51.6 to -0.26 cm which is a bit different in width from the nonparametric bootstrap interval that was from -50 and -2.25 cm. 
+to form the interval with the degrees of freedom for the $t$-distribution of $n-2$ although we can obtain it without direct reference to this distribution using the ``confint`` function applied to the ``lm`` model. This function generates two confidence intervals and the one in the second row is the one we are interested as it pertains to the difference in the true means of the two groups. The parametric 95% confidence interval here is from -51.6 to -0.26 cm which is a bit different in width from the nonparametric bootstrap interval that was from -50.01 and -2.25 cm. 
 
 
 ```r
@@ -3129,7 +3125,7 @@ confint(lm1)
 intervals and the assumptions differ. Specifically, the bootstrap interval can
 tolerate different distribution shapes other than normal and still provide 
 intervals that work well^[When hypothesis tests "work well" they have high
-power \index{power} to detect differences while having Type I error rates \index{type I error} that are close
+power \index{power} to detect differences while having Type I error rates \index{Type I error} that are close
 to what we choose *a priori*. When confidence intervals "work well", they contain
 the true parameter value in repeated random samples at around the selected
 confidence level, which is called the ***coverage rate***. \index{coverage rate}]. The other assumptions
@@ -3246,7 +3242,7 @@ sp
 
 Then calculate the confidence interval that ``confint`` provided using:
 
-\newpage
+<!-- \newpage -->
 
 
 ```r
@@ -3299,19 +3295,23 @@ confint(lm_all) #Parametric 95% CI
 ## Conditioncommute  -5.891248  -0.1149621
 ```
 
-The bootstrap 95% confidence interval is from -5.82 to -0.076. With this large data set, the differences between parametric and permutation approaches decrease and they essentially equivalent here. The bootstrap distribution (not displayed) for the differences in the sample means is relatively symmetric and centered around the estimated difference of -3 cm. So using all the observations we would be 95% confident that the true mean difference in overtake distances (*commute* - *casual*) is between -5.89 and -0.11 cm, providing additional information about the estimated difference in the sample means of -3 cm.
-
-
-```r
-Tobs <- coef(lm_all)[2]; Tobs
-```
 
 ```
 ## Conditioncommute 
 ##        -3.003105
 ```
 
+```
+##        2.5%       97.5% 
+## -5.81626474 -0.07606663
+```
+
+The bootstrap 95% confidence interval is from -5.816 to -0.076. With this large data set, the differences between parametric and permutation approaches decrease and they essentially equivalent here. The bootstrap distribution (not displayed) for the differences in the sample means is relatively symmetric and centered around the estimated difference of 6 cm. So using all the observations we would be 95% confident that the true mean difference in overtake distances (*commute* - *casual*) is between -5.82 and -0.08 cm, providing additional information about the estimated difference in the sample means of 6 cm.
+
+
 ```r
+Tobs <- coef(lm_all)[2]; Tobs
+
 B <- 1000
 set.seed(1234)
 Tstar <- matrix(NA, nrow = B)
@@ -3321,7 +3321,7 @@ for (b in (1:B)){
 }
 ```
 
-\newpage
+<!-- \newpage -->
 
 
 ```r
@@ -3375,7 +3375,7 @@ qt(0.975, df = 77)*sp*sqrt(1/37 + 1/42)
 ## [1] 0.1847982
 ```
 
-
+\newpage
 
 All together, the 95% confidence interval is:
 
@@ -3485,7 +3485,7 @@ the width of the interval?
 All the general results you learned before about impacts to widths of CIs hold 
 in this situation whether we are considering the parametric or bootstrap methods...
 
-\newpage
+<!-- \newpage -->
 
 \indent To finish this example, we will generate the comparable bootstrap 90%
 confidence interval using the bootstrap distribution in 
@@ -3523,7 +3523,8 @@ quantiles
 ## -0.39290566 -0.09622185
 ```
 
-The output tells us that the 90% confidence interval is from -0.393 to -0.096 GPA
+The output tells us that the 90% confidence interval is from -0.393
+to -0.096 GPA
 points. The bootstrap distribution with the observed difference in the sample 
 means and these cut-offs is displayed in Figure \@ref(fig:Figure2-26) using 
 this code:
@@ -3554,12 +3555,19 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
 In the previous output, the parametric 90% confidence interval is from 
  -0.404 to -0.095, suggesting similar results again from the two approaches. Based on 
 the bootstrap CI, we can say that we are 90% confident that the difference in 
-the true mean GPAs for STAT 217 students is between -0.393 to -0.094 GPA points 
+the true mean GPAs for STAT 217 students is between -0.393
+to -0.096 GPA points 
 (male minus females). This result would be usefully added to step 5 in the 6+ steps of the hypothesis testing protocol with an updated result of: 
 
 5. Report and discuss an estimate of the size of the differences, with confidence interval(s) if appropriate. \index{size interpretation}
 
-    * Females were estimated to have a higher mean GPA by 0.25 points (*90% bootstrap confidence interval: 0.094 to 0.393*). This difference of 0.25 on a GPA scale does not seem like a very large difference in the means even though we were able to detect a difference in the groups.
+    * Females were estimated to have a higher mean GPA by 
+    0.3 points (*90% 
+    bootstrap confidence interval: 0.096 to 
+    0.393*). This difference of 
+    0.3 on a GPA scale does not 
+    seem like a very large difference in the means even though we were able to 
+    detect a difference in the groups.
 
 \indent Throughout the text, pay attention to the distinctions between parameters 
 and statistics, focusing on the differences between estimates based on the sample 
@@ -3584,7 +3592,7 @@ they have less restrictive assumptions but can still make assumptions and can ha
 \index{assumptions}
 
 \indent When the noted conditions are violated in a hypothesis testing situation, the 
-Type I error \index{type I error} rates can be inflated, meaning that we reject the null hypothesis 
+Type I error \index{Type I error} rates can be inflated, meaning that we reject the null hypothesis 
 more often than we have allowed to occur by chance. Specifically, we could have 
 a situation where our assumed 5% significance level test might actually reject 
 the null when it is true 20% of the time. If this is occurring, we call a 
@@ -3617,9 +3625,10 @@ to help us assess how and how much those validity conditions are violated.
 
 * $t_{15} = 0.75$, p-value = 0.232: 
 
-    There is weak evidence against the null hypothesis of no difference in the true means of the response between A and B ($t_{15} = 1.75$, p-value = 0.0503), so we would conclude that there is likely not a difference in the true means.
+    There is weak evidence against the null hypothesis of no difference in the true means of the response between A and B ($t_{15} = 0.75$, p-value = 0.232), so we would conclude that there is likely not a difference in the true means.
 
 The last conclusion also suggests an action to take when we encounter weak evidence against null hypotheses -- we could potentially model the responses using the null model since we couldn't prove it was wrong. We would take this action knowing that we could be wrong, but the "simpler" model that the null hypothesis suggests is often an attractive option in very complex models, such as what we are going to encounter in the coming chapters, especially in Chapters \@ref(chapter5) and \@ref(chapter8). 
+
 
 ## Summary of important R code {#section2-12}
 
@@ -3708,13 +3717,15 @@ data = <font color='red'>DATASETNAME</font>), level = 0.95)**
     * Code to run a ``for`` loop to generate 1000 bootstrapped versions of the 
     data set using the ``resample``  function and keep track of the results of 
     the statistic in ``Tstar``. 
+    
+\newpage
 
 * **qdata(Tstar, c(0.025, 0.975))**
 
     * Provides the values that delineate the middle 95% of the results in the
     bootstrap distribution (``Tstar``). \index{\texttt{qdata()}|textbf}
 
-\newpage
+<!-- \newpage -->
 
 ## Practice problems {#section2-13}
 

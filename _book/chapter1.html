@@ -381,7 +381,7 @@ given data set, the final step involves assessing the scope of inference
 types of conclusions that are appropriate based on the design of the study.</p>
 
 <div class="figure" style="text-align: center"><span id="fig:Figure1-1"></span>
-<img src="chapter1_files/image002.png" alt="Flow chart of methods." width="75%" />
+<img src="chapter1_files/decisiontree.jpg" alt="Flow chart of methods." width="75%" />
 <p class="caption">
 Figure 1.1: Flow chart of methods.
 </p>
@@ -541,7 +541,7 @@ for us, but you will only interact with it once. Go to <a href="http://cran.rstu
 and click on the “<strong>Download R for…</strong>” button that
 corresponds to your operating system. On the next page, click on “<strong>base</strong>” and then it will take you
 to a screen to download the most current version of R that is compiled for your
-operating system, something like “<strong>Download R 4.1.0 for Windows</strong>.” Click on that link and then open
+operating system, something like “<strong>Download R 4.1.1 for Windows</strong>.” Click on that link and then open
 the file you downloaded. You will need to select your preferred language (choose English so your instructor can help you), then hit “<strong>Next</strong>”
 until it starts to unpack and install the program (all the base settings will be fine). After you hit “<strong>Finish</strong>” you will not do anything further with R directly.</p>
 <p>Second, you need to download RStudio. It is an enhanced interface that will make interacting with
@@ -1133,6 +1133,8 @@ histogram of the <code>RunTime</code> variable made using the <code>+ geom_histo
 
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chapter1.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb23-2"><a href="chapter1.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:Figure1-10"></span>
 <img src="01-preface_files/figure-html/Figure1-10-1.png" alt="Default histogram of Run Times using ggplot." width="75%" />
 <p class="caption">
@@ -1155,8 +1157,8 @@ Figure <a href="chapter1.html#fig:Figure1-11">1.11</a>.</p>
 Figure 1.11: Histogram of Run Times using <code>ggplot</code> with 8 bins.
 </p>
 </div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="chapter1.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> </span>
-<span id="cb24-2"><a href="chapter1.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chapter1.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> </span>
+<span id="cb25-2"><a href="chapter1.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>)</span></code></pre></div>
 <div style="page-break-after: always;"></div>
 <p>The following chapters will explore further modifications for these
 plots, but there are a couple of additions to highlight. The first is that we
@@ -1184,11 +1186,11 @@ options there).
 Figure 1.12: Histogram with boxplot and rug of Run Times using <code>ggplot</code> with modified colors and theme.
 </p>
 </div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chapter1.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> </span>
-<span id="cb25-2"><a href="chapter1.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">bins =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
-<span id="cb25-3"><a href="chapter1.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb25-4"><a href="chapter1.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rug</span>(<span class="at">color =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb25-5"><a href="chapter1.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chapter1.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> treadmill, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> RunTime)) <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="chapter1.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">bins =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
+<span id="cb26-3"><a href="chapter1.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color =</span> <span class="st">&quot;tomato&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb26-4"><a href="chapter1.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rug</span>(<span class="at">color =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb26-5"><a href="chapter1.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="section1-6" class="section level2" number="1.6">
@@ -1330,7 +1332,7 @@ ages does this study pertain to?</p>
 kilograms and you might prefer to see them in pounds. The conversion is
 <code>lbs = 2.205*kgs</code>. Create a new variable in the <code>treadmill</code>
 tibble called <em>BWlb</em> using this code:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chapter1.html#cb26-1" aria-hidden="true" tabindex="-1"></a>treadmill<span class="sc">$</span>BWlb <span class="ot">&lt;-</span> <span class="fl">2.205</span><span class="sc">*</span>treadmill<span class="sc">$</span>BodyWeight</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chapter1.html#cb27-1" aria-hidden="true" tabindex="-1"></a>treadmill<span class="sc">$</span>BWlb <span class="ot">&lt;-</span> <span class="fl">2.205</span><span class="sc">*</span>treadmill<span class="sc">$</span>BodyWeight</span></code></pre></div>
 <p>and find the mean and SD of the new variable (<em>BWlb</em>).</p>
 <p>1.6. Make histograms and boxplots of
 the original <em>BodyWeight</em> and new <em>BWlb</em> variables, both using base R plots and

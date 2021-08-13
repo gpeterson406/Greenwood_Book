@@ -522,9 +522,16 @@ election2 <- election %>%
   select(PARTY, VOTE3) %>%
   mutate(VOTEF = factor(VOTE3)) %>%
   drop_na()
+
 levels(election2$VOTEF) <- c("Gore", "Bush", "Other") #Replace 1,2,3 with meaningful names
 levels(election2$VOTEF) #Check new names of levels in VOTEF
+
 electable <- tally(~ PARTY + VOTEF, data = election2) #Contingency table
+```
+
+\newpage
+
+```{r}
 electable
 ```
 
@@ -591,6 +598,8 @@ have evidence of a relationship, there just needs to be a pattern of variation
 across the plot of some sort but it does not need to follow such an easily
 described pattern, especially when the categorical variables do not contain
 natural ordering. 
+
+\newpage
 
 \indent The mosaic plots are best made on the tables created by the ``tally`` 
 function from a table that just contains the counts (**no totals**): 
@@ -787,7 +796,7 @@ $X^2$ statistic in a table format, allowing a simple way to finally
 calculate the statistic without losing any information. For **each cell**
 we need to find 
 
-$$(\text{observed}-\text{expected})/\sqrt{\text{expected}}),$$
+$$(\text{observed}-\text{expected})/\sqrt{\text{expected}},$$
 
 **square them**, and then we need to add them **all** up. In the 
 current example, there are 6 cells to add up ($R = 2$ times $C = 3$), shown 
@@ -1317,7 +1326,7 @@ tableplot(election2, select = c(VOTEF, PARTY, EDUC, GENDER), sort = 1,
 \indent Focusing on the party affiliation and voting results, the appropriate 
 analysis is with
 an Independence test because a single random sample was obtained from the population. 
-The total sample size for the complete responses was $N = $ 1,149 
+The total sample size for the complete responses was $N =$ 1,149 
 (out of the original 1,785 subjects). Because this is an Independence test,
 the mosaic plot is the appropriate display of the results, 
 which was provided in Figure \@ref(fig:Figure5-5). 

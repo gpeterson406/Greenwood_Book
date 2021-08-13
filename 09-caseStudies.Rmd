@@ -983,7 +983,8 @@ levels(epworthdata$Group) <- c("Control" , "Didgeridoo")
 epworthdata %>% 
   ggplot(mapping = aes(x = Time, y = Epworth, group = Subject, color = Group)) +
   geom_point() +
-  geom_line() + theme_bw() + 
+  geom_line() + 
+  theme_bw() + 
   scale_color_colorblind()
 ```
 
@@ -1023,7 +1024,8 @@ epworthdata$SimEpworth <- simulate(lm_int)[[1]]
 epworthdata %>% 
   ggplot(mapping = aes(x = Time, y = SimEpworth, group = Subject, color = Group)) +
   geom_point() +
-  geom_line() + theme_bw() + 
+  geom_line() + 
+  theme_bw() + 
   scale_color_colorblind() +
   labs(title = "Simulated Epworth responses")
 ```

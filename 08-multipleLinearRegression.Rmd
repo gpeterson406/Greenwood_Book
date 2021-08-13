@@ -180,7 +180,7 @@ snotel_s <- read_csv("snotel_s.csv")
 library(GGally)
 # Reorder columns slightly and only plot quantitative variables using "columns = ..."
 snotel_s %>% ggpairs(columns = c(4:6,3)) + 
-   theme_bw()
+  theme_bw()
 ```
 
 It appears that there are many strong linear relationships between the variables,
@@ -2697,7 +2697,8 @@ Headache <- Headache %>% mutate(treatment = factor(treatment),
 Headache %>% ggplot(mapping = aes(x = du1, y = du2, color = treatment, 
                                   shape = treatment)) +
   geom_smooth(method = "lm", se = F) + 
-  geom_point(size = 2.5) + theme_bw() +
+  geom_point(size = 2.5) +
+  theme_bw() +
   scale_color_viridis_d(end = 0.85, option = "inferno") + 
   labs(title = "Scatterplot of Maximum DB tolerance before & 
        after treatment (by treatment)")

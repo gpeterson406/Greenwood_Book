@@ -1203,7 +1203,8 @@ levels(epworthdata$Group) <- c("Control" , "Didgeridoo")
 epworthdata %>% 
   ggplot(mapping = aes(x = Time, y = Epworth, group = Subject, color = Group)) +
   geom_point() +
-  geom_line() + theme_bw() + 
+  geom_line() + 
+  theme_bw() + 
   scale_color_colorblind()
 ```
 

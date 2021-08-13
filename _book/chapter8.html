@@ -393,7 +393,7 @@ some preliminary assessment of the pairwise relationships.</p>
 <div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="chapter8.html#cb711-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
 <span id="cb711-2"><a href="chapter8.html#cb711-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder columns slightly and only plot quantitative variables using &quot;columns = ...&quot;</span></span>
 <span id="cb711-3"><a href="chapter8.html#cb711-3" aria-hidden="true" tabindex="-1"></a>snotel_s <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">3</span>)) <span class="sc">+</span> </span>
-<span id="cb711-4"><a href="chapter8.html#cb711-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_bw</span>()</span></code></pre></div>
+<span id="cb711-4"><a href="chapter8.html#cb711-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:Figure8-1"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-1-1.png" alt="Scatterplot matrix of data from a sample of SNOTEL sites in April on four variables. " width="75%" />
 <p class="caption">
@@ -2873,10 +2873,11 @@ set had set <code>T1</code> as the baseline in the <code>treatment</code> variab
 <span id="cb812-5"><a href="chapter8.html#cb812-5" aria-hidden="true" tabindex="-1"></a>Headache <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> du1, <span class="at">y =</span> du2, <span class="at">color =</span> treatment, </span>
 <span id="cb812-6"><a href="chapter8.html#cb812-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">shape =</span> treatment)) <span class="sc">+</span></span>
 <span id="cb812-7"><a href="chapter8.html#cb812-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span> </span>
-<span id="cb812-8"><a href="chapter8.html#cb812-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb812-9"><a href="chapter8.html#cb812-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.85</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb812-10"><a href="chapter8.html#cb812-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Maximum DB tolerance before &amp; </span></span>
-<span id="cb812-11"><a href="chapter8.html#cb812-11" aria-hidden="true" tabindex="-1"></a><span class="st">       after treatment (by treatment)&quot;</span>)</span></code></pre></div>
+<span id="cb812-8"><a href="chapter8.html#cb812-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb812-9"><a href="chapter8.html#cb812-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb812-10"><a href="chapter8.html#cb812-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.85</span>, <span class="at">option =</span> <span class="st">&quot;inferno&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb812-11"><a href="chapter8.html#cb812-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Maximum DB tolerance before &amp; </span></span>
+<span id="cb812-12"><a href="chapter8.html#cb812-12" aria-hidden="true" tabindex="-1"></a><span class="st">       after treatment (by treatment)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:Figure8-26"></span>
 <img src="08-multipleLinearRegression_files/figure-html/Figure8-26-1.png" alt="Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups)." width="75%" />
 <p class="caption">

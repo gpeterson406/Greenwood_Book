@@ -116,7 +116,7 @@ snotel_s <- read_csv("http://www.math.montana.edu/courses/s217/documents/snotel_
 library(GGally)
 # Reorder columns slightly and only plot quantitative variables using "columns = ..."
 snotel_s %>% ggpairs(columns = c(4:6,3)) + 
-   theme_bw()
+  theme_bw()
 ```
 
 <div class="figure" style="text-align: center">
@@ -3161,7 +3161,8 @@ Headache <- Headache %>% mutate(treatment = factor(treatment),
 Headache %>% ggplot(mapping = aes(x = du1, y = du2, color = treatment, 
                                   shape = treatment)) +
   geom_smooth(method = "lm", se = F) + 
-  geom_point(size = 2.5) + theme_bw() +
+  geom_point(size = 2.5) +
+  theme_bw() +
   scale_color_viridis_d(end = 0.85, option = "inferno") + 
   labs(title = "Scatterplot of Maximum DB tolerance before & 
        after treatment (by treatment)")

@@ -635,7 +635,7 @@ aisR2 <- ais %>%
 
 
 aisR2 %>% ggplot(mapping = aes(x = Ht, y = Hc)) +
-  geom_point(aes(shape = Sex, color = Sex, size = 2.5)) +
+  geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
   labs(title = "Scatterplot of Height vs Hematocrit by Sex")
@@ -725,7 +725,7 @@ cor(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Females only
 
 ```r
 aisR2 %>% ggplot(mapping = aes(x = Bfat, y = Hc)) +
-  geom_point(aes(shape = Sex, color = Sex, size = 2.5)) +
+  geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
   labs(title = "Scatterplot of Body Fat vs Hematocrit by Sex")
@@ -775,7 +775,7 @@ cor(Bfat ~ Ht, data = aisR2 %>% filter(Sex == 1)) #Females only
 
 ```r
 aisR2 %>% ggplot(mapping = aes(x = Ht, y = Bfat)) +
-  geom_point(aes(shape = Sex, color = Sex, size = 2.5)) +
+  geom_point(aes(shape = Sex, color = Sex), size = 2.5) +
   theme_bw() +
   scale_color_viridis_d(end = 0.7) +
   labs(title = "Scatterplot of Height vs Body Fat by Sex")
@@ -1696,7 +1696,7 @@ equation -- here between 54 and 60 degrees F seems reasonable.
 
 ```r
 mtfires %>% ggplot(mapping = aes(x = Temperature, y = loghectares)) +
-  geom_point(aes(color = Year, size = 2.5)) +
+  geom_point(aes(color = Year), size = 2.5) +
   geom_smooth(method = "lm") +
   theme_bw() +
   scale_color_viridis() +

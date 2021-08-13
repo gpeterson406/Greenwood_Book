@@ -2225,6 +2225,8 @@ fully assess the
 potential for trusting the estimated regression models in a couple of our
 examples:
 
+(ref:fig6-22) Full suite of diagnostics plots for *Beer* vs *BAC* data.
+
 * **Beers vs BAC:**
 
     * Quantitative variables condition:
@@ -2248,8 +2250,8 @@ examples:
         ```
         
         <div class="figure" style="text-align: center">
-        <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-22-1.png" alt="Full suite of diagnostics plots for *Beer* vs *BAC* data." width="75%" />
-        <p class="caption">(\#fig:Figure6-22)Full suite of diagnostics plots for *Beer* vs *BAC* data.</p>
+        <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-22-1.png" alt="(ref:fig6-22)" width="75%" />
+        <p class="caption">(\#fig:Figure6-22)(ref:fig6-22)</p>
         </div>
         
     * Linearity, constant variance from Residuals vs Fitted:

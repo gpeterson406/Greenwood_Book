@@ -365,7 +365,7 @@ scale which makes the bar heights adjust so that the proportion of the
 total data set in each bar is represented by the area in each bar 
 (remember that area is height times width). So the height depends on the 
 width of the bars and the total area across all the bars has to be 1. In the 
-``geom_histogram``, its aesthetic is modified using the (criptic^[I admit that there are parts of the logic of using `ggplot` that are confusing to me and this is one of them -- but I learned to plot in R before `ggplot2` and have been growing fonder and fonder of this way of working. Now instead of searching the internet, I will just get to search my book for the code to make this version of the plot.]) code of `(y = ..density..)`. The 
+``geom_histogram``, its aesthetic is modified using the (cryptic^[I admit that there are parts of the logic of using `ggplot` that are confusing to me and this is one of them -- but I learned to plot in R before `ggplot2` and have been growing fonder and fonder of this way of working. Now instead of searching the internet, I will just get to search my book for the code to make this version of the plot.]) code of `(y = ..density..)`. The 
 density curve is added to the histogram using the `geom_density`, producing the result in Figure \@ref(fig:Figure2-2) with 
 added modifications for filling the density curve but using `alpha = 0.1` to make the density curve fill transparent (alpha values range between 0 and 1 with lower values providing more transparency) and in purple (``fill = purple``). You can see how the density curve 
 somewhat matches the histogram bars but deals with the bumps up and down 

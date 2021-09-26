@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Chi-square tests | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 5 Chi-square tests | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Chi-square tests | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="chapter4.html"/>
 <link rel="next" href="chapter6.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -378,7 +378,7 @@ the data are sorted on and is what we want here – to start with sorting observ
 <span id="cb404-9"><a href="chapter5.html#cb404-9" aria-hidden="true" tabindex="-1"></a><span class="co"># options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) </span></span>
 <span id="cb404-10"><a href="chapter5.html#cb404-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tableplot</span>(Arthritis, <span class="at">select =</span> <span class="fu">c</span>(Treatment, Improved, Sex, Age), <span class="at">pals =</span> <span class="fu">list</span>(<span class="st">&quot;BrBG&quot;</span>), </span>
 <span id="cb404-11"><a href="chapter5.html#cb404-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">sample =</span> F, <span class="at">colorNA_num =</span> <span class="st">&quot;orange&quot;</span>, <span class="at">numMode =</span> <span class="st">&quot;MB-ML&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-1"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-1-1.png" alt="Tableplot of the arthritis data set." width="75%" />
 <p class="caption">
 Figure 5.1: Tableplot of the arthritis data set.
@@ -568,7 +568,7 @@ function with a <code>y ~ x</code> formula:</p>
 <span id="cb409-3"><a href="chapter5.html#cb409-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mgp =</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">0</span>)) <span class="co">#Adds space to labels, order is axis label, tick label, tick mark</span></span>
 <span id="cb409-4"><a href="chapter5.html#cb409-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Improved <span class="sc">~</span> Treatment, <span class="at">data =</span> Arthritis,</span>
 <span id="cb409-5"><a href="chapter5.html#cb409-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Stacked Bar Chart of Arthritis Data&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-2"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-2-1.png" alt="Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The lightest shading is for “none,” medium shading for “some,” and the darkest shading for “marked,” as labeled on the y-axis." width="75%" />
 <p class="caption">
 Figure 5.2: Stacked bar chart of Arthritis data. The left bar is for the Placebo group and the right bar is for the Treated group. The width of the bars is based on relative size of each group and the portion of the total height of each shaded area is the proportion of that group in each category. The lightest shading is for “none,” medium shading for “some,” and the darkest shading for “marked,” as labeled on the y-axis.
@@ -627,7 +627,7 @@ a diagram of the
 data collection processes and can help you to identify the appropriate analysis
 situation.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-3"></span>
 <img src="chapter5_files/image027.png" alt="Diagram of the scenarios involved in Homogeneity and Independence tests. Homogeneity testing involves R random samples or subjects assigned to R groups. Independence testing involves a single random sample and measurements on two categorical variables." width="75%" />
 <p class="caption">
 Figure 5.3: Diagram of the scenarios involved in Homogeneity and Independence tests. Homogeneity testing involves R random samples or subjects assigned to R groups. Independence testing involves a single random sample and measurements on two categorical variables.
@@ -766,7 +766,7 @@ reproduce words, equivalently, we can say:</p>
 <p>To make this concrete, consider what the proportions could look like if they satisfied
 the null hypothesis for the <em>Arthritis</em> example, as displayed in Figure <a href="chapter5.html#fig:Figure5-4">5.4</a>.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-4"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-4-1.png" alt="Plot of one way that the Arthritis proportions could have been if the null hypothesis had been true." width="75%" />
 <p class="caption">
 Figure 5.4: Plot of one way that the Arthritis proportions could have been if the null hypothesis had been true.
@@ -938,7 +938,7 @@ function from a table that just contains the counts (<strong>no totals</strong>)
 <div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="chapter5.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Makes a mosaic plot where areas are related to the proportion of</span></span>
 <span id="cb415-2"><a href="chapter5.html#cb415-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the total in the table</span></span>
 <span id="cb415-3"><a href="chapter5.html#cb415-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(electable, <span class="at">main =</span> <span class="st">&quot;Mosaic plot of observed results&quot;</span>) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-5"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-5-1.png" alt="Mosaic plot of the 2000 election data comparing party affiliation and voting results." width="75%" />
 <p class="caption">
 Figure 5.5: Mosaic plot of the 2000 election data comparing party affiliation and voting results.
@@ -963,7 +963,7 @@ predict the voting response and that is not the case in
 Figure <a href="chapter5.html#fig:Figure5-6">5.6</a> but was in certain places in
 Figure <a href="chapter5.html#fig:Figure5-5">5.5</a>.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-6"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-6-1.png" alt="Mosaic plot of what the 2000 election data would look like if the null hypothesis of no relationship were true." width="75%" />
 <p class="caption">
 Figure 5.6: Mosaic plot of what the 2000 election data would look like if the null hypothesis of no relationship were true.
@@ -1042,7 +1042,7 @@ row <span class="math inline">\(r\)</span> and column <span class="math inline">
 expected cell counts using this formula for all 6 cells in the <span class="math inline">\(2\times 3\)</span>
 table.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-7"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-7-1.png" alt="Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study." width="75%" />
 <p class="caption">
 Figure 5.7: Stacked bar chart that could occur if the null hypothesis were true for the Arthritis study.
@@ -1232,7 +1232,7 @@ values are “far apart,” then we should find evidence against the null. It is
 helpful to work through some examples to be able to understand how the <span class="math inline">\(X^2\)</span>
 statistic “measures” differences between observed and expected.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-8"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-8-1.png" alt="Stacked bar charts of four permuted Arthritis data sets that produced \(X^2\) between 0.62 and 2.38." width="75%" />
 <p class="caption">
 Figure 5.8: Stacked bar charts of four permuted Arthritis data sets that produced <span class="math inline">\(X^2\)</span> between 0.62 and 2.38.
@@ -1293,7 +1293,7 @@ provided to <code>chisq.test</code> to analyze. We extract the
 <span id="cb436-6"><a href="chapter5.html#cb436-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb436-7"><a href="chapter5.html#cb436-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>,</span>
 <span id="cb436-8"><a href="chapter5.html#cb436-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-9"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-9-1.png" alt="Permutation distribution for the \(X^2\) statistic for the Arthritis data with an observed \(X^2\) of 13.1 (bold, vertical line)." width="75%" />
 <p class="caption">
 Figure 5.9: Permutation distribution for the <span class="math inline">\(X^2\)</span> statistic for the Arthritis data with an observed <span class="math inline">\(X^2\)</span> of 13.1 (bold, vertical line).
@@ -1369,7 +1369,7 @@ the expected cell counts using <code>chisq.test(...)$expected</code>.</p>
 the <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution to provide an accurate p-value
 since the smallest expected cell count is 6.833 (so all expected counts are larger than 5).</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-10"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-10-1.png" alt="\(\boldsymbol{\chi^2}\)-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line." width="75%" />
 <p class="caption">
 Figure 5.10: <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with two degrees of freedom with the observed statistic of 13.1 indicated with a vertical line.
@@ -1419,7 +1419,7 @@ say about the effectiveness of the arthritis medication? It seems that there is 
 of patients getting improvement (<em>Some</em> or <em>Marked</em>). If the differences
 “looked” smaller, even with a small p-value you<a href="#fn105" class="footnote-ref" id="fnref105"><sup>105</sup></a> might not recommend someone take the drug…</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-11"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-11"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-11-1.png" alt="Stacked bar chart of the Arthritis data comparing Treated and Placebo." width="75%" />
 <p class="caption">
 Figure 5.11: Stacked bar chart of the Arthritis data comparing <em>Treated</em> and <em>Placebo</em>.
@@ -1467,7 +1467,7 @@ of results are shown for the Arthritis data table:</p>
 ## Treatment        None        Some      Marked
 ##   Placebo  1.61749160 -0.06225728 -1.93699199
 ##   Treated -1.65647289  0.06375767  1.98367320</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-12"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-12-1.png" alt="Mosaic plot of the Arthritis data with large standardized residuals indicated (actually, there were none that were indicated because all were less than 2). Note that dashed borders correspond to negative standardized residuals (observed less than expected) and solid borders are positive standardized residuals (observed more than expected)." width="75%" />
 <p class="caption">
 Figure 5.12: Mosaic plot of the Arthritis data with large standardized residuals indicated (actually, there were none that were indicated because all were less than 2). Note that dashed borders correspond to negative standardized residuals (observed less than expected) and solid borders are positive standardized residuals (observed more than expected).
@@ -1560,7 +1560,7 @@ as categorical variables.</p>
 <span id="cb443-10"><a href="chapter5.html#cb443-10" aria-hidden="true" tabindex="-1"></a><span class="co"># options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) </span></span>
 <span id="cb443-11"><a href="chapter5.html#cb443-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tableplot</span>(election, <span class="at">select =</span> <span class="fu">c</span>(VOTEF, PARTY, EDUC, GENDER), <span class="at">pals =</span> <span class="fu">list</span>(<span class="st">&quot;BrBG&quot;</span>), </span>
 <span id="cb443-12"><a href="chapter5.html#cb443-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">sample =</span> F)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-13"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-13"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-13-1.png" alt="Tableplot of vote, party affiliation, education, and gender from election survey data. Note that missing observations are present in all variables except for Gender. Education is coded from 1 to 7 with higher values related to higher educational attainment. Gender code 1 is for male and 2 is for female." width="75%" />
 <p class="caption">
 Figure 5.13: Tableplot of vote, party affiliation, education, and gender from election survey data. Note that missing observations are present in all variables except for <code>Gender</code>. Education is coded from 1 to 7 with higher values related to higher educational attainment. <code>Gender</code> code 1 is for male and 2 is for female.
@@ -1596,7 +1596,7 @@ variables.</p>
 <span id="cb444-3"><a href="chapter5.html#cb444-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
 <span id="cb444-4"><a href="chapter5.html#cb444-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tableplot</span>(election2, <span class="at">select =</span> <span class="fu">c</span>(VOTEF, PARTY, EDUC, GENDER), <span class="at">sort =</span> <span class="dv">1</span>, </span>
 <span id="cb444-5"><a href="chapter5.html#cb444-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">pals =</span> <span class="fu">list</span>(<span class="st">&quot;BrBG&quot;</span>), <span class="at">sample =</span> F)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-14"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-14"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-14-1.png" alt="Tableplot of election data with subjects without any missing responses (complete cases)." width="75%" />
 <p class="caption">
 Figure 5.14: Tableplot of election data with subjects without any missing responses (complete cases).
@@ -1709,7 +1709,7 @@ would be reported as &lt; 0.0001. This was based on a
 <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with <span class="math inline">\((7-1)*(3-1) = 12\)</span>
 degrees of freedom displayed in Figure <a href="chapter5.html#fig:Figure5-15">5.15</a>.</p></li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-15"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-15-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 12 degrees of freedom." width="75%" />
 <p class="caption">
 Figure 5.15: Plot of <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with 12 degrees of freedom.
@@ -1746,7 +1746,7 @@ use permutations as implemented in the following code to provide a more trustwor
 <span id="cb458-6"><a href="chapter5.html#cb458-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb458-7"><a href="chapter5.html#cb458-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">30</span>,</span>
 <span id="cb458-8"><a href="chapter5.html#cb458-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-16"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-16"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-16-1.png" alt="Permutation distribution of $X^2$ for the election data." width="75%" />
 <p class="caption">
 Figure 5.16: Permutation distribution of <span class="math inline">\(X^2\)</span> for the election data.
@@ -1816,7 +1816,7 @@ obtain many more (useful) theories based on this combination of results.</p></li
 ##     6  -6.1701472   6.9078679  -1.4115200
 ##     7  -9.5662296  10.7335798  -2.2717310</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-17"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-17"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-17-1.png" alt="Mosaic plot with shading based on standardized residuals for the election data." width="75%" />
 <p class="caption">
 Figure 5.17: Mosaic plot with shading based on standardized residuals for the election data.
@@ -1866,7 +1866,7 @@ variables are treated categorically by applying the <code>factor</code> function
 <span id="cb462-10"><a href="chapter5.html#cb462-10" aria-hidden="true" tabindex="-1"></a>                                )</span>
 <span id="cb462-11"><a href="chapter5.html#cb462-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb462-12"><a href="chapter5.html#cb462-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tableplot</span>(cheating, <span class="at">sort =</span> GPA, <span class="at">pals =</span> <span class="fu">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-18"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-18"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-18-1.png" alt="Tableplot of initial cheating and lying data set. Note that a few GPAs were missing in the data set." width="75%" />
 <p class="caption">
 Figure 5.18: Tableplot of initial cheating and lying data set. Note that a few GPAs were missing in the data set.
@@ -1896,7 +1896,7 @@ more likely to do the other? Or are they independent of each other? This is a
 hard story to elicit from the previous plot because there are so many variables
 involved.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-19"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-19"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-19-1.png" alt="Tableplot of new variables liar and copier that allow exploration of relationships between different types of lying and cheating behaviors." width="75%" />
 <p class="caption">
 Figure 5.19: Tableplot of new variables <code>liar</code> and <code>copier</code> that allow exploration of relationships between different types of lying and cheating behaviors.
@@ -1963,7 +1963,7 @@ variables and make the plot is below which employs the <code>levels</code> funct
 <!-- \newpage -->
 
 <div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="chapter5.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tableplot</span>(cheating, <span class="at">sort =</span> liar2, <span class="at">select =</span> <span class="fu">c</span>(liar2, copier2), <span class="at">pals =</span> <span class="fu">list</span>(<span class="st">&quot;BrBG&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-20"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-20"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-20-1.png" alt="Tableplot of lying and copying variables after combining categories." width="75%" />
 <p class="caption">
 Figure 5.20: Tableplot of lying and copying variables after combining categories.
@@ -2034,7 +2034,7 @@ that is displayed in Figure <a href="chapter5.html#fig:Figure5-21">5.21</a>. Rem
 isn’t quite the right distribution for the test statistic since our
 expected cell count condition was violated.</p></li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-21"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-21"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-21-1.png" alt="Plot of $\boldsymbol{\chi^2}$-distribution with 4 degrees of freedom." width="75%" />
 <p class="caption">
 Figure 5.21: Plot of <span class="math inline">\(\boldsymbol{\chi^2}\)</span>-distribution with 4 degrees of freedom.
@@ -2073,7 +2073,7 @@ possibly close to 0.05:</li>
 <span id="cb479-6"><a href="chapter5.html#cb479-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb479-7"><a href="chapter5.html#cb479-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>,</span>
 <span id="cb479-8"><a href="chapter5.html#cb479-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-22"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-22"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-22-1.png" alt="Plot of permutation distributions for cheat/lie results with observed value of 13.24 (bold, vertical line)." width="75%" />
 <p class="caption">
 Figure 5.22: Plot of permutation distributions for cheat/lie results with observed value of 13.24 (bold, vertical line).
@@ -2130,7 +2130,7 @@ answer that question).</li>
 <div id="section5-11" class="section level2" number="5.11">
 <h2><span class="header-section-number">5.11</span> Analyzing a stratified random sample of California schools</h2>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-23"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-23"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-23-1.png" alt="Pirate-plot of the API growth scores by level of school in the stype variable (coded E for elementary, M for Middle, and H for High school)." width="75%" />
 <p class="caption">
 Figure 5.23: Pirate-plot of the API growth scores by level of school in the <code>stype</code> variable (coded E for elementary, M for Middle, and H for High school).
@@ -2196,7 +2196,7 @@ Chi-square analysis methods.</p>
 ## stype      30370   2  23.563 6.685e-10
 ## Residuals 126957 197</code></pre>
 <div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="chapter5.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m1, <span class="at">which =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure5-24"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-24"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-24-1.png" alt="QQ-plot of standardized residuals from the One-Way ANOVA linear model." width="75%" />
 <p class="caption">
 Figure 5.24: QQ-plot of standardized residuals from the One-Way ANOVA linear model.
@@ -2242,7 +2242,7 @@ these situations, the stacked bar chart provides the appropriate summary of the
 data. It also shows us the labels of the categories that the <code>cut</code> function
 created in the new <code>growthcut</code> variable:</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-25"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-25"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-25-1.png" alt="Stacked bar chart of the growth category responses by level of school." width="75%" />
 <p class="caption">
 Figure 5.25: Stacked bar chart of the growth category responses by level of school.
@@ -2328,7 +2328,7 @@ expected if there were no differences across the school levels.</p>
 ##     H  3.2526912  1.3867505 -2.0714286 -2.6428571
 ##     M -0.1414214 -0.2773501  1.3571429 -0.9285714</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-26"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-26"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-26-1.png" alt="Mosaic plot of the API Growth rate categories versus level of the school with shading for size of standardized residuals." width="75%" />
 <p class="caption">
 Figure 5.26: Mosaic plot of the API Growth rate categories versus level of the school with shading for size of standardized residuals.
@@ -2514,7 +2514,7 @@ think about this, they collected a nationally representative sample
 that contained three questions about this. Based on their survey, they
 concluded that</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-27"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-27"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-27-1.png" alt="Tableplot of data from “data-is-vs-data-are” survey, sorted by “CareAbout” responses." width="75%" />
 <p class="caption">
 Figure 5.27: Tableplot of data from “data-is-vs-data-are” survey, sorted by “CareAbout” responses.
@@ -2587,7 +2587,7 @@ more about this?</p>
 </tbody>
 </table>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure5-28"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure5-28"></span>
 <img src="05-chiSquaredTests_files/figure-html/Figure5-28-1.png" alt="Stacked bar chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit." width="75%" />
 <p class="caption">
 Figure 5.28: Stacked bar chart of the close calls/not (overtakes less than or equal to 100 cm or not) by outfit.
@@ -2673,7 +2673,6 @@ that a level could have no schools selected.<a href="chapter5.html#fnref107" cla
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -2703,6 +2702,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Greenwood_Book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },

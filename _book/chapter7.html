@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Simple linear regression inference | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 7 Simple linear regression inference | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Simple linear regression inference | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="chapter6.html"/>
 <link rel="next" href="chapter8.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -396,7 +396,7 @@ regression line with two different residual SEs of 0.02 and 0.06. The original
 BAC model has a residual SE of 0.02 but had many fewer observations at each
 <em>Beer</em> value.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-1"></span>
 <img src="chapter7_files/image029small.png" alt="Sketch of assumed normal distributions for the responses centered at the regression line." width="75%" />
 <p class="caption">
 Figure 7.1: Sketch of assumed normal distributions for the responses centered at the regression line.
@@ -404,7 +404,7 @@ Figure 7.1: Sketch of assumed normal distributions for the responses centered at
 </div>
 <div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="chapter7.html#cb600-1" aria-hidden="true" tabindex="-1"></a>BB <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/beersbac.csv&quot;</span>)</span></code></pre></div>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-2"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-2-1.png" alt="Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06)." width="75%" />
 <p class="caption">
 Figure 7.2: Simulated data for Beers and BAC assuming two different residual standard errors (0.02 and 0.06).
@@ -435,7 +435,7 @@ estimates.
 
 The next sections develop those inferential tools.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-3"></span>
 <img src="chapter7_files/image034.png" alt="Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the simulate function as was used in Chapter 2 were used to create this plot. " width="75%" />
 <p class="caption">
 Figure 7.3: Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the <code>simulate</code> function as was used in Chapter <a href="chapter2.html#chapter2">2</a> were used to create this plot. 
@@ -475,7 +475,7 @@ might be – centered at the sample slope coefficient – our best guess for the
 true slope. This sketch also informs an <strong><em>interpretation of the slope coefficient
 confidence interval</em></strong>:</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-4"></span>
 <img src="chapter7_files/image045_resized.png" alt="Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in \(x\)." width="75%" />
 <p class="caption">
 Figure 7.4: Graphic illustrating the confidence interval for a slope coefficient for a 1 unit increase in <span class="math inline">\(x\)</span>.
@@ -842,7 +842,7 @@ complicated than that to arrive at the response variable we are analyzing.</p>
 <span id="cb627-5"><a href="chapter7.html#cb627-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb627-6"><a href="chapter7.html#cb627-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Bozeman Yearly Average Max Temperatures&quot;</span>,</span>
 <span id="cb627-7"><a href="chapter7.html#cb627-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mean Maximum Temperature (degrees F)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure7-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-5"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-5-1.png" alt="Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines." width="75%" />
 <p class="caption">
 Figure 7.5: Scatterplot of average yearly maximum temperatures in Bozeman from 1900 to 2014 with SLR (solid) and smoothing (dashed) lines.
@@ -909,7 +909,7 @@ the diagnostic plots in Figure <a href="chapter7.html#fig:Figure7-6">7.6</a> to 
 <div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="chapter7.html#cb628-1" aria-hidden="true" tabindex="-1"></a>temp1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(meanmax <span class="sc">~</span> Year, <span class="at">data =</span> bozemantemps)</span>
 <span id="cb628-2"><a href="chapter7.html#cb628-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb628-3"><a href="chapter7.html#cb628-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(temp1, <span class="at">add.smooth =</span> F, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure7-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-6"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-6-1.png" alt="Diagnostic plots of the Bozeman yearly temperature simple linear regression model." width="75%" />
 <p class="caption">
 Figure 7.6: Diagnostic plots of the Bozeman yearly temperature simple linear regression model.
@@ -1124,7 +1124,7 @@ broken teeth in a comb. Also not used here, we can also turn on the <code>residu
 <div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="chapter7.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
 <span id="cb635-2"><a href="chapter7.html#cb635-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(temp1, <span class="at">xlevels =</span> <span class="fu">list</span>(<span class="at">Year =</span> bozemantemps<span class="sc">$</span>Year)),</span>
 <span id="cb635-3"><a href="chapter7.html#cb635-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">grid =</span> T)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure7-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-7"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-7-1.png" alt="Term-plot for the Bozeman mean yearly maximum temperature linear regression model with 95% confidence interval bands for the mean in each year." width="75%" />
 <p class="caption">
 Figure 7.7: Term-plot for the Bozeman mean yearly maximum temperature linear regression model with 95% confidence interval bands for the mean in each year.
@@ -1203,7 +1203,7 @@ in Figure <a href="chapter7.html#fig:Figure7-8">7.8</a>. First, think about whic
 think present the most
 evidence of a linear relationship between <code>Year</code> and <code>Temperature</code>?</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-8"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-8-1.png" alt="Plot of the Temperature responses versus four versions of Year, three of which are permutations of the Year variable relative to the Temperatures." width="75%" />
 <p class="caption">
 Figure 7.8: Plot of the <code>Temperature</code> responses versus four versions of <code>Year</code>, three of which are permutations of the Year variable relative to the Temperatures.
@@ -1251,7 +1251,7 @@ shown in Figure <a href="chapter7.html#fig:Figure7-9">7.9</a>. The p-value would
 <span id="cb646-6"><a href="chapter7.html#cb646-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb646-7"><a href="chapter7.html#cb646-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>,</span>
 <span id="cb646-8"><a href="chapter7.html#cb646-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure7-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-9"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-9-1.png" alt="Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at \(\pm b_1 = 0.56\) based on the observed estimated slope." width="75%" />
 <p class="caption">
 Figure 7.9: Permutation distribution of the slope coefficient in the Bozeman temperature linear regression model with bold vertical lines at <span class="math inline">\(\pm b_1 = 0.56\)</span> based on the observed estimated slope.
@@ -1309,7 +1309,7 @@ approach is not unreasonable here except possibly for the independence assumptio
 <span id="cb651-7"><a href="chapter7.html#cb651-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb651-8"><a href="chapter7.html#cb651-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">15</span>,</span>
 <span id="cb651-9"><a href="chapter7.html#cb651-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure7-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-10"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-10-1.png" alt="Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold dashed vertical lines delineating the 95% confidence interval and the bold solid line the observed slope of 0.052." width="75%" />
 <p class="caption">
 Figure 7.10: Bootstrap distribution of the slope coefficient in the Bozeman temperature linear regression model with bold dashed vertical lines delineating the 95% confidence interval and the bold solid line the observed slope of 0.052.
@@ -1360,7 +1360,7 @@ Here if you like temperature changes in <span class="math inline">\(^\circ C\)</
 slope coefficient is 0.029 and if you like the original change in <span class="math inline">\(^\circ F\)</span> for
 a 1 year increase, the slope coefficient is 0.052. More useful than this is the switch into units of 100 years (so each year increase would just be 0.1 instead of 1), so that the slope is the temperature change over 100 years.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-11"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-11"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-11-1.png" alt="Scatterplots of Temperature (\(^\circ F\)) versus Year (left) and Temperature (\(^\circ C\)) vs Years since 1901 (right)." width="75%" />
 <p class="caption">
 Figure 7.11: Scatterplots of <em>Temperature</em> (<span class="math inline">\(^\circ F\)</span>) versus <em>Year</em> (left) and <em>Temperature</em> (<span class="math inline">\(^\circ C\)</span>) vs <em>Years</em> since 1901 (right).
@@ -1503,7 +1503,7 @@ log-hectares scale.</p>
 <span id="cb656-10"><a href="chapter7.html#cb656-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb656-11"><a href="chapter7.html#cb656-11" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p, plog, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-12"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-12-1.png" alt="Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature." width="75%" />
 <p class="caption">
 Figure 7.12: Scatterplots of Hectares (a) and log-Hectares (b) vs Temperature.
@@ -1545,7 +1545,7 @@ information with the response variable (height) log-transformed.
 <span id="cb657-15"><a href="chapter7.html#cb657-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb657-16"><a href="chapter7.html#cb657-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log-tree height vs tree diameter&quot;</span>)</span></code></pre></div>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-13"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-13"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-13-1.png" alt="Scatterplot of tree height versus tree diameter." width="75%" />
 <p class="caption">
 Figure 7.13: Scatterplot of tree height versus tree diameter.
@@ -1559,7 +1559,7 @@ researchers assume it can. It is OK to try a transformation but remember to
 always plot the results to make sure it actually helped and did not make the
 situation worse.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-14"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-14"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-14-1.png" alt="Scatterplot of log(tree height) versus tree diameter." width="75%" />
 <p class="caption">
 Figure 7.14: Scatterplot of log(tree height) versus tree diameter.
@@ -1578,7 +1578,7 @@ linearizing the relationship, leaving some minor
 non-constant variance, but providing a big improvement from the relationship on
 the original scale.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-15"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-15-1.png" alt="Scatterplot of tree height versus log(tree diameter)." width="75%" />
 <p class="caption">
 Figure 7.15: Scatterplot of tree height versus log(tree diameter).
@@ -1602,7 +1602,7 @@ model to the tree <em>height</em> vs <em>log(diameter)</em> versions of the vari
 <span id="cb658-4"><a href="chapter7.html#cb658-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> F, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb658-5"><a href="chapter7.html#cb658-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb658-6"><a href="chapter7.html#cb658-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log-tree height vs log-tree diameter&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure7-16"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-16"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-16-1.png" alt="Scatterplot of log(tree height) versus log(tree diameter)." width="75%" />
 <p class="caption">
 Figure 7.16: Scatterplot of log(tree height) versus log(tree diameter).
@@ -1633,7 +1633,7 @@ and <em>log(GDP)</em>. In the next section, we will fit models to some of these
 relationships and use our diagnostic plots to help us assess “success” of
 the transformations.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-17"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-17"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-17-1.png" alt="Scatterplots of Infant Mortality vs GDP under four different combinations of log-transformations." width="75%" />
 <p class="caption">
 Figure 7.17: Scatterplots of Infant Mortality vs GDP under four different combinations of log-transformations.
@@ -1711,7 +1711,7 @@ a situation where the SLR assumptions are reasonably well-satisfied.  To
 understand the properties and eventually the interpretation of
 transformed-variables models, we need to try to “reverse” our transformation.
 If we exponentiate<a href="#fn125" class="footnote-ref" id="fnref125"><sup>125</sup></a> both sides of <span class="math inline">\(\log(y) = b_0 + b_1x\)</span>, we get:</p>
-<div class="figure" style="text-align: center"><span id="fig:Figure7-18"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-18"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-18-1.png" alt="Plot of the estimated SLR (a) and implied model for the median on the original Hectares scale (b) for the area burned vs temperature data." width="75%" />
 <p class="caption">
 Figure 7.18: Plot of the estimated SLR (a) and implied model for the median on the original Hectares scale (b) for the area burned vs temperature data.
@@ -1836,7 +1836,7 @@ Note that both interpretations are for the mean of the <span class="math inline"
 since we haven’t changed the <span class="math inline">\(y\sim\)</span> part of the model.</p></li>
 </ol>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-19"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-19"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-19-1.png" alt="Plot of the observations and estimated SLR model (mortality ~ log(GDP)) (top) and implied model (bottom) for the infant mortality data." width="75%" />
 <p class="caption">
 Figure 7.19: Plot of the observations and estimated SLR model (mortality ~ log(GDP)) (top) and implied model (bottom) for the infant mortality data.
@@ -1885,7 +1885,7 @@ any of those previous interpretations.</p>
 
 <div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="chapter7.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb669-2"><a href="chapter7.html#cb669-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ID1)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure7-20"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-20"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-20-1.png" alt="Diagnostics plots of the infant mortality model with log(GDP)." width="75%" />
 <p class="caption">
 Figure 7.20: Diagnostics plots of the infant mortality model with log(GDP).
@@ -1921,7 +1921,7 @@ for logs:</em> <span class="math inline">\(\log(ab) = \log(a) + \log(b)\)</span>
 for logs:</em> <span class="math inline">\(\log(x^b) = b\log(x)\)</span>.</p></li>
 </ul>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-21"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-21"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-21-1.png" alt="Plot of the observations and estimated SLR model log(mortality) \(\sim\) log(GDP) (left) and implied model (right) for the infant mortality data." width="75%" />
 <p class="caption">
 Figure 7.21: Plot of the observations and estimated SLR model log(mortality) <span class="math inline">\(\sim\)</span> log(GDP) (left) and implied model (right) for the infant mortality data.
@@ -1987,7 +1987,7 @@ captures the severe nonlinearity in the relationship between the two variables.<
 ## Multiple R-squared:  0.7662, Adjusted R-squared:  0.765 
 ## F-statistic: 625.9 on 1 and 191 DF,  p-value: &lt; 2.2e-16</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-22"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-22"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-22-1.png" alt="Diagnostic plots for the log-log infant mortality model." width="75%" />
 <p class="caption">
 Figure 7.22: Diagnostic plots for the log-log infant mortality model.
@@ -2222,7 +2222,7 @@ the confidence and prediction intervals from 0 to 10 <em>Beers</em>. </p>
 ## 6  0.0183   -0.0296 0.0662</code></pre>
 <p>To visualize these results as shown in Figure <a href="chapter7.html#fig:Figure7-23">7.23</a>, we need to work to combine some of the previous results into a common tibble, called <code>modelresB</code>, using the <code>bind_cols</code> function that allows multiple columns to be put together. Because some of the names are the same in the <code>BBCI</code> and <code>BBPI</code> objects and were awkwardly given unique names, there is an additional step to rename the columns using the <code>rename</code> function. The <code>rename</code> function changes the name to what is provided before the <code>=</code> for the column identified after the <code>=</code> (think of it like <code>mutate</code> except that it does not create a new variable). The layers in the plot start with adding a line for the fitted values (solid, using <code>geom_line</code>) based on the information in <code>modelresB</code>. We also introduce the <code>geom_ribbon</code> explicitly for the first time<a href="#fn129" class="footnote-ref" id="fnref129"><sup>129</sup></a> to plot our confidence and prediction intervals. It allows plotting of a region (and its edges) defined by <code>ymin</code> and <code>ymax</code> across the values provided to <code>x</code>. I also wanted to include the original observations, but they are stored in a different tibble (<code>BB</code>), so the <code>geom_point</code> needs to be explicitly told to use a different data set for its contribution to the plot with <code>data = BB</code> along with its own local aesthetic with x and y selections from the original variables.   </p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure7-23"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-23"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-23-1.png" alt="Estimated SLR for BAC data with fitted values (solid line), 95% confidence (darker, dashed lines), and 95% prediction (lighter, dotted lines) intervals." width="75%" />
 <p class="caption">
 Figure 7.23: Estimated SLR for BAC data with fitted values (solid line), 95% confidence (darker, dashed lines), and 95% prediction (lighter, dotted lines) intervals.
@@ -2290,7 +2290,7 @@ more than 95% of the observations used to make it.</p>
 <span id="cb698-23"><a href="chapter7.html#cb698-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;degrees F&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>, </span>
 <span id="cb698-24"><a href="chapter7.html#cb698-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Scatterplot with estimated regression line and 95% CI and PI&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb698-25"><a href="chapter7.html#cb698-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure7-24"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure7-24"></span>
 <img src="07-simpleLinearRegressionInference_files/figure-html/Figure7-24-1.png" alt="Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals." width="75%" />
 <p class="caption">
 Figure 7.24: Estimated SLR for Bozeman temperature data with 95% confidence (dashed lines) and 95% prediction (lighter, dotted lines) intervals.
@@ -2571,7 +2571,6 @@ Models</em> text. If you find this too cheesy, you can just call it x-vee.<a hre
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -2601,6 +2600,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Greenwood_Book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },

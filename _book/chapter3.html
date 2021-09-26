@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 One-Way ANOVA | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 3 One-Way ANOVA | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 One-Way ANOVA | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="chapter2.html"/>
 <link rel="next" href="chapter4.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -342,7 +342,7 @@ summarizing the overtake distances by the seven groups using <code>favstats</cod
 <span id="cb224-4"><a href="chapter3.html#cb224-4" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/Walker2014_mod.csv&quot;</span>)</span>
 <span id="cb224-5"><a href="chapter3.html#cb224-5" aria-hidden="true" tabindex="-1"></a>dd <span class="ot">&lt;-</span> dd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Condition =</span> <span class="fu">factor</span>(Condition))</span></code></pre></div>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-1"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-1-1.png" alt="Pirate-plot of the overtake distances for the seven groups with group mean (bold lines with boxes indicating 95% confidence intervals) and the overall sample mean (dashed line) of 117.1 cm added." width="75%" />
 <p class="caption">
 Figure 3.1: Pirate-plot of the overtake distances for the seven groups with group mean (bold lines with boxes indicating 95% confidence intervals) and the overall sample mean (dashed line) of 117.1 cm added.
@@ -649,7 +649,7 @@ constructed in Table <a href="chapter3.html#tab:Table3-1">3.1</a>.
 
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="chapter3.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
 <span id="cb233-2"><a href="chapter3.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(lm2))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure3-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-2"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-2-1.png" alt="Plot of the estimated group mean distances from the reference-coded model for the overtake data from the effects package." width="75%" />
 <p class="caption">
 Figure 3.2: Plot of the estimated group mean distances from the reference-coded model for the overtake data from the <code>effects</code> package.
@@ -729,7 +729,7 @@ comparison of the variability in the means to the overall variability to help
 us get results that reflect that Scenario 4 has the strongest evidence of a
 difference (most variability in the means and least variability around those means) and Scenario 1 would have the least evidence (least variability in the means and most variability around those means).</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-3"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-3-1.png" alt="Demonstration of different amounts of difference in means relative to variability. Scenarios have the same means in rows and same variance around means in columns of plot. Confidence intervals not reported in the pirate-plots." width="75%" />
 <p class="caption">
 Figure 3.3: Demonstration of different amounts of difference in means relative to variability. Scenarios have the same means in rows and same variance around means in columns of plot. Confidence intervals not reported in the pirate-plots.
@@ -811,7 +811,7 @@ the <span class="math inline">\(\textbf{SS}_{\textbf{Total}} \mathbf{=} \textbf{
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="chapter3.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="dv">34948</span> <span class="sc">+</span> <span class="dv">5086298</span></span></code></pre></div>
 <pre><code>## [1] 5121246</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-4"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-4-1.png" alt="Plot of means and 95% confidence intervals for the three groups for the real overtake data (a) and three different permutations of the outfit group labels to the same responses in (b), (c), and (d). Note that SSTotal is always the same but the different amounts of variation associated with the means (SSA) or the errors (SSE) changes in permutation." width="75%" />
 <p class="caption">
 Figure 3.4: Plot of means and 95% confidence intervals for the three groups for the real overtake data (a) and three different permutations of the outfit group labels to the same responses in (b), (c), and (d). Note that <code>SSTotal</code> is always the same but the different amounts of variation associated with the means (<code>SSA</code>) or the errors (<code>SSE</code>) changes in permutation.
@@ -870,7 +870,7 @@ of <span class="math inline">\(\text{SS}_A\)</span> in <code>Tobs</code>, reusin
 <code>shuffle</code> function, builds up a vector of results in <code>Tobs</code>, and then makes
 a plot of the resulting permutation distribution:</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-5"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-5-1.png" alt="Histogram and density curve of permutation distribution of \(\text{SS}_A\) with the observed value of \(\text{SS}_A\) displayed as a bold, vertical line. The proportion of results that are as large or larger than the observed value of \(\text{SS}_A\) provides an estimate of the p-value." width="75%" />
 <p class="caption">
 Figure 3.5: Histogram and density curve of permutation distribution of <span class="math inline">\(\text{SS}_A\)</span> with the observed value of <span class="math inline">\(\text{SS}_A\)</span> displayed as a bold, vertical line. The proportion of results that are as large or larger than the observed value of <span class="math inline">\(\text{SS}_A\)</span> provides an estimate of the p-value.
@@ -961,7 +961,7 @@ different <span class="math inline">\(F\)</span>-distributions are displayed for
 <li><p><strong>Always use the right-tailed area for p-values.</strong></p></li>
 </ul>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-6"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-6-1.png" alt="Density curves of four different \(F\)-distributions. Upper left is an \(F(6, 5683)\), upper right is \(F(2, 10)\), lower left is \(F(6, 10)\), and lower right is \(F(3, 20)\). P-values are found using the areas to the right of the observed \(F\)-statistic value in all F-distributions. " width="75%" />
 <p class="caption">
 Figure 3.6: Density curves of four different <span class="math inline">\(F\)</span>-distributions. Upper left is an <span class="math inline">\(F(6, 5683)\)</span>, upper right is <span class="math inline">\(F(2, 10)\)</span>, lower left is <span class="math inline">\(F(6, 10)\)</span>, and lower right is <span class="math inline">\(F(3, 20)\)</span>. P-values are found using the areas to the right of the observed <span class="math inline">\(F\)</span>-statistic value in all F-distributions. 
@@ -1076,7 +1076,7 @@ output:</p>
 <span id="cb253-7"><a href="chapter3.html#cb253-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">20</span>, </span>
 <span id="cb253-8"><a href="chapter3.html#cb253-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-7"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-7-1.png" alt="Histogram and density curve of the permutation distribution of the F-statistic with bold, vertical line for the observed value of the test statistic of 6.51." width="75%" />
 <p class="caption">
 Figure 3.7: Histogram and density curve of the permutation distribution of the F-statistic with bold, vertical line for the observed value of the test statistic of 6.51.
@@ -1095,7 +1095,7 @@ the density curve and are not really a problem for the methods. The similarity i
 the two curves explains why both methods would give similar p-value results for almost any test statistic value. In some
 situations, the correspondence will not be quite so close.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-8"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-8-1.png" alt="Comparison of \(F(6, 6583)\) (dashed line) and permutation distribution (solid line)." width="75%" />
 <p class="caption">
 Figure 3.8: Comparison of <span class="math inline">\(F(6, 6583)\)</span> (dashed line) and permutation distribution (solid line).
@@ -1180,7 +1180,7 @@ for all observations. Like in hypothesis testing, you can never prove that an as
 clear evidence that the condition is violated!
 </p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-9"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-9-1.png" alt="Default diagnostic plots for the full overtake data linear model." width="75%" />
 <p class="caption">
 Figure 3.9: Default diagnostic plots for the full overtake data linear model.
@@ -1219,7 +1219,7 @@ this new display. We can obtain the residuals from the linear model using the
 <span id="cb255-8"><a href="chapter3.html#cb255-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Density&quot;</span>,</span>
 <span id="cb255-9"><a href="chapter3.html#cb255-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Residuals&quot;</span>,</span>
 <span id="cb255-10"><a href="chapter3.html#cb255-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Histogram of residuals&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure3-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-10"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-10-1.png" alt="Histogram and density curve of the linear model raw residuals from the overtake data linear model." width="75%" />
 <p class="caption">
 Figure 3.10: Histogram and density curve of the linear model raw residuals from the overtake data linear model.
@@ -1254,7 +1254,7 @@ QQ-plots.</p>
 <span id="cb256-10"><a href="chapter3.html#cb256-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="sc">+</span></span>
 <span id="cb256-11"><a href="chapter3.html#cb256-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
 <span id="cb256-12"><a href="chapter3.html#cb256-12" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(qq1, den1, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure3-11"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-11"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-11-1.png" alt="QQ-plot and density plot of residuals from the overtake data linear model." width="75%" />
 <p class="caption">
 Figure 3.11: QQ-plot and density plot of residuals from the overtake data linear model.
@@ -1300,7 +1300,7 @@ than the normal predicts).  We call these distributions <strong><em>heavy-tailed
 which can manifest as distributions with outliers in both tails or just a bit
 more spread out than a normal distribution.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-12"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-12-1.png" alt="QQ-plots and density curves of four simulated distributions with different shapes." width="100%" />
 <p class="caption">
 Figure 3.12: QQ-plots and density curves of four simulated distributions with different shapes.
@@ -1329,7 +1329,7 @@ distributed residuals even if the residuals are all exactly on the line, but if
 you see QQ-plots as in Figure <a href="chapter3.html#fig:Figure3-12">3.12</a> you can determine that there is clear evidence of violations of the normality assumption.
   </p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-13"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-13"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-13-1.png" alt="Two more simulated data sets, both generated from normal distributions." width="75%" />
 <p class="caption">
 Figure 3.13: Two more simulated data sets, both generated from normal distributions.
@@ -1431,7 +1431,7 @@ each group using <code>favstats</code>.</p>
 
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="chapter3.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pirateplot</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth, <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>, <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>,</span>
 <span id="cb276-2"><a href="chapter3.html#cb276-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">&quot;Odontoblast Growth in microns&quot;</span>, <span class="at">point.o =</span> .<span class="dv">7</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure3-14"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-14"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-14-1.png" alt="Pirate-plot of odontoblast growth responses for the six treatment level combinations." width="75%" />
 <p class="caption">
 Figure 3.14: Pirate-plot of odontoblast growth responses for the six treatment level combinations.
@@ -1501,7 +1501,7 @@ the other diagnostic plots to make an overall assessment.</li>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="chapter3.html#cb277-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(len <span class="sc">~</span> Treat, <span class="at">data =</span> ToothGrowth)</span>
 <span id="cb277-2"><a href="chapter3.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb277-3"><a href="chapter3.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m2, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure3-15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-15"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-15-1.png" alt="Diagnostic plots for the odontoblast growth model." width="75%" />
 <p class="caption">
 Figure 3.15: Diagnostic plots for the odontoblast growth model.
@@ -1584,7 +1584,7 @@ nonparametric approaches should be similar here and they were.</p></li>
 <span id="cb284-6"><a href="chapter3.html#cb284-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb284-7"><a href="chapter3.html#cb284-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">25</span>, </span>
 <span id="cb284-8"><a href="chapter3.html#cb284-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure3-16"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-16"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-16-1.png" alt="Histogram and density curve of permutation distribution for $F$-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56." width="75%" />
 <p class="caption">
 Figure 3.16: Histogram and density curve of permutation distribution for <span class="math inline">\(F\)</span>-statistic for odontoblast growth data. Observed test statistic in bold, vertical line at 41.56.
@@ -1702,7 +1702,7 @@ output and Figure <a href="chapter3.html#fig:Figure3-17">3.17</a>. Also note tha
 ## Multiple R-squared:  0.9712, Adjusted R-squared:  0.968 
 ## F-statistic:   303 on 6 and 54 DF,  p-value: &lt; 2.2e-16</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-17"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-17"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-17-1.png" alt="Effect plot of the One-Way ANOVA model for the odontoblast growth data, with rotated x-axis text for enhanced readability of the levels of the predictor variable." width="75%" />
 <p class="caption">
 Figure 3.17: Effect plot of the One-Way ANOVA model for the odontoblast growth data, with rotated x-axis text for enhanced readability of the levels of the predictor variable.
@@ -1837,7 +1837,7 @@ to the linear model for the Guinea Pig data:</p>
 ## VC.2 - OJ.2 == 0       0.0800  -4.7190   4.8790</code></pre>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="chapter3.html#cb304-1" aria-hidden="true" tabindex="-1"></a>old.par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mai =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co">#Makes room on the plot for the group names</span></span>
 <span id="cb304-2"><a href="chapter3.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Tm2)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure3-18"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-18"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-18-1.png" alt="Graphical display of pair-wise comparisons from Tukey’s HSD for the Guinea Pig data. Any confidence intervals that do not contain 0 provide strong evidence against the null hypothesis of no difference in the true means for that pair of groups." width="75%" />
 <p class="caption">
 Figure 3.18: Graphical display of pair-wise comparisons from Tukey’s HSD for the Guinea Pig data. Any confidence intervals that do not contain 0 provide strong evidence against the null hypothesis of no difference in the true means for that pair of groups.
@@ -1919,7 +1919,7 @@ reporting 15 confidence intervals for all the pair-wise differences, either in a
 <span id="cb309-6"><a href="chapter3.html#cb309-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Adds &quot;b&quot; to first and fourth bean</span></span>
 <span id="cb309-7"><a href="chapter3.html#cb309-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">18</span>), <span class="st">&quot;b&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
 <span id="cb309-8"><a href="chapter3.html#cb309-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">28</span>,<span class="dv">28</span>), <span class="st">&quot;c&quot;</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>) <span class="co">#Add &quot;c&quot; to three beans</span></span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure3-19"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-19"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-19-1.png" alt="Pirate-plot of odontoblast growth by group with Tukey’s HSD compact letter display. Note some extra pirate-plot options are used to enhance focus on the CLD results." width="75%" />
 <p class="caption">
 Figure 3.19: Pirate-plot of odontoblast growth by group with Tukey’s HSD compact letter display. Note some extra pirate-plot options are used to enhance focus on the CLD results.
@@ -1998,7 +1998,7 @@ seven groups with a p-value &lt; 0.001 giving very strong evidence against the n
 ## 114.0518 114.6079 116.7559 116.9405 117.6110 118.4383 122.1215</code></pre>
 <p>In Figure <a href="chapter3.html#fig:Figure3-20">3.20</a>, the 95% family-wise confidence intervals are displayed. There are only five pairs that have confidence intervals that do not contain 0 and all contain comparisons of the <em>police</em> group with others. So there is a detectable difference between <em>police</em> and <em>polite</em>, <em>commute</em>, <em>racer</em>, <em>novice</em>, and <em>casual</em>. The <em>police</em> versus <em>casual</em> comparison is hard to see whether 0 is in the interval or not in the plot, but the confidence interval goes from 0.06 to 8.97 cm (look at the results from <code>confint</code>), so suggests sufficient evidence to detect a difference in these groups (barely!) at the 5% family-wise significance level.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure3-20"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-20"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-20-1.png" alt="Tukey’s HSD confidence interval results at the 95% family-wise confidence level for the overtake distances linear model using the new Condition2 explanatory variable." width="75%" />
 <p class="caption">
 Figure 3.20: Tukey’s HSD confidence interval results at the 95% family-wise confidence level for the overtake distances linear model using the new <code>Condition2</code> explanatory variable.
@@ -2060,7 +2060,7 @@ Figure 3.20: Tukey’s HSD confidence interval results at the 95% family-wise co
 <span id="cb326-4"><a href="chapter3.html#cb326-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fl">5.9</span>,<span class="at">y =</span> <span class="dv">210</span>,<span class="st">&quot;a&quot;</span>,<span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>)</span>
 <span id="cb326-5"><a href="chapter3.html#cb326-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fl">6.1</span>,<span class="at">y =</span> <span class="dv">210</span>,<span class="st">&quot;b&quot;</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>)</span>
 <span id="cb326-6"><a href="chapter3.html#cb326-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">7</span>,<span class="at">y =</span> <span class="dv">215</span>,<span class="st">&quot;b&quot;</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>,<span class="at">cex =</span> <span class="fl">1.5</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure3-21"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure3-21"></span>
 <img src="03-oneWayAnova_files/figure-html/Figure3-21-1.png" alt="Pirate-plot of overtake distances by group, sorted by sample means with Tukey’s HSD CLD displayed." width="75%" />
 <p class="caption">
 Figure 3.21: Pirate-plot of overtake distances by group, sorted by sample means with Tukey’s HSD CLD displayed.
@@ -2313,7 +2313,6 @@ useful as a guide to help you read the plot in those situations.<a href="chapter
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -2343,6 +2342,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Greenwood_Book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },

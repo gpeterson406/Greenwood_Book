@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Case studies | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 9 Case studies | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Case studies | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="chapter8.html"/>
 <link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -322,7 +322,7 @@ learn about that was (probably) gibberish. Hopefully, revisiting that same diagr
 One common theme was that categorical variables create special challenges whether they are explanatory or
 response variables.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure9-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-1"></span>
 <img src="chapter9_files/decisiontree.jpg" alt="Schematic of methods covered." width="75%" />
 <p class="caption">
 Figure 9.1: Schematic of methods covered.
@@ -413,7 +413,7 @@ from earlier in the book and to see some hints about possible extensions of the 
 <div id="section9-2" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> The impact of simulated chronic nitrogen deposition on the biomass and N2-fixation activity of two boreal feather moss–cyanobacteria associations</h2>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure9-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-2"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-2-1.png" alt="Pirate-plot of biomass responses by treatment and species." width="75%" />
 <p class="caption">
 Figure 9.2: Pirate-plot of biomass responses by treatment and species.
@@ -468,7 +468,7 @@ plot suggests a relatively additive pattern of differences between <em>PS</em> a
 <em>HS</em> across the three treatment levels. However, the variability seems to be
 quite different based on this plot as well.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure9-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-3"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-3-1.png" alt="Interaction plot of biomass responses by treatment and species." width="75%" />
 <p class="caption">
 Figure 9.3: Interaction plot of biomass responses by treatment and species.
@@ -507,7 +507,7 @@ the diagnostic plots to verify that we have a problem.</p>
 ## F-statistic: 11.97 on 5 and 30 DF,  p-value: 2.009e-06</code></pre>
 <div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="chapter9.html#cb870-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
 <span id="cb870-2"><a href="chapter9.html#cb870-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m1, <span class="at">sub.caption =</span> <span class="st">&quot;Initial Massperha 2-WAY model&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure9-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-4"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-4-1.png" alt="Diagnostic plots of treatment by species interaction model for Biomass." width="75%" />
 <p class="caption">
 Figure 9.4: Diagnostic plots of treatment by species interaction model for Biomass.
@@ -550,7 +550,7 @@ the response variable (<em>Biomass</em>) and repeat the previous plots:</p>
 <span id="cb873-5"><a href="chapter9.html#cb873-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">pal =</span> <span class="st">&quot;southpark&quot;</span>, <span class="at">main =</span> <span class="st">&quot;(a)&quot;</span>)</span>
 <span id="cb873-6"><a href="chapter9.html#cb873-6" aria-hidden="true" tabindex="-1"></a><span class="fu">intplot</span>(logMassperha <span class="sc">~</span> Species <span class="sc">*</span> Treatment, <span class="at">data =</span> gdn, <span class="at">col =</span> <span class="fu">viridis</span>(<span class="dv">4</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], </span>
 <span id="cb873-7"><a href="chapter9.html#cb873-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">&quot;(b)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure9-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-5"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-5-1.png" alt="Pirate-plot and interaction plot of the log-Biomass responses by treatment and species." width="75%" />
 <p class="caption">
 Figure 9.5: Pirate-plot and interaction plot of the log-Biomass responses by treatment and species.
@@ -614,7 +614,7 @@ species.</p>
 ## Residuals         2.4208 30</code></pre>
 <div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="chapter9.html#cb878-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
 <span id="cb878-2"><a href="chapter9.html#cb878-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m2, <span class="at">sub.caption =</span> <span class="st">&quot;log-Massperha 2-WAY model&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure9-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-6"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-6-1.png" alt="Diagnostic plots of treatment by species interaction model for log-Biomass." width="75%" />
 <p class="caption">
 Figure 9.6: Diagnostic plots of treatment by species interaction model for log-Biomass.
@@ -647,7 +647,7 @@ important interactions.</p>
 
 <div class="sourceCode" id="cb879"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb879-1"><a href="chapter9.html#cb879-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
 <span id="cb879-2"><a href="chapter9.html#cb879-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m2), <span class="at">multiline =</span> T, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">ci.style =</span> <span class="st">&quot;bars&quot;</span>, <span class="at">grid =</span> T)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure9-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-7"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-7-1.png" alt="Term-plot of the interaction model for log-biomass." width="75%" />
 <p class="caption">
 Figure 9.7: Term-plot of the interaction model for log-biomass.
@@ -731,7 +731,7 @@ different. The following code creates the plot of these results using our
 
 <div class="sourceCode" id="cb888"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb888-1"><a href="chapter9.html#cb888-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intplot</span>(logMassperha <span class="sc">~</span> Species <span class="sc">*</span> Treatment, <span class="at">cld =</span> T, <span class="at">cldshift =</span> <span class="fl">0.15</span>, <span class="at">data =</span> gdn, <span class="at">lwd =</span> <span class="dv">2</span>, </span>
 <span id="cb888-2"><a href="chapter9.html#cb888-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Interaction with CLD from Tukey&#39;s HSD on One-Way ANOVA&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure9-8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-8"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-8-1.png" alt="Interaction plot for log-biomass with CLD from Tukey’s HSD for all pairwise comparisons." width="75%" />
 <p class="caption">
 Figure 9.8: Interaction plot for log-biomass with CLD from Tukey’s HSD for all pairwise comparisons.
@@ -781,7 +781,7 @@ is appropriate here and that we can make causal statements about the effects of 
 <span id="cb890-6"><a href="chapter9.html#cb890-6" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sasakipratt<span class="sc">$</span>after) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SmallBright&quot;</span>, <span class="st">&quot;LargeDark&quot;</span>)</span>
 <span id="cb890-7"><a href="chapter9.html#cb890-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sasakipratt<span class="sc">$</span>before) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SmallBright&quot;</span>, <span class="st">&quot;LargeDark&quot;</span>)</span>
 <span id="cb890-8"><a href="chapter9.html#cb890-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(after <span class="sc">~</span> group, <span class="at">data =</span> sasakipratt, <span class="at">col =</span> <span class="fu">cividis</span>(<span class="dv">2</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure9-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-9"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-9-1.png" alt="Stacked bar chart for Ant Colony results." width="75%" />
 <p class="caption">
 Figure 9.9: Stacked bar chart for Ant Colony results.
@@ -917,7 +917,7 @@ variables.</p>
 <span id="cb901-10"><a href="chapter9.html#cb901-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb901-11"><a href="chapter9.html#cb901-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb901-12"><a href="chapter9.html#cb901-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure9-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-10"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-10-1.png" alt="Scatterplot of log-biodiversity vs log-DBCs by TJK." width="75%" />
 <p class="caption">
 Figure 9.10: Scatterplot of <em>log-biodiversity</em> vs <em>log-DBCs</em> by <em>TJK</em>.
@@ -1071,7 +1071,7 @@ assumptions first as AICs are not valid if the model assumptions are clearly vio
 
 <div class="sourceCode" id="cb906"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb906-1"><a href="chapter9.html#cb906-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">0</span>))</span>
 <span id="cb906-2"><a href="chapter9.html#cb906-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bd1, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure9-11"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-11"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-11-1.png" alt="Diagnostic plots for the top AIC model." width="75%" />
 <p class="caption">
 Figure 9.11: Diagnostic plots for the top AIC model.
@@ -1144,7 +1144,7 @@ log-sampling effort in each stage.</p>
 ## F-statistic: 15.94 on 2 and 23 DF,  p-value: 4.54e-05</code></pre>
 
 <div class="sourceCode" id="cb909"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb909-1"><a href="chapter9.html#cb909-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(bd1, <span class="at">residuals =</span> T), <span class="at">grid =</span> T)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure9-12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-12"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-12-1.png" alt="Term-plots for the top AIC model with partial residuals." width="75%" />
 <p class="caption">
 Figure 9.12: Term-plots for the top AIC model with partial residuals.
@@ -1235,7 +1235,7 @@ subjects that seemed to drop a bit on average.</p>
 <span id="cb911-10"><a href="chapter9.html#cb911-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
 <span id="cb911-11"><a href="chapter9.html#cb911-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb911-12"><a href="chapter9.html#cb911-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure9-13"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-13"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-13-1.png" alt="Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time." width="75%" />
 <p class="caption">
 Figure 9.13: Plot of Epworth responses for each subject, initially and after four months, based on treatment groups with one line for each subject connecting observations made over time.
@@ -1260,7 +1260,7 @@ assumes all observations are independent).</p>
 <span id="cb912-2"><a href="chapter9.html#cb912-2" aria-hidden="true" tabindex="-1"></a>lm_int <span class="ot">&lt;-</span> <span class="fu">lm</span>(Epworth <span class="sc">~</span> Time <span class="sc">*</span> Group, <span class="at">data =</span> epworthdata)</span>
 <span id="cb912-3"><a href="chapter9.html#cb912-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(lm_int)</span></code></pre></div>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure9-14"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-14"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-14-1.png" alt="Plot of simulated data from the Two-Way ANOVA model that does not assume observations are on repeated measures on subjects to compare to the real data set. Even though the treatment levels seem to decrease on average, there is a much less clear relationship between the starting and ending values in the individuals." width="75%" />
 <p class="caption">
 Figure 9.14: Plot of simulated data from the Two-Way ANOVA model that does not assume observations are on repeated measures on subjects to compare to the real data set. Even though the treatment levels seem to decrease on average, there is a much less clear relationship between the starting and ending values in the individuals.
@@ -1412,7 +1412,7 @@ at more possibilities if you learn more statistical methods.</p>
 <div class="sourceCode" id="cb916"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb916-1"><a href="chapter9.html#cb916-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(lme_int), <span class="at">multiline =</span> T, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">ci.style =</span> <span class="st">&quot;bars&quot;</span>, <span class="at">grid =</span> T)</span></code></pre></div>
 <!-- \newpage -->
 
-<div class="figure" style="text-align: center"><span id="fig:Figure9-15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure9-15"></span>
 <img src="09-caseStudies_files/figure-html/Figure9-15-1.png" alt="Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model." width="75%" />
 <p class="caption">
 Figure 9.15: Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
@@ -1513,7 +1513,6 @@ did not provide the correct differences among models.<a href="chapter9.html#fnre
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1543,6 +1542,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Greenwood_Book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },

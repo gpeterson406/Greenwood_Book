@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 (R)e-Introduction to statistics | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 2 (R)e-Introduction to statistics | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 (R)e-Introduction to statistics | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="chapter1.html"/>
 <link rel="next" href="chapter3.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -502,7 +502,7 @@ provide some initial information on the shape of the distribution of
 the responses for the different <em>Outfits</em>. Figure <a href="chapter2.html#fig:Figure2-1">2.1</a>
 contains the histogram with a boxplot and a rug of <em>Distance</em>, all ignoring any information on which outfit was being worn. There are some additional layers and modifications in this version of the <code>ggplot</code>. The code uses our new pipe operator to pass our tibble into the <code>ggplot</code>, skipping the <code>data = ...</code> within <code>ggplot()</code>. There are some additional options modifying the title and the x- and y-axis labels inside the <code>labs()</code> part of the code, which will be useful for improving the labels in your plots and work across most plots made in the framework.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-1"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-1-1.png" alt="Histogram (with 20 bins), boxplot, and rug of passing distances (in cm)." width="75%" />
 <p class="caption">
 Figure 2.1: Histogram (with 20 bins), boxplot, and rug of passing distances (in cm).
@@ -549,7 +549,7 @@ somewhat matches the histogram bars but deals with the bumps up and down
 and edges a little differently. We can pick out the relatively symmetric distribution using
 either display and will rarely make both together. </p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-2"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-2-1.png" alt="Histogram (density scaled), density curve, and rug plot of Distance responses." width="75%" />
 <p class="caption">
 Figure 2.2: Histogram (density scaled), density curve, and rug plot of Distance responses.
@@ -584,7 +584,7 @@ from here forward, except in <code>ggplot</code> which has too many options for 
 <p>Figure <a href="chapter2.html#fig:Figure2-3">2.3</a> contains the side-by-side
 boxplots showing similar distributions for all the groups, with a slightly higher median in the “police” group and some potential outliers identified in both tails of the distributions in all groups.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-3"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-3-1.png" alt="Side-by-side boxplot of distances based on outfits." width="75%" />
 <p class="caption">
 Figure 2.3: Side-by-side boxplot of distances based on outfits.
@@ -628,7 +628,7 @@ The function works like the boxplot used previously
 except that options
 for the type of confidence interval needs to be specified with <code>inf.method = "ci"</code> – otherwise you will get a different kind of interval than you learned in introductory statistics and we don’t want to get caught up in trying to understand the kind of interval it makes by default. And it seems useful to add <code>inf.disp = "line"</code> as an additional option to add bars for the confidence interval<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>. There are many other options in the function that might be useful in certain situations, but these are the only ones that are really needed to get started with pirate-plots. While we could build this plot using <code>ggplot</code>, the simplicity of this function keeps it a favorite way to display a quantitative variable across groups even though we lose the grammar of graphics way of modifying the plot.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-4"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-4-1.png" alt="Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals." width="75%" />
 <p class="caption">
 Figure 2.4: Pirate-plot of distances by outfit group. Bold horizontal lines correspond to sample mean of each group, boxes around lines (here they are very tight to the lines for the means) are the 95% confidence intervals.
@@ -736,7 +736,7 @@ observed and is useful to run here to clean up <code>Condition</code> to just re
 <p>The two categories of interest now were selected because neither looks particularly “racey” or has high visibility but could present a common choice between getting fully “geared up” for the commute or just jumping on a bike to go to work. Now if we remake the boxplots and pirate-plots, they only contain results for
 the two groups of interest here as seen in Figure <a href="chapter2.html#fig:Figure2-5">2.5</a>. Note that these are available in the previous version of the plots, but now we will just focus on these two groups.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-5"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-5-1.png" alt="Boxplot and pirate-plot of the Distance responses on the reduced ddsub data set." width="75%" />
 <p class="caption">
 Figure 2.5: Boxplot and pirate-plot of the <em>Distance</em> responses on the reduced <code>ddsub</code> data set.
@@ -835,7 +835,7 @@ encounter some sort of noticeable difference in the distances for the
 different outfits and have been able to find enough evidence to against the null
 model where the groups “look the same” to be able to conclude that they differ.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-6"></span>
 <img src="chapter2_files/image015.png" alt="Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis." width="100%" />
 <p class="caption">
 Figure 2.6: Illustration of the assumed situations under the null (left) and a single possibility that could occur if the alternative were true (right) and the true means were different. There are an infinite number of ways to make a plot like the right panel that satisfies the alternative hypothesis.
@@ -956,7 +956,7 @@ direction (the <em>commute</em> group had a higher mean than <em>casual</em> in 
 <pre><code>## diffmean 
 ## 12.06667</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-7"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-7-1.png" alt="Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals for each of the means are more clearly visible than with the original large data set." width="75%" />
 <p class="caption">
 Figure 2.7: Pirate-plots of Distance responses versus actual treatment groups and permuted groups. Note how the responses are the same but that they are shuffled between the two groups differently in the permuted data set. With the smaller sample size, the 95% confidence intervals for each of the means are more clearly visible than with the original large data set.
@@ -1139,7 +1139,7 @@ possibilities under permutations (under the null hypothesis). So we repeat the
 loop, now with <span class="math inline">\(B = 1000\)</span> and generate a histogram (modified to add counts to the bars using <code>stat_bin</code><a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>), density curve, and summary
 statistics of the results:</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-8"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-8-1.png" alt="Histogram (left, with counts in bars) and density curve (right) of values of test statistic for B = 1,000 permutations." width="75%" />
 <p class="caption">
 Figure 2.8: Histogram (left, with counts in bars) and density curve (right) of values of test statistic for <em>B</em> = 1,000 permutations.
@@ -1177,7 +1177,7 @@ order of the parameters. The code for the vertical line is before the code for
 the bin counts. This order is prefered so that the counts are still readable if
 the vertical line and a bin count are in the same horizontal position.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-9"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-9-1.png" alt="Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic." width="75%" />
 <p class="caption">
 Figure 2.9: Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic.
@@ -1247,7 +1247,7 @@ and <code>lower.tail = F</code> provides this result:
 between the groups is 0.027 + 0.017, providing a p-value of 0.044.
 Figure <a href="chapter2.html#fig:Figure2-10">2.10</a> shows both cut-offs on the histogram and density curve.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-10"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-10-1.png" alt="Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test." width="75%" />
 <p class="caption">
 Figure 2.10: Histogram and density curve of values of test statistic for 1,000 permutations with bold lines for value of observed test statistic (-25.933) and its opposite value (25.933) required for performing the two-sided test.
@@ -1354,7 +1354,7 @@ some of these criticisms, we recommend reporting the strength of evidence of the
 result based on the p-value and also reporting and discussing the size of the
 estimated results (with a measure of precision of the estimated difference). We will explore the implications of how p-values are used in scientific research in Section <a href="chapter2.html#section2-8">2.8</a>.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-11"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-11"></span>
 <img src="chapter2_files/pvalueStrengths.png" alt="Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values. P-values range from 0 to 1, with only a p-value of 1.0 providing no evidence against the null hypothesis." width="100%" />
 <p class="caption">
 Figure 2.11: Graphic suggesting potential interpretations of strength of evidence based on gradient of p-values. P-values range from 0 to 1, with only a p-value of 1.0 providing no evidence against the null hypothesis.
@@ -1817,7 +1817,7 @@ variation in the results, you can run more than <em>B</em> = 1,000 permutations 
 Usually this uncertainty will not cause any substantive problems – but do not
 be surprised if your results vary if you use different random number seeds.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-12"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-12-1.png" alt="Permutation distribution of the \(t\)-statistic." width="75%" />
 <p class="caption">
 Figure 2.12: Permutation distribution of the <span class="math inline">\(t\)</span>-statistic.
@@ -1855,7 +1855,7 @@ equivalent to the methods we will consider in Chapters
 <a href="chapter3.html#chapter3">3</a> and <a href="chapter4.html#chapter4">4</a> so that
 will be our focus for the two group problem and is what we get when using the <code>lm</code> model to estimate the differences in the group means. The unequal variance version of the two-sample t-test is available in the <code>t.test</code> function if needed.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-13"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-13"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-13-1.png" alt="Plots of \(t\)-distributions with 2, 8, and 20 degrees of freedom and a normal distribution (dashed line). Note how the \(t\)-distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the \(t\)-distribution almost matches a standard normal curve." width="75%" />
 <p class="caption">
 Figure 2.13: Plots of <span class="math inline">\(t\)</span>-distributions with 2, 8, and 20 degrees of freedom and a normal distribution (dashed line). Note how the <span class="math inline">\(t\)</span>-distributions get closer to the normal distribution as the degrees of freedom increase and at 20 degrees of freedom, the <span class="math inline">\(t\)</span>-distribution <em>almost</em> matches a standard normal curve.
@@ -1903,7 +1903,7 @@ reason for this similarity is that the permutation distribution looks like a <sp
 of freedom. Figure <a href="chapter2.html#fig:Figure2-14">2.14</a> shows how similar the two distributions
 happened to be here, where the only difference in shape is near the peak of the distributions with a slight difference of the permutation distribution to shift to the right.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-14"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-14"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-14-1.png" alt="Plot of permutation and \(t\)-distribution with \(df = 28\). Note the close match in the two distributions, especially in the tails of the distributions where we are obtaining the p-values." width="75%" />
 <p class="caption">
 Figure 2.14: Plot of permutation and <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(df = 28\)</span>. Note the close match in the two distributions, especially in the tails of the distributions where we are obtaining the p-values.
@@ -2024,7 +2024,7 @@ similar inferences, but both are subject to concerns related to violations of th
 <span id="cb123-8"><a href="chapter2.html#cb123-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pdata</span>(<span class="fu">abs</span>(Tstar), <span class="fu">abs</span>(Tobs), <span class="at">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 0.045</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-15"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-15-1.png" alt="Permutation distribution of the \(t\)-statistic for \(n = 1,636\) overtake data set." width="75%" />
 <p class="caption">
 Figure 2.15: Permutation distribution of the <span class="math inline">\(t\)</span>-statistic for <span class="math inline">\(n = 1,636\)</span> overtake data set.
@@ -2054,7 +2054,7 @@ output and as displayed in Figure <a href="chapter2.html#fig:Figure2-16">2.16</a
 ## 1   F 2.50 3.1  3.400 3.70   4 3.338378 0.4074549 37       0
 ## 2   M 1.96 2.8  3.175 3.46   4 3.088571 0.4151789 42       0</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-16"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-16"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-16-1.png" alt="Side-by-side boxplot and pirate-plot of GPAs of Intermediate Statistics students by gender." width="75%" />
 <p class="caption">
 Figure 2.16: Side-by-side boxplot and pirate-plot of GPAs of Intermediate Statistics students by gender.
@@ -2104,7 +2104,7 @@ some re-assurance about the use of either approach when there are not dramatic v
 <span id="cb133-8"><a href="chapter2.html#cb133-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pdata</span>(<span class="fu">abs</span>(Tstar), <span class="fu">abs</span>(Tobs), <span class="at">lower.tail =</span> F)[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 0.011</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-17"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-17"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-17-1.png" alt="Histogram and density curve of permutation distribution of test statistic for Intermediate Statistics student GPAs." width="75%" />
 <p class="caption">
 Figure 2.17: Histogram and density curve of permutation distribution of test statistic for Intermediate Statistics student GPAs.
@@ -2221,7 +2221,7 @@ the Intermediate Statistics students that responded to the survey in that semest
 ## 1 1   8 99    116 133 245 116.0379 29.77388 1636       0</code></pre>
 <p>The second new R code needed is the <code>simulate</code>  function that can be applied to <code>lm</code>-objects; it generates a new data set that contains the same number of observations as the original one but assumes that all the aspects of the estimated model (mean(s), variance, and normal distributions) are true to generate the new observations. In this situation that implies generating new observations with the same mean (116.04) and standard deviation (29.77, also found as the “residual standard error” in the model summary).  The new responses are stored in <code>SimDistance</code> in <code>ddsub</code> and then plotted in Figure <a href="chapter2.html#fig:Figure2-18">2.18</a>.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-18"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-18"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-18-1.png" alt="Pirate-plot of a simulated data set that assumes the same mean for both groups. The means in the two groups are very similar." width="75%" />
 <p class="caption">
 Figure 2.18: Pirate-plot of a simulated data set that assumes the same mean for both groups. The means in the two groups are very similar.
@@ -2267,7 +2267,7 @@ even more clearly distinguished.</p>
 <p>The estimated difference in the means also presents an interesting story. When just reporting the first result, the distribution of the estimated means in panel b of Figure <a href="chapter2.html#fig:Figure2-19">2.19</a> shows a symmetric distribution that is centered around 0 with results extending just past <span class="math inline">\(\pm\)</span> 4 in each tail. When selection of results is included, only more extreme estimated differences are considered and no results close to 0 are even reported. There are two modes here around <span class="math inline">\(\pm\)</span> 2.5 and multiple results close to <span class="math inline">\(\pm\)</span> 5 are observed. Interestingly, the mean of both distributions is close to 0 so both are “unbiased”<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a> estimators but the distribution for the estimated difference from the selected “top” result is clearly flawed and would not give correct inferences for differences when the null hypothesis is correct. If a one-sided test had been employed, the selection of the top result would result is a clearly biased estimator as only one of the two modes would be selected. The presentation of these results is a great example of why pirate-plots are better than boxplots as a boxplot of these results would not allow the viewer to notice the two distinct groups of results.</p>
 
 <!-- \newpage -->
-<div class="figure" style="text-align: center"><span id="fig:Figure2-19"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-19"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-19-1.png" alt="Pirate-plot of a simulation study results. Panel (a) contains the B = 1,000 p-values and (b) contains the B = 1,000 estimated differences in the means. Note that the estimated means and confidence intervals normally present in pirate-plots are suppressed here with inf.f.o = 0, inf.b.o = 0, avg.line.o = 0 because these plots are being used to summarize simulation results instead of an original data set." width="75%" />
 <p class="caption">
 Figure 2.19: Pirate-plot of a simulation study results. Panel (a) contains the <em>B</em> = 1,000 p-values and (b) contains the <em>B</em> = 1,000 estimated differences in the means. Note that the estimated means and confidence intervals normally present in pirate-plots are suppressed here with <code>inf.f.o = 0, inf.b.o = 0, avg.line.o = 0</code> because these plots are being used to summarize simulation results instead of an original data set.
@@ -2353,7 +2353,7 @@ results and then using a validation or test data set that they withheld from
 initial analysis to try to verify that the first results are also present in that
 second data set. This also has problems but the only way to develop an understanding of a process is to look across a suite of studies and learn from that accumulation of evidence. This is a good start but needs to be coupled with complete reporting of all results, even those that have p-values larger than 0.05 to avoid the bias identified in the previous simulation study.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-20"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-20"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-20-1.png" alt="Plot of family-wise error rate (bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on \(m = 10\) tests." width="75%" />
 <p class="caption">
 Figure 2.20: Plot of family-wise error rate (bold solid line) as the number of tests performed increases. Dashed line indicates 0.05 and grey solid line highlights the probability of at least on error on <span class="math inline">\(m = 10\)</span> tests.
@@ -2393,7 +2393,7 @@ Figure 2.20: Plot of family-wise error rate (bold solid line) as the number of t
 <span id="cb151-28"><a href="chapter2.html#cb151-28" aria-hidden="true" tabindex="-1"></a><span class="fu">pirateplot</span>(pvalue_results <span class="sc">~</span> Scenario, <span class="at">data =</span> results, <span class="at">inf.f.o =</span> <span class="dv">0</span>, <span class="at">inf.b.o =</span> <span class="dv">0</span>,</span>
 <span id="cb151-29"><a href="chapter2.html#cb151-29" aria-hidden="true" tabindex="-1"></a>           <span class="at">avg.line.o =</span> <span class="dv">0</span>, <span class="at">main =</span> <span class="st">&quot;P-value results&quot;</span>)</span>
 <span id="cb151-30"><a href="chapter2.html#cb151-30" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.05</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure2-21"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-21"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-21-1.png" alt="Pirate-plot of a simulation study results of p-values with Bonferroni correction." width="75%" />
 <p class="caption">
 Figure 2.21: Pirate-plot of a simulation study results of p-values with Bonferroni correction.
@@ -2493,7 +2493,7 @@ each number of times of re-sampling when we start with all observations having
 an equal chance and sampling with replacement but this isn’t important for
 using bootstrapping methods.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-22"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-22"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-22-1.png" alt="Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples." width="75%" />
 <p class="caption">
 Figure 2.22: Counts of number of times of observation (or not observed for times re-sampled of 0) for two bootstrap samples.
@@ -2531,7 +2531,7 @@ function that was applied only to the explanatory variable.</p>
 <pre><code>##        min        Q1    median        Q3      max      mean       sd    n missing
 ##  -66.96429 -34.57159 -25.65881 -17.12391 17.17857 -25.73641 12.30987 1000       0</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-23"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-23"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-23-1.png" alt="Histogram and density curve of bootstrap distributions of difference in sample mean Distances with vertical line for the observed difference in the means of -25.933." width="75%" />
 <p class="caption">
 Figure 2.23: Histogram and density curve of bootstrap distributions of difference in sample mean <code>Distances</code> with vertical line for the observed difference in the means of -25.933.
@@ -2593,7 +2593,7 @@ of code using:</p>
 ## -50.005502  -2.248774</code></pre>
 <p>Figure <a href="chapter2.html#fig:Figure2-24">2.24</a> displays those same percentiles on the bootstrap distribution residing in <code>Tstar</code>.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-24"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-24"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-24-1.png" alt="Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold, dashed vertical lines)." width="75%" />
 <p class="caption">
 Figure 2.24: Histogram and density curve of bootstrap distribution with 95% bootstrap confidence intervals displayed (bold, dashed vertical lines).
@@ -2668,7 +2668,7 @@ in a <span class="math inline">\(t\)</span>-based confidence interval – try to
 <span class="math inline">\(t\)</span>-distribution with 28 degrees of freedom and the cut-offs that put 95% of the
 area in the middle.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-25"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-25"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-25-1.png" alt="Plot of \(t(28)\) with cut-offs for putting 95% of distribution in the middle that delineate the \(t^*\) multiplier to make a 95% confidence interval." width="75%" />
 <p class="caption">
 Figure 2.25: Plot of <span class="math inline">\(t(28)\)</span> with cut-offs for putting 95% of distribution in the middle that delineate the <span class="math inline">\(t^*\)</span> multiplier to make a 95% confidence interval.
@@ -2860,7 +2860,7 @@ points. The bootstrap distribution with the observed difference in the sample
 means and these cut-offs is displayed in Figure <a href="chapter2.html#fig:Figure2-26">2.26</a> using
 this code:</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure2-26"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure2-26"></span>
 <img src="02-reintroductionToStatistics_files/figure-html/Figure2-26-1.png" alt="Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines)." width="75%" />
 <p class="caption">
 Figure 2.26: Histogram and density curve of bootstrap distribution of difference in sample mean GPAs (male minus female) with observed difference (solid vertical line) and quantiles that delineate the 90% confidence intervals (dashed vertical lines).
@@ -3217,7 +3217,6 @@ the data set and calculate the means and standard deviations yourself.<a href="c
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -3247,6 +3246,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Greenwood_Book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },

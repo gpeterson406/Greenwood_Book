@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Correlation and Simple Linear Regression | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 6 Correlation and Simple Linear Regression | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Correlation and Simple Linear Regression | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="chapter5.html"/>
 <link rel="next" href="chapter7.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -397,7 +397,7 @@ To make scatterplots as in Figure <a href="chapter6.html#fig:Figure6-1">6.1</a>,
 <div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="chapter6.html#cb512-1" aria-hidden="true" tabindex="-1"></a>BB <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Beers, <span class="at">y =</span> BAC)) <span class="sc">+</span></span>
 <span id="cb512-2"><a href="chapter6.html#cb512-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb512-3"><a href="chapter6.html#cb512-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-1"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-1-1.png" alt="Scatterplot of Beers consumed versus BAC." width="75%" />
 <p class="caption">
 Figure 6.1: Scatterplot of <em>Beers</em> consumed versus <em>BAC</em>.
@@ -499,7 +499,7 @@ here to say <strong><em>linear relationship</em></strong> because you can have a
 relationship with a correlation of 0. For example, consider
 Figure <a href="chapter6.html#fig:Figure6-2">6.2</a>.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-2"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-2-1.png" alt="Scatterplot of an amusing (and strong) relationship that has \(r = 0\)." width="75%" />
 <p class="caption">
 Figure 6.2: Scatterplot of an amusing (and strong) relationship that has <span class="math inline">\(r = 0\)</span>.
@@ -644,7 +644,7 @@ the second half of the data set.</p>
 
 <div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="chapter6.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally) </span>
 <span id="cb520-2"><a href="chapter6.html#cb520-2" aria-hidden="true" tabindex="-1"></a>mtfiresR <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-3"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-3-1.png" alt="Scatterplot matrix of Montana fires data." width="75%" />
 <p class="caption">
 Figure 6.3: Scatterplot matrix of Montana fires data.
@@ -676,7 +676,7 @@ based on the other variables, but for now the associations are of interest.</p>
 ##  3rd Qu.:186.2   3rd Qu.:45.58   3rd Qu.:18.080  
 ##  Max.   :209.4   Max.   :59.70   Max.   :35.520</code></pre>
 <div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="chapter6.html#cb523-1" aria-hidden="true" tabindex="-1"></a>aisR <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-4"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-4-1.png" alt="Scatterplot matrix of athlete data." width="75%" />
 <p class="caption">
 Figure 6.4: Scatterplot matrix of athlete data.
@@ -711,7 +711,7 @@ observations were found for individuals numbered 56 and 166 in the data set. To 
 
 <div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="chapter6.html#cb528-1" aria-hidden="true" tabindex="-1"></a>aisR2 <span class="ot">&lt;-</span> aisR <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">56</span>, <span class="sc">-</span><span class="dv">166</span>) <span class="co">#Removes observations in rows 56 and 166</span></span>
 <span id="cb528-2"><a href="chapter6.html#cb528-2" aria-hidden="true" tabindex="-1"></a>aisR2 <span class="sc">%&gt;%</span> <span class="fu">ggpairs</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-5"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-5-1.png" alt="Scatterplot matrix of athlete data with two potential outliers removed. " width="75%" />
 <p class="caption">
 Figure 6.5: Scatterplot matrix of athlete data with two potential outliers removed. 
@@ -743,7 +743,7 @@ numerical correlations if desired. </p>
 <div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="chapter6.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb529-2"><a href="chapter6.html#cb529-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(aisR2), <span class="at">upper.col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;orange&quot;</span>), </span>
 <span id="cb529-3"><a href="chapter6.html#cb529-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">lower.col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-6"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-6-1.png" alt="Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations." width="75%" />
 <p class="caption">
 Figure 6.6: Correlation plot of the athlete data with two potential outliers removed. Lighter (orange) circle for positive correlations and black for negative correlations.
@@ -791,7 +791,7 @@ with information on the sex of the athletes where <em>sex</em> was coded 0 for m
 and 1 for females, changing both the symbol and color for the groups – with a
 legend to help to understand the plot. </p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-7"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-7-1.png" alt="Scatterplot of athlete’s height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s." width="75%" />
 <p class="caption">
 Figure 6.7: Scatterplot of athlete’s height and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
@@ -845,7 +845,7 @@ ignoring the group information.</p>
 <div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="chapter6.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Hc <span class="sc">~</span> Bfat, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
 <pre><code>## [1] -0.1679751</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-8"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-8-1.png" alt="Scatterplot of athlete’s body fat and hematocrit by sex of athletes. Males were coded as 0s and females as 1s." width="75%" />
 <p class="caption">
 Figure 6.8: Scatterplot of athlete’s body fat and hematocrit by sex of athletes. Males were coded as 0s and females as 1s.
@@ -877,7 +877,7 @@ variability in <em>Body Fat</em> associated with taller athletes (each sort of
 <div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="chapter6.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Bfat <span class="sc">~</span> Ht, <span class="at">data =</span> aisR2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Sex <span class="sc">==</span> <span class="dv">1</span>)) <span class="co">#Females only</span></span></code></pre></div>
 <pre><code>## [1] 0.4476962</code></pre>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-9"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-9-1.png" alt="Scatterplot of athlete’s body fat and height by sex." width="75%" />
 <p class="caption">
 Figure 6.9: Scatterplot of athlete’s body fat and height by sex.
@@ -1010,7 +1010,7 @@ dashed lines for bounds for the 95% bootstrap confidence interval.</p>
 <span id="cb550-7"><a href="chapter6.html#cb550-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> Tobs, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb550-8"><a href="chapter6.html#cb550-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_bin</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..ncount.., <span class="at">label =</span> ..count..), <span class="at">bins =</span> <span class="dv">15</span>,</span>
 <span id="cb550-9"><a href="chapter6.html#cb550-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.75</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-10"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-10-1.png" alt="(ref:fig6-10)" width="75%" />
 <p class="caption">
 Figure 6.10: (ref:fig6-10)
@@ -1081,7 +1081,7 @@ between the variables (which it is not here!). </p>
 <span id="cb551-6"><a href="chapter6.html#cb551-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb551-7"><a href="chapter6.html#cb551-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb551-8"><a href="chapter6.html#cb551-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-11"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-11"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-11-1.png" alt="Scatterplot of tree heights (m) vs tree diameters (cm) with estimated straight line relationship (blue line) and 95% confidence interval (grey band)." width="75%" />
 <p class="caption">
 Figure 6.11: Scatterplot of tree heights (m) vs tree diameters (cm) with estimated straight line relationship (blue line) and 95% confidence interval (grey band).
@@ -1171,7 +1171,7 @@ transformations in Chapter <a href="chapter7.html#chapter7">7</a>.</p>
 <span id="cb566-11"><a href="chapter6.html#cb566-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fl">1.1</span>)</span>
 <span id="cb566-12"><a href="chapter6.html#cb566-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb566-13"><a href="chapter6.html#cb566-13" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-12"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-12-1.png" alt="Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines). Notice the change in spread of the bootstrap distributions as well as the different centers." width="75%" />
 <p class="caption">
 Figure 6.12: Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines). Notice the change in spread of the bootstrap distributions as well as the different centers.
@@ -1213,7 +1213,7 @@ explanatory or response<a href="#fn116" class="footnote-ref" id="fnref116"><sup>
 <span id="cb567-10"><a href="chapter6.html#cb567-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(.<span class="dv">3</span>, <span class="st">&quot;cm&quot;</span>))) <span class="sc">+</span> </span>
 <span id="cb567-11"><a href="chapter6.html#cb567-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">5</span>, <span class="at">xend =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="fl">0.0771</span>),</span>
 <span id="cb567-12"><a href="chapter6.html#cb567-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(.<span class="dv">3</span>, <span class="st">&quot;cm&quot;</span>)), <span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-13"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-13"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-13-1.png" alt="Scatterplot with estimated regression line (solid line) for the Beers and BAC data. The solid arrows indicate the predictor variable values of 4 and 5 beers and the dashed lines illustrate the predicted mean BAC for 4 and 5 beers consumed based on the SLR model." width="75%" />
 <p class="caption">
 Figure 6.13: Scatterplot with estimated regression line (solid line) for the <em>Beers</em> and <em>BAC</em> data. The solid arrows indicate the predictor variable values of 4 and 5 beers and the dashed lines illustrate the predicted mean BAC for 4 and 5 beers consumed based on the SLR model.
@@ -1358,7 +1358,7 @@ interpret the slope coefficient as: </p>
 in <strong><em>Y</em></strong>.</li>
 </ul>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-14"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-14"></span>
 <img src="chapter6_files/image047.png" alt="Diagram of interpretation of slope coefficients." width="75%" />
 <p class="caption">
 Figure 6.14: Diagram of interpretation of slope coefficients.
@@ -1436,7 +1436,7 @@ using the <code>lm</code> function:
 <span id="cb575-4"><a href="chapter6.html#cb575-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb575-5"><a href="chapter6.html#cb575-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot of Body Fat vs Hematocrit for Female Athletes&quot;</span>,</span>
 <span id="cb575-6"><a href="chapter6.html#cb575-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Hc (% blood)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Body fat (% weight)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-15"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-15-1.png" alt="Scatterplot of Hematocrit versus Body Fat for female athletes. Note how the filter was used to pipe the subset of the data set to the plot." width="75%" />
 <p class="caption">
 Figure 6.15: Scatterplot of Hematocrit versus Body Fat for female athletes. Note how the <code>filter</code> was used to pipe the subset of the data set to the plot.
@@ -1484,7 +1484,7 @@ the squared residuals was minimized for the value that <code>lm</code> returned 
 it did not do as good <strong>on the least squares criterion</strong> as the least squares
 estimates.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-16"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-16"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-16-1.png" alt="Plot of sum of squared residuals vs possible slope coefficients for Beers vs BAC data, with vertical line for the least squares estimate that minimizes the sum of squared residuals." width="75%" />
 <p class="caption">
 Figure 6.16: Plot of sum of squared residuals vs possible slope coefficients for <em>Beers</em> vs <em>BAC</em> data, with vertical line for the least squares estimate that minimizes the sum of squared residuals.
@@ -1514,7 +1514,7 @@ this for us.
 <span id="cb576-8"><a href="chapter6.html#cb576-8" aria-hidden="true" tabindex="-1"></a>Your final score is <span class="fl">13143.99</span></span>
 <span id="cb576-9"><a href="chapter6.html#cb576-9" aria-hidden="true" tabindex="-1"></a>Thanks <span class="cf">for</span> playing<span class="sc">!</span></span></code></pre></div>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-17"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-17"></span>
 <img src="chapter6_files/image063.png" alt="Results of running FindRegLine() where I didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line." width="75%" />
 <p class="caption">
 Figure 6.17: Results of running <code>FindRegLine()</code> where I didn’t quite find the least squares line. The correct line is the bold (red) line and produced a smaller sum of squared residuals than the guessed thinner (black) line.
@@ -1617,7 +1617,7 @@ equation – here between 54 and 60 degrees F seems reasonable.</p>
 <span id="cb579-5"><a href="chapter6.html#cb579-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis</span>() <span class="sc">+</span></span>
 <span id="cb579-6"><a href="chapter6.html#cb579-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot with regression line for Area burned vs </span></span>
 <span id="cb579-7"><a href="chapter6.html#cb579-7" aria-hidden="true" tabindex="-1"></a><span class="st">       Temperature, colored by year&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-18"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-18"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-18-1.png" alt="Scatterplot of log-hectares burned versus temperature with estimated regression line. Information on the year of each observation is added using a local aesthetic inside geom_point to color the points on a color gradient based on Year." width="75%" />
 <p class="caption">
 Figure 6.18: Scatterplot of log-hectares burned versus temperature with estimated regression line. Information on the year of each observation is added using a local aesthetic inside <code>geom_point</code> to color the points on a color gradient based on <code>Year</code>.
@@ -1661,7 +1661,7 @@ with our model
 including <span class="math inline">\(x\)</span> (and, in Chapter <a href="chapter8.html#chapter8">8</a>, including multiple
 predictor variables).  </p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-19"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-19"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-19-1.png" alt="Three scatterplots with the same estimated regression line." width="75%" />
 <p class="caption">
 Figure 6.19: Three scatterplots with the same estimated regression line.
@@ -1849,7 +1849,7 @@ observation was from the regression line (residual), and to see a measure of
 that point’s influence (Cook’s D).
 </p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-20"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-20"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-20-1.png" alt="Scatterplot and Residuals vs Leverage plot for the real BAC data. Two high leverage points are flagged, with only one that has a Cook’s D value over 1 (“\(\circ\)”) and is indicated as influential." width="75%" />
 <p class="caption">
 Figure 6.20: Scatterplot and Residuals vs Leverage plot for the real BAC data. Two high leverage points are flagged, with only one that has a Cook’s D value over 1 (“<span class="math inline">\(\circ\)</span>”) and is indicated as influential.
@@ -1919,7 +1919,7 @@ especially the slope coefficient. It does impact the <span class="math inline">\
 R-squared value to 0.57. The same result occurs if the observation is
 noticeably lower than the other points.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-21"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-21"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-21-1.png" alt="Plots exploring the impacts of moving a single additional observation in the BAC example. The added point is indicated with * and the original regression line is the dashed line in the left column." width="100%" />
 <p class="caption">
 Figure 6.21: Plots exploring the impacts of moving a single additional observation in the BAC example. The added point is indicated with * and the original regression line is the dashed line in the left column.
@@ -2096,7 +2096,7 @@ someone else’s BAC.</li>
 <div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="chapter6.html#cb590-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(BAC <span class="sc">~</span> Beers, <span class="at">data =</span> BB)</span>
 <span id="cb590-2"><a href="chapter6.html#cb590-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb590-3"><a href="chapter6.html#cb590-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m1, <span class="at">add.smooth =</span> F, <span class="at">main =</span> <span class="st">&quot;Beers vs BAC&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-22"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-22"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-22-1.png" alt="Full suite of diagnostics plots for Beer vs BAC data." width="75%" />
 <p class="caption">
 Figure 6.22: Full suite of diagnostics plots for <em>Beer</em> vs <em>BAC</em> data.
@@ -2186,7 +2186,7 @@ the points are influential.</li>
 </ul></li>
 </ul>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure6-23"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-23"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-23-1.png" alt="Diagnostics plots for tree height and diameter simple linear regression model." width="75%" />
 <p class="caption">
 Figure 6.23: Diagnostics plots for tree height and diameter simple linear regression model.
@@ -2262,7 +2262,7 @@ waiting time based on duration of prior eruption.</p>
 <span id="cb594-10"><a href="chapter6.html#cb594-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb594-11"><a href="chapter6.html#cb594-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatterplot with regression and smoothing line,</span></span>
 <span id="cb594-12"><a href="chapter6.html#cb594-12" aria-hidden="true" tabindex="-1"></a><span class="st">       Waiting Time vs Duration&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-24"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-24"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-24-1.png" alt="Scatterplot of Old Faithful waiting times to next eruption (minutes) and duration of prior eruption (minutes) with smoothing line (dashed) and regression line (solid)." width="75%" />
 <p class="caption">
 Figure 6.24: Scatterplot of Old Faithful waiting times to next eruption (minutes) and duration of prior eruption (minutes) with smoothing line (dashed) and regression line (solid).
@@ -2306,7 +2306,7 @@ levels of duration of eruptions.</p>
 
 <div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="chapter6.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb598-2"><a href="chapter6.html#cb598-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(OF1)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure6-25"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure6-25"></span>
 <img src="06-correlationAndSimpleLinearRegression_files/figure-html/Figure6-25-1.png" alt="Diagnostic plots for Old Faithful waiting time model." width="75%" />
 <p class="caption">
 Figure 6.25: Diagnostic plots for Old Faithful waiting time model.
@@ -2565,7 +2565,6 @@ used in the Chi-square material in Chapter <a href="chapter5.html#chapter5">5</a
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -2595,6 +2594,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Greenwood_Book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },

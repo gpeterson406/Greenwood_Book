@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Two-Way ANOVA | Intermediate Statistics with R</title>
   <meta name="description" content="Chapter 4 Two-Way ANOVA | Intermediate Statistics with R" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Two-Way ANOVA | Intermediate Statistics with R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="chapter3.html"/>
 <link rel="next" href="chapter5.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -524,7 +524,7 @@ model assumptions.</p>
 <span id="cb334-2"><a href="chapter4.html#cb334-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
 <span id="cb334-3"><a href="chapter4.html#cb334-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pirateplot</span>(responses <span class="sc">~</span> brand <span class="sc">*</span> drops, <span class="at">data =</span> pt, <span class="at">xlab =</span> <span class="st">&quot;Drops&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Time&quot;</span>,</span>
 <span id="cb334-4"><a href="chapter4.html#cb334-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">inf.method =</span> <span class="st">&quot;ci&quot;</span>, <span class="at">inf.disp =</span> <span class="st">&quot;line&quot;</span>, <span class="at">theme =</span> <span class="dv">2</span>, <span class="at">point.o =</span> <span class="dv">1</span>) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-1"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-1-1.png" alt="Pirate-plot of paper towel data by Brand (first row of \(x\)-axis) and Drops (second row of \(x\)-axis)." width="75%" />
 <p class="caption">
 Figure 4.1: Pirate-plot of paper towel data by <code>Brand</code> (first row of <span class="math inline">\(x\)</span>-axis) and <code>Drops</code> (second row of <span class="math inline">\(x\)</span>-axis).
@@ -551,7 +551,7 @@ package installed, so you can also download the needed <code>intplot</code> and
 everything clear.</p>
 
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="chapter4.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intplot</span>(responses <span class="sc">~</span> brand <span class="sc">*</span> drops, <span class="at">data =</span> pt)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-2"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-2-1.png" alt="Interaction plot of the paper towel data with Drops on the x-axis and different lines based on Brand." width="75%" />
 <p class="caption">
 Figure 4.2: Interaction plot of the paper towel data with <code>Drops</code> on the x-axis and different lines based on <code>Brand</code>.
@@ -564,7 +564,7 @@ the variable with more levels on the x-axis will make interpretation easier,
 but not always. Try both and decide on the one that you like best.  </p>
 
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="chapter4.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intplot</span>(responses <span class="sc">~</span> drops <span class="sc">*</span> brand, <span class="at">data =</span> pt)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-3"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-3-1.png" alt="Interaction plot of paper towel data with Brand on the x-axis and lines based on Drops." width="75%" />
 <p class="caption">
 Figure 4.3: Interaction plot of paper towel data with <code>Brand</code> on the x-axis and lines based on <code>Drops</code>.
@@ -626,7 +626,7 @@ levels. For example, 10 <code>Drops</code> and <code>Brand</code> <em>B2</em> la
 interaction appears to be warranted.</p>
 
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="chapter4.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intplotarray</span>(responses <span class="sc">~</span> drops <span class="sc">*</span> brand, <span class="at">data =</span> pt)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-4"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-4-1.png" alt="Interaction plot array of paper towel data with two different versions of interaction plots and pirate-plots of the responses versus each explanatory variable." width="75%" />
 <p class="caption">
 Figure 4.4: Interaction plot array of paper towel data with two different versions of interaction plots and pirate-plots of the responses versus each explanatory variable.
@@ -643,7 +643,7 @@ differences either across <code>Drops</code> levels (x-axis) or <code>Brand</cod
 likely result in little to no evidence related to a difference in brands, water
 levels, or any interaction between them in this data set.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure4-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-5"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-5-1.png" alt="Interaction plots of four possible scenarios in the paper towel study." width="75%" />
 <p class="caption">
 Figure 4.5: Interaction plots of four possible scenarios in the paper towel study.
@@ -682,7 +682,7 @@ appears to change depending on which level of <code>Brand</code> is being consid
 Note that the plot here described as Scenario 5 is the same as the initial plot
 of the results in Figure <a href="chapter4.html#fig:Figure4-2">4.2</a>.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure4-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-6"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-6-1.png" alt="Interaction plot of Scenario 5 where it appears that an interaction is present." width="75%" />
 <p class="caption">
 Figure 4.6: Interaction plot of Scenario 5 where it appears that an interaction is present.
@@ -1000,7 +1000,7 @@ for the means instead of the <span class="math inline">\(\pm\)</span> 1 SE used 
 
 <div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="chapter4.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
 <span id="cb342-2"><a href="chapter4.html#cb342-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m1), <span class="at">grid =</span> T, <span class="at">multiline =</span> T, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), <span class="at">ci.style =</span> <span class="st">&quot;bars&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-7"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-7-1.png" alt="Plot of estimated results of interaction model for the paper towel performance data." width="75%" />
 <p class="caption">
 Figure 4.7: Plot of estimated results of interaction model for the paper towel performance data.
@@ -1151,7 +1151,7 @@ to the coefficients just discussed.</p>
 
 <div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="chapter4.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
 <span id="cb349-2"><a href="chapter4.html#cb349-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m2))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-8"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-8-1.png" alt="Term-plots of additive model for paper towel data. Left panel displays results for two brands and right panel for number of drops of water, each after controlling for the other." width="75%" />
 <p class="caption">
 Figure 4.8: Term-plots of additive model for paper towel data. Left panel displays results for two brands and right panel for number of drops of water, each after controlling for the other.
@@ -1161,7 +1161,7 @@ Figure 4.8: Term-plots of additive model for paper towel data. Left panel displa
 
 <div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="chapter4.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
 <span id="cb350-2"><a href="chapter4.html#cb350-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(m2, <span class="at">residuals =</span> T))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-9"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-9-1.png" alt="Term-plots of additive model for paper towel data with partial residuals added. Relatively similar variability seems to be present in each of the groups of residuals after adjusting for the other variable except for the residuals for the 10 drops where the variability is smaller, especially if one small outlier is ignored." width="75%" />
 <p class="caption">
 Figure 4.9: Term-plots of additive model for paper towel data with partial residuals added. Relatively similar variability seems to be present in each of the groups of residuals after adjusting for the other variable except for the residuals for the 10 drops where the variability is smaller, especially if one small outlier is ignored.
@@ -1181,7 +1181,7 @@ and delivery methods as two separate variables and explore their potential
 interaction. A pirate-plot and interaction plot are provided in
 Figure <a href="chapter4.html#fig:Figure4-10">4.10</a>.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure4-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-10"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-10-1.png" alt="Pirate-plot and interaction plot of the odontoblast growth data set." width="75%" />
 <p class="caption">
 Figure 4.10: Pirate-plot and interaction plot of the odontoblast growth data set.
@@ -1281,7 +1281,7 @@ tests and estimates for <em>Dose</em> and <em>Delivery method</em>. But since we
 <!-- \newpage -->
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="chapter4.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb357-2"><a href="chapter4.html#cb357-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(TG2, <span class="at">pch =</span> <span class="dv">16</span>) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-11"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-11"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-11-1.png" alt="Diagnostic plots for the interaction model for odontoblast growth interaction model." width="75%" />
 <p class="caption">
 Figure 4.11: Diagnostic plots for the interaction model for odontoblast growth interaction model.
@@ -1324,7 +1324,7 @@ suggest clear issues with this assumption.
  </p></li>
 </ul>
 <div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="chapter4.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(TG2, <span class="at">residuals =</span> T, <span class="at">x.var =</span> <span class="st">&quot;dosef&quot;</span>)) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-12"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-12-1.png" alt="Term-plot for odontoblast growth interaction model with partial residuals added." width="75%" />
 <p class="caption">
 Figure 4.12: Term-plot for odontoblast growth interaction model with partial residuals added.
@@ -1431,14 +1431,14 @@ interaction test to focusing on the pattern of the responses in the interaction
 plot or going to the simpler additive model, but it is good to know that there are still model coefficients driving
 our results even if there are too many to be easily interpreted.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure4-13"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-13"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-13-1.png" alt="Term-plot for the estimated interaction for the Odontoblast Growth data using the multiline = T and ci.style = "bars" options." width="75%" />
 <p class="caption">
 Figure 4.13: Term-plot for the estimated interaction for the Odontoblast Growth data using the <code>multiline = T</code> and <code>ci.style = "bars"</code> options.
 </p>
 </div>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure4-14"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-14"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-14-1.png" alt="Interaction plot for Odontoblast data with added CLD from Tukey’s HSD." width="75%" />
 <p class="caption">
 Figure 4.14: Interaction plot for Odontoblast data with added CLD from Tukey’s HSD.
@@ -1538,7 +1538,7 @@ this suggests that we might be in Scenario 2 or 3 where a single main effect of
 interest is present.</p>
 
 <div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="chapter4.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">intplotarray</span>(prodebt <span class="sc">~</span> cigbuy <span class="sc">*</span> incomegp, <span class="at">data =</span> debtRc, <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-15"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-15-1.png" alt="Interaction plot array of prodebt by income group (1 to 5) and whether they buy cigarettes (0 = no, 1 = yes)." width="75%" />
 <p class="caption">
 Figure 4.15: Interaction plot array of <code>prodebt</code> by income group (1 to 5) and whether they buy cigarettes (0 = no, 1 = yes).
@@ -1587,7 +1587,7 @@ the assumptions to make sure we can trust this initial test.
 
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="chapter4.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb378-2"><a href="chapter4.html#cb378-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(debt1, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-16"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-16"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-16-1.png" alt="Diagnostic plot for prodebt by income group and buy cigarettes/not interaction model." width="75%" />
 <p class="caption">
 Figure 4.16: Diagnostic plot for <code>prodebt</code> by income group and buy cigarettes/not interaction model.
@@ -1634,7 +1634,7 @@ buying/not in population, given income group in model</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="chapter4.html#cb379-1" aria-hidden="true" tabindex="-1"></a>debt1r <span class="ot">&lt;-</span> <span class="fu">lm</span>(prodebt <span class="sc">~</span> incomegp <span class="sc">+</span> cigbuy, <span class="at">data =</span> debtRc)</span>
 <span id="cb379-2"><a href="chapter4.html#cb379-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb379-3"><a href="chapter4.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(debt1r, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-17"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-17"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-17-1.png" alt="Diagnostic plot of additive model for ``prodebt`` by income group and whether they buy cigarettes/not." width="75%" />
 <p class="caption">
 Figure 4.17: Diagnostic plot of additive model for <code>prodebt</code> by income group and whether they buy cigarettes/not.
@@ -1660,7 +1660,7 @@ to the variability in the partial residuals but that the differences in
 the means in <code>incomegp</code> are at least somewhat obvious.</p></li>
 </ul>
 <div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="chapter4.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(debt1r, <span class="at">residuals =</span> T))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-18"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-18"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-18-1.png" alt="Term-plot for additive model for ``prodebt`` by income group and whether they buy cigarettes/not with partial residuals." width="75%" />
 <p class="caption">
 Figure 4.18: Term-plot for additive model for <code>prodebt</code> by income group and whether they buy cigarettes/not with partial residuals.
@@ -1724,7 +1724,7 @@ controlling for cigarette purchasing or not.</li>
 </ul>
 
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="chapter4.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(debt1r))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-19"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-19"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-19-1.png" alt="Term-plots for the prodebt response additive model with left panel for income group and the right panel for buying cigarettes or not (0 for no, 1 for yes)." width="75%" />
 <p class="caption">
 Figure 4.19: Term-plots for the <code>prodebt</code> response additive model with left panel for income group and the right panel for buying cigarettes or not (0 for no, 1 for yes).
@@ -1847,7 +1847,7 @@ difference between <code>cigbuy</code> levels across all income groups is a drop
 have the same differences regardless of cigarette buying or not, with income
 group 5 much higher than the other four groups. The minor differences in cigarette purchasing and large p-value for it controlled for income group suggest that we could also refine the model further and drop the <code>cigbuy</code> additive term and just focus on the income groups as a predictor – and this takes us right back to a One-Way ANOVA model so is not repeated here.</p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure4-20"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-20"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-20-1.png" alt="Illustration of the results from Table 4.3 showing the combined impacts of the components of the additive model for prodebt. Panel (a) uses income groups on the x-axis and different lines for cigarette buyers (1) or not (0). Panel (b) displays the different income groups as lines with the cigarette buying status on the x-axis." width="75%" />
 <p class="caption">
 Figure 4.20: Illustration of the results from Table <a href="chapter4.html#tab:Table4-3">4.3</a> showing the combined impacts of the components of the additive model for <code>prodebt</code>. Panel (a) uses income groups on the x-axis and different lines for cigarette buyers (1) or not (0). Panel (b) displays the different income groups as lines with the cigarette buying status on the x-axis.
@@ -1933,7 +1933,7 @@ at any combinations of levels that allow estimation of SEs so no bands are produ
 plot. 
 </p>
 
-<div class="figure" style="text-align: center"><span id="fig:Figure4-21"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-21"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-21-1.png" alt="Interaction plot in paper towel data set with no replication." width="75%" />
 <p class="caption">
 Figure 4.21: Interaction plot in paper towel data set with no replication.
@@ -2008,7 +2008,7 @@ differences among the levels are small relative to the residual variability as
 seen in the error bars around each point estimate.</p>
 
 <div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="chapter4.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">allEffects</span>(norep1))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-22"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-22"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-22-1.png" alt="Term-plots for the additive model in paper towel data set with no replication." width="75%" />
 <p class="caption">
 Figure 4.22: Term-plots for the additive model in paper towel data set with no replication.
@@ -2047,7 +2047,7 @@ simply as <code>tableplot(DATASETNAME)</code> which will sort the data set based
 <span id="cb397-8"><a href="chapter4.html#cb397-8" aria-hidden="true" tabindex="-1"></a><span class="co"># options(ffbatchbytes = 1024^2 * 128); options(ffmaxbytes = 1024^2 * 128 * 32) </span></span>
 <span id="cb397-9"><a href="chapter4.html#cb397-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tableplot</span>(dd[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">sort =</span> Condition2, <span class="at">pals =</span> <span class="fu">list</span>(<span class="st">&quot;BrBG&quot;</span>), <span class="at">sample =</span> F, </span>
 <span id="cb397-10"><a href="chapter4.html#cb397-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">colorNA_num =</span> <span class="st">&quot;pink&quot;</span>, <span class="at">numMode =</span> <span class="st">&quot;MB-ML&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:Figure4-23"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:Figure4-23"></span>
 <img src="04-twoWayAnova_files/figure-html/Figure4-23-1.png" alt="Tableplot of the full overtake data set sorted by outfit worn (Condition2)." width="75%" />
 <p class="caption">
 Figure 4.23: Tableplot of the full overtake data set sorted by outfit worn (<code>Condition2</code>).
@@ -2430,7 +2430,6 @@ responses for larger data sets.<a href="chapter4.html#fnref97" class="footnote-b
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -2460,6 +2459,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Greenwood_Book.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },

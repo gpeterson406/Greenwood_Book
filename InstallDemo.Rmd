@@ -1,0 +1,157 @@
+---
+title: "Getting going in R and RStudio"
+output:
+  html_document:
+    df_print: paged
+  learnr::tutorial:
+    progressive: yes
+    allow_skip: yes
+runtime: shiny_prerendered
+description: |
+  Learn how to set up R and RStudio on your machine. 
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+tutorial_options(exercise.timelimit = 60)
+```
+
+## Welcome
+
+This is an interactive tutorial and was created by Dr. Mark Greenwood (greenwood@montana.edu) based on the [source code](https://github.com/rstudio/learnr/tree/master/inst/tutorials/ex-setup-r/ex-setup-r.Rmd) that was originally created by RStudio.
+
+### Outline
+
+This tutorial will help you set up your computer to use R. It is for you if you need to:
+
+* Install R on your computer
+* Install the RStudio IDE
+
+You can skip this tutorial if you've already done these things in the last month. See notes below that discuss suggested updates to R and RStudio.
+
+### Is this tutorial for you?
+
+Do you need to work through the tutorial? Take the quiz below to find out.
+
+
+```{r quiz1, echo = FALSE}
+question("Check all that you have NOT done:",
+  answer("installed R on my computer in the last month", message = "* Install R"),
+  answer("installed the RStudio IDE", message = "* Install RStudio IDE"),
+  answer("None of the above. I've done both of them.", correct = TRUE, message = "You can skip this tutorial!"),
+  type = "multiple",
+  incorrect = "This tutorial is here to help! To get set up read:"
+)
+```
+
+
+## Install R
+
+### How to install R
+
+![](https://vimeo.com/203516510)
+
+### Test your knowledge
+
+The video was recorded with a previous version of R (3.3.2). Before moving to the next step, complete the installation on R. It is important to note that if you have previously installed R, you should complete the same steps to get an updated version of R. 
+
+
+```{r quiz2, echo=FALSE}
+quiz(caption = "Quiz - Install R",
+  question("Is R free to download and use?",
+    answer("Yes!", correct = TRUE, message = "R is free _and_ open source, which means that anyone can read, use, and copy the source code of the R language."),
+    answer("No.")
+  ),
+  question("Where do you download R?",
+    answer("At [www.rstudio.com/download](http://cloud.r-project.org)"),
+    answer("At [cloud.r-project.org](http://cloud.r-project.org)", correct = TRUE, message = "You can also download R from [cran.r-project.org](http://cran.r-project.org)"),
+    answer("At [www.r-project.org](www.r-project.org)", message = "Good try, but not exactly. www.r-project.org doesn't provide a download link, but it does provide a link to one of the websites above."),
+    answer("At [www.r.com](http://cloud.r-project.org)"),
+    allow_retry = TRUE
+  ),
+  question("How often should you update R?",
+    answer("Everytime you use it.", message = "This will be too often unless you use R very rarely!"),
+    answer("About once a year.", correct = TRUE, "A new version of R is released about once a year but sub-versions are released almost quarterly. Update your version of R if you encounter a bug that you cannot explain or it has been more than a year since you installed it."),
+    answer("Never", message = "A new version of R is released about once a year. I'll assume that you are using the newest version of R, which will be the fastest version with the fewest unexpected behaviors." )
+  ),
+  question("What is the current version of R?",
+    answer("3.3.2", message = "It is at least version 4.2.1."),
+    answer("3.6.2", message = "It is at least version 4.2.1."),
+    answer("4.0.0", message = "It is at least version 4.2.1."),
+    answer("4.2.1", correct = TRUE, "It was version 4.2.1 when I built this, but the current version might have a higher number (could be newer)."),
+    answer("Other", message = "It was version 4.2.1 when I built this, but the current version might have a higher number (could be newer).")
+  )
+)
+
+```
+
+## Install RStudio
+
+### How to install RStudio
+
+RStudio is an Integrated Development Environment for R. What does that mean? Well, if you think of R as a language, which it is, you can think of RStudio as a program that helps you write and work in the language. RStudio makes programming in R much easier and I suggest that you use it!
+
+![](https://vimeo.com/203516968)
+
+### Test your knowledge
+
+```{r quiz3, echo=FALSE}
+quiz(caption = "Quiz - Install RStudio",
+  question("What is the RStudio IDE?",
+    answer("An application that makes it easier to use R.", correct = TRUE, message = "RStudio organizes your workspace and makes it easier to write, use, debug, and save R code. I highly recommend it and use it for all of my research and teaching and will support you through learning to use R."),
+    answer("An application that let's you use R without writing any code.", message = "And thank goodness! Code provides a reproducible record of your work, which is essential for data science."),
+    answer("A spreadsheet program like Microsoft Excel."),
+    answer("Another name for R.", message = "R and RStudio are two separate things. R is a language, like English. Think of RStudio as a program that helps you use the language, kind of like how a word processing program helps you write in English."),
+    allow_retry = TRUE
+  ),
+  question("Is the RStudio IDE free to download and use?",
+    answer("Yes!", correct = TRUE, message = "Like R, RStudio is free and open-source. There do exist professional versions of RStudio, but individual users like you get access to all features you will need in the free version."),
+    answer("No.", message = "Like R, RStudio is free and open-source. There do exist professional versions of RStudio, but individual users like you get access to all features you will need in the free version.")
+  ),
+  question("Where do you download RStudio?",
+    answer("At www.rstudio.com/download", correct = TRUE, message = "For these tutorials, download and install the RStudio Desktop Open Source License."),
+    answer("At [cloud.r-project.org](www.rstudio.com/download)", message = "This is where you download R, not RStudio."),
+    answer("At www.r-project.org"),
+    answer("At [cran.rstudio.org](http://cran.rstudio.org)"),
+    allow_retry = TRUE
+  ),
+  question("Do you need to install R if you already have RStudio?",
+    answer("Yes.", correct = TRUE),
+    answer("No.", message = "R does not come with RStudio; you need to install R separately.")
+  ),
+  question("What is the current version of RStudio IDE?",
+    answer("1.0.136", message = "It is at least version 2022.07.1+554."),
+    answer("2022.07.1+554", correct = TRUE, "It was version 2022.07.1+554 when I built this, but the current version might have a higher number (could be newer)."),
+    answer("4.2.1", message = "That was the current version of R, RStudio is at least version 2022.07.1+554."),
+    answer("1.3", message = "It is at least version 2022.07.1+554."),
+    answer("Other", message = "It was version 2022.07.1+554 when I built this, but the current version might have a higher number (could be newer).")
+  )
+)
+```
+
+
+With R and RStudio installed, you are now ready to start writing code that will allow you to load data sets and perform statistical analysis.
+
+## Using R via RStudio
+
+### Console
+
+It is good to start with trying out the console to do some quick code work and for things like using it as a calculator. You can see further discussion of this in [Chapter 1 of Greenwood (2021)](https://greenwood-stat.github.io/GreenwoodBookHTML/chapter1.html). 
+
+### R Markdown
+
+Eventually, you will want to move to using reproducible research methods via R Markdown. R Markdown provides an authoring framework for data wrangling and statistical analysis. A single R Markdown file can be used to save and execute code and 
+generate high quality reports that are fully reproducible. You can go to RStudio's website for a [complete tutorial](https://rmarkdown.rstudio.com/lesson-1.html). 
+
+That tutorial starts with this video that discusses some of what you can do with R Markdown:
+
+![](https://vimeo.com/178485416)
+
+## Back up option to access R via RStudio Server (MSU Students only):
+
+If you are having any difficulties getting your local installation of R and RStudio to work (you may not discover this until you try to use it to complete tasks), there is one other option for you to be able to use R via RStudio via a web-browser.
+
+
+* **Rstudio server**: 
+
+    - Go to https://rstudio.math.montana.edu and sign in using your NetID credentials. Currently you need to be on a list to be approved to access this server version of RStudio (hopefully related to how you ran into this tutorial) and so this method may not be available to you (especially if you are not MSU affiliated). In this version of RStudio, to load a data set or .Rmd file, go to the "Files" tab in the lower right panel (not "File" in the upper ribbon) and use the "Upload" button and "Choose File" to pick the file from your local directory structure. This same "Files" location can also be used to download files (use "More" and then "Export" to download .Rmd files). Working in the session window should otherwise resemble working on a local installation of RStudio and be running a recent version (4.1.1 when I last checked). Your work should be available when you re-open this until the end of the semester, but because it is new for us to serve RStudio locally, we would recommend downloading your work at the end of each session until we can test the system more fully. 

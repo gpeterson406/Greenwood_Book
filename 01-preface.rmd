@@ -979,14 +979,14 @@ defines which layer is "on top", with the plot built up sequentially. So we can
 add a boxplot on top of a histogram by putting it after the histogram layer. 
 Also in Figure \@ref(fig:Figure1-12), the `geom_rug` is also added, which puts 
 a tick mark for each observation on the lower part of the x-axis. \index{rug} 
-Rug plots use a graphical technique called ***jittering*** to add a little 
-noise^[Jittering typically involves adding random variability to each 
+Rug plots can also use a graphical technique called ***jittering*** to add a little 
+noise using the options `geom_rug(sides = "b", aes(y = 0), position = "jitter")`^[Jittering typically involves adding random variability to each 
 observation that is uniformly distributed in a range determined based on the 
-spacing of the observation. The idea is to jitter just enough to see all the 
-points but not too much. This means that if you re-run the ``jitter`` function, 
+spacing of the observations. The idea is to jitter just enough to see all the 
+points but not too much. Because it is random noise being added, this also means that if you re-run the ``jitter`` function, 
 the results will change if you do not set the random number seed using 
-`set.seed` that is discussed more below. For more details, type ``help(jitter)`` 
-in the console in RStudio.] to each observation so that multiple similar or 
+`set.seed` that is discussed more below. For more details, type ``help(geom_rug)`` 
+in the console in RStudio. The code is unfortunately clumsy to add jittering to the rug, so a simpler option is to use `geom_rug(alpha = 0.3)` where the transparency is modified with the `alpha` option to help with identifying overplotting of lines in the rug.] to each observation so that multiple similar or 
 tied observations do not plot as a single line. \index{jitter} There are options 
 to control the color of individual components when we add them (the histogram is 
 filled with grey (``fill = "grey"``), the boxplot is in "tomato" 
@@ -1006,8 +1006,8 @@ options there). \index{themes} \index{\texttt{theme\_bw()}}
 ```{r Figure1-12, fig.cap="(ref:fig1-12)",echo=F}
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
   geom_histogram(fill = "grey", bins = 8) + 
-  geom_boxplot(color = "tomato") + 
-  geom_rug(color = "skyblue") + 
+  geom_boxplot(color = "tomato") +
+  geom_rug(color = "skyblue", sides = "b", aes(y = 0), position = "jitter") + 
   theme_light()
 ```
 
@@ -1015,7 +1015,7 @@ ggplot(data = treadmill, mapping = aes(x = RunTime)) +
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
   geom_histogram(fill = "grey", bins = 8) + 
   geom_boxplot(color = "tomato") + 
-  geom_rug(color = "skyblue") + 
+    geom_rug(color = "skyblue", sides = "b", aes(y = 0), position = "jitter") + 
   theme_light()
 ```
 

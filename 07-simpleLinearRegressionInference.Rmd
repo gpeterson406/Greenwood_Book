@@ -1595,6 +1595,14 @@ medians instead of means, and we don't do this because
 we want to, we do it because it is result of modeling on the $\log(y)$ scale, 
 if successful. 
 
+So there are a couple of ways to interpret these results in general:
+
+1. ***log-scale interpretation of log(y) only model***: for a 1 unit
+increase in $x$, we estimate a $b_1$ unit change in the mean of $\log(y)$ or 
+
+2. ***original scale interpretation of log(y) only model***: for a 1 unit
+increase in $x$, we estimate a $exp(b_1)$ times change in the median of $y$. 
+
 \indent When we are working with regression equations, slopes can either be positive or
 negative and our interpretations change based on this result to either result
 in growth ($b_1>0$) or decay ($b_1<0$) in the responses as the explanatory
@@ -1983,8 +1991,8 @@ in 95% of applications of the methods and fails the other 5% of the time.
 Remember that for any interval estimate, the true value is either in the
 interval or it is not and our confidence level essentially sets our failure
 rate! Because PIs push into the tails of the assumed distribution of the
-responses these methods are very sensitive to violations of assumptions so we
-should not use these if there are any concerns about violations of assumptions as they will work as advertised (at the ***nominal*** (specified) level).
+responses, these methods are very sensitive to violations of assumptions. We
+should not use these if there are any concerns about violations of assumptions as they will not work as advertised (at the ***nominal*** (specified) level).
 
 \indent There are two ways to explore CIs for the mean and PIs for a new observation.
 The first is to focus on a specific $x$-value of interest. The second is to 

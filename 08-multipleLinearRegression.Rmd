@@ -2869,7 +2869,7 @@ since all the Cook's D values are less than 0.5. \index{influential}
 (ref:fig8-29) Diagnostic plots for the additive decibel tolerance model. 
 
 ```{r Figure8-29,fig.cap="(ref:fig8-29)"}
-par(mfrow = c(2,2), oma = c(0,0,2,0))
+par(mfrow = c(2,2), oma = c(0,0,3,0))
 plot(head1, pch = 16,
      sub.caption = "Plot of diagnostics for additive model with du1 and 
      treatment for du2")
@@ -2880,7 +2880,7 @@ plot(head1, pch = 16,
 to see if any patterns in residuals look different in different groups, like
 linearity or non-constant variance, when we are fitting models that might
 contain multiple groups. We can use the same scatterplot tools to make our own
-plot the residuals (extracted using the ``residuals`` function) versus the
+plot of the residuals (extracted using the ``residuals`` function) versus the
 fitted values (extracted using the ``fitted`` function) by groups as in
 Figure \@ref(fig:Figure8-30). This provides an opportunity to introduce
 faceting, where we can split our plots into panels by a grouping variable, here
@@ -2915,17 +2915,14 @@ Headache %>% ggplot(mapping = aes(x = fits, y = resids,
 ```
 
 
-\indent The VIFs are different for categorical variables than for quantitative
-predictors in MLR. The 4 levels are combined in a measure called the
-***generalized VIF (GVIF)***. For GVIFs, we only focus on the inflation of the
-SE scale (square root for 1 df effects and raised to the power $1/(2*J)$ for a
-$J$-level predictor). On this scale, the interpretation is as **the
+\indent The VIFs are different for models with categorical variables than for models with only quantitative
+predictors in MLR, even though we are still concerned with shared information across the predictors of all kinds. For categorical predictors, the $J$ levels are combined to create a single measure for the predictor all together called the
+***generalized VIF (GVIF)***. \index{GVIF} \index{generalized variance inflation factor} For GVIFs, interpretations are based on the GVIF measure to the power $1/(2*(J-1))$. For quantitative predictors when GVIFS are present, $J$ = 2, and the power simplifies to $1/2$, which is our regular square-root scale for inflation of standard errors due to multicollinearity (so the GVIF is the VIF for quantitative predictors). For a $J$-level categorical predictor, the power is also $1/2$ for $J=2$ levels and increases for more levels. There are no rules of thumb for GVIFs for $J>2$. In the following output, there are four levels, so $J=4$. When raised to the requisite power, the GVIF interpretation for multi-category categorical predictors is as **the
 multiplicative increase in the SEs for the coefficients on all the indicator
-variables due to multicollinearity with other predictors**. In this model, the
-SE for ``du1`` is 1.009 times larger due to multicollinearity with other
-predictors and the SEs for the indicator variables for ``treatment`` are 1.003
-times larger due to multicollinearity than they otherwise would have been.
-Neither are large so multicollinearity is not a problem in this model. 
+variables due to multicollinearity with other predictors**.  In this model, the
+SE for the quantitative predictor ``du1`` is 1.009 times larger due to multicollinearity with other
+predictors and the SEs for the indicator variables for the four-level categorical ``treatment`` predictor are 1.003
+times larger due to multicollinearity, both compared to what they would have been with no shared information in the predictors in the model. Neither are large so multicollinearity is not a problem in this model. 
 
 ```{r}
 vif(head1)
@@ -3690,7 +3687,7 @@ model than the ***adjusted*** ***R***^2^. The measure is called the ***AIC***
 AIC nomenclature to mean An Information Criterion -- he was not so vain as to
 name the method after himself in the original paper that proposed it. But it is
 now common to use "A" for his last name.], [@Akaike1974]). It is extremely
-popular, but sometimes misused, in some fields such as Ecology and has been
+popular, but sometimes misused, in some fields such as Ecology, and has been
 applied in almost every other potential application area where statistical
 models can be compared. @Burnham2002 have been responsible for popularizing the
 use of AIC for model selection, especially in Ecology. The **AIC is an estimate

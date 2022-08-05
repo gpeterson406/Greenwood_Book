@@ -2141,7 +2141,7 @@ df2 = `r colFmt("DENOMDF","red")`, lower.tail = F)**
     B ``<-`` 1000  
     Tstar ``<-`` matrix(NA, nrow = B)  
     for (b in (1:B)){  
-      Tstar[b] ``<-`` anova(lm(`r colFmt("Y","red")` ~ `r shuffle(colFmt("X","red"))`, data = `r colFmt("DATASETNAME","red")`))[1,4]  
+      Tstar[b] ``<-`` anova(lm(`r colFmt("Y","red")` ~ shuffle(`r (colFmt("X","red"))`), data = `r colFmt("DATASETNAME","red")`))[1,4]  
     }  
     pdata(Tstar, Tobs, lower.tail = F)[[1]]**  
 

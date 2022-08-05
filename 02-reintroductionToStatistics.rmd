@@ -131,7 +131,7 @@ suppressMessages(library(readr))
 dd <- read_csv("Walker2014_mod.csv")
 ```
 
-It is always good to review the data you have read by running the code and printing the tibble \index{R packages!\textbf{tibble}} by typing the tibble name (here `> dd`) at the command prompt in the console, using the `View` function, (here `View(dd)`), to open a spreadsheet-like view, or using the `head` and `tail` functions have been show the first and last ten observations:
+It is always good to review the data you have read by running the code and printing the tibble \index{R packages!\textbf{tibble}} by typing the tibble name (here `> dd`) at the command prompt in the console, using the `View` function, (here `View(dd)`), to open a spreadsheet-like view, or using the `head` and `tail` functions to show the first and last six observations:
 
 \newpage
 
@@ -278,7 +278,7 @@ contains the histogram with a boxplot and a rug of *Distance*, all ignoring any 
 ```{r Figure2-1, fig.cap="(ref:fig2-1)",echo=F,cache=T}
 dd %>% ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 20, fill = "grey") +
-  geom_rug() +
+  geom_rug(alpha = 0.1) +
   # width used to scale boxplot to make it more visible
   geom_boxplot(color = "tomato", width = 30) + 
   theme_bw() +
@@ -291,7 +291,7 @@ dd %>% ggplot(mapping = aes(x = Distance)) +
 ```{r eval=F}
 dd %>% ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 20, fill = "grey") +
-  geom_rug() +
+  geom_rug(alpha = 0.1) +
   geom_boxplot(color = "tomato", width = 30) + 
       # width used to scale boxplot to make it more visible
   theme_bw() +
@@ -347,7 +347,7 @@ set.seed(555)
 dd %>% ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 20, fill = "grey", aes(y = ..density..)) +
   geom_density(fill = "purple", alpha = 0.1) + 
-  geom_rug() + 
+  geom_rug(alpha = 0.1) + 
   theme_bw() +
   labs(title = "Plot of Passing Distances",
        x = "Distance (cm)",
@@ -358,7 +358,7 @@ dd %>% ggplot(mapping = aes(x = Distance)) +
 dd %>% ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 15, fill = "grey", aes(y = ..density..)) +
   geom_density(fill = "purple", alpha = 0.1) + 
-  geom_rug() + 
+  geom_rug(alpha = 0.1) + 
   theme_bw() +
   labs(title = "Plot of Passing Distances",
        x = "Distance (cm)",
@@ -1071,7 +1071,7 @@ order of the parameters. The code for the vertical line is before the code for
 the bin counts. This order is prefered so that the counts are still readable if
 the vertical line and a bin count are in the same horizontal position.
 
-(ref:fig2-9) Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic. 
+(ref:fig2-9) Histogram and density curve of values of test statistic for 1,000 permutations with bold vertical line for the value of observed test statistic. 
 
 ```{r Figure2-9, fig.cap="(ref:fig2-9)",echo=F,cache=F}
 Tobs <- -25.933

@@ -28,10 +28,14 @@ response variables.
 
 (ref:fig9-1) Schematic of methods covered. 
 
-<div class="figure" style="text-align: center">
-<img src="chapter9_files/decisiontree.jpg" alt="(ref:fig9-1)" width="75%" />
-<p class="caption">(\#fig:Figure9-1)(ref:fig9-1)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{chapter9_files/decisiontree} 
+
+}
+
+\caption{(ref:fig9-1)}(\#fig:Figure9-1)
+\end{figure}
 
 \indent Every scenario with a quantitative response variable was handled using linear
 models. The last material on multiple linear regression modeling tied back to
@@ -139,10 +143,14 @@ from earlier in the book and to see some hints about possible extensions of the 
 
 (ref:fig9-2) Pirate-plot of biomass responses by treatment and species. 
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-2-1.png" alt="(ref:fig9-2)" width="75%" />
-<p class="caption">(\#fig:Figure9-2)(ref:fig9-2)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-2-1} 
+
+}
+
+\caption{(ref:fig9-2)}(\#fig:Figure9-2)
+\end{figure}
 
 In a 16-year experiment, @Gundale2013 studied the impacts
 of Nitrogen (N) additions on the mass of two feather moss species 
@@ -211,10 +219,14 @@ quite different based on this plot as well.
 
 (ref:fig9-3) Interaction plot of biomass responses by treatment and species. 
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-3-1.png" alt="(ref:fig9-3)" width="75%" />
-<p class="caption">(\#fig:Figure9-3)(ref:fig9-3)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-3-1} 
+
+}
+
+\caption{(ref:fig9-3)}(\#fig:Figure9-3)
+\end{figure}
 
 <!-- \newpage -->
 
@@ -263,13 +275,18 @@ summary(m1)
 
 ```r
 par(mfrow = c(2,2), oma = c(0,0,2,0))
-plot(m1, sub.caption = "Initial Massperha 2-WAY model", pch = 16)
+plot(m1, pch = 16, sub.caption = "")
+title(main="Initial Massperha 2-WAY model", outer=TRUE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-4-1.png" alt="(ref:fig9-4)" width="75%" />
-<p class="caption">(\#fig:Figure9-4)(ref:fig9-4)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-4-1} 
+
+}
+
+\caption{(ref:fig9-4)}(\#fig:Figure9-4)
+\end{figure}
 
 There is a clear problem with non-constant variance showing up in a fanning 
 shape^[Instructors often get asked what a problem with 
@@ -325,10 +342,14 @@ intplot(logMassperha ~ Species * Treatment, data = gdn, col = viridis(4)[1:3],
         lwd = 2, main = "(b)")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-5-1.png" alt="(ref:fig9-5)" width="75%" />
-<p class="caption">(\#fig:Figure9-5)(ref:fig9-5)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-5-1} 
+
+}
+
+\caption{(ref:fig9-5)}(\#fig:Figure9-5)
+\end{figure}
 
 The variability in the pirate-plot in Figure \@ref(fig:Figure9-5)(a) appears to be
 more consistent across the groups but the lines appear to be a little less 
@@ -405,13 +426,18 @@ Anova(m2)
 
 ```r
 par(mfrow = c(2,2), oma = c(0,0,2,0))
-plot(m2, sub.caption = "log-Massperha 2-WAY model", pch = 16)
+plot(m2, pch = 16, sub.caption = "")
+title(main="log-Massperha 2-WAY model", outer=TRUE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-6-1.png" alt="(ref:fig9-6)" width="75%" />
-<p class="caption">(\#fig:Figure9-6)(ref:fig9-6)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-6-1} 
+
+}
+
+\caption{(ref:fig9-6)}(\#fig:Figure9-6)
+\end{figure}
 
 \indent The researchers actually applied a $\log(y+1)$ transformation to all the 
 variables. This was used because one of their many variables had a value of 0
@@ -447,10 +473,14 @@ library(effects)
 plot(allEffects(m2), multiline = T, lty = c(1,2), ci.style = "bars", grid = T)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-7-1.png" alt="(ref:fig9-7)" width="75%" />
-<p class="caption">(\#fig:Figure9-7)(ref:fig9-7)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-7-1} 
+
+}
+
+\caption{(ref:fig9-7)}(\#fig:Figure9-7)
+\end{figure}
 
 <!-- \newpage -->
 
@@ -566,14 +596,18 @@ different. The following code creates the plot of these results using our
 
 
 ```r
-intplot(logMassperha ~ Species * Treatment, cld = T, cldshift = 0.15, data = gdn, lwd = 2, 
-        main = "Interaction with CLD from Tukey's HSD on One-Way ANOVA")
+intplot(logMassperha ~ Species * Treatment, cld = T, cldshift = 0.16, data = gdn, lwd = 2, 
+        main = "Interaction Plot with CLD from Tukey's HSD on One-Way ANOVA")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-8-1.png" alt="(ref:fig9-8)" width="75%" />
-<p class="caption">(\#fig:Figure9-8)(ref:fig9-8)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-8-1} 
+
+}
+
+\caption{(ref:fig9-8)}(\#fig:Figure9-8)
+\end{figure}
 
 \indent These results suggest that *HS-N50* is detectably different from all the other
 groups (letter "a"). The rest of the story is more complicated since many of
@@ -641,10 +675,14 @@ levels(sasakipratt$before) <- c("SmallBright", "LargeDark")
 plot(after ~ group, data = sasakipratt, col = cividis(2))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-9-1.png" alt="(ref:fig9-9)" width="75%" />
-<p class="caption">(\#fig:Figure9-9)(ref:fig9-9)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-9-1} 
+
+}
+
+\caption{(ref:fig9-9)}(\#fig:Figure9-9)
+\end{figure}
 
 
 ```r
@@ -847,10 +885,14 @@ bm %>% ggplot(mapping = aes(x = logDBCs, y = logSpecies, color = TJK, shape = TJ
   scale_color_colorblind()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-10-1.png" alt="(ref:fig9-10)" width="75%" />
-<p class="caption">(\#fig:Figure9-10)(ref:fig9-10)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-10-1} 
+
+}
+
+\caption{(ref:fig9-10)}(\#fig:Figure9-10)
+\end{figure}
 
 <!-- \newpage -->
 
@@ -1000,10 +1042,14 @@ par(mfrow = c(2,2), oma = c(0,0,2,0))
 plot(bd1, pch = 16)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-11-1.png" alt="(ref:fig9-11)" width="75%" />
-<p class="caption">(\#fig:Figure9-11)(ref:fig9-11)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-11-1} 
+
+}
+
+\caption{(ref:fig9-11)}(\#fig:Figure9-11)
+\end{figure}
 
 \indent The constant variance, linearity, and assessment of influence do not
 suggest any problems with those assumptions. This is reinforced in the partial
@@ -1049,7 +1095,7 @@ question of interest involves the differences between the periods. The change
 in the y-intercepts of -0.76 suggests that the Cretaceous has a lower average
 log-biodiversity by 0.75 log-count, after controlling for the log-sampling 
 effort. This suggests that the *Cretaceous* had a lower corrected mean
-log-Sauropodomorph biodiversity $\require{enclose} (t_{23} = -3.41;\enclose{horizontalstrike}{\text{p-value} = 0.0024})$ than the combined
+log-Sauropodomorph biodiversity $(t_{23} = -3.41;\text{\sout{p-value = 0.0024}})$ than the combined
 results for the Triassic and Jurassic. On the original count scale, this 
 suggests $\exp(-0.76) = 0.47$ times (53% drop in) the median biodiversity count 
 per stage for Cretaceous versus the prior time period, after correcting for
@@ -1089,10 +1135,14 @@ summary(bd1)
 plot(allEffects(bd1, residuals = T), grid = T)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-12-1.png" alt="(ref:fig9-12)" width="75%" />
-<p class="caption">(\#fig:Figure9-12)(ref:fig9-12)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-12-1} 
+
+}
+
+\caption{(ref:fig9-12)}(\#fig:Figure9-12)
+\end{figure}
 
 
 \indent Their study shows some interesting contrasts between methods. They tried to use
@@ -1208,10 +1258,14 @@ epworthdata %>%
   scale_color_colorblind()
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-13-1.png" alt="(ref:fig9-13)" width="75%" />
-<p class="caption">(\#fig:Figure9-13)(ref:fig9-13)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-13-1} 
+
+}
+
+\caption{(ref:fig9-13)}(\#fig:Figure9-13)
+\end{figure}
 
 \indent This plot seems to contradict the result from the following Two-Way 
 ANOVA (that is a repeat of what you would have seen had you done the practice 
@@ -1240,22 +1294,32 @@ Anova(lm_int)
 
 (ref:fig9-14) Plot of simulated data from the Two-Way ANOVA model that does not assume observations are on repeated measures on subjects to compare to the real data set. Even though the treatment levels seem to decrease on average, there is a much less clear relationship between the starting and ending values in the individuals.
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-14-1.png" alt="(ref:fig9-14)" width="75%" />
-<p class="caption">(\#fig:Figure9-14)(ref:fig9-14)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-14-1} 
+
+}
+
+\caption{(ref:fig9-14)}(\#fig:Figure9-14)
+\end{figure}
 
 (ref:tab9-2) ANOVA table from Two-Way ANOVA interaction model.
 
+\begin{table}
 
-Table: (\#tab:Table9-2)(ref:tab9-2)
-
-|           |  Sum Sq| Df| F value| Pr(>F)|
-|:----------|-------:|--:|-------:|------:|
-|Time       | 120.746|  1|   5.653|  0.022|
-|Group      |   8.651|  1|   0.405|  0.528|
-|Time:Group |  29.265|  1|   1.370|  0.248|
-|Residuals  | 982.540| 46|        |       |
+\caption{(\#tab:Table9-2)(ref:tab9-2)}
+\centering
+\begin{tabular}[t]{lrrrr}
+\toprule
+  & Sum Sq & Df & F value & Pr(>F)\\
+\midrule
+Time & 120.746 & 1 & 5.653 & 0.022\\
+Group & 8.651 & 1 & 0.405 & 0.528\\
+Time:Group & 29.265 & 1 & 1.370 & 0.248\\
+Residuals & 982.540 & 46 &  & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \indent If the issue is failing to account for differences in subjects, then 
 why not add "Subject" to the model? There are two things to consider. First, 
@@ -1292,16 +1356,22 @@ Anova(lm_int_wsub)
 
 (ref:tab9-3) ANOVA table from Two-Way ANOVA interaction model.
 
+\begin{table}
 
-Table: (\#tab:Table9-3)(ref:tab9-3)
-
-|           |  Sum Sq| Df| F value| Pr(>F)|
-|:----------|-------:|--:|-------:|------:|
-|Time       | 120.746|  1|  22.410|  0.000|
-|Group      |        |  0|        |       |
-|Subject    | 858.615| 23|   6.929|  0.000|
-|Time:Group |  29.265|  1|   5.431|  0.029|
-|Residuals  | 123.924| 23|        |       |
+\caption{(\#tab:Table9-3)(ref:tab9-3)}
+\centering
+\begin{tabular}[t]{lrrrr}
+\toprule
+  & Sum Sq & Df & F value & Pr(>F)\\
+\midrule
+Time & 120.746 & 1 & 22.410 & 0.000\\
+Group &  & 0 &  & \\
+Subject & 858.615 & 23 & 6.929 & 0.000\\
+Time:Group & 29.265 & 1 & 5.431 & 0.029\\
+Residuals & 123.924 & 23 &  & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \indent With this result, we would usually explore the term-plots from this 
 model to get a sense of the pattern of the changes over time in the treatment 
@@ -1343,10 +1413,14 @@ plot(allEffects(lme_int), multiline = T, lty = c(1,2), ci.style = "bars", grid =
 
 (ref:fig9-15) Term-plot of Time by Group interaction, results are from model that accounts for subject-to-subject variation in a mixed model.
 
-<div class="figure" style="text-align: center">
-<img src="09-caseStudies_files/figure-html/Figure9-15-1.png" alt="(ref:fig9-15)" width="75%" />
-<p class="caption">(\#fig:Figure9-15)(ref:fig9-15)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{09-caseStudies_files/figure-latex/Figure9-15-1} 
+
+}
+
+\caption{(ref:fig9-15)}(\#fig:Figure9-15)
+\end{figure}
 
 \newpage
 

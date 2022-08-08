@@ -527,7 +527,7 @@ in what is called an <strong><em>interaction plot</em></strong>.
 Interaction plots display the mean
 responses (y-axis) versus levels of one predictor variable on the x-axis,
 adding points and separate lines for each level of the other predictor variable. Because
-we don’t like any of the available functions in R, we wrote our own function. It is available two ways. The easiest, if it works, is to install and load the <code>catstats</code> R package <span class="citation">(<a href="#ref-R-catstats" role="doc-biblioref"><strong>R-catstats?</strong></a>)</span>. If you are working on a local RStudio installation, the first step involves installing the <code>remotes</code> <span class="citation">(<a href="#ref-R-remotes" role="doc-biblioref">Csárdi et al. 2021</a>)</span> R package and then loading it – this will allow you to install <code>catstats</code> from our github<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a> repository (you can type “3” during the installation to avoid updating other packages when you do this step).</p>
+we don’t like any of the available functions in R, we wrote our own function. It is available two ways. The easiest, if it works, is to install and load the <code>catstats</code> R package <span class="citation">(<a href="#ref-R-catstats" role="doc-biblioref">M. Greenwood 2021</a>)</span>. If you are working on a local RStudio installation, the first step involves installing the <code>remotes</code> <span class="citation">(<a href="#ref-R-remotes" role="doc-biblioref">Csárdi et al. 2021</a>)</span> R package and then loading it – this will allow you to install <code>catstats</code> from our github<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a> repository (you can type “3” during the installation to avoid updating other packages when you do this step).</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="chapter4.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To install the catstats R package (just the first time!):</span></span>
 <span id="cb335-2"><a href="chapter4.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
 <span id="cb335-3"><a href="chapter4.html#cb335-3" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;greenwood-stat/catstats&quot;</span>)</span></code></pre></div>
@@ -1031,7 +1031,7 @@ follow the rules of the sums of squares decomposition but they
 will test the desired hypotheses. Specifically, they provide each test
 conditional on any other terms at the same level of the model and match the
 hypotheses written out earlier in this section. To get the “correct” ANOVA
-results, the <code>car</code> package (<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-car" role="doc-biblioref">2022a</a>)</span>, <span class="citation">(<a href="#ref-Fox2011" role="doc-biblioref"><strong>Fox2011?</strong></a>)</span>) is required. We use the
+results, the <code>car</code> package (<span class="citation">Fox, Weisberg, and Price (<a href="#ref-R-car" role="doc-biblioref">2022a</a>)</span>, <span class="citation">Fox and Weisberg (<a href="#ref-Fox2011" role="doc-biblioref">2011</a>)</span>) is required. We use the
 <code>Anova</code> function on our linear models from here forward to get the “right”
 tests in our ANOVA tables<a href="#fn86" class="footnote-ref" id="fnref86"><sup>86</sup></a>.
 Note how the case-sensitive nature of R code shows
@@ -1426,7 +1426,7 @@ dosages, OJ is clearly better than VC by about 10 microns of growth on average.<
 <div id="section4-5" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Observational study example: The Psychology of Debt<a href="chapter4.html#section4-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this section, the analysis of a survey of <span class="math inline">\(N = 464\)</span> randomly sampled
-adults will be analyzed from a survey conducted by <span class="citation">(<a href="#ref-Lea1995" role="doc-biblioref"><strong>Lea1995?</strong></a>)</span>
+adults will be analyzed from a survey conducted by <span class="citation">Lea, Webley, and Walker (<a href="#ref-Lea1995" role="doc-biblioref">1995</a>)</span>
 and available in the <code>debt</code> data set from the <code>faraway</code> package
 <span class="citation">(<a href="#ref-R-faraway" role="doc-biblioref">Faraway 2016</a>)</span>.
 The subjects responded to a variety of questions
@@ -1440,7 +1440,7 @@ question measured on an <strong><em>ordinal</em></strong> 1 to 6 scale, with hig
 corresponding to more positive responses about <span class="math inline">\(\underline{\text{going into debt}}\)</span>
 of various kinds. The ordered scale on surveys that try to elicit your opinions on
 topics with scales from 1 to 5, 1 to 6, 1 to 7 or even, sometimes, 1 to 10 is called
-a <strong><em>Likert scale</em></strong> <span class="citation">(<a href="#ref-Likert1932" role="doc-biblioref"><strong>Likert1932?</strong></a>)</span>. It is not a quantitative scale and really
+a <strong><em>Likert scale</em></strong> <span class="citation">(<a href="#ref-Likert1932" role="doc-biblioref">Likert 1932</a>)</span>. It is not a quantitative scale and really
 should be handled more carefully than taking an average of a set responses as was done here. That
 said, it is extremely common practice in social science research to treat ordinal
 responses as if they are quantitative and take the average of many of them to
@@ -1477,7 +1477,7 @@ the data set, <code>debt</code>. The change in sample size is available by runni
 provide their income levels if they were in the lowest or highest
 income groups and that is why they are missing. Then we would be missing responses systematically and conclusions
 could be biased because of ignoring particular types of subjects. We don’t have particular statistical tools to easily handle this problem but every researcher should worry about non-response when selected subjects do not respond at
-all or fail to answer some questions. When the missing values are systematic in some fashion and not just missing randomly (missing randomly might be thought of as caused by “demonic intrusion” <span class="citation">(<a href="#ref-Hurlbert1984" role="doc-biblioref"><strong>Hurlbert1984?</strong></a>)</span> that can’t be easily explained or related to the types of responses), then we worry about <strong><em>non-response bias</em></strong> that is systematically biasing our results because of the missing responses. This also ties back into our discussion of who was sampled. We need to
+all or fail to answer some questions. When the missing values are systematic in some fashion and not just missing randomly (missing randomly might be thought of as caused by “demonic intrusion” <span class="citation">(<a href="#ref-Hurlbert1984" role="doc-biblioref">Hurlbert 1984</a>)</span> that can’t be easily explained or related to the types of responses), then we worry about <strong><em>non-response bias</em></strong> that is systematically biasing our results because of the missing responses. This also ties back into our discussion of who was sampled. We need to
 think carefully about who was part of the sample but refused to participate and
 how that might impact our inferences. And whether we can even address the research question of interest based on what was measured given those that refused/failed to respond. For example, suppose we are studying river flows and are interested in the height of a river. Missingness in these responses could arise because a battery fails or the data logger “crashes” (not related to the responses and so not definitely problematic) or because of something about the measurements to be taken that causes the missingness (suppose the gage can only can measure between one and three feet deep and the river is running at four feet deep during a flood or below 1 foot during a drought). The first machine failures are very different from the height-based missing responses; the height-based missingness clearly leads to bias in estimating mean river height because of what can not be observed. In Chapter <a href="chapter5.html#chapter5">5</a>, we introduce the <code>tableplot</code> as another tool to visualize data that can also show missing data patterns to help you think about these sorts of issues further<a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a>. If you delete observations and the missing data are not random/non-systematic, your scope of inference is restricted to just those subjects that provided responses and were analyzed. If the missingness is random and not related to aspects of the measurements taken, then some missingness can be tolerated and still retain some comfort that inferences can be extended to the population a random sample of subjects was taken from.</p>
 <p>Ignoring this potential for bias in the
@@ -2201,9 +2201,9 @@ mathematics course
 work: (a) Algebra I only; (b) two Algebra courses and Geometry; and (c) two
 Algebra courses, Geometry, Trigonometry, Advanced Mathematics, and Beginning
 Calculus. These data were generated from summary statistics for one particular
-form of the test as reported by <span class="citation">(<a href="#ref-Doolittle1989" role="doc-biblioref"><strong>Doolittle1989?</strong></a>)</span>. The source of this version of
-the data set is <span class="citation">(<a href="#ref-Ramsey2012" role="doc-biblioref"><strong>Ramsey2012?</strong></a>)</span> and the <code>Sleuth3</code> package
-<span class="citation">(<a href="#ref-R-Sleuth3" role="doc-biblioref"><strong>R-Sleuth3?</strong></a>)</span>.
+form of the test as reported by <span class="citation">Doolittle and Welch (<a href="#ref-Doolittle1989" role="doc-biblioref">1989</a>)</span>. The source of this version of
+the data set is <span class="citation">Ramsey and Schafer (<a href="#ref-Ramsey2012" role="doc-biblioref">2012</a>)</span> and the <code>Sleuth3</code> package
+<span class="citation">(<a href="#ref-R-Sleuth3" role="doc-biblioref">F. L. Ramsey et al. 2019</a>)</span>.
 First install and then load that package.</p>
 <pre><code>library(Sleuth3)
 library(mosaic)
@@ -2239,7 +2239,7 @@ these plots? Discuss this assumption in this situation.</p>
 <p>4.1.8. Use the term-plot and the estimated model
 coefficients to determine which of the combinations of levels provides the
 highest estimated average score.</p>
-<p>4.2. <strong>Sleep Quality Analysis</strong> As a second example, consider data based on Figure 3 from <span class="citation">(<a href="#ref-Puhan2006" role="doc-biblioref"><strong>Puhan2006?</strong></a>)</span>, which is
+<p>4.2. <strong>Sleep Quality Analysis</strong> As a second example, consider data based on Figure 3 from <span class="citation">Puhan et al. (<a href="#ref-Puhan2006" role="doc-biblioref">2006</a>)</span>, which is
 available at <a href="http://www.bmj.com/content/332/7536/266" class="uri">http://www.bmj.com/content/332/7536/266</a>. In this study, the
 researchers were interested in whether didgeridoo playing might impact sleep
 quality (and therefore daytime sleepiness). They obtained volunteers and they
@@ -2279,14 +2279,41 @@ results of this test.</p>
 <div id="ref-R-remotes" class="csl-entry">
 Csárdi, Gábor, Jim Hester, Hadley Wickham, Winston Chang, Martin Morgan, and Dan Tenenbaum. 2021. <em>Remotes: R Package Installation from Remote Repositories, Including GitHub</em>. <a href="https://CRAN.R-project.org/package=remotes">https://CRAN.R-project.org/package=remotes</a>.
 </div>
+<div id="ref-Doolittle1989" class="csl-entry">
+Doolittle, Alan E., and Catherine Welch. 1989. <span>“Gender Differences in Performance on a College-Level Acheivement Test.”</span> <em>ACT Research Report</em>, 89–90.
+</div>
+<div id="ref-R-Sleuth3" class="csl-entry">
+F. L. Ramsey, Original by, D. W. Schafer; modifications by Daniel W. Schafer, Jeannie Sifneos, Berwin A. Turlach; vignettes contributed by Nicholas Horton, Linda Loi, Kate Aloisio, Ruobing Zhang, and with corrections by Randall Pruim. 2019. <em>Sleuth3: Data Sets from Ramsey and Schafer’s "Statistical Sleuth (3rd Ed)"</em>. <a href="http://r-forge.r-project.org/projects/sleuth2/">http://r-forge.r-project.org/projects/sleuth2/</a>.
+</div>
 <div id="ref-R-faraway" class="csl-entry">
 Faraway, Julian. 2016. <em>Faraway: Functions and Datasets for Books by Julian Faraway</em>. <a href="http://people.bath.ac.uk/jjf23/">http://people.bath.ac.uk/jjf23/</a>.
+</div>
+<div id="ref-Fox2011" class="csl-entry">
+———. 2011. <em>An <span>R-Companion</span> to Applied Regression, Second Edition</em>. Thousand Oaks, CA: SAGE Publications. <a href="http://socserv.socsci.mcmaster.ca/jfox/Books/Companion">http://socserv.socsci.mcmaster.ca/jfox/Books/Companion</a>.
 </div>
 <div id="ref-R-car" class="csl-entry">
 Fox, John, Sanford Weisberg, and Brad Price. 2022a. <em>Car: Companion to Applied Regression</em>. <a href="https://CRAN.R-project.org/package=car">https://CRAN.R-project.org/package=car</a>.
 </div>
+<div id="ref-R-catstats" class="csl-entry">
+Greenwood, Mark. 2021. <em>Catstats: Statistics for Montana State University Bobcats</em>. <a href="https://github.com/greenwood-stat/catstats">https://github.com/greenwood-stat/catstats</a>.
+</div>
+<div id="ref-Hurlbert1984" class="csl-entry">
+Hurlbert, Stuart H. 1984. <span>“Pseudoreplication and the Design of Ecological Field Experiments.”</span> <em>Ecological Monographs</em> 54 (2): 187–211. <a href="http://www.jstor.org/stable/1942661">http://www.jstor.org/stable/1942661</a>.
+</div>
+<div id="ref-Lea1995" class="csl-entry">
+Lea, Stephen E. G., Paul Webley, and Catherine M. Walker. 1995. <span>“Psychological Factors in Consumer Debt: Money Management, Economic Socialization, and Credit Use.”</span> <em>Journal of Economic Psychology</em> 16 (4): 681–701.
+</div>
+<div id="ref-Likert1932" class="csl-entry">
+Likert, Rensis. 1932. <span>“A Technique for the Measurement of Attitudes.”</span> <em>Archives of Psychology</em> 140: 1–55.
+</div>
 <div id="ref-R-RColorBrewer" class="csl-entry">
 Neuwirth, Erich. 2022. <em>RColorBrewer: ColorBrewer Palettes</em>. <a href="https://CRAN.R-project.org/package=RColorBrewer">https://CRAN.R-project.org/package=RColorBrewer</a>.
+</div>
+<div id="ref-Puhan2006" class="csl-entry">
+Puhan, Milo A, Alex Suarez, Christian Lo Cascio, Alfred Zahn, Markus Heitz, and Otto Braendli. 2006. <span>“Didgeridoo Playing as Alternative Treatment for Obstructive Sleep Apnoea Syndrome: Randomised Controlled Trial.”</span> <em>BMJ</em> 332 (7536): 266–70. <a href="https://doi.org/10.1136/bmj.38705.470590.55">https://doi.org/10.1136/bmj.38705.470590.55</a>.
+</div>
+<div id="ref-Ramsey2012" class="csl-entry">
+Ramsey, Fred, and Daniel Schafer. 2012. <em>The Statistical Sleuth: A Course in Methods of Data Analysis</em>. Cengage Learning. <a href="https://books.google.com/books?id=eSlLjA9TwkUC">https://books.google.com/books?id=eSlLjA9TwkUC</a>.
 </div>
 <div id="ref-R-tabplot" class="csl-entry">
 Tennekes, Martijn, and Edwin de Jonge. 2019. <em>Tabplot: Tableplot, a Visualization of Large Datasets</em>. <a href="https://github.com/mtennekes/tabplot http://

@@ -1329,7 +1329,7 @@ assumptions. We also get more resistance to violation of assumptions as our samp
 <h2><span class="header-section-number">3.5</span> Guinea pig tooth growth One-Way ANOVA example<a href="chapter3.html#section3-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A second example of the One-way ANOVA methods involves a study of length of
 odontoblasts (cells that are responsible for tooth growth) in 60 Guinea Pigs
-(measured in microns) from <span class="citation">(<a href="#ref-Crampton1947" role="doc-biblioref"><strong>Crampton1947?</strong></a>)</span> and is available in base R using <code>data(ToothGrowth)</code>. <span class="math inline">\(N = 60\)</span> Guinea Pigs were obtained
+(measured in microns) from <span class="citation">Crampton (<a href="#ref-Crampton1947" role="doc-biblioref">1947</a>)</span> and is available in base R using <code>data(ToothGrowth)</code>. <span class="math inline">\(N = 60\)</span> Guinea Pigs were obtained
 from a local breeder and each received one of three dosages (0.5, 1, or
 2 mg/day) of Vitamin C via one of two delivery methods, Orange Juice (<em>OJ</em>) or
 ascorbic acid (the stuff in vitamin C capsules, called <span class="math inline">\(\text{VC}\)</span> below) as the source
@@ -1737,7 +1737,7 @@ regular <span class="math inline">\(t^*\)</span> from our two-sample <span class
 Chapter <a href="chapter2.html#chapter2">2</a>. The formula otherwise is very similar to the one used in Chapter <a href="chapter2.html#chapter2">2</a> with the SE for the difference in the means based on a measure of residual variance (here <span class="math inline">\(MS_E\)</span>) times <span class="math inline">\(\left(\frac{1}{n_j}+\frac{1}{n_{j&#39;}}\right)\)</span> which weights the results based on the relative sample sizes in the groups.</p>
 <p>We will use the <code>confint</code>, <code>cld</code>, and <code>plot</code> functions
 applied to output from the <code>glht</code> function (all from the <code>multcomp</code> package;
-<span class="citation">(<a href="#ref-Hothorn2008" role="doc-biblioref"><strong>Hothorn2008?</strong></a>)</span>, <span class="citation">(<a href="#ref-R-multcomp" role="doc-biblioref">Hothorn, Bretz, and Westfall 2022</a>)</span>) to get the required comparisons from our
+<span class="citation">Hothorn, Bretz, and Westfall (<a href="#ref-Hothorn2008" role="doc-biblioref">2008a</a>)</span>, <span class="citation">(<a href="#ref-R-multcomp" role="doc-biblioref">Hothorn, Bretz, and Westfall 2022</a>)</span>) to get the required comparisons from our
 ANOVA model.
 Unfortunately, its code format is a little complicated – but there are
 just two places to modify the code: include the model name and after <code>mcp</code>
@@ -1830,7 +1830,7 @@ different groups and the story is not as clear as it is in this case. An
 example of this sort of overlap is seen in the next section.</p>
 <p>There is a method that many researchers use to more efficiently generate and
 report these sorts of results that is called a <strong><em>compact letter display</em></strong>
-(CLD, <span class="citation">(<a href="#ref-Piepho2004" role="doc-biblioref"><strong>Piepho2004?</strong></a>)</span>)<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>. The <code>cld</code> function can be applied to the results from
+(CLD, <span class="citation">Piepho (<a href="#ref-Piepho2004" role="doc-biblioref">2004</a>)</span>)<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>. The <code>cld</code> function can be applied to the results from
 <code>glht</code> to generate the CLD that we can use to provide a “simple” summary of
 the sets of groups. In this discussion, we define a <strong>set as a union of different
 groups that can contain one or more members</strong> and the member of these groups are
@@ -2141,7 +2141,7 @@ good, so are there any levels you would recommend or that might provide similar
 reductions?</p>
 <p>3.1.6. Find and interpret the CLD and compare that to your interpretation of results
 from 3.1.5.</p>
-<p>3.2. <strong>Sting Location Analysis</strong> These data come from <span class="citation">(<a href="#ref-Smith2014" role="doc-biblioref"><strong>Smith2014?</strong></a>)</span> where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at <a href="https://peerj.com/articles/338/" class="uri">https://peerj.com/articles/338/</a>. The following code gets the data prepared for analysis by removing the observations he took each day on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. This is done with a negation (using “!” of the <code>%in%</code> which identifies rows related to the two daily forearm locations (<code>Forearm</code> and <code>Forearm1</code>) to leave all the rows in the data set for any levels of <code>Body_Location</code> that were not in these two levels. This is easier than trying to list all 24 other levels, then <code>Body_Location</code> variable is re-factored to clean out its unused levels, and finally the <code>reorder</code> function is used to order the levels based on the sample mean pain rating – and the results of these steps are stored in the <code>sd_fixedR</code> tibble.</p>
+<p>3.2. <strong>Sting Location Analysis</strong> These data come from <span class="citation">(<a href="#ref-Smith2014" role="doc-biblioref">Smith 2014</a>)</span> where the author experimented on himself by daily stinging himself five times on randomly selected body locations over the course of months. You can read more about this fascinating (and cringe inducing) study at <a href="https://peerj.com/articles/338/" class="uri">https://peerj.com/articles/338/</a>. The following code gets the data prepared for analysis by removing the observations he took each day on how painful it was to sting himself on his forearm before and after the other three observations that were of interest each day of the study. This is done with a negation (using “!” of the <code>%in%</code> which identifies rows related to the two daily forearm locations (<code>Forearm</code> and <code>Forearm1</code>) to leave all the rows in the data set for any levels of <code>Body_Location</code> that were not in these two levels. This is easier than trying to list all 24 other levels, then <code>Body_Location</code> variable is re-factored to clean out its unused levels, and finally the <code>reorder</code> function is used to order the levels based on the sample mean pain rating – and the results of these steps are stored in the <code>sd_fixedR</code> tibble.</p>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="chapter3.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb328-2"><a href="chapter3.html#cb328-2" aria-hidden="true" tabindex="-1"></a>sd_fixed <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;http://www.math.montana.edu/courses/s217/documents/stingdata_fixed.csv&quot;</span>)</span>
 <span id="cb328-3"><a href="chapter3.html#cb328-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2165,11 +2165,23 @@ p-value to the permutation test results.</p>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Crampton1947" class="csl-entry">
+Crampton, E. 1947. <span>“The Growth of the Odontoblast of the Incisor Teeth as a Criterion of Vitamin c Intake of the Guinea Pig.”</span> <em>The Journal of Nutrition</em> 33 (5): 491–504. <a href="http://jn.nutrition.org/content/33/5/491.full.pdf">http://jn.nutrition.org/content/33/5/491.full.pdf</a>.
+</div>
 <div id="ref-R-effects" class="csl-entry">
 Fox, John, Sanford Weisberg, Brad Price, Michael Friendly, and Jangman Hong. 2022. <em>Effects: Effect Displays for Linear, Generalized Linear, and Other Models</em>. <a href="https://CRAN.R-project.org/package=effects">https://CRAN.R-project.org/package=effects</a>.
 </div>
+<div id="ref-Hothorn2008" class="csl-entry">
+Hothorn, Torsten, Frank Bretz, and Peter Westfall. 2008a. <span>“Simultaneous Inference in General Parametric Models.”</span> <em>Biometrical Journal</em> 50 (3): 346–63.
+</div>
 <div id="ref-R-multcomp" class="csl-entry">
 ———. 2022. <em>Multcomp: Simultaneous Inference in General Parametric Models</em>. <a href="https://CRAN.R-project.org/package=multcomp">https://CRAN.R-project.org/package=multcomp</a>.
+</div>
+<div id="ref-Piepho2004" class="csl-entry">
+Piepho, Hans-Peter. 2004. <span>“An Algorithm for a Letter-Based Representation of All-Pairwise Comparisons.”</span> <em>Journal of Computational and Graphical Statistics</em> 13 (2): 456–66.
+</div>
+<div id="ref-Smith2014" class="csl-entry">
+Smith, Michael L. 2014. <span>“Honey Bee Sting Pain Index by Body Location.”</span> <em>PeerJ</em> 2 (April): e338. <a href="https://doi.org/10.7717/peerj.338">https://doi.org/10.7717/peerj.338</a>.
 </div>
 </div>
 <div class="footnotes">

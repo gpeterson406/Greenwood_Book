@@ -82,10 +82,14 @@ types of conclusions that are appropriate based on the design of the study.
 
 (ref:fig1-1) Flow chart of methods.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/decisiontree.jpg" alt="(ref:fig1-1)" width="75%" />
-<p class="caption">(\#fig:Figure1-1)(ref:fig1-1)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{chapter1_files/decisiontree} 
+
+}
+
+\caption{(ref:fig1-1)}(\#fig:Figure1-1)
+\end{figure}
 
 \indent We will be spending most of the semester working on methods for quantitative
 response variables (the
@@ -254,12 +258,12 @@ from two groups, make some graphical displays, do hypothesis testing \index{hypo
 confidence intervals in a couple of different ways. 
 
 \indent You will have two^[There is a cloud version of R Studio available at https://rstudio.cloud/ that is free for limited usage and some institutions have locally hosted versions that you can use with a web-browser (check with your instructor for those options). We recommend following the steps to be able to work locally but try this option if you have issues with the installation process and need to complete an assignment or two until you get the installation sorted out.] downloading activities to complete before you can do anything
-more than read this book^[I created this interactive website (https://greenwood-stat.shinyapps.io/InstallDemo/) that contains discussions and activities related to installing and using R and RStudio.]. First, you need to download R. It is the engine that will do all the computing
+more than read this book^[I created this interactive website (https://rconnect.math.montana.edu/InstallDemo/) that contains discussions and activities related to installing and using R and RStudio.]. First, you need to download R. It is the engine that will do all the computing
 for us, but you will only interact with it once. Go to http://cran.rstudio.com
 and click on the "**Download R for...**" button that
 corresponds to your operating system. On the next page, click on "**base**" and then it will take you 
 to a screen to download the most current version of R that is compiled for your
-operating system, something like "**Download R 4.1.1 for Windows**". Click on that link and then open 
+operating system, something like "**Download R 4.2.1 for Windows**". Click on that link and then open 
 the file you downloaded. You will need to select your preferred language (choose English so your instructor can help you), then hit "**Next**"
 until it starts to unpack and install the program (all the base settings will be fine). After you hit "**Finish**" you will not do anything further with R directly. 
 
@@ -273,15 +277,19 @@ more than a few months previously, you should download the up-to-date versions,
 especially if something you are trying to do is not working. Sometimes code
 will not work in older versions of R and sometimes old code won't work in new
 versions of R.^[The need to keep the code up-to-date as R continues to evolve is
-one reason that this book is locally published and that this is the 8^th^ time 
-it has been revised in eight years...]
+one reason that this book is locally published and that this is the 9^th^ time 
+it has been revised in nine years...]
  
 (ref:fig1-2) Initial RStudio layout.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/fig1-2.png" alt="(ref:fig1-2)" width="100%" />
-<p class="caption">(\#fig:Figure1-2)(ref:fig1-2)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1-2} 
+
+}
+
+\caption{(ref:fig1-2)}(\#fig:Figure1-2)
+\end{figure}
 
 \newpage
 
@@ -507,10 +515,14 @@ code (``View(treadmill``)).
 
 (ref:fig1-3) RStudio with initial data set loaded.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/fig1-3.png" alt="(ref:fig1-3)" width="100%" />
-<p class="caption">(\#fig:Figure1-3)(ref:fig1-3)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1-3} 
+
+}
+
+\caption{(ref:fig1-3)}(\#fig:Figure1-3)
+\end{figure}
 
 \indent Just directly typing (or using) a line of code like this is actually the 
 other way that we can read in
@@ -596,10 +608,14 @@ section of code using the "Run" button.
 
 (ref:fig1-4) RStudio with highlighted code run.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/fig1-4.png" alt="(ref:fig1-4)" width="100%" />
-<p class="caption">(\#fig:Figure1-4)(ref:fig1-4)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/fig1-4} 
+
+}
+
+\caption{(ref:fig1-4)}(\#fig:Figure1-4)
+\end{figure}
 
 ## Basic summary statistics, histograms, and boxplots using R {#section1-3}
 
@@ -686,17 +702,25 @@ Figure \@ref(fig:Figure1-5).
 
 (ref:fig1-5) Histogram of Run Times (minutes) of $n$ = 31 subjects in Treadmill study, bar heights are counts.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-5-1.png" alt="(ref:fig1-5)" width="75%" />
-<p class="caption">(\#fig:Figure1-5)(ref:fig1-5)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-5-1} 
+
+}
+
+\caption{(ref:fig1-5)}(\#fig:Figure1-5)
+\end{figure}
 
 (ref:fig1-6) RStudio while in the process of copying the histogram.
 
-<div class="figure" style="text-align: center">
-<img src="chapter1_files/Fig1-6.png" alt="(ref:fig1-6)" width="100%" />
-<p class="caption">(\#fig:Figure1-6)(ref:fig1-6)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=1\linewidth]{chapter1_files/Fig1-6} 
+
+}
+
+\caption{(ref:fig1-6)}(\#fig:Figure1-6)
+\end{figure}
 
 \indent You can save this plot by clicking on the **Export** button found above 
 the plot, followed by **Copy to Clipboard** and clicking on the 
@@ -720,10 +744,14 @@ into each bar. Specifically, we can turn the ``labels`` option "on" by making it
 
 (ref:fig1-7) Histogram of Run Times with counts in bars labeled.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-7-1.png" alt="(ref:fig1-7)" width="75%" />
-<p class="caption">(\#fig:Figure1-7)(ref:fig1-7)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-7-1} 
+
+}
+
+\caption{(ref:fig1-7)}(\#fig:Figure1-7)
+\end{figure}
 
 
 \indent Based on this histogram (Figure \@ref(fig:Figure1-8)), it does not appear that there any outliers in the responses
@@ -774,10 +802,14 @@ but worth noting.
 
 (ref:fig1-8) Boxplot of 1.5 mile Run Times.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-8-1.png" alt="(ref:fig1-8)" width="75%" />
-<p class="caption">(\#fig:Figure1-8)(ref:fig1-8)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-8-1} 
+
+}
+
+\caption{(ref:fig1-8)}(\#fig:Figure1-8)
+\end{figure}
 
 ```r
 > boxplot(treadmill$RunTime)
@@ -793,10 +825,14 @@ be assigned into the options ``ylab`` (for y-axis) or ``main``
 
 (ref:fig1-9) Boxplot of Run Times with improved labels.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-9-1.png" alt="(ref:fig1-9)" width="75%" />
-<p class="caption">(\#fig:Figure1-9)(ref:fig1-9)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-9-1} 
+
+}
+
+\caption{(ref:fig1-9)}(\#fig:Figure1-9)
+\end{figure}
 
 ```r
 > boxplot(treadmill$RunTime, ylab = "1.5 Mile Run Time (minutes)", 
@@ -929,10 +965,14 @@ ggplot(data = treadmill, mapping = aes(x = RunTime)) + geom_histogram()
 
 ```
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-10-1.png" alt="(ref:fig1-10)" width="75%" />
-<p class="caption">(\#fig:Figure1-10)(ref:fig1-10)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-10-1} 
+
+}
+
+\caption{(ref:fig1-10)}(\#fig:Figure1-10)
+\end{figure}
 
 \newpage
 
@@ -948,10 +988,14 @@ Figure \@ref(fig:Figure1-11).
 
 (ref:fig1-11) Histogram of Run Times using `ggplot` with 8 bins.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-11-1.png" alt="(ref:fig1-11)" width="75%" />
-<p class="caption">(\#fig:Figure1-11)(ref:fig1-11)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-11-1} 
+
+}
+
+\caption{(ref:fig1-11)}(\#fig:Figure1-11)
+\end{figure}
 
 
 ```r
@@ -968,14 +1012,14 @@ defines which layer is "on top", with the plot built up sequentially. So we can
 add a boxplot on top of a histogram by putting it after the histogram layer. 
 Also in Figure \@ref(fig:Figure1-12), the `geom_rug` is also added, which puts 
 a tick mark for each observation on the lower part of the x-axis. \index{rug} 
-Rug plots use a graphical technique called ***jittering*** to add a little 
-noise^[Jittering typically involves adding random variability to each 
+Rug plots can also use a graphical technique called ***jittering*** to add a little 
+noise using the options `geom_rug(sides = "b", aes(y = 0), position = "jitter")`^[Jittering typically involves adding random variability to each 
 observation that is uniformly distributed in a range determined based on the 
-spacing of the observation. The idea is to jitter just enough to see all the 
-points but not too much. This means that if you re-run the ``jitter`` function, 
+spacing of the observations. The idea is to jitter just enough to see all the 
+points but not too much. Because it is random noise being added, this also means that if you re-run the ``jitter`` function, 
 the results will change if you do not set the random number seed using 
-`set.seed` that is discussed more below. For more details, type ``help(jitter)`` 
-in the console in RStudio.] to each observation so that multiple similar or 
+`set.seed` that is discussed more below. For more details, type ``help(geom_rug)`` 
+in the console in RStudio. The code is unfortunately clumsy to add jittering to the rug, so a simpler option is to use `geom_rug(alpha = 0.3)` where the transparency is modified with the `alpha` option to help with identifying overplotting of lines in the rug.] to each observation so that multiple similar or 
 tied observations do not plot as a single line. \index{jitter} There are options 
 to control the color of individual components when we add them (the histogram is 
 filled with grey (``fill = "grey"``), the boxplot is in "tomato" 
@@ -992,16 +1036,20 @@ options there). \index{themes} \index{\texttt{theme\_bw()}}
 
 (ref:fig1-12) Histogram with boxplot and rug of Run Times using `ggplot` with modified colors and theme.
 
-<div class="figure" style="text-align: center">
-<img src="01-preface_files/figure-html/Figure1-12-1.png" alt="(ref:fig1-12)" width="75%" />
-<p class="caption">(\#fig:Figure1-12)(ref:fig1-12)</p>
-</div>
+\begin{figure}[ht!]
+
+{\centering \includegraphics[width=0.75\linewidth]{01-preface_files/figure-latex/Figure1-12-1} 
+
+}
+
+\caption{(ref:fig1-12)}(\#fig:Figure1-12)
+\end{figure}
 
 ```r
 ggplot(data = treadmill, mapping = aes(x = RunTime)) + 
   geom_histogram(fill = "grey", bins = 8) + 
   geom_boxplot(color = "tomato") + 
-  geom_rug(color = "skyblue") + 
+    geom_rug(color = "skyblue", sides = "b", aes(y = 0), position = "jitter") + 
   theme_light()
 ```
 
@@ -1056,7 +1104,7 @@ required. You can use this as a guide to finding the function names and some
 hints about options that will help you to get the code to work. You can also
 revisit the worked examples using each of the functions. 
 
-* <font color='red'>FILENAME</font> ``<-`` **read_csv(**<font color='red'>"path to csv file/FILENAME.csv"</font>**)**
+* \textcolor{red}{FILENAME} ``<-`` **read_csv(**\textcolor{red}{"path to csv file/FILENAME.csv"}**)**
 
     * Can be generated using "Import Dataset" button or by modifying this text. 
     
@@ -1065,32 +1113,32 @@ revisit the worked examples using each of the functions.
     
     * Imports a text file saved in the CSV format.
 
-* <font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>
+* \textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}
 
     * To access a particular variable in a tibble called DATASETNAME, use 
     a $ and then the VARIABLENAME. 
 
-* **head(**<font color='red'>DATASETNAME</font>**)**
+* **head(**\textcolor{red}{DATASETNAME}**)**
 
     * Provides a list of the first few rows of the data set for all the 
     variables in it. \index{\texttt{head()}|textbf}
 
-* **tail(**<font color='red'>DATASETNAME</font>**)**
+* **tail(**\textcolor{red}{DATASETNAME}**)**
 
     * Provides a list of the last few rows of the data set for all the 
     variables in it. \index{\texttt{tail()}|textbf}
     
-* **mean(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **mean(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Calculates the mean of the observations in a variable. 
     \index{\texttt{mean()}|textbf}
 
-* **sd(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **sd(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Calculates the standard deviation of the observations in a variable. 
     \index{\texttt{sd()}|textbf}
 
-* **favstats(**<font color='red'>DATASETNAME</font>$<font color='red'>VARIABLENAME</font>**)** 
+* **favstats(**\textcolor{red}{DATASETNAME}$\textcolor{red}{VARIABLENAME}**)** 
 
     * Requires the ``mosaic`` package to be loaded (``library(mosaic)``) after
     installing the package). 
@@ -1098,16 +1146,16 @@ revisit the worked examples using each of the functions.
     * Provides a suite of numerical summaries of the observations in a variable.
     \index{\texttt{favstats()}|textbf}
 
-* **hist(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **hist(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Makes a histogram. \index{\texttt{hist()}|textbf}
     
-* **boxplot(**<font color='red'>DATASETNAME</font>**$**<font color='red'>VARIABLENAME</font>**)**
+* **boxplot(**\textcolor{red}{DATASETNAME}**$**\textcolor{red}{VARIABLENAME}**)**
 
     * Makes a boxplot. \index{\texttt{boxplot()}|textbf}
 
-* **ggplot(data = **<font color='red'>DATASETNAME</font>**, mapping = aes(**<font color='red'>VARIABLENAME</font>**)) +  
-geom_histogram(bins = **<font color='red'>10</font>**)**
+* **ggplot(data = **\textcolor{red}{DATASETNAME}**, mapping = aes(**\textcolor{red}{VARIABLENAME}**)) +  
+geom_histogram(bins = **\textcolor{red}{10}**)**
 
     * Makes a histogram with 10 bins using `ggplot`, requires the `ggplot2` 
     library is installed and loaded. \index{\texttt{geom\_histogram()}|textbf}

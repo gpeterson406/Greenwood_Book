@@ -274,7 +274,8 @@ the diagnostic plots to verify that we have a problem.
 m1 <- lm(Massperha ~ Species * Treatment, data = gdn)
 summary(m1)
 par(mfrow = c(2,2), oma = c(0,0,2,0))
-plot(m1, sub.caption = "Initial Massperha 2-WAY model", pch = 16)
+plot(m1, pch = 16, sub.caption = "")
+title(main="Initial Massperha 2-WAY model", outer=TRUE)
 ```
 
 There is a clear problem with non-constant variance showing up in a fanning 
@@ -358,7 +359,8 @@ summary(m2)
 library(car)
 Anova(m2)
 par(mfrow = c(2,2), oma = c(0,0,2,0))
-plot(m2, sub.caption = "log-Massperha 2-WAY model", pch = 16)
+plot(m2, pch = 16, sub.caption = "")
+title(main="log-Massperha 2-WAY model", outer=TRUE)
 ```
 
 \indent The researchers actually applied a $\log(y+1)$ transformation to all the 

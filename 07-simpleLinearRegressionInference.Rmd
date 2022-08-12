@@ -218,6 +218,8 @@ estimates.
 \index{random sampling}
 The next sections develop those inferential tools. 
 
+
+
 (ref:fig7-3) Variability in realized regression lines based on sampling variation. Light grey lines are simulated realizations assuming the bold (red) line is the true SLR model and variability is similar to the original BAC data set. Simulated observations from the estimated models using the ``simulate`` function as was used in Chapter \@ref(chapter2) were used to create this plot. \index{\texttt{simulate()}}
 
 ```{r Figure7-3,fig.cap="(ref:fig7-3)",echo=F}
@@ -226,11 +228,15 @@ knitr::include_graphics("chapter7_files/image034.png")
 
 <!-- \newpage -->
 
-\sectionmark{CI and Hypothesis tests for slope and intercept}
+<!-- \phantom{force newpage} -->
+
+<!-- \newpage -->
+
+<!-- \sectionmark{CI and Hypothesis tests for slope and intercept} -->
 
 ## Confidence interval and hypothesis tests for the slope and intercept	{#section7-2}
 
-\sectionmark{CI and Hypothesis tests for slope and intercept}
+<!-- \sectionmark{CI and Hypothesis tests for slope and intercept} -->
 
 Our inference techniques will resemble previous material with an 
 interest in forming confidence intervals and
@@ -479,7 +485,7 @@ but certainly would never say that this presents strong evidence.
 \index{R packages!\textbf{alr4}}
 \index{R packages!\textbf{tibble}}
 
-\vspace{22pt}
+<!-- \vspace{22pt} -->
 
 ```{r}
 library(alr4)
@@ -488,7 +494,6 @@ library(tibble)
 ais <- as_tibble(ais)
 aisR <- ais %>% slice(-56, -166) #Removes observations in rows 56 and 166
 m2 <- lm(Hc ~ Bfat, data = aisR %>% filter(Sex == 1)) #Results for Females 
-
 summary(m2)
 confint(m2)
 ```
@@ -970,6 +975,8 @@ of any inference we perform**. We can sometimes resolve some of the
 systematic issues noted above using ***transformations***, discussed in
 Sections \@ref(section7-5) and \@ref(section7-6).
 \index{transformation}
+
+\newpage
 
 ## Randomization-based inferences for the slope coefficient	{#section7-4}
 
@@ -1516,11 +1523,11 @@ defaulted to different bases.
  Generally, in statistics, it's safe to assume that everything is log base *e* unless otherwise specified.
 -----------------------------------------------------------------------------------------------------------
  
-\sectionmark{Transformations part II: Impacts on SLR interpretations}
+<!-- \sectionmark{Transformations part II: Impacts on SLR interpretations} -->
 
 ## Transformations part II: Impacts on SLR interpretations: log(y), log(x), & both log(y) & log(x)	{#section7-6}
 
-\sectionmark{Transformations part II: Impacts on SLR interpretations}
+<!-- \sectionmark{Transformations part II: Impacts on SLR interpretations} -->
 
 The previous attempts to linearize relationships imply a desire to be 
 able to fit SLR models.
@@ -1899,11 +1906,11 @@ will explore.
 
 <!-- \newpage -->
 
-\sectionmark{Confidence intervals and prediction intervals}
+<!-- \sectionmark{Confidence intervals and prediction intervals} -->
 
 ## Confidence interval for the mean and prediction intervals for a new observation {#section7-7}
 
-\sectionmark{Confidence intervals and prediction intervals}
+<!-- \sectionmark{Confidence intervals and prediction intervals} -->
 
 Figure \@ref(fig:Figure7-7) provided a term-plot of the estimated 
 regression line and a shaded area surrounding
@@ -2030,7 +2037,7 @@ confidence interval and degrees of freedom.
 Note that elements returned 
 are labeled as ``$fit``, ``$se.fit``, etc. and provide some of the information to calculate CIs or PIs "by hand".
 
-\newpage
+<!-- \newpage -->
 
 ```{r}
 predict(m1, newdata = tibble(Beers = 8), se.fit = T)

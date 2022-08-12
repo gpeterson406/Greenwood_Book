@@ -920,6 +920,7 @@ s1 <- snotel_final %>% ggplot(aes(x = Elevation, y = SimulatedSnow)) +
   geom_point(col = "forestgreen") + 
   theme_bw() + 
   labs(title = "First Simulated Responses")
+
 s2 <- snotel_final %>% ggplot(aes(x = Max.Temp, y = SimulatedSnow)) + 
   geom_point(col = "forestgreen") + 
   theme_bw() + 
@@ -985,15 +986,16 @@ $\boldsymbol{b_k}$ **[*units of y*]**, after controlling for
 term-plot. To do this, we first need the mean of the "other" predictors, 
 *Min.Temp* and *Max.Temp*. 
 
-```{r}
-mean(snotel_final$Min.Temp)
-```
-
 \newpage
 
 \phantom{force new page}
 
 \newpage
+
+```{r}
+mean(snotel_final$Min.Temp)
+```
+
 
 ```{r}
 mean(snotel_final$Max.Temp)
@@ -2324,11 +2326,13 @@ m1 <- mres_GPA_m %>% ggplot() +
 grid.arrange(v1, m1, ncol = 2)
 ```
 
+<!-- \newpage -->
+
 <!-- \sectionmark{Different intercepts for different groups} -->
 
 ## Different intercepts for different groups: MLR with indicator variables	{#section8-9}
 
-\sectionmark{Different intercepts for different groups}
+<!-- \sectionmark{Different intercepts for different groups} -->
 
 One of the implicit assumptions up to this point was that the models were being
 applied to a single homogeneous population.
@@ -2691,7 +2695,7 @@ Headache <- as_tibble(Headache)
 Headache
 ```
 
-\newpage
+<!-- \newpage -->
 
 (ref:fig8-26) Scatterplot of post-treatment decibel tolerance (du2) vs pre-treatment tolerance (du1) by treatment level (4 groups).
 
@@ -3463,11 +3467,11 @@ need to develop $F$-tests for the interaction part of the model.
 
 \phantom{Make the sectionmark actually work!}
 
-\sectionmark{F-tests for MLR models with Q and C variables and interactions}
+<!-- \sectionmark{F-tests for MLR models with Q and C variables and interactions} -->
 
 ## F-tests for MLR models with quantitative and categorical variables and interactions	{#section8-12}
 
-\sectionmark{F-tests for MLR models with Q and C variables and interactions}
+<!-- \sectionmark{F-tests for MLR models with Q and C variables and interactions} -->
 
 For models with multi-category $(J>2)$ categorical variables we need a method
 for deciding if all the extra complexity present in the additive or interaction
@@ -3525,6 +3529,8 @@ this tree of models and might stop earlier in the tree if that fully addresses
 our research question, but it is good to consider the potential paths that an
 analysis could involve before it is started if model refinement is being
 considered.
+
+\newpage
 
 \indent To perform the first test (after checking that assumptions are not
 problematic, of course), we can apply the ``Anova`` function from the ``car``
@@ -3990,8 +3996,7 @@ data(FEV)
 FEV <- as_tibble(FEV)
 FEV <- FEV %>% mutate(sex = factor(sex), #Make sex and smoke factors, log.FEV
                       smoke = factor(smoke),
-                      log.FEV = log(FEV)
-                      )
+                      log.FEV = log(FEV))
 levels(FEV$sex) <- c("Female","Male") #Make sex labels explicit
 levels(FEV$smoke) <- c("Nonsmoker","Smoker") #Make smoking status labels explicit
 
@@ -4002,7 +4007,6 @@ p1 <- FEV %>% ggplot(mapping = aes(x = age, y = log.FEV, color = smoke, shape = 
   scale_color_viridis_d(end = 0.8) +
   labs(title = "Plot of log(FEV) vs Age of children by smoking  status",
        y = "log(FEV)") 
-
 
 p2 <- FEV %>% ggplot(mapping = aes(x = age, y = log.FEV, color = smoke, shape = smoke)) +
   geom_point(size = 1.5, alpha = 0.5) +
@@ -4022,16 +4026,10 @@ data(FEV)
 FEV <- as_tibble(FEV)
 FEV <- FEV %>% mutate(sex = factor(sex), #Make sex and smoke factors, log.FEV
                       smoke = factor(smoke),
-                      log.FEV = log(FEV)
-                      )
-
+                      log.FEV = log(FEV))
 levels(FEV$sex) <- c("Female","Male") #Make sex labels explicit
 levels(FEV$smoke) <- c("Nonsmoker","Smoker") #Make smoking status labels explicit
-```
 
-\newpage
-
-```{r eval=F}
 p1 <- FEV %>% ggplot(mapping = aes(x = age, y = log.FEV, color = smoke, shape = smoke)) +
   geom_point(size = 1.5, alpha = 0.5) +
   geom_smooth(method = "lm") +
@@ -4039,7 +4037,6 @@ p1 <- FEV %>% ggplot(mapping = aes(x = age, y = log.FEV, color = smoke, shape = 
   scale_color_viridis_d(end = 0.8) +
   labs(title = "Plot of log(FEV) vs Age of children by smoking  status",
        y = "log(FEV)") 
-
 
 p2 <- FEV %>% ggplot(mapping = aes(x = age, y = log.FEV, color = smoke, shape = smoke)) +
   geom_point(size = 1.5, alpha = 0.5) +
@@ -4257,7 +4254,7 @@ confint(fm1R)
 plot(allEffects(fm1R), grid = T)
 ```
 
-\newpage
+<!-- \newpage -->
 
 \indent Like any statistical method, the AIC works better with larger sample
 sizes and when assumptions are not clearly violated. It also will detect
@@ -4523,7 +4520,8 @@ differ across the age groups.
 ```r
 treadmill <- treadmill %>% mutate(Ageb = factor(cut(Age, breaks = c(37, 44.5, 50.5, 58))))
 summary(treadmill$Ageb)
-treadmill %>% ggplot(mapping = aes(x = RunTime, y = TreadMillOx, color = Ageb, shape = Ageb)) + 
+treadmill %>% ggplot(mapping = aes(x = RunTime, y = TreadMillOx, 
+                                   color = Ageb, shape = Ageb)) + 
   geom_point(size = 1.5, alpha = 0.5) +
   geom_smooth(method = "lm") +
   theme_bw() +

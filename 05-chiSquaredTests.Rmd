@@ -1662,24 +1662,30 @@ variable. This creates two new variables called ``liar2`` and ``copier2``
 (tableplot in Figure \@ref(fig:Figure5-20)). The code to create these 
 variables and make the plot is below which employs the ``levels`` function to assign the same label to two different levels from the original list. \index{\texttt{levels()}}
 
-```{r}
+\vspace{22pt}
+
+(ref:fig5-20) Tableplot of lying and copying variables after combining categories. 
+
+```{r Figure5-20,fig.cap = "(ref:fig5-20)"}
 # Collapse the middle categories of both variables by making both have the same level name:
 cheating <- cheating %>% mutate(liar2 = liar, 
                                 copier2 = copier
                                 )
 levels(cheating$liar2) <- c("None", "ExamorPaper", "ExamorPaper", "LieBoth")
 levels(cheating$copier2) <- c("None", "ExamorPaper", "ExamorPaper", "CopyBoth")
+tableplot(cheating, sort = liar2, select = c(liar2, copier2), pals = list("BrBG"))
+```
+
+<!-- \newpage -->
+
+
+
+```{r}
 cheatlietable <- tally(~ liar2 + copier2, data = cheating)
 cheatlietable
 ```
 
 <!-- \newpage -->
-
-(ref:fig5-20) Tableplot of lying and copying variables after combining categories. 
-
-```{r Figure5-20,fig.cap = "(ref:fig5-20)"}
-tableplot(cheating, sort = liar2, select = c(liar2, copier2), pals = list("BrBG"))
-```
 
 This $3\times 3$ table is more manageable and has few really small 
 cells so we will proceed with the 6+ steps of hypothesis
@@ -1804,7 +1810,9 @@ single sample was taken from the population so that is the appropriate procedure
     ($X^2$-statistic = 13.24, permutation p-value of `r pval`), so conclude that
     there is a relationship between lying and copying behavior at the university
     in the population of students studied. 
-    
+
+\newpage
+
 5. **Size:**
     
     * The standardized residuals can help us more fully understand this result
@@ -1942,8 +1950,7 @@ create new categories with those names in a new variable called
 
 ```{r}
 apistrat <- apistrat %>% mutate(growthcut = cut(growth, breaks = c(-47,6.75,25,48,133),
-                                                include.lowest = T)
-                                )
+                                                include.lowest = T))
 ```
 
 <!-- \newpage -->
@@ -2016,7 +2023,6 @@ using the $\boldsymbol{\chi^2}$-distribution to find the p-value:
 
 ```{r}
 growthtable <- tally(~ stype + growthcut, data = apistrat)
-
 growthtable
 ```
 
@@ -2116,7 +2122,7 @@ contingency table where you identified initial patterns and help to tell the sto
 
 <!-- \newpage -->
 
-## Summary of important R commands	{#section5-13}
+## Summary of important R code	{#section5-13}
 
 The main components of R code used in this chapter follow with components
 to modify in lighter and/or ALL CAPS text where ``y`` is a response variable and ``x`` is a predictor 

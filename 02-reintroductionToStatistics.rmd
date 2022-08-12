@@ -131,7 +131,7 @@ suppressMessages(library(readr))
 dd <- read_csv("Walker2014_mod.csv")
 ```
 
-It is always good to review the data you have read by running the code and printing the tibble \index{R packages!\textbf{tibble}} by typing the tibble name (here `> dd`) at the command prompt in the console, using the `View` function, (here `View(dd)`), to open a spreadsheet-like view, or using the `head` and `tail` functions have been show the first and last ten observations:
+It is always good to review the data you have read by running the code and printing the tibble \index{R packages!\textbf{tibble}} by typing the tibble name (here `> dd`) at the command prompt in the console, using the `View` function, (here `View(dd)`), to open a spreadsheet-like view, or using the `head` and `tail` functions to show the first and last six observations:
 
 \newpage
 
@@ -278,7 +278,7 @@ contains the histogram with a boxplot and a rug of *Distance*, all ignoring any 
 ```{r Figure2-1, fig.cap="(ref:fig2-1)",echo=F,cache=T}
 dd %>% ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 20, fill = "grey") +
-  geom_rug() +
+  geom_rug(alpha = 0.1) +
   # width used to scale boxplot to make it more visible
   geom_boxplot(color = "tomato", width = 30) + 
   theme_bw() +
@@ -291,7 +291,7 @@ dd %>% ggplot(mapping = aes(x = Distance)) +
 ```{r eval=F}
 dd %>% ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 20, fill = "grey") +
-  geom_rug() +
+  geom_rug(alpha = 0.1) +
   geom_boxplot(color = "tomato", width = 30) + 
       # width used to scale boxplot to make it more visible
   theme_bw() +
@@ -347,7 +347,7 @@ set.seed(555)
 dd %>% ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 20, fill = "grey", aes(y = ..density..)) +
   geom_density(fill = "purple", alpha = 0.1) + 
-  geom_rug() + 
+  geom_rug(alpha = 0.1) + 
   theme_bw() +
   labs(title = "Plot of Passing Distances",
        x = "Distance (cm)",
@@ -358,7 +358,7 @@ dd %>% ggplot(mapping = aes(x = Distance)) +
 dd %>% ggplot(mapping = aes(x = Distance)) +
   geom_histogram(bins = 15, fill = "grey", aes(y = ..density..)) +
   geom_density(fill = "purple", alpha = 0.1) + 
-  geom_rug() + 
+  geom_rug(alpha = 0.1) + 
   theme_bw() +
   labs(title = "Plot of Passing Distances",
        x = "Distance (cm)",
@@ -615,11 +615,13 @@ mean(Distance ~ Condition, data = ddsub)
 diffmean(Distance ~ Condition, data = ddsub)
 ```
 
-\sectionmark{Models, hypotheses, and permutations for 2 sample means}
+
+
+<!-- \sectionmark{Models, hypotheses, and permutations for 2 sample means} -->
 
 ## Models, hypotheses, and permutations for the two sample mean situation {#section2-3}
 
-\sectionmark{Models, hypotheses, and permutations for 2 sample means}
+<!-- \sectionmark{Models, hypotheses, and permutations for 2 sample means} -->
 
 There appears to be some evidence that the *casual* clothing group is 
 getting higher average overtake distances than
@@ -1071,7 +1073,7 @@ order of the parameters. The code for the vertical line is before the code for
 the bin counts. This order is prefered so that the counts are still readable if
 the vertical line and a bin count are in the same horizontal position.
 
-(ref:fig2-9) Histogram (left) and density curve (right) of values of test statistic for 1,000 permutations with bold vertical line for value of observed test statistic. 
+(ref:fig2-9) Histogram and density curve of values of test statistic for 1,000 permutations with bold vertical line for the value of observed test statistic. 
 
 ```{r Figure2-9, fig.cap="(ref:fig2-9)",echo=F,cache=F}
 Tobs <- -25.933
@@ -2174,11 +2176,11 @@ using the permutation \index{permutation} results for the grade data:
 
 \newpage
 
-\sectionmark{Reproducibility Crisis}
+<!-- \sectionmark{Reproducibility Crisis} -->
 
 ## Reproducibility Crisis: Moving beyond p < 0.05, publication bias, and multiple testing issues {#section2-8}
 
-\sectionmark{Reproducibility Crisis}
+<!-- \sectionmark{Reproducibility Crisis} -->
 
 In the previous examples, some variation in p-values was observed as different methods (parametric, nonparametric) were applied to the same data set and in the permutation approach, the p-values can vary as well from one set of permutations to another. P-values also vary based on randomness in the data that were collected -- take a different (random) sample and you will get different data and a different p-value. We want the best estimate of a p-value we can obtain, so should use the best sampling method and inference technique that we can. But it is just an estimate of the evidence against the null hypothesis. These sources of variability make fixed $\alpha$ NHST especially worry-some as sampling variability could take a p-value from just below to just above $\alpha$ and this would lead to completely different inferences if the only focus is on rejecting the null hypothesis at a fixed significance level. But viewing p-values on a gradient from extremely strong (close to 0) to no (1) evidence against the null hypothesis, p-values of, say, 0.046 and 0.054 provide basically the same evidence against the null hypothesis. The fixed $\alpha$ decision-making is tied into the use of the terminology of "significant results" or, slightly better, "statistically significant results" \index{statistically significant} that are intended to convey that there was sufficient evidence to reject the null hypothesis at some pre-decided $\alpha$ level. You will notice that this is the only time that the "s-word" (significant) is considered here. 
 

@@ -427,7 +427,7 @@ to check for nonlinear
 relationships, outliers, and clustering of observations that may be distorting
 the numerical measure of the linear relationship. \index{outlier} The ``ggpairs``
 function from the ``GGally`` package [@R-GGally] combines the numerical 
-correlation information and scatterplots in one display.
+correlation information and scatterplots in one display^[We will not use the "significance stars" in the plot that display with the estimated correlations. You can ignore them but we will sometimes remove them from the plot by using the more complex code of `ggpairs(upper = list(continuous = GGally::wrap(ggally_cor, stars = F)))`.].
 \index{R packages!\textbf{GGally}}
 As in the correlation matrix, you
 triangulate the variables for the pairwise relationship. The upper right
@@ -839,9 +839,7 @@ quantiles <- qdata(Tstar, c(0.025, 0.975)) #95% Confidence Interval
 
 <!-- \newpage -->
 
-(ref:fig6-10) Histogram and density curve of the bootstrap distribution of the
-correlation coefficient with bold vertical line for observed correlation and
-dashed lines for bounds for the 95% bootstrap confidence interval.
+(ref:fig6-10) Histogram and density curve of the bootstrap distribution of the correlation coefficient with bold vertical line for observed correlation and dashed lines for bounds for the 95% bootstrap confidence interval.
 
 ```{r Figure6-10,fig.cap = "(ref:fig6-10)"}
 quantiles
@@ -855,7 +853,6 @@ tibble(Tstar) %>% ggplot(aes(x = Tstar)) +
   geom_vline(xintercept = Tobs, col = "red", lwd = 2) +
   stat_bin(aes(y = ..ncount.., label = ..count..), bins = 15,
            geom = "text", vjust = -0.75)
-
 ```
 
 These results tell us that the bootstrap 95% CI is from 0.76 to 0.95 -- we are 95%
@@ -976,7 +973,7 @@ transformations in Chapter \@ref(chapter7).
 
 (ref:fig6-12) Bootstrap distributions of the correlation coefficient for the full data set (top) and without potential outlier included (bottom) with observed correlation (bold line) and bounds for the 95% confidence interval (dashed lines). Notice the change in spread of the bootstrap distributions as well as the different centers.
 
-```{r Figure6-12,fig.cap = "(ref:fig6-12)",echo = T, fig.height=9}
+```{r Figure6-12,fig.cap = "(ref:fig6-12)",echo = T, fig.height=9.5}
 Tobs <- cor(dbh.cm ~ height.m, data = ufc); Tobs
 set.seed(208)
 B <- 1000
@@ -1271,6 +1268,7 @@ using the ``lm`` function:
 
 ```{r}
 m2 <- lm(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Results for Females 
+summary(m2)
 ```
 
 <!-- \newpage -->
@@ -1278,7 +1276,6 @@ m2 <- lm(Hc ~ Bfat, data = aisR2 %>% filter(Sex == 1)) #Results for Females
 (ref:fig6-15) Scatterplot of Hematocrit versus Body Fat for female athletes. Note how the ``filter`` was used to pipe the subset of the data set to the plot.
 
 ```{r Figure6-15,fig.cap = "(ref:fig6-15)"}
-summary(m2)
 aisR2 %>% filter(Sex == 1) %>% ggplot(mapping = aes(x = Bfat, y = Hc)) +
   geom_point() +
   geom_smooth(method = "lm") +
@@ -1537,17 +1534,17 @@ model.
 
 \indent In regression models, we use the ***coefficient of determination*** 
 (symbol: **R^2^**) to accompany our regression line and describe
-the strength of the relationship. It can either be
+the strength of the relationship and assess the quality of the model fit. It can either be
 scaled between 0 and 1 or 0 to 100% and has "units" of the proportion or
 percentage of the variation in $y$ that is explained by the model that 
 includes $x$ (and later more than one $x$). For example, an **R^2^**
 of 0% corresponds to explaining 0% of the variation in the response with our
-model and $\boldsymbol{R^2} = 100\%$ means that all the variation in the
-response was explained by the model. In between, it provides a nice summary 
+model (worst possible fit) and $\boldsymbol{R^2} = 100\%$ means that all the variation in the
+response was explained by the model (best possible fit). In between, it provides a nice summary 
 of how much of the total variability in the response we can account for
 with our model
 including $x$ (and, in Chapter \@ref(chapter8), including multiple 
-predictor variables). \index{coefficient of determination} \index{R-squared}
+predictor variables). \index{coefficient of determination} \index{R-squared} \index{model fit}
 
 (ref:fig6-19) Three scatterplots with the same estimated regression line. 
 
@@ -2025,6 +2022,8 @@ examples:
     
         * Both variables are quantitative.
         
+    \newpage
+    
     * Independence of observations:
     
         * We can assume that all the subjects are independent of each 
@@ -2213,13 +2212,10 @@ we do not have to worry about non-constant variance here. So these results might
 be relatively trustworthy if we assume that the same relationship holds for all
 levels of duration of eruptions. 
 
+<!-- \vspace{22pt} -->
+
 ```{r}
 OF1 <- lm(Waiting ~ Duration, data = G2)
-```
-
-<!-- \newpage -->
-
-```{r}
 summary(OF1)
 ```
 

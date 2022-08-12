@@ -11,6 +11,9 @@
 \usepackage{cancel}
 \usepackage{geometry}
 \usepackage{framed}
+\usepackage[fit]{truncate}
+\usepackage{fancyhdr}
+
 
 \definecolor{WhiteSmoke}{RGB}{245, 245, 245} % #F5F5F5
 \definecolor{Silver}{RGB}{192, 192, 192} % #C0C0C0
@@ -81,9 +84,15 @@
 
 \renewcommand*{\maketitle}{%
 \begin{titlepage}
-\includegraphics{titlepage.pdf}
+\includegraphics{titlepage_summer_2022.pdf}
 \end{titlepage}
 }
+
+\pagestyle{fancy}
+\fancyhf{} % --- clear all fields
+\fancyhead[LE, RO]{\thepage} %Add page number to outside of page in header
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\truncate{0.95\headwidth}{\rightmark}}
 
 % Uncomment below to make an index (only for pdf version).
 % Will also need to figure out how to make the bookmark jump to the Index
